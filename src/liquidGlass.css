@@ -1,0 +1,33 @@
+.liquid-glass {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+  
+    /* depth / separation */
+    filter: drop-shadow(-8px -10px 46px rgba(0, 0, 0, 0.35));
+  
+    /* glass refraction + liquid distortion */
+    backdrop-filter:
+      brightness(1.1)
+      blur(2px)
+      url(#liquidDisplacement);
+  
+    -webkit-backdrop-filter:
+      brightness(1.1)
+      blur(2px)
+      url(#liquidDisplacement);
+  }
+  
+  /* specular highlights (glass rim) */
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  
+    box-shadow:
+      inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7),
+      inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+  }
+  
