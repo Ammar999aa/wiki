@@ -1,0 +1,18 @@
+.container {
+    position: fixed;
+    bottom: 38px;
+    inset-inline-start: 32px;
+    width: calc(100dvw - (2 * 32px));
+    height: 68px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 68px;
+    font-size: 24px;
+    color: white;
+    padding-inline: 54px;
+    align-items: center;
+}
