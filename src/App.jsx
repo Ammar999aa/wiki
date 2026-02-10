@@ -1,14 +1,11 @@
-import LiquidGlassFilter from "./LiquidGlassFilter";
-import LiquidGlass from "./LiquidGlass";
-import "./App.css";
+import LiquidGlassFilter from "./components/LiquidGlassFilter/LiquidGlassFilter";
+import LiquidGlass from "./components/LiquidGlass/LiquidGlass";
+import styles from "./App.module.scss";
 
 export default function App() {
   return (
-    <div className="page">
-      {/* SVG filter MUST be mounted */}
+    <div className={styles.page}>
       <LiquidGlassFilter />
-
-      {/* Example glass component */}
       <LiquidGlass>
         <div style={{ padding: "40px", color: "white" }}>
           Liquid Glass Content
