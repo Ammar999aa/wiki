@@ -3,18 +3,26 @@
   overflow: hidden;
   border-radius: var(--radius, 28px);
 
+  /* configurable glass tint */
+  background-color: rgb(
+    var(--glass-r, 255)
+    var(--glass-g, 255)
+    var(--glass-b, 255)
+    / var(--glass-opacity, 0.15)
+  );
+
   /* depth / separation */
   filter: drop-shadow(-8px -10px 46px rgba(0, 0, 0, 0.35));
 
   /* glass refraction + liquid distortion */
   backdrop-filter:
     brightness(1.1)
-    blur(2px)
+    blur(var(--glass-blur, 8px))
     url(#liquidDisplacement);
 
   -webkit-backdrop-filter:
     brightness(1.1)
-    blur(2px)
+    blur(var(--glass-blur, 8px))
     url(#liquidDisplacement);
 }
 
