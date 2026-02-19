@@ -1,0 +1,34 @@
+.container {
+    transition: transform 250ms ease;
+    position: fixed;
+    top: 0;
+}
+
+.contents {
+    height: 100dvh;
+    width: 360px;
+    padding: 35px;
+    color: white;
+    // font-weight: 600;\
+}
+
+.selected {
+    color: #B16DFF;
+}
+
+.arrow {
+    transition: transform 250ms ease;
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    top: 45%;
+    inset-inline-end: 0;
+}
+
+.collapsed {
+    transform: translateX(-85%);
+}
+
+.flipped {
+    transform: rotate(180deg);
+}
