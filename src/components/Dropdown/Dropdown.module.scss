@@ -1,0 +1,19 @@
+.container {
+    position: fixed;
+    top: 38px;
+    inset-inline-end: 32px;
+    width: auto;
+    height: auto;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    height: 170px;
+    font-size: 24px;
+    color: white;
+    padding: 20px;
+    align-items: center;
+}
