@@ -8,7 +8,6 @@ export default function App() {
   return (
     <div className={styles.page}>
       <LiquidGlassFilter />
-      <Dropdown></Dropdown>
       <Panel></Panel>
       <Menu></Menu>
     </div>

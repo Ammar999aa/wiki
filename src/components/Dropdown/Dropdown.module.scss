@@ -1,19 +1,19 @@
 .container {
     position: fixed;
-    top: 38px;
-    inset-inline-end: 32px;
-    width: auto;
-    height: auto;
+    transform: translate(-36%, -100%) translateY(-27px);
+    z-index: 1000;
 }
-
+  
 .dropdown {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    justify-content: space-between;
-    height: 170px;
     font-size: 24px;
     color: white;
     padding: 20px;
     align-items: center;
+}
+
+.dropdownItem:hover {
+    color: var(--primary)
 }
