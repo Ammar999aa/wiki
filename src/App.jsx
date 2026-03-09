@@ -1,14 +1,18 @@
+import { Routes, Route } from "react-router-dom";
 import LiquidGlassFilter from "./components/LiquidGlassFilter/LiquidGlassFilter";
 import Menu from "./components/Menu/Menu";
-import Panel from "./components/Panel/Panel";
-import Dropdown from "./components/Dropdown/Dropdown";
 import styles from "./App.module.scss";
+import Home from "./pages/Home";
+import Project from "./pages/Project";
 
 export default function App() {
   return (
     <div className={styles.page}>
       <LiquidGlassFilter />
-      <Panel></Panel>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/project" element={<Project />} />
+      </Routes>
       <Menu></Menu>
     </div>
   );

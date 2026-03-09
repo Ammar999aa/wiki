@@ -1,19 +1,20 @@
+import { Link } from "react-router-dom";
 import { useState, useRef, useCallback } from "react";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import Dropdown from "../Dropdown/Dropdown";
 import styles from "./Menu.module.scss";
 
 const menuItems = [
-  { label: "Project" },
-  { label: "Wet Lab" },
-  { label: "Dry Lab" },
-  { label: "Human Practices" },
+  { label: "Project", to: "/project" },
+  { label: "Wet Lab", to: "/" },
+  { label: "Dry Lab", to: "/"},
+  { label: "Human Practices", to: "/" },
   {
-    label: "Team",
+    label: "Team", to: "/",
     dropdown: ["Roster", "Attributions", "Collaborations", "Partnerships"],
   },
-  { label: "Safety" },
-  { label: "Engagement" },
+  { label: "Safety", to: "/"},
+  { label: "Engagement", to: "/" },
 ];
 
 export default function Menu() {
@@ -62,14 +63,15 @@ export default function Menu() {
         <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
           <nav className={styles.menu}>
             {menuItems.map((item, i) => (
-              <div
+              <Link
                 key={item.label}
+                to={item.to}
                 ref={(el) => (itemRefs.current[i] = el)}
                 onMouseEnter={() => handleMouseEnter(item, i)}
                 className={styles.menuItem}
               >
                 {item.label}
-              </div>
+              </Link>
             ))}
           </nav>
         </LiquidGlass>
