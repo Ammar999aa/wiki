@@ -47,9 +47,26 @@
 body {
   margin: 0;
   font-family: inherit;
+  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 32px;
+  color: #d6d6d6;
+  font-weight: 500;
 }

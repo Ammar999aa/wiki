@@ -18,13 +18,13 @@ export default function Menu() {
                             <path d="M42.75 46.5V19L29 32.75L42.75 46.5Z" fill="#E3E3E3" />
                         </svg>
                     </button>
-                    <h2>Overview</h2>
-                    <h2>Background</h2> 
-                    <h2 className={styles.selected}>Pectin Hydrogel</h2> 
-                    <h2>Hydrogel Engineering</h2>
-                    <h2>System Design</h2>
-                    <h2> Experimental Validation</h2>
-                    <h2>Applications</h2>
+                    <h2 className={styles.item}>Overview</h2>
+                    <h2 className={styles.item}>Background</h2> 
+                    <h2 className={`${styles.item} ${styles.selected}`}>Pectin Hydrogel</h2> 
+                    <h2 className={styles.item}>Hydrogel Engineering</h2>
+                    <h2 className={styles.item}>System Design</h2>
+                    <h2 className={styles.item}> Experimental Validation</h2>
+                    <h2 className={styles.item}>Applications</h2>
                 </div>
             </LiquidGlass>
         </div>

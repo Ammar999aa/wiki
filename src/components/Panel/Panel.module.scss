@@ -2,6 +2,7 @@
     transition: transform 250ms ease;
     position: fixed;
     top: 0;
+    z-index: 10;
 }
 
 .contents {
@@ -10,6 +11,10 @@
     padding: 35px;
     color: white;
     font-weight: 600;
+}
+
+.item {
+    font-size: 24px;
 }
 
 .selected {
