@@ -1,4 +1,5 @@
-import Panel from "../components/Panel/Panel";
+import styles from "./Project.module.scss";
+import Panel from "../../components/Panel/Panel";
 
 export default function Project() {
     return (
