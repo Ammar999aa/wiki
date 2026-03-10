@@ -9,11 +9,13 @@ export default function App() {
   return (
     <div className={styles.page}>
       <LiquidGlassFilter />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/project" element={<Project />} />
-      </Routes>
-      <Menu></Menu>
+      <div className={styles.content}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project" element={<Project />} />
+        </Routes>
+        <Menu></Menu>
+      </div>
     </div>
   );
 }
