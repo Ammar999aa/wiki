@@ -1,11 +1,23 @@
-.container {
+.article {
+    box-sizing: border-box;
+    width: calc(100dvw - 430px); /* 430px is the width of the panel*/
+    position: absolute;
+    inset-inline-end: 0;
+    padding: 50px;
+
+    img {
+        margin: 12px;
+    }
+}
+
+.panelContainer {
     transition: transform 250ms ease;
     position: fixed;
     top: 0;
     z-index: 10;
 }
 
-.contents {
+.panelContents {
     height: 100dvh;
     width: 360px;
     padding: 35px;
@@ -13,7 +25,7 @@
     font-weight: 600;
 }
 
-.item {
+.panelItem {
     font-size: 24px;
 }
 
