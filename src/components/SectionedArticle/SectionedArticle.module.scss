@@ -2,8 +2,10 @@
     box-sizing: border-box;
     width: calc(100dvw - 430px); /* 430px is the width of the panel*/
     position: absolute;
+    top: 0;
     inset-inline-end: 0;
     padding: 50px;
+    transition: transform 250ms ease;
 
     img {
         margin: 12px;
@@ -48,4 +50,8 @@
 
 .flipped {
     transform: rotate(180deg);
+}
+
+.articleShifted {
+    transform: translateX(calc(0.85 * 430px * 0.5 * -1))
 }

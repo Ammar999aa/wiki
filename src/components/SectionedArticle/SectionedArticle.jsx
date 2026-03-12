@@ -15,14 +15,18 @@ export default function SectionedArticle({ sections, defaultSelected }) {
 
   return (
     <div className={styles.layout}>
-      <Panel
-        items={sections.map((s) => s.title)}
-        selected={selected}
-        collapsed={collapsed}
-        onToggle={() => setCollapsed((v) => !v)}
-        onSelect={scrollTo}
-      />
-      <Article sections={sections} sectionRefs={sectionRefs} />
+        <Panel
+            items={sections.map((s) => s.title)}
+            selected={selected}
+            collapsed={collapsed}
+            onToggle={() => setCollapsed((v) => !v)}
+            onSelect={scrollTo}
+        />
+        <Article 
+            sections={sections}
+            sectionRefs={sectionRefs}
+            panelCollapsed={collapsed}
+        />
     </div>
   );
 }
