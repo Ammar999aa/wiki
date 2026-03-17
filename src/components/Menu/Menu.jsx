@@ -10,8 +10,13 @@ const menuItems = [
   { label: "Dry Lab", to: "/"},
   { label: "Human Practices", to: "/" },
   {
-    label: "Team", to: "/",
-    dropdown: ["Roster", "Attributions", "Collaborations", "Partnerships"],
+    label: "Team",
+    dropdown: [
+      { label: "Roster", to: "/roster" },
+      { label: "Attributions", to: "/attributions" },
+      { label: "Collaborations", to: "/collaborations" },
+      { label: "Partnerships", to: "/partnerships" },
+    ],
   },
   { label: "Safety", to: "/"},
   { label: "Engagement", to: "/" },
