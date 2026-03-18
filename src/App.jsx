@@ -4,6 +4,7 @@ import Menu from "./components/Menu/Menu";
 import styles from "./App.module.scss";
 import Home from "./pages/Home/Home";
 import Project from "./pages/Project/Project";
+import Roster from "./pages/Roster/Roster";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Project />} />
+          <Route path="/Roster" element={<Roster />} />
         </Routes>
         <Menu></Menu>
       </div>
