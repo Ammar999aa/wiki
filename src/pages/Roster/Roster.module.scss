@@ -1,6 +1,32 @@
-h1 {
-    margin-block: 10px;
-    font-size: 96px;
-    color: white;
-    font-weight: 400;
+.title {
+    position: absolute;
+    top: 67px;
+    inset-inline-start: 102px;
+    display: inline-block;
+
+    h1 {
+        margin-block: 10px;
+        font-size: 96px;
+        color: white;
+        font-weight: 700;
+        padding-inline: 40px;
+        text-align: center;
+    }
+}
+
+.card {
+    position: absolute;
+    top: 271px;
+    display: flex;
+    width: 100dvw;
+    justify-content: center;
+}
+
+.content {
+    max-width: calc(min(100dvw - (2 * 180px), 920px));
+    display: flex;
+    padding-block: 33px;
+    padding-inline: 40px;
+    gap: 26px;
+
 }
