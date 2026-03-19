@@ -1,7 +1,6 @@
 .title {
-    position: absolute;
-    top: 67px;
-    inset-inline-start: 102px;
+    margin-top: 67px;
+    margin-inline-start: 102px;
     display: inline-block;
 
     h1 {
@@ -15,8 +14,7 @@
 }
 
 .card {
-    position: absolute;
-    top: 271px;
+    margin-block: 87px;
     display: flex;
     width: 100dvw;
     justify-content: center;
