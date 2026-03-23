@@ -22,6 +22,83 @@ export default function Roster() {
             </div>
         </LiquidGlass>
       </div>
+      <div className={styles.roster}>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+        <div className={styles.person}>
+            <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+                <img src={jeremy} className={styles.icon}/>
+            </LiquidGlass>
+        </div>
+      </div>
     </div>
     );
   }
