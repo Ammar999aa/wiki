@@ -10,7 +10,9 @@ export default function ArticleBody({ sections, sectionRefs, panelCollapsed }) {
           data-title={section.title}
         >
           <h2>{section.title}</h2>
-          {section.content}
+          {section.html && (
+            <div dangerouslySetInnerHTML={{ __html: section.html }} />
+          )}
         </div>
       ))}
     </div>
