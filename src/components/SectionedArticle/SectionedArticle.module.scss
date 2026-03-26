@@ -6,12 +6,119 @@
     inset-inline-end: 0;
     padding: 50px;
     transition: transform 250ms ease;
+    color: white;
 
     img {
         margin: 12px;
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        margin-top: 32px;
+        margin-bottom: 12px;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+        margin-top: 24px;
+        margin-bottom: 8px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    p {
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    a {
+        color: #7B9EFF;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+            color: #A0BFFF;
+        }
+    }
+
+    strong {
+        font-weight: 700;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    blockquote {
+        border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
+        padding-inline-start: 20px;
+        margin-inline: 0;
+        margin-block: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+    }
+
+    ul, ol {
+        padding-inline-start: 24px;
+        margin-bottom: 16px;
+    }
+
+    li {
+        line-height: 1.7;
+        margin-bottom: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-block: 20px;
+    }
+
+    th {
+        background: rgba(255, 255, 255, 0.1);
+        text-align: start;
+        font-weight: 700;
+        padding: 10px 14px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    td {
+        padding: 10px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    tr:hover td {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    code {
+        font-family: "Courier New", monospace;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    pre {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-block: 20px;
+
+        code {
+            background: none;
+            padding: 0;
+        }
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        margin-block: 32px;
     }
 }
-
 .panelContainer {
     transition: transform 250ms ease;
     position: fixed;
