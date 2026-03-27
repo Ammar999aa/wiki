@@ -25,7 +25,7 @@ import claudia from "../../assets/roster/claudia.png";
 import raheema from "../../assets/roster/raheema.png";
 
 const members = [
-  { name: "Jeremy Rodrigo Guerrero Alejos", role: "Dry Lab", bio: "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Some of my skills include: Python, Nextflow, and R. Participated and won previously the iGEM Design League.", photo: jeremy },
+  { name: "Jeremy Rodrigo Guerrero Alejos", role: "Dry Lab", bio: "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Some of my skills include: Python, Nextflow, and R. Participated and won previously the iGEM Design League. Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Some of my skills include: Python, Nextflow, and R. Participated and won previously the iGEM Design League. Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Some of my skills include: Python, Nextflow, and R. Participated and won previously the iGEM Design League.", photo: jeremy },
   { name: "Taiba Zeya", role: "Dry Lab", bio: "Bio coming soon.", photo: taiba },
   { name: "Ammar Almarzooq", role: "Wiki", bio: "Background in computer science with software engineering experience, specializing in fronted web development and user experience design.", photo: ammar },
   { name: "Maria Camila Muñoz Vega", role: "Wet Lab", bio: "Bio coming soon.", photo: maria },
@@ -66,7 +66,7 @@ export default function Roster() {
               ) : (
                 <div className={styles.placeholder} />
               )}
-              <div>
+              <div className={styles.bio}>
                 <h2>{selected.name}</h2>
                 <h3>{selected.role}</h3>
                 <p>{selected.bio}</p>
