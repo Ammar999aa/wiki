@@ -1,10 +1,13 @@
 import styles from "./Roster.module.scss";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import jeremy from "../../assets/roster/Jeremy.png";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import bg from "../../assets/bg.svg?url";
+import gradient from "../../assets/gradient.svg?url";
 
 export default function Roster() {
     return (
-    <div>
+    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
       <div className={styles.title}>
         <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
             <h1>TEAM</h1>
@@ -99,6 +102,6 @@ export default function Roster() {
             </LiquidGlass>
         </div>
       </div>
-    </div>
+    </PageWrapper>
     );
   }

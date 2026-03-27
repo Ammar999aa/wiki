@@ -1,0 +1,31 @@
+.fixed {
+    position: fixed;
+    inset: 0;
+}
+
+.absolute {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.bg {
+    z-index: -1;
+}
+
+.overlay {
+    background: no-repeat center / cover;
+}
+
+.wrapper {
+    min-height: 100dvh;
+    padding-top: 120px;
+    position: relative;
+}
+
+.noScroll {
+    height: 100dvh;
+    min-height: unset;
+    overflow: hidden;
+}
