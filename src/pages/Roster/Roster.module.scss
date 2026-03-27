@@ -1,11 +1,16 @@
+.container {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .title {
-    margin-top: 67px;
-    margin-inline-start: 102px;
+    margin-top: 24px;
+    margin-inline-start: 12px;
     display: inline-block;
 
     h1 {
         margin-block: 10px;
-        font-size: 96px;
+        font-size: 74px;
         color: white;
         font-weight: 700;
         padding-inline: 40px;
@@ -14,7 +19,7 @@
 }
 
 .card {
-    margin-block: 87px;
+    margin-block: 30px;
     display: flex;
     width: 100dvw;
     justify-content: center;
@@ -23,10 +28,32 @@
 .content {
     max-width: calc(min(100dvw - (2 * 180px), 920px));
     display: flex;
-    padding-block: 33px;
-    padding-inline: 40px;
+    padding-block: 20px;
+    padding-inline: 30px;
     gap: 26px;
+    color: white;
 
+    h2 {
+        margin: 0;
+    }
+
+    h3 {
+        margin-top: 4px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    p {
+        margin-top: 12px;
+        line-height: 1.5;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 }
 
 .roster {
@@ -34,20 +61,51 @@
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
-    padding-inline: 200px;
+    padding-inline: 140px;
 }
 
 .person {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    // opacity: 0.6;
+    transition: opacity 200ms ease, transform 200ms ease;
+
+    &:hover {
+        // opacity: 0.9;
+        transform: scale(1.05);
+    }
+}
+
+.selected {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
 }
 
 .icon {
-    width: 110px;
-    height: 110px;
+    width: 94px;
+    height: 94px;
     display: block;
-    margin: 5px;
+    margin: 3px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.placeholder {
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.iconPlaceholder {
+    width: 94px;
+    height: 94px;
+    margin: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
 }
