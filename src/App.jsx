@@ -5,6 +5,7 @@ import styles from "./App.module.scss";
 import Home from "./pages/Home/Home";
 import Project from "./pages/Project/Project";
 import Roster from "./pages/Roster/Roster";
+import Attributions from "./pages/Attributions/Attributions"
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Project />} />
           <Route path="/Roster" element={<Roster />} />
+          <Route path="/Attributions" element={<Attributions />} />
         </Routes>
         <Menu></Menu>
       </div>
