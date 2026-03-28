@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useRef, useCallback } from "react";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import Dropdown from "../Dropdown/Dropdown";
@@ -7,6 +7,7 @@ import styles from "./Menu.module.scss";
 
 export default function Menu() {
   const { t } = useLanguage();
+  const { pathname } = useLocation();
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const menuItems = [
@@ -69,17 +70,24 @@ export default function Menu() {
       >
         <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
           <nav className={styles.menu}>
-            {menuItems.map((item, i) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                ref={(el) => (itemRefs.current[i] = el)}
-                onMouseEnter={() => handleMouseEnter(item, i)}
-                className={styles.menuItem}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {menuItems.map((item, i) => {
+              const isActive =
+                (item.to && pathname.toLowerCase() === item.to.toLowerCase()) ||
+                (item.dropdown?.some(
+                  (child) => pathname.toLowerCase() === child.to.toLowerCase()
+                ));
+              return (
+                <Link
+                  key={item.label}
+                  to={item.to ?? "#"}
+                  ref={(el) => (itemRefs.current[i] = el)}
+                  onMouseEnter={() => handleMouseEnter(item, i)}
+                  className={`${styles.menuItem} ${isActive ? styles.menuItemActive : ""}`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         </LiquidGlass>
       </div>

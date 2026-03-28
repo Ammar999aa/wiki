@@ -23,6 +23,7 @@
     text-decoration: none;
 }
 
-.menuItem:hover {
+.menuItem:hover,
+.menuItemActive {
     color: var(--primary)
 }
