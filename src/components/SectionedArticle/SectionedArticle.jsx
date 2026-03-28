@@ -8,6 +8,10 @@ export default function SectionedArticle({ sections, defaultSelected }) {
   const [selected, setSelected] = useState(defaultSelected || sections[0]?.title);
   const sectionRefs = useRef({});
 
+  useEffect(() => {
+    setSelected(sections[0]?.title);
+  }, [sections]);
+
   const scrollTo = (index) => {
     setSelected(sections[index].title);
     sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });

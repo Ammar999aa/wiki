@@ -1,0 +1,55 @@
+{
+  "menu": {
+    "project": "Project",
+    "wetLab": "Wet Lab",
+    "dryLab": "Dry Lab",
+    "humanPractices": "Human Practices",
+    "team": "Team",
+    "roster": "Roster",
+    "attributions": "Attributions",
+    "collaborations": "Collaborations",
+    "partnerships": "Partnerships",
+    "safety": "Safety",
+    "engagement": "Engagement"
+  },
+  "home": {
+    "introducing": "Introducing"
+  },
+  "roster": {
+    "title": "TEAM",
+    "roles": {
+      "dryLab": "Dry Lab",
+      "wetLab": "Wet Lab",
+      "wiki": "Wiki",
+      "hardware": "Hardware",
+      "publicEngagement": "Public Engagement"
+    },
+    "members": {
+      "jeremy": { "bio": "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Some of my skills include: Python, Nextflow, and R. Participated and won previously the iGEM Design League." },
+      "taiba": { "bio": "Bio coming soon." },
+      "ammar": { "bio": "Background in computer science with software engineering experience, specializing in frontend web development and user experience design." },
+      "mariaCamila": { "bio": "Bio coming soon." },
+      "mariana": { "bio": "Bio coming soon." },
+      "kexin": { "bio": "Bio coming soon." },
+      "genesis": { "bio": "Bio coming soon." },
+      "sriharsha": { "bio": "Bio coming soon." },
+      "kevser": { "bio": "Bio coming soon." },
+      "shahad": { "bio": "Background in biology with clinical and infectious disease research experience as well as teaching and project coordination experience." },
+      "francesca": { "bio": "Background in bioengineering with experience in biochemistry (protein expression in bacteria, insect and mammalian cells, and purification), biophysical (MST), and bioimaging assays (fluorescence and confocal microscopy)." },
+      "zeyad": { "bio": "Bio coming soon." },
+      "ansal": { "bio": "Background in synthetic biology and materials science with experience in drug delivery, molecular biology techniques (flow cytometry, cytotoxicity assays, etc), protein expression in mammalian and bacterial cells, genetic engineering, and biochemistry. iGEM team lead in 2024." },
+      "nauryzbay": { "bio": "Background in economics with experience in data science analytics and predictive modelling." },
+      "nadia": { "bio": "Background in mechanical engineering with wet lab experience in cell culture and hydrogel synthesis, and experience in prototyping and design." },
+      "hanke": { "bio": "Bio coming soon." },
+      "claudia": { "bio": "Bio coming soon." },
+      "raheema": { "bio": "Bio coming soon." },
+      "mariaFernanda": { "bio": "Bio coming soon." }
+    }
+  },
+  "attributions": {
+    "ansal": { "content": "Content here" },
+    "ammar": { "content": "Content here" },
+    "francesca": { "content": "Content here" },
+    "genesis": { "content": "Content here" }
+  }
+}

@@ -119,10 +119,12 @@
         margin-block: 32px;
     }
 }
+
 .panelContainer {
     transition: transform 250ms ease;
     position: fixed;
     top: 0;
+    inset-inline-start: 0;
     z-index: 10;
 }
 
@@ -150,16 +152,32 @@
     position: absolute;
     top: 45%;
     inset-inline-end: 0;
+
+    :global([dir="rtl"]) & {
+        transform: rotate(180deg);
+    }
 }
 
 .collapsed {
     transform: translateX(-85%);
+
+    :global([dir="rtl"]) & {
+        transform: translateX(85%);
+    }
 }
 
 .flipped {
     transform: rotate(180deg);
+
+    :global([dir="rtl"]) & {
+        transform: rotate(0deg);
+    }
 }
 
 .articleShifted {
-    transform: translateX(calc(0.85 * 430px * 0.5 * -1))
+    transform: translateX(calc(0.85 * 430px * 0.5 * -1));
+
+    :global([dir="rtl"]) & {
+        transform: translateX(calc(0.85 * 430px * 0.5));
+    }
 }

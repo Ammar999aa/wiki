@@ -2,28 +2,30 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useCallback } from "react";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import Dropdown from "../Dropdown/Dropdown";
+import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Menu.module.scss";
 
-const menuItems = [
-  { label: "Project", to: "/project" },
-  { label: "Wet Lab", to: "/" },
-  { label: "Dry Lab", to: "/"},
-  { label: "Human Practices", to: "/" },
-  {
-    label: "Team",
-    dropdown: [
-      { label: "Roster", to: "/roster" },
-      { label: "Attributions", to: "/attributions" },
-      { label: "Collaborations", to: "/collaborations" },
-      { label: "Partnerships", to: "/partnerships" },
-    ],
-  },
-  { label: "Safety", to: "/"},
-  { label: "Engagement", to: "/" },
-];
-
 export default function Menu() {
+  const { t } = useLanguage();
   const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const menuItems = [
+    { label: t("menu.project"), to: "/project" },
+    { label: t("menu.wetLab"), to: "/" },
+    { label: t("menu.dryLab"), to: "/" },
+    { label: t("menu.humanPractices"), to: "/" },
+    {
+      label: t("menu.team"),
+      dropdown: [
+        { label: t("menu.roster"), to: "/roster" },
+        { label: t("menu.attributions"), to: "/attributions" },
+        { label: t("menu.collaborations"), to: "/collaborations" },
+        { label: t("menu.partnerships"), to: "/partnerships" },
+      ],
+    },
+    { label: t("menu.safety"), to: "/" },
+    { label: t("menu.engagement"), to: "/" },
+  ];
   const [dropdownPos, setDropdownPos] = useState({ x: 0, y: 0 });
   const itemRefs = useRef({});
   const closeTimeout = useRef(null);

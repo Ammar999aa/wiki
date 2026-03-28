@@ -1,0 +1,55 @@
+{
+  "menu": {
+    "project": "Projet",
+    "wetLab": "Laboratoire Humide",
+    "dryLab": "Laboratoire Sec",
+    "humanPractices": "Pratiques Humaines",
+    "team": "Équipe",
+    "roster": "Liste de l'Équipe",
+    "attributions": "Attributions",
+    "collaborations": "Collaborations",
+    "partnerships": "Partenariats",
+    "safety": "Sécurité",
+    "engagement": "Engagement"
+  },
+  "home": {
+    "introducing": "Présentation de"
+  },
+  "roster": {
+    "title": "ÉQUIPE",
+    "roles": {
+      "dryLab": "Laboratoire Sec",
+      "wetLab": "Laboratoire Humide",
+      "wiki": "Wiki",
+      "hardware": "Matériel",
+      "publicEngagement": "Engagement Public"
+    },
+    "members": {
+      "jeremy": { "bio": "Formation en bio-ingénierie avec une spécialisation en bioinformatique, analyse de données de transcriptomique et protéomique. Parmi mes compétences : Python, Nextflow et R. J'ai participé et remporté l'iGEM Design League." },
+      "taiba": { "bio": "Biographie à venir." },
+      "ammar": { "bio": "Formation en informatique avec une expérience en génie logiciel, spécialisé dans le développement web frontend et la conception d'expérience utilisateur." },
+      "mariaCamila": { "bio": "Biographie à venir." },
+      "mariana": { "bio": "Biographie à venir." },
+      "kexin": { "bio": "Biographie à venir." },
+      "genesis": { "bio": "Biographie à venir." },
+      "sriharsha": { "bio": "Biographie à venir." },
+      "kevser": { "bio": "Biographie à venir." },
+      "shahad": { "bio": "Formation en biologie avec une expérience en recherche clinique et sur les maladies infectieuses, ainsi qu'en enseignement et coordination de projets." },
+      "francesca": { "bio": "Formation en bio-ingénierie avec une expérience en biochimie (expression de protéines dans des bactéries, cellules d'insectes et de mammifères, et purification), biophysique (MST) et essais de bioimagerie (microscopie à fluorescence et confocale)." },
+      "zeyad": { "bio": "Biographie à venir." },
+      "ansal": { "bio": "Formation en biologie synthétique et science des matériaux avec une expérience en délivrance de médicaments, techniques de biologie moléculaire (cytométrie de flux, tests de cytotoxicité, etc.), expression de protéines dans des cellules de mammifères et bactériennes, génie génétique et biochimie. Chef d'équipe iGEM en 2024." },
+      "nauryzbay": { "bio": "Formation en économie avec une expérience en analyse de science des données et modélisation prédictive." },
+      "nadia": { "bio": "Formation en génie mécanique avec une expérience en laboratoire humide en culture cellulaire et synthèse d'hydrogels, et une expérience en prototypage et conception." },
+      "hanke": { "bio": "Biographie à venir." },
+      "claudia": { "bio": "Biographie à venir." },
+      "raheema": { "bio": "Biographie à venir." },
+      "mariaFernanda": { "bio": "Biographie à venir." }
+    }
+  },
+  "attributions": {
+    "ansal": { "content": "Contenu ici" },
+    "ammar": { "content": "Contenu ici" },
+    "francesca": { "content": "Contenu ici" },
+    "genesis": { "content": "Contenu ici" }
+  }
+}
