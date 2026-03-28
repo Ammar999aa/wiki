@@ -1,9 +1,5 @@
 :root {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-}
-
-:root:lang(ar) {
-  font-family: "IBM Plex Sans Arabic", system-ui, Arial, sans-serif;
 
   /* Primary color scale */
 
@@ -46,6 +42,10 @@
   --tertiary-100: #E6EEF8;
 
   --tertiary: var(--tertiary-500);
+}
+
+:root:lang(ar) {
+  font-family: "IBM Plex Sans Arabic", system-ui, Arial, sans-serif;
 }
 
 body {
