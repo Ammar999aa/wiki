@@ -4,10 +4,10 @@ import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./LanguageSelector.module.scss";
 
 const LANGUAGES = [
-  { code: "en", label: "EN" },
-  { code: "ar", label: "AR" },
-  { code: "es", label: "ES" },
-  { code: "fr", label: "FR" },
+  { code: "en", label: "English" },
+  { code: "ar", label: "عربي" },
+  { code: "es", label: "Español" },
+  { code: "fr", label: "Français" },
 ];
 
 export default function LanguageSelector() {
@@ -27,7 +27,7 @@ export default function LanguageSelector() {
     closeTimeout.current = setTimeout(() => setOpen(false), 150);
   }, [cancelClose]);
 
-  const currentLabel = LANGUAGES.find((l) => l.code === lang)?.label ?? "EN";
+  const currentLabel = LANGUAGES.find((l) => l.code === lang)?.code.toUpperCase() ?? "EN";
 
   return (
     <div
