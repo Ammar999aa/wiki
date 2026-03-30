@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState, useCallback } from "react";
 import styles from "./LiquidGlass.module.scss";
 
 function squirclePath(w, h, r) {
@@ -25,11 +25,12 @@ export default function LiquidGlass({
   opacity = 0.15,
   color = [255, 255, 255],
   cornerGlow = true,
-  glowMask = null,   // CSS mask-image string — controls which sides/corners glow is visible on
+  glowMask = null,
 }) {
   const [r, g, b] = color;
   const ref = useRef(null);
   const [squircleState, setSquircleState] = useState({ clipPath: "", pathD: "", circle: null });
+  const [cursor, setCursor] = useState(null);
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -54,12 +55,28 @@ export default function LiquidGlass({
     return () => ro.disconnect();
   }, [radius]);
 
+  const handleMouseMove = useCallback((e) => {
+    const rect = ref.current.getBoundingClientRect();
+    setCursor({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => setCursor(null), []);
+
   const hasGlow = cornerGlow && (squircleState.pathD || squircleState.circle);
+
+  const activeMask = cursor
+    ? `radial-gradient(circle at ${cursor.x}% ${cursor.y}%, white 0%, transparent 55%)`
+    : glowMask;
 
   return (
     <div
       ref={ref}
       className={`${styles.liquidGlass} ${hasGlow ? styles.noGlowPseudo : ""}`}
+      onMouseMove={hasGlow ? handleMouseMove : undefined}
+      onMouseLeave={hasGlow ? handleMouseLeave : undefined}
       style={{
         "--glass-blur": `${blur}px`,
         "--glass-opacity": opacity,
@@ -74,7 +91,12 @@ export default function LiquidGlass({
         <svg
           aria-hidden="true"
           className={styles.glowSvg}
-          style={glowMask ? { maskImage: glowMask, WebkitMaskImage: glowMask } : undefined}
+          style={{
+            maskImage: activeMask || undefined,
+            WebkitMaskImage: activeMask || undefined,
+            opacity: activeMask ? 1 : 0,
+            transition: "opacity 0.4s ease",
+          }}
         >
           {squircleState.pathD ? (
             <>
