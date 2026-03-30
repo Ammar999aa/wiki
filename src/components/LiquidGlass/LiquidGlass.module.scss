@@ -1,7 +1,6 @@
 .liquidGlass {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius, 28px);
 
   /* configurable glass tint */
   background-color: rgb(
@@ -26,16 +25,30 @@
     url(#liquidDisplacement);
 }
 
-/* specular highlights (glass rim) */
+/* fallback glow via box-shadow — used when cornerGlow is false */
 .liquidGlass::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   pointer-events: none;
 
   box-shadow:
     inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7),
     inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+}
+
+/* suppress ::before when SVG glow takes over */
+.noGlowPseudo::before {
+  display: none;
+}
+
+/* SVG glow overlay — traces the squircle path exactly */
+.glowSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
   

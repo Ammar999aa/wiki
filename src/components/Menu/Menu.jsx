@@ -68,7 +68,7 @@ export default function Menu() {
         className={styles.container}
         onMouseLeave={scheduleClose}
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)">
           <nav className={styles.menu}>
             {menuItems.map((item, i) => {
               const isActive =
