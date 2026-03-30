@@ -94,8 +94,6 @@ export default function LiquidGlass({
           style={{
             maskImage: activeMask || undefined,
             WebkitMaskImage: activeMask || undefined,
-            opacity: activeMask ? 1 : 0,
-            transition: "opacity 0.4s ease",
           }}
         >
           {squircleState.pathD ? (
