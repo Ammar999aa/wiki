@@ -19,10 +19,10 @@
     blur(var(--glass-blur, 8px))
     url(#liquidDisplacement);
 
+  /* Safari: omit url() — it breaks the entire chain including blur */
   -webkit-backdrop-filter:
     brightness(1.1)
-    blur(var(--glass-blur, 8px))
-    url(#liquidDisplacement);
+    blur(var(--glass-blur, 8px));
 }
 
 /* fallback glow via box-shadow — used when cornerGlow is false */

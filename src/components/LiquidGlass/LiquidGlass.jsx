@@ -103,7 +103,7 @@ export default function LiquidGlass({
                 fill="none"
                 stroke="rgba(255,255,255,0.25)"
                 strokeWidth="12"
-                style={{ filter: "blur(5px)" }}
+                filter="url(#glowBlur)"
               />
               <path
                 d={squircleState.pathD}
@@ -121,7 +121,7 @@ export default function LiquidGlass({
                 fill="none"
                 stroke="rgba(255,255,255,0.25)"
                 strokeWidth="12"
-                style={{ filter: "blur(5px)" }}
+                filter="url(#glowBlur)"
               />
               <circle
                 cx={squircleState.circle.cx}
