@@ -27,3 +27,125 @@
 .menuItemActive {
     color: var(--primary)
 }
+
+/* Mobile elements — hidden on desktop */
+
+.mobileContainer {
+    display: none;
+    position: fixed;
+    bottom: 38px;
+    inset-inline-end: 32px;
+    z-index: 12;
+}
+
+.hamburgerBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.mobilePanelContainer {
+    display: none;
+    position: fixed;
+    bottom: calc(38px + 68px + 12px);
+    inset-inline-end: 32px;
+    z-index: 11;
+    min-width: 220px;
+}
+
+.mobileMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 2px;
+    font-size: 20px;
+    color: white;
+}
+
+.mobileItem {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+.mobileItem:hover {
+    color: var(--primary);
+}
+
+.mobileGroupBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 10px 14px;
+    border-radius: 12px;
+    text-align: start;
+}
+
+.mobileGroupBtn:hover {
+    color: var(--primary);
+}
+
+.groupChevron {
+    transition: transform 200ms ease;
+    flex-shrink: 0;
+}
+
+.groupChevronOpen {
+    transform: rotate(180deg);
+}
+
+.mobileSubItem {
+    padding-inline-start: 26px;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        display: none;
+    }
+
+    .mobileContainer {
+        display: block;
+    }
+
+    .mobilePanelContainer {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobilePanelContainer {
+        inset-inline-start: 16px;
+        inset-inline-end: 16px;
+        width: auto;
+        min-width: unset;
+    }
+
+    .mobileContainer {
+        inset-inline-end: 16px;
+        bottom: 24px;
+    }
+
+    .mobilePanelContainer {
+        bottom: calc(24px + 68px + 12px);
+    }
+
+    .mobileMenu {
+        font-size: 17px;
+    }
+}
