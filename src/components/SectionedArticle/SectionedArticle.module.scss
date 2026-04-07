@@ -181,3 +181,42 @@
         transform: translateX(calc(0.85 * 430px * 0.5));
     }
 }
+
+@media (max-width: 1024px) {
+    .article {
+        width: calc(100vw - 0.15 * 430px);
+        padding: 20px;
+    }
+
+    .panelContents {
+        width: min(80dvw, 360px);
+    }
+
+    .collapsed {
+        transform: translateX(calc(-100% + 50px));
+
+        :global([dir="rtl"]) & {
+            transform: translateX(calc(100% - 50px));
+        }
+    }
+
+    .articleShifted {
+        transform: none;
+
+        :global([dir="rtl"]) & {
+            transform: none;
+        }
+    }
+
+    .arrow {
+        inset-inline-end: -8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article {
+        width: calc(100vw - 50px);
+        padding: 20px;
+        overflow-x: hidden;
+    }
+}
