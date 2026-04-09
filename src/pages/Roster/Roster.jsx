@@ -94,6 +94,24 @@ export default function Roster() {
             </div>
           ))}
         </div>
+
+        {/* Responsive list view */}
+        <div className={styles.listContainer}>
+          {members.map((member) => (
+            <div key={member.name} className={styles.listItem}>
+              {member.photo ? (
+                <img src={member.photo} className={styles.listPhoto} alt={member.name} />
+              ) : (
+                <div className={styles.listPhotoPlaceholder} />
+              )}
+              <div className={styles.listInfo}>
+                <h2 className={styles.listName}>{member.name}</h2>
+                <p className={styles.listRole}>{t(`roster.roles.${member.roleKey}`)}</p>
+                <p className={styles.listBio}>{t(`roster.members.${member.memberKey}.bio`)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </PageWrapper>
   );

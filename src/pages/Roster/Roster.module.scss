@@ -114,3 +114,88 @@
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
 }
+
+/* Responsive list view — hidden on desktop */
+
+.listContainer {
+    display: none;
+}
+
+@media (max-width: 1279px), (max-height: 825px) {
+    .card,
+    .roster {
+        display: none;
+    }
+
+    .container {
+        height: auto;
+        overflow: visible;
+    }
+
+    .listContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-inline: 20px;
+        padding-bottom: 120px; /* space above menu bar */
+        gap: 0;
+    }
+
+    .listItem {
+        width: 100%;
+        max-width: 768px;
+    }
+
+    .listItem {
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        padding-block: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .listPhoto {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .listPhotoPlaceholder {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+    }
+
+    .listInfo {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .listName {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .listRole {
+        margin: 4px 0 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    .listBio {
+        margin: 8px 0 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .title h1 {
+        font-size: 48px;
+    }
+}
