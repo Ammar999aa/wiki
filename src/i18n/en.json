@@ -47,9 +47,15 @@
     }
   },
   "attributions": {
+    "headings": {
+      "students": "Students",
+      "principalInvestigators": "Principal Investigators"
+    },
     "ansal": { "content": "Content here" },
     "ammar": { "content": "Content here" },
     "francesca": { "content": "Content here" },
-    "genesis": { "content": "Content here" }
+    "genesis": { "content": "Content here" },
+    "raik": { "content": "Content here" },
+    "wayne": { "content": "Content here" }
   }
 }

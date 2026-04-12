@@ -47,9 +47,15 @@
     }
   },
   "attributions": {
+    "headings": {
+      "students": "الطلاب",
+      "principalInvestigators": "الباحثون الرئيسيون"
+    },
     "ansal": { "content": "المحتوى هنا" },
     "ammar": { "content": "المحتوى هنا" },
     "francesca": { "content": "المحتوى هنا" },
-    "genesis": { "content": "المحتوى هنا" }
+    "genesis": { "content": "المحتوى هنا" },
+    "raik": { "content": "المحتوى هنا" },
+    "wayne": { "content": "المحتوى هنا" }
   }
 }

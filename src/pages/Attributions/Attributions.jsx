@@ -8,10 +8,14 @@ export default function Attributions() {
   const { t } = useLanguage();
 
   const sections = [
+    { heading: t("attributions.headings.students") },
     { title: "Ansal' Diassova", content: <p>{t("attributions.ansal.content")}</p> },
     { title: "Ammar Almarzooq", content: <p>{t("attributions.ammar.content")}</p> },
     { title: "Francesca Rivas Cuestas", content: <p>{t("attributions.francesca.content")}</p> },
     { title: "Génesis Flores Arroyo", content: <p>{t("attributions.genesis.content")}</p> },
+    { heading: t("attributions.headings.principalInvestigators") },
+    { title: "Raik Grünberg", content: <p>{t("attributions.raik.content")}</p> },
+    { title: "Wayne Yang", content: <p>{t("attributions.wayne.content")}</p> },
   ];
 
   return (

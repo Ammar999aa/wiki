@@ -5,18 +5,19 @@ import styles from "./SectionedPage.module.scss";
 
 export default function SectionedPage({ sections, defaultSelected }) {
   const [collapsed, setCollapsed] = useState(true);
-  const [selected, setSelected] = useState(defaultSelected || sections[0]?.title);
+  const firstSelectable = sections.find((s) => !s.heading);
+  const [selected, setSelected] = useState(defaultSelected || firstSelectable?.title);
 
-  const activeSection = sections.find((s) => s.title === selected) || sections[0];
+  const activeSection = sections.find((s) => !s.heading && s.title === selected) || firstSelectable;
 
   return (
     <div className={styles.layout}>
       <Panel
-        items={sections.map((s) => s.title)}
+        items={sections}
         selected={selected}
         collapsed={collapsed}
         onToggle={() => setCollapsed((v) => !v)}
-        onSelect={(index) => setSelected(sections[index].title)}
+        onSelect={(title) => setSelected(title)}
       />
       <Content
         section={activeSection}
