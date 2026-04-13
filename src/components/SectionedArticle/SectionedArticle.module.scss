@@ -6,6 +6,10 @@
     inset-inline-end: 0;
     padding: 50px;
     padding-bottom: 140px;
+
+    & > div {
+        scroll-margin-top: 20px;
+    }
     transition: transform 250ms ease;
     color: white;
 
