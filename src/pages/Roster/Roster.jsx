@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Roster.module.scss";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
@@ -73,6 +74,12 @@ export default function Roster() {
                 <h2>{selected.name}</h2>
                 <h3>{t(`roster.roles.${selected.roleKey}`)}</h3>
                 <p>{t(`roster.members.${selected.memberKey}.bio`)}</p>
+                <Link
+                  to={`/Attributions?member=${encodeURIComponent(selected.name)}`}
+                  className={styles.seeMore}
+                >
+                  {t("roster.seeMore")}
+                </Link>
               </div>
             </div>
           </LiquidGlass>
@@ -109,6 +116,12 @@ export default function Roster() {
                 <h2 className={styles.listName}>{member.name}</h2>
                 <p className={styles.listRole}>{t(`roster.roles.${member.roleKey}`)}</p>
                 <p className={styles.listBio}>{t(`roster.members.${member.memberKey}.bio`)}</p>
+                <Link
+                  to={`/Attributions?member=${encodeURIComponent(member.name)}`}
+                  className={styles.seeMore}
+                >
+                  {t("roster.seeMore")}
+                </Link>
               </div>
             </div>
           ))}

@@ -17,6 +17,7 @@
   },
   "roster": {
     "title": "ÉQUIPE",
+    "seeMore": "Voir Plus",
     "roles": {
       "dryLab": "Laboratoire Sec",
       "wetLab": "Laboratoire Humide",

@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import SectionedPage from "../../components/SectionedPage/SectionedPage";
 import { useLanguage } from "../../i18n/LanguageContext";
@@ -37,6 +38,8 @@ function memberContent(t, key) {
 
 export default function Attributions() {
   const { t } = useLanguage();
+  const [searchParams] = useSearchParams();
+  const defaultMember = searchParams.get("member") ?? undefined;
 
   const sections = [
     { heading: t("attributions.headings.students") },
@@ -66,7 +69,7 @@ export default function Attributions() {
 
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <SectionedPage sections={sections} />
+      <SectionedPage sections={sections} defaultSelected={defaultMember} />
     </PageWrapper>
   );
 }

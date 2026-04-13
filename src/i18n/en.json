@@ -17,6 +17,7 @@
   },
   "roster": {
     "title": "TEAM",
+    "seeMore": "See More",
     "roles": {
       "dryLab": "Dry Lab",
       "wetLab": "Wet Lab",
