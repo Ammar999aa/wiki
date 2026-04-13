@@ -80,6 +80,96 @@
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."
     },
+    "jeremy": {
+      "role": "Student",
+      "department": "Dry Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "taiba": {
+      "role": "Student",
+      "department": "Dry Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "mariaCamila": {
+      "role": "Student",
+      "department": "Wet Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "mariana": {
+      "role": "Student",
+      "department": "Wet Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "kexin": {
+      "role": "Student",
+      "department": "Dry Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "sriharsha": {
+      "role": "Student",
+      "department": "Wet Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "kevser": {
+      "role": "Student",
+      "department": "Dry Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "shahad": {
+      "role": "Student",
+      "department": "Public Engagement",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "zeyad": {
+      "role": "Student",
+      "department": "Wet Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "nauryzbay": {
+      "role": "Student",
+      "department": "Dry Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "nadia": {
+      "role": "Student",
+      "department": "Hardware",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "hassan": {
+      "role": "Student",
+      "department": "Hardware",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "shahada": {
+      "role": "Student",
+      "department": "Human Integrated Practices",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "raheema": {
+      "role": "Student",
+      "department": "Public Engagement",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "mariaFernanda": {
+      "role": "Student",
+      "department": "Human Integrated Practices",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
     "raik": {
       "role": "Principal Investigator",
       "department": "",

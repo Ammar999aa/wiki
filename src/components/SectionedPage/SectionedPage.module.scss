@@ -15,8 +15,11 @@
   height: 100dvh;
   width: 360px;
   padding: 35px;
+  padding-bottom: 140px;
   color: white;
   font-weight: 600;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .panelHeading {
