@@ -22,28 +22,29 @@
       "wetLab": "Laboratoire Humide",
       "wiki": "Wiki",
       "hardware": "Matériel",
-      "publicEngagement": "Engagement Public"
+      "publicEngagement": "Engagement Public",
+      "humanPractices": "Pratiques Humaines Intégrées"
     },
     "members": {
       "jeremy": { "bio": "Formation en bio-ingénierie avec une spécialisation en bioinformatique, analyse de données de transcriptomique et protéomique. Parmi mes compétences : Python, Nextflow et R. J'ai participé et remporté l'iGEM Design League." },
-      "taiba": { "bio": "Biographie à venir." },
+      "taiba": { "bio": "Background in mathematics and data science with experience in data analysis and ML, specializing in bioinformatics." },
       "ammar": { "bio": "Formation en informatique avec une expérience en génie logiciel, spécialisé dans le développement web frontend et la conception d'expérience utilisateur." },
       "mariaCamila": { "bio": "Biographie à venir." },
-      "mariana": { "bio": "Biographie à venir." },
-      "kexin": { "bio": "Biographie à venir." },
-      "genesis": { "bio": "Biographie à venir." },
-      "sriharsha": { "bio": "Biographie à venir." },
-      "kevser": { "bio": "Biographie à venir." },
+      "mariana": { "bio": "MSc in Bioscience. Experience in molecular biology, RNA biology, and mammalian cell culture techniques. Currently pursuing a PhD focused on posttranscriptional regulation and RNA-binding proteins in the context of cell differentiation." },
+      "kexin": { "bio": "Background in bioengineering with experience in data analysis and ML, molecular biology techniques." },
+      "sriharsha": { "bio": "Background in biotechnology. I try to answer biological questions in microbes to mammalian cells to corals using molecular biology. My BSc was in life sciences and my current MSc is in Marine sciences." },
+      "kevser": { "bio": "Background in Molecular Biology and Genetics with focus on bioinformatics and protein structure modelling." },
       "shahad": { "bio": "Formation en biologie avec une expérience en recherche clinique et sur les maladies infectieuses, ainsi qu'en enseignement et coordination de projets." },
       "francesca": { "bio": "Formation en bio-ingénierie avec une expérience en biochimie (expression de protéines dans des bactéries, cellules d'insectes et de mammifères, et purification), biophysique (MST) et essais de bioimagerie (microscopie à fluorescence et confocale)." },
-      "zeyad": { "bio": "Biographie à venir." },
+      "zeyad": { "bio": "Background in Biochemistry and Molecular Biology with experience in RNA Biology, Drug screening, Protein expression and purification, RNA-Protein interaction, Protein-Protein interaction." },
       "ansal": { "bio": "Formation en biologie synthétique et science des matériaux avec une expérience en délivrance de médicaments, techniques de biologie moléculaire (cytométrie de flux, tests de cytotoxicité, etc.), expression de protéines dans des cellules de mammifères et bactériennes, génie génétique et biochimie. Chef d'équipe iGEM en 2024." },
       "nauryzbay": { "bio": "Formation en économie avec une expérience en analyse de science des données et modélisation prédictive." },
       "nadia": { "bio": "Formation en génie mécanique avec une expérience en laboratoire humide en culture cellulaire et synthèse d'hydrogels, et une expérience en prototypage et conception." },
-      "hanke": { "bio": "Biographie à venir." },
-      "claudia": { "bio": "Biographie à venir." },
-      "raheema": { "bio": "Biographie à venir." },
-      "mariaFernanda": { "bio": "Biographie à venir." }
+      "hassan": { "bio": "Background in Mechanical Engineering; hands-on experience in CAD, fabrication, hydraulics, flow simulations, mechatronics, and 3D printing." },
+      "shahada": { "bio": "Background in molecular and cell biology with experience in neuroscience and molecular genetics." },
+      "raheema": { "bio": "A lifelong student turned biologist! With a background in elementary and early childhood education, psychology and neuroscience, deeply passionate about science communication and bridging the gap between research in the lab and real-world practice that benefits the community." },
+      "genesis": { "bio": "Formation en Bioingénierie." },
+      "mariaFernanda": { "bio": "Background in bioengineering with experience in protein expression in bacteria and purification, nanobodies in specific. Bioinformatics skills including Python, C++, RStudio, and Matlab." }
     }
   },
   "attributions": {

@@ -21,9 +21,10 @@ import nauryzbay from "../../assets/roster/nauryzbay.png";
 import ansal from "../../assets/roster/ansal.png";
 import zeyad from "../../assets/roster/zeyad.png";
 import nadia from "../../assets/roster/nadia.png";
-import hanke from "../../assets/roster/hanke.png";
-import claudia from "../../assets/roster/claudia.png";
+import hassan from "../../assets/roster/hassan.png";
+import shahada from "../../assets/roster/shahada.png";
 import raheema from "../../assets/roster/raheema.png";
+import mafer from "../../assets/roster/mafer.png"
 
 const members = [
   { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy },
@@ -41,10 +42,10 @@ const members = [
   { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal },
   { name: "Nauryzbay Menlen", roleKey: "dryLab", memberKey: "nauryzbay", photo: nauryzbay },
   { name: "Nadia Houti", roleKey: "hardware", memberKey: "nadia", photo: nadia },
-  { name: "Hanke Li", roleKey: "hardware", memberKey: "hanke", photo: hanke },
-  { name: "Claudia Vidales", roleKey: "publicEngagement", memberKey: "claudia", photo: claudia },
+  { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan },
+  { name: "Shahad Abdulomhssen", roleKey: "humanPractices", memberKey: "shahada", photo: shahada },
   { name: "Raheema Javid", roleKey: "publicEngagement", memberKey: "raheema", photo: raheema },
-  { name: "Maria Fernanda Gutierrez", roleKey: "dryLab", memberKey: "mariaFernanda", photo: null },
+  { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer },
 ];
 
 export default function Roster() {

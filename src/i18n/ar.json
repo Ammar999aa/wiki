@@ -22,28 +22,29 @@
       "wetLab": "المختبر الرطب",
       "wiki": "الموقع",
       "hardware": "الأجهزة",
-      "publicEngagement": "التواصل المجتمعي"
+      "publicEngagement": "التواصل المجتمعي",
+      "humanPractices": "الممارسات الإنسانية المتكاملة"
     },
     "members": {
       "jeremy": { "bio": "خلفية في هندسة الأحياء مع تركيز رئيسي على المعلوماتية الحيوية، وتحليل بيانات الترانسكريبتوميكس والبروتيوميكس. تشمل مهاراتي: Python وNextflow وR. شاركت وفزت سابقاً في iGEM Design League." },
-      "taiba": { "bio": "السيرة الذاتية قريباً." },
+      "taiba": { "bio": "Background in mathematics and data science with experience in data analysis and ML, specializing in bioinformatics." },
       "ammar": { "bio": "خلفية في علوم الحاسوب مع خبرة في هندسة البرمجيات، متخصص في تطوير واجهات الويب وتصميم تجربة المستخدم." },
       "mariaCamila": { "bio": "السيرة الذاتية قريباً." },
-      "mariana": { "bio": "السيرة الذاتية قريباً." },
-      "kexin": { "bio": "السيرة الذاتية قريباً." },
-      "genesis": { "bio": "السيرة الذاتية قريباً." },
-      "sriharsha": { "bio": "السيرة الذاتية قريباً." },
-      "kevser": { "bio": "السيرة الذاتية قريباً." },
+      "mariana": { "bio": "MSc in Bioscience. Experience in molecular biology, RNA biology, and mammalian cell culture techniques. Currently pursuing a PhD focused on posttranscriptional regulation and RNA-binding proteins in the context of cell differentiation." },
+      "kexin": { "bio": "Background in bioengineering with experience in data analysis and ML, molecular biology techniques." },
+      "sriharsha": { "bio": "Background in biotechnology. I try to answer biological questions in microbes to mammalian cells to corals using molecular biology. My BSc was in life sciences and my current MSc is in Marine sciences." },
+      "kevser": { "bio": "Background in Molecular Biology and Genetics with focus on bioinformatics and protein structure modelling." },
       "shahad": { "bio": "خلفية في علم الأحياء مع خبرة في البحث السريري وأبحاث الأمراض المعدية، فضلاً عن خبرة في التدريس وتنسيق المشاريع." },
       "francesca": { "bio": "خلفية في هندسة الأحياء مع خبرة في الكيمياء الحيوية (التعبير البروتيني في البكتيريا وخلايا الحشرات والثدييات، والتنقية)، والبيوفيزياء (MST)، وفحوصات التصوير الحيوي (المجهر الفلوري والمجهر المرتعش)." },
-      "zeyad": { "bio": "السيرة الذاتية قريباً." },
+      "zeyad": { "bio": "Background in Biochemistry and Molecular Biology with experience in RNA Biology, Drug screening, Protein expression and purification, RNA-Protein interaction, Protein-Protein interaction." },
       "ansal": { "bio": "خلفية في علم الأحياء التركيبي وعلم المواد مع خبرة في توصيل الدواء، وتقنيات علم الأحياء الجزيئي (قياس التدفق الخلوي، اختبارات السمية الخلوية، إلخ)، والتعبير البروتيني في خلايا الثدييات والبكتيريا، والهندسة الوراثية، والكيمياء الحيوية. قائدة فريق iGEM في عام 2024." },
       "nauryzbay": { "bio": "خلفية في الاقتصاد مع خبرة في تحليل علم البيانات والنمذجة التنبؤية." },
       "nadia": { "bio": "خلفية في هندسة الميكانيكا مع خبرة في المختبر الرطب في زراعة الخلايا وتركيب الهيدروجيل، وخبرة في النمذجة والتصميم." },
-      "hanke": { "bio": "السيرة الذاتية قريباً." },
-      "claudia": { "bio": "السيرة الذاتية قريباً." },
-      "raheema": { "bio": "السيرة الذاتية قريباً." },
-      "mariaFernanda": { "bio": "السيرة الذاتية قريباً." }
+      "hassan": { "bio": "Background in Mechanical Engineering; hands-on experience in CAD, fabrication, hydraulics, flow simulations, mechatronics, and 3D printing." },
+      "shahada": { "bio": "Background in molecular and cell biology with experience in neuroscience and molecular genetics." },
+      "raheema": { "bio": "A lifelong student turned biologist! With a background in elementary and early childhood education, psychology and neuroscience, deeply passionate about science communication and bridging the gap between research in the lab and real-world practice that benefits the community." },
+      "genesis": { "bio": "Background in Bioengineering." },
+      "mariaFernanda": { "bio": "Background in bioengineering with experience in protein expression in bacteria and purification, nanobodies in specific. Bioinformatics skills including Python, C++, RStudio, and Matlab." }
     }
   },
   "attributions": {
