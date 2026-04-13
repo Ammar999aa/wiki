@@ -51,11 +51,45 @@
       "students": "Students",
       "principalInvestigators": "Principal Investigators"
     },
-    "ansal": { "content": "Content here" },
-    "ammar": { "content": "Content here" },
-    "francesca": { "content": "Content here" },
-    "genesis": { "content": "Content here" },
-    "raik": { "content": "Content here" },
-    "wayne": { "content": "Content here" }
+    "labels": {
+      "tasks": "Tasks",
+      "specificTasks": "Specific Tasks"
+    },
+    "ansal": {
+      "role": "Student",
+      "department": "Wet Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "ammar": {
+      "role": "Student",
+      "department": "Wiki",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "francesca": {
+      "role": "Student",
+      "department": "Wet Lab",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "genesis": {
+      "role": "Student",
+      "department": "Public Engagement",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "raik": {
+      "role": "Principal Investigator",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "wayne": {
+      "role": "Principal Investigator",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    }
   }
 }

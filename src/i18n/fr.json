@@ -51,11 +51,45 @@
       "students": "Étudiants",
       "principalInvestigators": "Chercheurs Principaux"
     },
-    "ansal": { "content": "Contenu ici" },
-    "ammar": { "content": "Contenu ici" },
-    "francesca": { "content": "Contenu ici" },
-    "genesis": { "content": "Contenu ici" },
-    "raik": { "content": "Contenu ici" },
-    "wayne": { "content": "Contenu ici" }
+    "labels": {
+      "tasks": "Tâches",
+      "specificTasks": "Tâches Spécifiques"
+    },
+    "ansal": {
+      "role": "Étudiante",
+      "department": "Laboratoire Humide",
+      "tasks": "Description des tâches ici.",
+      "specificTasks": "Description des tâches spécifiques ici."
+    },
+    "ammar": {
+      "role": "Étudiant",
+      "department": "Wiki",
+      "tasks": "Description des tâches ici.",
+      "specificTasks": "Description des tâches spécifiques ici."
+    },
+    "francesca": {
+      "role": "Étudiante",
+      "department": "Laboratoire Humide",
+      "tasks": "Description des tâches ici.",
+      "specificTasks": "Description des tâches spécifiques ici."
+    },
+    "genesis": {
+      "role": "Étudiante",
+      "department": "Engagement Public",
+      "tasks": "Description des tâches ici.",
+      "specificTasks": "Description des tâches spécifiques ici."
+    },
+    "raik": {
+      "role": "Chercheur Principal",
+      "department": "",
+      "tasks": "Description des tâches ici.",
+      "specificTasks": "Description des tâches spécifiques ici."
+    },
+    "wayne": {
+      "role": "Chercheur Principal",
+      "department": "",
+      "tasks": "Description des tâches ici.",
+      "specificTasks": "Description des tâches spécifiques ici."
+    }
   }
 }

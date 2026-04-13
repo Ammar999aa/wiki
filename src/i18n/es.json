@@ -51,11 +51,45 @@
       "students": "Estudiantes",
       "principalInvestigators": "Investigadores Principales"
     },
-    "ansal": { "content": "Contenido aquí" },
-    "ammar": { "content": "Contenido aquí" },
-    "francesca": { "content": "Contenido aquí" },
-    "genesis": { "content": "Contenido aquí" },
-    "raik": { "content": "Contenido aquí" },
-    "wayne": { "content": "Contenido aquí" }
+    "labels": {
+      "tasks": "Tareas",
+      "specificTasks": "Tareas Específicas"
+    },
+    "ansal": {
+      "role": "Estudiante",
+      "department": "Laboratorio Húmedo",
+      "tasks": "Descripción de tareas aquí.",
+      "specificTasks": "Descripción de tareas específicas aquí."
+    },
+    "ammar": {
+      "role": "Estudiante",
+      "department": "Wiki",
+      "tasks": "Descripción de tareas aquí.",
+      "specificTasks": "Descripción de tareas específicas aquí."
+    },
+    "francesca": {
+      "role": "Estudiante",
+      "department": "Laboratorio Húmedo",
+      "tasks": "Descripción de tareas aquí.",
+      "specificTasks": "Descripción de tareas específicas aquí."
+    },
+    "genesis": {
+      "role": "Estudiante",
+      "department": "Participación Pública",
+      "tasks": "Descripción de tareas aquí.",
+      "specificTasks": "Descripción de tareas específicas aquí."
+    },
+    "raik": {
+      "role": "Investigador Principal",
+      "department": "",
+      "tasks": "Descripción de tareas aquí.",
+      "specificTasks": "Descripción de tareas específicas aquí."
+    },
+    "wayne": {
+      "role": "Investigador Principal",
+      "department": "",
+      "tasks": "Descripción de tareas aquí.",
+      "specificTasks": "Descripción de tareas específicas aquí."
+    }
   }
 }

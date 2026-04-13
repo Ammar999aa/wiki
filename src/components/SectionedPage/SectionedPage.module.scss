@@ -46,6 +46,43 @@
   padding: 30px;
 }
 
+.contentHeader {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 24px;
+
+  .contentPhoto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin: 0;
+    max-width: 260px;
+  }
+
+  h2 {
+    margin-block: 10px;
+  }
+}
+
+.contentRole {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contentPhotoPlaceholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
 .content {
   box-sizing: border-box;
   width: calc(100dvw - 430px); /* 430px is the width of the panel*/
