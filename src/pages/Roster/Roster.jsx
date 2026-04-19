@@ -6,6 +6,7 @@ import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
+import 'flag-icons/css/flag-icons.min.css';
 
 import jeremy from "../../assets/roster/jeremy.png";
 import taiba from "../../assets/roster/taiba.png";
@@ -28,25 +29,25 @@ import raheema from "../../assets/roster/raheema.png";
 import mafer from "../../assets/roster/mafer.png"
 
 const members = [
-  { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy },
-  { name: "Taiba Zeya", roleKey: "dryLab", memberKey: "taiba", photo: taiba },
-  { name: "Ammar Almarzooq", roleKey: "wiki", memberKey: "ammar", photo: ammar },
-  { name: "Maria Camila Muñoz Vega", roleKey: "wetLab", memberKey: "mariaCamila", photo: maria },
-  { name: "Mariana Villegas", roleKey: "wetLab", memberKey: "mariana", photo: mariana },
-  { name: "Kexin Niu", roleKey: "dryLab", memberKey: "kexin", photo: kexin },
-  { name: "Génesis Flores Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis },
-  { name: "Sriharsha Chowdarapu", roleKey: "wetLab", memberKey: "sriharsha", photo: sriharsha },
-  { name: "Kevser Ciek", roleKey: "dryLab", memberKey: "kevser", photo: kevser },
-  { name: "Shahad Hersi", roleKey: "publicEngagement", memberKey: "shahad", photo: shahad },
-  { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca },
-  { name: "Zeyad Muazzen", roleKey: "wetLab", memberKey: "zeyad", photo: zeyad },
-  { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal },
-  { name: "Nauryzbay Menlen", roleKey: "dryLab", memberKey: "nauryzbay", photo: nauryzbay },
-  { name: "Nadia Houti", roleKey: "hardware", memberKey: "nadia", photo: nadia },
-  { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan },
-  { name: "Shahad Abdulomhssen", roleKey: "humanPractices", memberKey: "shahada", photo: shahada },
-  { name: "Raheema Javid", roleKey: "publicEngagement", memberKey: "raheema", photo: raheema },
-  { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer },
+  { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy, countryCode: "pe" },
+  { name: "Taiba Zeya", roleKey: "dryLab", memberKey: "taiba", photo: taiba, countryCode: "in" },
+  { name: "Ammar Almarzooq", roleKey: "wiki", memberKey: "ammar", photo: ammar, countryCode: "sa" },
+  { name: "Maria Camila Muñoz Vega", roleKey: "wetLab", memberKey: "mariaCamila", photo: maria, countryCode: "co"},
+  { name: "Mariana Villegas", roleKey: "wetLab", memberKey: "mariana", photo: mariana, countryCode: "co" },
+  { name: "Kexin Niu", roleKey: "dryLab", memberKey: "kexin", photo: kexin, countryCode: "cn" },
+  { name: "Génesis Flores Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
+  { name: "Sriharsha Chowdarapu", roleKey: "wetLab", memberKey: "sriharsha", photo: sriharsha, countryCode: "in" },
+  { name: "Kevser Ciek", roleKey: "dryLab", memberKey: "kevser", photo: kevser, countryCode: "tr" },
+  { name: "Shahad Hersi", roleKey: "publicEngagement", memberKey: "shahad", photo: shahad, countryCode: "sa" },
+  { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca, countryCode: "pe" },
+  { name: "Zeyad Muazzen", roleKey: "wetLab", memberKey: "zeyad", photo: zeyad, countryCode: "sa" },
+  { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz" },
+  { name: "Nauryzbay Menlen", roleKey: "dryLab", memberKey: "nauryzbay", photo: nauryzbay, countryCode: "kz" },
+  { name: "Nadia Houti", roleKey: "hardware", memberKey: "nadia", photo: nadia, countryCode: "sg" },
+  { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan, countryCode: "sa" },
+  { name: "Shahad Abdulomhssen", roleKey: "humanPractices", memberKey: "shahada", photo: shahada, countryCode: "sa" },
+  { name: "Raheema Javid", roleKey: "publicEngagement", memberKey: "raheema", photo: raheema, countryCode: "us" },
+  { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
 export default function Roster() {
@@ -71,7 +72,12 @@ export default function Roster() {
                 <div className={styles.placeholder} />
               )}
               <div className={styles.bio}>
-                <h2>{selected.name}</h2>
+                <h2>
+                  {selected.name}
+                  {selected.countryCode && (
+                    <span className={`fi fi-${selected.countryCode}`} style={{ width: 33, height: 24, borderRadius: 3, verticalAlign: "middle", marginInlineStart: 24, display: "inline-block" }} />
+                  )}
+                </h2>
                 <h3>{t(`roster.roles.${selected.roleKey}`)}</h3>
                 <p>{t(`roster.members.${selected.memberKey}.bio`)}</p>
                 <Link
@@ -113,7 +119,12 @@ export default function Roster() {
                 <div className={styles.listPhotoPlaceholder} />
               )}
               <div className={styles.listInfo}>
-                <h2 className={styles.listName}>{member.name}</h2>
+                <h2 className={styles.listName}>
+                  {member.name}
+                  {member.countryCode && (
+                    <span className={`fi fi-${member.countryCode}`} style={{ width: 22, height: 16, borderRadius: 3, verticalAlign: "middle", marginInlineStart: 8, display: "inline-block" }} />
+                  )}
+                </h2>
                 <p className={styles.listRole}>{t(`roster.roles.${member.roleKey}`)}</p>
                 <p className={styles.listBio}>{t(`roster.members.${member.memberKey}.bio`)}</p>
                 <Link
