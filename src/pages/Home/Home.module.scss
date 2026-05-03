@@ -1,3 +1,20 @@
+/* ── Hero ── */
+
+.scrollSpace {
+    height: 200dvh;
+}
+
+.title {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 h1 {
     margin-block: 10px;
     font-size: 96px;
@@ -9,10 +26,806 @@ h1 {
     font-weight: 800;
 }
 
-.title {
+.fullName {
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1.35;
+}
+
+.nameWrapper {
+    display: grid;
+    width: 100%;
+
+    > h1 {
+        grid-area: 1 / 1;
+        text-align: center;
+        align-self: center;
+        justify-self: center;
+        margin: 0;
+    }
+}
+
+/* ── Tagline ── */
+
+.tagline {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-inline: 40px;
+
+    p {
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        font-weight: 300;
+        color: white;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin: 0;
+    }
+}
+
+/* ── ASTRA Reveal ── */
+
+.revealSection {
+    height: 200dvh;
+}
+
+.revealSticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 16px;
+}
+
+.revealLabel {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.revealAstra {
+    font-size: clamp(4rem, 14vw, 10rem);
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    letter-spacing: 0.04em;
+    text-shadow:
+        0 0 40px rgba(123, 158, 255, 0.6),
+        0 0 90px rgba(123, 158, 255, 0.25);
+    transform-origin: center center;
+}
+
+/* ── Briefing ── */
+
+.briefingSection {
+    height: 360dvh;
+}
+
+.briefingSticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 40px;
+}
+
+.briefingStack {
+    display: grid;
+    width: min(760px, 90vw);
+
+    > div {
+        grid-area: 1 / 1;
+        align-self: center;
+        justify-self: center;
+    }
+}
+
+.briefingItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
     text-align: center;
+    will-change: opacity;
+}
+
+.briefingTag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 100px;
+    padding: 4px 14px;
+}
+
+.briefingText {
+    font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+    font-weight: 300;
+    color: white;
+    line-height: 1.35;
+    margin: 0;
+}
+
+/* ── Scenarios ── */
+
+.scenarioSection {
+    height: 420dvh;
+}
+
+.scenarioSticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Both scenarios sit in the same grid cell and crossfade */
+.scenario {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding-inline: 40px;
+    width: 100%;
+    max-width: 700px;
+    will-change: opacity;
+}
+
+.scenarioLabel {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 5px 16px;
+    margin: 0;
+}
+
+.scenarioLabelAstra {
+    color: rgba(123, 158, 255, 0.85);
+    border-color: rgba(123, 158, 255, 0.35);
+}
+
+.organisms {
+    display: flex;
+    gap: 56px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.organismWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Base organism */
+.organism {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 400ms ease, opacity 400ms ease, box-shadow 400ms ease;
+}
+
+/* B. subtilis — rod shape */
+.bacteria {
+    width: 86px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #85c1e9, #2471a3, #0d2b43);
+    box-shadow: 0 0 18px rgba(36, 113, 163, 0.45);
+}
+
+/* S. cerevisiae — round cell */
+.yeast {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 36% 32%, #f7dc6f, #c9a227, #5a3e08);
+    box-shadow: 0 0 18px rgba(201, 162, 39, 0.45);
+}
+
+.dead {
+    filter: grayscale(1) brightness(0.45);
+    box-shadow: none !important;
+}
+
+.alive {
+    box-shadow: 0 0 28px rgba(39, 174, 96, 0.75), 0 0 60px rgba(39, 174, 96, 0.3) !important;
+}
+
+.deathMark {
+    color: rgba(255, 80, 80, 0.9);
+    font-size: 1.2rem;
+    font-weight: 700;
+    position: absolute;
+}
+
+.aliveMark {
+    color: rgba(39, 230, 110, 0.95);
+    font-size: 1.1rem;
+    font-weight: 700;
+    position: absolute;
+}
+
+.organismLabel {
+    font-size: 0.62rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.04em;
+}
+
+.proteinTags {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    will-change: opacity;
+}
+
+.proteinTag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #FFD84D;
+    background: rgba(255, 216, 77, 0.07);
+    border: 1px solid rgba(255, 216, 77, 0.35);
+    border-radius: 4px;
+    padding: 2px 8px;
+    white-space: nowrap;
+}
+
+.stressors {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    will-change: opacity;
+}
+
+.stressor {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 120, 80, 0.85);
+    border: 1px solid rgba(255, 120, 80, 0.3);
+    border-radius: 100px;
+    padding: 4px 12px;
+}
+
+.surviveText {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    color: rgba(39, 230, 110, 0.9);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+/* ── Planets / phrases ── */
+
+.planetsSection {
+    height: 360dvh;
+}
+
+.planetsSticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* planets clip at viewport edges */
+}
+
+/* Phrase stack: all phrases overlap in the same space */
+.phraseStack {
+    display: grid;
+    width: min(820px, 90vw);
+    padding-inline: 20px;
+    z-index: 1;
+    pointer-events: none;
+
+    > p {
+        grid-area: 1 / 1;
+        align-self: center;
+        justify-self: center;
+    }
+}
+
+.phrase {
+    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    line-height: 1.35;
+    margin: 0;
+    will-change: opacity;
+}
+
+.phraseFinal {
+    font-weight: 400;
+}
+
+/* ─── Planets ─── */
+/* Each planet is a gradient sphere, positioned and animated independently */
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Deep purple giant — large, upper-left */
+.p1 {
+    width: 180px;
+    height: 180px;
+    top: 6%;
+    left: -3%;
+    background: radial-gradient(circle at 38% 32%, #9A58E6, #5A3973, #1A0A27);
+    box-shadow: 0 0 40px rgba(177, 109, 255, 0.12);
+    opacity: 0.65;
+    animation: drift1 22s ease-in-out infinite;
+}
+
+/* Amber — medium, upper-right */
+.p2 {
+    width: 110px;
+    height: 110px;
+    top: 10%;
+    right: 5%;
+    background: radial-gradient(circle at 36% 32%, #FFD84D, #C47D0E, #3A2000);
+    box-shadow: 0 0 30px rgba(255, 216, 77, 0.12);
+    opacity: 0.60;
+    animation: drift2 18s ease-in-out infinite;
+}
+
+/* Near-black indigo — large, lower-right, partially off-screen */
+.p3 {
+    width: 200px;
+    height: 200px;
+    bottom: -6%;
+    right: -4%;
+    background: radial-gradient(circle at 34% 30%, #3F4162, #1E203F, #090927);
+    opacity: 0.55;
+    animation: drift3 26s ease-in-out infinite;
+}
+
+/* Light purple — small, lower-left */
+.p4 {
+    width: 80px;
+    height: 80px;
+    bottom: 18%;
+    left: 6%;
+    background: radial-gradient(circle at 38% 33%, #D1A8FF, #9A58E6, #3E2754);
+    box-shadow: 0 0 20px rgba(177, 109, 255, 0.18);
+    opacity: 0.55;
+    animation: drift4 20s ease-in-out infinite;
+}
+
+/* Burnt orange — tiny, middle-left */
+.p5 {
+    width: 55px;
+    height: 55px;
+    top: 44%;
+    left: 3%;
+    background: radial-gradient(circle at 38% 33%, #FFB347, #B85C00, #2E1200);
+    box-shadow: 0 0 16px rgba(255, 179, 71, 0.12);
+    opacity: 0.50;
+    animation: drift5 15s ease-in-out infinite;
+}
+
+@keyframes drift1 {
+    0%   { transform: translate(0px, 0px); }
+    25%  { transform: translate(28px, -35px); }
+    50%  { transform: translate(-10px, -55px); }
+    75%  { transform: translate(-30px, -22px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes drift2 {
+    0%   { transform: translate(0px, 0px); }
+    33%  { transform: translate(-25px, 32px); }
+    66%  { transform: translate(18px, 45px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes drift3 {
+    0%   { transform: translate(0px, 0px); }
+    30%  { transform: translate(-40px, -20px); }
+    60%  { transform: translate(-20px, -48px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes drift4 {
+    0%   { transform: translate(0px, 0px); }
+    40%  { transform: translate(20px, -28px); }
+    80%  { transform: translate(35px, 12px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes drift5 {
+    0%   { transform: translate(0px, 0px); }
+    50%  { transform: translate(18px, -22px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+/* ── Nanobody ── */
+
+.nanobodySection {
+    height: 250dvh;
+}
+
+.nanobodySticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 52px;
+    padding-inline: 40px;
+}
+
+.nanobodyText {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    max-width: 680px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.nanobodyEmphasis {
+    color: #A8C7FF;
+    font-weight: 500;
+}
+
+.nanobodyOrganisms {
+    display: flex;
+    gap: 72px;
+    align-items: flex-end;
+}
+
+.nanobodyOrgWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.supercharged {
+    box-shadow:
+        0 0 28px rgba(123, 158, 255, 0.7),
+        0 0 60px rgba(123, 158, 255, 0.3) !important;
+    filter: brightness(1.25);
+}
+
+/* Nanobody particles floating upward */
+.particleField {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.particle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(168, 199, 255, 0.85);
+    animation: floatUp 2.4s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.32s);
+}
+
+@keyframes floatUp {
+    0%   { transform: translateY(0px);   opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 0.7; }
+    100% { transform: translateY(-36px); opacity: 0; }
+}
+
+/* ── Capabilities ── */
+
+.capSection {
+    height: 280dvh;
+}
+
+.capSticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding-inline: 40px;
+}
+
+.capText {
+    font-size: clamp(1.4rem, 3vw, 2.4rem);
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    max-width: 640px;
+    line-height: 1.4;
+    margin: 0;
+
+    em {
+        font-style: normal;
+        color: #A8C7FF;
+        font-weight: 500;
+    }
+}
+
+.capTiles {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.capTile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 28px 32px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    width: 180px;
+    text-align: center;
+    transition: transform 400ms ease, opacity 400ms ease;
+}
+
+.capIcon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.capLabel {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.04em;
+}
+
+.capDesc {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ── Navigation cards ── */
+
+.navSection {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding-inline: 40px;
+    padding-block: 80px;
+}
+
+.navHeading {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.navCards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.navCardLink {
+    text-decoration: none;
+    color: white;
+    transition: transform 200ms ease;
+    display: flex;
+    flex-direction: column;
+
+    > div {  /* LiquidGlass root */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+    }
+}
+
+.navCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 36px 32px;
+    width: 200px;
+    text-align: center;
+    flex: 1;
+}
+
+.navEmoji {
+    font-size: 2.4rem;
+    line-height: 1;
+}
+
+.navTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+}
+
+.navSubtitle {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ── Orbit diagram ── */
+
+.orbitSection {
+    height: 280dvh;
+}
+
+.orbitSticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 52px;
+    padding-inline: 40px;
+}
+
+.orbitText {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    max-width: 540px;
+    line-height: 1.6;
+    font-weight: 300;
+    margin: 0;
+}
+
+.medicineEmphasis {
+    color: #FFD84D;
+    font-weight: 500;
+}
+
+/* Diagram: 360×360, center at (180, 180) */
+.orbitDiagram {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    flex-shrink: 0;
+}
+
+/* Pulsing central orb */
+.centerOrb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        0 0 0 6px rgba(255, 255, 255, 0.08),
+        0 0 28px rgba(255, 255, 255, 0.45);
+    animation: orbPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes orbPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08), 0 0 28px rgba(255, 255, 255, 0.45);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.04), 0 0 50px rgba(255, 255, 255, 0.65);
+    }
+}
+
+/* Orbit ring — fills its scroll-driven wrapper (which controls size/opacity/scale) */
+.orbitRing {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.22);
+    animation: ringDrift 28s linear infinite;
+    box-sizing: border-box;
+}
+
+.medicineRing {
+    border: 2px solid rgba(255, 216, 77, 0.55);
+    border-style: solid;
+    box-shadow: 0 0 18px rgba(255, 216, 77, 0.12), inset 0 0 18px rgba(255, 216, 77, 0.06);
+    animation-duration: 42s;
+    animation-direction: reverse;
+}
+
+@keyframes ringDrift {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Icons — positioned absolute from diagram center via inline transform */
+.orbitIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    span {
+        font-size: 1.75rem;
+        line-height: 1;
+    }
+
+    small {
+        font-size: 0.58rem;
+        color: rgba(255, 255, 255, 0.35);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+}
+
+.medicineIcon {
+    span {
+        font-size: 2.2rem;
+        filter:
+            drop-shadow(0 0 7px rgba(255, 216, 77, 0.95))
+            drop-shadow(0 0 18px rgba(255, 216, 77, 0.5));
+    }
+
+    small {
+        color: #FFD84D;
+        font-weight: 700;
+    }
 }
