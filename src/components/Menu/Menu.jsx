@@ -14,9 +14,9 @@ export default function Menu() {
 
   const menuItems = [
     { label: t("menu.project"), to: "/project" },
-    { label: t("menu.wetLab"), to: "/" },
-    { label: t("menu.dryLab"), to: "/" },
-    { label: t("menu.humanPractices"), to: "/" },
+    { label: t("menu.wetLab"), to: "/wetlab" },
+    { label: t("menu.dryLab"), to: "/drylab" },
+    { label: t("menu.humanPractices"), to: "/human-practices" },
     {
       label: t("menu.team"),
       dropdown: [
@@ -26,8 +26,8 @@ export default function Menu() {
         { label: t("menu.partnerships"), to: "/partnerships" },
       ],
     },
-    { label: t("menu.safety"), to: "/" },
-    { label: t("menu.engagement"), to: "/" },
+    { label: t("menu.safety"), to: "/safety" },
+    { label: t("menu.engagement"), to: "/engagement" },
   ];
 
   const [dropdownPos, setDropdownPos] = useState({ x: 0, y: 0 });
