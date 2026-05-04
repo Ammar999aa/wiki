@@ -180,25 +180,21 @@ function ScenarioSection({ scrollY }) {
   const progress = (() => {
     const el = ref.current;
     if (!el) return 0;
-    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 2.8), 0), 1);
+    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 2.2), 0), 1);
   })();
 
   const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
   const between = (start, end) => clamp01((progress - start) / (end - start));
 
-  // Normal scenario elements (0 → 0.45)
-  const normalOp       = Math.min(between(0.00, 0.12), clamp01((0.42 - progress) / 0.06));
-  const stressNormalOp = Math.min(between(0.14, 0.26), clamp01((0.42 - progress) / 0.06));
-  const deadOp         = Math.min(between(0.27, 0.38), clamp01((0.42 - progress) / 0.06));
+  // Shared timeline — both panels animate in parallel
+  const labelsOp   = between(0.00, 0.15);
+  const orgsOp     = between(0.15, 0.32);
+  const stressOp   = between(0.32, 0.48);
+  const proteinOp  = between(0.48, 0.62);
+  const outcomeOp  = between(0.65, 0.80);
+  const surviveOp  = between(0.80, 0.92);
 
-  // ASTRA scenario elements (0.50 → 1.0)
-  const astraLabelOp   = between(0.50, 0.58);
-  const orgAstraOp     = between(0.52, 0.62);
-  const proteinOp      = between(0.62, 0.72);
-  const stressAstraOp  = between(0.72, 0.82);
-  const surviveOp      = between(0.82, 0.92);
-
-  const normalState = deadOp > 0.01 ? "dead" : "neutral";
+  const normalState = outcomeOp > 0.01 ? "dead" : "neutral";
   const astraState  = surviveOp > 0.01 ? "alive" : "neutral";
 
   return (
@@ -206,27 +202,29 @@ function ScenarioSection({ scrollY }) {
       <div className={styles.scenarioSticky}>
 
         {/* ── Normal scenario ── */}
-        <div className={styles.scenario} style={{ opacity: Math.max(normalOp, stressNormalOp, deadOp) }}>
-          <p className={styles.scenarioLabel}>Without A.S.T.R.A</p>
-          <div className={styles.organisms}>
+        <div className={styles.scenario}>
+          <p className={styles.scenarioLabel} style={{ opacity: labelsOp }}>Without A.S.T.R.A</p>
+          <div className={styles.organisms} style={{ opacity: orgsOp }}>
             <Organism type="bacteria" state={normalState} />
             <Organism type="yeast"   state={normalState} />
           </div>
-          <div className={styles.stressors} style={{ opacity: stressNormalOp }}>
+          <div className={styles.stressors} style={{ opacity: stressOp }}>
             {STRESSORS.map((s) => <span key={s} className={styles.stressor}>{s}</span>)}
           </div>
         </div>
 
+        <div className={styles.scenarioDivider} style={{ opacity: labelsOp }} />
+
         {/* ── ASTRA scenario ── */}
-        <div className={styles.scenario} style={{ opacity: Math.max(astraLabelOp, orgAstraOp, surviveOp) }}>
-          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelAstra}`} style={{ opacity: astraLabelOp }}>
+        <div className={styles.scenario}>
+          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelAstra}`} style={{ opacity: labelsOp }}>
             With A.S.T.R.A
           </p>
-          <div className={styles.organisms} style={{ opacity: orgAstraOp }}>
+          <div className={styles.organisms} style={{ opacity: orgsOp }}>
             <Organism type="bacteria" state={astraState} proteins={B_SUBTILIS_PROTEINS} proteinOpacity={proteinOp} />
             <Organism type="yeast"    state={astraState} proteins={S_CEREVISIAE_PROTEINS} proteinOpacity={proteinOp} />
           </div>
-          <div className={styles.stressors} style={{ opacity: stressAstraOp }}>
+          <div className={styles.stressors} style={{ opacity: stressOp }}>
             {STRESSORS.map((s) => <span key={s} className={styles.stressor}>{s}</span>)}
           </div>
           {surviveOp > 0.01 && (
