@@ -334,29 +334,19 @@ function CapabilitiesSection({ scrollY }) {
 
 // ─── Navigation Cards ─────────────────────────────────────────────────────────
 
-const NAV_CARDS = [
-  { emoji: "🔬", title: "Project Description", subtitle: "The science behind A.S.T.R.A.", to: "/project" },
-  { emoji: "👥", title: "Team Roster",         subtitle: "Meet the people behind the mission.", to: "/Roster" },
-  { emoji: "📋", title: "Attributions",        subtitle: "Contributions and acknowledgements.", to: "/Attributions" },
-];
-
 function NavigationCards() {
   return (
     <div className={styles.navSection}>
-      <p className={styles.navHeading}>Explore the wiki</p>
-      <div className={styles.navCards}>
-        {NAV_CARDS.map(({ emoji, title, subtitle, to }) => (
-          <Link key={to} to={to} className={styles.navCardLink}>
-            <LiquidGlass radius={24} color={[0, 0, 0]} opacity={0.07}>
-              <div className={styles.navCard}>
-                <span className={styles.navEmoji}>{emoji}</span>
-                <strong className={styles.navTitle}>{title}</strong>
-                <p className={styles.navSubtitle}>{subtitle}</p>
-              </div>
-            </LiquidGlass>
-          </Link>
-        ))}
-      </div>
+      <p className={styles.navHeading}>Meet the team</p>
+      <Link to="/Roster" className={styles.navCardLink}>
+        <LiquidGlass radius={24} color={[0, 0, 0]} opacity={0.07}>
+          <div className={styles.navCard}>
+            <span className={styles.navEmoji}>👥</span>
+            <strong className={styles.navTitle}>Team Roster</strong>
+            <p className={styles.navSubtitle}>Meet the people behind the mission.</p>
+          </div>
+        </LiquidGlass>
+      </Link>
     </div>
   );
 }

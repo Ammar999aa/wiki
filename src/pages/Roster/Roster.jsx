@@ -57,6 +57,12 @@ export default function Roster() {
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
       <div className={styles.container}>
+        <Link to="/" className={styles.backLink}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          A.S.T.R.A
+        </Link>
         <div className={styles.title}>
           <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
             <h1>{t("roster.title")}</h1>
