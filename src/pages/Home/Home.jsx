@@ -409,7 +409,7 @@ export default function Home() {
       </div>
 
       {/* ── Tagline ── */}
-      <div className={styles.tagline}>
+      <div className={styles.tagline} style={{ opacity: heroProgress }}>
         <p>On-demand medicine. Anywhere.</p>
       </div>
 
