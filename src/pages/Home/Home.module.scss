@@ -17,7 +17,7 @@
 
 h1 {
     margin-block: 10px;
-    font-size: 96px;
+    font-size: clamp(2.5rem, 10vw, 6rem);
     color: white;
     font-weight: 400;
 }
