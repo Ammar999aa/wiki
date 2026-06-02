@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import { useLanguage } from "../../i18n/LanguageContext";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import Footer from "../../components/Footer/Footer";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
@@ -498,6 +499,8 @@ export default function Home() {
 
       {/* ── Navigation cards ── */}
       <NavigationCards />
+
+      <Footer />
 
     </PageWrapper>
   );

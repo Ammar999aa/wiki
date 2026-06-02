@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import LiquidGlassFilter from "./components/LiquidGlassFilter/LiquidGlassFilter";
 import Menu from "./components/Menu/Menu";
-import Footer from "./components/Footer/Footer";
 import LanguageSelector from "./components/LanguageSelector/LanguageSelector";
 import styles from "./App.module.scss";
 import Home from "./pages/Home/Home";
@@ -31,8 +30,7 @@ export default function App() {
           <Route path="/safety" element={<Safety />} />
           <Route path="/engagement" element={<Engagement />} />
         </Routes>
-        <Footer />
-        <Menu></Menu>
+<Menu></Menu>
       </div>
     </div>
   );
