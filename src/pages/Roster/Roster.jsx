@@ -27,6 +27,14 @@ import hassan from "../../assets/roster/hassan.png";
 import raheema from "../../assets/roster/raheema.png";
 import mafer from "../../assets/roster/mafer.png"
 
+const pis = [
+  { name: "Prof. Wayne Yang" },
+  { name: "Dr. Raik Grünberg" },
+  { name: "Prof. Fabian Schmidt" },
+  { name: "Dr. Samah Zeineb Gadhoum" },
+  { name: "Selena Franchini" },
+];
+
 const members = [
   { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz" },
   { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca, countryCode: "pe" },
@@ -108,8 +116,25 @@ export default function Roster() {
           ))}
         </div>
 
+        <div className={styles.piSection}>
+          <p className={styles.piLabel}>Principal Investigators</p>
+          <div className={styles.piList}>
+            {pis.map(({ name }) => (
+              <span key={name} className={styles.piName}>{name}</span>
+            ))}
+          </div>
+        </div>
+
         {/* Responsive list view */}
         <div className={styles.listContainer}>
+          <div className={styles.piSectionList}>
+            <p className={styles.piLabel}>Principal Investigators</p>
+            <div className={styles.piList}>
+              {pis.map(({ name }) => (
+                <span key={name} className={styles.piName}>{name}</span>
+              ))}
+            </div>
+          </div>
           {members.map((member) => (
             <div key={member.name} className={styles.listItem}>
               {member.photo ? (

@@ -136,6 +136,40 @@
     border-radius: 50%;
 }
 
+.piSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.piSectionList {
+    display: none;
+}
+
+.piLabel {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.piList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+}
+
+.piName {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
 .seeMore {
     display: inline-block;
     margin-top: 10px;
@@ -230,5 +264,20 @@
 
     .title h1 {
         font-size: 48px;
+    }
+
+    .piSection {
+        display: none;
+    }
+
+    .piSectionList {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        max-width: 768px;
+        padding-block: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 }
