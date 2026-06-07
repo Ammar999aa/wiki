@@ -85,12 +85,6 @@ export default function Roster() {
                 </h2>
                 <h3>{t(`roster.roles.${selected.roleKey}`)}</h3>
                 <p>{t(`roster.members.${selected.memberKey}.bio`)}</p>
-                <Link
-                  to={`/Attributions?member=${encodeURIComponent(selected.name)}`}
-                  className={styles.seeMore}
-                >
-                  {t("roster.seeMore")}
-                </Link>
               </div>
             </div>
           </LiquidGlass>
