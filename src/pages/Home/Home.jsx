@@ -1,507 +1,769 @@
-import { useState, useEffect, useRef, Fragment } from "react";
+import { useRef, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
-import { useLanguage } from "../../i18n/LanguageContext";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Footer from "../../components/Footer/Footer";
-import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
+import earth from "../../assets/earth.webp";
 
-const PHRASES = [
-  { text: "However, future space missions will operate in isolated and extreme environments.", inAt: 0.00, outAt: 0.30 },
-  { text: "Traditional drug supply chains cannot support long-duration space missions.",       inAt: 0.32, outAt: 0.62 },
-  { text: "Medical autonomy becomes essential for mission success.",                           inAt: 0.64, outAt: null },
-];
+// ── Scroll engine ─────────────────────────────────────────────────────────────
 
-function PlanetsSection({ scrollY }) {
+const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+const lerp = (a, b, t) => a + (b - a) * t;
+const between = (p, a, b) => clamp01((p - a) / (b - a));
+
+const _subs = new Set();
+const ScrollEngine = {
+  motion: 1,
+  meteorRGB: "255,216,77",
+  meteorRate: 1.1,
+  _lastY: 0,
+  add(fn) {
+    _subs.add(fn);
+    try { fn(this._lastY, performance.now()); } catch (e) {}
+    return () => _subs.delete(fn);
+  },
+  run() {
+    this._lastY = window.scrollY || 0;
+    const t = performance.now();
+    for (const fn of _subs) { try { fn(this._lastY, t); } catch (e) {} }
+  },
+};
+
+function useScene(ref, range, onUpdate) {
+  const cb = useRef(onUpdate);
+  cb.current = onUpdate;
+  useEffect(() => {
+    return ScrollEngine.add((y) => {
+      const el = ref.current;
+      if (!el) return;
+      const p = clamp01((y - el.offsetTop) / (window.innerHeight * range));
+      cb.current(p);
+    });
+  }, []);
+}
+
+// ── Starfield canvas ──────────────────────────────────────────────────────────
+
+function Starfield() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let stars = [], meteors = [], nextShoot = 1400;
+    let W = 0, H = 0, dpr = 1, rafId;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + "px"; canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildStars();
+    }
+
+    function buildStars() {
+      const count = Math.round((W * H) / 5200);
+      stars = [];
+      for (let i = 0; i < count; i++) {
+        const depth = Math.random();
+        stars.push({
+          x: Math.random() * W, y: Math.random() * (H * 2.4),
+          z: depth, r: 0.35 + depth * 1.5,
+          base: 0.25 + depth * 0.65, tw: Math.random() * Math.PI * 2,
+          tws: 0.6 + Math.random() * 1.6,
+          hue: Math.random() < 0.12 ? (Math.random() < 0.5 ? "210,170,255" : "150,200,255") : "255,255,255",
+        });
+      }
+    }
+
+    function spawnMeteor() {
+      const speed = 4.5 + Math.random() * 3.5;
+      const slope = 0.4 + Math.random() * 0.3;
+      meteors.push({
+        x: Math.random() * W * 0.8 + W * 0.05,
+        y: Math.random() * H * 0.42 - H * 0.06,
+        vx: speed, vy: speed * slope,
+        len: 140 + Math.random() * 120, w: 1.6 + Math.random() * 1.3,
+        dur: 42 + Math.random() * 18, life: 0,
+        rgb: ScrollEngine.meteorRGB,
+      });
+    }
+
+    function drawStars(t, scrollY) {
+      ctx.clearRect(0, 0, W, H);
+      const m = ScrollEngine.motion;
+      for (const s of stars) {
+        const par = scrollY * (0.04 + s.z * 0.16) * m;
+        let y = (s.y - par) % (H * 2.4);
+        if (y < 0) y += H * 2.4;
+        if (y > H + 4) continue;
+        const tw = 0.6 + 0.4 * Math.sin(t * 0.001 * s.tws + s.tw);
+        const a = s.base * tw;
+        ctx.beginPath();
+        ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.hue},${a.toFixed(3)})`;
+        ctx.fill();
+        if (s.z > 0.82) {
+          ctx.beginPath();
+          ctx.arc(s.x, y, s.r * 2.6, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${s.hue},${(a * 0.18).toFixed(3)})`;
+          ctx.fill();
+        }
+      }
+      const rate = ScrollEngine.meteorRate;
+      if (rate > 0.04 && t > nextShoot && m > 0.05) {
+        const burst = rate > 1.6 && Math.random() < 0.45 ? 2 : 1;
+        for (let b = 0; b < burst; b++) spawnMeteor();
+        nextShoot = t + (2000 + Math.random() * 3400) / rate;
+      }
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const s = meteors[i];
+        s.life += 1; s.x += s.vx; s.y += s.vy;
+        const prog = s.life / s.dur;
+        const fade = prog < 0.18 ? prog / 0.18 : 1 - (prog - 0.18) / 0.82;
+        const a = Math.max(0, fade);
+        const tailX = s.x - s.len, tailY = s.y - s.len * (s.vy / s.vx);
+        const g = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
+        g.addColorStop(0, `rgba(${s.rgb},${(0.95 * a).toFixed(3)})`);
+        g.addColorStop(0.4, `rgba(${s.rgb},${(0.38 * a).toFixed(3)})`);
+        g.addColorStop(1, `rgba(${s.rgb},0)`);
+        ctx.strokeStyle = g; ctx.lineWidth = s.w; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(tailX, tailY); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.w * 1.7, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.rgb},${(0.9 * a).toFixed(3)})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.w * 4.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.rgb},${(0.16 * a).toFixed(3)})`; ctx.fill();
+        if (prog >= 1 || s.x - s.len > W + 40 || tailY > H + 40) meteors.splice(i, 1);
+      }
+    }
+
+    function rafLoop(t) {
+      drawStars(t, window.scrollY || 0);
+      ScrollEngine.run();
+      rafId = requestAnimationFrame(rafLoop);
+    }
+
+    const onScroll = () => ScrollEngine.run();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", resize);
+    resize();
+    rafId = requestAnimationFrame(rafLoop);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className={styles.starCanvas} />;
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────────
+
+function HeroSection() {
   const ref = useRef(null);
+  const earthRef = useRef(null);
+  const latinRef = useRef(null);
+  const arabicRef = useRef(null);
+  const copyRef = useRef(null);
 
-  const progress = (() => {
-    const el = ref.current;
-    if (!el) return 0;
-    const local = scrollY - el.offsetTop;
-    return Math.min(Math.max(local / (window.innerHeight * 2.2), 0), 1);
-  })();
-
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const phraseOp = (inAt, outAt) => {
-    const fadeIn  = clamp01((progress - inAt)  / 0.09);
-    const fadeOut = outAt != null ? clamp01((outAt - progress) / 0.06) : 1;
-    return Math.min(fadeIn, fadeOut);
-  };
+  useScene(ref, 1.7, (p) => {
+    if (latinRef.current) latinRef.current.style.opacity = 1 - between(p, 0.30, 0.60);
+    if (arabicRef.current) {
+      const fo = between(p, 0.42, 0.72);
+      arabicRef.current.style.opacity = fo;
+      arabicRef.current.style.transform = `scale(${lerp(0.82, 1, fo)})`;
+    }
+    if (copyRef.current) {
+      copyRef.current.style.transform = `translateY(${-p * 50}px)`;
+      copyRef.current.style.opacity = 1 - between(p, 0.84, 1);
+    }
+    if (earthRef.current) {
+      const ty = -150 * p * ScrollEngine.motion;
+      const sc = lerp(1, 1.12, p);
+      earthRef.current.style.transform = `translate(-50%, -50%) translateY(${ty}px) scale(${sc})`;
+    }
+  });
 
   return (
-    <div className={styles.planetsSection} ref={ref}>
-      <div className={styles.planetsSticky}>
+    <section className={styles.hero} ref={ref}>
+      <div className={styles.heroSticky}>
 
-        {/* Decorative planets */}
+        {/* Earth */}
+        <div className={styles.earthWrap} ref={earthRef}>
+          <div className={styles.earthGlow} />
+          <div className={styles.earthAtmo} />
+          <div className={styles.earthImg} style={{ backgroundImage: `url("${earth}")` }} />
+          <div className={styles.earthSheen} />
+        </div>
+
+        {/* Signature streaks */}
+        <div className={styles.heroStreaks} aria-hidden="true">
+          <span className={`${styles.streak} ${styles.s1}`} />
+          <span className={`${styles.streak} ${styles.s2}`} />
+        </div>
+
+        {/* Copy */}
+        <div className={styles.heroCopy} ref={copyRef}>
+          <span className={styles.heroEyebrow}>iGEM · Synthetic Biology in Space</span>
+          <div className={styles.wordmark}>
+            <h1 className={styles.wordmarkLatin} ref={latinRef}>Shihab</h1>
+            <h1 className={styles.wordmarkArabic} ref={arabicRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</h1>
+          </div>
+          <p className={styles.heroSub}>
+            <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo; On-demand medicine, engineered for anywhere.
+          </p>
+          <div className={styles.heroTelemetry}>
+            <span>PLATFORM <b>B. subtilis · S. cerevisiae</b></span>
+            <span>OUTPUT <b>Therapeutic nanobodies</b></span>
+            <span>ENV <b>Microgravity-rated</b></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// ── Tagline ───────────────────────────────────────────────────────────────────
+
+function TaglineSection() {
+  const ref = useRef(null);
+  const pRef = useRef(null);
+
+  useScene(ref, 1, (p) => {
+    if (pRef.current) {
+      pRef.current.style.opacity = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
+      pRef.current.style.transform = `translateY(${lerp(30, -30, p)}px)`;
+    }
+  });
+
+  return (
+    <section className={styles.tagline} ref={ref}>
+      <p ref={pRef} style={{ opacity: 0 }}>
+        On-demand medicine.<br /><span className={styles.accentText}>Anywhere.</span>
+      </p>
+    </section>
+  );
+}
+
+// ── Orbit diagram ─────────────────────────────────────────────────────────────
+
+const ORBITS = [
+  { key: "food",     label: "Food",     r: 66,  angle: 0,   th: 0.20 },
+  { key: "water",    label: "Water",    r: 108, angle: 90,  th: 0.38 },
+  { key: "safety",   label: "Safety",   r: 150, angle: 180, th: 0.55 },
+  { key: "medicine", label: "Medicine", r: 192, angle: 270, th: 0.70, hl: true },
+];
+
+function orbitPos(r, a) {
+  const rad = (a * Math.PI) / 180;
+  return { x: r * Math.cos(rad), y: r * Math.sin(rad) };
+}
+
+function OrbitSection() {
+  const ref = useRef(null);
+  const ringRefs = useRef([]);
+  const nodeRefs = useRef([]);
+
+  useScene(ref, 1.5, (p) => {
+    ORBITS.forEach((o, i) => {
+      const rp = clamp01((p - (o.th - 0.06)) / 0.12);
+      const ip = clamp01((p - o.th) / 0.10);
+      const ring = ringRefs.current[i];
+      const node = nodeRefs.current[i];
+      if (ring) {
+        ring.style.opacity = rp;
+        ring.style.transform = `translate(-50%,-50%) scale(${lerp(0.25, 1, rp)})`;
+      }
+      if (node) {
+        const { x, y } = orbitPos(o.r, o.angle);
+        node.style.opacity = ip;
+        node.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%)) scale(${lerp(0.6, 1, ip)})`;
+      }
+    });
+  });
+
+  return (
+    <section className={styles.orbitSection} ref={ref}>
+      <div className={styles.orbitSticky}>
+        <p className={styles.bigLine} style={{ maxWidth: 560 }}>
+          Astronauts depend on a fragile chain of essentials —{" "}
+          <span className={styles.vio}>including medicine.</span>
+        </p>
+        <div className={styles.orbitDiagram}>
+          <div className={styles.orbitCore} />
+          {ORBITS.map((o, i) => (
+            <div
+              key={"r" + o.key}
+              ref={(el) => (ringRefs.current[i] = el)}
+              className={styles.orbitRingWrapper}
+              style={{ width: o.r * 2, height: o.r * 2, opacity: 0, transform: "translate(-50%,-50%) scale(0.25)" }}
+            >
+              <div className={`${styles.orbitRing} ${o.hl ? styles.medicineRing : ""}`} />
+            </div>
+          ))}
+          {ORBITS.map((o, i) => (
+            <div
+              key={"n" + o.key}
+              ref={(el) => (nodeRefs.current[i] = el)}
+              className={styles.orbitNode}
+              style={{ opacity: 0 }}
+            >
+              <span className={`${styles.orbitPin} ${o.hl ? styles.medicinePin : ""}`} />
+              <small className={`${styles.orbitNodeLabel} ${o.hl ? styles.medicineLabelHighlight : ""}`}>{o.label}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Planets / phrases ─────────────────────────────────────────────────────────
+
+const PLANET_PHRASES = [
+  {
+    key: "p1",
+    content: <>Future missions will operate in <span className={styles.vio}>isolated, extreme environments.</span></>,
+    inAt: 0.00, outAt: 0.30,
+  },
+  {
+    key: "p2",
+    content: <>Traditional drug supply chains <em>cannot</em> reach deep space.</>,
+    inAt: 0.32, outAt: 0.62,
+  },
+  {
+    key: "p3",
+    content: "Medical autonomy becomes essential for mission success.",
+    inAt: 0.64, outAt: null,
+  },
+];
+
+function PlanetsSection() {
+  const ref = useRef(null);
+  const phraseRefs = useRef([]);
+
+  useScene(ref, 2.0, (p) => {
+    PLANET_PHRASES.forEach((s, i) => {
+      const fadeIn  = clamp01((p - s.inAt) / 0.09);
+      const fadeOut = s.outAt != null ? clamp01((s.outAt - p) / 0.06) : 1;
+      const el = phraseRefs.current[i];
+      if (el) {
+        el.style.opacity = Math.min(fadeIn, fadeOut);
+        el.style.transform = `translateY(${lerp(18, 0, fadeIn)}px)`;
+      }
+    });
+  });
+
+  return (
+    <section className={styles.planetsSection} ref={ref}>
+      <div className={styles.planetsSticky}>
         <div className={`${styles.planet} ${styles.p1}`} />
         <div className={`${styles.planet} ${styles.p2}`} />
         <div className={`${styles.planet} ${styles.p3}`} />
         <div className={`${styles.planet} ${styles.p4}`} />
         <div className={`${styles.planet} ${styles.p5}`} />
-
-        {/* Phrase stack — all in the same grid cell, crossfade via opacity */}
         <div className={styles.phraseStack}>
-          {PHRASES.map(({ text, inAt, outAt }, i) => (
+          {PLANET_PHRASES.map((s, i) => (
             <p
-              key={i}
-              className={`${styles.phrase} ${outAt === null ? styles.phraseFinal : ""}`}
-              style={{ opacity: phraseOp(inAt, outAt) }}
+              key={s.key}
+              className={styles.bigLine}
+              style={{ opacity: 0 }}
+              ref={(el) => (phraseRefs.current[i] = el)}
             >
-              {text}
+              {s.content}
             </p>
           ))}
         </div>
-
       </div>
-    </div>
+    </section>
   );
 }
 
-// ─── ASTRA Reveal ────────────────────────────────────────────────────────────
+// ── Reveal ────────────────────────────────────────────────────────────────────
 
-function AstraRevealSection({ scrollY }) {
+function RevealSection() {
   const ref = useRef(null);
-  const progress = (() => {
-    const el = ref.current;
-    if (!el) return 0;
-    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 1.2), 0), 1);
-  })();
+  const labelRef = useRef(null);
+  const astraRef = useRef(null);
+  const arRef = useRef(null);
 
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const labelOp  = clamp01((progress - 0.00) / 0.15);
-  const astraOp  = clamp01((progress - 0.25) / 0.20);
-  const astraScale = 0.75 + 0.25 * clamp01((progress - 0.25) / 0.25);
+  useScene(ref, 1.2, (p) => {
+    if (labelRef.current) labelRef.current.style.opacity = Math.min(between(p, 0.0, 0.15), 1 - between(p, 0.75, 0.95));
+    if (astraRef.current) {
+      const o = between(p, 0.25, 0.45);
+      astraRef.current.style.opacity = o;
+      astraRef.current.style.transform = `scale(${lerp(0.72, 1, between(p, 0.25, 0.6))})`;
+    }
+    if (arRef.current) arRef.current.style.opacity = between(p, 0.42, 0.6);
+  });
 
   return (
-    <div className={styles.revealSection} ref={ref}>
+    <section className={styles.revealSection} ref={ref}>
       <div className={styles.revealSticky}>
-        <p className={styles.revealLabel} style={{ opacity: labelOp }}>
-          That's why we present:
-        </p>
-        <h2
-          className={styles.revealAstra}
-          style={{ opacity: astraOp, transform: `scale(${astraScale})` }}
-        >
-          A.S.T.R.A
-        </h2>
+        <p className={styles.revealLabel} ref={labelRef} style={{ opacity: 0 }}>Our answer &mdash;</p>
+        <h2 className={styles.revealAstra} ref={astraRef} style={{ opacity: 0 }}>Shihab</h2>
+        <p className={styles.revealAr} ref={arRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</p>
       </div>
-    </div>
+    </section>
   );
 }
 
-// ─── Briefing ─────────────────────────────────────────────────────────────────
+// ── Briefing ──────────────────────────────────────────────────────────────────
 
 const BRIEFING = [
   {
     tag: "Context",
-    text: "Medicines can be produced on demand using engineered biological systems.",
+    content: <>Medicines can be produced on demand using <span className={styles.vio}>engineered biological systems.</span></>,
     inAt: 0.00, outAt: 0.30,
   },
   {
     tag: "Problem",
-    text: "Biological systems are not naturally adapted to function in space conditions.",
+    content: <>But biology is <em>not</em> naturally adapted to function in space conditions.</>,
     inAt: 0.32, outAt: 0.62,
   },
   {
     tag: "Solution",
-    text: "We engineer resilient microbial systems capable of operating under space stressors — using Bacillus subtilis and Saccharomyces cerevisiae as robust production platforms.",
+    content: <>We engineer resilient microbial systems — <span className={styles.vio}>B. subtilis</span> and <span className={styles.vio}>S. cerevisiae</span> — that thrive under space stressors.</>,
     inAt: 0.64, outAt: null,
   },
 ];
 
-function BriefingSection({ scrollY }) {
+function BriefingSection() {
   const ref = useRef(null);
-  const progress = (() => {
-    const el = ref.current;
-    if (!el) return 0;
-    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 2.2), 0), 1);
-  })();
+  const itemRefs = useRef([]);
 
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const phraseOp = (inAt, outAt) => {
-    const fadeIn  = clamp01((progress - inAt)  / 0.09);
-    const fadeOut = outAt != null ? clamp01((outAt - progress) / 0.06) : 1;
-    return Math.min(fadeIn, fadeOut);
-  };
+  useScene(ref, 2.0, (p) => {
+    BRIEFING.forEach((s, i) => {
+      const fadeIn  = clamp01((p - s.inAt) / 0.09);
+      const fadeOut = s.outAt != null ? clamp01((s.outAt - p) / 0.06) : 1;
+      const el = itemRefs.current[i];
+      if (el) {
+        el.style.opacity = Math.min(fadeIn, fadeOut);
+        el.style.transform = `translateY(${lerp(20, 0, fadeIn)}px)`;
+      }
+    });
+  });
 
   return (
-    <div className={styles.briefingSection} ref={ref}>
+    <section className={styles.briefingSection} ref={ref}>
       <div className={styles.briefingSticky}>
         <div className={styles.briefingStack}>
-          {BRIEFING.map(({ tag, text, inAt, outAt }) => (
+          {BRIEFING.map((s, i) => (
             <div
-              key={tag}
+              key={s.tag}
               className={styles.briefingItem}
-              style={{ opacity: phraseOp(inAt, outAt) }}
+              style={{ opacity: 0 }}
+              ref={(el) => (itemRefs.current[i] = el)}
             >
-              <span className={styles.briefingTag}>{tag}</span>
-              <p className={styles.briefingText}>{text}</p>
+              <span className={styles.tag}>
+                <span className={styles.tagDot} />
+                {s.tag}
+              </span>
+              <p className={styles.bigLine}>{s.content}</p>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
-// ─── Scenarios ────────────────────────────────────────────────────────────────
+// ── Scenarios ─────────────────────────────────────────────────────────────────
 
-// TODO: replace placeholder protein names with actual inserted gene/protein names
-const B_SUBTILIS_PROTEINS = ["Protein A", "Protein B"];
-const S_CEREVISIAE_PROTEINS = ["Protein C"];
-
+const B_SUBTILIS_PROTEINS = ["Chaperone A", "Repair B"];
+const S_CEREVISIAE_PROTEINS = ["Stress C"];
 const STRESSORS = ["Radiation", "Microgravity", "Extreme temp."];
 
-function Organism({ type, state, proteins = [], proteinOpacity = 0 }) {
+function ScenarioOrganism({ type, orgRef, markRef, proteins, protRef }) {
   return (
-    <div className={styles.organismWrapper}>
-      <div className={`${styles.organism} ${styles[type]} ${state === "dead" ? styles.dead : state === "alive" ? styles.alive : ""}`}>
-        {state === "dead" && <span className={styles.deathMark}>✕</span>}
-        {state === "alive" && <span className={styles.aliveMark}>✓</span>}
+    <div className={styles.orgWrap}>
+      <div className={`${styles.organism} ${styles[type]}`} ref={orgRef}>
+        <span className={styles.orgMark} ref={markRef} />
       </div>
-      {proteins.length > 0 && (
-        <div className={styles.proteinTags} style={{ opacity: proteinOpacity }}>
-          {proteins.map((p) => (
-            <span key={p} className={styles.proteinTag}>{p}</span>
-          ))}
+      {proteins && (
+        <div className={styles.proteins} ref={protRef} style={{ opacity: 0 }}>
+          {proteins.map((p) => <span key={p} className={styles.protein}>{p}</span>)}
         </div>
       )}
-      <small className={styles.organismLabel}>
-        {type === "bacteria" ? "B. subtilis" : "S. cerevisiae"}
-      </small>
+      <small className={styles.orgLabel}>{type === "bacteria" ? "B. subtilis" : "S. cerevisiae"}</small>
     </div>
   );
 }
 
-function ScenarioSection({ scrollY }) {
+function ScenarioSection() {
   const ref = useRef(null);
-  const progress = (() => {
-    const el = ref.current;
-    if (!el) return 0;
-    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 2.2), 0), 1);
-  })();
 
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const between = (start, end) => clamp01((progress - start) / (end - start));
+  const labelARef = useRef(null), labelBRef = useRef(null);
+  const orgsARef = useRef(null), orgsBRef = useRef(null);
+  const stressARef = useRef(null), stressBRef = useRef(null);
+  const prot1Ref = useRef(null), prot2Ref = useRef(null);
+  const surviveRef = useRef(null);
+  const bDeadRef = useRef(null), bDeadMarkRef = useRef(null);
+  const yDeadRef = useRef(null), yDeadMarkRef = useRef(null);
+  const bAliveRef = useRef(null), bAliveMarkRef = useRef(null);
+  const yAliveRef = useRef(null), yAliveMarkRef = useRef(null);
 
-  // Shared timeline — both panels animate in parallel
-  const labelsOp   = between(0.00, 0.15);
-  const orgsOp     = between(0.15, 0.32);
-  const stressOp   = between(0.32, 0.48);
-  const proteinOp  = between(0.48, 0.62);
-  const outcomeOp  = between(0.65, 0.80);
-  const surviveOp  = between(0.80, 0.92);
+  const setOrg = (orgEl, markEl, isDead, isAlive) => {
+    if (!orgEl) return;
+    orgEl.classList.toggle(styles.dead, isDead);
+    orgEl.classList.toggle(styles.alive, isAlive);
+    if (markEl) {
+      markEl.textContent = isDead ? "✕" : isAlive ? "✓" : "";
+      markEl.className = `${styles.orgMark}${isDead ? " " + styles.orgMarkX : isAlive ? " " + styles.orgMarkV : ""}`;
+    }
+  };
 
-  const normalState = outcomeOp > 0.01 ? "dead" : "neutral";
-  const astraState  = surviveOp > 0.01 ? "alive" : "neutral";
+  useScene(ref, 2.2, (p) => {
+    const labelsOp = between(p, 0.00, 0.15);
+    const orgsOp   = between(p, 0.15, 0.32);
+    const stressOp = between(p, 0.32, 0.48);
+    const protOp   = between(p, 0.48, 0.62);
+    const outOp    = between(p, 0.65, 0.80);
+    const survOp   = between(p, 0.80, 0.92);
+
+    if (labelARef.current) labelARef.current.style.opacity = labelsOp;
+    if (labelBRef.current) labelBRef.current.style.opacity = labelsOp;
+    if (orgsARef.current) orgsARef.current.style.opacity = orgsOp;
+    if (orgsBRef.current) orgsBRef.current.style.opacity = orgsOp;
+    if (stressARef.current) stressARef.current.style.opacity = stressOp;
+    if (stressBRef.current) stressBRef.current.style.opacity = stressOp;
+    if (prot1Ref.current) prot1Ref.current.style.opacity = protOp;
+    if (prot2Ref.current) prot2Ref.current.style.opacity = protOp;
+    if (surviveRef.current) surviveRef.current.style.opacity = survOp;
+
+    setOrg(bDeadRef.current, bDeadMarkRef.current, outOp > 0.01, false);
+    setOrg(yDeadRef.current, yDeadMarkRef.current, outOp > 0.01, false);
+    setOrg(bAliveRef.current, bAliveMarkRef.current, survOp > 0.01, false);
+    setOrg(yAliveRef.current, yAliveMarkRef.current, survOp > 0.01, false);
+  });
 
   return (
-    <div className={styles.scenarioSection} ref={ref}>
+    <section className={styles.scenarioSection} ref={ref}>
       <div className={styles.scenarioSticky}>
 
-        {/* ── Normal scenario ── */}
+        {/* Without Shihab */}
         <div className={styles.scenario}>
-          <p className={styles.scenarioLabel} style={{ opacity: labelsOp }}>Without A.S.T.R.A</p>
-          <div className={styles.organisms} style={{ opacity: orgsOp }}>
-            <Organism type="bacteria" state={normalState} />
-            <Organism type="yeast"   state={normalState} />
+          <p className={styles.scenarioLabel} ref={labelARef} style={{ opacity: 0 }}>Without Shihab</p>
+          <div className={styles.organisms} ref={orgsARef} style={{ opacity: 0 }}>
+            <ScenarioOrganism type="bacteria" orgRef={bDeadRef} markRef={bDeadMarkRef} />
+            <ScenarioOrganism type="yeast"    orgRef={yDeadRef} markRef={yDeadMarkRef} />
           </div>
-          <div className={styles.stressors} style={{ opacity: stressOp }}>
+          <div className={styles.stressors} ref={stressARef} style={{ opacity: 0 }}>
             {STRESSORS.map((s) => <span key={s} className={styles.stressor}>{s}</span>)}
           </div>
         </div>
 
-        <div className={styles.scenarioDivider} style={{ opacity: labelsOp }} />
+        <div className={styles.scenarioDivider} />
 
-        {/* ── ASTRA scenario ── */}
+        {/* With Shihab */}
         <div className={styles.scenario}>
-          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelAstra}`} style={{ opacity: labelsOp }}>
-            With A.S.T.R.A
-          </p>
-          <div className={styles.organisms} style={{ opacity: orgsOp }}>
-            <Organism type="bacteria" state={astraState} proteins={B_SUBTILIS_PROTEINS} proteinOpacity={proteinOp} />
-            <Organism type="yeast"    state={astraState} proteins={S_CEREVISIAE_PROTEINS} proteinOpacity={proteinOp} />
+          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelShihab}`} ref={labelBRef} style={{ opacity: 0 }}>With Shihab</p>
+          <div className={styles.organisms} ref={orgsBRef} style={{ opacity: 0 }}>
+            <ScenarioOrganism type="bacteria" orgRef={bAliveRef} markRef={bAliveMarkRef} proteins={B_SUBTILIS_PROTEINS} protRef={prot1Ref} />
+            <ScenarioOrganism type="yeast"    orgRef={yAliveRef} markRef={yAliveMarkRef} proteins={S_CEREVISIAE_PROTEINS} protRef={prot2Ref} />
           </div>
-          <div className={styles.stressors} style={{ opacity: stressOp }}>
+          <div className={styles.stressors} ref={stressBRef} style={{ opacity: 0 }}>
             {STRESSORS.map((s) => <span key={s} className={styles.stressor}>{s}</span>)}
           </div>
-          {surviveOp > 0.01 && (
-            <p className={styles.surviveText} style={{ opacity: surviveOp }}>
-              Medicine produced. ✓
-            </p>
-          )}
+          <p className={styles.survive} ref={surviveRef} style={{ opacity: 0 }}>Medicine produced. ✓</p>
         </div>
 
       </div>
-    </div>
+    </section>
   );
 }
 
-// ─── Nanobody Section ────────────────────────────────────────────────────────
+// ── Nanobody ──────────────────────────────────────────────────────────────────
 
-function NanobodySection({ scrollY }) {
+function NanobodySection() {
   const ref = useRef(null);
-  const progress = (() => {
-    const el = ref.current;
-    if (!el) return 0;
-    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 1.5), 0), 1);
-  })();
+  const textRef = useRef(null);
+  const orgsRef = useRef(null);
+  const p1Ref = useRef(null);
+  const p2Ref = useRef(null);
 
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const textOp      = clamp01((progress - 0.00) / 0.20);
-  const orgsOp      = clamp01((progress - 0.20) / 0.20);
-  const particlesOp = clamp01((progress - 0.40) / 0.20);
+  useScene(ref, 1.5, (p) => {
+    if (textRef.current) textRef.current.style.opacity = between(p, 0.0, 0.2);
+    if (orgsRef.current) orgsRef.current.style.opacity = between(p, 0.2, 0.4);
+    const pop = between(p, 0.4, 0.6);
+    if (p1Ref.current) p1Ref.current.style.opacity = pop;
+    if (p2Ref.current) p2Ref.current.style.opacity = pop;
+  });
 
   return (
-    <div className={styles.nanobodySection} ref={ref}>
+    <section className={styles.nanobodySection} ref={ref}>
       <div className={styles.nanobodySticky}>
-        <p className={styles.nanobodyText} style={{ opacity: textOp }}>
-          Our system enables the controlled production of{" "}
-          <span className={styles.nanobodyEmphasis}>therapeutic nanobodies</span> on demand.
+        <p className={styles.bigLine} ref={textRef} style={{ opacity: 0, maxWidth: 720 }}>
+          Our system produces <span className={styles.nanoEmph}>therapeutic nanobodies</span> on demand.
         </p>
-
-        <div className={styles.nanobodyOrganisms} style={{ opacity: orgsOp }}>
-          {/* B. subtilis */}
-          <div className={styles.nanobodyOrgWrapper}>
-            <div className={styles.particleField} style={{ opacity: particlesOp }}>
+        <div className={styles.nanobodyOrganisms} ref={orgsRef} style={{ opacity: 0 }}>
+          <div className={styles.nanoWrap}>
+            <div className={styles.particles} ref={p1Ref} style={{ opacity: 0 }}>
               {[...Array(5)].map((_, i) => (
-                <span key={i} className={styles.particle} style={{ "--i": i }}> Ψ</span>
+                <span key={i} className={styles.particle} style={{ animationDelay: `${i * 0.32}s` }} />
               ))}
             </div>
             <div className={`${styles.organism} ${styles.bacteria} ${styles.supercharged}`} />
-            <small className={styles.organismLabel}>B. subtilis</small>
+            <small className={styles.orgLabel}>B. subtilis</small>
           </div>
-
-          {/* S. cerevisiae */}
-          <div className={styles.nanobodyOrgWrapper}>
-            <div className={styles.particleField} style={{ opacity: particlesOp }}>
+          <div className={styles.nanoWrap}>
+            <div className={styles.particles} ref={p2Ref} style={{ opacity: 0 }}>
               {[...Array(5)].map((_, i) => (
-                <span key={i} className={styles.particle} style={{ "--i": i + 5 }}> Ψ</span>
+                <span key={i} className={styles.particle} style={{ animationDelay: `${i * 0.32 + 0.16}s` }} />
               ))}
             </div>
             <div className={`${styles.organism} ${styles.yeast} ${styles.supercharged}`} />
-            <small className={styles.organismLabel}>S. cerevisiae</small>
+            <small className={styles.orgLabel}>S. cerevisiae</small>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
-// ─── Capabilities Section ─────────────────────────────────────────────────────
+// ── Capabilities ──────────────────────────────────────────────────────────────
+
+function IcoArrow({ className }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" className={className}>
+      <path d="M6 16L16 6M16 6H8M16 6v8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IcoScalable({ className }) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" className={className}>
+      <path d="M6 14V6h8M34 26v8h-8M6 6l11 11M34 34L23 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function IcoProgrammable({ className }) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" className={className}>
+      <path d="M14 11L6 20l8 9M26 11l8 9-8 9M22 8l-4 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function IcoAdaptable({ className }) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" className={className}>
+      <path d="M33 14a14 14 0 1 0 1.5 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M33 6v9h-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 const CAPABILITIES = [
-  { icon: "∞", label: "Scalable",      desc: "Production scales to mission demands." },
-  { icon: "</>", label: "Programmable", desc: "Genetic circuits tuned for any therapeutic." },
-  { icon: "⟳",  label: "Adaptable",    desc: "Operates across diverse environmental conditions." },
+  { Ico: IcoScalable,     label: "Scalable",     desc: "Production scales to whatever the mission demands — from a single dose to a full crew supply." },
+  { Ico: IcoProgrammable, label: "Programmable", desc: "Genetic circuits are retargeted to express new therapeutics without rebuilding the platform." },
+  { Ico: IcoAdaptable,    label: "Adaptable",    desc: "Engineered to keep operating across the environmental extremes of long-duration spaceflight." },
 ];
 
-function CapabilitiesSection({ scrollY }) {
+function CapabilitiesSection() {
   const ref = useRef(null);
-  const progress = (() => {
-    const el = ref.current;
-    if (!el) return 0;
-    return Math.min(Math.max((scrollY - el.offsetTop) / (window.innerHeight * 1.8), 0), 1);
-  })();
+  const textRef = useRef(null);
+  const tileRefs = useRef([]);
 
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const textOp = clamp01((progress - 0.00) / 0.18);
+  useScene(ref, 1.8, (p) => {
+    if (textRef.current) textRef.current.style.opacity = between(p, 0.0, 0.18);
+    CAPABILITIES.forEach((_, i) => {
+      const o = clamp01((p - (0.22 + i * 0.13)) / 0.16);
+      const el = tileRefs.current[i];
+      if (el) {
+        el.style.opacity = o;
+        el.style.transform = `translateY(${lerp(28, 0, o)}px)`;
+      }
+    });
+  });
 
   return (
-    <div className={styles.capSection} ref={ref}>
+    <section className={styles.capSection} ref={ref}>
       <div className={styles.capSticky}>
-        <p className={styles.capText} style={{ opacity: textOp }}>
-          ASTRA is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
+        <p className={styles.bigLine} ref={textRef} style={{ opacity: 0, maxWidth: 680 }}>
+          Shihab is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
         </p>
         <div className={styles.capTiles}>
-          {CAPABILITIES.map(({ icon, label, desc }, i) => {
-            const tileOp = clamp01((progress - (0.22 + i * 0.14)) / 0.16);
-            return (
-              <div key={label} className={styles.capTile} style={{ opacity: tileOp, transform: `translateY(${(1 - tileOp) * 20}px)` }}>
-                <span className={styles.capIcon}>{icon}</span>
-                <strong className={styles.capLabel}>{label}</strong>
-                <p className={styles.capDesc}>{desc}</p>
-              </div>
-            );
-          })}
+          {CAPABILITIES.map(({ Ico, label, desc }, i) => (
+            <div
+              key={label}
+              className={styles.capTile}
+              ref={(el) => (tileRefs.current[i] = el)}
+              style={{ opacity: 0 }}
+            >
+              <span className={styles.capIdx}>0{i + 1}</span>
+              <Ico className={styles.capIco} />
+              <strong>{label}</strong>
+              <p>{desc}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
-// ─── Navigation Cards ─────────────────────────────────────────────────────────
+// ── Explore ───────────────────────────────────────────────────────────────────
 
-const NAV_CARDS = [
-  { emoji: "🔬", title: "Project Description", subtitle: "The science behind A.S.T.R.A.", to: "/project" },
-  { emoji: "👥", title: "Team Roster",         subtitle: "Meet the people behind the mission.", to: "/Roster" },
-  { emoji: "📋", title: "Attributions",        subtitle: "Contributions and acknowledgements.", to: "/Attributions" },
+const EXPLORE_CARDS = [
+  { n: "01", t: "The Project",      d: "How Shihab engineers medical autonomy for deep-space missions — the full scientific rationale.", to: "/project",          feature: true },
+  { n: "02", t: "Wet Lab",          d: "Strain engineering, assays, and protein expression.",                                           to: "/wetlab" },
+  { n: "03", t: "Dry Lab",          d: "Modelling, bioinformatics, and circuit design.",                                                to: "/drylab" },
+  { n: "04", t: "Human Practices",  d: "How real-world voices shaped the work.",                                                        to: "/human-practices" },
+  { n: "05", t: "Team",             d: "Meet the people behind the mission.",                                                           to: "/Roster" },
+  { n: "06", t: "Safety",           d: "Biosafety and responsible design.",                                                             to: "/safety" },
+  { n: "07", t: "Engagement",       d: "Bringing space biology to the public.",                                                         to: "/engagement" },
+  { n: "08", t: "Attributions",     d: "Who did what, and our collaborators.",                                                          to: "/Attributions" },
 ];
 
-function NavigationCards() {
+function ExploreSection() {
   return (
-    <div className={styles.navSection}>
-      <p className={styles.navHeading}>Explore the wiki</p>
-      <div className={styles.navCards}>
-        {NAV_CARDS.map(({ emoji, title, subtitle, to }) => (
-          <Link key={to} to={to} className={styles.navCardLink}>
-            <LiquidGlass radius={24} color={[0, 0, 0]} opacity={0.07}>
-              <div className={styles.navCard}>
-                <span className={styles.navEmoji}>{emoji}</span>
-                <strong className={styles.navTitle}>{title}</strong>
-                <p className={styles.navSubtitle}>{subtitle}</p>
-              </div>
-            </LiquidGlass>
+    <section className={styles.exploreSection}>
+      <div className={styles.exploreHead}>
+        <span className={styles.kicker}>Explore the mission</span>
+        <h2>Eight chapters, one&nbsp;system.</h2>
+      </div>
+      <div className={styles.exploreGrid}>
+        {EXPLORE_CARDS.map((c) => (
+          <Link key={c.n} to={c.to} className={`${styles.xcard} ${c.feature ? styles.xcardFeature : ""}`}>
+            <span className={styles.xnum}>{c.n}</span>
+            <span className={styles.xarrow}><IcoArrow /></span>
+            <div className={styles.xbody}>
+              <h3>{c.t}</h3>
+              <p>{c.d}</p>
+            </div>
+            <span className={styles.glowline} />
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
-const ORBITS = [
-  { key: "food",     emoji: "🍱", label: "Food",     r: 55,  angle: 0,   threshold: 0.20 },
-  { key: "water",    emoji: "💧", label: "Water",    r: 90,  angle: 90,  threshold: 0.38 },
-  { key: "safety",   emoji: "🛡️", label: "Safety",   r: 125, angle: 180, threshold: 0.55 },
-  { key: "medicine", emoji: "💊", label: "Medicine", r: 160, angle: 270, threshold: 0.70, highlight: true },
-];
-
-// Angles use CSS coordinate space (0° = right, 90° = down, 270° = up)
-function orbitPos(r, angleDeg) {
-  const rad = (angleDeg * Math.PI) / 180;
-  return { x: r * Math.cos(rad), y: r * Math.sin(rad) };
-}
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Home() {
-  const { t } = useLanguage();
-  const [scrollY, setScrollY] = useState(0);
-  const orbitSectionRef = useRef(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const heroProgress = Math.min(scrollY / 300, 1);
-
-  const orbitProgress = (() => {
-    const el = orbitSectionRef.current;
-    if (!el) return 0;
-    const local = scrollY - el.offsetTop;
-    return Math.min(Math.max(local / (window.innerHeight * 1.5), 0), 1);
-  })();
-
-  const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-  const ringProg  = (t) => clamp01((orbitProgress - (t - 0.06)) / 0.12);
-  const iconProg  = (t) => clamp01((orbitProgress - t)          / 0.10);
-
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-
-      {/* ── Hero ── */}
-      <div className={styles.scrollSpace}>
-        <div className={styles.title}>
-          <h1>{t("home.introducing")}</h1>
-          <div className={styles.nameWrapper}>
-            <h1 className={styles.astra} style={{ opacity: 1 - heroProgress }}>
-              A.S.T.R.A
-            </h1>
-            <h1 className={styles.fullName} style={{ opacity: heroProgress }}>
-              Adaptive Synthetic Therapeutics
-              <br />
-              for Remote and Astro Environments
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Tagline ── */}
-      <div className={styles.tagline}>
-        <p>On-demand medicine. Anywhere.</p>
-      </div>
-
-      {/* ── Orbit diagram ── */}
-      <div className={styles.orbitSection} ref={orbitSectionRef}>
-        <div className={styles.orbitSticky}>
-
-          <p className={styles.orbitText}>
-            Astronauts require reliable access to essential resources,{" "}
-            <span className={styles.medicineEmphasis}>including medicine.</span>
-          </p>
-
-          <div className={styles.orbitDiagram}>
-
-            {/* Central orb */}
-            <div className={styles.centerOrb} />
-
-            {ORBITS.map(({ key, emoji, label, r, angle, threshold, highlight }) => {
-              const rp = ringProg(threshold);
-              const ip = iconProg(threshold);
-              const { x, y } = orbitPos(r, angle);
-
-              return (
-                <Fragment key={key}>
-                  {/* Ring wrapper: scroll-driven scale + opacity */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      width: r * 2,
-                      height: r * 2,
-                      opacity: rp,
-                      transform: `translate(-50%, -50%) scale(${0.25 + 0.75 * rp})`,
-                    }}
-                  >
-                    {/* Inner ring: continuous slow rotation */}
-                    <div className={`${styles.orbitRing} ${highlight ? styles.medicineRing : ""}`} />
-                  </div>
-
-                  {/* Icon */}
-                  <div
-                    className={`${styles.orbitIcon} ${highlight ? styles.medicineIcon : ""}`}
-                    style={{
-                      opacity: ip,
-                      transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
-                    }}
-                  >
-                    <span>{emoji}</span>
-                    <small>{label}</small>
-                  </div>
-                </Fragment>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Planets / phrases ── */}
-      <PlanetsSection scrollY={scrollY} />
-
-      {/* ── ASTRA reveal ── */}
-      <AstraRevealSection scrollY={scrollY} />
-
-      {/* ── Briefing: context / problem / solution ── */}
-      <BriefingSection scrollY={scrollY} />
-
-      {/* ── Scenarios ── */}
-      <ScenarioSection scrollY={scrollY} />
-
-      {/* ── Nanobody ── */}
-      <NanobodySection scrollY={scrollY} />
-
-      {/* ── Capabilities ── */}
-      <CapabilitiesSection scrollY={scrollY} />
-
-      {/* ── Navigation cards ── */}
-      <NavigationCards />
-
+      <Starfield />
+      <HeroSection />
+      <TaglineSection />
+      <OrbitSection />
+      <PlanetsSection />
+      <RevealSection />
+      <BriefingSection />
+      <ScenarioSection />
+      <NanobodySection />
+      <CapabilitiesSection />
+      <ExploreSection />
       <Footer />
-
     </PageWrapper>
   );
 }

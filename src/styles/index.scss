@@ -48,6 +48,13 @@
   --radius-sm: 16px;  /* images, code blocks */
   --radius-md: 24px;  /* medium cards */
   --radius-lg: 32px;  /* large cards, panels, dropdowns */
+
+  /* Accent + page background */
+  --amber: #FFD84D;
+  --accent: var(--amber);
+  --accent-soft: color-mix(in oklab, var(--accent) 30%, transparent);
+  --bg: #0A0A27;
+  --maxw: 1320px;
 }
 
 :root:lang(ar) {
