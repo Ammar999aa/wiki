@@ -30,7 +30,18 @@ export default function App() {
           <Route path="/safety" element={<Safety />} />
           <Route path="/engagement" element={<Engagement />} />
         </Routes>
-<Menu></Menu>
+        <Menu></Menu>
+        <p className={styles.licenseBar}>
+          Content licensed under{" "}
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CC BY 4.0
+          </a>
+          {" "}· KAUST-KSA iGEM 2026
+        </p>
       </div>
     </div>
   );
