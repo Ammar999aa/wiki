@@ -1,0 +1,31 @@
+image: node:20
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm ci
+    - npm run build -- --base=/kaust-ksa/
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+  only:
+    - main
+
+pages:
+  stage: deploy
+  script:
+    - mv dist public
+    # Copy index.html → 404.html so GitLab Pages serves the SPA on direct URL access
+    - cp public/index.html public/404.html
+  artifacts:
+    paths:
+      - public
+  dependencies:
+    - build
+  only:
+    - main
