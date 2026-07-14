@@ -46,6 +46,24 @@ export default function Footer() {
           </div>
         ))}
       </div>
+      <p className={styles.meta}>
+        <a
+          href="https://gitlab.igem.org/2026/kaust-ksa/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          gitlab.igem.org/2026/kaust-ksa
+        </a>
+        {" · "}
+        Content licensed under{" "}
+        <a
+          href="https://creativecommons.org/licenses/by/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          CC BY 4.0
+        </a>
+      </p>
     </footer>
   );
 }

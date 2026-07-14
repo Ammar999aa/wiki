@@ -65,6 +65,25 @@
     pointer-events: none;
 }
 
+.meta {
+    position: relative;
+    z-index: 1;
+    font-size: 0.7rem;
+    letter-spacing: 0.07em;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+
+    a {
+        color: rgba(255, 255, 255, 0.80);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+}
+
 /* ── Float keyframes (max ±4px X, ±7px Y → diagonal ≈ 8px < gap/2) ── */
 
 @keyframes floatA {
