@@ -1,3 +1,5 @@
+// Not used currently
+
 import styles from "./Footer.module.scss";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import earth  from "../../assets/earth.webp";

@@ -2,7 +2,6 @@ import { useRef, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import Footer from "../../components/Footer/Footer";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 import earth from "../../assets/earth.webp";
@@ -772,7 +771,6 @@ export default function Home() {
       <NanobodySection />
       <CapabilitiesSection />
       <ExploreSection />
-      <Footer />
     </PageWrapper>
   );
 }
