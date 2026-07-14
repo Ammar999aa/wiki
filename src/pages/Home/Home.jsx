@@ -202,6 +202,15 @@ function HeroSection() {
           <div className={styles.earthSheen} />
         </div>
 
+        <a
+          href="https://science.nasa.gov/earth/earth-observatory/twin-blue-marbles-8108/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.earthCredit}
+        >
+          Earth: NASA (Reto Stöckli / NASA·NOAA), public domain
+        </a>
+
         {/* Signature streaks */}
         <div className={styles.heroStreaks} aria-hidden="true">
           <span className={`${styles.streak} ${styles.s1}`} />

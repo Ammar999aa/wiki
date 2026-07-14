@@ -92,6 +92,23 @@
 
 @keyframes earthspin { to { transform: rotate(360deg); } }
 
+.earthCredit {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
 /* Radial dark scrim behind copy */
 .heroScrim {
   position: absolute;

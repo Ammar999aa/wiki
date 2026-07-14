@@ -63,6 +63,16 @@ export default function Footer() {
         >
           CC BY 4.0
         </a>
+        {" · "}
+        {'"Twin Blue Marbles" — NASA image by Reto Stöckli, based on data from NASA and NOAA. '}
+        <a
+          href="https://science.nasa.gov/earth/earth-observatory/twin-blue-marbles-8108/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source
+        </a>
+        {" (public domain)"}
       </p>
     </footer>
   );
