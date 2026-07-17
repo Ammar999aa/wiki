@@ -61,6 +61,8 @@ export default function App() {
             CC BY 4.0
           </a>
           {" · KAUST-KSA iGEM 2026"}
+          {" · "}
+          {"Typefaces: Inter, IBM Plex Sans Arabic, Aref Ruqaa — SIL Open Font License 1.1"}
         </p>
       </div>
     </div>

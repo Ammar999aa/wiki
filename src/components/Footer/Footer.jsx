@@ -75,6 +75,8 @@ export default function Footer() {
           Source
         </a>
         {" (public domain)"}
+        {" · "}
+        {"Typefaces: Inter, IBM Plex Sans Arabic, Aref Ruqaa — SIL Open Font License 1.1"}
       </p>
     </footer>
   );
