@@ -10,6 +10,8 @@ This project supported en/ar/es/fr, but non-English translations were stripped t
 - Multi-locale logic in `src/i18n/LanguageContext.jsx`: a `TRANSLATIONS = { en, ar, es, fr }` map, `lang` state persisted to `localStorage` under key `"astra-lang"`, and `document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"`
 - Per-page `sectionsByLang` lookups in `src/pages/{Project,WetLab,DryLab,Safety,HumanPractices,Engagement}/*.jsx`, each of which picked a markdown import by `lang` with an English fallback
 
+**Note on `src/content/en/example-article.md`:** this was AI-generated placeholder copy (a generic solar-energy article) that the Project page used before real content existed. It has since been deleted outright — including the English version — and `Project.jsx` now renders `<Stub title="Project" />` like the other not-yet-written pages. Don't restore `example-article.md` as part of bringing translations back; it was never real content. When the Project page gets real English content, write fresh `project.md`-style markdown (see the `WetLab`/`DryLab`/etc. pages for the pattern: a markdown import passed to `SectionedArticle`), then translate *that*.
+
 ## How to restore
 
 1. Find the commit that deleted the files (`git log --diff-filter=D --oneline -- src/i18n/ar.json`) and restore them from its parent:
