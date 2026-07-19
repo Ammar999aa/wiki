@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import LiquidGlassFilter from "./components/LiquidGlassFilter/LiquidGlassFilter";
 import Menu from "./components/Menu/Menu";
-import LanguageSelector from "./components/LanguageSelector/LanguageSelector";
 import styles from "./App.module.scss";
 import Home from "./pages/Home/Home";
 import Project from "./pages/Project/Project";
@@ -19,7 +18,6 @@ export default function App() {
     <div className={styles.page}>
       <LiquidGlassFilter />
       <div className={styles.content}>
-        <LanguageSelector />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Project />} />
