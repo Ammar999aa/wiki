@@ -81,7 +81,7 @@ export default function Roster() {
                 <h3>{t(`roster.roles.${selected.roleKey}`)}</h3>
                 <p>{t(`roster.members.${selected.memberKey}.bio`)}</p>
                 <Link
-                  to={`/Attributions?member=${encodeURIComponent(selected.name)}`}
+                  to={`/attributions?member=${encodeURIComponent(selected.name)}`}
                   className={styles.seeMore}
                 >
                   {t("roster.seeMore")}
@@ -128,7 +128,7 @@ export default function Roster() {
                 <p className={styles.listRole}>{t(`roster.roles.${member.roleKey}`)}</p>
                 <p className={styles.listBio}>{t(`roster.members.${member.memberKey}.bio`)}</p>
                 <Link
-                  to={`/Attributions?member=${encodeURIComponent(member.name)}`}
+                  to={`/attributions?member=${encodeURIComponent(member.name)}`}
                   className={styles.seeMore}
                 >
                   {t("roster.seeMore")}

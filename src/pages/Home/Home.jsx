@@ -725,10 +725,10 @@ const EXPLORE_CARDS = [
   { n: "02", t: "Wet Lab",          d: "Strain engineering, assays, and protein expression.",                                           to: "/wetlab" },
   { n: "03", t: "Dry Lab",          d: "Modelling, bioinformatics, and circuit design.",                                                to: "/drylab" },
   { n: "04", t: "Human Practices",  d: "How real-world voices shaped the work.",                                                        to: "/human-practices" },
-  { n: "05", t: "Team",             d: "Meet the people behind the mission.",                                                           to: "/Roster" },
+  { n: "05", t: "Team",             d: "Meet the people behind the mission.",                                                           to: "/roster" },
   { n: "06", t: "Safety",           d: "Biosafety and responsible design.",                                                             to: "/safety" },
   { n: "07", t: "Engagement",       d: "Bringing space biology to the public.",                                                         to: "/engagement" },
-  { n: "08", t: "Attributions",     d: "Who did what, and our collaborators.",                                                          to: "/Attributions" },
+  { n: "08", t: "Attributions",     d: "Who did what, and our collaborators.",                                                          to: "/attributions" },
 ];
 
 function ExploreSection() {
