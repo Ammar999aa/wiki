@@ -34,6 +34,16 @@ export default function Footer() {
       {teamName} iGEM {teamYear}
       {" · "}
       {"Typefaces: Inter, IBM Plex Sans Arabic, Aref Ruqaa — SIL Open Font License 1.1"}
+      {" · "}
+      {"Flag icons: "}
+      <a
+        href="https://github.com/lipis/flag-icons"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        flag-icons
+      </a>
+      {" (MIT)"}
     </p>
   );
 }
