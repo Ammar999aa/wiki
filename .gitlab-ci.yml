@@ -1,31 +1,26 @@
-image: node:20
-
-stages:
-  - build
-  - deploy
-
-build:
-  stage: build
-  script:
-    - npm ci
-    - npm run build -- --base=/kaust-ksa/
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 hour
-  only:
-    - main
+image: node:22
 
 pages:
-  stage: deploy
+  stage: build
+  cache:
+    - key:
+        files:
+          - yarn.lock
+      paths:
+        - .yarn-cache/
+  before_script:
+    - echo 'yarn-offline-mirror ".yarn-cache/"' >> .yarnrc
+    - echo 'yarn-offline-mirror-pruning true' >> .yarnrc
+    - yarn install --frozen-lockfile
   script:
-    - mv dist public
-    # Copy index.html → 404.html so GitLab Pages serves the SPA on direct URL access
-    - cp public/index.html public/404.html
+    - yarn build
+    - cp -a dist/. public/
+    - echo '/* /index.html 200' > public/_redirects
   artifacts:
     paths:
       - public
-  dependencies:
-    - build
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: never # No runners will run on branches other than main
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always

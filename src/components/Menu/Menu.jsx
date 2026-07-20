@@ -2,33 +2,28 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useRef, useCallback } from "react";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import Dropdown from "../Dropdown/Dropdown";
-import { useLanguage } from "../../i18n/LanguageContext";
+import Pages from "../../pages.js";
 import styles from "./Menu.module.scss";
 
+// Nav is derived from pages.js instead of a hand-maintained list, so a link
+// can never point at a route that doesn't exist.
+function toMenuItems(pages) {
+  return pages
+    .filter((item) => item.path !== "/")
+    .map((item) =>
+      item.folder
+        ? { label: item.name, dropdown: item.folder.map((page) => ({ label: page.name, to: page.path })) }
+        : { label: item.name, to: item.path }
+    );
+}
+
 export default function Menu() {
-  const { t } = useLanguage();
   const { pathname } = useLocation();
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedGroup, setExpandedGroup] = useState(null);
 
-  const menuItems = [
-    { label: t("menu.project"), to: "/project" },
-    { label: t("menu.wetLab"), to: "/wetlab" },
-    { label: t("menu.dryLab"), to: "/drylab" },
-    { label: t("menu.humanPractices"), to: "/human-practices" },
-    {
-      label: t("menu.team"),
-      dropdown: [
-        { label: t("menu.roster"), to: "/roster" },
-        { label: t("menu.attributions"), to: "/attributions" },
-        { label: t("menu.collaborations"), to: "/collaborations" },
-        { label: t("menu.partnerships"), to: "/partnerships" },
-      ],
-    },
-    { label: t("menu.safety"), to: "/safety" },
-    { label: t("menu.engagement"), to: "/engagement" },
-  ];
+  const menuItems = toMenuItems(Pages);
 
   const [dropdownPos, setDropdownPos] = useState({ x: 0, y: 0 });
   const itemRefs = useRef({});

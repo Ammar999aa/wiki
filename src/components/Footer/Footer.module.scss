@@ -1,0 +1,25 @@
+.licenseBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  margin: 0;
+  padding: 5px 16px;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+
+  a {
+    color: rgba(255, 255, 255, 0.80);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    pointer-events: auto;
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+}

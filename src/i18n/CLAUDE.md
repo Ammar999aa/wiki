@@ -2,6 +2,10 @@
 
 This project supported en/ar/es/fr, but non-English translations were stripped to keep the wiki English-only while the team is still writing and revising content. The scaffolding was removed, not redesigned — restoring it is mostly reversing a deletion, not rebuilding a system.
 
+**This file was carried over during the migration to the iGEM GitLab template repo.** The deletion history referenced below (`git log --diff-filter=D ...`) lives in the *old* dev repo (`/Users/ammaralmarzooq/Dev/wiki`), not in this repo's own git history — this repo's history starts from the iGEM `wiki-react-vite` template. Run the recovery commands there and copy the restored files across, rather than expecting `git log` in this repo to find them.
+
+**Also changed during the migration:** `Menu.jsx` no longer reads nav labels from `t("menu.xxx")` in `en.json`. It now derives labels directly from the `name` field on each entry in `src/pages.js` (the single source of truth for both routing and nav, replacing the old separate `App.jsx`/`Menu.jsx` lists). If translations come back, either give `pages.js` entries per-locale names or reintroduce a `t()` lookup keyed by path in `Menu.jsx` — don't just restore the old `t("menu.xxx")` calls without reconciling this.
+
 ## What was removed
 
 - `src/i18n/ar.json`, `es.json`, `fr.json` — translated UI strings, keyed identically to `src/i18n/en.json`
