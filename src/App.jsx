@@ -13,7 +13,9 @@ export default function App() {
   const title = pathMapping[pathname]?.title;
 
   useEffect(() => {
-    document.title = `${title ? title + " · " : ""}${import.meta.env.VITE_TEAM_NAME} · iGEM ${import.meta.env.VITE_TEAM_YEAR}`;
+    // Hardcoded team identity — see vite.config.ts for why this doesn't read
+    // import.meta.env.VITE_TEAM_NAME/VITE_TEAM_YEAR.
+    document.title = `${title ? title + " · " : ""}kaust-ksa · iGEM 2026`;
   }, [title]);
 
   return (

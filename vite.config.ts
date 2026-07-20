@@ -1,13 +1,14 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { stringToSlug } from "./src/utils/stringToSlug.js";
 import markdownSections from "./plugins/markdown-sections.js";
 
-// https://vitejs.dev/config/
-export default () => {
-  const env = loadEnv("dev", process.cwd());
-  return defineConfig({
-    base: `/${stringToSlug(env.VITE_TEAM_NAME)}/`,
-    plugins: [react(), markdownSections()],
-  });
-};
+// Hardcoded rather than derived from VITE_TEAM_NAME: a GitLab CI/CD variable
+// outside this repo's control overrides the committed .env value at build
+// time (Vite's loadEnv lets process.env win over .env files), which silently
+// baked the wrong base path into the deployed build. Team slug is a fixed
+// fact about this deployment, not something that needs to be configurable —
+// hardcoding it removes that failure mode entirely.
+export default defineConfig({
+  base: "/kaust-ksa/",
+  plugins: [react(), markdownSections()],
+});
