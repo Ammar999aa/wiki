@@ -33,7 +33,7 @@ export default function Footer() {
       {" · "}
       {teamName} iGEM {teamYear}
       {" · "}
-      {"Typefaces: Inter, IBM Plex Sans Arabic, Aref Ruqaa — SIL Open Font License 1.1"}
+      {"Typefaces: Inter, Aref Ruqaa — SIL Open Font License 1.1"}
       {" · "}
       {"Flag icons: "}
       <a
