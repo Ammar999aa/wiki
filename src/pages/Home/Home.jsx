@@ -227,9 +227,8 @@ function HeroSection() {
             <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo; On-demand medicine, engineered for anywhere.
           </p>
           <div className={styles.heroTelemetry}>
-            <span>PLATFORM <b>B. subtilis · S. cerevisiae</b></span>
-            <span>OUTPUT <b>Therapeutic nanobodies</b></span>
-            <span>ENV <b>Microgravity-rated</b></span>
+            <span>PLATFORM <b>S. cerevisiae · B. subtilis · P. pastoris</b></span>
+            <span>OUTPUT <b>Therapeutic proteins</b></span>
           </div>
         </div>
 
@@ -338,7 +337,7 @@ function OrbitSection() {
 const PLANET_PHRASES = [
   {
     key: "p1",
-    content: <>Future missions will operate in <span className={styles.vio}>isolated, extreme environments.</span></>,
+    content: <>Future deep space missions will operate in <span className={styles.vio}>isolated, extreme environments.</span></>,
     inAt: 0.00, outAt: 0.30,
   },
   {
