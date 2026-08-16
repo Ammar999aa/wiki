@@ -9,6 +9,8 @@ import bk     from "../../assets/sponsors/bk.png";
 import br     from "../../assets/sponsors/br.png";
 import gs     from "../../assets/sponsors/gs.png";
 import sg     from "../../assets/sponsors/sg.png";
+import idt    from "../../assets/sponsors/idt.png";
+import kaustigem from "../../assets/sponsors/kaustigem.png";
 
 // Ported from the wiki repo's original Footer sponsor block. Kept as its own
 // component (rather than folded into ../Footer) because Footer is the
@@ -17,11 +19,13 @@ import sg     from "../../assets/sponsors/sg.png";
 const SPONSORS = [
   { id: "nti",    src: nti,    name: "NTI",             nudge:   0 },
   { id: "bese",   src: bese,   name: "BESE",            nudge:  22 },
+  { id: "bk",     src: bk,     name: "Burger King",     nudge: -14, small: true },
   { id: "lem",    src: lem,    name: "LEM",             nudge:  -8 },
+  { id: "kaustigem", src: kaustigem, name: "KAUST iGEM", nudge:  12 },
   { id: "biomed", src: biomed, name: "BioMed",          nudge:  30 },
-  { id: "bk",     src: bk,     name: "Burger King",     nudge: -14 },
-  { id: "br",     src: br,     name: "Baskin-Robbins",  nudge:  16 },
   { id: "gs",     src: gs,     name: "GS",              nudge:  -4 },
+  { id: "idt",    src: idt,    name: "IDT",             nudge: -18 },
+  { id: "br",     src: br,     name: "Baskin-Robbins",  nudge:  16, small: true },
   { id: "sg",     src: sg,     name: "SnapGene",        nudge:  24 },
 ];
 
@@ -41,7 +45,7 @@ export default function Sponsors() {
       </a>
       <p className={styles.label}>Supported by</p>
       <div className={styles.row}>
-        {SPONSORS.map(({ id, src, name, nudge }, i) => (
+        {SPONSORS.map(({ id, src, name, nudge, small }, i) => (
           <div
             key={id}
             className={`${styles.slot} ${styles[ANIM[i % ANIM.length]]}`}
@@ -51,8 +55,12 @@ export default function Sponsors() {
             }}
           >
             <LiquidGlass radius={32} opacity={0.05} color={[255, 255, 255]}>
-              <div className={styles.pill}>
-                <img src={src} alt={name} className={styles.logo} />
+              <div className={`${styles.pill} ${small ? styles.pillSmall : ""}`}>
+                <img
+                  src={src}
+                  alt={name}
+                  className={`${styles.logo} ${small ? styles.logoSmall : ""}`}
+                />
               </div>
             </LiquidGlass>
           </div>

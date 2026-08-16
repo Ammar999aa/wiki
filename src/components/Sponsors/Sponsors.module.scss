@@ -73,6 +73,12 @@
     justify-content: center;
 }
 
+/* Matches .logoSmall's ratio so a shrunk logo doesn't swim in the same
+   padding as a full-size one. */
+.pillSmall {
+    padding: 10px 18px;
+}
+
 .logo {
     height: 44px;
     width: auto;
@@ -80,6 +86,11 @@
     display: block;
     user-select: none;
     pointer-events: none;
+}
+
+.logoSmall {
+    height: 22px;
+    max-width: 100px;
 }
 
 /* ── Float keyframes (max ±4px X, ±7px Y → diagonal ≈ 8px < gap/2) ── */
