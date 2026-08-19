@@ -9,7 +9,7 @@ import styles from "./Menu.module.scss";
 // can never point at a route that doesn't exist.
 function toMenuItems(pages) {
   return pages
-    .filter((item) => item.path !== "/")
+    .filter((item) => item.path !== "/" && !item.hidden)
     .map((item) =>
       item.folder
         ? { label: item.name, dropdown: item.folder.map((page) => ({ label: page.name, to: page.path })) }
