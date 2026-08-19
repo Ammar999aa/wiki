@@ -6,6 +6,7 @@ import WetLab from "./pages/WetLab/WetLab";
 import DryLab from "./pages/DryLab/DryLab";
 import HumanPractices from "./pages/HumanPractices/HumanPractices";
 import Engagement from "./pages/Engagement/Engagement";
+import Education from "./pages/Education/Education";
 import Stub from "./pages/Stub/Stub";
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -61,7 +62,7 @@ const Pages = [
     name: "Beyond the Lab",
     folder: [
       { name: "Human Integrated Practices", title: "Human Integrated Practices", path: "/human-integrated-practices", component: Stub },
-      { name: "Education", title: "Education", path: "/education", component: Stub },
+      { name: "Education", title: "Education", path: "/education", component: Education },
       { name: "Science Communication", title: "Science Communication", path: "/science-communication", component: Stub },
     ],
   },
