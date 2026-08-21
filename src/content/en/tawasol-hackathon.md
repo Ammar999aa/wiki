@@ -61,6 +61,6 @@ Registration was promoted across six major Saudi universities (KFUPM, King Abdul
 
 Tawasol is intended to be the first cycle of an ongoing program, not a one-time event. The same structure, aligned sub-challenges, an external judging framework, and a shared whitepaper standard, was designed from the outset to be reusable across future cycles and adoptable by other institutions in the region.
 
-![Tawasol hackathon event flyer, English version](/content-images/tawasol-flyer-english.png)
+![Tawasol hackathon event flyer, English version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-en.avif)
 
-![Tawasol hackathon event flyer, Arabic version](/content-images/tawasol-flyer-arabic.png)
+![Tawasol hackathon event flyer, Arabic version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-ar.avif)
