@@ -16,13 +16,22 @@ We partnered with NYU Abu Dhabi deliberately, not by default. A second universit
 
 Tawasol is structured around a deliberate design choice: both tracks study completely different environments, but are built around the exact same four categories of governance challenge. Teams choose one track and work through all four sub-challenges within it.
 
+<div class="two-col-tracks">
+<div>
+
 ### SHIHAB — Space Biomanufacturing Governance
 
 SHIHAB is ready for deployment in a "Zero-Reach" zone, a permanent lunar research station, or an extremely remote, off-grid community cut off from supply lines. Teams design the operational, technical, and ethical charter governing how it gets trusted and deployed.
 
+</div>
+<div>
+
 ### DUNELOCK — Desert Stabilization Governance
 
 DUNELOCK uses engineered soil-associated bacteria to stabilize shifting desert sand and reduce dust storms across dryland borders. Teams design the framework governing large-scale, open-environment deployment, where containment cannot rely on physical walls.
+
+</div>
+</div>
 
 ### Shared Sub-Challenge Structure
 
@@ -61,6 +70,10 @@ Registration was promoted across six major Saudi universities (KFUPM, King Abdul
 
 Tawasol is intended to be the first cycle of an ongoing program, not a one-time event. The same structure, aligned sub-challenges, an external judging framework, and a shared whitepaper standard, was designed from the outset to be reusable across future cycles and adoptable by other institutions in the region.
 
+<div class="two-col-images">
+
 ![Tawasol hackathon event flyer, English version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-en.avif)
 
 ![Tawasol hackathon event flyer, Arabic version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-ar.avif)
+
+</div>
