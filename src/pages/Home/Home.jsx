@@ -6,6 +6,7 @@ import Sponsors from "../../components/Sponsors/Sponsors";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 import earth from "../../assets/earth.webp";
+import shihabLogo from "../../assets/shihab-logo.svg?url";
 
 // ── Scroll engine ─────────────────────────────────────────────────────────────
 
@@ -221,7 +222,9 @@ function HeroSection() {
         <div className={styles.heroCopy} ref={copyRef}>
           <span className={styles.heroEyebrow}>iGEM · Synthetic Biology in Space</span>
           <div className={styles.wordmark}>
-            <h1 className={styles.wordmarkLatin} ref={latinRef}>Shihab</h1>
+            <h1 className={styles.wordmarkLatin} ref={latinRef}>
+              <img src={shihabLogo} alt="Shihab" className={styles.wordmarkLogo} />
+            </h1>
             <h1 className={styles.wordmarkArabic} ref={arabicRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</h1>
           </div>
           <p className={styles.heroSub}>
