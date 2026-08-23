@@ -7,6 +7,7 @@ import DryLab from "./pages/DryLab/DryLab";
 import HumanPractices from "./pages/HumanPractices/HumanPractices";
 import Engagement from "./pages/Engagement/Engagement";
 import Education from "./pages/Education/Education";
+import ProteinLibrary from "./pages/ProteinLibrary/ProteinLibrary";
 import Stub from "./pages/Stub/Stub";
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -99,6 +100,8 @@ const Pages = [
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
   { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },
   { name: "Engagement", title: "Engagement", path: "/engagement", component: Engagement, hidden: true },
+  // Not on pages.md, not linked from the nav yet — see src/content/library_page.md.
+  { name: "Protein Payload Library", title: "Protein Payload Library", path: "/proteinLibrary", component: ProteinLibrary, hidden: true },
 ];
 
 export default Pages;
