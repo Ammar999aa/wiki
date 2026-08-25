@@ -15,6 +15,7 @@
 .heroSticky {
   position: sticky;
   top: 0;
+  z-index: 2;
   height: 100dvh;
   overflow: hidden;
   display: flex;
@@ -23,15 +24,17 @@
   padding-top: 0;
 }
 
-/* Earth layers */
+/* Earth layers — position: fixed (not nested/sticky in Hero) so it can stay
+   on screen across both Hero and Orbit; see EarthLayer in Home.jsx. */
 .earthWrap {
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   left: 79%;
   top: 50%;
   width: min(72vh, 86vw);
   height: min(72vh, 86vw);
   transform: translate(-50%, -50%);
-  will-change: transform;
+  will-change: left, top, transform, opacity;
   pointer-events: none;
 }
 
@@ -93,10 +96,10 @@
 @keyframes earthspin { to { transform: rotate(360deg); } }
 
 .earthCredit {
-  position: absolute;
+  position: fixed;
   right: 18px;
   bottom: 18px;
-  z-index: 2;
+  z-index: 1;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.35);
@@ -270,7 +273,7 @@
   em {
     font-style: normal;
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 700;
   }
 }
 
@@ -317,132 +320,110 @@
   }
 }
 
-/* ── Tagline ── */
+/* ── Statement beats (slides 2, 4, 6) ── */
 .tagline {
-  min-height: 100dvh;
+  position: relative;
+  height: 220dvh;
+}
+
+.taglineSticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-inline: 40px;
+  overflow: hidden;
+}
 
-  p {
-    font-size: clamp(2.2rem, 6vw, 5rem);
-    font-weight: 300;
-    line-height: 1.08;
-    margin: 0;
-    text-align: center;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-    will-change: opacity, transform;
-  }
+.statementInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  will-change: opacity, transform;
+  max-width: 780px;
+}
+
+.planetDecor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .accentText { color: var(--accent); }
 
-/* ── Orbit diagram ── */
+/* ── Essentials row (slide 1) ── */
 .orbitSection {
   position: relative;
-  height: 300dvh;
+  height: 260dvh;
 }
 
 .orbitSticky {
   position: sticky;
   top: 0;
+  z-index: 2;
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 56px;
-  padding-inline: 40px;
-  text-align: center;
+  padding-inline-start: clamp(24px, 8vw, 140px);
+  padding-inline-end: 40px;
+  text-align: left;
   overflow: hidden;
 }
 
-.orbitDiagram {
-  position: relative;
-  width: 420px;
-  height: 420px;
-  flex-shrink: 0;
+/* Kept left-aligned, unlike .bigLine's default centered/balanced text —
+   this section shares the screen with Earth drifting through on the right. */
+.orbitLine {
+  text-align: left;
+  text-wrap: initial;
+  margin-inline: 0;
 }
 
-.orbitCore {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.07), 0 0 32px rgba(255, 255, 255, 0.5);
-  animation: corepulse 3.6s ease-in-out infinite;
+.essentialsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 28px;
 }
 
-@keyframes corepulse {
-  0%, 100% { box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.07), 0 0 30px rgba(255, 255, 255, 0.45); }
-  50% { box-shadow: 0 0 0 11px rgba(255, 255, 255, 0.04), 0 0 52px rgba(255, 255, 255, 0.7); }
-}
-
-.orbitRingWrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  will-change: transform, opacity;
-}
-
-.orbitRing {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1.5px dashed rgba(255, 255, 255, 0.2);
-  animation: ringDrift 30s linear infinite;
-  box-sizing: border-box;
-}
-
-.medicineRing {
-  border: 1.5px solid var(--accent);
-  box-shadow: 0 0 22px var(--accent-soft), inset 0 0 22px var(--accent-soft);
-  animation-duration: 44s;
-  animation-direction: reverse;
-}
-
-@keyframes ringDrift { to { transform: rotate(360deg); } }
-
-.orbitNode {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+.essentialItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
-  will-change: transform, opacity;
+  gap: 14px;
+  will-change: opacity, transform;
 }
 
-.orbitPin {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+.essentialBubble {
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.medicinePin {
-  width: 18px !important;
-  height: 18px !important;
-  background: var(--accent) !important;
-  box-shadow: 0 0 22px var(--accent), 0 0 44px var(--accent-soft) !important;
+.essentialBubbleHl {
+  color: var(--accent);
 }
 
-.orbitNodeLabel {
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
+.essentialIco {
+  width: 34px;
+  height: 34px;
+}
+
+.essentialLabel {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
-  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.55);
   font-family: ui-monospace, Menlo, monospace;
 }
 
@@ -451,34 +432,7 @@
   font-weight: 700;
 }
 
-/* ── Planets / phrases ── */
-.planetsSection { height: 340dvh; }
-
-.planetsSticky {
-  position: sticky;
-  top: 0;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.phraseStack {
-  display: grid;
-  width: min(820px, 90vw);
-  padding-inline: 20px;
-  z-index: 1;
-  pointer-events: none;
-
-  > p {
-    grid-area: 1/1;
-    align-self: center;
-    justify-self: center;
-    will-change: opacity, transform;
-  }
-}
-
+/* ── Drifting planet decoration (used behind slide-2 statement) ── */
 .planet {
   position: absolute;
   border-radius: 50%;
@@ -497,8 +451,8 @@
 @keyframes drift4 { 0%{transform:translate(0,0)} 40%{transform:translate(20px,-28px)} 80%{transform:translate(35px,12px)} 100%{transform:translate(0,0)} }
 @keyframes drift5 { 0%{transform:translate(0,0)} 50%{transform:translate(18px,-22px)} 100%{transform:translate(0,0)} }
 
-/* ── Reveal ── */
-.revealSection { height: 200dvh; }
+/* ── Reveal (slide 5) ── */
+.revealSection { height: 240dvh; }
 
 .revealSticky {
   position: sticky;
@@ -519,14 +473,19 @@
   letter-spacing: 0.04em;
 }
 
-.revealAstra {
-  font-size: clamp(4rem, 16vw, 13rem);
-  font-weight: 800;
-  margin: 0;
-  letter-spacing: 0.04em;
-  color: #fff;
-  text-shadow: 0 0 28px rgba(123, 158, 255, 0.4);
+.revealLogo {
+  height: clamp(4rem, 15vw, 11rem);
+  width: auto;
+  filter: drop-shadow(0 0 30px rgba(123, 158, 255, 0.45));
   transform-origin: center;
+}
+
+.revealGloss {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.01em;
 }
 
 .revealAr {
@@ -538,39 +497,6 @@
   color: var(--accent);
   letter-spacing: 0;
   text-shadow: 0 0 30px rgba(255, 216, 77, 0.4);
-}
-
-/* ── Briefing ── */
-.briefingSection { height: 340dvh; }
-
-.briefingSticky {
-  position: sticky;
-  top: 0;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-inline: 40px;
-}
-
-.briefingStack {
-  display: grid;
-  width: min(780px, 92vw);
-
-  > div {
-    grid-area: 1/1;
-    align-self: center;
-    justify-self: center;
-    will-change: opacity, transform;
-  }
-}
-
-.briefingItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  text-align: center;
 }
 
 /* ── Scenarios ── */
@@ -722,19 +648,24 @@
   font-family: ui-monospace, Menlo, monospace;
 }
 
-.survive {
-  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+.outcome {
+  font-size: clamp(0.95rem, 2vw, 1.3rem);
   font-weight: 400;
-  color: rgba(54, 230, 120, 0.92);
+  color: rgba(255, 255, 255, 0.55);
   margin: 0;
+  text-align: center;
   letter-spacing: 0.01em;
   will-change: opacity;
 }
 
-/* ── Nanobody ── */
-.nanobodySection { height: 250dvh; }
+.survive {
+  color: rgba(54, 230, 120, 0.92);
+}
 
-.nanobodySticky {
+/* ── Problem cards (slide 3) ── */
+.problemSection { height: 260dvh; }
+
+.problemSticky {
   position: sticky;
   top: 0;
   height: 100dvh;
@@ -742,60 +673,38 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 56px;
+  gap: 40px;
   padding-inline: 40px;
-  overflow: hidden;
 }
 
-.nanobodyOrganisms {
+.problemGrid {
   display: flex;
-  gap: 80px;
-  align-items: flex-end;
-  will-change: opacity;
+  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.nanoWrap {
-  position: relative;
+.problemCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-}
+  gap: 16px;
+  padding: 32px 26px;
+  border-radius: var(--radius-md);
+  width: 248px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  will-change: transform, opacity;
 
-.supercharged {
-  box-shadow: 0 0 30px rgba(123, 158, 255, 0.7), 0 0 64px rgba(123, 158, 255, 0.3) !important;
-  filter: brightness(1.25);
-}
-
-.particles {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  will-change: opacity;
-}
-
-.particle {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #A8C7FF;
-  box-shadow: 0 0 10px #A8C7FF;
-  animation: floatUp 2.6s ease-in-out infinite;
-}
-
-@keyframes floatUp {
-  0%   { transform: translateY(0); opacity: 0; }
-  20%  { opacity: 1; }
-  80%  { opacity: 0.6; }
-  100% { transform: translateY(-42px); opacity: 0; }
-}
-
-.nanoEmph {
-  color: #A8C7FF;
-  font-weight: 500;
+  p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.55;
+    margin: 0;
+  }
 }
 
 /* ── Capabilities ── */
@@ -863,6 +772,38 @@
   width: 40px;
   height: 40px;
   color: var(--accent);
+}
+
+/* ── Outro (slide 9) ── */
+.outroSection { height: 220dvh; }
+
+.outroSticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.outroGlow {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  max-width: 140vw;
+  max-height: 140vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+  filter: blur(40px);
+  will-change: opacity;
+}
+
+.outroLogo {
+  position: relative;
+  width: min(60vw, 640px);
+  filter: drop-shadow(0 0 60px rgba(123, 158, 255, 0.55));
+  will-change: opacity, transform;
 }
 
 /* ── Explore ── */
