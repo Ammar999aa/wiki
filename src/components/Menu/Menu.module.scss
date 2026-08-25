@@ -28,6 +28,16 @@
     color: var(--primary)
 }
 
+.menuLogo {
+    display: inline-flex;
+    align-items: center;
+}
+
+.menuLogoIcon {
+    width: 40px;
+    height: 40px;
+}
+
 /* Mobile elements — hidden on desktop */
 
 .mobileContainer {
@@ -79,6 +89,18 @@
 
 .mobileItem:hover {
     color: var(--primary);
+}
+
+.mobileLogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobileLogoIcon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 }
 
 .mobileGroupBtn {
