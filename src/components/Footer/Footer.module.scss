@@ -23,3 +23,16 @@
     }
   }
 }
+
+/* Same required notice and links, just smaller/tighter so it wraps to
+   fewer lines on narrow screens — full-width and fixed-to-bottom, it was
+   tall enough on phones to sit on top of any other bottom-corner content
+   (e.g. Home's image attribution links). */
+@media (max-width: 640px) {
+  .licenseBar {
+    padding: 4px 10px;
+    font-size: 0.56rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+  }
+}

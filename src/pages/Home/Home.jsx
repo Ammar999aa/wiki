@@ -792,7 +792,11 @@ function CapabilitiesSection() {
   return (
     <section className={styles.capSection} ref={ref}>
       <div className={styles.capSticky}>
-        <p className={styles.bigLine} ref={textRef} style={{ opacity: 0, maxWidth: 680 }}>
+        <p
+          className={`${styles.bigLine} ${styles.capStatement}`}
+          ref={textRef}
+          style={{ opacity: 0, maxWidth: "min(680px, 92vw)" }}
+        >
           Shihab is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
         </p>
         <div className={styles.capTiles}>

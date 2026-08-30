@@ -98,7 +98,12 @@
 .earthCredit {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  /* Cleared above two other fixed bottom elements that both span (near)
+     the full width at some breakpoint: Footer.jsx's .licenseBar (required
+     legal text, wraps to 2 lines at most widths) and Menu's nav dock —
+     a floating pill at bottom:38px/height:68px past 1024px, so its top
+     edge reaches 106px up. 18px was never enough headroom for either. */
+  bottom: 120px;
   z-index: 1;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
@@ -329,6 +334,7 @@
 .taglineSticky {
   position: sticky;
   top: 0;
+  z-index: 2;
   height: 100dvh;
   display: flex;
   align-items: center;
@@ -474,7 +480,8 @@
      and sits at bottom-right, so the right corner is already taken. */
   position: fixed;
   left: 18px;
-  bottom: 18px;
+  /* Cleared above the license bar and the nav dock — see .earthCredit. */
+  bottom: 120px;
   z-index: 1;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
@@ -486,6 +493,37 @@
   &:hover {
     color: rgba(255, 255, 255, 0.65);
   }
+}
+
+/* Atlantis launch, scaled down for phones — full size otherwise overlaps
+   the centered statement text it slides in beside (see .taglineSticky's
+   z-index, which keeps text readable in front of it regardless). */
+@media (max-width: 700px) {
+  .rocketLayer {
+    height: clamp(280px, 50vh, 560px);
+  }
+}
+
+/* Both bottom-corner attribution links are always mounted (not scoped to
+   one slide), so on narrow screens their nowrap text overlaps in the
+   middle. Stack them bottom-left instead, one above the other. */
+@media (max-width: 640px) {
+  .earthCredit,
+  .rocketCredit {
+    left: 14px;
+    right: auto;
+    max-width: calc(100vw - 28px);
+    white-space: normal;
+    line-height: 1.35;
+    font-size: 0.58rem;
+  }
+
+  /* Cleared above the sitewide license bar (Footer.jsx's .licenseBar),
+     which is also fixed to the bottom of the viewport and — with its
+     required legal text wrapping to up to 3 lines on narrow screens —
+     tall enough to otherwise sit on top of both of these. */
+  .earthCredit { bottom: 82px; }
+  .rocketCredit { bottom: 56px; }
 }
 
 /* ── Reveal (slide 5) ── */
@@ -699,6 +737,62 @@
   color: rgba(54, 230, 120, 0.92);
 }
 
+/* Side-by-side comparison is too wide once each .scenario's own content
+   (organisms row, wrapping stressor pills) no longer fits in ~460px —
+   shrink everything in proportion rather than stacking, so the "before vs.
+   after" comparison stays a comparison instead of becoming two separate
+   screens. overflow-y: auto is a safety net: the pinned box is a fixed
+   100dvh, so if a very short viewport still can't fit it all, it scrolls
+   internally instead of silently clipping. */
+@media (max-width: 700px) {
+  .scenarioSticky {
+    padding-inline: 12px;
+    overflow-y: auto;
+  }
+
+  .scenario {
+    gap: 16px;
+    padding-inline: 6px;
+    max-width: 168px;
+  }
+
+  .scenarioDivider {
+    height: 240px;
+  }
+
+  .scenarioLabel {
+    font-size: 0.56rem;
+    padding: 5px 10px;
+  }
+
+  .organisms { gap: 16px; }
+
+  .bacteria { width: 62px; height: 24px; }
+  .yeast { width: 42px; height: 42px; }
+
+  .orgLabel { font-size: 0.54rem; }
+
+  .stressors { gap: 5px; }
+
+  .stressor {
+    font-size: 0.5rem;
+    padding: 4px 8px;
+  }
+
+  .protein {
+    font-size: 0.48rem;
+    padding: 3px 7px;
+  }
+
+  .outcome { font-size: 0.76rem; }
+}
+
+@media (max-width: 400px) {
+  .scenario { max-width: 140px; }
+  .organisms { gap: 10px; }
+  .scenarioDivider { height: 200px; }
+}
+
 /* ── Problem cards (slide 3) ── */
 .problemSection { height: 260dvh; }
 
@@ -809,6 +903,74 @@
   width: 40px;
   height: 40px;
   color: var(--accent);
+}
+
+/* Stacked (wrapped) card tiles are individually short but three of them
+   plus the statement text add up to well over 100dvh, and .capSticky is a
+   pinned fixed-height box — the excess just spills past it. Rather than a
+   horizontal-scroll row (easy to miss, odd to swipe through in a scroll-
+   pinned section), collapse each tile into a compact icon+title+description
+   list row so all three stack to roughly the height of one card. */
+@media (max-width: 760px) {
+  .capSticky {
+    gap: 22px;
+    padding-inline: 24px;
+  }
+
+  .capStatement {
+    font-size: 1.3rem;
+  }
+
+  .capTiles {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+  }
+
+  .capTile {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 2px;
+    align-items: start;
+    width: 100%;
+    min-width: 0;
+    /* This codebase doesn't reset box-sizing to border-box globally, so a
+       content-box element's `width: 100%` + padding adds the padding ON TOP
+       of that 100% — the actual cause of the mobile horizontal overflow.
+       border-box makes the 100% include the padding, as intended here. */
+    box-sizing: border-box;
+    padding: 14px 16px;
+
+    &::after { width: 70px; height: 70px; right: -20px; bottom: -20px; }
+  }
+
+  .capIdx { display: none; }
+
+  .capIco {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 26px;
+    height: 26px;
+    margin-top: 2px;
+  }
+
+  .capTile strong {
+    grid-column: 2;
+    min-width: 0;
+    font-size: 0.98rem;
+    overflow-wrap: break-word;
+  }
+  .capTile p {
+    grid-column: 2;
+    min-width: 0;
+    font-size: 0.76rem;
+    line-height: 1.42;
+    overflow-wrap: break-word;
+  }
 }
 
 /* ── Outro (slide 9) ── */
@@ -955,8 +1117,17 @@
 }
 
 @media (max-width: 560px) {
-  .exploreGrid { grid-template-columns: 1fr; }
+  .exploreSection { padding: 90px 20px 140px; gap: 34px; }
+  .exploreHead { gap: 10px; }
+
+  .exploreGrid { grid-template-columns: 1fr; gap: 14px; }
   .xcardFeature { grid-column: span 1; }
+
+  .xcard { padding: 20px; gap: 24px; min-height: 150px; }
+  .xarrow { top: 18px; right: 18px; }
+  .xbody h3 { font-size: 1.2rem; margin-bottom: 6px; }
+  .xbody p { font-size: 0.8rem; }
+  .xcardFeature .xbody h3 { font-size: 1.35rem; }
 }
 
 /* reduced motion */
