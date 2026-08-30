@@ -381,7 +381,7 @@ function RocketLayer({ groupRef }) {
         aria-hidden="true"
       />
       <a
-        href="https://www.nasa.gov/mission_pages/shuttle/shuttlemissions/sts129/index.html"
+        href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
         target="_blank"
         rel="noopener noreferrer"
         className={styles.rocketCredit}
