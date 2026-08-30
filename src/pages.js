@@ -36,7 +36,7 @@ const Pages = [
   {
     name: "Wet Lab",
     folder: [
-      { name: "Design", title: "Design", path: "/design", component: Stub },
+      { name: "Design", title: "Design", path: "/design", component: ProteinLibrary },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Stub },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Stub },
       { name: "Results", title: "Results", path: "/results", component: Stub },
@@ -100,8 +100,6 @@ const Pages = [
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
   { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },
   { name: "Engagement", title: "Engagement", path: "/engagement", component: Engagement, hidden: true },
-  // Not on pages.md, not linked from the nav yet — see src/content/library_page.md.
-  { name: "Protein Payload Library", title: "Protein Payload Library", path: "/proteinLibrary", component: ProteinLibrary, hidden: true },
 ];
 
 export default Pages;

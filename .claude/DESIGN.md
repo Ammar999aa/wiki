@@ -146,8 +146,7 @@ see the comment at the top of `pages.js`).
   flattens into actual routes.
 - `hidden: true` on a flat entry routes it (reachable by direct URL) without
   listing it in the nav — used for pages superseded by a newer category
-  structure but kept at their old URL, or content not ready to link yet
-  (`ProteinLibrary`).
+  structure but kept at their old URL.
 - `name` is what the nav renders; `title` feeds `document.title` (via
   `App.jsx`) and any page that displays its own title (e.g. `Stub`).
 - The categories currently in `pages.js` (`Project`, `Wet Lab`, `Engineering`,

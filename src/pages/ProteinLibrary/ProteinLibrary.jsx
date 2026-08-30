@@ -17,7 +17,7 @@ const INFO_BAR = [
 
 const WORKFLOW_STEPS = ["Design", "Clone", "Express", "Purify", "Deliver", "Make an Impact"];
 
-// Not linked from the nav yet — reachable directly at /proteinLibrary. See
+// Wired into the nav as Wet Lab → Design (/design), see src/pages.js. See
 // src/content/library_page.md for the design brief this was built from,
 // src/content/protein_payload_library.md for the source content, and
 // .claude/DESIGN.md for the site-wide visual system this was brought in
