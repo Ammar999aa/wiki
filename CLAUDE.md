@@ -7,6 +7,12 @@ Read **[README.md](README.md)** first — it covers the stack, where to edit
 ## Responsible & honest use
 @.claude/RESPONSIBLE_AI_USE.md
 
+## Design system
+Read this before creating or restyling a page — it covers tokens, the
+`PageWrapper`/`LiquidGlass` primitives, the three page archetypes (stub,
+markdown-driven, custom), and how `pages.js` wires up routing + nav.
+@.claude/DESIGN.md
+
 ## Guardrails
 - Don't change `LICENSE` or the `Footer` component's license notice + GitLab
   repository link (both required on every page for judging).
