@@ -9,6 +9,7 @@ import Engagement from "./pages/Engagement/Engagement";
 import Education from "./pages/Education/Education";
 import ProteinLibrary from "./pages/ProteinLibrary/ProteinLibrary";
 import HumanIntegratedPractices from "./pages/HumanIntegratedPractices/HumanIntegratedPractices";
+import Hardware from "./pages/Hardware/Hardware";
 import Stub from "./pages/Stub/Stub";
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -50,7 +51,7 @@ const Pages = [
     folder: [
       { name: "Engineering Success", title: "Engineering Success", path: "/engineering-success", component: Stub },
       { name: "Parts", title: "Parts", path: "/parts", component: Stub },
-      { name: "Hardware", title: "Hardware", path: "/hardware", component: Stub },
+      { name: "Hardware", title: "Hardware", path: "/hardware", component: Hardware },
     ],
   },
   {
