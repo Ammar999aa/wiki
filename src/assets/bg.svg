@@ -10,7 +10,7 @@
             <feTurbulence type="fractalNoise" baseFrequency="0.1666666716337204 0.1666666716337204" stitchTiles="stitch" numOctaves="3" result="noise" seed="4115" />
             <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
             <feComponentTransfer in="alphaNoise" result="coloredNoise1">
-                <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+                <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
             </feComponentTransfer>
             <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
             <feFlood flood-color="#FFFFFF" result="color1Flood" />
