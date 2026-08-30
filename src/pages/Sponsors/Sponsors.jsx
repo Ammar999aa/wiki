@@ -1,20 +1,70 @@
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import SponsorsSection from "../../components/Sponsors/Sponsors";
+import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
+import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
+import egress from "../../assets/egress-2.webp";
 import styles from "./Sponsors.module.scss";
 
-// Standalone /sponsors page required by pages.md's Team category. Reuses the
-// same Sponsors component embedded at the bottom of Home — the logos and
-// their nudge/animation config live in one place either way.
+// Standalone /sponsors page required by pages.md's Team category. Loosely
+// modelled on other iGEM teams' sponsors pages (intro blurb → jump links →
+// one write-up per sponsor) rather than the bare logo row this page used to
+// be. Sponsor blurbs are placeholder copy — see
+// src/components/Sponsors/sponsorsData.js and RESPONSIBLE_AI_USE.md.
+//
+// Doesn't render the floating-logo <SponsorsSection /> (still used on Home)
+// below the grid — it's the same 10 logos as the cards above, just animated
+// and unlabelled, so it was pure redundancy here rather than adding anything.
+//
+// `photo` (egress-2.webp — an Ed White Gemini 4 EVA shot, black space void
+// keyed to transparent so it blends into the page's own --bg navy) is a
+// one-off background for this page: PageWrapper renders it `background-size:
+// cover` and pinned `fixed` like the rest of the background stack, so it
+// fills the viewport with no edges showing rather than scrolling with content.
 export default function Sponsors() {
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", photo: egress, gradient }}>
       <div className={styles.heading}>
         <p className={styles.label}>Team</p>
         <h1>Sponsors</h1>
+        <p className={styles.intro}>
+          This iGEM project would not have been possible without the support of our sponsors.
+          Full write-ups for each sponsor are coming soon — for now, here's who's backing the mission.
+        </p>
       </div>
-      <SponsorsSection />
+
+      <nav className={styles.toc} aria-label="Jump to sponsor">
+        {SPONSORS.map((s) => (
+          <a key={s.id} href={`#${s.id}`} className={styles.tocItem}>
+            {s.name}
+          </a>
+        ))}
+      </nav>
+
+      <div className={styles.grid}>
+        {SPONSORS.map((s) => (
+          <div key={s.id} id={s.id} className={styles.card}>
+            <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07}>
+              <div className={styles.cardInner}>
+                <div className={styles.logoBox}>
+                  <img src={s.src} alt={s.name} className={`${styles.logo} ${s.small ? styles.logoSmall : ""}`} />
+                </div>
+                <h2 className={styles.cardName}>{s.name}</h2>
+                <p className={styles.cardDesc}>{s.description}</p>
+              </div>
+            </LiquidGlass>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href="https://www.nasa.gov/image-detail/egress-2/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.photoCredit}
+      >
+        Ed White spacewalk: NASA
+      </a>
     </PageWrapper>
   );
 }

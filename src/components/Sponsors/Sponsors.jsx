@@ -1,33 +1,14 @@
 import styles from "./Sponsors.module.scss";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import earth  from "../../assets/earth.webp";
-import nti    from "../../assets/sponsors/nti.png";
-import bese   from "../../assets/sponsors/bese.png";
-import lem    from "../../assets/sponsors/lem.png";
-import biomed from "../../assets/sponsors/biomed.png";
-import bk     from "../../assets/sponsors/bk.png";
-import br     from "../../assets/sponsors/br.png";
-import gs     from "../../assets/sponsors/gs.png";
-import sg     from "../../assets/sponsors/sg.png";
-import idt    from "../../assets/sponsors/idt.png";
-import kaustigem from "../../assets/sponsors/kaustigem.png";
+import { SPONSORS } from "./sponsorsData";
 
 // Ported from the wiki repo's original Footer sponsor block. Kept as its own
 // component (rather than folded into ../Footer) because Footer is the
 // required every-page license notice + GitLab repo link (see CLAUDE.md) —
-// this only renders where it's explicitly mounted.
-const SPONSORS = [
-  { id: "nti",    src: nti,    name: "NTI",             nudge:   0 },
-  { id: "bese",   src: bese,   name: "BESE",            nudge:  22 },
-  { id: "bk",     src: bk,     name: "Burger King",     nudge: -14, small: true },
-  { id: "lem",    src: lem,    name: "LEM",             nudge:  -8 },
-  { id: "kaustigem", src: kaustigem, name: "KAUST iGEM", nudge:  12 },
-  { id: "biomed", src: biomed, name: "BioMed",          nudge:  30 },
-  { id: "gs",     src: gs,     name: "GS",              nudge:  -4 },
-  { id: "idt",    src: idt,    name: "IDT",             nudge: -18 },
-  { id: "br",     src: br,     name: "Baskin-Robbins",  nudge:  16, small: true },
-  { id: "sg",     src: sg,     name: "SnapGene",        nudge:  24 },
-];
+// this only renders where it's explicitly mounted. Logo/name data lives in
+// ./sponsorsData.js (named to not collide with Sponsors.jsx on case-insensitive
+// filesystems), shared with the detail cards on src/pages/Sponsors/Sponsors.jsx.
 
 const ANIM = ["floatA", "floatB", "floatC", "floatD"];
 

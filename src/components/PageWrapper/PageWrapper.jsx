@@ -8,7 +8,7 @@ export default function PageWrapper({
   background = {},
   className = "",
 }) {
-  const { color, image, size, gradient } = background;
+  const { color, image, size, gradient, photo } = background;
 
   const bgStyle = {
     ...(color && { backgroundColor: color }),
@@ -23,6 +23,12 @@ export default function PageWrapper({
     <>
       {createPortal(
         <div className={`${styles.bg} ${fixed ? styles.fixed : styles.absolute}`} style={bgStyle}>
+          {photo && (
+            <div
+              className={`${styles.photo} ${fixed ? styles.fixed : styles.absolute}`}
+              style={{ backgroundImage: `url("${photo}")` }}
+            />
+          )}
           {gradient && (
             <div
               className={`${styles.overlay} ${fixed ? styles.fixed : styles.absolute}`}

@@ -22,3 +22,127 @@
   font-weight: 700;
   color: rgba(255, 255, 255, 0.85);
 }
+
+.intro {
+  margin: 0;
+  max-width: 620px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Jump-to-sponsor links */
+
+.toc {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 0 40px;
+}
+
+.tocItem {
+  padding: 8px 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+
+  &:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Sponsor cards */
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 32px auto 0;
+  /* 38px menu bottom offset + 68px menu height + 40px breathing room — same
+     convention as src/components/Sponsors/Sponsors.module.scss's .sponsors —
+     so the last row of cards doesn't sit under the fixed nav bar. */
+  padding: 0 40px 160px;
+}
+
+.card {
+  scroll-margin-top: 120px; /* clears the fixed nav bar when jumped to */
+}
+
+.cardInner {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.logoBox {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 44px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+.logoSmall {
+  height: 24px;
+  max-width: 100px;
+}
+
+.cardName {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cardDesc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.45);
+  font-style: italic;
+}
+
+/* Credit for the fixed background photo — same corner-link convention as
+   Home's earthCredit/rocketCredit (src/pages/Home/Home.module.scss). */
+.photoCredit {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
