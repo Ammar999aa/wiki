@@ -451,6 +451,43 @@
 @keyframes drift4 { 0%{transform:translate(0,0)} 40%{transform:translate(20px,-28px)} 80%{transform:translate(35px,12px)} 100%{transform:translate(0,0)} }
 @keyframes drift5 { 0%{transform:translate(0,0)} 50%{transform:translate(18px,-22px)} 100%{transform:translate(0,0)} }
 
+/* Atlantis launch — fixed to the viewport (see RocketLayer in Home.jsx) so
+   it isn't cropped by any one section's `overflow: hidden` and persists
+   across slide 2 and slide 3 instead of disappearing when slide 2 unpins. */
+.rocketLayer {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 6%;
+  height: clamp(560px, 88vh, 1080px);
+  aspect-ratio: 1280 / 2820;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 0 50px rgba(255, 200, 120, 0.16));
+  pointer-events: none;
+  will-change: left, top, opacity, transform;
+}
+
+.rocketCredit {
+  /* Bottom-left, not bottom-right — .earthCredit is also `position: fixed`
+     and sits at bottom-right, so the right corner is already taken. */
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 1;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
 /* ── Reveal (slide 5) ── */
 .revealSection { height: 240dvh; }
 

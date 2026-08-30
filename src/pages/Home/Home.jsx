@@ -7,6 +7,7 @@ import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 import earth from "../../assets/earth.webp";
+import rocketLaunch from "../../assets/rocket-launch.webp";
 import shihabLogo from "../../assets/shihab-logo.svg?url";
 
 // Section-by-section narrative below follows src/content/landing_page_content.md
@@ -334,6 +335,60 @@ function PlanetDecor() {
         <div key={k} className={`${styles.planet} ${styles[k]}`} />
       ))}
     </div>
+  );
+}
+
+// Shuttle Atlantis departing Earth — the launch reads as the mission itself
+// leaving. Fixed to the viewport (like EarthLayer) rather than nested inside
+// slide 2's sticky box, so it isn't cropped by that box's `overflow: hidden`.
+// Slides in as slide 2 opens and shoots away as slide 2 hands off to slide 3.
+// `groupRef` points at slide 2's own wrapper.
+function RocketLayer({ groupRef }) {
+  const rocketRef = useRef(null);
+
+  useScrollUnits(groupRef, (units) => {
+    const el = rocketRef.current;
+    if (!el) return;
+    // Slides up from below as slide 2 opens; holds at a fixed spot for the
+    // whole of slide 2 (2.2 units) — no motion in between, just entry and
+    // exit — then shoots straight up and out, continuing the launch, right
+    // as slide 2 hands off to slide 3.
+    const REST_LEFT = 8;
+    const REST_TOP = 56;
+    const entryP = between(units, 0, 0.35);
+    const exitP = between(units, 2.15, 2.75);
+    const exitEase = exitP * exitP; // ease-in — starts slow, accelerates away
+    const entryDrop = (1 - entryP) * 75; // starts well below the viewport
+    const exitShoot = exitEase * 140; // rockets up past the top edge
+    const left = REST_LEFT;
+    const top = REST_TOP + entryDrop - exitShoot;
+    const scale = lerp(1, 0.7, exitP);
+    el.style.left = `${left}%`;
+    el.style.top = `${top}%`;
+    // Opacity settles in fast (well before the slide-up finishes) rather
+    // than tracking entryP 1:1, so it doesn't look like a dim ghost easing
+    // in — it's solid well before it reaches its resting position.
+    el.style.opacity = Math.min(1, entryP * 3) * (1 - exitP);
+    el.style.transform = `translateY(-50%) scale(${scale})`;
+  });
+
+  return (
+    <>
+      <div
+        className={styles.rocketLayer}
+        ref={rocketRef}
+        style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
+        aria-hidden="true"
+      />
+      <a
+        href="https://www.nasa.gov/mission_pages/shuttle/shuttlemissions/sts129/index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.rocketCredit}
+      >
+        Atlantis, STS-129: NASA/Kenny Allen
+      </a>
+    </>
   );
 }
 
@@ -827,6 +882,7 @@ function ExploreSection() {
 
 export default function Home() {
   const heroOrbitRef = useRef(null);
+  const rocketGroupRef = useRef(null);
 
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
@@ -836,9 +892,12 @@ export default function Home() {
         <HeroSection />
         <OrbitSection />
       </div>
-      <StatementSection decor={<PlanetDecor />}>
-        Future missions will take astronauts away from Earth for <em>months&mdash;or years</em>.
-      </StatementSection>
+      <RocketLayer groupRef={rocketGroupRef} />
+      <div ref={rocketGroupRef}>
+        <StatementSection decor={<PlanetDecor />}>
+          Future missions will take astronauts away from Earth for <em>months&mdash;or years</em>.
+        </StatementSection>
+      </div>
       <ProblemSection />
       <StatementSection>
         What if <em>astronauts</em> could make the <em>biologics</em> they need?
