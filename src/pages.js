@@ -8,6 +8,7 @@ import HumanPractices from "./pages/HumanPractices/HumanPractices";
 import Engagement from "./pages/Engagement/Engagement";
 import Education from "./pages/Education/Education";
 import ProteinLibrary from "./pages/ProteinLibrary/ProteinLibrary";
+import HumanIntegratedPractices from "./pages/HumanIntegratedPractices/HumanIntegratedPractices";
 import Stub from "./pages/Stub/Stub";
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -62,7 +63,12 @@ const Pages = [
   {
     name: "Beyond the Lab",
     folder: [
-      { name: "Human Integrated Practices", title: "Human Integrated Practices", path: "/human-integrated-practices", component: Stub },
+      {
+        name: "Human Integrated Practices",
+        title: "Human Integrated Practices",
+        path: "/human-integrated-practices",
+        component: HumanIntegratedPractices,
+      },
       { name: "Education", title: "Education", path: "/education", component: Education },
       { name: "Science Communication", title: "Science Communication", path: "/science-communication", component: Stub },
     ],
