@@ -470,7 +470,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  filter: drop-shadow(0 0 50px rgba(255, 200, 120, 0.16));
+  filter: drop-shadow(0 0 14px rgba(255, 210, 140, 0.22))
+    drop-shadow(0 0 50px rgba(255, 200, 120, 0.16));
   pointer-events: none;
   will-change: left, top, opacity, transform;
 }
