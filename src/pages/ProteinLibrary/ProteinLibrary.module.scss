@@ -36,21 +36,27 @@
 }
 
 // ── Info bar ─────────────────────────────────────────────────────────────────
+// One LiquidGlass panel (site-wide surface primitive — see .claude/DESIGN.md)
+// with an internal flex row of items divided by hairlines, rather than a
+// hand-rolled rgba-background grid.
 
 .infoBar {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md);
-  overflow: hidden;
   margin-bottom: 64px;
 }
 
+.infoBarInner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .infoItem {
-  background: rgba(255, 255, 255, 0.03);
+  flex: 1 1 200px;
   padding: 20px 22px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:first-child {
+    border-left: none;
+  }
 }
 
 .infoTitle {
@@ -68,62 +74,92 @@
 }
 
 // ── Grid ─────────────────────────────────────────────────────────────────────
+// Uniform columns — every tile is the same width regardless of row, and
+// .card fixes a matching height (below) so tiles are the same size
+// regardless of how much a given protein's copy runs.
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
 // ── Card ─────────────────────────────────────────────────────────────────────
+// The surface itself is a LiquidGlass panel (see ProteinCard.jsx); this
+// wrapper only carries grid sizing and the per-protein accent ring/glow,
+// drawn as a ::after overlay since the glass's squircle clip can't take a
+// dynamic per-instance border-color. Selecting a card never resizes it —
+// see ProteinDetail for the floating panel that opens instead.
 
 .card {
   --accent: var(--primary);
-  flex: 1 1 260px;
-  min-width: 260px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
   border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transition: flex-basis 420ms ease, transform 320ms ease, opacity 320ms ease, box-shadow 320ms ease,
-    border-color 320ms ease;
+  transition: transform 320ms ease;
 
-  &:hover:not(.expanded) {
-    transform: translateY(-4px);
-    border-color: color-mix(in oklab, var(--accent) 60%, rgba(255, 255, 255, 0.1));
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0 1px transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: box-shadow 320ms ease, opacity 320ms ease;
   }
-}
 
-.dimmed {
-  opacity: 0.5;
-  transform: scale(0.97);
-}
+  &:hover,
+  &.active {
+    transform: translateY(-4px);
 
-.expanded {
-  flex: 1 1 100%;
-  z-index: 2;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 50%, transparent),
-    0 20px 48px rgba(0, 0, 0, 0.4), 0 0 60px -12px var(--accent);
+    &::after {
+      opacity: 1;
+      box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 60%, transparent);
+    }
+  }
+
+  // The panel this tile opened is now covering it — read as "open", not
+  // just hovered.
+  &.active::after {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 80%, transparent), 0 0 40px -14px var(--accent);
+  }
 }
 
 .cardHeader {
   all: unset;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
   padding: 22px 22px 0;
   cursor: pointer;
 
   &:focus-visible {
+    // Inset, not offset: LiquidGlass clips to its squircle with
+    // overflow: hidden, so an outset ring would get cut off at the edge.
     outline: 2px solid var(--accent);
-    outline-offset: 4px;
+    outline-offset: -3px;
     border-radius: var(--radius-sm);
   }
+}
+
+// Icon + name/subtitle on their own row, full-width — the tested badge
+// and toggle affordance live in .headerMeta below instead of sharing this
+// row, since splitting the row's width three (or four) ways left long
+// subtitles like "anti-HSV — Single-domain antibody" cut off almost
+// immediately.
+.headerTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headerMeta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .glyphWrap {
@@ -141,17 +177,54 @@
   min-width: 0;
 }
 
+// .name/.subtitle are the unconstrained versions used in the detail
+// overlay, which isn't part of the uniform grid and has room to just wrap
+// naturally. .cardName/.cardSubtitle below are the grid-tile versions.
+
 .name {
   margin: 0;
   font-size: 1.15rem;
   font-weight: 700;
+  line-height: 1.25;
   color: white;
 }
 
 .subtitle {
   margin: 2px 0 0;
   font-size: 0.8rem;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.55);
+}
+
+// Grid-tile name/subtitle both wrap up to 2 lines and reserve that space
+// with min-height, so a short name/subtitle still takes the same room as
+// a long one — every tile ends up the same height without a hard-coded
+// pixel value fighting LiquidGlass's own intrinsic sizing. max-height
+// pairs with min-height to make that reservation a hard cap too, so an
+// unusually long subtitle is clipped rather than growing its tile taller
+// than the rest of the row.
+//
+// Deliberately not -webkit-line-clamp: it misrenders (mangles the text
+// instead of truncating cleanly) on an element nested in a flex container
+// like .headerTop/.cardHeader here.
+
+.cardName {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: white;
+  min-height: calc(1.25em * 2);
+}
+
+.cardSubtitle {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.55);
+  min-height: calc(1.4em * 2);
+  max-height: calc(1.4em * 2);
+  overflow: hidden;
 }
 
 .testedBadge {
@@ -184,27 +257,29 @@
   font-size: 0.9rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
-}
-
-// ── Expanded detail (grid-rows 0fr/1fr reveal trick) ──────────────────────────
-
-.detailWrap {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 420ms ease;
-}
-
-.detailInner {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
-  min-height: 0;
+  min-height: calc(1.6em * 3);
 }
 
-.expanded .detailWrap {
-  grid-template-rows: 1fr;
+// ── Detail panel body (ProteinDetail — see the overlay section below for
+// the floating panel itself; these are just the write-up's sections) ───────
+// .detailShortDesc is the overlay's un-clamped counterpart to the grid
+// tile's .shortDesc — the floating panel isn't size-constrained the way
+// the uniform grid tiles are, so it shows the full summary.
+
+.detailShortDesc {
+  margin: 14px 26px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .detailSection {
-  padding: 0 22px 18px;
+  padding: 0 26px 18px;
 }
 
 .detailLabel {
@@ -235,22 +310,135 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 18px;
-  padding: 0 22px 18px;
+  padding: 0 26px 18px;
 }
 
 .detailStatus {
   margin: 0;
-  padding: 14px 22px 22px;
+  padding: 14px 26px 26px;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--accent);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+// ── Detail overlay (the floating panel a selected card opens into) ─────────
+// Root is the dimmed, click-to-close backdrop; the panel itself stops that
+// click from bubbling (see ProteinDetail.jsx) so it can sit on top without
+// closing itself. Covers the whole grid instead of the tile growing in
+// place and pushing its neighbors aside.
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(5, 5, 20, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: backdropIn 220ms ease both;
+  overflow-y: auto;
+}
+
+.detailPanelWrap {
+  --accent: var(--primary);
+  width: min(680px, 100%);
+  margin: auto;
+  animation: panelIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.detailPanel {
+  max-height: min(80vh, 720px);
+  overflow-y: auto;
+}
+
+.detailHeader {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 26px 26px 0;
+  background: linear-gradient(180deg, rgba(10, 10, 39, 0.6) 70%, transparent);
+}
+
+.detailBody {
+  padding-top: 4px;
+}
+
+.closeButton {
+  all: unset;
+  box-sizing: border-box;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+
+  &:hover {
+    color: white;
+    border-color: color-mix(in oklab, var(--accent) 60%, transparent);
+    background: color-mix(in oklab, var(--accent) 18%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .detailPanelWrap {
+    animation: none;
+  }
+}
+
 // ── Footer / workflow ──────────────────────────────────────────────────────
+// Wrapped in the same LiquidGlass panel treatment as the info bar, so the
+// page opens and closes on matching glass surfaces.
 
 .workflow {
   margin-top: 96px;
+}
+
+.workflowInner {
+  padding: 40px 32px;
   text-align: center;
 }
 
@@ -304,12 +492,38 @@
     padding: 90px 20px 100px;
   }
 
+  .infoItem {
+    flex-basis: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .workflowInner {
+    padding: 32px 20px;
+  }
+
   .cardHeader {
     padding: 18px 18px 0;
   }
 
   .shortDesc {
     margin: 12px 18px 18px;
+  }
+
+  .backdrop {
+    padding: 16px;
+  }
+
+  .detailHeader {
+    padding-inline: 18px;
+  }
+
+  .detailShortDesc {
+    margin-inline: 18px;
   }
 
   .detailSection,
