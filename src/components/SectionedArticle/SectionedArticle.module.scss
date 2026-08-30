@@ -191,6 +191,12 @@
     font-weight: 600;
 }
 
+.panelHeader {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 .panelItem {
     font-size: 24px;
     cursor: pointer;

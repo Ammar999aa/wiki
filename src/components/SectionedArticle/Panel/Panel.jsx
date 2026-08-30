@@ -1,7 +1,7 @@
 import LiquidGlass from "../../LiquidGlass/LiquidGlass";
 import styles from "../SectionedArticle.module.scss";
 
-export default function Panel({ items, selected, collapsed, onToggle, onSelect }) {
+export default function Panel({ items, selected, collapsed, onToggle, onSelect, header }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
       <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25}>
@@ -16,6 +16,7 @@ export default function Panel({ items, selected, collapsed, onToggle, onSelect }
               <path d="M42.75 46.5V19L29 32.75L42.75 46.5Z" fill="#E3E3E3" />
             </svg>
           </button>
+          {header && <div className={styles.panelHeader}>{header}</div>}
           {items.map((item, i) => (
             <h2
               key={item}

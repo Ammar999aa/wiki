@@ -1,15 +1,44 @@
+import { useState } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
-import sections from "../../content/en/tawasol-hackathon.md";
+import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
+import styles from "./Education.module.scss";
 
-// Content is Tawasol (the KAUST x NYUAD policy hackathon) for now — swap in
-// dedicated Education content when it's written; see src/content/en/tawasol-hackathon.md.
+// Education is a picker over several sub-articles, each its own full
+// sectioned article (own ## table of contents). Add new entries here as
+// more sub-articles are written.
+const ARTICLES = [{ key: "tawasol-hackathon", title: "Tawasol Hackathon", sections: tawasolHackathon }];
+
 export default function Education() {
+  const [selectedKey, setSelectedKey] = useState(ARTICLES[0].key);
+  const article = ARTICLES.find((a) => a.key === selectedKey) || ARTICLES[0];
+
+  const picker = (
+    <div className={styles.picker}>
+      <p className={styles.pickerLabel}>Education</p>
+      {ARTICLES.map((a) => (
+        <h3
+          key={a.key}
+          className={`${styles.pickerItem} ${a.key === selectedKey ? styles.selected : ""}`}
+          onClick={() => setSelectedKey(a.key)}
+        >
+          {a.title}
+        </h3>
+      ))}
+    </div>
+  );
+
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <SectionedArticle title="Education" sections={sections} defaultSelected={sections[0]?.title} />
+      <SectionedArticle
+        key={article.key}
+        title={article.title}
+        sections={article.sections}
+        defaultSelected={article.sections[0]?.title}
+        panelHeader={picker}
+      />
     </PageWrapper>
   );
 }
