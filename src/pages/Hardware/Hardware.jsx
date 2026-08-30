@@ -13,7 +13,7 @@ import gradient from "../../assets/gradient.svg?url";
 export default function Hardware() {
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <SectionedArticle sections={sections} defaultSelected={sections[0]?.title} />
+      <SectionedArticle title="Hardware" sections={sections} defaultSelected={sections[0]?.title} />
     </PageWrapper>
   );
 }

@@ -3,7 +3,7 @@ import Panel from "./Panel/Panel";
 import Article from "./Article/Article";
 import styles from "./SectionedArticle.module.scss";
 
-export default function SectionedArticle({ sections, defaultSelected }) {
+export default function SectionedArticle({ sections, defaultSelected, title }) {
   const [collapsed, setCollapsed] = useState(true);
   const [selected, setSelected] = useState(defaultSelected || sections[0]?.title);
   const sectionRefs = useRef({});
@@ -45,7 +45,8 @@ export default function SectionedArticle({ sections, defaultSelected }) {
             onToggle={() => setCollapsed((v) => !v)}
             onSelect={scrollTo}
         />
-        <Article 
+        <Article
+            title={title}
             sections={sections}
             sectionRefs={sectionRefs}
             panelCollapsed={collapsed}

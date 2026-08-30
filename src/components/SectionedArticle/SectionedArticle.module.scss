@@ -13,6 +13,13 @@
     transition: transform 250ms ease;
     color: white;
 
+    .pageTitle {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 32px;
+    }
+
     img {
         margin: 12px;
         max-width: 100%;
