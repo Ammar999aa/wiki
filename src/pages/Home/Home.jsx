@@ -225,7 +225,7 @@ function HeroSection() {
           <span className={styles.heroEyebrow}>iGEM · Synthetic Biology in Space</span>
           <div className={styles.wordmark}>
             <h1 className={styles.wordmarkLatin} ref={latinRef}>
-              <img src={shihabLogo} alt="Shihab" className={styles.wordmarkLogo} />
+              <img src={shihabLogo} alt="SHIHAB" className={styles.wordmarkLogo} />
             </h1>
             <h1 className={styles.wordmarkArabic} ref={arabicRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</h1>
           </div>
@@ -699,9 +699,9 @@ function ScenarioSection() {
     <section className={styles.scenarioSection} ref={ref}>
       <div className={styles.scenarioSticky}>
 
-        {/* Without Shihab */}
+        {/* Without SHIHAB */}
         <div className={styles.scenario}>
-          <p className={styles.scenarioLabel} ref={labelARef} style={{ opacity: 0 }}>Without Shihab</p>
+          <p className={styles.scenarioLabel} ref={labelARef} style={{ opacity: 0 }}>Without SHIHAB</p>
           <div className={styles.organisms} ref={orgsARef} style={{ opacity: 0 }}>
             <ScenarioOrganism type="bacteria" orgRef={bDeadRef} markRef={bDeadMarkRef} />
             <ScenarioOrganism type="yeast"    orgRef={yDeadRef} markRef={yDeadMarkRef} />
@@ -716,9 +716,9 @@ function ScenarioSection() {
 
         <div className={styles.scenarioDivider} />
 
-        {/* With Shihab */}
+        {/* With SHIHAB */}
         <div className={styles.scenario}>
-          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelShihab}`} ref={labelBRef} style={{ opacity: 0 }}>With Shihab</p>
+          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelShihab}`} ref={labelBRef} style={{ opacity: 0 }}>With SHIHAB</p>
           <div className={styles.organisms} ref={orgsBRef} style={{ opacity: 0 }}>
             <ScenarioOrganism type="bacteria" orgRef={bAliveRef} markRef={bAliveMarkRef} proteins={B_SUBTILIS_PROTEINS} protRef={prot1Ref} />
             <ScenarioOrganism type="yeast"    orgRef={yAliveRef} markRef={yAliveMarkRef} proteins={S_CEREVISIAE_PROTEINS} protRef={prot2Ref} />
@@ -800,7 +800,7 @@ function CapabilitiesSection() {
           ref={textRef}
           style={{ opacity: 0, maxWidth: "min(680px, 92vw)" }}
         >
-          Shihab is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
+          SHIHAB is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
         </p>
         <div className={styles.capTiles}>
           {CAPABILITIES.map(({ Ico, label, desc }, i) => (
@@ -842,7 +842,7 @@ function OutroSection() {
     <section className={styles.outroSection} ref={ref}>
       <div className={styles.outroSticky}>
         <div className={styles.outroGlow} ref={glowRef} style={{ opacity: 0 }} aria-hidden="true" />
-        <img src={shihabLogo} alt="Shihab" className={styles.outroLogo} ref={logoRef} style={{ opacity: 0 }} />
+        <img src={shihabLogo} alt="SHIHAB" className={styles.outroLogo} ref={logoRef} style={{ opacity: 0 }} />
       </div>
     </section>
   );
@@ -851,7 +851,7 @@ function OutroSection() {
 // ── Explore ───────────────────────────────────────────────────────────────────
 
 const EXPLORE_CARDS = [
-  { n: "01", t: "The Project",      d: "How Shihab engineers medical autonomy for deep-space missions — the full scientific rationale.", to: "/project",          feature: true },
+  { n: "01", t: "The Project",      d: "How SHIHAB engineers medical autonomy for deep-space missions — the full scientific rationale.", to: "/project",          feature: true },
   { n: "02", t: "Wet Lab",          d: "Strain engineering, assays, and protein expression.",                                           to: "/wetlab" },
   { n: "03", t: "Dry Lab",          d: "Modelling, bioinformatics, and circuit design.",                                                to: "/drylab" },
   { n: "04", t: "Human Practices",  d: "How real-world voices shaped the work.",                                                        to: "/human-practices" },

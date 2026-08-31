@@ -88,7 +88,7 @@ export default function Menu() {
             <Link
               to="/"
               className={`${styles.menuItem} ${styles.menuLogo} ${pathname === "/" ? styles.menuItemActive : ""}`}
-              aria-label="Shihab — Home"
+              aria-label="SHIHAB — Home"
             >
               <ShihabSMark className={styles.menuLogoIcon} />
             </Link>

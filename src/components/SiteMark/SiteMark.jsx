@@ -15,7 +15,7 @@ export default function SiteMark() {
   if (pathname === "/") return null;
 
   return (
-    <Link to="/" className={styles.mark} aria-label="Shihab — Home">
+    <Link to="/" className={styles.mark} aria-label="SHIHAB — Home">
       <img src={shihabLogo} alt="" className={styles.logo} />
     </Link>
   );

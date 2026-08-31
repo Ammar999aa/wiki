@@ -61,7 +61,7 @@ the **biologics** they need?
 
 KAUST iGEM presents
 
-[Shihab logo]
+[SHIHAB logo]
 
 شهاب — Arabic for ‘shooting star’.
 
@@ -107,8 +107,8 @@ of producing biologics
 
 # Slide 8
 
-[This slide is a copy of the "Shihab is scalable, programmable, and adaptable slide in the current landing page]
+[This slide is a copy of the "SHIHAB is scalable, programmable, and adaptable slide in the current landing page]
 
 # Slide 9
 
-Shihab logo fades in drammatically.
+SHIHAB logo fades in drammatically.
