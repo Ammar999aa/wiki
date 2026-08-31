@@ -6,6 +6,7 @@ import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
+import astronautPhoto from "../../assets/apollo17-eva.webp";
 
 // Importing the specific flags used instead of 'flag-icons/css/flag-icons.min.css'
 // — that stylesheet references every country's SVG (~140 files, ~4MB), which
@@ -76,12 +77,26 @@ const members = [
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
+// `photo` (apollo17-eva.webp — Apollo 17 CMP Ronald Evans on a trans-Earth-
+// coast EVA, black space void keyed to transparent so it blends into the
+// page's own --bg navy) is a one-off background for this page, same pattern
+// as Sponsors.jsx's egress-2.webp: PageWrapper renders it `background-size:
+// cover` and pinned `fixed`, filling the viewport with no edges showing.
 export default function Roster() {
   const { t } = useLanguage();
   const [selected, setSelected] = useState(members[0]);
 
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+    <PageWrapper
+      background={{
+        color: "#0A0A27",
+        image: bg,
+        size: "1280px 1080px",
+        photo: astronautPhoto,
+        photoPosition: "center top",
+        gradient,
+      }}
+    >
       <div className={styles.container}>
         <div className={styles.title}>
           <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
@@ -160,6 +175,15 @@ export default function Roster() {
           ))}
         </div>
       </div>
+
+      <a
+        href="https://www.nasa.gov/image-detail/apollo-17-spacewalk-december-1972/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.photoCredit}
+      >
+        Apollo 17 EVA: NASA
+      </a>
     </PageWrapper>
   );
 }

@@ -8,7 +8,7 @@ export default function PageWrapper({
   background = {},
   className = "",
 }) {
-  const { color, image, size, gradient, photo } = background;
+  const { color, image, size, gradient, photo, photoPosition, photoOpacity } = background;
 
   const bgStyle = {
     ...(color && { backgroundColor: color }),
@@ -26,7 +26,11 @@ export default function PageWrapper({
           {photo && (
             <div
               className={`${styles.photo} ${fixed ? styles.fixed : styles.absolute}`}
-              style={{ backgroundImage: `url("${photo}")` }}
+              style={{
+                backgroundImage: `url("${photo}")`,
+                backgroundPosition: photoPosition || "center",
+                ...(photoOpacity != null && { opacity: photoOpacity }),
+              }}
             />
           )}
           {gradient && (

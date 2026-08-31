@@ -6,6 +6,7 @@ import ProteinDetail from "./ProteinDetail";
 import { PROTEINS } from "./proteins";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
+import milkyWay from "../../assets/milky-way-center.webp";
 import styles from "./ProteinLibrary.module.scss";
 
 const INFO_BAR = [
@@ -51,7 +52,16 @@ export default function ProteinLibrary() {
   }, [selected]);
 
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+    <PageWrapper
+      background={{
+        color: "#0A0A27",
+        image: bg,
+        size: "1280px 1080px",
+        photo: milkyWay,
+        photoOpacity: 0.35,
+        gradient,
+      }}
+    >
       <div className={styles.page}>
         <header className={styles.hero}>
           <p className={styles.eyebrow}>Protein Payload Library</p>
@@ -109,6 +119,15 @@ export default function ProteinLibrary() {
       </div>
 
       {selected && <ProteinDetail protein={selected} onClose={close} />}
+
+      <a
+        href="https://science.nasa.gov/image-detail/ssc2006-02a-0/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.photoCredit}
+      >
+        Milky Way's center: NASA/JPL-Caltech
+      </a>
     </PageWrapper>
   );
 }
