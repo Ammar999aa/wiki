@@ -59,6 +59,13 @@ export default function Menu() {
     }, 150);
   }, [cancelClose]);
 
+  // Link to="/" doesn't scroll on its own — React Router only changes the
+  // URL, and clicking the logo while already on "/" doesn't even trigger a
+  // navigation. Scroll explicitly so the logo always brings you to the top.
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleMouseEnter = (item, index) => {
     cancelClose();
     if (!item.dropdown) {
@@ -89,6 +96,7 @@ export default function Menu() {
               to="/"
               className={`${styles.menuItem} ${styles.menuLogo} ${pathname === "/" ? styles.menuItemActive : ""}`}
               aria-label="SHIHAB — Home"
+              onClick={scrollToTop}
             >
               <ShihabSMark className={styles.menuLogoIcon} />
             </Link>
@@ -158,7 +166,10 @@ export default function Menu() {
               <Link
                 to="/"
                 className={`${styles.mobileItem} ${styles.mobileLogo} ${pathname === "/" ? styles.menuItemActive : ""}`}
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  setMobileOpen(false);
+                  scrollToTop();
+                }}
               >
                 <ShihabSMark className={styles.mobileLogoIcon} />
                 Home
