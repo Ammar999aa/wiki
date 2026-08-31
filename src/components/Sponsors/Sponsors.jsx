@@ -1,7 +1,10 @@
 import styles from "./Sponsors.module.scss";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
-import earth  from "../../assets/earth.webp";
 import { SPONSORS } from "./sponsorsData";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth.webp";
 
 // Ported from the wiki repo's original Footer sponsor block. Kept as its own
 // component (rather than folded into ../Footer) because Footer is the

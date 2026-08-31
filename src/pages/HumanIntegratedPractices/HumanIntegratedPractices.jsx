@@ -3,8 +3,11 @@ import sections from "../../content/en/human-integrated-practices.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import milkyWay from "../../assets/milky-way-center.webp";
 import styles from "./HumanIntegratedPractices.module.scss";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 // Converted from src/content/Human Integrated Practices - Wiki.docx. The
 // "Closing the ORBIT" and "Conclusions" sections were left without body

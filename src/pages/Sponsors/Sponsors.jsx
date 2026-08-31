@@ -3,8 +3,11 @@ import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import egress from "../../assets/egress-2.webp";
 import styles from "./Sponsors.module.scss";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const gemini4Eva = "https://static.igem.wiki/teams/6341/wiki/images/gemini4-eva.webp";
 
 // Standalone /sponsors page required by pages.md's Team category. Loosely
 // modelled on other iGEM teams' sponsors pages (intro blurb → jump links →
@@ -16,14 +19,14 @@ import styles from "./Sponsors.module.scss";
 // below the grid — it's the same 10 logos as the cards above, just animated
 // and unlabelled, so it was pure redundancy here rather than adding anything.
 //
-// `photo` (egress-2.webp — an Ed White Gemini 4 EVA shot, black space void
+// `photo` (gemini4-eva.webp — an Ed White Gemini 4 EVA shot, black space void
 // keyed to transparent so it blends into the page's own --bg navy) is a
 // one-off background for this page: PageWrapper renders it `background-size:
 // cover` and pinned `fixed` like the rest of the background stack, so it
 // fills the viewport with no edges showing rather than scrolling with content.
 export default function Sponsors() {
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", photo: egress, gradient }}>
+    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", photo: gemini4Eva, gradient }}>
       <div className={styles.heading}>
         <p className={styles.label}>Team</p>
         <h1>Sponsors</h1>

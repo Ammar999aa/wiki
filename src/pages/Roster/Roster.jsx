@@ -6,7 +6,9 @@ import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import astronautPhoto from "../../assets/apollo17-eva.webp";
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const astronautPhoto = "https://static.igem.wiki/teams/6341/wiki/images/apollo17-eva.webp";
 
 // Importing the specific flags used instead of 'flag-icons/css/flag-icons.min.css'
 // — that stylesheet references every country's SVG (~140 files, ~4MB), which
@@ -35,25 +37,28 @@ function Flag({ code, width, height, marginInlineStart }) {
   );
 }
 
-import jeremy from "../../assets/roster/jeremy.png";
-import taiba from "../../assets/roster/taiba.png";
-import ammar from "../../assets/roster/ammar.png";
-import genesis from "../../assets/roster/genesis.png";
-import kexin from "../../assets/roster/kexin.png";
-import maria from "../../assets/roster/maria.png";
-import mariana from "../../assets/roster/mariana.png";
-import sriharsha from "../../assets/roster/sriharsha.png";
-import kevser from "../../assets/roster/kevser.png";
-import shahad from "../../assets/roster/shahad.png";
-import francesca from "../../assets/roster/francesca.png";
-import nauryzbay from "../../assets/roster/nauryzbay.png";
-import ansal from "../../assets/roster/ansal.png";
-import zeyad from "../../assets/roster/zeyad.png";
-import nadia from "../../assets/roster/nadia.png";
-import hassan from "../../assets/roster/hassan.png";
-import shahada from "../../assets/roster/shahada.png";
-import raheema from "../../assets/roster/raheema.png";
-import mafer from "../../assets/roster/mafer.png"
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/roster/.
+const ROSTER_CDN = "https://static.igem.wiki/teams/6341/wiki/roster";
+const jeremy    = `${ROSTER_CDN}/jeremy.avif`;
+const taiba     = `${ROSTER_CDN}/taiba.avif`;
+const ammar     = `${ROSTER_CDN}/ammar.avif`;
+const genesis   = `${ROSTER_CDN}/genesis.avif`;
+const kexin     = `${ROSTER_CDN}/kexin.avif`;
+const maria     = `${ROSTER_CDN}/maria.avif`;
+const mariana   = `${ROSTER_CDN}/mariana.avif`;
+const sriharsha = `${ROSTER_CDN}/sriharsha.avif`;
+const kevser    = `${ROSTER_CDN}/kevser.avif`;
+const shahad    = `${ROSTER_CDN}/shahad.avif`;
+const francesca = `${ROSTER_CDN}/francesca.avif`;
+const nauryzbay = `${ROSTER_CDN}/nauryzbay.avif`;
+const ansal     = `${ROSTER_CDN}/ansal.avif`;
+const zeyad     = `${ROSTER_CDN}/zeyad.avif`;
+const nadia     = `${ROSTER_CDN}/nadia.avif`;
+const hassan    = `${ROSTER_CDN}/hassan.avif`;
+const shahada   = `${ROSTER_CDN}/shahada.avif`;
+const raheema   = `${ROSTER_CDN}/raheema.avif`;
+const mafer     = `${ROSTER_CDN}/mafer.avif`;
 
 const members = [
   { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy, countryCode: "pe" },
@@ -80,7 +85,7 @@ const members = [
 // `photo` (apollo17-eva.webp — Apollo 17 CMP Ronald Evans on a trans-Earth-
 // coast EVA, black space void keyed to transparent so it blends into the
 // page's own --bg navy) is a one-off background for this page, same pattern
-// as Sponsors.jsx's egress-2.webp: PageWrapper renders it `background-size:
+// as Sponsors.jsx's gemini4-eva.webp: PageWrapper renders it `background-size:
 // cover` and pinned `fixed`, filling the viewport with no edges showing.
 export default function Roster() {
   const { t } = useLanguage();

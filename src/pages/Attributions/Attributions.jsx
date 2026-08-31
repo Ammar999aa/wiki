@@ -5,25 +5,28 @@ import { useLanguage } from "../../i18n/LanguageContext";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 
-import jeremy from "../../assets/roster/jeremy.png";
-import taiba from "../../assets/roster/taiba.png";
-import ammar from "../../assets/roster/ammar.png";
-import maria from "../../assets/roster/maria.png";
-import mariana from "../../assets/roster/mariana.png";
-import kexin from "../../assets/roster/kexin.png";
-import genesis from "../../assets/roster/genesis.png";
-import sriharsha from "../../assets/roster/sriharsha.png";
-import kevser from "../../assets/roster/kevser.png";
-import shahad from "../../assets/roster/shahad.png";
-import francesca from "../../assets/roster/francesca.png";
-import zeyad from "../../assets/roster/zeyad.png";
-import ansal from "../../assets/roster/ansal.png";
-import nauryzbay from "../../assets/roster/nauryzbay.png";
-import nadia from "../../assets/roster/nadia.png";
-import hassan from "../../assets/roster/hassan.png";
-import shahada from "../../assets/roster/shahada.png";
-import raheema from "../../assets/roster/raheema.png";
-import mafer from "../../assets/roster/mafer.png";
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/roster/.
+const ROSTER_CDN = "https://static.igem.wiki/teams/6341/wiki/roster";
+const jeremy    = `${ROSTER_CDN}/jeremy.avif`;
+const taiba     = `${ROSTER_CDN}/taiba.avif`;
+const ammar     = `${ROSTER_CDN}/ammar.avif`;
+const maria     = `${ROSTER_CDN}/maria.avif`;
+const mariana   = `${ROSTER_CDN}/mariana.avif`;
+const kexin     = `${ROSTER_CDN}/kexin.avif`;
+const genesis   = `${ROSTER_CDN}/genesis.avif`;
+const sriharsha = `${ROSTER_CDN}/sriharsha.avif`;
+const kevser    = `${ROSTER_CDN}/kevser.avif`;
+const shahad    = `${ROSTER_CDN}/shahad.avif`;
+const francesca = `${ROSTER_CDN}/francesca.avif`;
+const zeyad     = `${ROSTER_CDN}/zeyad.avif`;
+const ansal     = `${ROSTER_CDN}/ansal.avif`;
+const nauryzbay = `${ROSTER_CDN}/nauryzbay.avif`;
+const nadia     = `${ROSTER_CDN}/nadia.avif`;
+const hassan    = `${ROSTER_CDN}/hassan.avif`;
+const shahada   = `${ROSTER_CDN}/shahada.avif`;
+const raheema   = `${ROSTER_CDN}/raheema.avif`;
+const mafer     = `${ROSTER_CDN}/mafer.avif`;
 
 function memberContent(t, key) {
   return (

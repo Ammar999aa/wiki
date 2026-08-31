@@ -1,13 +1,16 @@
-import nti    from "../../assets/sponsors/nti.png";
-import bese   from "../../assets/sponsors/bese.png";
-import lem    from "../../assets/sponsors/lem.png";
-import biomed from "../../assets/sponsors/biomed.png";
-import bk     from "../../assets/sponsors/bk.png";
-import br     from "../../assets/sponsors/br.png";
-import gs     from "../../assets/sponsors/gs.png";
-import sg     from "../../assets/sponsors/sg.png";
-import idt    from "../../assets/sponsors/idt.png";
-import kaustigem from "../../assets/sponsors/kaustigem.png";
+// Sponsor logos are hosted on iGEM's asset server rather than bundled locally
+// — see https://static.igem.wiki/teams/6341/wiki/sponsors/.
+const SPONSOR_CDN = "https://static.igem.wiki/teams/6341/wiki/sponsors";
+const nti       = `${SPONSOR_CDN}/nti.avif`;
+const bese      = `${SPONSOR_CDN}/bese.avif`;
+const lem       = `${SPONSOR_CDN}/lem.avif`;
+const biomed    = `${SPONSOR_CDN}/biomed.avif`;
+const bk        = `${SPONSOR_CDN}/bk.avif`;
+const br        = `${SPONSOR_CDN}/br.avif`;
+const gs        = `${SPONSOR_CDN}/gs.avif`;
+const sg        = `${SPONSOR_CDN}/sg.avif`;
+const idt       = `${SPONSOR_CDN}/idt.avif`;
+const kaustigem = `${SPONSOR_CDN}/kaustigem.avif`;
 
 // Single source of truth for sponsor logos/metadata, shared by the floating
 // "Supported by" strip (./Sponsors.jsx, embedded on Home and the /sponsors

@@ -3,8 +3,11 @@ import sections from "../../content/en/human-practices.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import milkyWay from "../../assets/milky-way-center.webp";
 import styles from "./HumanPractices.module.scss";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 // `photo` (milky-way-center.webp — Spitzer infrared mosaic of the galactic
 // core, no keying needed since it's already a full-frame starfield) is a

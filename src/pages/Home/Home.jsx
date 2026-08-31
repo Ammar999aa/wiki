@@ -6,9 +6,12 @@ import Sponsors from "../../components/Sponsors/Sponsors";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import earth from "../../assets/earth.webp";
-import rocketLaunch from "../../assets/rocket-launch.webp";
 import shihabLogo from "../../assets/shihab-logo.svg?url";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth.webp";
+const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-launch.webp";
 
 // Section-by-section narrative below follows src/content/landing_page_content.md
 // (slides 1–9). Two pre-existing sections that weren't part of that brief —

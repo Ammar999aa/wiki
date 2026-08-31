@@ -6,8 +6,11 @@ import ProteinDetail from "./ProteinDetail";
 import { PROTEINS } from "./proteins";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import milkyWay from "../../assets/milky-way-center.webp";
 import styles from "./ProteinLibrary.module.scss";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 const INFO_BAR = [
   { title: "Produced in Engineered Microbes", detail: "S. cerevisiae, P. pastoris, B. subtilis" },

@@ -3,8 +3,11 @@ import sections from "../../content/en/hardware.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
-import milkyWay from "../../assets/milky-way-center.webp";
 import styles from "./Hardware.module.scss";
+
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/images/.
+const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 // Converted from src/content/iGEM Hardware Wiki.docx. Internal author notes
 // ("consult wet lab to write", "insert image of filtration unit", etc.) were
