@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import LiquidGlassFilter from "./components/LiquidGlassFilter/LiquidGlassFilter";
 import Menu from "./components/Menu/Menu";
+import SiteMark from "./components/SiteMark/SiteMark";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./components/NotFound/NotFound";
 import { getPathMapping } from "./utils";
@@ -28,6 +29,7 @@ export default function App() {
           ))}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <SiteMark />
         <Menu />
         <Footer />
       </div>

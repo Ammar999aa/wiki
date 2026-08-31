@@ -4,7 +4,11 @@
 }
 
 .title {
-    margin-top: 24px;
+    /* Extra top margin (vs. the 24px other pages use) clears the fixed
+       SiteMark corner logo (App.jsx) that would otherwise sit right on top
+       of this panel — Roster is the one page with its own title in that
+       exact corner. */
+    margin-top: 64px;
     margin-inline-start: 12px;
     display: inline-block;
 

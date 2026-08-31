@@ -1,0 +1,31 @@
+.mark {
+    position: fixed;
+    top: 24px;
+    inset-inline-start: 32px;
+    z-index: 10;
+    display: inline-flex;
+    opacity: 0.7;
+    transition: opacity 150ms ease;
+}
+
+.mark:hover,
+.mark:focus-visible {
+    opacity: 1;
+}
+
+.logo {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mark {
+        top: 16px;
+        inset-inline-start: 16px;
+    }
+
+    .logo {
+        height: 22px;
+    }
+}
