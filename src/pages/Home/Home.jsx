@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Sponsors from "../../components/Sponsors/Sponsors";
+import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
@@ -893,6 +894,7 @@ export default function Home() {
 
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+      <SponsorBanner />
       <Starfield />
       <EarthLayer groupRef={heroOrbitRef} />
       <div ref={heroOrbitRef}>

@@ -1,0 +1,185 @@
+/* Absolute (not fixed, not in-flow) — overlays the page's top edge on load
+   instead of reserving scroll distance for itself, but stays anchored to
+   PageWrapper's normal-flow wrapper so it scrolls away with the page rather
+   than staying pinned like Menu's fixed pill. Full page width, flush to the
+   top — no inset, no rounded corners; see .fade for why. */
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* The "container" — deliberately not a LiquidGlass card. A flat tint +
+   blur whose alpha is masked out top-to-bottom, so the whole effect
+   (tint *and* blur) dissolves smoothly into the page instead of ending at a
+   hard card edge the way the nav's glass pill does. Noticeably fainter than
+   the nav (Menu's LiquidGlass chrome runs opacity 0.25) — this peaks under
+   half that and fades to nothing. */
+.fade {
+  position: absolute;
+  inset: 0;
+  height: 180px;
+  background: rgba(10, 10, 39, 0.32);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 40px 0;
+  pointer-events: auto;
+}
+
+.label {
+  flex: none;
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+  white-space: nowrap;
+}
+
+.divider {
+  flex: none;
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Fades the marquee out at both edges instead of hard-clipping mid-logo. */
+.viewport {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 56px,
+    black calc(100% - 56px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 56px,
+    black calc(100% - 56px),
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+  animation: scroll 38s linear infinite;
+  will-change: transform;
+}
+
+/* Light backing chip per logo — sponsor marks vary from light to dark, and
+   this is the same fix ../Sponsors/Sponsors.jsx uses (a white-tinted
+   LiquidGlass pill) for the same problem, done here as a plain tint since
+   these tiles are small, numerous, and constantly animating. Kept faint so
+   it reads as a hint of a chip rather than its own card. */
+.tile {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 200ms ease;
+}
+
+.tile:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.logo {
+  height: 26px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.logoSmall {
+  height: 15px;
+  max-width: 72px;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Exactly one copy's width: `gap` is uniform across every tile
+       (including the seam between the two halves), so -50% of the doubled
+       track lands precisely back at the start of the second copy. */
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .dup {
+    display: none;
+  }
+
+  .viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .fade {
+    height: 130px;
+  }
+
+  .inner {
+    padding: 16px 20px 0;
+    gap: 16px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .tile {
+    height: 40px;
+    padding: 0 14px;
+  }
+
+  .logo {
+    height: 20px;
+  }
+
+  .logoSmall {
+    height: 12px;
+  }
+}
