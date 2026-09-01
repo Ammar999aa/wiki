@@ -15,6 +15,14 @@ const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth.webp";
 
 const ANIM = ["floatA", "floatB", "floatC", "floatD"];
 
+// Visual order for this floating strip only — independent of SPONSORS' own
+// array order, which drives the /sponsors page TOC/grid and the carousel
+// loop instead. BK and Baskin-Robbins (the two `smallInFooter` sponsors)
+// are grouped at the end here so the wrap lands them next to each other in
+// the bottom row; SnapGene moves up out of the last slot to make room.
+const FOOTER_ORDER = ["nti", "bese", "lem", "kaustigem", "sg", "biomed", "gs", "idt", "bk", "br"];
+const FOOTER_SPONSORS = FOOTER_ORDER.map((id) => SPONSORS.find((s) => s.id === id));
+
 export default function Sponsors() {
   return (
     <section className={styles.sponsors}>
@@ -29,7 +37,7 @@ export default function Sponsors() {
       </a>
       <p className={styles.label}>Supported by</p>
       <div className={styles.row}>
-        {SPONSORS.map(({ id, src, name, nudge, smallInFooter, visualScale }, i) => (
+        {FOOTER_SPONSORS.map(({ id, src, name, nudge, smallInFooter, visualScale }, i) => (
           <div
             key={id}
             className={`${styles.slot} ${styles[ANIM[i % ANIM.length]]}`}
