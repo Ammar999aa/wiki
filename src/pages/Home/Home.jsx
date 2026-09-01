@@ -248,7 +248,8 @@ function HeroSection() {
             <h1 className={styles.wordmarkArabic} ref={arabicRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</h1>
           </div>
           <p className={styles.heroSub}>
-            <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo; On-demand medicine, engineered for anywhere.
+            <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo;{" "}
+            <strong className={styles.heroSubHighlight}>On-demand medicine, engineered for anywhere.</strong>
           </p>
           <div className={styles.heroTelemetry}>
             <span>PLATFORM <b>S. cerevisiae · B. subtilis · P. pastoris</b></span>

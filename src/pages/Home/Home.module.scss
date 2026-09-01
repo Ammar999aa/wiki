@@ -263,6 +263,14 @@
   font-weight: 700;
 }
 
+/* The etymology clause stays whisper-quiet (.heroSub's own thin/muted
+   styling); this is the actual tagline, so it gets full brightness + weight
+   to read as the payoff rather than more explanatory text. */
+.heroSubHighlight {
+  color: #fff;
+  font-weight: 600;
+}
+
 .heroTelemetry {
   display: flex;
   gap: 26px;
