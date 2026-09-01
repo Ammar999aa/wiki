@@ -249,7 +249,7 @@ function HeroSection() {
           </div>
           <p className={styles.heroSub}>
             <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo;{" "}
-            <strong className={styles.heroSubHighlight}>On-demand medicine, engineered for anywhere.</strong>
+            <div><strong className={styles.heroSubHighlight}>On-demand medicine, engineered for anywhere.</strong></div>
           </p>
           <div className={styles.heroTelemetry}>
             <span>PLATFORM <b>S. cerevisiae · B. subtilis · P. pastoris</b></span>
