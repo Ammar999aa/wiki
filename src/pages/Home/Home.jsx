@@ -5,6 +5,7 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Sponsors from "../../components/Sponsors/Sponsors";
 import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
+import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 import shihabLogo from "../../assets/shihab-logo.svg?url";
@@ -12,6 +13,14 @@ import shihabLogo from "../../assets/shihab-logo.svg?url";
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.
 const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth.webp";
+
+// Pulled from the shared sponsor data (not re-imported as a raw asset) so
+// there's still one source of truth for the logo file and its
+// `visualScale` padding correction — see sponsorsData.js. KAUST iGEM is
+// *us*, not a third-party sponsor, so in the Hero eyebrow line below it
+// literally replaces the word "iGEM" (rather than being just one of ten
+// logos scrolling past, which it also still is further down the page).
+const kaustIgem = SPONSORS.find((s) => s.id === "kaustigem");
 const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-launch.webp";
 
 // Section-by-section narrative below follows src/content/landing_page_content.md
@@ -223,7 +232,15 @@ function HeroSection() {
 
         {/* Copy */}
         <div className={styles.heroCopy} ref={copyRef}>
-          <span className={styles.heroEyebrow}>iGEM · Synthetic Biology in Space</span>
+          <div className={styles.heroEyebrow}>
+            <img
+              src={kaustIgem.src}
+              alt="KAUST iGEM"
+              className={styles.eyebrowLogo}
+              style={{ transform: `scale(${kaustIgem.visualScale})` }}
+            />
+            <span>&middot; Synthetic Biology in Space</span>
+          </div>
           <div className={styles.wordmark}>
             <h1 className={styles.wordmarkLatin} ref={latinRef}>
               <img src={shihabLogo} alt="SHIHAB" className={styles.wordmarkLogo} />

@@ -189,7 +189,13 @@
   max-width: 620px;
 }
 
+/* Eyebrow line — the literal word "iGEM" is replaced by the KAUST iGEM
+   logo itself (that's the team, not a third-party sponsor — it still also
+   appears in the sponsor carousel/footer rotation further down the page). */
 .heroEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 0.8rem;
   letter-spacing: 0.42em;
   text-transform: uppercase;
@@ -197,6 +203,17 @@
   color: rgba(255, 255, 255, 0.6);
   font-family: ui-monospace, Menlo, monospace;
   margin: 0;
+}
+
+.eyebrowLogo {
+  height: 34px;
+  width: auto;
+  display: block;
+  margin-top: -9px;
+  /* Matches .heroEyebrow's own rgba(255,255,255,0.6) — the mark is already
+     plain white, so dimming it to the same alpha reads as one continuous
+     color with the text next to it instead of standing out brighter. */
+  opacity: 0.6;
 }
 
 .wordmark {
