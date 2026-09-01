@@ -118,11 +118,6 @@
   pointer-events: none;
 }
 
-.logoSmall {
-  height: 15px;
-  max-width: 72px;
-}
-
 @keyframes scroll {
   from {
     transform: translateX(0);
@@ -177,9 +172,5 @@
 
   .logo {
     height: 20px;
-  }
-
-  .logoSmall {
-    height: 12px;
   }
 }

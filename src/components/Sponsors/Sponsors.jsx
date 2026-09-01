@@ -29,7 +29,7 @@ export default function Sponsors() {
       </a>
       <p className={styles.label}>Supported by</p>
       <div className={styles.row}>
-        {SPONSORS.map(({ id, src, name, nudge, small }, i) => (
+        {SPONSORS.map(({ id, src, name, nudge, smallInFooter, visualScale }, i) => (
           <div
             key={id}
             className={`${styles.slot} ${styles[ANIM[i % ANIM.length]]}`}
@@ -39,11 +39,12 @@ export default function Sponsors() {
             }}
           >
             <LiquidGlass radius={32} opacity={0.05} color={[255, 255, 255]}>
-              <div className={`${styles.pill} ${small ? styles.pillSmall : ""}`}>
+              <div className={`${styles.pill} ${smallInFooter ? styles.pillSmall : ""}`}>
                 <img
                   src={src}
                   alt={name}
-                  className={`${styles.logo} ${small ? styles.logoSmall : ""}`}
+                  className={`${styles.logo} ${smallInFooter ? styles.logoSmall : ""}`}
+                  style={visualScale ? { transform: `scale(${visualScale})` } : undefined}
                 />
               </div>
             </LiquidGlass>

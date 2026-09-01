@@ -19,6 +19,9 @@ import styles from "./SponsorBanner.module.scss";
 // (see .track/@keyframes scroll in the stylesheet) — since the two halves
 // are identical, the seam where it resets is invisible. The second half is
 // aria-hidden so screen readers only hear each sponsor once.
+//
+// Every logo renders at the same size here regardless of `smallInFooter` in
+// sponsorsData.js — that flag is scoped to ../Sponsors/Sponsors.jsx only.
 export default function SponsorBanner() {
   const track = [...SPONSORS, ...SPONSORS];
 
@@ -30,7 +33,7 @@ export default function SponsorBanner() {
         <div className={styles.divider} aria-hidden="true" />
         <div className={styles.viewport}>
           <div className={styles.track}>
-            {track.map(({ id, src, name, small }, i) => {
+            {track.map(({ id, src, name, visualScale }, i) => {
               const isDup = i >= SPONSORS.length;
               return (
                 <div
@@ -41,7 +44,8 @@ export default function SponsorBanner() {
                   <img
                     src={src}
                     alt={isDup ? "" : name}
-                    className={`${styles.logo} ${small ? styles.logoSmall : ""}`}
+                    className={styles.logo}
+                    style={visualScale ? { transform: `scale(${visualScale})` } : undefined}
                   />
                 </div>
               );

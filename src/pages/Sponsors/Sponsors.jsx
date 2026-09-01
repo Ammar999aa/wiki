@@ -50,7 +50,12 @@ export default function Sponsors() {
             <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07}>
               <div className={styles.cardInner}>
                 <div className={styles.logoBox}>
-                  <img src={s.src} alt={s.name} className={`${styles.logo} ${s.small ? styles.logoSmall : ""}`} />
+                  <img
+                    src={s.src}
+                    alt={s.name}
+                    className={styles.logo}
+                    style={s.visualScale ? { transform: `scale(${s.visualScale})` } : undefined}
+                  />
                 </div>
                 <h2 className={styles.cardName}>{s.name}</h2>
                 <p className={styles.cardDesc}>{s.description}</p>
