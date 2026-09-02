@@ -15,6 +15,15 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
 
     & > div {
         scroll-margin-top: 20px;
+        padding-bottom: 48px;
+        margin-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+        &:last-child {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
     }
     transition: transform 250ms ease;
     color: white;
@@ -24,6 +33,10 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         font-weight: 700;
         margin-top: 0;
         margin-bottom: 32px;
+    }
+
+    h2 {
+        margin: 0 0 20px;
     }
 
     img {
@@ -294,5 +307,10 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         width: calc(100vw - 50px);
         padding: 20px;
         overflow-x: hidden;
+
+        & > div {
+            padding-bottom: 32px;
+            margin-bottom: 32px;
+        }
     }
 }
