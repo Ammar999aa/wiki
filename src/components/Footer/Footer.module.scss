@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: 11; /* above SectionedArticle's panel (z-index 10, 100dvh tall) so it isn't covered */
   margin: 0;
   padding: 5px 16px;
   text-align: center;

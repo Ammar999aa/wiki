@@ -1,9 +1,15 @@
+$panel-width: 320px; // actual slim panel width, drives panel visuals + collapse shift
+$panel-width-mobile: 280px;
+$article-inset: 430px; // article's reserved width/position stays as it was pre-slimming
+
 .article {
     box-sizing: border-box;
-    width: calc(100dvw - 430px); /* 430px is the width of the panel*/
+    width: calc(100dvw - #{$article-inset});
     position: absolute;
     top: 0;
+    inset-inline-start: $panel-width;
     inset-inline-end: 0;
+    margin-inline: auto;
     padding: 50px;
     padding-bottom: 140px;
 
@@ -185,20 +191,22 @@
 
 .panelContents {
     height: 100dvh;
-    width: 360px;
-    padding: 35px;
+    width: calc(#{$panel-width} - 48px);
+    padding: 24px;
+    padding-top: 64px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
     color: white;
     font-weight: 600;
 }
 
 .panelHeader {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .panelItem {
-    font-size: 24px;
+    font-size: 19px;
+    margin-block: 0.6em;
     cursor: pointer;
     max-width: calc(100% - 28px);
 }
@@ -237,28 +245,31 @@
 }
 
 .articleShifted {
-    transform: translateX(calc(0.85 * 430px * 0.5 * -1));
+    transform: translateX(calc(0.85 * #{$panel-width} * 0.5 * -1));
 
     :global([dir="rtl"]) & {
-        transform: translateX(calc(0.85 * 430px * 0.5));
+        transform: translateX(calc(0.85 * #{$panel-width} * 0.5));
     }
 }
 
 @media (max-width: 1024px) {
     .article {
-        width: calc(100vw - 0.15 * 430px);
+        width: calc(100vw - 0.15 * #{$article-inset});
+        /* panel overlays instead of pushing content at this size, so don't center against it */
+        inset-inline-start: auto;
+        margin-inline: 0;
         padding: 20px;
     }
 
     .panelContents {
-        width: min(80dvw, 360px);
+        width: min(80dvw, #{$panel-width-mobile});
     }
 
     .collapsed {
-        transform: translateX(calc(-100% + 50px));
+        transform: translateX(calc(-100% + 36px));
 
         :global([dir="rtl"]) & {
-            transform: translateX(calc(100% - 50px));
+            transform: translateX(calc(100% - 36px));
         }
     }
 

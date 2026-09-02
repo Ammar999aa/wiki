@@ -12,7 +12,7 @@ export default function Panel({ items, selected, collapsed, onToggle, onSelect, 
             aria-expanded={!collapsed}
             onClick={onToggle}
           >
-            <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="46" height="46" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M42.75 46.5V19L29 32.75L42.75 46.5Z" fill="#E3E3E3" />
             </svg>
           </button>
