@@ -24,7 +24,6 @@ const ansal     = `${ROSTER_CDN}/ansal.avif`;
 const nauryzbay = `${ROSTER_CDN}/nauryzbay.avif`;
 const nadia     = `${ROSTER_CDN}/nadia.avif`;
 const hassan    = `${ROSTER_CDN}/hassan.avif`;
-const shahada   = `${ROSTER_CDN}/shahada.avif`;
 const raheema   = `${ROSTER_CDN}/raheema.avif`;
 const mafer     = `${ROSTER_CDN}/mafer.avif`;
 
@@ -62,7 +61,6 @@ export default function Attributions() {
     { title: "Nauryzbay Menlen",           photo: nauryzbay, role: t("attributions.nauryzbay.role"),    department: t("attributions.nauryzbay.department"),    content: memberContent(t, "nauryzbay") },
     { title: "Nadia Houti",                photo: nadia,     role: t("attributions.nadia.role"),        department: t("attributions.nadia.department"),        content: memberContent(t, "nadia") },
     { title: "Hassan Abuali",              photo: hassan,    role: t("attributions.hassan.role"),       department: t("attributions.hassan.department"),       content: memberContent(t, "hassan") },
-    { title: "Shahad Abdulomhssen",        photo: shahada,   role: t("attributions.shahada.role"),      department: t("attributions.shahada.department"),      content: memberContent(t, "shahada") },
     { title: "Raheema Javid",              photo: raheema,   role: t("attributions.raheema.role"),      department: t("attributions.raheema.department"),      content: memberContent(t, "raheema") },
     { title: "Maria Fernanda Gutierrez",   photo: mafer,     role: t("attributions.mariaFernanda.role"), department: t("attributions.mariaFernanda.department"), content: memberContent(t, "mariaFernanda") },
     { heading: t("attributions.headings.principalInvestigators") },

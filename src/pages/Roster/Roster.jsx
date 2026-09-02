@@ -1,41 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Fragment, useEffect, useState } from "react";
 import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Roster.module.scss";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import RosterDetail from "./RosterDetail";
+import Honeycomb from "./Honeycomb";
+import Flag from "./Flag";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.
 const astronautPhoto = "https://static.igem.wiki/teams/6341/wiki/images/apollo17-eva.webp";
-
-// Importing the specific flags used instead of 'flag-icons/css/flag-icons.min.css'
-// — that stylesheet references every country's SVG (~140 files, ~4MB), which
-// blew past GitLab's CI artifact size limit for a 12MB build. Only 9 are
-// ever shown here. Source: flag-icons (MIT) — github.com/lipis/flag-icons
-import flagCn from "../../assets/flags/cn.svg";
-import flagCo from "../../assets/flags/co.svg";
-import flagIn from "../../assets/flags/in.svg";
-import flagKz from "../../assets/flags/kz.svg";
-import flagPe from "../../assets/flags/pe.svg";
-import flagSa from "../../assets/flags/sa.svg";
-import flagSg from "../../assets/flags/sg.svg";
-import flagTr from "../../assets/flags/tr.svg";
-import flagUs from "../../assets/flags/us.svg";
-
-const FLAGS = { cn: flagCn, co: flagCo, in: flagIn, kz: flagKz, pe: flagPe, sa: flagSa, sg: flagSg, tr: flagTr, us: flagUs };
-
-function Flag({ code, width, height, marginInlineStart }) {
-  if (!code || !FLAGS[code]) return null;
-  return (
-    <img
-      src={FLAGS[code]}
-      alt=""
-      style={{ width, height, borderRadius: 3, verticalAlign: "middle", marginInlineStart, display: "inline-block", objectFit: "cover" }}
-    />
-  );
-}
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/roster/.
@@ -56,40 +31,181 @@ const ansal     = `${ROSTER_CDN}/ansal.avif`;
 const zeyad     = `${ROSTER_CDN}/zeyad.avif`;
 const nadia     = `${ROSTER_CDN}/nadia.avif`;
 const hassan    = `${ROSTER_CDN}/hassan.avif`;
-const shahada   = `${ROSTER_CDN}/shahada.avif`;
 const raheema   = `${ROSTER_CDN}/raheema.avif`;
 const mafer     = `${ROSTER_CDN}/mafer.avif`;
 
+// Order within each department controls display order in both the
+// honeycomb and the fallback grid (departmentGroups below filters this
+// array, preserving order) — Ansal' leads Wet Lab and Shahad Hersi leads
+// Public Engagement deliberately, not just alphabetically/by join date.
 const members = [
   { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy, countryCode: "pe" },
   { name: "Taiba Zeya", roleKey: "dryLab", memberKey: "taiba", photo: taiba, countryCode: "in" },
   { name: "Ammar Almarzooq", roleKey: "wiki", memberKey: "ammar", photo: ammar, countryCode: "sa" },
+  { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz" },
   { name: "Maria Camila Muñoz Vega", roleKey: "wetLab", memberKey: "mariaCamila", photo: maria, countryCode: "co"},
   { name: "Mariana Villegas", roleKey: "wetLab", memberKey: "mariana", photo: mariana, countryCode: "co" },
   { name: "Kexin Niu", roleKey: "dryLab", memberKey: "kexin", photo: kexin, countryCode: "cn" },
+  { name: "Shahad Hersi", roleKey: "publicEngagement", memberKey: "shahad", photo: shahad, countryCode: "sa" },
   { name: "Génesis Flores Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
   { name: "Sriharsha Chowdarapu", roleKey: "wetLab", memberKey: "sriharsha", photo: sriharsha, countryCode: "in" },
   { name: "Kevser Ciek", roleKey: "dryLab", memberKey: "kevser", photo: kevser, countryCode: "tr" },
-  { name: "Shahad Hersi", roleKey: "publicEngagement", memberKey: "shahad", photo: shahad, countryCode: "sa" },
-  { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca, countryCode: "pe" },
+  { name: "Francesca Rivas Cuestas", roleKey: "humanPractices", memberKey: "francesca", photo: francesca, countryCode: "pe" },
   { name: "Zeyad Muazzen", roleKey: "wetLab", memberKey: "zeyad", photo: zeyad, countryCode: "sa" },
-  { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz" },
   { name: "Nauryzbay Menlen", roleKey: "dryLab", memberKey: "nauryzbay", photo: nauryzbay, countryCode: "kz" },
   { name: "Nadia Houti", roleKey: "hardware", memberKey: "nadia", photo: nadia, countryCode: "sg" },
   { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan, countryCode: "sa" },
-  { name: "Shahad Abdulomhssen", roleKey: "humanPractices", memberKey: "shahada", photo: shahada, countryCode: "sa" },
   { name: "Raheema Javid", roleKey: "publicEngagement", memberKey: "raheema", photo: raheema, countryCode: "us" },
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
+
+// The two PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
+// — same names/role, no photo asset for either there either. Their bios are
+// still real placeholder text ("Bio coming soon.", src/i18n/en.json), not
+// invented copy — same convention a couple of team members above use too.
+const principalInvestigators = [
+  { name: "Raik Grünberg", roleKey: "pi", memberKey: "raik", photo: null, countryCode: null },
+  { name: "Wayne Yang", roleKey: "pi", memberKey: "wayne", photo: null, countryCode: null },
+];
+
+// A handful of unfilled slots woven into the PI cluster — room for the
+// roster of advisors to grow into (5 total PI slots: 2 filled, 3 open).
+// Purely decorative: not clickable, no name tag.
+const PI_EMPTY_SLOT_COUNT = 3;
+
+// Display order for the department clusters — deliberately not the
+// roster.roles order in src/i18n/en.json (Wet Lab and Dry Lab are swapped,
+// and Wiki moved last). Labels are hardcoded here, deliberately shorter
+// than that file's full "Human Integrated Practices" for humanPractices:
+// these are cluster captions, not the more spacious per-person role
+// subtitle RosterDetail.jsx renders via t() from the fuller i18n string.
+const DEPARTMENT_LABELS = {
+  wetLab: "Wet Lab",
+  dryLab: "Dry Lab",
+  hardware: "Hardware",
+  publicEngagement: "Public Engagement",
+  humanPractices: "Human Practices",
+  wiki: "Wiki",
+};
+const DEPARTMENT_ORDER = Object.keys(DEPARTMENT_LABELS);
+
+// `members` grouped by department — computed once since `members` is
+// static. Each group becomes its own labeled line in the honeycomb
+// (Honeycomb.jsx's `departments` prop) and its own row in the
+// touch/coarse-pointer fallback grid.
+const departmentGroups = DEPARTMENT_ORDER.map((key) => ({
+  key,
+  label: DEPARTMENT_LABELS[key],
+  members: members.filter((member) => member.roleKey === key),
+}));
+
+const piHoneycombItems = [
+  ...principalInvestigators.map((pi) => ({ kind: "pi", group: "pi", id: pi.name, ...pi })),
+  ...Array.from({ length: PI_EMPTY_SLOT_COUNT }, (_, i) => ({ kind: "empty", group: "pi", id: `pi-empty-${i}` })),
+];
+
+const allPeople = [...members, ...principalInvestigators];
+
+// The honeycomb's cursor-driven fisheye (Honeycomb.jsx) is a mouse-hover
+// effect with nothing meaningful to do on a touchscreen — `hover: hover`
+// and `pointer: fine` together are the standard way to ask "is there
+// actually a mouse here," which is exactly the condition the effect needs.
+// Touch/coarse-pointer devices fall back to the plain wrapping bubble grid
+// below instead.
+function usePointerFine() {
+  const query = "(hover: hover) and (pointer: fine)";
+  const [pointerFine, setPointerFine] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = () => setPointerFine(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+  return pointerFine;
+}
+
+// One bubble button in the touch/coarse-pointer fallback grid — shared
+// between the department and PI rows below.
+function renderPerson(person, selected, setSelectedName) {
+  const isSelected = person === selected;
+  return (
+    <button
+      key={person.name}
+      type="button"
+      className={styles.person}
+      onClick={() => setSelectedName(person.name)}
+      aria-haspopup="dialog"
+      aria-expanded={isSelected}
+      aria-label={person.name}
+    >
+      <span className={`${styles.bubble} ${isSelected ? styles.selected : ""}`}>
+        <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+          {person.photo ? (
+            <img src={person.photo} className={styles.icon} alt="" />
+          ) : (
+            <div className={styles.iconPlaceholder} />
+          )}
+        </LiquidGlass>
+        {person.countryCode && (
+          <span className={styles.flagBadge}>
+            <Flag code={person.countryCode} width={22} height={16} />
+          </span>
+        )}
+      </span>
+      <span className={styles.personName}>{person.name.split(" ")[0]}</span>
+    </button>
+  );
+}
 
 // `photo` (apollo17-eva.webp — Apollo 17 CMP Ronald Evans on a trans-Earth-
 // coast EVA, black space void keyed to transparent so it blends into the
 // page's own --bg navy) is a one-off background for this page, same pattern
 // as Sponsors.jsx's gemini4-eva.webp: PageWrapper renders it `background-size:
 // cover` and pinned `fixed`, filling the viewport with no edges showing.
+//
+// On a mouse-driven desktop (see usePointerFine above) the team is the
+// cursor-reactive fisheye honeycomb (Honeycomb.jsx): a fixed field of
+// circles that never pans or scrolls; hovering near a bubble grows it and
+// gently displaces its neighbors, like a lens pressed into the honeycomb,
+// and everything springs back once the cursor moves on. Each department is
+// one horizontal line of bubbles, wrapping into a compact 2-3-row block
+// (see Honeycomb.jsx), and the PIs get one further line below all of them,
+// set apart by a noticeably bigger gap (plus a few empty slots, room to
+// grow) — same mesh, same bubbles throughout, every group just set apart
+// by distance and its own quiet caption rather than a hard divider.
+// Touch/coarse-pointer devices get the plain wrapping bubble grid instead,
+// since the fisheye is a hover effect with nothing to do on a screen with
+// no cursor — the same department/PI split, just as plain labeled rows.
 export default function Roster() {
   const { t } = useLanguage();
-  const [selected, setSelected] = useState(members[0]);
+  const pointerFine = usePointerFine();
+  const [selectedName, setSelectedName] = useState(null);
+  const selected = allPeople.find((person) => person.name === selectedName) || null;
+
+  const departments = departmentGroups.map(({ key, label, members: deptMembers }) => ({
+    key,
+    label,
+    items: deptMembers.map((member) => ({ kind: "member", group: "team", id: member.name, ...member })),
+  }));
+
+  const close = () => setSelectedName(null);
+
+  // Escape closes from anywhere on the page, and the page shouldn't scroll
+  // while a detail panel covers it.
+  useEffect(() => {
+    if (!selected) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selected]);
 
   return (
     <PageWrapper
@@ -102,84 +218,32 @@ export default function Roster() {
         gradient,
       }}
     >
-      <div className={styles.container}>
-        <div className={styles.title}>
+      <div className={styles.page}>
+        <div className={styles.titleWrap}>
           <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
-            <h1>{t("roster.title")}</h1>
+            <h1 className={styles.title}>{t("roster.title")}</h1>
           </LiquidGlass>
         </div>
 
-        <div className={styles.card}>
-          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
-            <div className={styles.content}>
-              {selected.photo ? (
-                <img src={selected.photo} alt={selected.name} />
-              ) : (
-                <div className={styles.placeholder} />
-              )}
-              <div className={styles.bio}>
-                <h2>
-                  {selected.name}
-                  <Flag code={selected.countryCode} width={33} height={24} marginInlineStart={24} />
-                </h2>
-                <h3>{t(`roster.roles.${selected.roleKey}`)}</h3>
-                <p>{t(`roster.members.${selected.memberKey}.bio`)}</p>
-                <Link
-                  to={`/attributions?member=${encodeURIComponent(selected.name)}`}
-                  className={styles.seeMore}
-                >
-                  {t("roster.seeMore")}
-                </Link>
-              </div>
+        {pointerFine ? (
+          <Honeycomb departments={departments} piItems={piHoneycombItems} onSelect={(person) => setSelectedName(person.name)} />
+        ) : (
+          <>
+            {departments.map((dept, i) => (
+              <Fragment key={dept.key}>
+                <p className={`${styles.rosterSectionLabel} ${i === 0 ? styles.rosterSectionLabelFirst : ""}`}>{dept.label}</p>
+                <div className={styles.roster}>{dept.items.map((item) => renderPerson(item, selected, setSelectedName))}</div>
+              </Fragment>
+            ))}
+            <p className={styles.rosterSectionLabel}>Principal Investigators</p>
+            <div className={styles.roster}>
+              {principalInvestigators.map((pi) => renderPerson(pi, selected, setSelectedName))}
             </div>
-          </LiquidGlass>
-        </div>
-
-        <div className={styles.roster}>
-          {members.map((member) => (
-            <div
-              key={member.name}
-              className={`${styles.person} ${member === selected ? styles.selected : ""}`}
-              onClick={() => setSelected(member)}
-            >
-              <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
-                {member.photo ? (
-                  <img src={member.photo} className={styles.icon} alt={member.name} />
-                ) : (
-                  <div className={styles.iconPlaceholder} />
-                )}
-              </LiquidGlass>
-            </div>
-          ))}
-        </div>
-
-        {/* Responsive list view */}
-        <div className={styles.listContainer}>
-          {members.map((member) => (
-            <div key={member.name} className={styles.listItem}>
-              {member.photo ? (
-                <img src={member.photo} className={styles.listPhoto} alt={member.name} />
-              ) : (
-                <div className={styles.listPhotoPlaceholder} />
-              )}
-              <div className={styles.listInfo}>
-                <h2 className={styles.listName}>
-                  {member.name}
-                  <Flag code={member.countryCode} width={22} height={16} marginInlineStart={8} />
-                </h2>
-                <p className={styles.listRole}>{t(`roster.roles.${member.roleKey}`)}</p>
-                <p className={styles.listBio}>{t(`roster.members.${member.memberKey}.bio`)}</p>
-                <Link
-                  to={`/attributions?member=${encodeURIComponent(member.name)}`}
-                  className={styles.seeMore}
-                >
-                  {t("roster.seeMore")}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+          </>
+        )}
       </div>
+
+      {selected && <RosterDetail member={selected} onClose={close} t={t} />}
 
       <a
         href="https://www.nasa.gov/image-detail/apollo-17-spacewalk-december-1972/"

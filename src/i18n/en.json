@@ -24,7 +24,8 @@
       "wiki": "Wiki",
       "hardware": "Hardware",
       "publicEngagement": "Public Engagement",
-      "humanPractices": "Human Integrated Practices"
+      "humanPractices": "Human Integrated Practices",
+      "pi": "Principal Investigator"
     },
     "members": {
       "jeremy": { "bio": "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Skills include Python, Nextflow, and R. Participated and won previously the iGEM Design League." },
@@ -42,10 +43,11 @@
       "nauryzbay": { "bio": "Background in economics with experience in data science analytics and predictive modelling." },
       "nadia": { "bio": "Background in mechanical engineering with wet lab experience in cell culture and hydrogel synthesis, and experience in prototyping and design." },
       "hassan": { "bio": "Background in Mechanical Engineering; hands-on experience in CAD, fabrication, hydraulics, flow simulations, mechatronics, and 3D printing." },
-      "shahada": { "bio": "Background in molecular and cell biology with experience in neuroscience and molecular genetics." },
       "raheema": { "bio": "A lifelong student turned biologist! With a background in elementary and early childhood education, psychology and neuroscience, deeply passionate about science communication and bridging the gap between research in the lab and real-world practice that benefits the community." },
       "genesis": { "bio": "Background in Bioengineering." },
-      "mariaFernanda": { "bio": "Background in bioengineering with experience in protein expression in bacteria and purification, nanobodies in specific. Bioinformatics skills including Python, C++, RStudio, and Matlab." }
+      "mariaFernanda": { "bio": "Background in bioengineering with experience in protein expression in bacteria and purification, nanobodies in specific. Bioinformatics skills including Python, C++, RStudio, and Matlab." },
+      "raik": { "bio": "Bio coming soon." },
+      "wayne": { "bio": "Bio coming soon." }
     }
   },
   "attributions": {
@@ -150,12 +152,6 @@
     "hassan": {
       "role": "Student",
       "department": "Hardware",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
-    },
-    "shahada": {
-      "role": "Student",
-      "department": "Human Integrated Practices",
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."
     },
