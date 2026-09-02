@@ -4,6 +4,14 @@
 
 Rather than designing experiments, participating teams spend the weekend developing a policy whitepaper and a live pitch, addressing the questions that arise once a synthetic biology platform is ready to leave the lab: who regulates it, who trusts it, and who it is actually for.
 
+<div class="two-col-images">
+
+![Tawasol hackathon event flyer, English version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-en.avif)
+
+![Tawasol hackathon event flyer, Arabic version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-ar.avif)
+
+</div>
+
 ## Why We Built This
 
 Synthetic biology's hardest open questions are increasingly not technical, they are regulatory, ethical, and societal. Most student STEM programs train young scientists exclusively in bench science, leaving a real gap: students rarely get the chance to practice governing, regulating, or communicating the technology they are being trained to build.
@@ -69,11 +77,3 @@ Registration was promoted across six major Saudi universities (KFUPM, King Abdul
 ## Looking Forward
 
 Tawasol is intended to be the first cycle of an ongoing program, not a one-time event. The same structure, aligned sub-challenges, an external judging framework, and a shared whitepaper standard, was designed from the outset to be reusable across future cycles and adoptable by other institutions in the region.
-
-<div class="two-col-images">
-
-![Tawasol hackathon event flyer, English version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-en.avif)
-
-![Tawasol hackathon event flyer, Arabic version](https://static.igem.wiki/teams/6341/wiki/tawasol/tawasol-ar.avif)
-
-</div>
