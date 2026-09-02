@@ -48,6 +48,9 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
     p {
         line-height: 1.7;
         margin-bottom: 16px;
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
     }
 
     a {
