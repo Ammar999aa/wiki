@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 // Reused wholesale for panel chrome + article width/typography (headings,
 // tables, .notebook-img-row, etc.) so this page matches Wet Lab/Dry Lab's
@@ -15,20 +15,48 @@ function slugify(text, index) {
   return `${base || "section"}-${index}`;
 }
 
+const HTML_ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", "#39": "'" };
+// marked() escapes raw text to valid HTML (e.g. "&" -> "&amp;"); the panel
+// renders h.text as a plain React string, not HTML, so entities need
+// decoding back or they'd show up literally ("Interpretation &amp; ...").
+function decodeEntities(text) {
+  return text.replace(/&(#?\w+);/g, (match, code) => HTML_ENTITIES[code] ?? match);
+}
+
+// Bakes id="..." attributes into the h3/h4/h5 tags of a section's raw HTML
+// string, and returns the list of {id, text, level} alongside it. Ids must
+// live in the HTML string itself, not be assigned by mutating the rendered
+// DOM after the fact (el.id = ...) — dangerouslySetInnerHTML content can be
+// re-painted by React independently of that mutation, silently dropping it,
+// which is why panel clicks previously had no id to scroll to.
+function addHeadingIds(html) {
+  let i = 0;
+  const subheadings = [];
+  const withIds = html.replace(/<(h[345])>(.*?)<\/\1>/gs, (match, tag, inner) => {
+    const text = decodeEntities(inner.replace(/<[^>]+>/g, ""));
+    const id = slugify(text, i++);
+    subheadings.push({ id, text, level: Number(tag[1]) });
+    return `<${tag} id="${id}">${inner}</${tag}>`;
+  });
+  return { html: withIds, subheadings };
+}
+
 // One pill per experiment switches which section is shown (click-to-switch,
 // not scroll); the side panel lists that section's own subheadings (h3/h4/h5)
 // instead of the top-level experiment list, since the pills now cover that.
 export default function NotebookArticle({ sections, title }) {
   const [collapsed, setCollapsed] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [subheadings, setSubheadings] = useState([]);
   const [selectedSub, setSelectedSub] = useState(null);
   const [switcherOpen, setSwitcherOpen] = useState(false);
-  const contentRef = useRef(null);
   const articleRef = useRef(null);
   const switcherRef = useRef(null);
 
   const active = sections[selectedIndex];
+  const { html: contentHtml, subheadings } = useMemo(
+    () => (active.html ? addHeadingIds(active.html) : { html: "", subheadings: [] }),
+    [active]
+  );
 
   useEffect(() => {
     if (!switcherOpen) return;
@@ -42,17 +70,9 @@ export default function NotebookArticle({ sections, title }) {
   }, [switcherOpen]);
 
   useEffect(() => {
-    if (!contentRef.current) return;
-    const headingEls = [...contentRef.current.querySelectorAll("h3, h4, h5")];
-    const list = headingEls.map((el, i) => {
-      const id = slugify(el.textContent, i);
-      el.id = id;
-      return { id, text: el.textContent, level: Number(el.tagName[1]) };
-    });
-    setSubheadings(list);
-    setSelectedSub(list[0]?.id ?? null);
+    setSelectedSub(subheadings[0]?.id ?? null);
     articleRef.current?.scrollIntoView({ block: "start" });
-  }, [selectedIndex]);
+  }, [selectedIndex, subheadings]);
 
   useEffect(() => {
     if (!subheadings.length) return;
@@ -166,7 +186,7 @@ export default function NotebookArticle({ sections, title }) {
           </div>
 
           <h2>{active.title}</h2>
-          {active.html && <div ref={contentRef} dangerouslySetInnerHTML={{ __html: active.html }} />}
+          {contentHtml && <div dangerouslySetInnerHTML={{ __html: contentHtml }} />}
         </div>
       </div>
     </div>

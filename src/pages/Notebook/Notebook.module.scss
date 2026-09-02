@@ -121,12 +121,21 @@
 }
 
 .subItem {
+    // border-box + a generous max-width keep every wrapped line clear of
+    // the panel's own right edge — the collapsed panel is only translated
+    // off-screen (transform, not clipped), so anything that reaches that
+    // edge in its own layout stays visible as a sliver of poking text
+    // once collapsed. border-box also means level4/level5's extra
+    // indent eats into this same budget instead of pushing the box
+    // further right past it.
+    box-sizing: border-box;
     font-size: 17px;
     font-weight: 600;
     margin-block: 0.55em;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.85);
-    max-width: calc(100% - 12px);
+    max-width: calc(100% - 36px);
+    overflow-wrap: break-word;
 
     &:hover {
         color: white;
