@@ -52,7 +52,7 @@
 
 .earthAtmo {
   position: absolute;
-  inset: -1.5%;
+  inset: -3%;
   border-radius: 50%;
   pointer-events: none;
   box-shadow:
@@ -94,6 +94,48 @@
 }
 
 @keyframes earthspin { to { transform: rotate(360deg); } }
+
+/* Small twinkle over Saudi Arabia, on the Blue Marble image's east-hemisphere
+   view (interior desert, clear of the Red Sea / Gulf coastlines). */
+.sparkle {
+  position: absolute;
+  left: 10.5%;
+  top: 26.7%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: sparkleTwinkle 3.4s ease-in-out infinite;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    transform: translate(-50%, -50%);
+  }
+
+  &::before {
+    width: 18px;
+    height: 1.5px;
+  }
+
+  &::after {
+    width: 1.5px;
+    height: 18px;
+  }
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(0.6); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
 
 .earthCredit {
   position: fixed;

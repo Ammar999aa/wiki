@@ -12,7 +12,7 @@ import shihabLogo from "../../assets/shihab-logo.svg?url";
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.
-const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth.webp";
+const earth = "https://static.igem.wiki/teams/6341/wiki/images/bluemarble-earth-web.avif";
 
 // Pulled from the shared sponsor data (not re-imported as a raw asset) so
 // there's still one source of truth for the logo file and its
@@ -304,6 +304,8 @@ function EarthLayer({ groupRef }) {
         <div className={styles.earthAtmo} />
         <div className={styles.earthImg} style={{ backgroundImage: `url("${earth}")` }} />
         <div className={styles.earthSheen} />
+        {/* Positioned over Saudi Arabia on the underlying Blue Marble image */}
+        <div className={styles.sparkle} />
       </div>
       <a
         href="https://science.nasa.gov/earth/earth-observatory/twin-blue-marbles-8108/"
