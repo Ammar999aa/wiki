@@ -10,6 +10,8 @@ import Education from "./pages/Education/Education";
 import ProteinLibrary from "./pages/ProteinLibrary/ProteinLibrary";
 import HumanIntegratedPractices from "./pages/HumanIntegratedPractices/HumanIntegratedPractices";
 import Hardware from "./pages/Hardware/Hardware";
+import Notebook from "./pages/Notebook/Notebook";
+import Notebook2 from "./pages/Notebook2/Notebook2";
 import Stub from "./pages/Stub/Stub";
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -39,7 +41,7 @@ const Pages = [
     name: "Wet Lab",
     folder: [
       { name: "Design", title: "Design", path: "/design", component: ProteinLibrary },
-      { name: "Notebook", title: "Notebook", path: "/notebook", component: Stub },
+      { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Stub },
       { name: "Results", title: "Results", path: "/results", component: Stub },
       { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub },
@@ -103,6 +105,10 @@ const Pages = [
   },
   // Pre-existing sectioned pages, superseded in the nav by the categories
   // above but left routable at their old URLs — see file header comment.
+  // Notebook (one-scroll) is a comparison copy of /notebook using the
+  // original continuous-scroll SectionedArticle layout instead of the
+  // pills/tabs redesign — same content (src/content/en/notebook.md).
+  { name: "Notebook (one-scroll)", title: "Notebook", path: "/notebook2", component: Notebook2, hidden: true },
   { name: "Wet Lab (overview)", title: "Wet Lab", path: "/wetlab", component: WetLab, hidden: true },
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
   { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },

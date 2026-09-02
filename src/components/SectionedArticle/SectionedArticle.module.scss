@@ -175,6 +175,25 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         }
     }
 
+    // Wraps a run of <img> tags that sat on one line/paragraph in the source
+    // document (side-by-side composite figures, e.g. "A) ... B) ... C) ...")
+    // so they lay out as one row instead of each wrapping full-width. Each
+    // <img> carries its own inline width % (proportional to its size in the
+    // original document) — this just provides the flex row and closes the
+    // gap those percentages leave for.
+    :global(.notebook-img-row) {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 8px;
+        margin-block: 12px;
+
+        img {
+            margin: 0;
+            flex: 0 0 auto;
+        }
+    }
+
     :global(.two-col-images) {
         display: grid;
         grid-template-columns: 1fr 1fr;

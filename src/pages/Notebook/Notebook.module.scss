@@ -1,0 +1,148 @@
+// Experiment switcher (dropdown, top of the article) + subheading list
+// (panel content) — the two bits of UI specific to Notebook's click-to-
+// switch layout. Everything else (panel chrome, article width/typography,
+// including .notebook-img-row) is reused directly from
+// SectionedArticle.module.scss so this page stays visually consistent
+// with Wet Lab/Dry Lab/etc. rather than inventing a second look.
+
+// Sticks to the top of the viewport as the page scrolls, so the switcher
+// stays reachable without scrolling back up. Sized to its content (the
+// dropdown trigger), not a full-width bar — a single compact control
+// doesn't need the breakout treatment a wrapped pill row did.
+.pillsBanner {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding-top: 16px;
+    margin-bottom: 24px;
+}
+
+.switcher {
+    position: relative;
+    display: inline-block;
+}
+
+.switcherTrigger {
+    appearance: none;
+    border: none;
+    font: inherit;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: min(560px, 100%);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    background: transparent;
+    padding: 14px 24px;
+    cursor: pointer;
+}
+
+.switcherLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.switcherDivider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+}
+
+.switcherValue {
+    flex: 1;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.switcherChevron {
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 200ms ease;
+    flex-shrink: 0;
+}
+
+.switcherChevronOpen {
+    transform: rotate(180deg);
+}
+
+.switcherMenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    inset-inline-start: 0;
+    width: min(560px, 100%);
+    max-height: min(60vh, 480px);
+    overflow-y: auto;
+    z-index: 6;
+}
+
+.switcherList {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.switcherItem {
+    appearance: none;
+    border: none;
+    font: inherit;
+    text-align: start;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    background: transparent;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 150ms ease, color 150ms ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+}
+
+.switcherItemActive {
+    color: var(--primary);
+}
+
+.panelEmpty {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    margin-block: 8px;
+}
+
+.subItem {
+    font-size: 17px;
+    font-weight: 600;
+    margin-block: 0.55em;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: calc(100% - 12px);
+
+    &:hover {
+        color: white;
+    }
+}
+
+.level4 {
+    padding-inline-start: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.level5 {
+    padding-inline-start: 32px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+}
