@@ -167,17 +167,17 @@ function renderPerson(person, selected, setSelectedName) {
 //
 // On a mouse-driven desktop (see usePointerFine above) the team is the
 // cursor-reactive fisheye honeycomb (Honeycomb.jsx): a fixed field of
-// circles that never pans or scrolls; hovering near a bubble grows it and
-// gently displaces its neighbors, like a lens pressed into the honeycomb,
-// and everything springs back once the cursor moves on. Each department is
-// one horizontal line of bubbles, wrapping into a compact 2-3-row block
-// (see Honeycomb.jsx), and the PIs get one further line below all of them,
-// set apart by a noticeably bigger gap (plus a few empty slots, room to
-// grow) — same mesh, same bubbles throughout, every group just set apart
-// by distance and its own quiet caption rather than a hard divider.
-// Touch/coarse-pointer devices get the plain wrapping bubble grid instead,
-// since the fisheye is a hover effect with nothing to do on a screen with
-// no cursor — the same department/PI split, just as plain labeled rows.
+// circles that never pans or scrolls; hovering near a bubble zooms it in
+// place (no displacement — neighbors don't move), and it springs back once
+// the cursor moves on. Each department is one horizontal line of bubbles,
+// wrapping into a compact 2-3-row block (see Honeycomb.jsx), and the PIs
+// get one further line below all of them, set apart by a noticeably
+// bigger gap (plus a few empty slots, room to grow) — same mesh, same
+// bubbles throughout, every group just set apart by distance and its own
+// quiet caption rather than a hard divider. Touch/coarse-pointer devices
+// get the plain wrapping bubble grid instead, since the fisheye is a hover
+// effect with nothing to do on a screen with no cursor — the same
+// department/PI split, just as plain labeled rows.
 export default function Roster() {
   const { t } = useLanguage();
   const pointerFine = usePointerFine();
