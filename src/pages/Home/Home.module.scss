@@ -595,7 +595,11 @@
 }
 
 /* ── Reveal (slide 5) ── */
-.revealSection { height: 240dvh; }
+// 280dvh = 100dvh sticky viewport + 180dvh (1.8 viewport-heights) of pin
+// duration, matching the 1.8 range passed to useScene in RevealSection —
+// stretched from 240dvh/1.4 to give the backdrop room for a longer hold
+// and a slower fade-out (see the comment there).
+.revealSection { height: 280dvh; }
 
 .revealSticky {
   position: sticky;
@@ -606,6 +610,24 @@
   align-items: center;
   justify-content: center;
   gap: 18px;
+}
+
+.revealBg {
+  // background-image is set inline (see Home.jsx) so the remote URL has one
+  // source of truth alongside the other iGEM-hosted asset constants.
+  position: absolute;
+  top: -5%;
+  left: 0;
+  right: 0;
+  height: 110%; // bleeds past the sticky viewport on both edges so the
+                // upward parallax drift never uncovers a bare edge
+  z-index: -1; // .revealSticky is a stacking context (position: sticky); this
+               // keeps the backdrop behind the label/logo/gloss text above.
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: screen; // lets the nebula's black glow into the dark page
+                           // background instead of sitting on it as a hard rectangle
+  pointer-events: none;
 }
 
 .revealLabel {

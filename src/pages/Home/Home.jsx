@@ -22,6 +22,7 @@ const earth = "https://static.igem.wiki/teams/6341/wiki/images/bluemarble-earth-
 // logos scrolling past, which it also still is further down the page).
 const kaustIgem = SPONSORS.find((s) => s.id === "kaustigem");
 const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-launch.webp";
+const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 // Section-by-section narrative below follows src/content/landing_page_content.md
 // (slides 1–9). Two pre-existing sections that weren't part of that brief —
@@ -33,6 +34,7 @@ const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-lau
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const lerp = (a, b, t) => a + (b - a) * t;
 const between = (p, a, b) => clamp01((p - a) / (b - a));
+const smoothstep = (t) => t * t * (3 - 2 * t);
 
 const _subs = new Set();
 const ScrollEngine = {
@@ -612,31 +614,53 @@ function ProblemSection() {
 
 function RevealSection() {
   const ref = useRef(null);
+  const bgRef = useRef(null);
   const labelRef = useRef(null);
   const logoRef = useRef(null);
   const arRef = useRef(null);
   const glossRef = useRef(null);
 
-  useScene(ref, 1.4, (p) => {
-    if (labelRef.current) labelRef.current.style.opacity = Math.min(between(p, 0.0, 0.12), 1 - between(p, 0.85, 1));
+  // Slide's pin duration was stretched from 1.4 to 1.8 viewport-heights
+  // purely to give the backdrop more room to hold and fade out slowly;
+  // every other element's breakpoints below are scaled by 1.4/1.8 so their
+  // absolute on-screen timing is unchanged from before the stretch.
+  useScene(ref, 1.8, (p) => {
+    // Backdrop: eases up quickly from the very start of the slide (unchanged
+    // absolute pace), holds at its (subtle) peak for a long stretch, then
+    // eases back out slowly near the end — `smoothstep` rounds off both
+    // edges so the in/out never feels like a hard snap. Drifts upward a
+    // handful of pixels the whole time, a slow parallax rather than
+    // anything tied to the fade.
+    if (bgRef.current) {
+      const envelope = Math.min(smoothstep(between(p, 0, 0.17)), 1 - smoothstep(between(p, 0.78, 1)));
+      bgRef.current.style.opacity = envelope * 0.3;
+      bgRef.current.style.transform = `translateY(${lerp(16, -16, p)}px)`;
+    }
+    if (labelRef.current) labelRef.current.style.opacity = Math.min(between(p, 0.0, 0.09), 1 - between(p, 0.66, 0.78));
     if (logoRef.current) {
-      const o = between(p, 0.18, 0.38);
+      const o = between(p, 0.14, 0.3);
       logoRef.current.style.opacity = o;
-      logoRef.current.style.transform = `scale(${lerp(0.72, 1, between(p, 0.18, 0.5))})`;
+      logoRef.current.style.transform = `scale(${lerp(0.72, 1, between(p, 0.14, 0.39))})`;
     }
     if (arRef.current) {
-      const o = between(p, 0.42, 0.6);
+      const o = between(p, 0.33, 0.47);
       arRef.current.style.opacity = o;
       arRef.current.style.transform = `scale(${lerp(0.82, 1, o)})`;
     }
-    if (glossRef.current) glossRef.current.style.opacity = between(p, 0.62, 0.82);
+    if (glossRef.current) glossRef.current.style.opacity = between(p, 0.48, 0.64);
   });
 
   return (
     <section className={styles.revealSection} ref={ref}>
       <div className={styles.revealSticky}>
+        <div
+          className={styles.revealBg}
+          ref={bgRef}
+          style={{ opacity: 0, backgroundImage: `url(${milkyWay})` }}
+          aria-hidden="true"
+        />
         <p className={styles.revealLabel} ref={labelRef} style={{ opacity: 0 }}>KAUST iGEM presents</p>
-        <img src={shihabLogo} alt="Shihab" className={styles.revealLogo} ref={logoRef} style={{ opacity: 0 }} />
+        <img src={shihabLogo} alt="SHIHAB" className={styles.revealLogo} ref={logoRef} style={{ opacity: 0 }} />
         <p className={styles.revealAr} ref={arRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</p>
         <p className={styles.revealGloss} ref={glossRef} style={{ opacity: 0 }}>
           Arabic for &lsquo;shooting star.&rsquo;
