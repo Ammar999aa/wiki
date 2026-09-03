@@ -19,6 +19,13 @@ export default function App() {
     document.title = `${title ? title + " · " : ""}kaust-ksa · iGEM 2026`;
   }, [title]);
 
+  useEffect(() => {
+    // Pages scroll the window (PageWrapper's wrapper has no overflow of its
+    // own), and React Router doesn't reset that on navigation — without this
+    // a new page opens at whatever scroll position the previous one left.
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className={styles.page}>
       <LiquidGlassFilter />
