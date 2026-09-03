@@ -25,10 +25,16 @@
 .wrapper {
     min-height: 100dvh;
     position: relative;
+    /* content-box (the default): padding-bottom adds on top of min-height,
+       so every page has at least --nav-clearance of scroll room below its
+       content — otherwise the fixed nav can cover the page's tail with no
+       way to scroll it into view. `.noScroll` pages don't need this. */
+    padding-bottom: var(--nav-clearance);
 }
 
 .noScroll {
     height: 100dvh;
     min-height: unset;
     overflow: hidden;
+    padding-bottom: 0;
 }

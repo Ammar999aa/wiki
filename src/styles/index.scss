@@ -57,6 +57,11 @@
   --accent-soft: color-mix(in oklab, var(--accent) 30%, transparent);
   --bg: #0A0A27;
   --maxw: 1320px;
+
+  /* Space to reserve below page content so the fixed-position nav (see
+     Menu.module.scss — floats at bottom: 38px, height 68px) never covers
+     the last bit of text on a page that's barely taller than the viewport. */
+  --nav-clearance: 130px;
 }
 
 body {

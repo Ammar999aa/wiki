@@ -225,12 +225,33 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
 }
 
 .panelContents {
+    box-sizing: border-box;
     height: 100dvh;
     width: calc(#{$panel-width} - 48px);
     padding: 24px;
-    padding-top: 64px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
+    padding-top: 80px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
+    /* Reserve the same clearance as the page content (see PageWrapper) —
+       the fixed nav spans almost the full viewport width, so it sits under
+       the panel too; without this the last item can end up behind it with
+       no further scroll room to reveal it. */
+    padding-bottom: var(--nav-clearance);
     color: white;
     font-weight: 600;
+    /* Panel is position: fixed, so it can't rely on page scroll — when its
+       own item list is taller than the viewport it needs its own scroll
+       region, or a wheel/touch scroll over it falls through to the article
+       underneath instead of scrolling the panel. */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Scrolled-up items would otherwise pass behind the fixed SiteMark logo
+       (top: 24px, height: 28px, so clear by ~52px) instead of stopping —
+       mask them out over a short fade so they're gone by the time they'd
+       reach the logo, rather than visibly overlapping it. The mask is
+       painted against panelContents' own box, which starts at the same
+       y = 0 as the logo, so these px values line up with its coordinates
+       regardless of scroll position. */
+    mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
 }
 
 .panelHeader {
