@@ -16,7 +16,8 @@ export default function Content({ section }) {
               <h2>{section.title}</h2>
               {(section.role || section.department) && (
                 <p className={styles.contentRole}>
-                  {[section.role, section.department].filter(Boolean).join(" — ")}
+                  {section.role && <span className={styles.roleBadge}>{section.role}</span>}
+                  {section.department && <span className={styles.deptBadge}>{section.department}</span>}
                 </p>
               )}
             </div>

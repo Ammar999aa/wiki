@@ -1,7 +1,214 @@
+// Mirrors the collapse/responsive scheme in SectionedArticle.module.scss,
+// mirrored left-to-right: that panel sits at the inline-start edge, this
+// one sits at the inline-end edge, so every transform/offset below is the
+// sign-flipped version of its counterpart there.
+$panel-width: 340px;
+$panel-width-mobile: 280px;
+$content-inset: 430px; // space reserved for the full-width panel on desktop
+
 .layout {
   display: flex;
   position: relative;
 }
+
+// ── Content pane ─────────────────────────────────────────────────────────
+
+.content {
+  box-sizing: border-box;
+  width: calc(100dvw - #{$content-inset});
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  padding-block: 50px;
+  padding-inline: 15px;
+  transition: width 250ms ease;
+  color: white;
+
+  img {
+    margin: 12px;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  p {
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: #7B9EFF;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #A0BFFF;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
+    padding-inline-start: 20px;
+    margin-inline: 0;
+    margin-block: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+  }
+
+  ul, ol {
+    padding-inline-start: 24px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 20px;
+  }
+
+  th {
+    background: rgba(255, 255, 255, 0.1);
+    text-align: start;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  code {
+    font-family: "Courier New", monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    font-size: 0.9em;
+  }
+
+  pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    margin-block: 20px;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-block: 32px;
+  }
+}
+
+.contentInner {
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 34px;
+}
+
+.contentHeader {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  .contentPhoto {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.contentMeta {
+  min-width: 0;
+}
+
+.contentRole {
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roleBadge,
+.deptBadge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 5px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.roleBadge {
+  background: color-mix(in oklab, var(--primary) 30%, transparent);
+  color: var(--primary-100);
+  border: 1px solid color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+.deptBadge {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contentPhotoPlaceholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+// ── Panel ────────────────────────────────────────────────────────────────
 
 .panelContainer {
   transition: transform 250ms ease;
@@ -12,199 +219,130 @@
 }
 
 .panelContents {
+  box-sizing: border-box;
   height: 100dvh;
-  width: 360px;
-  padding: 35px;
-  padding-bottom: 140px;
+  width: $panel-width;
+  padding: 32px;
   color: white;
   font-weight: 600;
   overflow-y: auto;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  /* Reserve the same clearance as the page content (see PageWrapper) — the
+     fixed nav spans almost the full viewport width, so it sits under the
+     panel too; without this the last item can end up behind it with no
+     further scroll room to reveal it. */
+  padding-bottom: var(--nav-clearance);
 }
 
 .panelHeading {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.4);
   margin-block: 0;
-  margin-top: 20px;
-  margin-bottom: 4px;
-  padding: 0;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
 }
 
 .panelItem {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   margin-block: 10px;
   cursor: pointer;
+  max-width: calc(100% - 12px);
+  transition: color 150ms ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
 }
 
 .selected {
   color: var(--primary);
 }
 
-.contentInner {
-  padding: 30px;
-}
-
-.contentHeader {
-  display: flex;
-  gap: 28px;
-  margin-bottom: 24px;
-
-  .contentPhoto {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    margin: 0;
-    max-width: 260px;
-  }
-
-  h2 {
-    margin-block: 10px;
-  }
-}
-
-.contentRole {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.contentPhotoPlaceholder {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  flex-shrink: 0;
-}
-
-.content {
-  box-sizing: border-box;
-  width: calc(100dvw - 430px); /* 430px is the width of the panel*/
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  padding-block: 50px;
-  padding-inline: 15px;
+// The collapse toggle only exists below the 1024px breakpoint — on a
+// desktop-width viewport the panel has plenty of room and stays fully open
+// with no arrow to hide it (see the media query below for the version that
+// actually does something).
+.arrow {
+  display: none;
   transition: transform 250ms ease;
-  color: white;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: 45%;
+  inset-inline-start: 0;
 
-  img {
-      margin: 12px;
-      max-width: 100%;
-      border-radius: var(--radius-sm);
+  :global([dir="rtl"]) & {
+    transform: rotate(180deg);
+  }
+}
+
+.flipped {
+  transform: rotate(180deg);
+
+  :global([dir="rtl"]) & {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    width: calc(100dvw - 0.15 * #{$content-inset});
+    padding: 20px;
   }
 
-  h3 {
-      font-size: 1.4rem;
-      margin-top: 32px;
-      margin-bottom: 12px;
+  .panelContents {
+    width: min(80dvw, #{$panel-width-mobile});
   }
 
-  h4 {
-      font-size: 1.1rem;
-      margin-top: 24px;
-      margin-bottom: 8px;
-      color: rgba(255, 255, 255, 0.8);
+  .arrow {
+    display: block;
+    inset-inline-start: -8px;
   }
 
-  p {
-      line-height: 1.7;
-      margin-bottom: 16px;
+  .collapsed {
+    transform: translateX(calc(100% - 36px));
+
+    :global([dir="rtl"]) & {
+      transform: translateX(calc(-100% + 36px));
+    }
   }
 
-  a {
-      color: #7B9EFF;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-
-      &:hover {
-          color: #A0BFFF;
-      }
+  .contentHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  strong {
-      font-weight: 700;
+  .contentRole {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: calc(100dvw - 40px);
+    padding: 16px;
   }
 
-  em {
-      font-style: italic;
+  .contentInner {
+    padding: 22px;
   }
 
-  blockquote {
-      border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
-      padding-inline-start: 20px;
-      margin-inline: 0;
-      margin-block: 20px;
-      color: rgba(255, 255, 255, 0.7);
-      font-style: italic;
-  }
-
-  ul, ol {
-      padding-inline-start: 24px;
-      margin-bottom: 16px;
-  }
-
-  li {
-      line-height: 1.7;
-      margin-bottom: 8px;
-  }
-
-  table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-block: 20px;
-  }
-
-  th {
-      background: rgba(255, 255, 255, 0.1);
-      text-align: start;
-      font-weight: 700;
-      padding: 10px 14px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  }
-
-  td {
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  tr:hover td {
-      background: rgba(255, 255, 255, 0.05);
-  }
-
-  code {
-      font-family: "Courier New", monospace;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2px 6px;
-      border-radius: var(--radius-xs);
-      font-size: 0.9em;
-  }
-
-  pre {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 16px;
-      border-radius: var(--radius-sm);
-      overflow-x: auto;
-      margin-block: 20px;
-
-      code {
-          background: none;
-          padding: 0;
-      }
-  }
-
-  hr {
-      border: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      margin-block: 32px;
+  .contentHeader .contentPhoto,
+  .contentPhotoPlaceholder {
+    width: 120px;
+    height: 120px;
   }
 }

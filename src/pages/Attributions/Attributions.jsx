@@ -38,35 +38,75 @@ function memberContent(t, key) {
   );
 }
 
+// Same department grouping/order as the Roster page (src/pages/Roster/Roster.jsx's
+// DEPARTMENT_LABELS/DEPARTMENT_ORDER) — kept in sync by hand since the two
+// pages otherwise duplicate their own member/photo data independently. Each
+// student's deptKey below matches their roleKey there.
+const DEPARTMENT_LABELS = {
+  wetLab: "Wet Lab",
+  dryLab: "Dry Lab",
+  hardware: "Hardware",
+  publicEngagement: "Public Engagement",
+  humanPractices: "Human Practices",
+  wiki: "Wiki",
+};
+const DEPARTMENT_ORDER = Object.keys(DEPARTMENT_LABELS);
+
+// `key` is the i18n key under `attributions.*` in src/i18n/en.json.
+const students = [
+  { key: "ansal",         title: "Ansal' Diassova",               photo: ansal,     deptKey: "wetLab" },
+  { key: "mariaCamila",   title: "Maria Camila Muñoz Vega",        photo: maria,     deptKey: "wetLab" },
+  { key: "mariana",       title: "Mariana Villegas",               photo: mariana,   deptKey: "wetLab" },
+  { key: "sriharsha",     title: "Sriharsha Chowdarapu",           photo: sriharsha, deptKey: "wetLab" },
+  { key: "zeyad",         title: "Zeyad Muazzen",                  photo: zeyad,     deptKey: "wetLab" },
+  { key: "jeremy",        title: "Jeremy Rodrigo Guerrero Alejos", photo: jeremy,    deptKey: "dryLab" },
+  { key: "taiba",         title: "Taiba Zeya",                     photo: taiba,     deptKey: "dryLab" },
+  { key: "kexin",         title: "Kexin Niu",                      photo: kexin,     deptKey: "dryLab" },
+  { key: "kevser",        title: "Kevser Ciek",                    photo: kevser,    deptKey: "dryLab" },
+  { key: "nauryzbay",     title: "Nauryzbay Menlen",                photo: nauryzbay, deptKey: "dryLab" },
+  { key: "nadia",         title: "Nadia Houti",                    photo: nadia,     deptKey: "hardware" },
+  { key: "hassan",        title: "Hassan Abuali",                  photo: hassan,    deptKey: "hardware" },
+  { key: "shahad",        title: "Shahad Hersi",                   photo: shahad,    deptKey: "publicEngagement" },
+  { key: "genesis",       title: "Génesis Flores Arroyo",          photo: genesis,   deptKey: "publicEngagement" },
+  { key: "raheema",       title: "Raheema Javid",                  photo: raheema,   deptKey: "publicEngagement" },
+  { key: "francesca",     title: "Francesca Rivas Cuestas",        photo: francesca, deptKey: "humanPractices" },
+  { key: "mariaFernanda", title: "Maria Fernanda Gutierrez",       photo: mafer,     deptKey: "humanPractices" },
+  { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
+];
+
+// Same two PIs as on Roster — no photo asset for either there either.
+const principalInvestigators = [
+  { key: "raik", title: "Raik Grünberg" },
+  { key: "wayne", title: "Wayne Yang" },
+];
+
 export default function Attributions() {
   const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const defaultMember = searchParams.get("member") ?? undefined;
 
-  const sections = [
-    { heading: t("attributions.headings.students") },
-    { title: "Ansal' Diassova",           photo: ansal,     role: t("attributions.ansal.role"),        department: t("attributions.ansal.department"),        content: memberContent(t, "ansal") },
-    { title: "Ammar Almarzooq",            photo: ammar,     role: t("attributions.ammar.role"),        department: t("attributions.ammar.department"),        content: memberContent(t, "ammar") },
-    { title: "Francesca Rivas Cuestas",    photo: francesca, role: t("attributions.francesca.role"),    department: t("attributions.francesca.department"),    content: memberContent(t, "francesca") },
-    { title: "Génesis Flores Arroyo",      photo: genesis,   role: t("attributions.genesis.role"),      department: t("attributions.genesis.department"),      content: memberContent(t, "genesis") },
-    { title: "Jeremy Rodrigo Guerrero Alejos", photo: jeremy, role: t("attributions.jeremy.role"),     department: t("attributions.jeremy.department"),       content: memberContent(t, "jeremy") },
-    { title: "Taiba Zeya",                 photo: taiba,     role: t("attributions.taiba.role"),        department: t("attributions.taiba.department"),        content: memberContent(t, "taiba") },
-    { title: "Maria Camila Muñoz Vega",    photo: maria,     role: t("attributions.mariaCamila.role"),  department: t("attributions.mariaCamila.department"),  content: memberContent(t, "mariaCamila") },
-    { title: "Mariana Villegas",           photo: mariana,   role: t("attributions.mariana.role"),      department: t("attributions.mariana.department"),      content: memberContent(t, "mariana") },
-    { title: "Kexin Niu",                  photo: kexin,     role: t("attributions.kexin.role"),        department: t("attributions.kexin.department"),        content: memberContent(t, "kexin") },
-    { title: "Sriharsha Chowdarapu",       photo: sriharsha, role: t("attributions.sriharsha.role"),    department: t("attributions.sriharsha.department"),    content: memberContent(t, "sriharsha") },
-    { title: "Kevser Ciek",                photo: kevser,    role: t("attributions.kevser.role"),       department: t("attributions.kevser.department"),       content: memberContent(t, "kevser") },
-    { title: "Shahad Hersi",               photo: shahad,    role: t("attributions.shahad.role"),       department: t("attributions.shahad.department"),       content: memberContent(t, "shahad") },
-    { title: "Zeyad Muazzen",              photo: zeyad,     role: t("attributions.zeyad.role"),        department: t("attributions.zeyad.department"),        content: memberContent(t, "zeyad") },
-    { title: "Nauryzbay Menlen",           photo: nauryzbay, role: t("attributions.nauryzbay.role"),    department: t("attributions.nauryzbay.department"),    content: memberContent(t, "nauryzbay") },
-    { title: "Nadia Houti",                photo: nadia,     role: t("attributions.nadia.role"),        department: t("attributions.nadia.department"),        content: memberContent(t, "nadia") },
-    { title: "Hassan Abuali",              photo: hassan,    role: t("attributions.hassan.role"),       department: t("attributions.hassan.department"),       content: memberContent(t, "hassan") },
-    { title: "Raheema Javid",              photo: raheema,   role: t("attributions.raheema.role"),      department: t("attributions.raheema.department"),      content: memberContent(t, "raheema") },
-    { title: "Maria Fernanda Gutierrez",   photo: mafer,     role: t("attributions.mariaFernanda.role"), department: t("attributions.mariaFernanda.department"), content: memberContent(t, "mariaFernanda") },
+  const sections = DEPARTMENT_ORDER.flatMap((deptKey) => [
+    { heading: DEPARTMENT_LABELS[deptKey] },
+    ...students
+      .filter((student) => student.deptKey === deptKey)
+      .map((student) => ({
+        title: student.title,
+        photo: student.photo,
+        role: t(`attributions.${student.key}.role`),
+        department: DEPARTMENT_LABELS[student.deptKey],
+        content: memberContent(t, student.key),
+      })),
+  ]);
+
+  sections.push(
     { heading: t("attributions.headings.principalInvestigators") },
-    { title: "Raik Grünberg", photo: null, role: t("attributions.raik.role"), department: t("attributions.raik.department"), content: memberContent(t, "raik") },
-    { title: "Wayne Yang",    photo: null, role: t("attributions.wayne.role"), department: t("attributions.wayne.department"), content: memberContent(t, "wayne") },
-  ];
+    ...principalInvestigators.map((pi) => ({
+      title: pi.title,
+      photo: null,
+      role: t(`attributions.${pi.key}.role`),
+      content: memberContent(t, pi.key),
+    }))
+  );
 
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>

@@ -3,8 +3,20 @@ import Panel from "./Panel/Panel";
 import Content from "./Content/Content";
 import styles from "./SectionedPage.module.scss";
 
+// The member list panel is always open on desktop — it's the page's primary
+// navigation (unlike SectionedArticle's jump-nav, hiding it by default would
+// hide the whole point of the page), and a desktop viewport has room to
+// spare for it. The collapse-to-edge-tab arrow only renders below the
+// 1024px breakpoint (see SectionedPage.module.scss), where an always-open
+// ~280px panel would swallow the screen; `collapsed` starts true there so
+// it opens as an overlay on demand. Read once on mount — the user's own
+// toggle afterward takes over.
+function getDefaultCollapsed() {
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 1024px)").matches;
+}
+
 export default function SectionedPage({ sections, defaultSelected }) {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(getDefaultCollapsed);
   const firstSelectable = sections.find((s) => !s.heading);
   const [selected, setSelected] = useState(defaultSelected || firstSelectable?.title);
 
@@ -19,10 +31,7 @@ export default function SectionedPage({ sections, defaultSelected }) {
         onToggle={() => setCollapsed((v) => !v)}
         onSelect={(title) => setSelected(title)}
       />
-      <Content
-        section={activeSection}
-        panelCollapsed={collapsed}
-      />
+      <Content section={activeSection} />
     </div>
   );
 }
