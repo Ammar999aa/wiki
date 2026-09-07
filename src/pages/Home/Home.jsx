@@ -908,12 +908,32 @@ function OutroSection() {
 // ── Explore ───────────────────────────────────────────────────────────────────
 
 const EXPLORE_CARDS = [
-  { n: "01", t: "The Project",      d: "How SHIHAB engineers medical autonomy for deep-space missions — the full scientific rationale.", to: "/project",          feature: true },
-  { n: "02", t: "Wet Lab",          d: "Strain engineering, assays, and protein expression.",                                           to: "/wetlab" },
-  { n: "03", t: "Dry Lab",          d: "Modelling, bioinformatics, and circuit design.",                                                to: "/drylab" },
+  {
+    n: "01", t: "The Project", d: "How SHIHAB engineers medical autonomy for deep-space missions — the full scientific rationale.",
+    to: "/project", feature: true,
+    img: "https://static.igem.wiki/teams/6341/wiki/images/project-card.avif", pos: "center 22%",
+    credit: { url: "https://images.nasa.gov/details/iss040e089385", title: "Earth observation from the ISS, Expedition 40 — NASA ID iss040e089385" },
+  },
+  {
+    n: "02", t: "Wet Lab", d: "Strain engineering, assays, and protein expression.",
+    to: "/wetlab",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/wetlab-card.avif", pos: "center 78%",
+    credit: { url: "https://images.nasa.gov/details/iss065e165874", title: "Cell Science-04 biology experiment aboard the ISS — NASA ID iss065e165874" },
+  },
+  {
+    n: "03", t: "Dry Lab", d: "Modelling, bioinformatics, and circuit design.",
+    to: "/drylab",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/drylab-card.avif",
+    credit: { url: "https://images.nasa.gov/details/KSC-20181201-PH_RKL01_0002", title: "ELaNa 19 payload encapsulation — NASA ID KSC-20181201-PH_RKL01_0002" },
+  },
   { n: "04", t: "Human Practices",  d: "How real-world voices shaped the work.",                                                        to: "/human-practices" },
   { n: "05", t: "Team",             d: "Meet the people behind the mission.",                                                           to: "/roster" },
-  { n: "06", t: "Safety",           d: "Biosafety and responsible design.",                                                             to: "/safety" },
+  {
+    n: "06", t: "Safety", d: "Biosafety and responsible design.",
+    to: "/safety",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/safety-card.avif", pos: "center 64%",
+    credit: { url: "https://images.nasa.gov/details/PIA13920", title: "NASA ID PIA13920" },
+  },
   { n: "07", t: "Engagement",       d: "Bringing space biology to the public.",                                                         to: "/engagement" },
   { n: "08", t: "Attributions",     d: "Who did what, and our collaborators.",                                                          to: "/attributions" },
 ];
@@ -927,13 +947,32 @@ function ExploreSection() {
       </div>
       <div className={styles.exploreGrid}>
         {EXPLORE_CARDS.map((c) => (
-          <Link key={c.n} to={c.to} className={`${styles.xcard} ${c.feature ? styles.xcardFeature : ""}`}>
+          <Link
+            key={c.n}
+            to={c.to}
+            className={`${styles.xcard} ${c.feature ? styles.xcardFeature : ""} ${c.img ? styles.xcardPhoto : ""}`}
+            style={c.img ? { "--xcard-img": `url(${c.img})`, "--xcard-pos": c.pos || "center" } : undefined}
+          >
             <span className={styles.xnum}>{c.n}</span>
             <span className={styles.xarrow}><IcoArrow /></span>
             <div className={styles.xbody}>
               <h3>{c.t}</h3>
               <p>{c.d}</p>
             </div>
+            {c.credit && (
+              <button
+                type="button"
+                className={styles.xcredit}
+                title={c.credit.title}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(c.credit.url, "_blank", "noopener,noreferrer");
+                }}
+              >
+                Photo: NASA
+              </button>
+            )}
             <span className={styles.glowline} />
           </Link>
         ))}
