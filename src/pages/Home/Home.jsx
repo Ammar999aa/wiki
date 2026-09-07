@@ -280,23 +280,35 @@ function EarthLayer({ groupRef }) {
   useScrollUnits(groupRef, (units) => {
     const el = earthRef.current;
     if (!el) return;
-    // One continuous drift spanning Hero → early Orbit (not "up through
+    // One continuous drift spanning Hero → all of Orbit (not "up through
     // Hero, then reverse into the corner") — by the time Orbit's own
-    // content starts revealing, Earth is already docked bottom-right.
-    // Once Orbit is mostly done, it keeps drifting the same direction
-    // straight off-screen past the corner, rather than fading in place.
-    const q = clamp01(units / 2.3);
+    // content starts revealing, Earth is essentially docked bottom-right.
+    // `q` is eased (smoothstep) rather than a hard clamp so it keeps
+    // gently settling into the corner for the rest of the hold instead of
+    // sitting dead-still — a flat, unmoving Earth for most of a full
+    // scroll section reads as the animation freezing.
+    const q = smoothstep(clamp01(units / 3.15));
     // Orbit's own essentials-row reveal (useScene range 1.5, last item fully
-    // in by p≈0.72) finishes at units≈3.08 — start the exit drift after
-    // that, not overlapping it, using raw scroll units so it isn't capped
-    // by orbitP maxing out at 1.
-    const exitP = between(units, 3.15, 4.4);
+    // in by p≈0.72) finishes at units≈3.08 — the exit drift starts right
+    // after that, not overlapping it, using raw scroll units so it isn't
+    // capped by orbitP maxing out at 1. Eased to start from zero velocity,
+    // matching `q`'s zero velocity at the same 3.15 handoff — pairing an
+    // eased approach with a linear departure was a hard speed jump (coast
+    // to a near-stop, then instantly snap to full speed), which read as
+    // the drift getting stuck and then teleporting rather than continuing
+    // smoothly.
+    const exitP = smoothstep(between(units, 3.15, 4.4));
     const left = lerp(79, 85, q) + exitP * 60;
     const top = lerp(50, 78, q) + exitP * 60;
     const scale = lerp(1, 1.35, q) * lerp(1, 0.7, exitP);
-    el.style.left = `${left}%`;
-    el.style.top = `${top}%`;
-    el.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    // `left`/`top` stay untouched (see .earthWrap) — this callback runs
+    // every animation frame regardless of whether the value actually
+    // changed, and writing to layout properties (even to an unchanged
+    // value) forces a style recalc + layout pass on this large, blurred,
+    // box-shadowed element every single frame. `transform` alone is
+    // compositor-only work, which is what was actually causing the
+    // stutter reported when Earth is moving/exiting.
+    el.style.transform = `translate3d(calc(${left}vw - 50%), calc(${top}vh - 50%), 0) scale(${scale})`;
   });
 
   return (
@@ -379,23 +391,23 @@ function RocketLayer({ groupRef }) {
     // whole of slide 2 (2.2 units) — no motion in between, just entry and
     // exit — then shoots straight up and out, continuing the launch, right
     // as slide 2 hands off to slide 3.
-    const REST_LEFT = 8;
     const REST_TOP = 56;
     const entryP = between(units, 0, 0.35);
     const exitP = between(units, 2.15, 2.75);
     const exitEase = exitP * exitP; // ease-in — starts slow, accelerates away
     const entryDrop = (1 - entryP) * 75; // starts well below the viewport
     const exitShoot = exitEase * 140; // rockets up past the top edge
-    const left = REST_LEFT;
     const top = REST_TOP + entryDrop - exitShoot;
     const scale = lerp(1, 0.7, exitP);
-    el.style.left = `${left}%`;
-    el.style.top = `${top}%`;
     // Opacity settles in fast (well before the slide-up finishes) rather
     // than tracking entryP 1:1, so it doesn't look like a dim ghost easing
     // in — it's solid well before it reaches its resting position.
     el.style.opacity = Math.min(1, entryP * 3) * (1 - exitP);
-    el.style.transform = `translateY(-50%) scale(${scale})`;
+    // `left` is static in CSS and never touched here — like .earthWrap,
+    // this runs every animation frame, so keeping it to `transform`/
+    // `opacity` only avoids a per-frame layout+repaint on a large,
+    // drop-shadowed element (see EarthLayer for the same fix).
+    el.style.transform = `translate3d(0, calc(${top}vh - 50%), 0) scale(${scale})`;
   });
 
   return (

@@ -29,12 +29,17 @@
 .earthWrap {
   position: fixed;
   z-index: 1;
-  left: 79%;
-  top: 50%;
+  left: 0;
+  top: 0;
   width: min(72vh, 86vw);
   height: min(72vh, 86vw);
-  transform: translate(-50%, -50%);
-  will-change: left, top, transform, opacity;
+  /* Positioned purely through `transform` (see EarthLayer in Home.jsx) —
+     `left`/`top` are never written to at runtime, so the scroll-driven
+     update on this large, blurred, box-shadowed element is compositor-only
+     work instead of a layout+repaint on every animation frame. This value
+     matches the pre-scroll resting spot: centered at 79vw/50vh. */
+  transform: translate3d(calc(79vw - 50%), calc(50vh - 50%), 0);
+  will-change: transform, opacity;
   pointer-events: none;
 }
 
@@ -530,8 +535,10 @@
 .rocketLayer {
   position: fixed;
   z-index: 1;
-  top: 50%;
-  left: 6%;
+  top: 0;
+  /* RocketLayer (Home.jsx) never moves this horizontally, so it's static
+     here rather than written every frame. */
+  left: 8%;
   height: clamp(560px, 88vh, 1080px);
   aspect-ratio: 1280 / 2820;
   background-size: contain;
@@ -540,7 +547,10 @@
   filter: drop-shadow(0 0 14px rgba(255, 210, 140, 0.22))
     drop-shadow(0 0 50px rgba(255, 200, 120, 0.16));
   pointer-events: none;
-  will-change: left, top, opacity, transform;
+  /* Positioned purely through `transform` (see EarthLayer's .earthWrap for
+     the same reasoning) — only translateY + scale are touched per frame. */
+  transform: translate3d(0, calc(56vh - 50%), 0);
+  will-change: transform, opacity;
 }
 
 .rocketCredit {
