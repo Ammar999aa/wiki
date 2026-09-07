@@ -8,7 +8,7 @@ import styles from "./Roster.module.scss";
 // size and then CSS-scaled down (never up, see the fit-to-viewport effect
 // below) to whatever room it actually has, so the layout math only ever
 // has to run once per item count.
-const RADIUS = 70; // resting bubble radius (140px diameter)
+const RADIUS = 64; // resting bubble radius (128px diameter)
 // Gap between two bubbles resting side by side within one department's own
 // line — kept deliberately smaller than DEPARTMENT_GAP/SATELLITE_GAP below,
 // so the *within-department* spacing reads as tighter than the *between-
@@ -18,7 +18,6 @@ const RADIUS = 70; // resting bubble radius (140px diameter)
 // overlap, which is a real bug an earlier tuning pass shipped.
 const WITHIN_DEPARTMENT_GAP = 26;
 const SPACING = RADIUS * 2 + WITHIN_DEPARTMENT_GAP;
-const PAD = RADIUS * 2.2; // margin around the lattice for the hover-grown bubble's extra size
 // Every department here is a single horizontal line at this width. The PI
 // cluster's own line uses a much higher ceiling (it never has enough
 // people to hit it at today's roster size) so it stays one line too,
@@ -54,13 +53,24 @@ const SIGMA = SPACING * 1.1; // how far the cursor's influence reaches
 const MAX_SCALE = 0.2; // peak extra scale at the cursor (resting scale is 1)
 const FOCUS_THRESHOLD = 0.55; // influence above which a bubble shows its name tag
 
-// Vertical room reserved by everything else on the page above/below the
-// cluster (Roster.module.scss's .page top padding + title block + bottom
-// nav clearance) — used so the cluster scales to fit *height* too, not just
-// width. An estimate, not a measurement: the brief is "the cluster always
-// fits inside the viewport, never scrolled" for typical desktop window
-// sizes, not a pixel-exact fit against every possible layout tweak.
-const RESERVED_VIEWPORT_CHROME = 450;
+// Margin around the lattice for the hover-grown bubble's extra size — a
+// resting-edge bubble can grow to RADIUS * (1 + MAX_SCALE), plus a little
+// slack for its flag badge/focus outline. Left/right/bottom only ever butt
+// up against empty space, so this is all they need.
+const PAD_SIDES = RADIUS * (1 + MAX_SCALE) + 20;
+// The top edge additionally has to clear the very first row's own
+// .sectionLabel floating above it — the same "+60" PAGE_ROW_GAP already
+// uses for exactly this (a label between two stacked rows), reused here
+// since it's the same label, same font, same clearance need.
+const PAD_TOP = PAD_SIDES + 60;
+
+// Bare breathing room between the cluster's bottom edge and the fixed nav
+// bar's real (measured, not guessed — see the effect below) top edge.
+const NAV_CLEARANCE = 24;
+// Fallback if the nav bar isn't found in the DOM for some reason — a rough
+// guess so the cluster still renders sanely rather than crashing, not
+// something to hand-tune.
+const RESERVED_BELOW_FALLBACK = 200;
 
 // Top-center point of a set of design-space positions, in the same units —
 // where a caption anchors.
@@ -110,7 +120,7 @@ export default function Honeycomb({ departments, piItems, onSelect }) {
 
   const items = useMemo(() => [...departments.flatMap((d) => d.items), ...piItems], [departments, piItems]);
   const positions = useMemo(() => [...teamPositions, ...satellitePositions], [teamPositions, satellitePositions]);
-  const box = useMemo(() => boundingBox(positions, PAD), [positions]);
+  const box = useMemo(() => boundingBox(positions, { top: PAD_TOP, sides: PAD_SIDES }), [positions]);
 
   // Each department's caption, horizontally centered over its own line but
   // sharing its *page-row's* top Y with whichever other departments landed
@@ -143,7 +153,21 @@ export default function Honeycomb({ departments, piItems, onSelect }) {
     if (!el) return undefined;
     const update = () => {
       const availableWidth = el.offsetWidth;
-      const availableHeight = Math.max(280, window.innerHeight - RESERVED_VIEWPORT_CHROME);
+      // Real measured space above the cluster (title block + .page's own
+      // top padding, whatever they actually render as at this breakpoint)
+      // rather than a guessed constant — this runs before the page has any
+      // reason to have scrolled, so clientRect.top + the current scroll is
+      // the cluster's stable position in the page's flow.
+      const reservedAbove = el.getBoundingClientRect().top + window.scrollY;
+      // Real measured position of the fixed nav bar's top edge, same idea
+      // as reservedAbove — the exact nav footprint on whatever this
+      // browser/window actually is, rather than a guessed constant that's
+      // either too tight (overlaps it) or too generous (shrinks the
+      // cluster for no reason) depending on browser chrome we can't see.
+      const navTop = document.querySelector("[data-nav-bar]")?.getBoundingClientRect().top;
+      const reservedBelow =
+        navTop != null ? Math.max(0, window.innerHeight - navTop) + NAV_CLEARANCE : RESERVED_BELOW_FALLBACK;
+      const availableHeight = Math.max(280, window.innerHeight - reservedAbove - reservedBelow);
       setScale(Math.min(1, availableWidth / box.width, availableHeight / box.height));
     };
     update();
@@ -254,9 +278,12 @@ export default function Honeycomb({ departments, piItems, onSelect }) {
               {/* Sibling of LiquidGlass, not a child of it — LiquidGlass
                   clips its contents to the bubble's circle, which would cut
                   off a badge meant to overlap the bottom edge. */}
+              {/* Badge chip itself (.flagBadge) stays at its small,
+                  unscaled padding/radius on purpose — only the flag inside
+                  it grows. */}
               {item.countryCode && (
                 <span className={styles.flagBadge}>
-                  <Flag code={item.countryCode} width={20} height={15} />
+                  <Flag code={item.countryCode} width={28} height={20} />
                 </span>
               )}
             </button>

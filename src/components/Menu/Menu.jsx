@@ -89,6 +89,11 @@ export default function Menu() {
       <div
         className={styles.container}
         onMouseLeave={scheduleClose}
+        // Lets other pages measure the nav's real position instead of
+        // hand-copying its fixed bottom/height values — see Honeycomb.jsx's
+        // fit-to-viewport effect, which needs to know exactly where this
+        // bar's top edge sits, not just guess it.
+        data-nav-bar
       >
         <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)">
           <nav className={styles.menu}>

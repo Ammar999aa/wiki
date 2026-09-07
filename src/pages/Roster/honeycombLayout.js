@@ -124,11 +124,21 @@ export function stackBelow(abovePositions, shape, gap) {
   return shape.map((p) => ({ x: p.x + tx, y: p.y + ty }));
 }
 
-// Bounding box of a set of positions, padded out by `pad` on every side.
-// Callers use this to size the container that holds the (absolutely
-// positioned) circles — `pad` needs to cover how far the fisheye effect can
-// scale/push a circle past its resting position, or growth clips at the edge.
-export function boundingBox(positions, pad) {
+// Bounding box of a set of positions, padded out to size the container that
+// holds the (absolutely positioned) circles. `sides` covers left/right/
+// bottom — just enough for the fisheye effect to scale/push a circle past
+// its resting position without clipping at the edge. `top` is bigger: the
+// very top of the lattice is the one edge that also has to clear a
+// .sectionLabel floating above it (see Honeycomb.jsx's PAD_TOP) — every
+// *other* row-to-row seam already reserves its own label room via
+// PAGE_ROW_GAP/SATELLITE_GAP, so padding every edge that generously would
+// waste space no label ever sits in.
+export function boundingBox(positions, { top, sides }) {
   const { minX, maxX, minY, maxY } = rawBBox(positions);
-  return { minX: minX - pad, minY: minY - pad, width: maxX - minX + 2 * pad, height: maxY - minY + 2 * pad };
+  return {
+    minX: minX - sides,
+    minY: minY - top,
+    width: maxX - minX + 2 * sides,
+    height: maxY - minY + top + sides,
+  };
 }

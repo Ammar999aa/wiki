@@ -209,6 +209,14 @@ export default function Roster() {
 
   return (
     <PageWrapper
+      // The honeycomb (pointerFine) deliberately fits the viewport with no
+      // scroll of its own — PageWrapper's default scrollable wrapper adds
+      // --nav-clearance (130px) of bottom padding on top of that, purely
+      // as scroll room the fixed nav never actually needs here, so it'd
+      // force a scrollbar under a cluster that already fits. The touch
+      // fallback grid genuinely does need to scroll (unbounded content),
+      // so it keeps the default.
+      scrollable={!pointerFine}
       background={{
         color: "#0A0A27",
         image: bg,
