@@ -86,7 +86,7 @@ const pageIntro = (
 
 const sections = [
   {
-    title: "What this is, and what it is not",
+    title: "§01 What this is, and what it is not",
     id: "s1",
     content: (
       <>
@@ -157,7 +157,7 @@ const sections = [
   },
 
   {
-    title: "Pipeline: 1,221 samples to 45 molecules",
+    title: "§02 Pipeline: 1,221 samples to 45 molecules",
     id: "s2",
     content: (
       <>
@@ -211,7 +211,7 @@ const sections = [
   },
 
   {
-    title: "Physicochemical layer: will it survive a bench?",
+    title: "§03 Physicochemical layer: will it survive a bench?",
     id: "s3",
     content: (
       <>
@@ -299,7 +299,7 @@ const sections = [
   },
 
   {
-    title: "Conservation layer: and the claim it cost us",
+    title: "§04 Conservation layer: and the claim it cost us",
     id: "s4",
     content: (
       <>
@@ -409,7 +409,7 @@ const sections = [
   },
 
   {
-    title: "Structure layer: calibrating what pLDDT means here",
+    title: "§05 Structure layer: calibrating what pLDDT means here",
     id: "s5",
     content: (
       <>
@@ -543,7 +543,7 @@ const sections = [
   },
 
   {
-    title: "The scoring rule: how we chose it, and what we locked",
+    title: "§06 The scoring rule: how we chose it, and what we locked",
     id: "s6",
     content: (
       <>
@@ -718,7 +718,7 @@ const sections = [
   },
 
   {
-    title: "Breaking our own pipeline on purpose",
+    title: "§07 Breaking our own pipeline on purpose",
     id: "s7",
     content: (
       <>
@@ -994,7 +994,7 @@ const sections = [
   },
 
   {
-    title: "Candidate explorer",
+    title: "§08 Candidate explorer",
     id: "s8",
     content: (
       <>
@@ -1011,7 +1011,7 @@ const sections = [
   },
 
   {
-    title: "What the screen still cannot tell you",
+    title: "§09 What the screen still cannot tell you",
     id: "s9",
     content: (
       <>
@@ -1075,7 +1075,7 @@ const sections = [
   },
 
   {
-    title: "Experimental design: making the screen falsifiable",
+    title: "§10 Experimental design: making the screen falsifiable",
     id: "s10",
     content: (
       <>
@@ -1400,7 +1400,7 @@ const sections = [
   },
 
   {
-    title: "Contribution, and where the samples came from",
+    title: "§11 Contribution, and where the samples came from",
     id: "s11",
     content: (
       <>
@@ -1570,7 +1570,7 @@ const sections = [
   },
 
   {
-    title: "References",
+    title: "§12 References",
     id: "s12",
     content: (
       <>

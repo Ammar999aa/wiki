@@ -917,6 +917,28 @@
   }
 }
 
+// In-page section cross-reference (§06 etc.) — same underline treatment as
+// .cref above, but in the site's actual --primary token (not a shrunk-down
+// citation blue), and at 1em rather than .cref's 0.82em: unlike a numeric
+// citation mark, this reads as a word inline in a sentence, so it should
+// sit at body-copy size wherever it appears, including inside already-small
+// contexts like Caption/table text, rather than shrinking further.
+.secRef {
+  font-family: var(--doc-mono);
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 0 1px;
+  border-bottom: 1px dotted var(--doc-border-strong);
+
+  &:hover {
+    color: var(--primary-300);
+    border-bottom-style: solid;
+    border-bottom-color: var(--primary-300);
+  }
+}
+
 @media (max-width: 640px) {
   .statGrid {
     grid-template-columns: repeat(2, 1fr);

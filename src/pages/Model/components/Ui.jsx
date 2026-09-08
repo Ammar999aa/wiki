@@ -8,7 +8,11 @@ import styles from "../Model.module.scss";
 // In-page cross-reference, e.g. <SecRef n="07">§07</SecRef> → jumps to the
 // section whose id is "s07".
 export function SecRef({ n, children }) {
-  return <a href={`#s${n}`}>{children}</a>;
+  return (
+    <a className={styles.secRef} href={`#s${n}`}>
+      {children}
+    </a>
+  );
 }
 
 export function Callout({ tone, label, children }) {
