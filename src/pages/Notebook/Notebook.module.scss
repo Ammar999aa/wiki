@@ -77,9 +77,13 @@
     top: calc(100% + 8px);
     inset-inline-start: 0;
     width: min(560px, 100%);
-    max-height: min(60vh, 480px);
-    overflow-y: auto;
     z-index: 6;
+    // No max-height/overflow here — LiquidGlass (the direct child) is a
+    // rounded squircle that sizes itself to whatever this wraps, and
+    // scroll-clipping it from the outside cut its bottom corners off
+    // square instead of rounded. The scroll boundary lives one level in,
+    // on .timelineList, so LiquidGlass measures (and draws) the already-
+    // bounded box instead of an unclipped one that then gets chopped.
 }
 
 .switcherList {
@@ -111,6 +115,77 @@
 
 .switcherItemActive {
     color: var(--primary);
+}
+
+// Dated timeline (the "Browse experiments" menu content) — a connecting
+// line down the left edge with one dot per entry, git-log style. Built on
+// top of .switcherItem's own click/hover/active behavior; this only adds
+// the line, the dot, and the two-line date/title layout.
+.timelineList {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px 14px 40px;
+    position: relative;
+    max-height: min(60vh, 480px);
+    overflow-y: auto;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 26px;
+        bottom: 26px;
+        inset-inline-start: 25px;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+.timelineItem {
+    // Same interactive base as .switcherItem (appearance/border/font reset,
+    // hover, transition) — extended, not duplicated, since it's still the
+    // same clickable row, just laid out as a timeline entry now.
+    @extend .switcherItem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    white-space: normal;
+    position: relative;
+
+    // Centered on the 1px line above: line sits 25px in from the panel
+    // edge, the dot is 8px wide, so its own left edge lands at 25 - 4 = 21px
+    // — 19px back from where .timelineList's 40px left padding puts this
+    // item's own box.
+    &::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        inset-inline-start: -19px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 3px rgba(255, 216, 77, 0.16);
+    }
+
+    &.switcherItemActive::before {
+        background: var(--primary);
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 30%, transparent);
+    }
+}
+
+.timelineDate {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.timelineTitle {
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .panelEmpty {

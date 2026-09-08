@@ -23,6 +23,24 @@ function decodeEntities(text) {
   return text.replace(/&(#?\w+);/g, (match, code) => HTML_ENTITIES[code] ?? match);
 }
 
+// Pulls the "**Date:**"/"**Dates:**" field straight out of a section's own
+// logged content — never a re-derived or invented date, per
+// .claude/RESPONSIBLE_AI_USE.md — and shows it verbatim (dd.mm, a range,
+// "_(not recorded)_", whatever the entry actually says), rather than
+// reparsing it into a normalized format the messy real formats in
+// notebook.md (dd.mm, "07/06/2026", multi-organism date lists, "not
+// recorded") can't be trusted to round-trip through correctly. Matches up
+// to the *next* field label (or the paragraph's end) rather than the next
+// "<" so it survives inline markup inside the date itself, e.g. the
+// "_(not recorded)_" entries, which render as "<em>...</em>".
+function extractDate(html) {
+  if (!html) return null;
+  const m = html.match(/<strong>Dates?:<\/strong>([\s\S]*?)(?:<strong>|<\/p>)/i);
+  if (!m) return null;
+  const text = decodeEntities(m[1].replace(/<[^>]+>/g, "")).trim();
+  return text || null;
+}
+
 // Bakes id="..." attributes into the h3/h4/h5 tags of a section's raw HTML
 // string, and returns the list of {id, text, level} alongside it. Ids must
 // live in the HTML string itself, not be assigned by mutating the rendered
@@ -57,6 +75,10 @@ export default function NotebookArticle({ sections, title }) {
     () => (active.html ? addHeadingIds(active.html) : { html: "", subheadings: [] }),
     [active]
   );
+  // One date per section, in the same (already roughly chronological, as
+  // logged) order sections.md lists them — read once here rather than
+  // per-render inside the switcher below.
+  const sectionDates = useMemo(() => sections.map((s) => extractDate(s.html)), [sections]);
 
   useEffect(() => {
     if (!switcherOpen) return;
@@ -164,18 +186,22 @@ export default function NotebookArticle({ sections, title }) {
               {switcherOpen && (
                 <div className={styles.switcherMenu}>
                   <LiquidGlass radius={24} color={[0, 0, 0]} opacity={0.25}>
-                    <div className={styles.switcherList}>
+                    {/* One dated entry per experiment, git-log style, in the
+                        order the notebook itself logs them — reads faster
+                        for "what happened when" than a flat name list did. */}
+                    <div className={styles.timelineList}>
                       {sections.map((s, i) => (
                         <button
                           key={s.title}
                           type="button"
-                          className={`${styles.switcherItem} ${i === selectedIndex ? styles.switcherItemActive : ""}`}
+                          className={`${styles.timelineItem} ${i === selectedIndex ? styles.switcherItemActive : ""}`}
                           onClick={() => {
                             setSelectedIndex(i);
                             setSwitcherOpen(false);
                           }}
                         >
-                          {s.title}
+                          <span className={styles.timelineDate}>{sectionDates[i] || "date not logged"}</span>
+                          <span className={styles.timelineTitle}>{s.title}</span>
                         </button>
                       ))}
                     </div>
