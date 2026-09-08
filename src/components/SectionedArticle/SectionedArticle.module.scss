@@ -2,6 +2,29 @@ $panel-width: 320px; // actual slim panel width, drives panel visuals + collapse
 $panel-width-mobile: 280px;
 $article-inset: 430px; // article's reserved width/position stays as it was pre-slimming
 
+// Document-scroll progress — see SectionedArticle.jsx. z-index above
+// .panelContainer (10) so it isn't hidden behind the jump-nav panel.
+.progressRail {
+    position: fixed;
+    top: 0;
+    inset-inline: 0;
+    height: 3px;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+}
+
+.progressRailFill {
+    width: 0; // rAF sets the real value on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--primary-600));
+    box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 55%, transparent);
+    // No width transition — it's set every animation frame from the real
+    // scrollTop (SectionedArticle.jsx), so a CSS transition on top of that
+    // would only add lag, making the bar trail behind the actual scrollbar
+    // instead of tracking it 1:1.
+}
+
 .article {
     box-sizing: border-box;
     width: calc(100dvw - #{$article-inset});
@@ -23,6 +46,21 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
             padding-bottom: 0;
             margin-bottom: 0;
             border-bottom: none;
+        }
+
+        // .preReveal is added in JS right before the section is observed,
+        // never in plain CSS — a section the observer never gets to (JS
+        // error, no IntersectionObserver support) stays in this rule's
+        // absence, i.e. normal and visible, instead of stuck invisible.
+        &.preReveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 550ms ease, transform 550ms ease;
+        }
+
+        &.revealed {
+            opacity: 1;
+            transform: none;
         }
     }
     transition: transform 250ms ease;

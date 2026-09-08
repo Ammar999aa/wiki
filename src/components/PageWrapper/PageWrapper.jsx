@@ -1,4 +1,5 @@
 import { createPortal } from "react-dom";
+import AmbientMeteors from "../AmbientMeteors/AmbientMeteors";
 import styles from "./PageWrapper.module.scss";
 
 export default function PageWrapper({
@@ -7,6 +8,11 @@ export default function PageWrapper({
   fixed = true,
   background = {},
   className = "",
+  // On by default so the space atmosphere doesn't stop at Home — Home
+  // passes false since it already renders its own richer <Starfield/>
+  // (full star field + scroll-driven meteor rate), and doubling that up
+  // here would just layer a second meteor stream on top of it.
+  ambientMeteors = true,
 }) {
   const { color, image, size, gradient, photo, photoPosition, photoOpacity } = background;
 
@@ -39,6 +45,7 @@ export default function PageWrapper({
               style={{ backgroundImage: `url("${gradient}")` }}
             />
           )}
+          {ambientMeteors && <AmbientMeteors />}
         </div>,
         document.body
       )}

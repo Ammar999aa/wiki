@@ -988,7 +988,9 @@ export default function Home() {
   const rocketGroupRef = useRef(null);
 
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+    // ambientMeteors off — <Starfield/> below already renders Home's own,
+    // richer meteor field; PageWrapper's would just double it up.
+    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }} ambientMeteors={false}>
       <SponsorBanner />
       <Starfield />
       <EarthLayer groupRef={heroOrbitRef} />
