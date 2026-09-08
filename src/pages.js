@@ -13,6 +13,7 @@ import Hardware from "./pages/Hardware/Hardware";
 import Notebook from "./pages/Notebook/Notebook";
 import Notebook2 from "./pages/Notebook2/Notebook2";
 import Stub from "./pages/Stub/Stub";
+import Model from "./pages/Model/Model";
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this
@@ -59,7 +60,7 @@ const Pages = [
   {
     name: "Dry Lab",
     folder: [
-      { name: "Modeling", title: "Modeling", path: "/modeling", component: Stub },
+      { name: "Modeling", title: "Model", path: "/modeling", component: Model },
       { name: "Protein Mining", title: "Protein Mining", path: "/protein-mining", component: Stub },
     ],
   },

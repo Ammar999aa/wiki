@@ -73,6 +73,20 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         margin-bottom: 32px;
     }
 
+    // Optional masthead content between the title and the first section
+    // (Model.jsx's `intro` prop is the only current user). It's a plain
+    // `<div>` like each section wrapper below, so without this it would
+    // also match `& > div` above and pick up that inter-section divider —
+    // a padding-bottom/margin-bottom/border-bottom meant to separate
+    // numbered sections from each other, not to trail a masthead. The
+    // class selector here outranks the bare `div` one on specificity, so
+    // this wins regardless of order.
+    & > .intro {
+        padding-bottom: 0;
+        margin-bottom: 40px;
+        border-bottom: none;
+    }
+
     h2 {
         margin: 0 0 20px;
     }

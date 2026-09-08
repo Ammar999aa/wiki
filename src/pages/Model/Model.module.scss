@@ -1,0 +1,924 @@
+// Model / screening-pipeline page. Reskinned onto the site's own dark
+// violet design system (see .claude/DESIGN.md) rather than the reference
+// implementation's separate light "paper" theme — content, numbers and
+// hedging are ported verbatim (src/content/README-FOR-WIKI.md), only the
+// visual language changed. Category/status hues are the dataviz-skill
+// validated set for this page's dark surface (#0A0A27, all-pairs mode) —
+// see the comment above CATS in ./data.js.
+.doc {
+  --doc-surface: rgba(255, 255, 255, 0.045);
+  --doc-surface-2: rgba(255, 255, 255, 0.08);
+  --doc-border: rgba(255, 255, 255, 0.12);
+  --doc-border-strong: rgba(255, 255, 255, 0.22);
+  --doc-muted: #a9abc4;
+  --doc-faint: #787a99;
+  --doc-good: #0ca30c;
+  --doc-warn: #fab219;
+  --doc-critical: #d03b3b;
+  --doc-mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+/* ─── masthead ───────────────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--doc-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+
+  .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--doc-border-strong);
+  }
+}
+
+.deck {
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 62ch;
+  margin: 8px 0 0;
+
+  b {
+    color: white;
+  }
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 1px;
+  background: var(--doc-border);
+  border: 1px solid var(--doc-border);
+  margin-top: 32px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.statCell {
+  background: rgba(10, 10, 39, 0.65);
+  padding: 16px 18px 15px;
+
+  .v {
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 31px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+
+  .k {
+    font-family: var(--doc-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--doc-muted);
+    margin-top: 8px;
+    display: block;
+  }
+
+  &.hi .v {
+    color: var(--accent);
+  }
+}
+
+/* ─── shared bits ────────────────────────────────────────────────────── */
+// The reference implementation capped prose at 70ch of its own, much wider
+// column. On this site's narrower `.article` column (see
+// SectionedArticle.module.scss) that extra cap left too little width per
+// line, forcing frequent mid-word hyphenation. No other page constrains
+// paragraph width beyond `.article` itself, so `.col` doesn't either now —
+// kept only as a marker class other rules can key off, not a width rule.
+.col {
+}
+
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.cap {
+  font-family: var(--doc-mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--doc-muted);
+  margin: -6px 0 26px;
+
+  b {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+  }
+}
+
+.bleed {
+  margin: 22px 0;
+}
+
+.panel {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+}
+
+.panelInner {
+  padding: 20px 22px 16px;
+}
+
+.panelHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.panelTitle {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.panelSub {
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  color: var(--doc-muted);
+  margin: 4px 0 16px;
+  line-height: 1.6;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+
+  .item {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 7px;
+  flex: none;
+}
+
+/* ─── callouts ───────────────────────────────────────────────────────── */
+.note {
+  border-left: 3px solid var(--doc-border-strong);
+  background: var(--doc-surface);
+  padding: 15px 18px;
+  margin: 20px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+
+  // Body copy inside a callout reads the same as everywhere else on the
+  // site (see SectionedArticle.module.scss's `.article p`) — only the
+  // spacing between paragraphs is specific to sitting inside a note.
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    margin: 0 0 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.critical {
+    border-left-color: var(--doc-critical);
+    background: color-mix(in oklab, var(--doc-critical) 14%, transparent);
+  }
+
+  &.good {
+    border-left-color: var(--doc-good);
+    background: color-mix(in oklab, var(--doc-good) 14%, transparent);
+  }
+
+  &.warn {
+    border-left-color: var(--doc-warn);
+    background: color-mix(in oklab, var(--doc-warn) 12%, transparent);
+  }
+
+  &.accent {
+    border-left-color: var(--accent);
+  }
+}
+
+.noteLabel {
+  font-family: var(--doc-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--doc-muted);
+
+  .critical & {
+    color: var(--doc-critical);
+  }
+}
+.note.critical .noteLabel {
+  color: var(--doc-critical);
+}
+.note.good .noteLabel {
+  color: var(--doc-good);
+}
+.note.warn .noteLabel {
+  color: var(--doc-warn);
+}
+
+/* ─── cards ──────────────────────────────────────────────────────────── */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 22px 0;
+}
+
+.card {
+  border: 1px solid var(--doc-border);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  background: var(--doc-surface);
+
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 7px;
+    color: white;
+  }
+
+  // Same body-copy treatment as the rest of the site — see the .note
+  // comment above.
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    margin: 0;
+    color: white;
+  }
+}
+
+.cardTag {
+  font-family: var(--doc-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ─── details / expandable ───────────────────────────────────────────── */
+.details {
+  border: 1px solid var(--doc-border);
+  border-radius: var(--radius-sm);
+  margin: 22px 0;
+  background: var(--doc-surface);
+  overflow: hidden;
+
+  &[open] .summary {
+    border-bottom: 1px solid var(--doc-border);
+  }
+}
+
+.summary {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 16px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: white;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::before {
+    content: "+";
+    font-family: var(--doc-mono);
+    color: var(--accent);
+    font-size: 15px;
+    flex: none;
+    width: 14px;
+    text-align: center;
+  }
+
+  .details[open] > &::before {
+    content: "\2013";
+  }
+}
+
+.detBody {
+  padding: 14px 18px 4px;
+
+  // Same body-copy treatment as the rest of the site — see the .note
+  // comment above.
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  > :last-child {
+    margin-bottom: 14px;
+  }
+}
+
+/* ─── tables ─────────────────────────────────────────────────────────── */
+// SectionedArticle.module.scss styles any bare `table`/`th`/`td` under
+// `.article` (for markdown-driven pages) at the same specificity as a
+// single class selector, so a flat `.table { th {...} }` here doesn't
+// reliably win — whichever stylesheet happened to load last would decide
+// things like the table's own margin-block, leaving stray gaps inside the
+// bordered box that varied with build order. Nesting these under
+// `.tableWrap` (real markup — see the TableWrap component) raises them to
+// a two-class specificity that beats the shared rules outright, so this
+// table's look doesn't depend on the two files' load order.
+.tableWrap {
+  overflow-x: auto;
+  margin: 20px 0;
+  border: 1px solid var(--doc-border);
+  border-radius: var(--radius-sm);
+  background: var(--doc-surface);
+
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+    font-size: 13.5px;
+    font-variant-numeric: tabular-nums;
+
+    th {
+      text-align: left;
+      font-family: var(--doc-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--doc-muted);
+      font-weight: 500;
+      padding: 11px 13px;
+      background: none;
+      border-bottom: 1px solid var(--doc-border-strong);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 10px 13px;
+      border-bottom: 1px solid var(--doc-border);
+      vertical-align: top;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    tfoot td {
+      font-weight: 600;
+      border-top: 1px solid var(--doc-border-strong);
+      background: rgba(255, 255, 255, 0.04);
+    }
+  }
+}
+
+.num {
+  text-align: right;
+}
+
+.gene {
+  font-family: var(--doc-mono);
+  font-size: 12.5px;
+  font-style: italic;
+  white-space: nowrap;
+  color: white;
+}
+
+.locus {
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  color: var(--doc-muted);
+  white-space: nowrap;
+}
+
+.org {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+
+/* ─── pills ──────────────────────────────────────────────────────────── */
+.pill {
+  font-family: var(--doc-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: 500;
+  border: 1px solid transparent;
+  display: inline-block;
+
+  &.ok,
+  &.good {
+    color: #6fe07a;
+    background: color-mix(in oklab, var(--doc-good) 22%, transparent);
+  }
+
+  &.wn,
+  &.warn {
+    color: #ffcf6b;
+    background: color-mix(in oklab, var(--doc-warn) 20%, transparent);
+  }
+
+  &.cr,
+  &.critical {
+    color: #ff9a8c;
+    background: color-mix(in oklab, var(--doc-critical) 24%, transparent);
+  }
+
+  &.nu,
+  &.neutral {
+    color: var(--doc-muted);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--doc-border);
+  }
+}
+
+/* ─── funnel ─────────────────────────────────────────────────────────── */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fstep {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--doc-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.fbarWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.flab {
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  color: white;
+
+  .st {
+    font-family: var(--doc-mono);
+    font-size: 10px;
+    color: var(--doc-faint);
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .meth {
+    color: var(--doc-muted);
+    font-weight: 400;
+    font-size: 11.5px;
+    font-family: var(--doc-mono);
+  }
+}
+
+.fbar {
+  height: 9px;
+  border-radius: 0 4px 4px 0;
+  background: var(--tertiary);
+  min-width: 2px;
+
+  &.hi {
+    background: var(--accent);
+  }
+
+  &.gate {
+    background: var(--doc-critical);
+  }
+}
+
+.fcnt {
+  font-weight: 600;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+  color: white;
+
+  small {
+    display: block;
+    font-family: var(--doc-mono);
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--doc-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+}
+
+/* ─── bar rows (conservation / sensitivity) ─────────────────────────── */
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brow {
+  display: grid;
+  gap: 14px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.btrack {
+  background: rgba(0, 0, 0, 0.35);
+  height: 9px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bfill {
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+}
+
+.bv {
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: white;
+}
+
+/* ─── explorer ───────────────────────────────────────────────────────── */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.chip {
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--doc-border);
+  background: var(--doc-surface);
+  color: var(--doc-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.14s;
+
+  &:hover {
+    border-color: var(--doc-border-strong);
+    color: white;
+  }
+
+  &[aria-pressed="true"] {
+    border-color: var(--accent);
+    color: white;
+    background: rgba(255, 216, 77, 0.14);
+    font-weight: 500;
+  }
+}
+
+.toolsSpacer {
+  flex: 1;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: white;
+  }
+
+  &[data-dir]::after {
+    content: " \2193";
+    color: var(--accent);
+  }
+
+  &[data-dir="asc"]::after {
+    content: " \2191";
+  }
+}
+
+.barCell {
+  position: relative;
+  min-width: 84px;
+
+  .mini {
+    position: absolute;
+    left: 13px;
+    right: 13px;
+    bottom: 4px;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 2px;
+    overflow: hidden;
+
+    i {
+      display: block;
+      height: 100%;
+      border-radius: 0 2px 2px 0;
+    }
+  }
+}
+
+/* ─── tier-2 cards ───────────────────────────────────────────────────── */
+.t2grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 22px 0;
+}
+
+.t2card {
+  border: 1px solid var(--doc-border);
+  border-radius: var(--radius-sm);
+  background: var(--doc-surface);
+  padding: 16px 18px 6px;
+}
+
+.t2f {
+  padding: 11px 0;
+  border-top: 1px solid var(--doc-border);
+
+  &:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+.t2l {
+  font-family: var(--doc-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--doc-muted);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.t2v {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+
+  .sub {
+    font-size: 13px;
+    color: var(--doc-muted);
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  .warnSub {
+    font-size: 13px;
+    color: var(--doc-critical);
+    margin-top: 6px;
+  }
+}
+
+/* ─── charts ─────────────────────────────────────────────────────────── */
+.chartScroll {
+  overflow-x: auto;
+}
+
+.chartSvg {
+  display: block;
+  max-width: 100%;
+
+  text {
+    fill: var(--doc-muted);
+    font-family: var(--doc-mono);
+  }
+}
+
+.axl {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.gridline {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.axline {
+  stroke: var(--doc-border-strong);
+  stroke-width: 1;
+}
+
+.refline {
+  stroke: var(--doc-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.dot {
+  stroke: #0a0a27;
+  stroke-width: 2;
+  cursor: pointer;
+  transition: r 0.1s;
+
+  &:hover {
+    stroke: white;
+  }
+}
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  background: #14142e;
+  border: 1px solid var(--doc-border-strong);
+  border-radius: var(--radius-xs);
+  padding: 9px 12px;
+  font-family: var(--doc-mono);
+  font-size: 11.5px;
+  line-height: 1.62;
+  color: white;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
+  z-index: 60;
+  max-width: 280px;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  .tt {
+    font-weight: 600;
+    font-size: 12.5px;
+    margin-bottom: 4px;
+    display: block;
+    font-family: inherit;
+  }
+
+  .tr {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .tr span:first-child {
+    color: var(--doc-muted);
+  }
+
+  .tr span:last-child {
+    color: white;
+    font-weight: 500;
+  }
+}
+
+/* ─── references ─────────────────────────────────────────────────────── */
+.refs {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.refgroup {
+  font-family: var(--doc-mono);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 24px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--doc-border);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.ref {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 6px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--doc-border);
+  font-size: 14px;
+  line-height: 1.5;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:target {
+    background: rgba(255, 216, 77, 0.12);
+    border-radius: var(--radius-xs);
+  }
+}
+
+.rn {
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  color: var(--accent);
+  padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ra {
+  color: white;
+  font-weight: 600;
+}
+
+.rt {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.rj {
+  color: var(--doc-muted);
+  font-style: italic;
+}
+
+.rd {
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  color: #7B9EFF;
+  word-break: break-all;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--doc-border-strong);
+
+  &:hover {
+    color: #A0BFFF;
+    border-bottom-style: solid;
+    border-bottom-color: #A0BFFF;
+  }
+}
+
+.cref {
+  font-family: var(--doc-mono);
+  font-size: 0.82em;
+  color: #7B9EFF;
+  text-decoration: none;
+  padding: 0 1px;
+  border-bottom: 1px dotted var(--doc-border-strong);
+
+  &:hover {
+    color: #A0BFFF;
+    border-bottom-style: solid;
+    border-bottom-color: #A0BFFF;
+  }
+}
+
+@media (max-width: 640px) {
+  .statGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,2368 @@
+<title>Desert Proteome Screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<style>
+/* ─── tokens ─────────────────────────────────────────────────────────── */
+:root{
+  --ground:#f7f6f2; --surface:#fcfcfb; --surface-2:#f1efe9; --sunken:#eceae3;
+  --ink:#191a17; --ink-2:#3d403a; --muted:#6c6f68; --faint:#9b9d95;
+  --rule:#dedbd2; --rule-strong:#c6c2b6;
+  --accent:#2073b5; --accent-ink:#175a92; --sand:#c2761f;
+  --c1:#2073b5; --c2:#c2761f; --c3:#0f8a6e; --c4:#9c4ba6;
+  --c1-wash:#2073b51f; --c2-wash:#c2761f1f; --c3-wash:#0f8a6e1f; --c4-wash:#9c4ba61f;
+  --good:#2e7a54; --warn:#a87516; --crit:#b0402f;
+  --good-wash:#2e7a5416; --warn-wash:#a8751618; --crit-wash:#b0402f16;
+  --grid:#e4e1d8; --shadow:0 1px 2px #1919170a, 0 8px 24px -12px #19191714;
+  --serif:"Source Serif 4","Iowan Old Style",Georgia,serif;
+  --grot:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#121311; --surface:#1a1a19; --surface-2:#222320; --sunken:#0e0f0d;
+    --ink:#e9e8e3; --ink-2:#c6c5be; --muted:#93958c; --faint:#6b6d65;
+    --rule:#2e2f2b; --rule-strong:#43443f;
+    --accent:#4a93d4; --accent-ink:#7db2e2; --sand:#c07e2b;
+    --c1:#4a93d4; --c2:#c07e2b; --c3:#22a88c; --c4:#b36fc0;
+    --c1-wash:#4a93d426; --c2-wash:#c07e2b26; --c3-wash:#22a88c26; --c4-wash:#b36fc026;
+    --good:#3f9d6d; --warn:#c79a35; --crit:#d1614e;
+    --good-wash:#3f9d6d1f; --warn-wash:#c79a3520; --crit-wash:#d1614e1c;
+    --grid:#2a2b27; --shadow:0 1px 2px #00000040, 0 8px 24px -12px #00000066;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121311; --surface:#1a1a19; --surface-2:#222320; --sunken:#0e0f0d;
+  --ink:#e9e8e3; --ink-2:#c6c5be; --muted:#93958c; --faint:#6b6d65;
+  --rule:#2e2f2b; --rule-strong:#43443f;
+  --accent:#4a93d4; --accent-ink:#7db2e2; --sand:#c07e2b;
+  --c1:#4a93d4; --c2:#c07e2b; --c3:#22a88c; --c4:#b36fc0;
+  --c1-wash:#4a93d426; --c2-wash:#c07e2b26; --c3-wash:#22a88c26; --c4-wash:#b36fc026;
+  --good:#3f9d6d; --warn:#c79a35; --crit:#d1614e;
+  --good-wash:#3f9d6d1f; --warn-wash:#c79a3520; --crit-wash:#d1614e1c;
+  --grid:#2a2b27; --shadow:0 1px 2px #00000040, 0 8px 24px -12px #00000066;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; margin:0;
+}
+::selection{background:var(--c2-wash)}
+a{color:var(--accent-ink); text-underline-offset:2px; text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+
+/* ─── shell ──────────────────────────────────────────────────────────── */
+.shell{max-width:1320px; margin:0 auto; padding:0 clamp(16px,4vw,40px)}
+.layout{display:grid; grid-template-columns:214px minmax(0,1fr); gap:clamp(28px,5vw,72px); align-items:start}
+main{min-width:0; padding-bottom:120px}
+.col{max-width:70ch}
+
+/* ─── rail ───────────────────────────────────────────────────────────── */
+.rail{position:sticky; top:0; max-height:100vh; overflow-y:auto; padding:28px 0 40px;
+  font-family:var(--grot); font-size:12.5px; line-height:1.35;
+  border-right:1px solid var(--rule); scrollbar-width:thin}
+.rail-brand{font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  font-size:10.5px; color:var(--sand); margin-bottom:20px; padding-right:20px}
+.rail ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+.rail a{display:grid; grid-template-columns:22px 1fr; gap:8px; align-items:baseline;
+  padding:7px 20px 7px 0; color:var(--muted); text-decoration:none; border-left:2px solid transparent;
+  margin-left:-2px; padding-left:12px; transition:color .15s, border-color .15s}
+.rail a:hover{color:var(--ink)}
+.rail a .n{font-family:var(--mono); font-size:10.5px; color:var(--faint); font-variant-numeric:tabular-nums}
+.rail a.on{color:var(--ink); border-left-color:var(--sand); font-weight:600}
+.rail a.on .n{color:var(--sand)}
+.rail-foot{margin-top:26px; padding:16px 20px 0 12px; border-top:1px solid var(--rule);
+  color:var(--faint); font-size:11px; line-height:1.5}
+#themeBtn{font:inherit; font-size:11px; color:var(--muted); background:none; border:1px solid var(--rule);
+  border-radius:999px; padding:4px 11px; cursor:pointer; margin-top:10px}
+#themeBtn:hover{border-color:var(--rule-strong); color:var(--ink)}
+
+/* ─── masthead ───────────────────────────────────────────────────────── */
+.mast{padding:clamp(56px,9vh,104px) 0 clamp(36px,6vh,60px); border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--sand); display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:22px}
+.eyebrow .dot{width:3px;height:3px;border-radius:50%;background:var(--rule-strong)}
+h1{font-family:var(--grot); font-weight:700; font-size:clamp(38px,6.2vw,68px); line-height:1.02;
+  letter-spacing:-.028em; margin:0 0 8px; text-wrap:balance; max-width:15ch}
+h1 em{font-style:normal; color:var(--sand)}
+.deck{font-size:clamp(18px,2.1vw,21px); line-height:1.5; color:var(--ink-2); max-width:56ch; margin:20px 0 0}
+.deck b{font-weight:600; color:var(--ink)}
+
+.figures{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:1px;
+  background:var(--rule); border:1px solid var(--rule); margin-top:44px; border-radius:3px; overflow:hidden}
+.fig{background:var(--surface); padding:16px 18px 15px}
+.fig .v{font-family:var(--grot); font-weight:600; font-size:clamp(25px,3.4vw,33px); letter-spacing:-.03em;
+  line-height:1; font-variant-numeric:tabular-nums; display:block}
+.fig .k{font-family:var(--mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--muted); margin-top:9px; display:block; line-height:1.4}
+.fig.hi .v{color:var(--sand)}
+
+/* ─── sections ───────────────────────────────────────────────────────── */
+section{padding-top:clamp(56px,8vh,88px); scroll-margin-top:24px}
+.sec-head{display:flex; gap:14px; align-items:baseline; margin-bottom:22px}
+.sec-num{font-family:var(--mono); font-size:12px; color:var(--sand); font-weight:500;
+  padding-top:4px; font-variant-numeric:tabular-nums; flex:none}
+h2{font-family:var(--grot); font-weight:600; font-size:clamp(25px,3.4vw,34px); letter-spacing:-.022em;
+  line-height:1.12; margin:0; text-wrap:balance}
+h3{font-family:var(--grot); font-weight:600; font-size:19px; letter-spacing:-.012em;
+  margin:38px 0 12px; text-wrap:balance}
+h4{font-family:var(--mono); font-weight:600; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); margin:28px 0 10px}
+p{margin:0 0 16px}
+.lede{font-size:19px; line-height:1.55; color:var(--ink-2)}
+ul,ol.body{padding-left:20px; margin:0 0 16px}
+li{margin-bottom:7px}
+strong{font-weight:600}
+code,.loc{font-family:var(--mono); font-size:.855em; background:var(--surface-2);
+  padding:1px 5px; border-radius:3px; border:1px solid var(--rule)}
+
+/* ─── callouts ───────────────────────────────────────────────────────── */
+.note{border-left:2px solid var(--rule-strong); background:var(--surface); padding:15px 18px;
+  margin:24px 0; font-size:15.5px; line-height:1.55; border-radius:0 3px 3px 0}
+.note.crit{border-left-color:var(--crit); background:var(--crit-wash)}
+.note.good{border-left-color:var(--good); background:var(--good-wash)}
+.note.warn{border-left-color:var(--warn); background:var(--warn-wash)}
+.note .lbl{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+  display:block; margin-bottom:6px; font-weight:600}
+.note.crit .lbl{color:var(--crit)} .note.good .lbl{color:var(--good)}
+.note.warn .lbl{color:var(--warn)} .note .lbl{color:var(--muted)}
+.note p:last-child{margin-bottom:0}
+
+details{border:1px solid var(--rule); border-radius:4px; margin:24px 0; background:var(--surface)}
+details[open]{background:var(--surface)}
+summary{font-family:var(--grot); font-weight:600; font-size:14px; padding:13px 16px; cursor:pointer;
+  list-style:none; display:flex; gap:10px; align-items:center; color:var(--ink)}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+"; font-family:var(--mono); color:var(--sand); font-size:15px; flex:none;
+  width:14px; text-align:center}
+details[open] summary::before{content:"–"}
+details[open] summary{border-bottom:1px solid var(--rule)}
+.det-body{padding:16px 18px 6px; font-size:15.5px; line-height:1.58}
+.det-body > :last-child{margin-bottom:14px}
+
+/* ─── math ───────────────────────────────────────────────────────────── */
+.eq{font-family:var(--serif); font-size:18px; text-align:center; padding:20px 16px; margin:22px 0;
+  background:var(--sunken); border-radius:4px; overflow-x:auto; border:1px solid var(--rule)}
+.eq var{font-style:italic}
+.eq .sub{font-size:.7em; vertical-align:-.28em; font-style:normal}
+.eq .sup{font-size:.7em; vertical-align:.5em; font-style:normal}
+.eq .big{font-size:1.5em; vertical-align:-.16em; padding:0 2px}
+.eq .op{padding:0 .35em; color:var(--muted)}
+.eq-note{font-family:var(--mono); font-size:11.5px; color:var(--muted); text-align:center;
+  margin:-12px 0 22px; line-height:1.6}
+
+/* ─── tables ─────────────────────────────────────────────────────────── */
+.tw{overflow-x:auto; margin:22px 0; border:1px solid var(--rule); border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-family:var(--grot); font-size:13.5px;
+  font-variant-numeric:tabular-nums}
+th{text-align:left; font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--muted); font-weight:500; padding:11px 13px; border-bottom:1px solid var(--rule-strong);
+  white-space:nowrap; background:var(--surface); position:sticky; top:0}
+td{padding:10px 13px; border-bottom:1px solid var(--rule); vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.num,th.num{text-align:right}
+td.gene{font-family:var(--mono); font-size:12.5px; font-style:italic; white-space:nowrap}
+td.locus{font-family:var(--mono); font-size:11.5px; color:var(--muted); white-space:nowrap}
+td.org{font-style:italic; color:var(--ink-2); font-family:var(--serif); font-size:13.5px}
+tfoot td{font-weight:600; border-top:1px solid var(--rule-strong); background:var(--surface-2)}
+.cap{font-family:var(--mono); font-size:11.5px; line-height:1.6; color:var(--muted); margin:-10px 0 26px}
+.cap b{color:var(--ink-2); font-weight:600}
+
+/* pills */
+.pill{font-family:var(--mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+  padding:2px 7px; border-radius:3px; white-space:nowrap; font-weight:500;
+  border:1px solid transparent; display:inline-block}
+.pill.ok{color:var(--good); background:var(--good-wash); border-color:var(--good-wash)}
+.pill.wn{color:var(--warn); background:var(--warn-wash)}
+.pill.cr{color:var(--crit); background:var(--crit-wash)}
+.pill.nu{color:var(--muted); background:var(--surface-2); border-color:var(--rule)}
+.swatch{width:9px; height:9px; border-radius:2px; display:inline-block; margin-right:7px; flex:none}
+
+/* ─── charts ─────────────────────────────────────────────────────────── */
+.bleed{margin:34px 0; max-width:min(100%,1000px)}
+.panel{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:22px 24px 18px;
+  box-shadow:var(--shadow)}
+.panel-head{display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:baseline;
+  margin-bottom:4px}
+.panel-title{font-family:var(--grot); font-weight:600; font-size:15px; letter-spacing:-.005em}
+.panel-sub{font-family:var(--mono); font-size:11px; color:var(--muted); margin:4px 0 18px; line-height:1.6}
+.legend{display:flex; flex-wrap:wrap; gap:6px 16px; font-family:var(--mono); font-size:11px; color:var(--ink-2)}
+.legend span.i{display:flex; align-items:center}
+.chart-scroll{overflow-x:auto}
+svg{display:block; max-width:100%}
+svg text{font-family:var(--mono); fill:var(--muted)}
+.axl{font-size:10px; letter-spacing:.06em}
+.gridline{stroke:var(--grid); stroke-width:1}
+.axline{stroke:var(--rule-strong); stroke-width:1}
+.refline{stroke:var(--rule-strong); stroke-width:1; stroke-dasharray:3 3}
+.dot{stroke:var(--surface); stroke-width:2; cursor:pointer}
+.dot:hover{stroke:var(--ink); stroke-width:2}
+
+.tip{position:fixed; pointer-events:none; opacity:0; transition:opacity .1s;
+  background:var(--surface); border:1px solid var(--rule-strong); border-radius:4px;
+  padding:9px 12px; font-family:var(--mono); font-size:11.5px; line-height:1.62; color:var(--ink);
+  box-shadow:0 6px 22px -8px #00000040; z-index:60; max-width:280px}
+.tip .tt{font-family:var(--grot); font-weight:600; font-size:12.5px; margin-bottom:4px; display:block}
+.tip .tr{display:flex; justify-content:space-between; gap:18px}
+.tip .tr span:last-child{color:var(--ink); font-weight:500}
+.tip .tr span:first-child{color:var(--muted)}
+
+/* funnel */
+.funnel{display:flex; flex-direction:column; gap:2px; font-family:var(--grot)}
+.fstep{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center;
+  padding:11px 0; border-bottom:1px solid var(--rule)}
+.fstep:last-child{border-bottom:none}
+.fbar-wrap{display:flex; flex-direction:column; gap:5px; min-width:0}
+.fstep .lab{font-size:13.5px; font-weight:500; display:flex; gap:9px; align-items:baseline}
+.fstep .lab .st{font-family:var(--mono); font-size:10px; color:var(--faint); flex:none;
+  font-variant-numeric:tabular-nums}
+.fstep .lab .meth{color:var(--muted); font-weight:400; font-size:12px; font-family:var(--mono)}
+.fbar{height:9px; border-radius:0 4px 4px 0; background:var(--accent); min-width:2px}
+.fstep .cnt{font-family:var(--grot); font-weight:600; font-size:16px; font-variant-numeric:tabular-nums;
+  text-align:right; white-space:nowrap}
+.fstep .cnt small{display:block; font-family:var(--mono); font-size:9.5px; font-weight:400;
+  color:var(--muted); letter-spacing:.06em; text-transform:uppercase; margin-top:2px}
+
+/* bar rows */
+.bars{display:flex; flex-direction:column; gap:12px; font-family:var(--grot)}
+.brow{display:grid; grid-template-columns:172px minmax(0,1fr) 62px; gap:14px; align-items:center; font-size:13px}
+.brow .bl{display:flex; align-items:center; gap:0; min-width:0}
+.brow .bn{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.btrack{background:var(--sunken); height:14px; border-radius:2px; overflow:hidden; display:flex}
+.bfill{height:100%; border-radius:0 4px 4px 0}
+.brow .bv{font-family:var(--grot); font-weight:600; text-align:right; font-variant-numeric:tabular-nums}
+
+/* explorer */
+.tools{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:16px}
+.chip{font-family:var(--mono); font-size:11px; padding:5px 11px; border-radius:999px;
+  border:1px solid var(--rule); background:var(--surface); color:var(--muted); cursor:pointer;
+  display:flex; align-items:center; transition:.14s}
+.chip:hover{border-color:var(--rule-strong); color:var(--ink)}
+.chip[aria-pressed="true"]{border-color:currentColor; color:var(--ink); background:var(--surface-2); font-weight:500}
+.tools .sp{flex:1}
+.srt{font-family:var(--mono); font-size:11px; color:var(--muted); background:var(--surface);
+  border:1px solid var(--rule); border-radius:4px; padding:5px 9px; cursor:pointer}
+th.sortable{cursor:pointer; user-select:none}
+th.sortable:hover{color:var(--ink)}
+th.sortable[data-dir]::after{content:" ↓"; color:var(--sand)}
+th.sortable[data-dir="asc"]::after{content:" ↑"}
+.bar-cell{position:relative; min-width:88px}
+.bar-cell .mini{position:absolute; left:13px; right:13px; bottom:5px; height:3px; background:var(--sunken);
+  border-radius:2px; overflow:hidden}
+.bar-cell .mini i{display:block; height:100%; border-radius:0 2px 2px 0}
+.bar-cell .mv{position:relative}
+.rowflag{font-family:var(--mono); font-size:10px; color:var(--crit)}
+
+a.cref{font-family:var(--mono); font-size:.82em; color:var(--accent-ink); text-decoration:none;
+  padding:0 1px; border-bottom:1px dotted var(--rule-strong)}
+a.cref:hover{border-bottom-style:solid; border-bottom-color:var(--accent-ink)}
+
+/* tier-2 cards */
+.t2grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:16px; margin:24px 0}
+.t2card{border:1px solid var(--rule); border-radius:5px; background:var(--surface); padding:16px 18px 6px;
+  display:flex; flex-direction:column; box-shadow:var(--shadow)}
+.t2head{margin-bottom:12px}
+.t2f{padding:11px 0; border-top:1px solid var(--rule)}
+.t2f:first-of-type{border-top:none; padding-top:0}
+.t2l{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); display:block; margin-bottom:5px}
+.t2v{font-size:14px; line-height:1.5; color:var(--ink-2)}
+.t2v .gene, .t2card .gene{font-family:var(--mono); font-size:12.5px; font-style:italic; color:var(--ink)}
+.t2v .locus{font-family:var(--mono); font-size:11px; color:var(--muted); font-style:normal}
+.t2v br{line-height:1.9}
+
+/* references */
+.refs{list-style:none; padding:0; margin:8px 0 0; max-width:min(100%,940px)}
+.refgroup{font-family:var(--mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--sand); margin:26px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+.refgroup:first-child{margin-top:0}
+.ref{display:grid; grid-template-columns:38px minmax(0,1fr); gap:6px; padding:9px 0;
+  border-bottom:1px solid var(--rule); font-size:14.5px; line-height:1.5}
+.ref:last-child{border-bottom:none}
+.ref .rn{font-family:var(--mono); font-size:11.5px; color:var(--sand); padding-top:3px;
+  font-variant-numeric:tabular-nums}
+.ref .ra{color:var(--ink); font-weight:600}
+.ref .rt{color:var(--ink-2)}
+.ref .rj{color:var(--muted); font-style:italic}
+.ref .rd{font-family:var(--mono); font-size:11.5px; color:var(--accent-ink); word-break:break-all;
+  text-decoration:none; border-bottom:1px solid var(--rule-strong)}
+.ref .rd:hover{border-bottom-color:var(--accent-ink)}
+.ref:target{background:var(--c2-wash); border-radius:3px}
+
+/* misc */
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; margin:24px 0}
+.card{border:1px solid var(--rule); border-radius:4px; padding:16px 18px; background:var(--surface)}
+.card h5{font-family:var(--grot); font-size:14px; font-weight:600; margin:0 0 7px}
+.card p{font-size:14.5px; line-height:1.55; margin:0; color:var(--ink-2)}
+.card .tag{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--sand); display:block; margin-bottom:8px}
+.rule{border:none; border-top:1px solid var(--rule); margin:0}
+footer{border-top:1px solid var(--rule); margin-top:80px; padding:32px 0 60px;
+  font-family:var(--mono); font-size:11.5px; color:var(--muted); line-height:1.75}
+footer b{color:var(--ink-2); font-weight:600}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr; gap:0}
+  .rail{position:static; max-height:none; border-right:none; border-bottom:1px solid var(--rule);
+    padding:20px 0; overflow:visible}
+  .rail ol{flex-direction:row; flex-wrap:wrap; gap:4px 2px}
+  .rail a{border-left:none; border-bottom:2px solid transparent; padding:5px 10px; margin:0}
+  .rail a.on{border-left-color:transparent; border-bottom-color:var(--sand)}
+  .rail-foot{padding-left:0}
+  .brow{grid-template-columns:126px minmax(0,1fr) 54px}
+  body{font-size:16.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="shell">
+<div class="layout">
+
+<!-- ══ RAIL ══════════════════════════════════════════════════════════ -->
+<nav class="rail" aria-label="Section navigation">
+  <div class="rail-brand">Dry Lab · Screen</div>
+  <ol id="toc">
+    <li><a href="#s1"><span class="n">01</span><span>Scope</span></a></li>
+    <li><a href="#s2"><span class="n">02</span><span>Pipeline</span></a></li>
+    <li><a href="#s3"><span class="n">03</span><span>Physicochemical Layer</span></a></li>
+    <li><a href="#s4"><span class="n">04</span><span>Conservation Layer</span></a></li>
+    <li><a href="#s5"><span class="n">05</span><span>Structure Layer</span></a></li>
+    <li><a href="#s6"><span class="n">06</span><span>Scoring Rule</span></a></li>
+    <li><a href="#s7"><span class="n">07</span><span>Self-Audit</span></a></li>
+    <li><a href="#s8"><span class="n">08</span><span>Candidate Explorer</span></a></li>
+    <li><a href="#s9"><span class="n">09</span><span>Limitations</span></a></li>
+    <li><a href="#s10"><span class="n">10</span><span>Experimental Design</span></a></li>
+    <li><a href="#s11"><span class="n">11</span><span>Contribution</span></a></li>
+    <li><a href="#s12"><span class="n">12</span><span>References</span></a></li>
+  </ol>
+  <div class="rail-foot">
+    Empty Quarter Metagenome Survey<br>1,221 samples · 45 candidates
+    <button id="themeBtn" type="button">Switch theme</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══ MASTHEAD ══════════════════════════════════════════════════════ -->
+<header class="mast">
+  <div class="eyebrow">
+    <span>Dry Lab</span><span class="dot"></span><span>Screening pipeline &amp; audit</span>
+    <span class="dot"></span><span>Rub&nbsp;al&nbsp;Khali</span><span class="dot"></span><span>v2.1 · rigor-reviewed</span>
+  </div>
+  <h1>Reading stress tolerance out of the <em>Empty&nbsp;Quarter</em></h1>
+  <p class="deck">
+    The world's largest sand desert holds microbes that survive UV, desiccation, thermal swing and
+    anoxia daily. We built a five-layer <b>screening pipeline</b> that reads their metagenomes and
+    returns a ranked, QC-flagged candidate set for synthesis. Then we spent a second campaign trying
+    to break it, and it broke in four places. This page documents the pipeline, the audit, and what
+    survived.
+  </p>
+
+  <div class="figures">
+    <div class="fig"><span class="v">1,221</span><span class="k">Metagenomes</span></div>
+    <div class="fig"><span class="v">20,962</span><span class="k">Tier-1 hits</span></div>
+    <div class="fig hi"><span class="v">45</span><span class="k">Final candidates</span></div>
+    <div class="fig hi"><span class="v">19</span><span class="k">Synthesis-ready</span></div>
+    <div class="fig"><span class="v">2,262</span><span class="k">Validation proteins</span></div>
+    <div class="fig"><span class="v">8</span><span class="k">Candidates retracted</span></div>
+  </div>
+</header>
+
+<!-- ══ 01 ════════════════════════════════════════════════════════════ -->
+<section id="s1">
+  <div class="sec-head"><span class="sec-num">01</span><h2>What this is, and what it is not</h2></div>
+  <div class="col">
+    <div class="note" style="border-left-color:var(--sand);margin-top:0">
+      <span class="lbl" style="color:var(--sand)">Scope, stated up front</span>
+      <p>
+        This page describes a <b>screening pipeline and its audit</b>. It is not a mechanistic model
+        of a biological system, and the ranking function at its centre is a <b>heuristic</b>: six
+        literature thresholds combined under hand-set weights, with no fitted parameters and no
+        validation against measured expression or solubility outcomes. We say this here rather than
+        letting a reader infer it in <a href="#s6">§06</a>.
+      </p>
+      <p style="margin-top:10px">
+        Two pieces of genuine statistical modelling do sit inside it, and they are the parts we would
+        defend: the <b>depth-matched resampling null</b> that overturned our own conservation claim
+        (<a href="#s4">§04</a>), and the <b>Dirichlet weight-sensitivity analysis</b> that showed one
+        of our four category rankings carries no information at all (<a href="#s7">§07</a>). Both are
+        models <em>of our own method's reliability</em> rather than of biology, and that is the honest
+        description of them.
+      </p>
+    </div>
+    <p class="lede">
+      A metagenome is not a parts list. It is twenty thousand plausible open reading frames,
+      most of which will never fold, never express, or never purify. The engineering question
+      is narrow and unforgiving:
+    </p>
+    <div class="note">
+      <span class="lbl">Design question</span>
+      <p>Given only sequence data from an environment we cannot culture, which proteins are
+      worth the cost of a synthesis order and a wet-lab slot?</p>
+    </div>
+    <p>
+      Answering it by homology alone fails, because a BLAST hit tells you what a sequence
+      <em>resembles</em>, not whether the molecule behind it is stable, small, chargeable, folded,
+      or even complete. So the screen scores each candidate along five independent axes, each
+      grounded in a different kind of evidence, and only then combines them.
+    </p>
+
+    <div class="grid2">
+      <div class="card"><span class="tag">Layer 1 · Identity</span><h5>Annotation</h5>
+        <p>Bakta gene calls cross-checked against independent eggNOG orthology. Disagreement is
+        treated as disqualifying, not as noise.</p></div>
+      <div class="card"><span class="tag">Layer 2 · Behaviour</span><h5>Physicochemistry</h5>
+        <p>Instability index, molecular weight, isoelectric point, GRAVY and aliphatic index: the
+        properties that decide whether purification is cheap or impossible.</p></div>
+      <div class="card"><span class="tag">Layer 3 · History</span><h5>Conservation</h5>
+        <p>Shannon entropy over depth-matched alignments, so that "conserved" means something other
+        than "we aligned a lot of sequences."</p></div>
+      <div class="card"><span class="tag">Layer 4 · Form</span><h5>Structure</h5>
+        <p>ESMFold CA-pLDDT, calibrated against three solved crystal structures spanning three
+        distinct fold families.</p></div>
+      <div class="card"><span class="tag">Layer 5 · Provenance</span><h5>Source quality</h5>
+        <p>GTDB-Tk taxonomy plus CheckM completeness of the bin the gene came from. A perfect
+        gene in a 33%-complete bin is not a finding.</p></div>
+      <div class="card" style="border-color:var(--sand)"><span class="tag">Adversarial</span><h5>Rigor review</h5>
+        <p>Twelve audits run <em>against</em> our own output. Eight candidates and two headline claims
+        did not survive; see <a href="#s7">§07</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 02 ════════════════════════════════════════════════════════════ -->
+<section id="s2">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Pipeline: 1,221 samples to 45 molecules</h2></div>
+  <div class="col">
+    <p>
+      Each stage is a filter with a rule we can state, rather than a judgement call. The steepest drop
+      comes at functional triage. The most consequential is the last one, which removed candidates our
+      own earlier report had promoted.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="panel">
+    <div class="panel-head"><span class="panel-title">Attrition through the pipeline</span></div>
+    <p class="panel-sub">Bar length is log-scaled, because on a linear scale the last three stages are too small to see. Counts are exact.</p>
+    <div class="funnel" id="funnel"></div>
+  </div></div>
+  <p class="cap"><b>Figure 1.</b> Enrichment cultures (1,036) and isolate genomes (185) enter as one pool.
+  The step from 53 to 45 is the July 2026 rigor review, documented in <a href="#s7">§07</a>.</p>
+
+  <div class="col">
+    <h3>What survives, by functional category</h3>
+    <p>
+      Four stress categories were carried forward. A fifth, covering kill-switch and toxin–antitoxin
+      systems, was removed from the project by team decision before this version, on biosafety and
+      framing grounds rather than for anything wrong with the data.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr>
+      <th>Category</th><th class="num">Candidates</th><th class="num">Structures</th>
+      <th class="num">GTDB-classified</th><th>Gene families</th><th>Ranking status</th>
+    </tr></thead>
+    <tbody id="catTable"></tbody>
+    <tfoot><tr><td>Total</td><td class="num">45</td><td class="num">45 / 45</td>
+      <td class="num">33</td><td>12 families</td><td></td></tr></tfoot>
+  </table></div></div>
+  <p class="cap"><b>Table 1.</b> "Ranking status" records what the weight-sensitivity analysis in
+  <a href="#s7">§07</a> says about trusting the within-category order. Three of the four categories
+  carry a caveat.</p>
+
+  <div class="col">
+    <h3>Software</h3>
+    <p>
+      Nothing in this pipeline is our own code except the scoring layer and the audit scripts. The
+      table below lists what each stage actually runs, and every tool is cited in
+      <a href="#s12">§12</a>. Where we recorded a version, it is given; where the run predates our
+      version logging, we say so instead of guessing.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Stage</th><th>Tool</th><th>Version</th><th>What it does here</th><th class="num">Ref</th></tr></thead>
+    <tbody id="softTable"></tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 2.</b> Databases carry their own citations separately from the tools that query
+  them, so eggNOG-mapper and the eggNOG orthology resource are listed as two references rather than one.</p>
+</section>
+
+<!-- ══ 03 ════════════════════════════════════════════════════════════ -->
+<section id="s3">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Physicochemical layer: will it survive a bench?</h2></div>
+  <div class="col">
+    <p>
+      Every Tier-1 sequence goes through the <code>ProtParam</code> module of Biopython [<a class="cref" href="#ref6">6</a>]. Four of
+      its outputs feed the composite score. Two others, GRAVY and the aliphatic index, are computed
+      but deliberately left out of the score; we use them as consistency checks, for reasons the
+      expandable note at the end of this section explains.
+    </p>
+    <h4>How the instability index is computed</h4>
+    <p>
+      Guruprasad, Reddy and Pandit [<a class="cref" href="#ref14">14</a>] observed that certain dipeptides occur at measurably
+      different frequencies in proteins with short <em>in vivo</em> half-lives than in stable ones.
+      They assigned each of the 400 possible dipeptides a weight from that frequency difference. The
+      index slides a two-residue window along the sequence, sums the weights, and normalises by
+      length:
+    </p>
+
+    <div class="eq">
+      II <span class="op">=</span> <span style="display:inline-block;vertical-align:middle">
+        <span style="display:block;font-size:.62em;line-height:1">10</span>
+        <span style="display:block;border-top:1px solid currentColor;font-size:.62em;line-height:1.3;padding-top:1px"><var>L</var></span>
+      </span>
+      <span class="big">Σ</span><span class="sub" style="vertical-align:-.9em;margin-left:-.9em;font-size:.6em"><var>i</var>=1</span><span style="margin-left:.5em"></span>
+      <var>W</var><span class="sub">DIPEP</span>(<var>x</var><span class="sub"><var>i</var></span><var>x</var><span class="sub"><var>i</var>+1</span>)
+    </div>
+    <p class="eq-note">L = sequence length · W<sub>DIPEP</sub> = Guruprasad dipeptide instability weight</p>
+    <p>
+      The original study put the cutoff at 40: below it, a protein was predicted stable in
+      <i>E.&nbsp;coli</i>. Two limits are worth stating plainly. The weights were fitted on a small
+      set of proteins whose half-lives were known in 1990, and the index knows nothing about
+      structure, so it cannot see a stabilising disulfide or a destabilising exposed loop. It is a
+      cheap prior, not a measurement, which is why we cross-check it against the fold predictions in
+      <a href="#s5">§05</a> rather than trusting it alone.
+    </p>
+    <h4>Why isoelectric point is worth 15% of the score</h4>
+    <p>
+      The reason is economic. Biopython computes pI by bisection on the Henderson–Hasselbalch charge
+      sum, finding the pH at which the summed charge of the ionisable side chains and termini crosses
+      zero. A protein whose pI sits below 5 or above 9 is far from neutral pH at working conditions,
+      so it binds an ion-exchange column cleanly and can be captured without an affinity tag. No
+      His-tag means no protease step and no leftover tag distorting the downstream assay. For a team
+      with one summer and a shared FPLC, that difference decides whether a candidate gets
+      characterised at all.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Stability against fold confidence — all 45 candidates</span>
+      <div class="legend" id="scatterLegend"></div>
+    </div>
+    <p class="panel-sub">Marker area ∝ molecular weight. Hover any point for the full record. The dashed
+      guides mark the two decision thresholds the score uses: instability&nbsp;&lt;&nbsp;40 and CA-pLDDT&nbsp;&gt;&nbsp;80.</p>
+    <div class="chart-scroll"><svg id="scatter" viewBox="0 0 860 430" role="img"
+      aria-label="Scatter plot of instability index against CA-pLDDT for 45 candidates, coloured by stress category"></svg></div>
+  </div></div>
+  <p class="cap"><b>Figure 2.</b> The upper-left quadrant is the target zone: stable and confidently folded.
+  Cold-shock <i>csp</i> candidates cluster there at the extreme, one of them at a negative instability index
+  (−1.8), which is outside the range the Guruprasad scale was calibrated on and should be read as
+  "very stable", not as a physical quantity.</p>
+
+  <details>
+    <summary>Why desert proteins are not thermophilic proteins</summary>
+    <div class="det-body">
+      <p>
+        A reasonable prior is that desert organisms should yield thermostable proteins. Our data says
+        otherwise, and the disagreement is informative. Thermophilic proteomes are marked by a high
+        aliphatic index, meaning a large volume fraction of Ala, Val, Ile and Leu packing a rigid
+        hydrophobic core. Our candidates' aliphatic indices sit in the mesophilic range.
+      </p>
+      <p>
+        The ecology explains it. Sand at depth buffers temperature far more than surface air does;
+        what the resident organisms actually face is <em>water</em> stress and UV, not sustained heat.
+        The proteome we recovered is a desiccation-and-radiation proteome: trehalose and ectoine
+        biosynthesis, photolyases, cold-shock RNA chaperones. We report this as a negative result
+        rather than suppressing it. Two caveats belong with it. The aliphatic index is not one of the
+        six scored dimensions and is not in the candidate table below, so this observation is
+        currently an assertion rather than a figure you can check; putting the per-candidate values on
+        the page is on our list. And the comparison has no matched control proteome, so "mesophilic
+        range" means "against published reference ranges", not against a proteome we processed the
+        same way.
+      </p>
+      <div class="note warn" style="margin:16px 0 4px">
+        <span class="lbl">A check that cannot fail</span>
+        <p>
+          An earlier version of this page offered a consistency argument here: that no candidate shows
+          the contradictory signature of high pLDDT with a poor instability index, and that this
+          supports the physicochemical predictions. <b>That argument is circular and we have withdrawn
+          it.</b> Instability below 40 is an upstream filter, so every surviving candidate is under 40
+          by construction (the maximum in the final set is 39.65). The check had no way to fail. It is
+          also why the dashed "instability 40" guide in Figure 2 has no data on its right-hand side,
+          and why the stability dimension in <a href="#s6">§06</a> partly double-counts a threshold
+          that was already applied before scoring.
+        </p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ══ 04 ════════════════════════════════════════════════════════════ -->
+<section id="s4">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Conservation layer: and the claim it cost us</h2></div>
+  <div class="col">
+    <p>
+      Conservation is the one axis that says something about biology rather than about handling. If a
+      position has stayed the same across hundreds of divergent desert organisms, selection has been
+      holding it there, and mutating it is likely to cost function.
+    </p>
+    <h4>How the statistic is built</h4>
+    <p>
+      Three steps, each with a reason. First, CD-HIT [<a class="cref" href="#ref4">4</a>] collapses the family down to
+      representatives at 90% identity. Its greedy incremental algorithm sorts sequences longest-first,
+      makes the longest a cluster seed, and assigns each subsequent sequence to the first seed it
+      matches above threshold, using short-word counting to skip most alignments outright. This step
+      removes 73–89% of the sequences in our families, and skipping it would be fatal: metagenomes
+      oversample abundant organisms, so an unfiltered alignment measures who was abundant in the sand,
+      not what selection preserved.
+    </p>
+    <p>
+      Second, MAFFT [<a class="cref" href="#ref5">5</a>] aligns the representatives. Third, we take each alignment column
+      <var>c</var>, read off the frequency <var>p<sub>a,c</sub></var> of each amino acid <var>a</var>
+      in it, and compute Shannon entropy [<a class="cref" href="#ref17">17</a>]. A column where every sequence agrees has entropy 0; a
+      column drawing uniformly from all twenty residues approaches log₂20 ≈ 4.32 bits. We call a
+      column conserved when its entropy falls below τ = 0.5 bits, and report the family statistic as
+      the fraction of columns that qualify.
+    </p>
+    <div class="eq">
+      <var>H</var>(<var>c</var>) <span class="op">=</span> <span class="op" style="padding:0">−</span>
+      <span class="big">Σ</span><span class="sub" style="vertical-align:-.9em;margin-left:-.85em;font-size:.6em"><var>a</var>∈A</span>
+      <span style="margin-left:.55em"></span><var>p</var><span class="sub"><var>a</var>,<var>c</var></span>
+      <span style="font-style:normal"> log</span><span class="sub">2</span> <var>p</var><span class="sub"><var>a</var>,<var>c</var></span>
+      <span class="op" style="padding:0 .9em">·</span>
+      Cons <span class="op">=</span>
+      <span style="display:inline-block;vertical-align:middle;text-align:center">
+        <span style="display:block;font-size:.72em;line-height:1.15">|{ <var>c</var> : <var>H</var>(<var>c</var>) &lt; τ }|</span>
+        <span style="display:block;border-top:1px solid currentColor;font-size:.72em;line-height:1.35;padding-top:1px"><var>C</var></span>
+      </span>
+    </div>
+    <p class="eq-note">A = 20 amino acids · C = alignment columns · τ = entropy threshold</p>
+
+    <div class="note crit">
+      <span class="lbl">Claim retracted</span>
+      <p>
+        Version 1 of this project reported <b><i>ibpAB</i> as the most conserved stress protein
+        family</b> at 56–61%. That claim does not survive its own null model and has been withdrawn.
+      </p>
+    </div>
+
+    <p>
+      The failure is a statistical artefact, and any entropy-over-alignment pipeline is exposed to it.
+      Column entropy depends on how many sequences went into the column. With 64 sequences you have 64
+      chances to observe a substitution; with 226 you have 226. Real diversity that exists in both
+      families will surface in the deep alignment and stay hidden in the shallow one, so the shallow
+      family scores as more conserved for no biological reason at all. Our alignment depths range from
+      7 to 230 sequences, roughly thirty-fold, which is more than enough to swamp the signal we were
+      trying to measure.
+    </p>
+    <p>
+      The fix is to compare families at equal depth. We subsample every family without replacement
+      down to a common N (18 sequences for the enrichment set, 20 for the isolates, each set by the
+      smallest usable family), recompute the statistic, and repeat 2,000 times to get a distribution
+      rather than a point estimate. Sampling without replacement matters here: drawing duplicates
+      would insert artificial agreement into a column and deflate its entropy.
+    </p>
+    <p>
+      At matched depth the result inverts. <b><i>csp</i>, not <i>ibpAB</i>, is the most conserved
+      family</b>, in both datasets independently. We report the corrected numbers and leave the
+      retracted ones on the page.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Conservation before and after depth matching</span>
+      <div class="legend">
+        <span class="i"><i class="swatch" style="background:var(--faint)"></i>Raw (depth-confounded)</span>
+        <span class="i"><i class="swatch" style="background:var(--c1)"></i>Depth-matched</span>
+      </div>
+    </div>
+    <p class="panel-sub">Percent of alignment columns below the entropy threshold. Enrichment dataset, all 19 families subsampled to N&nbsp;=&nbsp;18 sequences; the isolate dataset at N&nbsp;=&nbsp;20 reproduces the same ordering.</p>
+    <div class="bars" id="consBars"></div>
+  </div></div>
+  <p class="cap"><b>Figure 3.</b> <i>csp</i>'s raw number was the most depressed of any family precisely because its
+  alignment is the deepest we have (226 sequences); depth matching moves it from mid-pack to first and drops
+  <i>ibpAB</i> to fourth of nineteen. <i>ibpAB</i> is still a genuinely conserved family and still holds the best
+  predicted fold in the dataset at CA-pLDDT 98.6 — it is simply not the superlative.</p>
+
+  <details>
+    <summary>Why the permutation test could not settle this</summary>
+    <div class="det-body">
+      <p>
+        Our first null model shuffles residues within alignment columns, preserving each column's
+        amino-acid composition while destroying cross-column structure, and recomputes the statistic
+        over 1,000 permutations. Every family clears it at p&nbsp;&lt;&nbsp;0.001, and 33 of the 37
+        testable rows saturate at the resolution floor with the null standard deviation rounding to zero.
+      </p>
+      <p>
+        That is not the vindication it looks like. With twenty or more real, non-identical protein
+        sequences, producing a near-unanimous column by chance under full row scrambling is
+        combinatorially near-impossible, so <em>every</em> real alignment clears the bar regardless of how
+        constrained the family actually is. The row-shuffle null is a valid <b>existence test</b> —
+        "this signal is not literal noise" — and has <b>no resolving power for ranking families against
+        each other</b>, which is exactly what the retracted claim needed. The matched-depth subsampling
+        in Figure 3 is the test that does have that power, and it is the one that overturned the result.
+      </p>
+      <p>
+        One v1 conservation claim passed both tests unaltered, and it is the negative one:
+        <i>relBE</i> really is the least conserved family we examined, last of nineteen in both datasets
+        independently, though by a modest 2–10 point margin rather than a dramatic one.
+      </p>
+    </div>
+  </details>
+</section>
+
+<!-- ══ 05 ════════════════════════════════════════════════════════════ -->
+<section id="s5">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Structure layer: calibrating what pLDDT means here</h2></div>
+  <div class="col">
+    <p>
+      All 45 candidates were folded with ESMFold [<a class="cref" href="#ref7">7</a>], 79 structures across both versions of the
+      project, on the KAUST Ibex cluster.
+    </p>
+    <h4>Why a language model instead of AlphaFold</h4>
+    <p>
+      AlphaFold2 [<a class="cref" href="#ref8">8</a>] builds its prediction from a multiple sequence alignment assembled by searching
+      large sequence databases for homologs. ESMFold replaces that search with a protein language
+      model, ESM-2, trained on unlabelled sequence; the evolutionary information AlphaFold reads out
+      of an MSA is instead held in the model's internal representations, and a folding head reads
+      structure directly from those. Lin and colleagues report accuracy somewhat below AlphaFold2 on
+      well-covered proteins, in exchange for an order-of-magnitude speedup from dropping the search.
+    </p>
+    <p>
+      That tradeoff suits our data. Many of these sequences come from uncultured desert organisms
+      with few close relatives in public databases, so the MSA an AlphaFold run could assemble would
+      be thin, and a thin MSA is where AlphaFold degrades. Running MSA-free removes a failure mode we
+      would otherwise have had to characterise per candidate.
+    </p>
+    <h4>What the confidence number is</h4>
+    <p>
+      pLDDT is the model's predicted score on the lDDT-Cα metric [<a class="cref" href="#ref9">9</a>], which compares local
+      interatomic distances between a model and a reference without superposing them. The network
+      emits it per residue, on a 0–100 scale, and both AlphaFold and ESMFold write it into the
+      B-factor column of the output PDB. We read the mean over Cα atoms.
+    </p>
+    <div class="note warn">
+      <span class="lbl">Method disambiguation</span>
+      <p>
+        Two pLDDT numbers exist for each of our proteins and they differ by roughly 13 points. The raw
+        prediction tensor averages over all 37 atom slots per residue, most of which are padding for
+        atoms a given residue does not have, which drags the mean down. The Cα B-factor mean does not.
+        <b>Every number on this page uses the Cα method</b>, which is also the convention AlphaFold
+        established [<a class="cref" href="#ref8">8</a>]. We mention this because both numbers exist in our output files, and a reader
+        comparing them without knowing which is which would find a contradiction that is not there.
+      </p>
+    </div>
+    <h4>Calibration against solved structures</h4>
+    <p>
+      A confidence metric is only useful once you know what it predicts, and pLDDT bands published for
+      AlphaFold do not automatically transfer to a different architecture on a different sequence
+      distribution. So we ran the production pipeline, the same inference script and the same parser,
+      on proteins whose structures have been solved, and measured Cα RMSD against the deposited
+      coordinates. The three were chosen to span the folds our candidates actually occupy rather than
+      to be easy.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Benchmark protein</th><th>Fold family</th><th>Reference structure</th>
+      <th class="num">CA-pLDDT</th><th class="num">CA RMSD</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td class="gene">CspA <span style="font-style:normal;color:var(--muted)">(E. coli)</span></td>
+        <td>OB-fold cold-shock</td><td class="locus">PDB 1MJC · 2.0 Å [<a class="cref" href="#ref19">19</a>]</td>
+        <td class="num">88.6</td><td class="num">1.13 Å</td>
+        <td><span class="pill ok">Near-experimental</span></td></tr>
+      <tr><td class="gene">RecA <span style="font-style:normal;color:var(--muted)">(E. coli)</span></td>
+        <td>RecA/RAD51 ATPase</td><td class="locus">PDB 1U94 · 1.9 Å [<a class="cref" href="#ref20">20</a>]</td>
+        <td class="num">93.7</td><td class="num">0.9–1.5 Å</td>
+        <td><span class="pill ok">Per-domain agreement</span></td></tr>
+      <tr><td class="gene">OtsB</td><td>HAD-like phosphatase</td>
+        <td class="locus">PDB 6UPC · 2.51 Å [<a class="cref" href="#ref21">21</a>]</td>
+        <td class="num">95.4</td><td class="num">2.70 Å</td>
+        <td><span class="pill wn">Homolog only</span></td></tr>
+    </tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 3.</b> RecA is measured per domain because 1U94 captures a compressed helical
+  filament form, so a whole-chain superposition would report inter-domain arrangement rather than fold
+  accuracy. No structure has been solved for <i>E.&nbsp;coli</i> OtsB, so its RMSD runs against the
+  <i>Salmonella</i> Typhimurium ortholog at 73.3% sequence identity; the 2.70&nbsp;Å figure therefore
+  contains real evolutionary distance and is not pipeline error. All three support the
+  <b>pLDDT&nbsp;&gt;&nbsp;80</b> band the score uses.</p>
+
+  <div class="col">
+    <p>
+      One detail from the CspA run is worth reporting. Only two residues came out below pLDDT 70,
+      residues 1 and 2, and residue 1 is the N-terminal methionine that gets cleaved
+      post-translationally and is therefore absent from the crystallised construct. The model marked
+      as uncertain precisely the region that does not exist in the real protein. We take that as
+      grounds for reading a low-pLDDT terminus as a disorder signal rather than as a failed
+      prediction, and it is why the flexible-region flags in our per-candidate output are worth
+      looking at.
+    </p>
+    <p>
+      CspA is also the closest thing we have to a positive control for the flagship candidate:
+      the desert <i>cspC</i> shares its fold and 56.7% sequence identity, and scores 90.3 against
+      CspA's 88.6.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 06 ════════════════════════════════════════════════════════════ -->
+<section id="s6">
+  <div class="sec-head"><span class="sec-num">06</span><h2>The scoring rule: how we chose it, and what we locked</h2></div>
+  <div class="col">
+    <p class="lede">
+      This section decides one thing and then stops deciding it. We compare candidate scoring rules
+      against measured data once, here, and commit to a single rule. <b>Everything after this
+      section uses that rule and no other.</b>
+    </p>
+
+    <h3>The six dimensions</h3>
+    <p>
+      Each dimension maps a raw measurement onto the interval [0,&nbsp;1] through a step function, and
+      the six sub-scores combine under a fixed weight vector.
+    </p>
+    <p>
+      The step functions are not laziness. Each threshold is a published decision boundary:
+      instability 40 from Guruprasad [<a class="cref" href="#ref14">14</a>], pLDDT 80 from the
+      AlphaFold confidence bands [<a class="cref" href="#ref8">8</a>] as re-checked against our own
+      benchmark, and the tag-free pI windows from ion-exchange practice. A smooth interpolation
+      between those points would imply we know the shape of the function between them, and we do not.
+    </p>
+    <div class="eq">
+      <var>S</var>(<var>x</var>) <span class="op">=</span>
+      <span class="big">Σ</span><span class="sub" style="vertical-align:-.9em;margin-left:-.85em;font-size:.6em"><var>d</var>∈<var>D</var></span>
+      <span style="margin-left:.55em"></span><var>w</var><span class="sub"><var>d</var></span>
+      <span class="op" style="padding:0 .18em">·</span><var>s</var><span class="sub"><var>d</var></span>(<var>x</var>)
+      <span class="op" style="padding:0 1.1em">where</span>
+      <span class="big">Σ</span><span class="sub" style="vertical-align:-.9em;margin-left:-.85em;font-size:.6em"><var>d</var></span>
+      <span style="margin-left:.55em"></span><var>w</var><span class="sub"><var>d</var></span> <span class="op">=</span> 1
+    </div>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Dimension</th><th class="num">Weight</th><th>Instrument</th><th>Step function</th><th>Rationale</th></tr></thead>
+    <tbody id="dimTable"></tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 4.</b> The weight vector. It is set by hand, which is why the rest of this
+  section exists.</p>
+
+  <div class="col">
+    <h3>Testing the weights against measured data</h3>
+    <p>
+      Hand-set weights are an assumption. We tested them without waiting for our own wet lab, by
+      running the scoring rule over <b>eSOL</b> [<a class="cref" href="#ref31">31</a>], which reports
+      measured solubility for most of the <i>E.&nbsp;coli</i> proteome. Structure confidence came from
+      AlphaFold DB [<a class="cref" href="#ref8">8</a>] rather than our own ESMFold run, which the
+      three benchmarks in <a href="#s5">§05</a> show agree to within 3 pLDDT points. The test covers
+      the four dimensions carrying <b>80% of the weight</b>, on 2,262 cytoplasmic proteins.
+    </p>
+    <p>
+      The remaining 20% stays untested, and the reason is worth stating rather than hiding.
+      Conservation and annotation do not exist to predict solubility; they exist to test whether the
+      gene is real. A candidate can be perfectly soluble and still be a misannotated fragment, which
+      is exactly the failure <a href="#s7">§07</a> caught four times. So <b>no solubility dataset can
+      validate those two dimensions</b> — not eSOL, not a larger one. It is a mismatch of objective,
+      not a gap we could have closed with more data. Testing them properly needs a set of genes with
+      known-correct and known-wrong annotations, which we do not have.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Predictor</th><th class="num">Spearman ρ</th><th class="num">AUROC</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:600">Our score (4 testable dimensions)</td>
+        <td class="num" style="font-weight:600">+0.370</td><td class="num" style="font-weight:600">0.728</td>
+        <td><span class="pill ok">Predicts solubility</span></td></tr>
+      <tr><td>Instability index alone</td><td class="num">+0.098</td><td class="num">0.563</td>
+        <td><span class="pill nu">Beaten by our score</span></td></tr>
+      <tr><td>CA-pLDDT alone</td><td class="num">−0.048</td><td class="num">0.478</td>
+        <td><span class="pill cr">No better than chance</span></td></tr>
+      <tr><td style="font-weight:600">Molecular weight alone</td>
+        <td class="num" style="font-weight:600">+0.416</td><td class="num" style="font-weight:600">0.756</td>
+        <td><span class="pill cr">Beats our score</span></td></tr>
+    </tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 5.</b> n = 2,262. The paired difference against molecular weight is
+  −0.047 with a 95% bootstrap interval of [−0.087, −0.008], which excludes zero: our score is
+  <b>significantly worse than sorting on size</b>. Molecular weight was not one of the two baselines we
+  registered in advance; we added it during analysis, which makes the test harder to pass rather than
+  easier, and we disclose it for that reason.</p>
+
+  <div class="col">
+    <div class="note crit">
+      <span class="lbl">What the test found</span>
+      <p>
+        The score works, and it is beaten by the simplest possible alternative. Two causes, both
+        measured. <b>The structure dimension carries 25% of the weight and is close to constant</b>:
+        94.5% of these proteins clear pLDDT 80 and score 1.0, so the dimension separates almost
+        nothing, and on its own it is slightly worse than chance. <b>The one dimension that does
+        predict solubility, size, carries only 15%.</b> The rule dilutes its own best signal.
+      </p>
+    </div>
+
+    <h3>Why we did not refit the weights</h3>
+    <p>
+      The obvious response is to reweight toward size. We tested that and rejected it, for a reason
+      specific to metagenomic data.
+    </p>
+    <p>
+      In eSOL every protein is a complete, real protein, so "small" means a small protein. In a
+      metagenome assembly "small" often means <b>a gene broken by a contig break</b>. Across our
+      candidates, molecular weight correlates with ORF completeness at ρ&nbsp;=&nbsp;+0.144: the
+      smaller a candidate, the likelier it is a fragment. Raising the size weight to 50% promotes a
+      6.0 kDa <i>uvrB</i> at <b>7% ORF completeness</b> and a 12.2 kDa <i>mutS</i> at <b>12%</b> into
+      the top eight. A rule tuned on complete proteins rewards broken ones here.
+    </p>
+    <p>
+      The second reason is that the score is not only a solubility predictor. Purifiability is in it
+      for an economic reason, tag-free capture, which eSOL cannot evaluate at all; conservation and
+      annotation are there to test whether the gene is real. Refitting everything to predict
+      solubility would optimise a different objective from the one the rule exists to serve.
+    </p>
+
+    <h3>The locked rule</h3>
+    <p>
+      So the fix is not new weights. It is two <b>gates</b> applied before scoring, each derived from
+      a failure the audits in <a href="#s7">§07</a> found, and each categorical rather than graded
+      because the failures they catch are categorical.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="panel">
+    <div class="panel-head"><span class="panel-title">Final scoring rule — used for every result on this page</span></div>
+    <p class="panel-sub">Two gates, then the unchanged six-dimension weighted score. No other rule appears after this section.</p>
+    <div class="funnel" id="lockedRule"></div>
+  </div></div>
+  <p class="cap"><b>Figure 4.</b> The gates reproduce by rule what <a href="#s7">§07</a> previously had to
+  argue by hand. Gate 1 removes every truncated <i>recA</i>, <i>mutS</i> and <i>uvr</i> call, leaving the
+  four full-length <i>phrB</i> candidates as the DNA-repair set — which is exactly the manual
+  recommendation the audit reached. Gate 2 removes the seven membrane subunits. The weights are
+  untouched.</p>
+
+  <div class="col">
+    <div class="note good">
+      <span class="lbl">What the locked rule changes, and what it does not</span>
+      <p>
+        <b><i>cspC</i> remains the top candidate.</b> We re-ranked all 45 candidates under four
+        different weightings, including the size-heavy one eSOL favours, and <i>cspC</i> is first
+        under every one of them. The flagship does not depend on the weight choice.
+      </p>
+      <p style="margin-top:10px">
+        <b>The desiccation degeneracy survives every rule.</b> Those eight candidates have identical
+        sub-scores on every dimension, so no reweighting and no gate separates them. They remain an
+        unranked shortlist, and that is a property of the candidates rather than of the scoring.
+      </p>
+    </div>
+    <p>
+      Stability and structure together still carry half the weight. That is a deliberate choice with a
+      consequence: the score is optimised for <em>expressibility</em>, not for biological novelty. A
+      fascinating but aggregation-prone protein will rank below a boring, well-behaved one. That is
+      correct for a rule whose output is a synthesis order, but it means the score should never be
+      read as a measure of scientific interest.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 07 ════════════════════════════════════════════════════════════ -->
+<section id="s7">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Breaking our own pipeline on purpose</h2></div>
+  <div class="col">
+    <p class="lede">
+      Every threshold in the previous section was set by hand. That makes the ranking an assumption,
+      and an assumption we had never tested. In July 2026 we ran twelve audits against our own
+      candidate set, with the aim of finding out which of our results were artefacts. Several were.
+    </p>
+    <p>
+      The audits ran in two rounds: seven adversarial checks, then five follow-ups closing the data
+      gaps the first round exposed. By the end, 53 candidates had become 45, two headline claims were
+      retracted, and one round-one verdict was itself overturned. What follows is the four tests that
+      changed something; the full register is in the expandable table at the end of the section.
+    </p>
+
+    <h3>Test 1: does the ranking survive its own weights?</h3>
+    <p>
+      The question is whether the top candidate is a property of the data or a property of our weight
+      choices. We attacked it two ways. First, one-at-a-time: perturb each of the six weights by ±10,
+      ±20 and ±50%, rescale the remaining five to keep the vector summing to one, and re-rank. That is
+      36 runs per category, and it tells you which single dimension the ranking is most sensitive to.
+    </p>
+    <p>
+      One-at-a-time perturbation misses interactions, though, so the second test samples the whole
+      weight space at once. We draw 1,000 weight vectors from a Dirichlet distribution centred on the
+      baseline. The Dirichlet is the natural choice because every draw from it is already a valid
+      weight vector, non-negative and summing to one, so no rescaling step is needed and no corner of
+      the simplex is unreachable. Its concentration parameter sets how far the draws stray from the
+      baseline. For each draw we re-rank and record whether the original winner is still winning; the
+      fraction that says yes is the P(Top-1) figure below.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">P(Top-1 candidate survives weight perturbation)</span>
+      <div class="legend">
+        <span class="i"><i class="swatch" style="background:var(--good)"></i>Trustworthy</span>
+        <span class="i"><i class="swatch" style="background:var(--warn)"></i>Fragile</span>
+        <span class="i"><i class="swatch" style="background:var(--crit)"></i>Degenerate — number is meaningless</span>
+      </div>
+    </div>
+    <p class="panel-sub">1,000 Dirichlet draws over the weight simplex. Bars are colour-coded by verdict and each also carries its verdict in text, so the colour is not the only signal.</p>
+    <div class="bars" id="sensBars"></div>
+  </div></div>
+  <p class="cap"><b>Figure 5.</b> Desiccation Resistance reaches P = 1.000 for the worst available reason.
+  All eight of its candidates have identical sub-scores on every dimension, so no weight vector can
+  separate them and the "winner" is whichever row happened to be listed first. The robustness number is
+  perfect and carries no information.</p>
+
+  <div class="col">
+    <div class="note crit">
+      <span class="lbl">Consequence</span>
+      <p>
+        The eight desiccation candidates are now presented as an <b>undifferentiated shortlist</b> rather
+        than a ranked list. Anaerobic Respiration's top pick is reported as "<i>narI</i> or the
+        <i>frd</i> cluster", since it wins by 0.015 points and flips under four of the thirty-six
+        single-weight perturbations.
+      </p>
+    </div>
+
+    <h3>Test 2: are the genes actually complete?</h3>
+    <p>
+      Metagenome assembly breaks contigs wherever coverage runs out, and a gene caller will annotate
+      whatever fragment sits on the broken contig with a confident family name. Nothing in the
+      composite score notices. A 172-residue fragment of a 353-residue protein can score well on
+      every dimension we measure, because a fragment of a stable protein is still stable-looking, and
+      ESMFold will fold it confidently.
+    </p>
+    <p>
+      So we added a dimension the score does not use but a reviewer would ask for: ORF completeness,
+      the candidate's length as a percentage of the canonical full-length ortholog for its family,
+      taken from <i>E.&nbsp;coli</i> K-12 where a reference exists. The result reframed an entire
+      category.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">ORF completeness by gene family</span>
+      <div class="legend" id="orfLegend"></div>
+    </div>
+    <p class="panel-sub">Each mark is one candidate; the dashed line is full length. Below 60% a candidate cannot be ordered as a complete gene, whatever its score says.</p>
+    <div class="chart-scroll"><svg id="orfChart" viewBox="0 0 860 380" role="img"
+      aria-label="Strip plot of ORF completeness percentage by gene family across 45 candidates"></svg></div>
+  </div></div>
+  <p class="cap"><b>Figure 6.</b> The <i>csp</i>, <i>phrB</i>, <i>otsB</i>, <i>ectA</i>, <i>nar</i> and <i>frd</i>
+  families sit at or near full length. The <i>mutS</i>/<i>uvr</i>/<i>recA</i> spread is the DNA-repair
+  fragmentation problem: 86% of that category's original candidates were truncated calls.</p>
+
+  <div class="col">
+    <h3>Test 3: does an independent method agree on gene identity?</h3>
+    <p>
+      Our two annotation tools reach a gene name by different routes. Bakta [<a class="cref" href="#ref1">1</a>] assigns names by
+      alignment-free matching against a curated protein database, optimised for speed and
+      standardisation across a whole genome. eggNOG-mapper [<a class="cref" href="#ref2">2</a>] places each sequence into a
+      precomputed orthologous group in the eggNOG hierarchy [<a class="cref" href="#ref3">3</a>] and takes the name from the group's
+      consensus. Because the routes are independent, a disagreement between them is informative.
+    </p>
+    <p>
+      Our rule was to treat any disagreement as disqualifying rather than to adjudicate it. We are
+      not in a position to decide which of two mature annotation tools is right about a sequence from
+      an organism nobody has cultured, and a candidate whose identity is contested is not one to spend
+      a synthesis order on. Four candidates went out this way, one of them only in round two. Where
+      the question was about a catalytic domain rather than a gene name, we used InterProScan [<a class="cref" href="#ref12">12</a>],
+      which scans against the member databases of InterPro and reports domain hits with their
+      boundaries.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Locus</th><th>Claimed</th><th>Independent call</th><th>Evidence</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td class="locus">KEICPA_01630</td><td class="gene">DUF3494</td><td>surface-adhesion repeat</td>
+        <td>Zero eggNOG support; 1,349 aa against a 150–300 aa family norm</td>
+        <td><span class="pill cr">Excluded</span></td></tr>
+      <tr><td class="locus">HCNMLP_0077</td><td class="gene">uvrA</td><td class="gene">polYB</td>
+        <td>eggNOG ortholog conflict; an unrelated SOS-response polymerase family</td>
+        <td><span class="pill cr">Excluded</span></td></tr>
+      <tr><td class="locus">BACHFP_0094</td><td class="gene">uvrA</td><td class="gene">polYB</td>
+        <td>eggNOG ortholog conflict</td><td><span class="pill cr">Excluded</span></td></tr>
+      <tr><td class="locus">PNDHLD_0013</td><td class="gene">uvrB</td><td class="gene">mfd</td>
+        <td>PFAM domains CarD_CdnL_TRCF, DEAD, Helicase_C and TRCF; a transcription-repair coupling factor</td>
+        <td><span class="pill cr">Excluded</span></td></tr>
+      <tr><td class="locus">4 × mutL</td><td class="gene">mutL</td><td class="gene">mutL fragment</td>
+        <td>7–18% of the 615 aa full length; domain fragments rather than genes</td>
+        <td><span class="pill cr">Flagged</span></td></tr>
+      <tr><td class="locus">3 × uvrC</td><td class="gene">uvrC</td><td class="gene">uvrC ✓</td>
+        <td>InterProScan confirms a genuine GIY-YIG nuclease domain; the round-one regex screen was a false negative</td>
+        <td><span class="pill ok">Restored</span></td></tr>
+    </tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 6.</b> The last row matters as much as the others. Round one screened for catalytic
+  motifs with a regular expression, which called four <i>uvrC</i> candidates domain-negative. A proper
+  InterProScan run found that three of those were false negatives, and that the fourth was truncated across
+  a different C-terminal nuclease domain rather than missing one. Both round-one and round-two verdicts are
+  shown, because an audit that only ever removes things has not been tested against itself.</p>
+
+  <div class="col">
+    <div class="note crit">
+      <span class="lbl">The headline that broke</span>
+      <p>
+        Version 1 of this project named <b>DUF3494 as a novel bacterial ice-binding domain</b>, and it
+        was the most quotable thing we had. It is gone. The sequence runs 1,349 aa against a family
+        norm of 150–300, has no independent eggNOG support at any evidence tier, and reads as a
+        bacterial surface-adhesion repeat protein that happens to contain one DUF3494 domain hit.
+        Calling that an antifreeze protein would have needed evidence we never had.
+      </p>
+    </div>
+
+    <h3>Test 4: how good is the bin the gene came from?</h3>
+    <p>
+      This is the audit we should have run first. Most of these genes come from metagenome-assembled
+      genomes, and a gene inherits the reliability of the bin it was called in. CheckM [<a class="cref" href="#ref11">11</a>] estimates
+      that reliability by looking for a set of marker genes expected to be present in single copy for
+      the bin's lineage: the fraction found gives completeness, and markers found more than once give
+      contamination. Extracting those numbers exposed the highest-risk candidate in the project, which
+      was, at the time, our recommended DNA-repair pick.
+    </p>
+
+    <div class="note crit">
+      <span class="lbl">Top pick withdrawn</span>
+      <p>
+        <code>OGEHGG_01321</code> (<i>recA</i>, composite 0.85) carries three independent problems at once.
+        The ORF is <b>49% of full length</b>. Bakta flags it as a probable pseudogene. And its source bin
+        is <b>33.7% CheckM-complete</b>, below even the 50% floor the MIMAG standard sets for calling a
+        metagenome-assembled genome a low-quality draft [<a class="cref" href="#ref13">13</a>]. The runner-up sits in a 48.6%-complete bin.
+        Neither is usable as a headline result.
+      </p>
+
+      <p style="margin-top:10px">
+        <b>Replacement:</b> <i>phrB</i> (<code>MJNEPN_02265</code> and three siblings). All four are
+        93–103% ORF-complete with clean bin quality, carry EC 4.1.99.3 as strong functional evidence,
+        and fold at CA-pLDDT 88–92. The composite score is lower and the chance of it working is
+        considerably higher. This is not a hand-picked exception: <a href="#s6">Gate 1</a> removes every
+        truncated <i>recA</i>, <i>mutS</i> and <i>uvr</i> call on ORF completeness alone, and the four
+        <i>phrB</i> candidates are simply what is left of the category once the rule runs.
+      </p>
+    </div>
+
+    <h3>Test 5: what is the screen structurally unable to see?</h3>
+    <p>
+      The four tests above all ask whether a candidate is what we said it is. This one asks a different
+      question: is there a property that decides whether a protein can be made at all, that our six
+      dimensions have no way of representing? There is, and it disqualifies most of a category.
+    </p>
+    <div class="note crit">
+      <span class="lbl">Blind spot found 2026-08-26 — integral membrane proteins</span>
+      <p>
+        <b>Seven of the eight Anaerobic Respiration candidates are polytopic integral membrane
+        proteins.</b> <i>narI</i> is the membrane-embedded di-heme cytochrome <i>b</i> subunit of
+        respiratory nitrate reductase; <i>frdC</i> and <i>frdD</i> are the membrane anchor subunits of
+        fumarate reductase. Their GRAVY values run from <b>+0.49 to +1.04</b>, while every one of the
+        other 37 candidates in the set is negative. Only <i>narJ</i>, a cytoplasmic molybdenum-cofactor
+        assembly chaperone, is soluble.
+      </p>
+      <p style="margin-top:10px">
+        The screen scored them <b>0.71–0.81</b>, which ranks them above every <i>phrB</i> (0.515–0.62)
+        and both <i>ibpA</i> candidates (0.605). In other words, after <i>cspC</i> the highest-scoring
+        things this screen offers a wet lab are proteins that will not fold in a standard cytoplasmic
+        expression host. GRAVY is computed for every candidate and then deliberately excluded from the
+        score (<a href="#s3">§03</a>), so hydrophobicity carries exactly zero weight. Nothing else in
+        the six dimensions correlates with membrane insertion: a membrane anchor is small, stable,
+        confidently folded and well annotated, so it scores well on four dimensions at once.
+      </p>
+      <p style="margin-top:10px">
+        <b>Consequence.</b> This finding is what <a href="#s6">Gate 2</a> of the locked rule
+        implements. Seven of the eight Anaerobic Respiration candidates do not pass it, so the category
+        contributes one construct rather than eight. The sequences and annotations are real and stay in
+        the published set; what changes is that they are no longer offered as targets for a first
+        expression campaign. The gate is categorical rather than a seventh weighted dimension because
+        the failure it catches is categorical, and <a href="#s10">§10</a> keeps it as a pre-registered
+        prediction to be tested rather than a correction to be assumed.
+      </p>
+    </div>
+  </div>
+
+  <details>
+    <summary>Full audit register — all twelve tasks and their verdicts</summary>
+    <div class="det-body">
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>ID</th><th>Audit</th><th>Outcome</th></tr></thead>
+        <tbody id="auditTable"></tbody>
+      </table></div>
+      <p>
+        Round one (A–G) audited evidence strength, ranking robustness, structure-pipeline accuracy,
+        catalytic motifs, strain provenance, limitations, and the conservation null model. Round two
+        (H–L) closed the data gaps round one exposed. Per-candidate QC covering EC/PFAM evidence tier,
+        CheckM completeness and contamination, and pseudogene flags is compiled for all 53 candidates
+        ever considered, including the eight that did not survive.
+      </p>
+    </div>
+  </details>
+</section>
+
+<!-- ══ 08 ════════════════════════════════════════════════════════════ -->
+<section id="s8">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Candidate explorer</h2></div>
+  <div class="col">
+    <p>
+      All 45 surviving candidates, with the numbers the screen actually used and the flags the audits
+      actually raised. Filter by category, sort by any column. Rows carrying a completeness or bin-quality
+      problem are marked, since a high composite score is not a clearance.
+    </p>
+  </div>
+
+  <div class="bleed">
+    <div class="tools" id="tools">
+      <button class="chip" data-cat="all" aria-pressed="true">All 45</button>
+      <button class="chip" data-cat="Cold" aria-pressed="false"><i class="swatch" style="background:var(--c1)"></i>Cold Stress · 8</button>
+      <button class="chip" data-cat="DNA" aria-pressed="false"><i class="swatch" style="background:var(--c2)"></i>DNA Repair / UV · 21</button>
+      <button class="chip" data-cat="Anaerobic" aria-pressed="false"><i class="swatch" style="background:var(--c3)"></i>Anaerobic · 8</button>
+      <button class="chip" data-cat="Desiccation" aria-pressed="false"><i class="swatch" style="background:var(--c4)"></i>Desiccation · 8</button>
+      <span class="sp"></span>
+      <button class="chip" id="readyOnly" aria-pressed="false">Synthesis-ready only · 19</button>
+      <button class="chip" id="flagOnly" aria-pressed="false">Flagged only</button>
+    </div>
+    <div class="tw"><table>
+      <thead><tr>
+        <th>Gene</th><th>Locus</th><th>Source organism</th>
+        <th class="num sortable" data-k="mw">MW kDa</th>
+        <th class="num sortable" data-k="pi">pI</th>
+        <th class="num sortable" data-k="inst">Instab.</th>
+        <th class="num sortable" data-k="plddt" data-dir="desc">CA-pLDDT</th>
+        <th class="num sortable" data-k="orf">ORF %</th>
+        <th class="num sortable" data-k="score">Score</th>
+        <th>Locked rule</th>
+        <th>Flag</th>
+      </tr></thead>
+      <tbody id="explorer"></tbody>
+    </table></div>
+    <p class="cap" id="explorerCount"></p>
+  </div>
+</section>
+
+<!-- ══ 09 ════════════════════════════════════════════════════════════ -->
+<section id="s9">
+  <div class="sec-head"><span class="sec-num">09</span><h2>What the screen still cannot tell you</h2></div>
+  <div class="col">
+    <p>
+      Four gaps remain open. Each needs new computation or new wet-lab work rather than better
+      bookkeeping, so none of them will close on their own. We put them here rather than in a footnote
+      because a reviewer will find them anyway.
+    </p>
+
+    <div class="grid2">
+      <div class="card"><span class="tag">Gap 1 · Taxonomy</span><h5>Part of the assembly set never ran GTDB-Tk</h5>
+        <p>Several long-read assembly batches carry Kraken2/NCBI taxonomy only. Fixing two mapping
+        errors raised GTDB coverage from 49% to 61.3%, but the remaining batches need a fresh GTDB-Tk
+        run before any phylogenetic-breadth claim can be said to cover them.</p></div>
+      <div class="card"><span class="tag">Gap 2 · Bin quality</span><h5>14 of the 45 have no CheckM data</h5>
+        <p>Largely the same batches. Among the 31 that do have it, 10 fall below 90% completeness and
+        1 exceeds 5% contamination. Counted across all 53 candidates ever considered, including the
+        eight later removed, the figures are 17 without data, 11 below 90% and 2 over 5%. We can flag
+        what we measured; we cannot vouch for what we did not.</p></div>
+      <div class="card"><span class="tag">Gap 3 · Provenance</span><h5>92% come from MAGs, not isolates</h5>
+        <p>No physical strain exists for most candidates, and 21% rest on a single genome's evidence.
+        <code>OGEHGG_01321</code> specifically needs re-assembly or PCR confirmation before anyone
+        should trust it.</p></div>
+      <div class="card"><span class="tag">Gap 4 · Function</span><h5>Nothing here has been expressed</h5>
+        <p>Every number on this page is a prediction. Stability, fold and purifiability are modelled and
+        not measured, which is what separates a resource from a result.</p></div>
+    </div>
+
+    <div class="note good">
+      <span class="lbl">What is clean</span>
+      <p>
+        "Clean" here means one specific thing: <b>sequence-level completeness plus independent
+        functional evidence</b>. It is not a claim about every axis, and the distinction matters.
+      </p>
+      <p style="margin-top:10px">
+        On that definition, the Anaerobic Respiration and Desiccation Resistance sets are fully clean:
+        all 16 candidates land within 90–111% of reference full length, and all 16 carry genuine
+        EC-number evidence. Four <i>cspC</i> and four <i>phrB</i> candidates are clean on every axis we
+        tested, including fold confidence.
+      </p>
+      <p style="margin-top:10px">
+        Two candidates that earlier drafts of this page called clean are not, and we would rather say
+        so than let the label stand. The two full-length <i>ibpA</i> candidates are ORF-complete but
+        fold at CA-pLDDT 66.9 and 62.6, <b>below our own &gt;80 band</b>; they are complete, not
+        confident. <code>IJEMCG_01450</code> (<i>recA</i>) has the strongest cross-genome support in the
+        dataset, found in 89 carrier genomes across at least two genera, but it is a <b>32% ORF
+        fragment at CA-pLDDT 60.5</b> and sits below the completeness line we drew in Figure 6.
+        Best-attested by provenance is not the same as usable, and it should not have been written in
+        a box labelled clean.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 10 ════════════════════════════════════════════════════════════ -->
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Experimental design: making the screen falsifiable</h2></div>
+  <div class="col">
+    <p class="lede">
+      A screen that is never measured against an outcome stays a heuristic forever. The design below
+      exists to end that. Its first purpose is not to characterise three interesting proteins; it is
+      to produce <b>a measured outcome for enough candidates that the screen acquires a residual</b>,
+      and only then to go deep on the ones that survive.
+    </p>
+    <p>
+      Everything here is scoped to what a team with one FPLC, a plate reader and a summer can
+      actually run. The expensive part is cloning 22 constructs once.
+    </p>
+
+    <h3>Tier 1 — Calibration set: 19 candidates, one plate</h3>
+    <p>
+      The 19 constructs are exactly the output of the locked rule in <a href="#s6">§06</a>: 45
+      candidates, 26 through Gate 1, 19 through Gate 2. No separate selection was made for this
+      experiment. Those 19 are the calibration set. They span the screen's full predicted range,
+      from 0.515 to 0.940, which is what makes a correlation meaningful; testing only the top three
+      would give three points at one end of the axis and no way to detect that the ranking is wrong.
+    </p>
+    <p>
+      Small-scale autoinduction in <i>E.&nbsp;coli</i> BL21(DE3), 96-deep-well format, triplicate.
+      Three readouts, each chosen because it maps onto a dimension the screen actually scored:
+    </p>
+    <ul>
+      <li><b>Soluble fraction</b> (soluble ÷ total by SDS-PAGE densitometry) tests the screen as a
+        whole, and is the primary outcome variable.</li>
+      <li><b>T<sub>m</sub> by thermal shift</b> tests the <i>stability</i> dimension against the
+        instability index directly. This is the one dimension carrying 25% of the weight whose input
+        was fitted on 1990-era data.</li>
+      <li><b>Single-step ion-exchange purity</b> (&gt;90% by gel, no affinity tag) tests the
+        <i>purifiability</i> dimension. 16 of the 19 are predicted tag-free; the 3 <i>phrB</i>
+        candidates with pI 6.4–7.3 are predicted to need a tag, and are the internal negative control
+        for this readout.</li>
+    </ul>
+    <p>
+      <b>Analysis.</b> Spearman ρ between composite score and soluble yield; AUROC for the binary
+      "expressed solubly at all"; and per-dimension partial correlations to find which of the six
+      dimensions carries the signal and which are dead weight. Two baselines must be reported
+      alongside, or the result means nothing: <b>pLDDT alone</b> and <b>instability alone</b>. If the
+      composite does not beat both, the composite is not earning its complexity and we say so.
+    </p>
+
+    <div class="note">
+      <span class="lbl">Control A · the degeneracy probe — built in, costs nothing extra</span>
+      <p>
+        Eight of the 19 are the Desiccation Resistance set, and all eight score <b>exactly 0.750</b> on
+        every dimension (<a href="#s7">§07</a>). The screen cannot distinguish them even in principle.
+        Any spread in their measured outcomes is therefore <b>variance the screen cannot explain</b>,
+        measured directly. That number is the noise floor against which the Tier-1 correlation has to
+        be judged: if the eight identical-score candidates vary as much as the full 0.515–0.940 range
+        does, the ranking carries no information and no refit will save it.
+      </p>
+    </div>
+
+    <div class="note crit">
+      <span class="lbl">Control B · pre-registered negative prediction — declare before running</span>
+      <p>
+        The seven membrane candidates found in <a href="#s7">§07</a> score 0.71–0.81, above every
+        <i>phrB</i> and both <i>ibpA</i>. <b>We predict, in advance, that all seven fail soluble
+        cytoplasmic expression.</b> They are cloned and run in the same plate under the same protocol.
+      </p>
+      <p style="margin-top:10px">
+        Writing the prediction down before the experiment is the whole point. If they fail, the screen
+        has a demonstrated, quantified blind spot and a hydrophobicity gate is a justified fix rather
+        than a hunch. If they express, our reading of the annotation was wrong and the screen was
+        right, which we would also have to report. Either way this converts an argument into a result,
+        and it costs seven extra wells.
+      </p>
+    </div>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Construct</th><th>Gene</th><th class="num">Predicted score</th><th class="num">MW kDa</th>
+      <th class="num">pI</th><th class="num">Instab.</th><th class="num">CA-pLDDT</th><th>Capture</th><th>Arm</th></tr></thead>
+    <tbody id="tier1Table"></tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 8.</b> The 19-construct calibration set, ordered by predicted score. The four
+  <i>cspC</i> at 0.940 and the three tagged <i>phrB</i> at 0.515 anchor the two ends of the axis; the eight
+  at 0.750 are Control A. Seven membrane constructs (Control B) and three <i>E.&nbsp;coli</i> reference
+  orthologs are cloned alongside, giving 29 constructs in total.</p>
+
+  <div class="col">
+    <h3>Tier 2 — Functional characterisation, head to head</h3>
+    <p>
+      Only after Tier 1 reports do three candidates go forward for function, and the choice depends on
+      what Tier 1 says. The design principle is that <b>every functional assay is run against the
+      <i>E.&nbsp;coli</i> ortholog purified by the same protocol on the same day</b>. Without that
+      paired reference, "our desert variant is stable" is a number with nothing to compare it to, and
+      the project's entire premise — that desert variants outperform textbook ones — stays untested.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="t2grid">
+    <div class="t2card"><div class="t2head"><span class="pill ok">First</span></div><div class="t2f"><span class="t2l">Candidate</span><div class="t2v">cspC<br><span class="locus" style="font-style:normal">EJIGFF_03899</span>
+          <div style="font-family:var(--serif);font-style:normal;font-size:13px;color:var(--muted);margin-top:6px">
+          Instability −1.8, pI 9.1, the only cation-exchange candidate in the set. Sibling
+          <code>FCEEAA_04582</code> as backup.</div></div></div><div class="t2f"><span class="t2l">Paired reference</span><div class="t2v"><i>E. coli</i> CspA<br><span class="locus" style="font-style:normal">P0A9X9 · 56.7% identity</span></div></div><div class="t2f"><span class="t2l">Read-out</span><div class="t2v">T<sub>m</sub> by differential scanning fluorimetry [<a class="cref" href="#ref29">29</a>];
+          nucleic-acid melting activity on a fluorescent beacon substrate
+          [<a class="cref" href="#ref23">23</a>]; growth rescue of the cold-sensitive quadruple
+          <i>csp</i> deletion strain BX04 at 15–25°C [<a class="cref" href="#ref22">22</a>]</div></div><div class="t2f"><span class="t2l">Decision rule</span><div class="t2v">Desert variant must match or beat CspA on T<sub>m</sub> <em>and</em> rescue cold growth.
+          Rescue without a T<sub>m</sub> gain still counts as a working part; a T<sub>m</sub> gain
+          without rescue means we improved stability and broke function.</div></div></div>
+    <div class="t2card"><div class="t2head"><span class="pill ok">Second</span></div><div class="t2f"><span class="t2l">Candidate</span><div class="t2v">phrB<br><span class="locus" style="font-style:normal">MJNEPN_02265</span>
+          <div style="font-family:var(--serif);font-style:normal;font-size:13px;color:var(--muted);margin-top:6px">
+          Replaces the withdrawn <i>recA</i> pick. 93% ORF-complete, EC 4.1.99.3, clean bin.</div></div></div><div class="t2f"><span class="t2l">Paired reference</span><div class="t2v"><i>E. coli</i> Phr<br><span class="locus" style="font-style:normal">P00914 · gene <i>phr</i></span>
+          <div style="font-family:var(--serif);font-style:normal;font-size:13px;color:var(--muted);margin-top:6px">
+          Our candidates are annotated <i>phrB</i> by Bakta; the <i>E.&nbsp;coli</i> locus is
+          <i>phr</i>. PhrB names a different protein in other genera.</div></div></div><div class="t2f"><span class="t2l">Read-out</span><div class="t2v">Photoreactivation of UV-damaged DNA: survival of a <i>phr</i>-deficient host after UV-C,
+          with photoreactivating light versus a dark control
+          [<a class="cref" href="#ref24">24</a>]. Strain: Keio Δ<i>phr</i> JW0698
+          [<a class="cref" href="#ref30">30</a>]</div></div><div class="t2f"><span class="t2l">Decision rule</span><div class="t2v">The dark control is the experiment. Survival must rise with light and not without it;
+          a light-independent gain is a UV-tolerance artefact, not photolyase activity.</div></div></div>
+    <div class="t2card"><div class="t2head"><span class="pill nu">Third</span></div><div class="t2f"><span class="t2l">Candidate</span><div class="t2v">otsB / ectA<br><span class="locus" style="font-style:normal">8-candidate shortlist</span>
+          <div style="font-family:var(--serif);font-style:normal;font-size:13px;color:var(--muted);margin-top:6px">
+          Best predicted folds (CA-pLDDT 83–96), on-thesis for arid-land use. Present as a shortlist:
+          the ranking inside it is degenerate.</div></div></div><div class="t2f"><span class="t2l">Paired reference</span><div class="t2v"><i>E. coli</i> OtsB<br><span class="locus" style="font-style:normal">P31678</span>
+          <div style="font-family:var(--serif);font-style:normal;font-size:13px;color:var(--crit);margin-top:6px">
+          No <i>E. coli</i> reference exists for <i>ectA</i>: K-12 has no ectoine pathway, which we
+          confirmed against UniProt. <i>Halomonas elongata</i> EctA
+          [<a class="cref" href="#ref27">27</a>] is the reference to source instead.</div></div></div><div class="t2f"><span class="t2l">Read-out</span><div class="t2v">Malachite-green phosphate release from trehalose-6-phosphate, EC 3.1.3.12
+          (<i>otsB</i>) [<a class="cref" href="#ref25">25</a>]; DTNB detection of CoA release,
+          EC 2.3.1.178 (<i>ectA</i>) [<a class="cref" href="#ref28">28</a>]; specific activity per mg.
+          Optional osmotic-rescue of Keio Δ<i>otsB</i> JW1886
+          [<a class="cref" href="#ref26">26</a>, <a class="cref" href="#ref30">30</a>]</div></div><div class="t2f"><span class="t2l">Decision rule</span><div class="t2v">This arm exists to break the 0.750 tie. Whatever the activities are, the spread across
+          eight identically-scored candidates is the number we report back to <a href="#s6">§06</a>.</div></div></div>
+  </div></div>
+  <p class="cap"><b>Figure 7.</b> Ordered by confidence rather than by composite score: <i>otsB</i> outscores
+  the others in its arm and still ranks third, because <a href="#s7">§07</a> showed that rank carries no
+  information. The decision rules are written before the experiments deliberately, so that a result which
+  contradicts our expectation is still interpretable rather than negotiable afterwards.</p>
+
+  <div class="col">
+    <div class="note crit">
+      <span class="lbl">Sourcing risk that decides the timeline</span>
+      <p>
+        The genetic assays depend on deletion strains, and they are not equally easy to get. The
+        <i>phr</i> and <i>otsB</i> arms are safe: <b>Keio JW0698</b> (Δ<i>phr</i>) and <b>JW1886</b>
+        (Δ<i>otsB</i>) are catalogue strains that ship on request [<a class="cref" href="#ref30">30</a>].
+      </p>
+      <p style="margin-top:10px">
+        <b>The <i>cspC</i> arm is the problem.</b> BX04, the quadruple Δ<i>cspA</i>Δ<i>cspB</i>Δ<i>cspE</i>Δ<i>cspG</i>
+        strain that makes cold-growth rescue interpretable, is a lab strain with <b>no catalogue
+        entry</b> at ATCC, CGSC or Addgene, and <b>no orderable equivalent exists</b>. It has to be
+        requested from the originating lab or from a group that has published with it, and that
+        request has a lead time we do not control. Since <i>cspC</i> is our flagship candidate, this
+        single logistics item is the most likely reason the strongest arm of this design does not run.
+      </p>
+      <p style="margin-top:10px">
+        <b>Mitigation:</b> start the strain request now, and treat the <i>in vitro</i> readouts
+        (T<sub>m</sub> and beacon melting) as the fallback for <i>cspC</i>. They test biophysics
+        without testing physiology, which is weaker but not nothing. The same applies to
+        <i>phr</i>: the orderable Keio strain is <i>uvrA</i>⁺, so nucleotide excision repair will
+        compress the light-versus-dark window that the assay depends on. Published work uses a
+        <i>phr uvrA</i> double mutant for exactly that reason, and that strain is also lab-request
+        only.
+      </p>
+    </div>
+    <div class="note warn">
+      <span class="lbl">Two conditions that will silently ruin a result</span>
+      <p>
+        <b>Glycine betaine masks the <i>otsB</i> phenotype.</b> The osmotic-sensitivity of <i>ots</i>
+        mutants is rescued by exogenous betaine [<a class="cref" href="#ref26">26</a>], so the
+        complementation has to be scored on glucose minimal medium with high NaCl and <b>no betaine</b>.
+        Rich medium will give a clean negative result that means nothing.
+      </p>
+      <p style="margin-top:10px">
+        <b>SYPRO Orange cannot be used with detergent.</b> If Control B's membrane constructs are ever
+        followed up in detergent or a membrane mimetic, the dye-based thermal shift assay does not
+        transfer; label-free nanoDSF is the alternative, and it needs the protein to contain
+        tryptophan.
+      </p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>What a wet-lab result feeds back</h3>
+    <p>
+      The screen has one calibration parameter it cannot set from sequence data: the weight vector in
+      <a href="#s6">§06</a>. Every threshold in it comes from literature defaults, and
+      <a href="#s7">§07</a> showed at least one category's ranking is sensitive to those defaults at
+      the ±20% level. Tier 1 is designed to end that. With 19 measured outcomes we can fit the weights
+      instead of asserting them, and report a residual.
+    </p>
+    <p>
+      Three specific things change depending on what comes back, and we would rather commit to them now
+      than decide afterwards:
+    </p>
+    <ol class="body">
+      <li><b>If the composite beats both single-dimension baselines</b>, the weights get refitted on the
+        measured data and the screen stops being a heuristic. We report the fitted weights next to the
+        hand-set ones so the difference is visible.</li>
+      <li><b>If it does not beat pLDDT alone</b>, we drop dimensions until the simpler model wins, and
+        say plainly that five of the six were decoration. A screen that was falsified and then reduced
+        is more useful to the next team than one that was never tested.</li>
+      <li><b>If Control B's membrane constructs fail as predicted</b>, a hydrophobicity gate goes in
+        ahead of scoring rather than as a seventh weighted dimension, because the failure is
+        categorical rather than graded. If they express, the gate does not go in and we retract
+        <a href="#s7">§07</a>'s Test 5.</li>
+    </ol>
+    <p>
+      Control A is the reason the desiccation shortlist is worth running even though the screen cannot
+      rank it. Eight candidates with identical predicted properties and different measured outcomes
+      would tell us how much of the outcome the six dimensions never had access to, which is the one
+      number that says whether refitting is worth doing at all.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 11 ════════════════════════════════════════════════════════════ -->
+<section id="s11">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Contribution, and where the samples came from</h2></div>
+  <div class="col">
+    <p class="lede">
+      A candidate list is a weak contribution. Any team with a cluster can produce one, it is stale the
+      moment the databases move, and nobody can tell from the list which entries to distrust. The three
+      things below are what we think are actually worth handing on.
+    </p>
+
+    <h3>1. A candidate set that carries its own doubts</h3>
+    <p>
+      The 45 candidates ship with the flags rather than without them: ORF completeness against the
+      canonical ortholog, source-bin CheckM completeness and contamination, pseudogene calls,
+      annotation-conflict status, and EC/PFAM evidence tier. All 53 candidates ever considered are
+      included, the eight excluded ones among them, with the reason each was cut. A team reusing this
+      can see at a glance that <i>phrB</i> is orderable and that the highest-scoring <i>recA</i> is a
+      fragment in a 33.7%-complete bin, which the score alone would never tell them.
+    </p>
+
+    <h3>2. A checklist for auditing your own dry lab</h3>
+    <p>
+      This is the part we would most want another team to take. Each row below is a check that found a
+      real error in our own output, is cheap to run, and is not specific to desert metagenomes or to
+      stress proteins. Most iGEM dry-lab projects produce a ranked list and stop; none of these checks
+      requires anything beyond what such a project already has.
+    </p>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Check</th><th>What it asks</th><th>What it caught here</th><th class="num">Cost</th></tr></thead>
+    <tbody id="checkTable"></tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 9.</b> Every row cost us something: three of the six invalidated a result we had
+  already published in an earlier report. That is the argument for running them <em>before</em> the wiki
+  freeze rather than after.</p>
+
+  <div class="col">
+    <h3>3. Negative results, stated so others can avoid them</h3>
+    <p>
+      Four failures here are reusable, and none of them is specific to this project. Raw alignment
+      conservation cannot be compared across families of different depth. A hand-weighted score can be
+      perfectly robust and still carry no information, if its inputs are degenerate. A consistency
+      check applied downstream of the filter that guarantees it can never fail. And a
+      physicochemical screen with no hydrophobicity term will rank integral membrane proteins near the
+      top and hand them to a wet lab that cannot express them.
+    </p>
+
+    <h3>Provenance of the metagenomes</h3>
+    <p>
+      The 1,221 metagenomes analysed here were <b>not generated by this iGEM team</b>. They come from
+      an ongoing Rub' al-Khali microbial ecology survey carried out by the Bio-Ontology Research Group
+      at KAUST, and the survey's own findings on biogeography, soil-position structure and
+      environmental association are reported separately by that group. Our contribution begins
+      downstream of their sampling and assembly: functional mining, candidate prioritisation, and the
+      audit of that prioritisation.
+    </p>
+    <p>
+      We state this prominently because it changes how the work should be judged. Credit for the
+      sampling campaign and the assemblies belongs to the survey; what is ours to defend is the
+      screening pipeline, the QC-flagged candidate set, and <a href="#s7">§07</a>.
+    </p>
+
+    <h3>Availability</h3>
+  </div>
+
+  <div class="bleed"><div class="tw"><table>
+    <thead><tr><th>Resource</th><th>Where</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600">Survey project portal</td>
+        <td><a href="https://rubalkhali.science/" target="_blank" rel="noopener">rubalkhali.science</a></td>
+        <td><span class="pill wn">Live, development resource</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Survey analysis code</td>
+        <td><a href="https://github.com/bio-ontology-research-group/empty-quarter-ecology" target="_blank" rel="noopener">bio-ontology-research-group/empty-quarter-ecology</a></td>
+        <td><span class="pill ok">Public · MIT</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Survey data &amp; knowledge graph</td>
+        <td><a href="https://github.com/bio-ontology-research-group/empty-quarter-ecology-data" target="_blank" rel="noopener">bio-ontology-research-group/empty-quarter-ecology-data</a></td>
+        <td><span class="pill wn">Public staging snapshot</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Archived, citable release of that data</td>
+        <td>Awaiting the survey's own release gates</td>
+        <td><span class="pill cr">Not yet deposited</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Our candidate set + QC supplement</td>
+        <td>To be released with this wiki</td>
+        <td><span class="pill cr">Pending</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Our screening &amp; audit code</td>
+        <td>To be released with this wiki</td>
+        <td><span class="pill cr">Pending</span></td>
+      </tr>
+    </tbody>
+  </table></div></div>
+  <p class="cap"><b>Table 10.</b> Reported as it currently stands rather than as we intend it to stand.
+  The survey's data repository is publicly readable, but its own documentation describes it as a
+  <b>staging snapshot rather than a published release</b>, with a version freeze, per-file licences and
+  a Zenodo DOI still pending. Development project identifiers exist in that tree; the survey states they
+  are <b>not yet evidence that every sample and run is publicly retrievable</b>. We therefore cite the
+  repository and the portal, and deliberately quote no DOI, no accession and no licence for the
+  underlying reads until the survey deposits them. Claiming availability we cannot demonstrate would be
+  worse than reporting the gap.
+  Three rows are still red, and until they are green this pipeline is <b>not reproducible by anyone
+  outside the team</b>, which for a dry-lab project is a real limitation and not a formality.</p>
+
+  <div class="col">
+    <div class="note warn">
+      <span class="lbl">Every number on this page is recomputable</span>
+      <p style="margin-bottom:12px">
+        Two scripts regenerate every derived figure on this page from the released tables and print
+        the page value beside the recomputed one: one covers the candidate set, the QC denominators,
+        the gate outputs, the reranking checks and the AlphaFold-versus-ESMFold offset (24 figures);
+        the other regenerates the eSOL validation table. A provenance index maps every block on the
+        page to the file it comes from, and states the three things that <em>cannot</em> be recomputed
+        here: the survey's raw reads, which are staged publicly but not yet deposited as a citable
+        release; the aliphatic-index values behind <a href="#s3">§03</a>'s negative result; and the
+        20% of the weight eSOL could not test.
+      </p>
+    </div>
+    <div class="note warn">
+      <span class="lbl">What still has to happen before this counts as a contribution</span>
+      <p>
+        An honest availability section is not the same as an available dataset. To make this usable by
+        another team we still owe: an <b>OSI licence</b> on the code, an archived <b>DOI</b> for the
+        candidate tables and QC supplement, an <b>environment specification</b> so versions are
+        pinned, and a <b>parameters table</b> covering every threshold, random seed, resampling N and
+        the Dirichlet concentration parameter. Five of the nine tools in
+        <a href="#s2">Table 2</a> currently show no recorded version, and no database release
+        versions are recorded at all, which means the GTDB coverage figure in
+        <a href="#s9">§09</a> is not reproducible even in principle.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 12 ════════════════════════════════════════════════════════════ -->
+<section id="s12">
+  <div class="sec-head"><span class="sec-num">12</span><h2>References</h2></div>
+  <div class="col">
+    <p>
+      Software citations are grouped first, then the methods and metrics the score is built from, then
+      the structures used to calibrate it. Databases are cited separately from the tools that query
+      them.
+    </p>
+  </div>
+  <div class="bleed"><ol class="refs" id="refList"></ol></div>
+</section>
+
+<footer>
+  <b>Model · Dry Lab.</b> Empty Quarter metagenome survey: 1,036 enrichment cultures and 185 isolate
+  genomes, 45 prioritised protein candidates.<br>
+  Structure prediction was run on the Ibex cluster at KAUST; we thank the KAUST Supercomputing
+  Core Laboratory for the allocation.<br>
+  Every figure on this page is drawn from the released candidate tables. Retracted claims are shown
+  rather than deleted, and both round-one and round-two audit verdicts are reported.
+</footer>
+
+</main>
+</div>
+</div>
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+/* ── data ───────────────────────────────────────────────────────────── */
+var CATS = [
+  {key:"Cold",       name:"Cold Stress",           v:"--c1", w:"--c1-wash", n:8,  st:"8 / 8",   gtdb:6,
+   fams:"csp, ibpAB", rank:"Robust (P = 0.998)", rc:"ok"},
+  {key:"DNA",        name:"DNA Repair / UV",       v:"--c2", w:"--c2-wash", n:21, st:"21 / 21", gtdb:13,
+   fams:"recA, uvrA/B/C, mutS, phrB", rank:"Robust rank, unusable pick", rc:"wn"},
+  {key:"Anaerobic",  name:"Anaerobic Respiration", v:"--c3", w:"--c3-wash", n:8,  st:"8 / 8",   gtdb:8,
+   fams:"nitrate red., fumarate red.", rank:"Fragile (P = 0.593)", rc:"wn"},
+  {key:"Desiccation",name:"Desiccation Resistance",v:"--c4", w:"--c4-wash", n:8,  st:"8 / 8",   gtdb:6,
+   fams:"ectoine, trehalose", rank:"Degenerate; no ranking", rc:"cr"}
+];
+var CIDX = {}; CATS.forEach(function(c,i){ CIDX[c.key] = i; });
+
+// locus, gene, phylum, organism, mw, pi, instability, plddt, conservation, score, orf%, category, flag
+var D = [
+["FCEEAA_04582","cspC","Bacillota","Paenibacillus_B aquistagni",7.2,4.72,5.99,90.6,36.6,0.94,94,"Cold",""],
+["KJFHJC_02548","cspC","Bacillota_A","Lacrimispora amygdalina_A",7.1,4.75,1.52,89.7,36.6,0.94,93,"Cold",""],
+["KJFHJC_04270","cspC","Bacillota_A","Lacrimispora amygdalina_A",7.3,4.84,6.31,90.0,36.6,0.94,96,"Cold",""],
+["EJIGFF_03899","cspC","Pseudomonadota","Cupriavidus pauculus",7.3,9.10,-1.82,90.3,36.6,0.94,96,"Cold",""],
+["FMCNHN_02954","ibpA","—","unclassified",7.3,9.30,36.88,71.5,56.9,0.72,47,"Cold","47% ORF"],
+["JIGFNP_0059","ibpA","—","unclassified",9.6,5.65,24.21,72.3,56.9,0.715,63,"Cold","63% ORF"],
+["FEFCII_02476","ibpA","Actinomycetota","Rhodococcus equi",16.6,4.85,30.47,66.9,56.9,0.605,111,"Cold",""],
+["EELILG_00140","ibpA","Bacteroidota","Petrimonas sp002356435",16.3,4.91,35.35,62.6,56.9,0.605,104,"Cold",""],
+
+["OGEHGG_01321","recA","Bacteroidota","Acetobacteroides sp.",18.9,9.38,24.20,85.2,33.9,0.85,49,"DNA","49% ORF · pseudo · bin 33.7%"],
+["IMPCGL_00194","recA","Bacillota_A","Acetoanaerobium noterae",20.4,9.40,23.48,87.0,33.9,0.85,51,"DNA","51% ORF · bin 48.6%"],
+["MDGCGF_05015","mutS","—","unclassified",26.4,4.65,21.74,86.1,16.5,0.81,28,"DNA","28% ORF"],
+["IGKDHG_03969","uvrC","—","unclassified",31.1,9.22,24.94,90.7,26.2,0.75,44,"DNA","44% ORF · domain OK"],
+["AGLHGJ_02831","mutS","Bacillota_A","Clostridium sp.",12.2,6.29,18.30,80.7,16.5,0.72,12,"DNA","12% ORF"],
+["MDGCGF_04237","uvrC","—","unclassified",28.1,9.05,35.81,93.5,26.2,0.71,39,"DNA","39% ORF · domain OK"],
+["HNJJAK_02069","mutS","Pseudomonadota","Ochrobactrum sp006345815",24.1,5.47,20.79,86.8,16.5,0.705,25,"DNA","25% ORF"],
+["OJFILE_011385","uvrC","Pseudomonadota","Escherichia coli",22.2,7.63,21.83,92.3,26.2,0.705,31,"DNA","31% ORF"],
+["MKOHDO_00868","recA","—","unclassified",17.2,9.36,14.83,64.7,33.9,0.675,44,"DNA","44% ORF"],
+["PBDMHO_02264","mutS","Pseudomonadota","Stappia indica_A",38.8,4.98,34.43,88.0,16.5,0.65,42,"DNA","42% ORF"],
+["IGKDHG_03054","uvrB","—","unclassified",52.8,4.99,37.48,84.6,29.9,0.65,68,"DNA","68% ORF"],
+["OPINBK_05041","uvrA","Pseudomonadota","Pannonibacter sp.",29.4,5.50,38.95,91.2,32.9,0.645,29,"DNA","29% ORF"],
+["DDPLBO_00005","uvrA","—","unclassified",22.2,6.16,32.49,89.2,32.9,0.645,21,"DNA","21% ORF"],
+["IJEMCG_01450","recA","Bacillota","Bacillus paralicheniformis",12.8,4.67,39.65,60.5,33.9,0.62,32,"DNA","32% ORF · 89 carrier genomes"],
+["MJNEPN_02265","phrB","—","unclassified",49.9,4.97,33.41,90.8,19.7,0.62,93,"DNA",""],
+["DCCOJF_0708","uvrB","—","unclassified",6.0,5.23,18.79,50.9,29.9,0.575,7,"DNA","7% ORF"],
+["JMLLCE_01790","uvrB","Bacillota_A","Eubacterium_O aggregans",33.5,4.90,38.60,78.8,29.9,0.575,44,"DNA","44% ORF"],
+["DDPONI_03681","uvrC","Bacillota","Bacillus_A pacificus",15.1,7.81,22.35,65.8,32.2,0.54,21,"DNA","21% ORF · domain OK"],
+["JONGHJ_02396","phrB","Pseudomonadota","Pannonibacter sp.",54.3,6.40,37.01,91.8,19.7,0.515,103,"DNA",""],
+["IKAEFD_01270","phrB","Pseudomonadota","Providencia rettgeri_D",55.1,7.30,39.64,88.8,19.7,0.515,102,"DNA",""],
+["LHCKBH_03134","phrB","Pseudomonadota","Pannonibacter sp.",54.3,6.60,35.08,91.4,19.7,0.515,103,"DNA",""],
+
+["KDPOLD_03231","narI","Pseudomonadota","Marinobacter sp029264995",25.4,9.94,22.04,90.1,21.5,0.81,100,"Anaerobic","Not weight-robust"],
+["OMLBPC_00431","frdC","Pseudomonadota","Morganella morganii",14.8,9.67,37.21,87.7,43.0,0.795,101,"Anaerobic",""],
+["IKAEFD_00287","frdC","Pseudomonadota","Providencia rettgeri_D",14.9,9.87,25.65,87.6,43.0,0.795,102,"Anaerobic",""],
+["PALKJD_01611","frdD","Bacillota","Bacillus_A paranthracis",13.1,9.04,38.59,82.2,43.0,0.795,102,"Anaerobic",""],
+["PALKJD_01612","frdC","Bacillota","Bacillus_A paranthracis",14.8,9.94,37.46,88.7,43.0,0.795,102,"Anaerobic",""],
+["OMLBPC_00264","narI","Pseudomonadota","Morganella morganii",25.3,9.82,34.41,88.9,21.5,0.71,100,"Anaerobic",""],
+["IKAEFD_00507","narI","Pseudomonadota","Providencia rettgeri_D",25.7,9.84,33.42,88.9,21.5,0.71,100,"Anaerobic",""],
+["IKAEFD_00508","narJ","Pseudomonadota","Providencia rettgeri_D",27.5,4.58,35.82,85.3,21.5,0.71,102,"Anaerobic",""],
+
+["HJGENA_00690","otsB","Actinomycetota","Microbacterium sp001866135",28.7,4.64,37.94,96.3,40.8,0.75,100,"Desiccation","Rank degenerate"],
+["DOEECF_00197","otsB","Pseudomonadota","Ochrobactrum sp006345815",28.1,4.88,34.86,94.9,40.8,0.75,98,"Desiccation","Rank degenerate"],
+["PIHCGA_01600","otsB","Actinomycetota","Microbacterium sp001426925",28.1,4.56,38.58,92.0,40.8,0.75,100,"Desiccation","Rank degenerate"],
+["LEIIJB_03335","otsB","Actinomycetota","Arthrobacter sp.",29.4,4.81,33.96,96.0,40.8,0.75,105,"Desiccation","Rank degenerate"],
+["FEFCII_02160","ectA","Actinomycetota","Rhodococcus equi",19.5,4.89,32.89,83.2,38.2,0.75,90,"Desiccation","Rank degenerate"],
+["DJKOGP_04264","ectA","Actinomycetota","Rhodococcus equi",19.5,4.80,33.37,84.5,38.2,0.75,90,"Desiccation","Rank degenerate"],
+["IKLJFA_02022","ectA","—","unclassified",21.4,4.79,35.12,93.5,38.2,0.75,99,"Desiccation","Rank degenerate"],
+["GMIJIG_03406","ectA","—","unclassified",19.5,4.89,35.30,83.8,38.2,0.75,90,"Desiccation","Rank degenerate"]
+];
+var F = {loc:0,gene:1,phy:2,org:3,mw:4,pi:5,inst:6,plddt:7,cons:8,score:9,orf:10,cat:11,flag:12};
+
+// Loci that fail Gate 2 (GRAVY > 0): the integral-membrane subunits found in §07 Test 5.
+var MEMBRANE = ["KDPOLD_03231","OMLBPC_00431","IKAEFD_00287","PALKJD_01611",
+                "PALKJD_01612","OMLBPC_00264","IKAEFD_00507"];
+function gateStatus(r){
+  if (r[F.orf] < 90) return ["Gate 1", "cr", "ORF < 90%"];
+  if (MEMBRANE.indexOf(r[F.loc]) !== -1) return ["Gate 2", "cr", "membrane"];
+  return ["Synthesis-ready", "ok", ""];
+}
+
+
+var css = function(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
+
+/* ── funnel ─────────────────────────────────────────────────────────── */
+var FUNNEL = [
+  {n:1221,   lab:"Desert metagenomes",       meth:"1,036 enrichment + 185 isolate", unit:"samples"},
+  {n:20962,  lab:"Tier-1 stress-gene calls", meth:"Bakta + eggNOG functional validation", unit:"ORFs"},
+  {n:79,     lab:"Structures predicted",     meth:"CD-HIT 90% → MAFFT → ESMFold v1 on Ibex", unit:"folds"},
+  {n:53,     lab:"Ranked candidates (v2)",   meth:"6-dimension composite score", unit:"candidates"},
+  {n:45,     lab:"After rigor review",       meth:"12-part audit, 8 removed", unit:"candidates", hi:true}
+];
+(function(){
+  var host = document.getElementById("funnel"), max = Math.log10(FUNNEL[1].n);
+  FUNNEL.forEach(function(s,i){
+    var pct = Math.max(2, (Math.log10(s.n) / max) * 100);
+    var d = document.createElement("div"); d.className = "fstep";
+    d.innerHTML =
+      '<div class="fbar-wrap">'
+      + '<div class="lab"><span class="st">' + String(i+1).padStart(2,"0") + '</span>'
+      + '<span>' + s.lab + '</span><span class="meth">' + s.meth + '</span></div>'
+      + '<div class="fbar" style="width:' + pct.toFixed(1) + '%;background:'
+      + (s.hi ? "var(--sand)" : "var(--accent)") + '"></div></div>'
+      + '<div class="cnt">' + s.n.toLocaleString() + '<small>' + s.unit + '</small></div>';
+    host.appendChild(d);
+  });
+})();
+
+/* ── category table ─────────────────────────────────────────────────── */
+(function(){
+  var tb = document.getElementById("catTable");
+  CATS.forEach(function(c){
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td style="white-space:nowrap"><i class="swatch" style="background:var(' + c.v + ')"></i>' + c.name + '</td>'
+      + '<td class="num">' + c.n + '</td><td class="num">' + c.st + '</td>'
+      + '<td class="num">' + c.gtdb + '</td>'
+      + '<td style="font-family:var(--mono);font-size:12px;font-style:italic">' + c.fams + '</td>'
+      + '<td><span class="pill ' + c.rc + '">' + c.rank + '</span></td>';
+    tb.appendChild(tr);
+  });
+})();
+
+/* ── dimension table ────────────────────────────────────────────────── */
+(function(){
+  var DIM = [
+    ["Stability","25%","BioPython instability index","&lt;10 → 1.0 · &lt;25 → 0.7 · &lt;40 → 0.3","Predicts whether the protein survives expression at all"],
+    ["Structure","25%","ESMFold CA-pLDDT","&gt;80 → 1.0 · &gt;70 → 0.7 · &gt;50 → 0.3","Calibrated against three solved structures (Table 3)"],
+    ["Size","15%","BioPython molecular weight","&lt;15 kDa → 1.0 · &lt;30 kDa → 0.7","Small proteins express and purify more cheaply"],
+    ["Purifiability","15%","BioPython isoelectric point","pI &lt; 5 or &gt; 9 → 1.0","Enables tag-free ion-exchange capture"],
+    ["Conservation","10%","CD-HIT → MAFFT → Shannon entropy","&gt;50% → 1.0 · &gt;30% → 0.7 · &gt;15% → 0.3","Family-level; raw column entropy, NOT the depth-matched value (see §04)"],
+    ["Annotation","10%","eggNOG COG / KEGG","KEGG → 1.0 · COG → 0.7","Independent confirmation of gene identity"]
+  ];
+  var tb = document.getElementById("dimTable");
+  DIM.forEach(function(r){
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td style="font-weight:600;white-space:nowrap">' + r[0] + '</td>'
+      + '<td class="num" style="font-weight:600;color:var(--sand)">' + r[1] + '</td>'
+      + '<td style="color:var(--ink-2)">' + r[2] + '</td>'
+      + '<td style="font-family:var(--mono);font-size:11.5px;white-space:nowrap">' + r[3] + '</td>'
+      + '<td style="font-family:var(--serif);font-size:14px;color:var(--ink-2)">' + r[4] + '</td>';
+    tb.appendChild(tr);
+  });
+})();
+
+/* ── audit register ─────────────────────────────────────────────────── */
+(function(){
+  var A = [
+    ["A","Evidence-strength audit","DUF3494 excluded; 2 <i>uvrA</i> identity conflicts found; ORF completeness column added"],
+    ["B","Weight-sensitivity analysis","Desiccation ranking shown degenerate; Anaerobic top pick shown fragile"],
+    ["C","ESMFold benchmark on CspA","CA RMSD 1.13 Å vs PDB 1MJC; two conflicting pLDDT methods reconciled"],
+    ["D","Catalytic motif screen","4 <i>uvrC</i> candidates flagged — later overturned by task J"],
+    ["E","Strain provenance","92% MAG-derived, 21% single-genome evidence; disclosed"],
+    ["F","Limitations section","Consolidated; back-filled with both rounds' results"],
+    ["G","Conservation null model","<i>ibpAB</i> superlative retracted; <i>csp</i> confirmed most conserved"],
+    ["H","EC / PFAM re-audit","46 emapper files recovered; <i>uvrB</i>/<i>mfd</i> conflict found and excluded"],
+    ["I","GTDB taxonomy extension","Coverage 49% → 61.3%; two data bugs fixed; long-read gap identified"],
+    ["J","<i>uvrC</i> InterProScan check","3 of 4 round-one flags were regex false negatives — candidates restored"],
+    ["K","ESMFold benchmark extension","recA and otsB added; pLDDT &gt; 80 band confirmed across three folds"],
+    ["L","Pseudogene &amp; CheckM audit","28% carry pseudo flags; DNA-repair top pick found in a 33.7%-complete bin"]
+  ];
+  var tb = document.getElementById("auditTable");
+  A.forEach(function(r){
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td style="font-family:var(--mono);color:var(--sand);font-weight:600">' + r[0] + '</td>'
+      + '<td style="white-space:nowrap">' + r[1] + '</td>'
+      + '<td style="font-family:var(--serif);font-size:14px;color:var(--ink-2)">' + r[2] + '</td>';
+    tb.appendChild(tr);
+  });
+})();
+
+/* ── transferable audit checklist ───────────────────────────────────── */
+(function(){
+  var C = [
+    ["ORF completeness","Is the gene a complete gene, or a contig-break fragment wearing a family name?",
+     "24 of 28 DNA-repair candidates truncated; 4 <i>mutL</i> at 7–18% removed","Low"],
+    ["Two-annotator identity check","Do two independent annotation methods agree on what this gene is?",
+     "4 candidates excluded on Bakta/eggNOG ortholog conflict","Low"],
+    ["Weight sensitivity","Does the ranking survive perturbing the weights you chose by hand?",
+     "One category shown fully degenerate; another flips under 4 of 36 perturbations","Medium"],
+    ["Depth-matched conservation","Are you comparing conservation across alignments of different depth?",
+     "Retracted the project's <i>ibpAB</i> superlative; <i>csp</i> is the real answer","Medium"],
+    ["Source-bin quality","How complete is the MAG the gene was called in?",
+     "Top pick found in a 33.7%-complete bin, below the MIMAG floor","Low"],
+    ["Hydrophobicity gate","Can your score tell an integral membrane protein from a soluble one?",
+     "7 of 8 in one category are membrane subunits, scored 0.71–0.81","Low"]
+  ];
+  var tb = document.getElementById("checkTable");
+  if (!tb) return;
+  var TONE = {Low:"ok", Medium:"wn"};
+  C.forEach(function(r){
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td style="font-weight:600;white-space:nowrap">' + r[0] + '</td>'
+      + '<td style="font-family:var(--serif);font-size:14px;color:var(--ink-2)">' + r[1] + '</td>'
+      + '<td style="font-family:var(--serif);font-size:14px">' + r[2] + '</td>'
+      + '<td class="num"><span class="pill ' + TONE[r[3]] + '">' + r[3] + '</span></td>';
+    tb.appendChild(tr);
+  });
+})();
+
+/* ── tier-1 calibration set ─────────────────────────────────────────── */
+(function(){
+  var T1 = [
+    ["KJFHJC_04270","cspC",0.940,7.3,4.84,6.31,90.0],
+    ["KJFHJC_02548","cspC",0.940,7.1,4.75,1.52,89.7],
+    ["FCEEAA_04582","cspC",0.940,7.2,4.72,5.99,90.6],
+    ["EJIGFF_03899","cspC",0.940,7.3,9.10,-1.82,90.3],
+    ["HJGENA_00690","otsB",0.750,28.7,4.64,37.94,96.3],
+    ["LEIIJB_03335","otsB",0.750,29.4,4.81,33.96,96.0],
+    ["DOEECF_00197","otsB",0.750,28.1,4.88,34.86,94.9],
+    ["PIHCGA_01600","otsB",0.750,28.1,4.56,38.58,92.0],
+    ["IKLJFA_02022","ectA",0.750,21.4,4.79,35.12,93.5],
+    ["DJKOGP_04264","ectA",0.750,19.5,4.80,33.37,84.5],
+    ["GMIJIG_03406","ectA",0.750,19.5,4.89,35.30,83.8],
+    ["FEFCII_02160","ectA",0.750,19.5,4.89,32.89,83.2],
+    ["IKAEFD_00508","narJ",0.710,27.5,4.58,35.82,85.3],
+    ["MJNEPN_02265","phrB",0.620,49.9,4.97,33.41,90.8],
+    ["FEFCII_02476","ibpA",0.605,16.6,4.85,30.47,66.9],
+    ["EELILG_00140","ibpA",0.605,16.3,4.91,35.35,62.6],
+    ["LHCKBH_03134","phrB",0.515,54.3,6.60,35.08,91.4],
+    ["JONGHJ_02396","phrB",0.515,54.3,6.40,37.01,91.8],
+    ["IKAEFD_01270","phrB",0.515,55.1,7.30,39.64,88.8]
+  ];
+  var tb = document.getElementById("tier1Table");
+  if (!tb) return;
+  T1.forEach(function(r){
+    var pi = r[4];
+    var cap = pi > 9 ? ["Cation exchange","ok"] : (pi < 5 ? ["Anion exchange","ok"] : ["Needs a tag","wn"]);
+    var arm = r[2] === 0.750 ? ["Control A · degenerate","nu"] : ["Spread","nu"];
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td class="locus">' + r[0] + '</td>'
+      + '<td class="gene">' + r[1] + '</td>'
+      + '<td class="num" style="font-weight:600">' + r[2].toFixed(3) + '</td>'
+      + '<td class="num">' + r[3].toFixed(1) + '</td>'
+      + '<td class="num">' + pi.toFixed(2) + '</td>'
+      + '<td class="num">' + r[5].toFixed(2) + '</td>'
+      + '<td class="num">' + r[6].toFixed(1) + '</td>'
+      + '<td><span class="pill ' + cap[1] + '">' + cap[0] + '</span></td>'
+      + '<td><span class="pill ' + arm[1] + '">' + arm[0] + '</span></td>';
+    tb.appendChild(tr);
+  });
+})();
+
+/* ── locked scoring rule ────────────────────────────────────────────── */
+(function(){
+  var STEPS = [
+    {n:45, lab:"Annotated candidate set", meth:"published with QC flags, nothing hidden", unit:"candidates"},
+    {n:26, lab:"Gate 1 · ORF completeness \u2265 90%", meth:"removes contig-break fragments", unit:"pass", gate:true},
+    {n:19, lab:"Gate 2 · GRAVY \u2264 0", meth:"removes integral membrane subunits", unit:"pass", gate:true},
+    {n:19, lab:"Six-dimension weighted score", meth:"weights unchanged \u2014 ranks within the gated set", unit:"ranked", hi:true}
+  ];
+  var host = document.getElementById("lockedRule");
+  if (!host) return;
+  STEPS.forEach(function(s, i){
+    var pct = Math.max(6, (s.n / STEPS[0].n) * 100);
+    var color = s.hi ? "var(--sand)" : (s.gate ? "var(--crit)" : "var(--accent)");
+    var d = document.createElement("div"); d.className = "fstep";
+    d.innerHTML =
+      '<div class="fbar-wrap">'
+      + '<div class="lab"><span class="st">' + String(i+1).padStart(2,"0") + '</span>'
+      + '<span>' + s.lab + '</span><span class="meth">' + s.meth + '</span></div>'
+      + '<div class="fbar" style="width:' + pct.toFixed(1) + '%;background:' + color + '"></div></div>'
+      + '<div class="cnt">' + s.n + '<small>' + s.unit + '</small></div>';
+    host.appendChild(d);
+  });
+})();
+
+/* ── software table ─────────────────────────────────────────────────── */
+(function(){
+  var SOFT = [
+    ["Annotation","Bakta","not recorded","Gene calling and gene-name assignment across all 1,221 assemblies","1"],
+    ["Annotation","eggNOG-mapper","2.1.12","Independent orthology assignment, COG/KEGG/EC terms, used to cross-check Bakta","2, 3"],
+    ["Redundancy","CD-HIT","not recorded","Collapses each gene family to representatives at 90% identity","4"],
+    ["Alignment","MAFFT","v7","Multiple sequence alignment of the representatives","5"],
+    ["Properties","Biopython ProtParam","not recorded","MW, pI, instability index, GRAVY, aliphatic index","6"],
+    ["Structure","ESMFold","v1","MSA-free structure prediction; CA-pLDDT read from the output B-factors","7, 8, 9"],
+    ["Taxonomy","GTDB-Tk","not recorded","Assigns source-organism lineage to the bins candidates came from","10, 18"],
+    ["Bin quality","CheckM","v1","Marker-gene completeness and contamination for each source bin","11, 12"],
+    ["Domains","InterProScan","5.61","Catalytic-domain confirmation where a gene-name call was contested","13"]
+  ];
+  var tb = document.getElementById("softTable");
+  SOFT.forEach(function(r){
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td style="color:var(--muted);white-space:nowrap">' + r[0] + '</td>'
+      + '<td style="font-weight:600;white-space:nowrap">' + r[1] + '</td>'
+      + '<td style="font-family:var(--mono);font-size:11.5px;white-space:nowrap;color:'
+      + (r[2] === "not recorded" ? "var(--faint)" : "var(--ink-2)") + '">' + r[2] + '</td>'
+      + '<td style="font-family:var(--serif);font-size:14px;color:var(--ink-2)">' + r[3] + '</td>'
+      + '<td class="num" style="font-size:11.5px;white-space:nowrap">['
+      + r[4].split(", ").map(function(n){
+          return '<a class="cref" href="#ref' + n + '">' + n + '</a>';
+        }).join(", ") + ']</td>';
+    tb.appendChild(tr);
+  });
+})();
+
+/* ── references ─────────────────────────────────────────────────────── */
+(function(){
+  var R = [
+    {g:"Software", a:"Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A",
+     t:"Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification",
+     j:"Microbial Genomics 7(11):000685", y:2021, d:"10.1099/mgen.0.000685"},
+    {a:"Cantalapiedra CP, Hernández-Plaza A, Letunic I, Bork P, Huerta-Cepas J",
+     t:"eggNOG-mapper v2: functional annotation, orthology assignments, and domain prediction at the metagenomic scale",
+     j:"Molecular Biology and Evolution 38(12):5825–5829", y:2021, d:"10.1093/molbev/msab293"},
+    {a:"Huerta-Cepas J, Szklarczyk D, Heller D, et al.",
+     t:"eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses",
+     j:"Nucleic Acids Research 47(D1):D309–D314", y:2019, d:"10.1093/nar/gky1085"},
+    {a:"Fu L, Niu B, Zhu Z, Wu S, Li W",
+     t:"CD-HIT: accelerated for clustering the next-generation sequencing data",
+     j:"Bioinformatics 28(23):3150–3152", y:2012, d:"10.1093/bioinformatics/bts565"},
+    {a:"Katoh K, Standley DM",
+     t:"MAFFT multiple sequence alignment software version 7: improvements in performance and usability",
+     j:"Molecular Biology and Evolution 30(4):772–780", y:2013, d:"10.1093/molbev/mst010"},
+    {a:"Cock PJA, Antao T, Chang JT, et al.",
+     t:"Biopython: freely available Python tools for computational molecular biology and bioinformatics",
+     j:"Bioinformatics 25(11):1422–1423", y:2009, d:"10.1093/bioinformatics/btp163"},
+    {a:"Lin Z, Akin H, Rao R, et al.",
+     t:"Evolutionary-scale prediction of atomic-level protein structure with a language model",
+     j:"Science 379(6637):1123–1130", y:2023, d:"10.1126/science.ade2574"},
+    {a:"Jumper J, Evans R, Pritzel A, et al.",
+     t:"Highly accurate protein structure prediction with AlphaFold",
+     j:"Nature 596(7873):583–589", y:2021, d:"10.1038/s41586-021-03819-2"},
+    {a:"Mariani V, Biasini M, Barbato A, Schwede T",
+     t:"lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests",
+     j:"Bioinformatics 29(21):2722–2728", y:2013, d:"10.1093/bioinformatics/btt473"},
+    {a:"Chaumeil P-A, Mussig AJ, Hugenholtz P, Parks DH",
+     t:"GTDB-Tk v2: memory friendly classification with the genome taxonomy database",
+     j:"Bioinformatics 38(23):5315–5316", y:2022, d:"10.1093/bioinformatics/btac672"},
+    {a:"Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW",
+     t:"CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes",
+     j:"Genome Research 25(7):1043–1055", y:2015, d:"10.1101/gr.186072.114"},
+    {a:"Jones P, Binns D, Chang H-Y, et al.",
+     t:"InterProScan 5: genome-scale protein function classification",
+     j:"Bioinformatics 30(9):1236–1240", y:2014, d:"10.1093/bioinformatics/btu031"},
+    {g:"Standards", a:"Bowers RM, Kyrpides NC, Stepanauskas R, et al. (Genome Standards Consortium)",
+     t:"Minimum information about a single amplified genome (MISAG) and a metagenome-assembled genome (MIMAG) of bacteria and archaea",
+     j:"Nature Biotechnology 35(8):725–731", y:2017, d:"10.1038/nbt.3893"},
+    {g:"Methods and metrics", a:"Guruprasad K, Reddy BVB, Pandit MW",
+     t:"Correlation between stability of a protein and its dipeptide composition: a novel approach for predicting in vivo stability of a protein from its primary sequence",
+     j:"Protein Engineering 4(2):155–161", y:1990, d:"10.1093/protein/4.2.155"},
+    {a:"Kyte J, Doolittle RF",
+     t:"A simple method for displaying the hydropathic character of a protein",
+     j:"Journal of Molecular Biology 157(1):105–132", y:1982, d:"10.1016/0022-2836(82)90515-0"},
+    {a:"Ikai A", t:"Thermostability and aliphatic index of globular proteins",
+     j:"The Journal of Biochemistry 88(6):1895–1898", y:1980, d:"10.1093/oxfordjournals.jbchem.a133168"},
+    {a:"Shannon CE", t:"A mathematical theory of communication",
+     j:"Bell System Technical Journal 27(3):379–423", y:1948, d:"10.1002/j.1538-7305.1948.tb01338.x"},
+    {g:"Databases", a:"Parks DH, Chuvochina M, Rinke C, Mussig AJ, Chaumeil P-A, Hugenholtz P",
+     t:"GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy",
+     j:"Nucleic Acids Research 50(D1):D785–D794", y:2022, d:"10.1093/nar/gkab776"},
+    {g:"Calibration structures", a:"Schindelin H, Jiang W, Inouye M, Heinemann U",
+     t:"Crystal structure of CspA, the major cold shock protein of Escherichia coli",
+     j:"PNAS 91(11):5119–5123 · PDB 1MJC, 2.0 Å", y:1994, d:"10.1073/pnas.91.11.5119"},
+    {a:"Xing X, Bell CE",
+     t:"Crystal structures of Escherichia coli RecA in a compressed helical filament",
+     j:"Journal of Molecular Biology 342(5):1471–1485 · PDB 1U94, 1.9 Å", y:2004, d:"10.1016/j.jmb.2004.07.091"},
+    {a:"Harvey CM, O'Toole KH, Liu C, Mariano P, Dunaway-Mariano D, Allen KN",
+     t:"Structural analysis of binding determinants of Salmonella typhimurium trehalose-6-phosphate phosphatase using ground-state complexes",
+     j:"Biochemistry 59(35):3247–3257 · PDB 6UPC, 2.51 Å", y:2020, d:"10.1021/acs.biochem.0c00317"},
+    {g:"Assays and strains", a:"Xia B, Ke H, Inouye M",
+     t:"Acquirement of cold sensitivity by quadruple deletion of the cspA family and its suppression by PNPase S1 domain in Escherichia coli",
+     j:"Molecular Microbiology 40(1):179–188 · strain BX04", y:2001, d:"10.1046/j.1365-2958.2001.02372.x"},
+    {a:"Phadtare S, Inouye M, Severinov K",
+     t:"The nucleic acid melting activity of Escherichia coli CspE is critical for transcription antitermination and cold acclimation of cells",
+     j:"Journal of Biological Chemistry 277(9):7239–7245", y:2002, d:"10.1074/jbc.M111496200"},
+    {a:"Sancar GB, Smith FW, Sancar A",
+     t:"Identification and amplification of the E. coli phr gene product",
+     j:"Nucleic Acids Research 11(19):6667–6678", y:1983, d:"10.1093/nar/11.19.6667"},
+    {a:"Lanzetta PA, Alvarez LJ, Reinach PS, Candia OA",
+     t:"An improved assay for nanomole amounts of inorganic phosphate",
+     j:"Analytical Biochemistry 100(1):95–97 · malachite green", y:1979, d:"10.1016/0003-2697(79)90115-5"},
+    {a:"Giaever HM, Styrvold OB, Kaasen I, Strøm AR",
+     t:"Biochemical and genetic characterization of osmoregulatory trehalose synthesis in Escherichia coli",
+     j:"Journal of Bacteriology 170(6):2841–2849", y:1988, d:"10.1128/jb.170.6.2841-2849.1988"},
+    {a:"Ono H, Sawada K, Khunajakr N, et al.",
+     t:"Characterization of biosynthetic enzymes for ectoine as a compatible solute in a moderately halophilic eubacterium, Halomonas elongata",
+     j:"Journal of Bacteriology 181(1):91–99", y:1999, d:"10.1128/jb.181.1.91-99.1999"},
+    {a:"Richter AA, Kobus S, Czech L, et al.",
+     t:"The architecture of the diaminobutyrate acetyltransferase active site provides mechanistic insight into the biosynthesis of the chemical chaperone ectoine",
+     j:"Journal of Biological Chemistry 295(9):2822–2838 · DTNB assay conditions", y:2020, d:"10.1074/jbc.RA119.011277"},
+    {a:"Niesen FH, Berglund H, Vedadi M",
+     t:"The use of differential scanning fluorimetry to detect ligand interactions that promote protein stability",
+     j:"Nature Protocols 2(9):2212–2221", y:2007, d:"10.1038/nprot.2007.321"},
+    {a:"Baba T, Ara T, Hasegawa M, et al.",
+     t:"Construction of Escherichia coli K-12 in-frame, single-gene knockout mutants: the Keio collection",
+     j:"Molecular Systems Biology 2:2006.0008", y:2006, d:"10.1038/msb4100050"},
+    {g:"Validation data", a:"Niwa T, Ying B-W, Saito K, Jin W, Takada S, Ueda T, Taguchi H",
+     t:"Bimodal protein solubility distribution revealed by an aggregation analysis of the entire ensemble of Escherichia coli proteins",
+     j:"PNAS 106(11):4201–4206 · the eSOL dataset", y:2009, d:"10.1073/pnas.0811922106"}
+  ];
+  var host = document.getElementById("refList");
+  R.forEach(function(r, i){
+    if (r.g){
+      var h = document.createElement("li");
+      h.className = "refgroup"; h.textContent = r.g;
+      host.appendChild(h);
+    }
+    var li = document.createElement("li");
+    li.className = "ref";
+    li.id = "ref" + (i+1);
+    li.innerHTML = '<span class="rn">[' + (i+1) + ']</span>'
+      + '<span class="rb"><span class="ra">' + r.a + '</span> '
+      + '<span class="rt">' + r.t + '.</span> '
+      + '<span class="rj">' + r.j + ' (' + r.y + ').</span> '
+      + '<a class="rd" href="https://doi.org/' + r.d + '" target="_blank" rel="noopener">doi:' + r.d + '</a></span>';
+    host.appendChild(li);
+  });
+})();
+
+/* ── tooltip ────────────────────────────────────────────────────────── */
+var tip = document.getElementById("tip");
+function showTip(e, html){
+  tip.innerHTML = html; tip.style.opacity = "1";
+  var r = tip.getBoundingClientRect();
+  var x = e.clientX + 16, y = e.clientY + 16;
+  if (x + r.width > window.innerWidth - 12) x = e.clientX - r.width - 16;
+  if (y + r.height > window.innerHeight - 12) y = e.clientY - r.height - 16;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+function hideTip(){ tip.style.opacity = "0"; }
+
+/* ── scatter: instability vs pLDDT ──────────────────────────────────── */
+function drawScatter(){
+  var svg = document.getElementById("scatter");
+  var W = 860, H = 430, m = {t:16, r:16, b:52, l:58};
+  var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
+  var xd = [-6, 44], yd = [45, 100];
+  var X = function(v){ return x0 + (v - xd[0]) / (xd[1] - xd[0]) * (x1 - x0); };
+  var Y = function(v){ return y0 - (v - yd[0]) / (yd[1] - yd[0]) * (y0 - y1); };
+  var s = "";
+
+  [50,60,70,80,90,100].forEach(function(t){
+    s += '<line class="gridline" x1="' + x0 + '" y1="' + Y(t) + '" x2="' + x1 + '" y2="' + Y(t) + '"/>'
+       + '<text class="axl" x="' + (x0-10) + '" y="' + (Y(t)+3.5) + '" text-anchor="end">' + t + '</text>';
+  });
+  [0,10,20,30,40].forEach(function(t){
+    s += '<text class="axl" x="' + X(t) + '" y="' + (y0+18) + '" text-anchor="middle">' + t + '</text>';
+  });
+  s += '<line class="axline" x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + y0 + '"/>';
+
+  // decision thresholds
+  s += '<line class="refline" x1="' + X(40) + '" y1="' + y1 + '" x2="' + X(40) + '" y2="' + y0 + '"/>'
+     + '<text class="axl" x="' + (X(40)-7) + '" y="' + (y1+12) + '" text-anchor="end" style="fill:var(--faint)">instability 40</text>'
+     + '<line class="refline" x1="' + x0 + '" y1="' + Y(80) + '" x2="' + x1 + '" y2="' + Y(80) + '"/>'
+     + '<text class="axl" x="' + (x1-4) + '" y="' + (Y(80)-7) + '" text-anchor="end" style="fill:var(--faint)">pLDDT 80</text>';
+
+  s += '<text class="axl" x="' + ((x0+x1)/2) + '" y="' + (H-12) + '" text-anchor="middle" style="letter-spacing:.12em">INSTABILITY INDEX  →  less stable</text>'
+     + '<text class="axl" transform="translate(15,' + ((y0+y1)/2) + ') rotate(-90)" text-anchor="middle" style="letter-spacing:.12em">CA-pLDDT  →  more confident</text>';
+
+  var order = D.slice().sort(function(a,b){ return b[F.mw] - a[F.mw]; });
+  order.forEach(function(r){
+    var rad = 4.5 + Math.sqrt(r[F.mw]) * 0.95;
+    s += '<circle class="dot" cx="' + X(r[F.inst]).toFixed(1) + '" cy="' + Y(r[F.plddt]).toFixed(1) + '" r="'
+       + rad.toFixed(1) + '" fill="var(' + CATS[CIDX[r[F.cat]]].v + ')" fill-opacity="0.82" data-i="'
+       + D.indexOf(r) + '"/>';
+  });
+  svg.innerHTML = s;
+
+  svg.querySelectorAll(".dot").forEach(function(el){
+    el.addEventListener("mousemove", function(e){
+      var r = D[+el.dataset.i];
+      showTip(e,
+        '<span class="tt"><i>' + r[F.gene] + '</i> · ' + r[F.loc] + '</span>'
+        + '<div class="tr"><span>Organism</span><span>' + r[F.org] + '</span></div>'
+        + '<div class="tr"><span>MW</span><span>' + r[F.mw].toFixed(1) + ' kDa</span></div>'
+        + '<div class="tr"><span>pI</span><span>' + r[F.pi].toFixed(2) + '</span></div>'
+        + '<div class="tr"><span>Instability</span><span>' + r[F.inst].toFixed(1) + '</span></div>'
+        + '<div class="tr"><span>CA-pLDDT</span><span>' + r[F.plddt].toFixed(1) + '</span></div>'
+        + '<div class="tr"><span>ORF complete</span><span>' + r[F.orf] + '%</span></div>'
+        + '<div class="tr"><span>Composite</span><span>' + r[F.score].toFixed(3) + '</span></div>'
+        + (r[F.flag] ? '<div class="tr" style="margin-top:5px;color:var(--crit)"><span style="color:var(--crit)">Flag</span><span style="color:var(--crit)">' + r[F.flag] + '</span></div>' : ''));
+    });
+    el.addEventListener("mouseleave", hideTip);
+  });
+
+  var lg = document.getElementById("scatterLegend");
+  lg.innerHTML = CATS.map(function(c){
+    return '<span class="i"><i class="swatch" style="background:var(' + c.v + ')"></i>' + c.name + '</span>';
+  }).join("");
+}
+
+/* ── conservation bars ──────────────────────────────────────────────── */
+(function(){
+  var C = [
+    {f:"csp",   raw:36.6, adj:85.9, n:226, r:"rank 1 / 19"},
+    {f:"ibpAB", raw:56.9, adj:65.9, n:64,  r:"rank 4 / 19"},
+    {f:"relBE", raw:14.5, adj:32.0, n:48,  r:"rank 19 / 19"}
+  ];
+  var host = document.getElementById("consBars");
+  C.forEach(function(r){
+    var d = document.createElement("div"); d.className = "brow";
+    d.style.gridTemplateColumns = "132px minmax(0,1fr) 82px";
+    d.innerHTML =
+      '<div class="bl" style="display:block"><span class="bn" style="font-style:italic">' + r.f
+      + '</span><span style="font-family:var(--mono);font-size:10px;color:var(--faint);margin-left:7px">n=' + r.n + '</span>'
+      + '<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">' + r.r + '</div></div>'
+      + '<div style="display:flex;flex-direction:column;gap:3px">'
+      + '<div class="btrack" style="height:9px"><div class="bfill" style="width:' + r.raw + '%;background:var(--faint)"></div></div>'
+      + '<div class="btrack" style="height:9px"><div class="bfill" style="width:' + r.adj + '%;background:var(--c1)"></div></div>'
+      + '</div>'
+      + '<div class="bv" style="font-size:12px;line-height:1.35"><span style="color:var(--muted);font-weight:400">'
+      + r.raw.toFixed(1) + '%</span><br>' + r.adj.toFixed(1) + '%</div>';
+    host.appendChild(d);
+  });
+})();
+
+/* ── sensitivity bars ───────────────────────────────────────────────── */
+(function(){
+  var S = [
+    {c:"Cold Stress",          pick:"cspC · FCEEAA_04582",   p:0.998, tone:"good", v:"Weight-robust; 0 of 36 perturbations flip it"},
+    {c:"DNA Repair / UV",      pick:"recA · OGEHGG_01321",   p:0.977, tone:"warn", v:"Rank robust, but the candidate itself is unusable (§07)"},
+    {c:"Anaerobic Respiration",pick:"narI · KDPOLD_03231",   p:0.593, tone:"warn", v:"Fragile; flips in 4 of 36, wins by 0.015"},
+    {c:"Desiccation",          pick:"otsB · HJGENA_00690",   p:1.000, tone:"crit", v:"Degenerate; all 8 scores identical, order is file order"}
+  ];
+  var TONE = {good:"var(--good)", warn:"var(--warn)", crit:"var(--crit)"};
+  var host = document.getElementById("sensBars");
+  S.forEach(function(r){
+    var d = document.createElement("div"); d.className = "brow";
+    d.style.gridTemplateColumns = "minmax(150px,182px) minmax(0,1fr) 56px";
+    d.style.alignItems = "start";
+    d.innerHTML =
+      '<div style="min-width:0"><div style="font-weight:600;font-size:12.5px">' + r.c + '</div>'
+      + '<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px;font-style:italic">' + r.pick + '</div></div>'
+      + '<div><div class="btrack" style="margin-top:3px"><div class="bfill" style="width:' + (r.p*100).toFixed(1)
+      + '%;background:' + TONE[r.tone] + '"></div></div>'
+      + '<div style="font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.5">' + r.v + '</div></div>'
+      + '<div class="bv" style="padding-top:1px">' + r.p.toFixed(3) + '</div>';
+    host.appendChild(d);
+  });
+})();
+
+/* ── ORF completeness strip ─────────────────────────────────────────── */
+function drawORF(){
+  var svg = document.getElementById("orfChart");
+  var fams = ["csp","ibpA","recA","mutS","uvrA","uvrB","uvrC","phrB","narI/narJ","frdC/frdD","otsB","ectA"];
+  var famOf = function(g){
+    if (g === "cspC") return "csp";
+    if (g === "narI" || g === "narJ") return "narI/narJ";
+    if (g === "frdC" || g === "frdD") return "frdC/frdD";
+    return g;
+  };
+  var W = 860, H = 380, m = {t:14, r:18, b:74, l:52};
+  var x0 = m.l, x1 = W - m.r, y0 = H - m.b, y1 = m.t;
+  var Y = function(v){ return y0 - Math.min(v,115) / 115 * (y0 - y1); };
+  var band = (x1 - x0) / fams.length;
+  var s = "";
+
+  [0,25,50,75,100].forEach(function(t){
+    s += '<line class="gridline" x1="' + x0 + '" y1="' + Y(t) + '" x2="' + x1 + '" y2="' + Y(t) + '"/>'
+       + '<text class="axl" x="' + (x0-10) + '" y="' + (Y(t)+3.5) + '" text-anchor="end">' + t + '%</text>';
+  });
+  s += '<line class="refline" x1="' + x0 + '" y1="' + Y(100) + '" x2="' + x1 + '" y2="' + Y(100) + '"/>';
+  s += '<rect x="' + x0 + '" y="' + Y(60) + '" width="' + (x1-x0) + '" height="' + (y0 - Y(60))
+     + '" fill="var(--crit)" opacity="0.05"/>';
+  s += '<text class="axl" x="' + (x1-6) + '" y="' + (Y(60)-7) + '" text-anchor="end" style="fill:var(--crit);opacity:.85">below 60% — not orderable as a complete gene</text>';
+  s += '<text class="axl" x="' + (x1-6) + '" y="' + (Y(100)-7) + '" text-anchor="end" style="fill:var(--faint)">full length</text>';
+  s += '<line class="axline" x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + y0 + '"/>';
+  s += '<text class="axl" transform="translate(13,' + ((y0+y1)/2) + ') rotate(-90)" text-anchor="middle" style="letter-spacing:.12em">ORF COMPLETENESS</text>';
+
+  fams.forEach(function(f, fi){
+    var cx = x0 + band * (fi + 0.5);
+    s += '<text class="axl" x="' + cx + '" y="' + (y0+17) + '" text-anchor="end" transform="rotate(-38,'
+       + cx + ',' + (y0+17) + ')" style="font-style:italic;font-size:11px">' + f + '</text>';
+    var rows = D.filter(function(r){ return famOf(r[F.gene]) === f; });
+    rows.forEach(function(r, ri){
+      var jitter = (rows.length === 1) ? 0 : (ri / (rows.length - 1) - 0.5) * Math.min(band * 0.52, 26);
+      s += '<circle class="dot" cx="' + (cx + jitter).toFixed(1) + '" cy="' + Y(r[F.orf]).toFixed(1)
+         + '" r="5.5" fill="var(' + CATS[CIDX[r[F.cat]]].v + ')" fill-opacity="0.85" data-i="' + D.indexOf(r) + '"/>';
+    });
+  });
+  svg.innerHTML = s;
+
+  svg.querySelectorAll(".dot").forEach(function(el){
+    el.addEventListener("mousemove", function(e){
+      var r = D[+el.dataset.i];
+      showTip(e,
+        '<span class="tt"><i>' + r[F.gene] + '</i> · ' + r[F.loc] + '</span>'
+        + '<div class="tr"><span>ORF complete</span><span>' + r[F.orf] + '%</span></div>'
+        + '<div class="tr"><span>Length</span><span>' + r[F.mw].toFixed(1) + ' kDa</span></div>'
+        + '<div class="tr"><span>CA-pLDDT</span><span>' + r[F.plddt].toFixed(1) + '</span></div>'
+        + (r[F.flag] ? '<div class="tr" style="margin-top:5px"><span style="color:var(--crit)">Flag</span><span style="color:var(--crit)">' + r[F.flag] + '</span></div>' : ''));
+    });
+    el.addEventListener("mouseleave", hideTip);
+  });
+
+  document.getElementById("orfLegend").innerHTML = CATS.map(function(c){
+    return '<span class="i"><i class="swatch" style="background:var(' + c.v + ')"></i>' + c.name + '</span>';
+  }).join("");
+}
+
+/* ── explorer ───────────────────────────────────────────────────────── */
+var state = {cat:"all", key:"plddt", dir:"desc", flagged:false, readyOnly:false};
+function renderExplorer(){
+  var rows = D.filter(function(r){
+    if (state.cat !== "all" && r[F.cat] !== state.cat) return false;
+    if (state.flagged && !r[F.flag]) return false;
+    if (state.readyOnly && gateStatus(r)[1] !== "ok") return false;
+    return true;
+  });
+  var k = F[state.key], sgn = state.dir === "desc" ? -1 : 1;
+  rows.sort(function(a,b){ return sgn * (a[k] - b[k]); });
+
+  var tb = document.getElementById("explorer");
+  tb.innerHTML = rows.map(function(r){
+    var c = CATS[CIDX[r[F.cat]]];
+    var sev = r[F.orf] < 60 ? "cr" : (r[F.flag] ? "wn" : "");
+    var g = gateStatus(r);
+    return '<tr>'
+      + '<td class="gene"><i class="swatch" style="background:var(' + c.v + ')"></i>' + r[F.gene] + '</td>'
+      + '<td class="locus">' + r[F.loc] + '</td>'
+      + '<td class="org">' + r[F.org] + '</td>'
+      + '<td class="num">' + r[F.mw].toFixed(1) + '</td>'
+      + '<td class="num">' + r[F.pi].toFixed(2) + '</td>'
+      + '<td class="num">' + r[F.inst].toFixed(1) + '</td>'
+      + '<td class="num bar-cell"><span class="mv">' + r[F.plddt].toFixed(1) + '</span>'
+      + '<span class="mini"><i style="width:' + ((r[F.plddt]-45)/55*100).toFixed(0) + '%;background:var(' + c.v + ')"></i></span></td>'
+      + '<td class="num bar-cell"><span class="mv">' + r[F.orf] + '</span>'
+      + '<span class="mini"><i style="width:' + Math.min(100, r[F.orf]) + '%;background:'
+      + (r[F.orf] < 60 ? "var(--crit)" : "var(--good)") + '"></i></span></td>'
+      + '<td class="num" style="font-weight:600">' + r[F.score].toFixed(3) + '</td>'
+      + '<td><span class="pill ' + g[1] + '">' + (g[1] === "ok" ? g[0] : "Fails " + g[0]) + '</span>'
+      + (g[2] ? '<div style="font-family:var(--mono);font-size:9.5px;color:var(--muted);margin-top:3px">' + g[2] + '</div>' : '')
+      + '</td>'
+      + '<td>' + (r[F.flag] ? '<span class="pill ' + (sev || "nu") + '">' + r[F.flag] + '</span>'
+                            : '<span class="pill ok">clean</span>') + '</td>'
+      + '</tr>';
+  }).join("");
+
+  document.getElementById("explorerCount").innerHTML =
+    '<b>Table 7.</b> Showing ' + rows.length + ' of 45 candidates, sorted by '
+    + document.querySelector('th[data-k="' + state.key + '"]').textContent.trim()
+    + ' (' + (state.dir === "desc" ? "high to low" : "low to high") + '). '
+    + 'Flags come from the §07 audits: ORF completeness, pseudogene calls, source-bin CheckM completeness, '
+    + 'and ranking degeneracy. Clean means no audit raised anything.';
+}
+document.querySelectorAll("#tools .chip[data-cat]").forEach(function(b){
+  b.addEventListener("click", function(){
+    state.cat = b.dataset.cat;
+    document.querySelectorAll("#tools .chip[data-cat]").forEach(function(o){
+      o.setAttribute("aria-pressed", String(o === b));
+    });
+    renderExplorer();
+  });
+});
+document.getElementById("readyOnly").addEventListener("click", function(){
+  state.readyOnly = !state.readyOnly;
+  this.setAttribute("aria-pressed", String(state.readyOnly));
+  renderExplorer();
+});
+document.getElementById("flagOnly").addEventListener("click", function(){
+  state.flagged = !state.flagged;
+  this.setAttribute("aria-pressed", String(state.flagged));
+  renderExplorer();
+});
+document.querySelectorAll("th.sortable").forEach(function(th){
+  th.addEventListener("click", function(){
+    if (state.key === th.dataset.k) state.dir = state.dir === "desc" ? "asc" : "desc";
+    else { state.key = th.dataset.k; state.dir = "desc"; }
+    document.querySelectorAll("th.sortable").forEach(function(o){ o.removeAttribute("data-dir"); });
+    th.setAttribute("data-dir", state.dir);
+    renderExplorer();
+  });
+});
+
+/* ── nav + theme ────────────────────────────────────────────────────── */
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll("#toc a"));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var i = secs.indexOf(e.target);
+      links.forEach(function(a, j){ a.classList.toggle("on", i === j); });
+    });
+  }, {rootMargin:"-15% 0px -70% 0px"});
+  secs.forEach(function(s){ if (s) io.observe(s); });
+
+  document.getElementById("themeBtn").addEventListener("click", function(){
+    var root = document.documentElement, cur = root.getAttribute("data-theme");
+    var dark = cur ? cur === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    try { localStorage.setItem("dpm-theme", root.getAttribute("data-theme")); } catch (err) {}
+    drawScatter(); drawORF();
+  });
+  try {
+    var saved = localStorage.getItem("dpm-theme");
+    if (saved === "dark" || saved === "light") document.documentElement.setAttribute("data-theme", saved);
+  } catch (err) {}
+})();
+
+/* ── boot ───────────────────────────────────────────────────────────── */
+function boot(){ drawScatter(); drawORF(); renderExplorer(); }
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(boot); else boot();
+window.addEventListener("resize", function(){ /* SVG is viewBox-scaled; nothing to recompute */ });
+</script>
