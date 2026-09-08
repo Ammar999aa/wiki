@@ -322,6 +322,70 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+// ── Structure viewer (StructureViewer.jsx) — only rendered when a protein
+// has a real PDB structure wired up in proteins.js. Floated right, at its
+// own (narrower) width, rather than using .detailSection's full-width
+// block rhythm — Function/Applications/Why below wrap around it instead of
+// each stacking underneath a tall block. Margins here do the same job
+// .detailSection's own 26px inline padding does for the text sections
+// (keeping clear of the panel edge, and of the wrapped text) — no reason
+// to give a ~200px-wide floated box a whole section's worth of padding on
+// top of that.
+.structureFloat {
+  float: right;
+  width: 200px;
+  margin: 0 26px 16px 20px;
+}
+
+// No background/border of its own on purpose — the canvas itself renders
+// with a transparent WebGL context (see StructureViewer.jsx's
+// backgroundAlpha), so the model sits directly on the panel's own
+// LiquidGlass surface instead of looking like an opaque screen dropped
+// into the card.
+.structureViewer {
+  position: relative;
+  height: 200px;
+}
+
+.structureCanvas {
+  width: 100%;
+  height: 100%;
+
+  // 3Dmol renders its own <canvas> inside this div — let it fill it.
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.structureStatus {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.structureCaption {
+  margin: 8px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.4);
+
+  a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
 // ── Detail overlay (the floating panel a selected card opens into) ─────────
 // Root is the dimmed, click-to-close backdrop; the panel itself stops that
 // click from bubbling (see ProteinDetail.jsx) so it can sit on top without
@@ -367,6 +431,15 @@
 
 .detailBody {
   padding-top: 4px;
+
+  // Clearfix: .structureFloat is a floated child now — without this, a
+  // protein whose text content ends up shorter than the floated structure
+  // box would let it poke out past .detailBody's own bottom edge.
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .closeButton {
@@ -530,6 +603,15 @@
   .detailGrid,
   .detailStatus {
     padding-inline: 18px;
+  }
+
+  // A ~340px-wide panel doesn't have room to float a 200px box and still
+  // leave a readable measure for the wrapped text next to it — stack
+  // instead, same as every other section here.
+  .structureFloat {
+    float: none;
+    width: auto;
+    margin: 0 18px 18px;
   }
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import ProteinGlyph from "./ProteinGlyph";
+import StructureViewer from "./StructureViewer";
 import styles from "./ProteinLibrary.module.scss";
 
 // The floating panel a selected protein opens into — a dimmed backdrop
@@ -50,6 +51,8 @@ export default function ProteinDetail({ protein, onClose }) {
             <p className={styles.detailShortDesc}>{protein.shortDescription}</p>
 
             <div className={styles.detailBody}>
+              <StructureViewer structure={protein.structure} color={protein.color} />
+
               <div className={styles.detailSection}>
                 <p className={styles.detailLabel}>Function</p>
                 <p className={styles.detailText}>{protein.function}</p>

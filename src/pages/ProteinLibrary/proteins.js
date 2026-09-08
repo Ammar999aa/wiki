@@ -11,6 +11,35 @@
 const HOST = "S. cerevisiae, P. pastoris, B. subtilis";
 const DELIVERY = "MOFs, hydrogels & other on-demand delivery formats";
 
+// `structure` wires a protein card into the 3D viewer in ProteinDetail.jsx.
+// Every entry here is a *real, published* PDB structure — verified against
+// RCSB (data.rcsb.org) and UniProt's own PDB cross-references while adding
+// this, never guessed — for the general, natural protein, not a structure
+// this team solved themselves. StructureViewer labels each one accordingly.
+// Left unset (no `structure` field at all) wherever that distinction would
+// blur: both nanobodies are this team's own novel designs, not deposited
+// anywhere public; "Custom Payloads" has no fixed target; the antifreeze
+// protein entry doesn't specify which AFP type/isoform, and picking one
+// would misrepresent it as more specific than the actual content is. Add a
+// real PDB ID (or a locally solved/predicted structure) to any of these
+// once the team has one to point to — see StructureViewer.jsx for the
+// {pdbId, label, file} shape this expects.
+//
+// Bundled locally rather than hosted on static.igem.wiki — per the iGEM
+// wiki rules, static assets are technically supposed to go through the
+// Uploads tool instead of being committed as source, and that was tried
+// first here. The Uploads tool's file-type filter rejects this content
+// under both a .pdb and a plain .txt extension, with no accepted type left
+// to try it as, so this falls back to the same local-asset convention
+// every other image on this site already uses (see DESIGN.md's own note
+// on that same gap). Revisit if the team finds a type the tool will take.
+import gfpPdb from "../../assets/structures/gfp-1ema.pdb?url";
+import mcherryPdb from "../../assets/structures/mcherry-2h5q.pdb?url";
+import il10Pdb from "../../assets/structures/il10-2h24.pdb?url";
+import follistatinPdb from "../../assets/structures/follistatin-activin-2b0u.pdb?url";
+import ang1Pdb from "../../assets/structures/ang1-4epu.pdb?url";
+import insulinPdb from "../../assets/structures/insulin-4fka.pdb?url";
+
 export const PROTEINS = [
   {
     id: "afp",
@@ -83,6 +112,7 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
+    structure: { pdbId: "2H5Q", label: "mCherry", file: mcherryPdb },
   },
   {
     id: "gfp",
@@ -100,6 +130,7 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
+    structure: { pdbId: "1EMA", label: "GFP (Aequorea victoria)", file: gfpPdb },
   },
   {
     id: "il-10",
@@ -117,6 +148,7 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
+    structure: { pdbId: "2H24", label: "Human IL-10", file: il10Pdb },
   },
   {
     id: "insulin",
@@ -134,6 +166,7 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
+    structure: { pdbId: "4FKA", label: "Human insulin", file: insulinPdb },
   },
   {
     id: "follistatin",
@@ -151,6 +184,11 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
+    // Standalone follistatin isn't in the PDB under a plain "just
+    // follistatin" entry — this is follistatin in complex with activin, the
+    // ligand it actually neutralizes, which is arguably more informative
+    // than an isolated domain would be. Labeled as a complex, not renamed.
+    structure: { pdbId: "2B0U", label: "Follistatin : Activin complex", file: follistatinPdb },
   },
   {
     id: "ang-1",
@@ -168,6 +206,9 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
+    // The fibrinogen-related domain (FReD) — the receptor-binding part of
+    // Ang-1 — not the full-length protein, which hasn't been crystallized.
+    structure: { pdbId: "4EPU", label: "Ang-1 receptor-binding domain", file: ang1Pdb },
   },
   {
     id: "custom",
