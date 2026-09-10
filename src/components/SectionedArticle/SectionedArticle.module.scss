@@ -266,6 +266,151 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
             grid-template-columns: 1fr;
         }
     }
+
+    // Generalizes the Model page's Card/CardGrid pattern (see
+    // .claude/ARTICLE-STANDARDS.md) for plain markdown content: a set of
+    // parallel, comparable short items (framework steps, categories,
+    // criteria) as bordered tiles instead of a bullet list. Author with
+    // raw HTML in the .md source, one blank-line-separated <div> per card
+    // so its heading/body still parse as markdown (same trick
+    // .two-col-tracks above already relies on):
+    //   <div class="card-grid">
+    //   <div>
+    //
+    //   #### Card title
+    //   Card body text.
+    //
+    //   </div>
+    //   </div>
+    // Flexbox rather than `grid-template-columns: repeat(auto-fit, ...)`:
+    // with a fixed column grid, a last row with fewer items than the grid
+    // has columns leaves those columns empty instead of the row's own
+    // cards growing to fill it — a 5-card grid at 4 columns strands the
+    // 5th card alone at its minimum width with a wide gap beside it. Flex
+    // with `flex: 1 1 <basis>` gives every row, including a short last
+    // one, cards that grow to fill it evenly.
+    :global(.card-grid) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-block: 24px;
+
+        & > div {
+            flex: 1 1 260px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            padding: 20px 22px;
+        }
+
+        h3, h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // Modifier for a card-grid whose items are a title plus one short line
+    // (a stat, a tag) rather than a real paragraph — e.g. five judging
+    // criteria each worth "5 points". Stretching those to the default
+    // 260px basis leaves mostly empty tiles; a smaller basis packs more,
+    // appropriately snug cards per row instead. Add alongside the base
+    // class: `class="card-grid compact"`.
+    :global(.card-grid.compact) {
+        gap: 8px;
+
+        & > div {
+            flex-basis: 110px;
+            padding: 10px 12px;
+        }
+
+        h3, h4 {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        p {
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+    }
+
+    // Generalizes the Model page's Callout: a claim that needs to stand
+    // apart from running prose (a scope statement, a caveat, a retracted
+    // point). Default tone is neutral; add a second class for a tinted
+    // one — `class="callout accent"` / `"callout good"` / `"callout warn"`
+    // / `"callout critical"` — matching the tones used across the site's
+    // other status pills. Optional `<p class="callout-label">Label</p>`
+    // as the first line renders as a small-caps kicker above the text.
+    :global(.callout) {
+        border-inline-start: 3px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.045);
+        padding: 15px 18px;
+        margin-block: 20px;
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    :global(.callout.accent) {
+        border-inline-start-color: var(--accent);
+    }
+
+    :global(.callout.good) {
+        border-inline-start-color: #0ca30c;
+        background: color-mix(in oklab, #0ca30c 14%, transparent);
+    }
+
+    :global(.callout.warn) {
+        border-inline-start-color: #fab219;
+        background: color-mix(in oklab, #fab219 12%, transparent);
+    }
+
+    :global(.callout.critical) {
+        border-inline-start-color: #d03b3b;
+        background: color-mix(in oklab, #d03b3b 14%, transparent);
+    }
+
+    :global(.callout-label) {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0 0 6px !important;
+    }
+
+    // Generalizes the Model page's TableWrap: bounds a markdown table in
+    // its own bordered card instead of it sitting bare against the page,
+    // so a table reads as one discrete data object. Wrap the table (with
+    // the usual blank lines on either side so it still parses as GFM):
+    //   <div class="table-wrap">
+    //
+    //   | ... |
+    //
+    //   </div>
+    :global(.table-wrap) {
+        overflow-x: auto;
+        margin-block: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 2px 4px;
+
+        table {
+            margin-block: 0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+    }
 }
 
 .panelContainer {

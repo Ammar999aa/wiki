@@ -35,11 +35,38 @@ Our goal was therefore not simply to showcase SHIHAB or seek validation. We want
 
 To guide this process, we developed the ORBIT framework, a continuous cycle connecting stakeholder engagement with project development:
 
-1. **O — Observe the Challenge** — Understand the healthcare, biological, and logistical challenges of space exploration.
-2. **R — Reach Stakeholders** — Engage astronauts, researchers, space medicine specialists, industry, regulatory experts and communities.
-3. **B — Build with Insights** — Translate stakeholder knowledge into concrete decisions for SHIHAB.
-4. **I — Iterate Responsibly** — Reassess assumptions, limitations, risks and design choices as new perspectives emerge.
-5. **T — Translate the Impact** — Extend what we learn beyond the laboratory, toward space exploration, Earth applications, and society.
+<div class="card-grid">
+<div>
+
+#### O — Observe the Challenge
+Understand the healthcare, biological, and logistical challenges of space exploration.
+
+</div>
+<div>
+
+#### R — Reach Stakeholders
+Engage astronauts, researchers, space medicine specialists, industry, regulatory experts and communities.
+
+</div>
+<div>
+
+#### B — Build with Insights
+Translate stakeholder knowledge into concrete decisions for SHIHAB.
+
+</div>
+<div>
+
+#### I — Iterate Responsibly
+Reassess assumptions, limitations, risks and design choices as new perspectives emerge.
+
+</div>
+<div>
+
+#### T — Translate the Impact
+Extend what we learn beyond the laboratory, toward space exploration, Earth applications, and society.
+
+</div>
+</div>
 
 Rather than following these steps only once, ORBIT became an iterative process. New insights generated new questions, new questions connected us with new stakeholders, and those interactions continuously shaped the direction of SHIHAB.
 
@@ -50,6 +77,8 @@ As SHIHAB evolved, we identified the people and communities who could inform, ch
 - What do we need to learn from them?
 - How could their perspective influence SHIHAB?
 
+<div class="table-wrap">
+
 | Stakeholder group | What we need to learn from them | How it could influence SHIHAB |
 |---|---|---|
 | Astronauts & Space Medicine | What medical problems matter?<br>How are medicines currently managed?<br>What would astronauts actually trust or use? | Therapeutic choice<br>Usability<br>Autonomy<br>Safety requirements |
@@ -57,6 +86,8 @@ As SHIHAB evolved, we identified the people and communities who could inform, ch
 | Regulatory, Safety & Ethics | How could an engineered microorganism producing a therapeutic be safely used?<br>What regulations apply? | Containment<br>Biosafety<br>Quality controls<br>Responsible design and production |
 | Humanitarian context | Could decentralized biomanufacturing be useful where medicine supply chains are disrupted?<br>What additional requirements would these environments introduce? | Disaster-zone application<br>Broader accessibility to our platform<br>Remote deployment |
 | Community | What does society understand about space biotechnology?<br>What knowledge gaps, concerns or misconceptions exist? | Educational materials<br>Communication Strategy<br>Space Academy |
+
+</div>
 
 ## Our Journey
 

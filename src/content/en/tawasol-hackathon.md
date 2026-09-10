@@ -45,10 +45,32 @@ DUNELOCK uses engineered soil-associated bacteria to stabilize shifting desert s
 
 Both tracks are evaluated against the same four sub-challenges, applied to their respective platform:
 
-1. **Safety & Biocontainment** — regulatory frameworks for verifying biological safety without a conventional laboratory setting.
-2. **Public Trust & Health Impact** — communication, consent, and public-health strategies for community-facing biotechnology.
-3. **Integration & Liability** — liability standards and infrastructure integration for real-world deployment.
-4. **Sustainability & Long-Term Impact** — how the platform's deployment advances the UN Sustainable Development Goals.
+<div class="card-grid">
+<div>
+
+#### Safety & Biocontainment
+Regulatory frameworks for verifying biological safety without a conventional laboratory setting.
+
+</div>
+<div>
+
+#### Public Trust & Health Impact
+Communication, consent, and public-health strategies for community-facing biotechnology.
+
+</div>
+<div>
+
+#### Integration & Liability
+Liability standards and infrastructure integration for real-world deployment.
+
+</div>
+<div>
+
+#### Sustainability & Long-Term Impact
+How the platform's deployment advances the UN Sustainable Development Goals.
+
+</div>
+</div>
 
 > Same four challenges. Different world. That is the point: the structure is designed to show that governance thinking transfers across very different biotechnology applications.
 
@@ -56,17 +78,54 @@ Both tracks are evaluated against the same four sub-challenges, applied to their
 
 Tawasol runs across three days, shifting format as the weekend progresses.
 
+<div class="table-wrap">
+
 | Day | Date | Format | Key Milestone |
 |---|---|---|---|
 | Day 1 | Friday, Aug 28 | Virtual | Team formation; Problem Statement due, 10:00 PM |
 | Day 2 | Saturday, Aug 29 | Virtual | Development + Mentorship Power Hour; Final Whitepaper due, 11:59 PM |
 | Day 3 | Sunday, Aug 30 | Hybrid | Virtual judging, 9:00 AM–12:00 PM; in-person celebration, 1:00–5:00 PM |
 
+</div>
+
 Each team submits a **five-page policy whitepaper** and delivers a **five-minute live pitch** with judge Q&A, mirroring how real policy proposals are developed and defended. Teams register in groups of 3–5, with solo applicants matched into a compatible team ahead of the event.
 
 ### Evaluation
 
-Submissions are judged against five weighted criteria, worth five points each: Technical Integration, Policy Feasibility, Ethical & Social Impact, Strategic Clarity, and Persuasive Pitch. No internal student members judge the competition; all submissions are evaluated by an external panel to maintain objectivity.
+Submissions are judged against five weighted criteria, worth five points each. No internal student members judge the competition; all submissions are evaluated by an external panel to maintain objectivity.
+
+<div class="card-grid compact">
+<div>
+
+#### Technical Integration
+5 points
+
+</div>
+<div>
+
+#### Policy Feasibility
+5 points
+
+</div>
+<div>
+
+#### Ethical & Social Impact
+5 points
+
+</div>
+<div>
+
+#### Strategic Clarity
+5 points
+
+</div>
+<div>
+
+#### Persuasive Pitch
+5 points
+
+</div>
+</div>
 
 ## Regional Reach
 

@@ -13,6 +13,13 @@ Read this before creating or restyling a page — it covers tokens, the
 markdown-driven, custom), and how `pages.js` wires up routing + nav.
 @.claude/DESIGN.md
 
+## Article formatting standards
+Read this before writing a substantial, data-heavy article page (long-form,
+multiple figures/tables, quantitative claims) — it distills what makes the
+Model page (`src/pages/Model/`, `/modeling`) read as far more polished than
+a plain markdown article, and gives a checklist for reproducing that.
+@.claude/ARTICLE-STANDARDS.md
+
 ## Guardrails
 - Don't change `LICENSE` or the `Footer` component's license notice + GitLab
   repository link (both required on every page for judging).
