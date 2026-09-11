@@ -95,6 +95,7 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         margin: 12px;
         max-width: 100%;
         border-radius: var(--radius-sm);
+        cursor: zoom-in; // click opens the Lightbox — see Article.jsx's delegated click handler
     }
 
     h3 {
