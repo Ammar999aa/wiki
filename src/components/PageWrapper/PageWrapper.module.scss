@@ -38,3 +38,10 @@
     overflow: hidden;
     padding-bottom: 0;
 }
+
+/* Opt-out for pages whose own last section already reserves clearance for
+   the fixed Menu/Footer bar (e.g. Home's Sponsors section) — see the
+   navClearance prop comment in PageWrapper.jsx. */
+.noClearance {
+    padding-bottom: 0;
+}

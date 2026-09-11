@@ -13,6 +13,13 @@ export default function PageWrapper({
   // (full star field + scroll-driven meteor rate), and doubling that up
   // here would just layer a second meteor stream on top of it.
   ambientMeteors = true,
+  // On by default: gives every page --nav-clearance of extra scroll room
+  // below its content so the fixed Menu/Footer bar can't strand the page's
+  // tail underneath itself. Home passes false — its own closing section
+  // (Sponsors) already reserves that same clearance itself (see its
+  // padding-bottom comment), so this would just stack a second, unwanted
+  // gap of blank background under it.
+  navClearance = true,
 }) {
   const { color, image, size, gradient, photo, photoPosition, photoOpacity } = background;
 
@@ -49,7 +56,11 @@ export default function PageWrapper({
         </div>,
         document.body
       )}
-      <div className={`${styles.wrapper} ${scrollable ? "" : styles.noScroll} ${className}`}>
+      <div
+        className={`${styles.wrapper} ${scrollable ? "" : styles.noScroll} ${
+          navClearance ? "" : styles.noClearance
+        } ${className}`}
+      >
         {children}
       </div>
     </>

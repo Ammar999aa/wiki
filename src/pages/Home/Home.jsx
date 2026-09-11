@@ -990,7 +990,15 @@ export default function Home() {
   return (
     // ambientMeteors off — <Starfield/> below already renders Home's own,
     // richer meteor field; PageWrapper's would just double it up.
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }} ambientMeteors={false}>
+    // navClearance off — Sponsors (the last section below) already reserves
+    // its own clearance for the fixed Menu/Footer bar via its
+    // padding-bottom, so PageWrapper's would just add a second, unwanted
+    // gap of blank background under it.
+    <PageWrapper
+      background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}
+      ambientMeteors={false}
+      navClearance={false}
+    >
       <SponsorBanner />
       <Starfield />
       <EarthLayer groupRef={heroOrbitRef} />
