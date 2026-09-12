@@ -45,9 +45,9 @@ function memberContent(t, key) {
 const DEPARTMENT_LABELS = {
   wetLab: "Wet Lab",
   dryLab: "Dry Lab",
+  humanPractices: "Human Practices",
   hardware: "Hardware",
   publicEngagement: "Public Engagement",
-  humanPractices: "Human Practices",
   wiki: "Wiki",
 };
 const DEPARTMENT_ORDER = Object.keys(DEPARTMENT_LABELS);
@@ -55,9 +55,10 @@ const DEPARTMENT_ORDER = Object.keys(DEPARTMENT_LABELS);
 // `key` is the i18n key under `attributions.*` in src/i18n/en.json.
 const students = [
   { key: "ansal",         title: "Ansal' Diassova",               photo: ansal,     deptKey: "wetLab" },
-  { key: "mariaCamila",   title: "Maria Camila Muñoz Vega",        photo: maria,     deptKey: "wetLab" },
+  { key: "francesca",     title: "Francesca Rivas Cuestas",        photo: francesca, deptKey: "wetLab" },
   { key: "mariana",       title: "Mariana Villegas",               photo: mariana,   deptKey: "wetLab" },
   { key: "sriharsha",     title: "Sriharsha Chowdarapu",           photo: sriharsha, deptKey: "wetLab" },
+  { key: "mariaCamila",   title: "Maria Camila Muñoz Vega",        photo: maria,     deptKey: "wetLab" },
   { key: "zeyad",         title: "Zeyad Muazzen",                  photo: zeyad,     deptKey: "wetLab" },
   { key: "jeremy",        title: "Jeremy Rodrigo Guerrero Alejos", photo: jeremy,    deptKey: "dryLab" },
   { key: "taiba",         title: "Taiba Zeya",                     photo: taiba,     deptKey: "dryLab" },
@@ -69,7 +70,6 @@ const students = [
   { key: "shahad",        title: "Shahad Hersi",                   photo: shahad,    deptKey: "publicEngagement" },
   { key: "genesis",       title: "Génesis Flores Arroyo",          photo: genesis,   deptKey: "publicEngagement" },
   { key: "raheema",       title: "Raheema Javid",                  photo: raheema,   deptKey: "publicEngagement" },
-  { key: "francesca",     title: "Francesca Rivas Cuestas",        photo: francesca, deptKey: "humanPractices" },
   { key: "mariaFernanda", title: "Maria Fernanda Gutierrez",       photo: mafer,     deptKey: "humanPractices" },
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
 ];
