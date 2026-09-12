@@ -15,9 +15,9 @@ const kaustigem = `${SPONSOR_CDN}/kaustigem.avif`;
 // Single source of truth for sponsor logos/metadata, shared by the floating
 // "Supported by" strip (./Sponsors.jsx, embedded on Home), the top-of-page
 // carousel (../SponsorBanner/SponsorBanner.jsx), and the detail cards on the
-// /sponsors page (src/pages/Sponsors/Sponsors.jsx). `description` is
-// placeholder copy — real sponsor blurbs haven't been written yet; see
-// RESPONSIBLE_AI_USE.md on not fabricating content on a sponsor's behalf.
+// /sponsors page (src/pages/Sponsors/Sponsors.jsx). No `description` field —
+// real sponsor blurbs haven't been written yet, and RESPONSIBLE_AI_USE.md
+// rules out filling that in with fabricated copy in the meantime.
 //
 // `smallInFooter`: BK and Baskin-Robbins are lower-tier sponsors, so
 // ./Sponsors.jsx shrinks their logo — but only there. It's named for that
@@ -33,14 +33,14 @@ const kaustigem = `${SPONSOR_CDN}/kaustigem.avif`;
 // doesn't change layout) to compensate — measured by comparing each logo's
 // content bounding box against the tightly-cropped ones, not eyeballed.
 export const SPONSORS = [
-  { id: "kaustigem", src: kaustigem, name: "KAUST iGEM",      nudge:  12, visualScale: 1.18, description: "Sponsor description coming soon." },
-  { id: "nti",       src: nti,       name: "NTI",             nudge:   0, description: "Sponsor description coming soon." },
-  { id: "bese",      src: bese,      name: "BESE",            nudge:  22, description: "Sponsor description coming soon." },
-  { id: "biomed",    src: biomed,    name: "BioMed",          nudge:  30, visualScale: 1.25, description: "Sponsor description coming soon." },
-  { id: "lem",       src: lem,       name: "LEM",             nudge:  -8, description: "Sponsor description coming soon." },
-  { id: "gs",        src: gs,        name: "GenScript",       nudge:  -4, description: "Sponsor description coming soon." },
-  { id: "idt",       src: idt,       name: "IDT",             nudge: -18, description: "Sponsor description coming soon." },
-  { id: "sg",        src: sg,        name: "SnapGene",        nudge:  24, description: "Sponsor description coming soon." },
-  { id: "bk",        src: bk,        name: "Burger King",     nudge: -14, smallInFooter: true, description: "Sponsor description coming soon." },
-  { id: "br",        src: br,        name: "Baskin-Robbins",  nudge:  16, smallInFooter: true, description: "Sponsor description coming soon." },
+  { id: "kaustigem", src: kaustigem, name: "KAUST iGEM",      nudge:  12, visualScale: 1.18 },
+  { id: "nti",       src: nti,       name: "NTI",             nudge:   0 },
+  { id: "bese",      src: bese,      name: "BESE",            nudge:  22 },
+  { id: "biomed",    src: biomed,    name: "BioMed",          nudge:  30, visualScale: 1.25 },
+  { id: "lem",       src: lem,       name: "LEM",             nudge:  -8 },
+  { id: "gs",        src: gs,        name: "GenScript",       nudge:  -4 },
+  { id: "idt",       src: idt,       name: "IDT",             nudge: -18 },
+  { id: "sg",        src: sg,        name: "SnapGene",        nudge:  24 },
+  { id: "bk",        src: bk,        name: "Burger King",     nudge: -14, smallInFooter: true },
+  { id: "br",        src: br,        name: "Baskin-Robbins",  nudge:  16, smallInFooter: true },
 ];

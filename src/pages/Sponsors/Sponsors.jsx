@@ -70,7 +70,6 @@ export default function Sponsors() {
                     />
                   </div>
                   <h2 className={styles.cardName}>{s.name}</h2>
-                  <p className={styles.cardDesc}>{s.description}</p>
                 </div>
               </LiquidGlass>
             </div>

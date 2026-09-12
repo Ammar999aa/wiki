@@ -65,11 +65,17 @@
 
 /* Sponsor cards */
 
+/* Flex-wrap + justify-content:center rather than a CSS grid — a grid's
+   last, incomplete row sits left-justified (no way to center just that row
+   without hardcoding column counts per breakpoint), while a wrapped flex
+   row centers whatever's left over automatically. Same technique as
+   ../../components/Sponsors/Sponsors.module.scss's `.row` on Home. */
 .grid {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
   max-width: 1100px;
   margin: 32px auto 0;
@@ -80,6 +86,13 @@
 }
 
 .card {
+  /* grow + shrink from a 260px basis (same floor as the old
+     `minmax(260px, 1fr)` grid track) so cards in a full row stretch to
+     fill it edge-to-edge exactly like before; `max-width` only kicks in
+     for a lone card left in the last row, capping it at a normal card's
+     width instead of stretching to fill the entire row by itself. */
+  flex: 1 1 260px;
+  max-width: 360px;
   scroll-margin-top: 120px; /* clears the fixed nav bar when jumped to */
 }
 
@@ -95,8 +108,7 @@
 }
 
 /* The logo is the card's whole point — give it a stage well above the
-   caption/description underneath rather than splitting attention three
-   ways evenly. */
+   caption underneath rather than splitting attention two ways evenly. */
 .logoBox {
   height: 96px;
   width: 100%;
@@ -125,14 +137,6 @@
   text-transform: uppercase;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
   color: rgba(255, 255, 255, 0.5);
-}
-
-.cardDesc {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.45);
-  font-style: italic;
 }
 
 /* Credit for the fixed background photo — same corner-link convention as
