@@ -33,14 +33,14 @@ const kaustigem = `${SPONSOR_CDN}/kaustigem.avif`;
 // doesn't change layout) to compensate — measured by comparing each logo's
 // content bounding box against the tightly-cropped ones, not eyeballed.
 export const SPONSORS = [
+  { id: "kaustigem", src: kaustigem, name: "KAUST iGEM",      nudge:  12, visualScale: 1.18, description: "Sponsor description coming soon." },
   { id: "nti",       src: nti,       name: "NTI",             nudge:   0, description: "Sponsor description coming soon." },
   { id: "bese",      src: bese,      name: "BESE",            nudge:  22, description: "Sponsor description coming soon." },
-  { id: "bk",        src: bk,        name: "Burger King",     nudge: -14, smallInFooter: true, description: "Sponsor description coming soon." },
-  { id: "lem",       src: lem,       name: "LEM",             nudge:  -8, description: "Sponsor description coming soon." },
-  { id: "kaustigem", src: kaustigem, name: "KAUST iGEM",      nudge:  12, visualScale: 1.18, description: "Sponsor description coming soon." },
   { id: "biomed",    src: biomed,    name: "BioMed",          nudge:  30, visualScale: 1.25, description: "Sponsor description coming soon." },
+  { id: "lem",       src: lem,       name: "LEM",             nudge:  -8, description: "Sponsor description coming soon." },
   { id: "gs",        src: gs,        name: "GS",              nudge:  -4, description: "Sponsor description coming soon." },
   { id: "idt",       src: idt,       name: "IDT",             nudge: -18, description: "Sponsor description coming soon." },
-  { id: "br",        src: br,        name: "Baskin-Robbins",  nudge:  16, smallInFooter: true, description: "Sponsor description coming soon." },
   { id: "sg",        src: sg,        name: "SnapGene",        nudge:  24, description: "Sponsor description coming soon." },
+  { id: "bk",        src: bk,        name: "Burger King",     nudge: -14, smallInFooter: true, description: "Sponsor description coming soon." },
+  { id: "br",        src: br,        name: "Baskin-Robbins",  nudge:  16, smallInFooter: true, description: "Sponsor description coming soon." },
 ];
