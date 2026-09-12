@@ -9,6 +9,16 @@ import styles from "./Sponsors.module.scss";
 // https://static.igem.wiki/teams/6341/wiki/images/.
 const gemini4Eva = "https://static.igem.wiki/teams/6341/wiki/images/gemini4-eva.webp";
 
+// Extra size correction for this page's larger logo cards only — kept
+// separate from sponsorsData.js's shared `visualScale` (which the Home
+// floating strip and top-of-page banner also read) so enlarging logos here
+// doesn't change their size anywhere else, same reasoning as that file's
+// `smallInFooter` flag being scoped to a single consumer. LEM's source file
+// is a small icon mark with no wordmark, so even at a matched box height it
+// reads noticeably lighter than the wordmark-style logos next to it here;
+// nudge it up to match. Multiplies on top of any shared `visualScale`.
+const DETAIL_SCALE = { lem: 1.35 };
+
 // Standalone /sponsors page required by pages.md's Team category. Loosely
 // modelled on other iGEM teams' sponsors pages (intro blurb → jump links →
 // one write-up per sponsor) rather than the bare logo row this page used to
@@ -45,24 +55,27 @@ export default function Sponsors() {
       </nav>
 
       <div className={styles.grid}>
-        {SPONSORS.map((s) => (
-          <div key={s.id} id={s.id} className={styles.card}>
-            <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07}>
-              <div className={styles.cardInner}>
-                <div className={styles.logoBox}>
-                  <img
-                    src={s.src}
-                    alt={s.name}
-                    className={styles.logo}
-                    style={s.visualScale ? { transform: `scale(${s.visualScale})` } : undefined}
-                  />
+        {SPONSORS.map((s) => {
+          const scale = (DETAIL_SCALE[s.id] ?? 1) * (s.visualScale ?? 1);
+          return (
+            <div key={s.id} id={s.id} className={styles.card}>
+              <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07}>
+                <div className={styles.cardInner}>
+                  <div className={styles.logoBox}>
+                    <img
+                      src={s.src}
+                      alt={s.name}
+                      className={styles.logo}
+                      style={scale !== 1 ? { transform: `scale(${scale})` } : undefined}
+                    />
+                  </div>
+                  <h2 className={styles.cardName}>{s.name}</h2>
+                  <p className={styles.cardDesc}>{s.description}</p>
                 </div>
-                <h2 className={styles.cardName}>{s.name}</h2>
-                <p className={styles.cardDesc}>{s.description}</p>
-              </div>
-            </LiquidGlass>
-          </div>
-        ))}
+              </LiquidGlass>
+            </div>
+          );
+        })}
       </div>
 
       <a

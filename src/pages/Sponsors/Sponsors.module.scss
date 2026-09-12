@@ -86,33 +86,45 @@
 .cardInner {
   height: 100%;
   box-sizing: border-box;
-  padding: 32px 28px;
+  padding: 36px 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 14px;
+  gap: 10px;
 }
 
+/* The logo is the card's whole point — give it a stage well above the
+   caption/description underneath rather than splitting attention three
+   ways evenly. */
 .logoBox {
-  height: 56px;
+  height: 96px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 4px;
 }
 
 .logo {
-  height: 44px;
+  height: 76px;
   width: auto;
-  max-width: 160px;
+  max-width: 100%;
   object-fit: contain;
 }
 
+/* Demoted from a second headline to a small-caps caption: most of these
+   logos already spell the name out in the mark itself, so repeating it at
+   full heading size fought the logo for attention instead of labelling it.
+   Same small-caps-label treatment as .label above / .tocItem. */
 .cardName {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .cardDesc {

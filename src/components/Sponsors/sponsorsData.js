@@ -38,7 +38,7 @@ export const SPONSORS = [
   { id: "bese",      src: bese,      name: "BESE",            nudge:  22, description: "Sponsor description coming soon." },
   { id: "biomed",    src: biomed,    name: "BioMed",          nudge:  30, visualScale: 1.25, description: "Sponsor description coming soon." },
   { id: "lem",       src: lem,       name: "LEM",             nudge:  -8, description: "Sponsor description coming soon." },
-  { id: "gs",        src: gs,        name: "GS",              nudge:  -4, description: "Sponsor description coming soon." },
+  { id: "gs",        src: gs,        name: "GenScript",       nudge:  -4, description: "Sponsor description coming soon." },
   { id: "idt",       src: idt,       name: "IDT",             nudge: -18, description: "Sponsor description coming soon." },
   { id: "sg",        src: sg,        name: "SnapGene",        nudge:  24, description: "Sponsor description coming soon." },
   { id: "bk",        src: bk,        name: "Burger King",     nudge: -14, smallInFooter: true, description: "Sponsor description coming soon." },
