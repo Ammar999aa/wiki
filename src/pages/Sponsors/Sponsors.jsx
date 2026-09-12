@@ -59,7 +59,7 @@ export default function Sponsors() {
           const scale = (DETAIL_SCALE[s.id] ?? 1) * (s.visualScale ?? 1);
           return (
             <div key={s.id} id={s.id} className={styles.card}>
-              <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07}>
+              <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.28}>
                 <div className={styles.cardInner}>
                   <div className={styles.logoBox}>
                     <img
