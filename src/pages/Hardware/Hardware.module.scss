@@ -1,3 +1,172 @@
+/* ─── Bulb hero (BulbHero.jsx) ───────────────────────────────────────────
+   Ported from src/content/hardware/shihab-bioreactor.html — see the
+   comment at the top of BulbHero.jsx for what changed (pacing, mounting
+   point) versus that reference file. Colors/tokens below are the site's
+   own (--primary, --amber, --radius-xs) rather than the reference file's
+   hardcoded hex, but happen to already match it 1:1 (see .claude/DESIGN.md
+   token values) so nothing shifts visually. */
+.bulbHero {
+  margin-bottom: 8px;
+}
+
+// Portaled to document.body (see BulbHero.jsx) so it sits above the fixed
+// nav/footer and the page background, not just this component's own
+// column — "the whole page" going dim means literally that. Starts at 0 in
+// plain CSS (rather than pre-dimmed) so a JS error fails open to a normal
+// visible page instead of a permanently dark one; the rAF loop takes over
+// within a frame of mount.
+.dimOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: #000;
+  opacity: 0;
+}
+
+.heroIntro {
+  will-change: opacity, transform;
+  padding-bottom: 24px;
+
+  p {
+    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    max-width: 620px;
+    margin: 0;
+    text-align: start;
+  }
+}
+
+.bulbPinWrap {
+  position: relative;
+  // See BULB_COUNT/BUFFER in BulbHero.jsx — ~80vh/bulb (same pace as before)
+  // plus a short 0.6-slot hold once all three are lit, before the pin
+  // releases into the article.
+  height: 288vh;
+}
+
+.bulbPinInner {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.bulbRow {
+  display: flex;
+  gap: clamp(28px, 6vw, 72px);
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.bulbUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  svg {
+    width: clamp(64px, 9vw, 108px);
+    height: auto;
+    overflow: visible;
+  }
+}
+
+.bulbGlass {
+  fill: rgba(255, 255, 255, 0.06);
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1.4;
+  transition: fill 0.6s ease, stroke 0.6s ease, filter 0.6s ease;
+}
+
+.bulbFilament {
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1.6;
+  fill: none;
+  transition: stroke 0.6s ease;
+}
+
+.bulbBase {
+  fill: rgba(255, 255, 255, 0.14);
+  transition: fill 0.6s ease;
+}
+
+.bulbUnit.lit {
+  .bulbGlass {
+    fill: color-mix(in oklab, var(--amber) 18%, transparent);
+    stroke: var(--amber);
+    filter: drop-shadow(0 0 22px color-mix(in oklab, var(--amber) 70%, transparent));
+  }
+
+  .bulbFilament {
+    stroke: var(--amber);
+  }
+
+  .bulbBase {
+    fill: color-mix(in oklab, var(--amber) 35%, transparent);
+  }
+}
+
+.chargeTrack {
+  height: 2px;
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.12);
+  position: relative;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.chargeFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--amber);
+}
+
+.chargeSpark {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 8px 2px color-mix(in oklab, var(--amber) 90%, transparent),
+    0 0 18px 6px color-mix(in oklab, var(--amber) 45%, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.heroCaption {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 380px;
+  text-align: center;
+  margin: 4px 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bulbPinWrap {
+    height: auto;
+  }
+
+  .bulbPinInner {
+    position: static;
+    min-height: 0;
+    padding: 24px 0;
+  }
+}
+
 /* Credit for the fixed background photo — same corner-link convention as
    Sponsors.module.scss's photoCredit / Home's earthCredit/rocketCredit. */
 .photoCredit {

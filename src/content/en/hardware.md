@@ -1,75 +1,174 @@
-## Introduction
+## Medicine can't always wait for resupply
 
-As human space exploration advances, longer-duration missions are becoming more commonplace. Astronauts on board require access to therapeutics to manage health conditions that may arise during their long-haul expeditions. While it is possible to transport pharmaceuticals aboard spacecraft prior to launch, predicting the full range of medical conditions that may arise during missions remains challenging. Maintaining an extensive inventory of medicines would substantially increase payload mass and hence mission costs as well. Thus, the ability to produce therapeutics on-demand during flight offers a more flexible and resource-efficient solution, particularly for long-haul expeditions.
+As human space exploration advances, longer-duration missions are becoming more common. Astronauts on board need access to therapeutics that can manage health conditions arising mid-flight. Pharmaceuticals can be loaded before launch, but predicting the full range of conditions a crew might face over months or years is difficult, and carrying an extensive inventory of medicine adds payload mass, and with it, cost.
 
-We recognize that astronauts are not typically trained to handle complex biological protocols and equipment. Hence, with X, we designed a prototype of a biomanufacturing platform consisting of a bioreactor and protein purification system that is simple to use, compact, modular and highly automated. Astronauts would therefore only be required to transport the compact X, together with a small inventory of "pills", to begin the production of their medicine of choice aboard their spacecraft.
+Producing therapeutics on demand, during the mission itself, offers a more flexible and resource-efficient alternative, especially for long-haul expeditions where resupply isn't an option.
+
+Astronauts aren't trained to run complex biological protocols. So we built the SHIHAB Bioreactor: a biomanufacturing platform (a bioreactor paired with a protein purification system) designed to be simple, compact, modular, and highly automated. The crew only needs to bring the compact unit itself, along with a small inventory of "pills," to begin producing their medicine of choice on board.
 
 <div class="two-col-images">
 
-![Inventory box of lyophilized "pill" cultures for the biomanufacturing platform](https://static.igem.wiki/teams/6341/wiki/content/hardware/pill-inventory-box.avif)
-
 ![CAD render of the assembled prototype: bioreactor and protein purification system housed in a compact case](https://static.igem.wiki/teams/6341/wiki/content/hardware/device-cad-render.avif)
+
+![Inventory box of lyophilized "pill" cultures for the biomanufacturing platform](https://static.igem.wiki/teams/6341/wiki/content/hardware/pill-inventory-box.avif)
 
 </div>
 
-This allows for on-demand, small-scale production of pharmaceuticals in space and remote areas without the need for extensive technical support or equipment, improving the accessibility to medicines where they are most needed.
+The result is on-demand, small-scale pharmaceutical production in space and in remote areas on Earth, without extensive technical support or equipment, putting medicine within reach where it's needed most.
 
-## How It Works
+## Two systems, one pill
 
-### Pills
+<span class="chip">Pills</span>
 
-A compact inventory of lyophilized bacteria genetically engineered to produce specific nanobodies for different purposes. The user simply has to pick their pill of choice and place it in the bioreactor prior to the start of the reaction.
+A compact inventory of lyophilized bacteria, each engineered to produce a specific nanobody for a different therapeutic purpose. The crew picks the pill they need and loads it into the bioreactor before the reaction begins.
 
-### Part I: Bioreactor
+<span class="chip amber">Part I: Bioreactor</span>
 
-Once the pill has been added, the user enters the culture conditions and quantities of reagents on the interactive dashboard. The bioreactor automatically maintains the conditions at the set values via installed sensors and feedback controls that have been programmed into the system. This negates the need for the user to periodically check on the culture conditions.
+Once the pill is loaded, the user sets the culture conditions and reagent quantities on an interactive dashboard. From there, onboard sensors and feedback controls hold those conditions steady on their own, so no one needs to check in on the culture as it grows.
 
-Content coming soon.
+<div class="panel">
+<div class="panel-title"><span>Dashboard · live readout</span><span>Sim</span></div>
+<div class="dash">
+<div class="dash-card">
+<div class="k">Temperature</div>
+<div class="v">37.0<span>°C</span></div>
+<div class="dash-bar"><i style="width:78%; background:var(--amber);"></i></div>
+</div>
+<div class="dash-card">
+<div class="k">pH</div>
+<div class="v">7.20<span>pH</span></div>
+<div class="dash-bar"><i style="width:64%;"></i></div>
+</div>
+</div>
+</div>
 
-<!-- Figure: interactive dashboard — no source image for this one; still to be produced. -->
+<div class="panel">
+<div class="panel-title">Temperature control loop</div>
+<div class="flow">
 
-**Temperature control:** Flowchart for temperature sensor → PID control → flexible heating element.
+<span class="flow-node amber">Temperature sensor</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">PID control</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node amber">Flexible heating element</span>
 
-**pH control:** Flowchart for pH sensor → PID control → acid/base dispensing.
+</div>
+</div>
 
-At the end of the reaction, the culture is then transferred via tubes and pumps to the protein purification system to obtain the nanobodies.
+<div class="panel">
+<div class="panel-title">pH control loop</div>
+<div class="flow">
 
-### Part II: Protein Purification System
+<span class="flow-node accent">pH sensor</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">PID control</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node accent">Acid / base dispensing</span>
 
-At the end of the fermentation process, the broth containing the secreted proteins would be passed through the protein purification system (PPS) to obtain the purified nanobodies. The PPS consists of two main stages: filtration and affinity chromatography.
+</div>
+</div>
 
-#### Filtration Unit
+At the end of the reaction, the culture is transferred by tubes and pumps to the protein purification system to recover the nanobodies.
 
-We designed a modular filtration unit that allows the user to choose the number of filtration stages that would be the most appropriate for the culture. This filtration unit is to be set up prior to the start of the purification process. To conduct multi-stage filtration – an ideal filtration method that maintains simplicity while avoiding clogging – the user places filter papers of decreasing pore sizes in each filter module, then connects the modules with gaskets in between to avoid leakage. The assembled filtration unit is then connected to the second part of the PPS.
+<span class="chip amber">Part II: Protein purification system</span>
 
-Content coming soon.
+Once fermentation is complete, the broth containing the secreted proteins passes through the protein purification system to yield the purified nanobodies. The system has two stages: filtration, then affinity chromatography.
 
-<!-- Figure: filtration unit — no source image for this one; still to be produced. -->
+#### Filtration unit
 
-#### Affinity Chromatography
+A modular design lets the user choose how many filtration stages suit the culture. Filter papers of decreasing pore size sit in each module, connected by gaskets to prevent leakage, a multi-stage approach that stays simple while avoiding clogs.
 
-The second part of the PPS consists of syringe pumps designed to dispense accurate volumes of the different buffers required for affinity chromatography, namely the equilibration buffer, the wash buffer, the elution buffer and the reconstitution buffer. Each syringe pump comprises of a sterile 60 mL syringe controlled by a stepper motor (?V DC) connected to a linear actuator to translate its rotary motion into linear actuation. These syringe pumps have been pre-calibrated to improve the accuracy of fluid dispensing. Each syringe pump is connected to both the storage bottle for each buffer as well as the affinity chromatography column, allowing for the appropriate amount of buffer to be collected from the storage bottle and dispensed into the column. The outlet of the column is connected to a dual-port connector: one for waste and one for a sterile collection vial for the final purified solution of nanobodies to be collected. After each buffer is dispensed, a negative pressure is applied at the waste port to draw the buffer out of the column, except for when the elution buffer is dispensed, in which case, the elute will be transported to the collection vial instead.
+<div class="card-grid compact">
+
+<div>
+
+#### Stage 1
+Coarse filter
+
+</div>
+
+<div>
+
+#### Stage 2
+Medium filter
+
+</div>
+
+<div>
+
+#### Stage 3
+Fine filter
+
+</div>
+
+</div>
+
+#### Affinity chromatography
+
+Syringe pumps dispense precise volumes of each buffer: equilibration, wash, elution, and reconstitution. Each pump pairs a sterile 60 mL syringe with a stepper-motor-driven linear actuator, pre-calibrated for accurate dispensing.
+
+<div class="flow">
+
+<span class="flow-node">Buffer store</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node accent">Column</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node amber">Waste / collection</span>
+
+</div>
+
+After each buffer runs through, negative pressure at the waste port draws it out of the column, except during elution, when the eluate is routed to a sterile collection vial instead.
 
 ![Diagram of the affinity chromatography syringe pumps, buffer lines, and column](https://static.igem.wiki/teams/6341/wiki/content/hardware/purification-system-diagram.avif)
 
-### Fluid Handling (in Microgravity Conditions)
+## Built for lower gravity
 
-Given the lower gravity experienced in Mars conditions (~0.33g), fluid is expected to behave differently from how they do on Earth. We address this by ensuring that fluid is transported in closed systems via tubes and pumps instead of relying on gravity.
+On Mars, gravity is roughly a third of Earth's, about 0.33*g*, so fluid behaves differently than it does in a terrestrial lab. Rather than relying on gravity to move liquid through the system, every fluid path in the SHIHAB Bioreactor runs through closed tubing and pumps, keeping fluid handling consistent regardless of the gravity environment it's operating in.
 
-### Sterilization
+## Hardware, sensing, and sterility
 
-Content coming soon.
+<div class="card-grid">
 
-### Materials and Components
+<div>
 
-- Materials — compliant with NASA guidelines
-- Sensors
-- Actuators
+#### Sterilization
+Keeping the culture and purification path free of contamination throughout the run.
 
-## Testing
+</div>
 
-Content coming soon.
+<div>
 
-## Future of Hardware
+#### Materials
+Components selected to meet NASA material guidelines for spaceflight hardware.
 
-Content coming soon.
+</div>
+
+<div>
+
+#### Sensors
+Temperature and pH sensors feed the feedback loops that keep culture conditions stable.
+
+</div>
+
+<div>
+
+#### Actuators
+Heating elements, acid/base dispensers, and stepper-motor syringe pumps carry out each control loop.
+
+</div>
+
+</div>
+
+## Validation in progress
+
+<div class="callout warn">
+
+<p class="callout-label">Where we are right now</p>
+
+We're currently testing the bioreactor and purification system as an integrated platform. Results will be added here as they come in.
+
+</div>
+
+## A pill, a bioreactor, and a medicine wherever it's needed
+
+The next iterations of SHIHAB aim to expand the pill library, tighten the hardware footprint further, and push the platform toward flight-ready reliability, so that producing medicine on demand becomes as routine, off-world or off-grid, as taking it.

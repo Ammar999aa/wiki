@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHIHAB Bioreactor · kaust-ksa · iGEM 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary-900:#3E2754; --primary-700:#724A92; --primary-500:#B16DFF; --primary-300:#D1A8FF; --primary-100:#F3E8FF;
+    --secondary-900:#090927; --secondary-700:#12142F; --secondary-600:#1E203F; --secondary-500:#3F4162; --secondary-300:#8E90A8; --secondary-200:#B5B6C8;
+    --tertiary-500:#3F6FAF;
+    --amber:#FFD84D;
+    --bg:#0A0A27;
+    --ink:#ffffff;
+    --muted:var(--secondary-300);
+    --line:rgba(255,255,255,0.10);
+    --radius-xs:8px; --radius-sm:16px; --radius-md:24px; --radius-lg:32px;
+    --maxw:1180px;
+    --serif-max:680px;
+    --mono: ui-monospace, Menlo, Consolas, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  h1,h2,h3{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    line-height:1.15;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{ color:var(--primary-300); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--primary-300); outline-offset:3px; }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+    text-align:center;
+    position:relative;
+    z-index:1;
+  }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  .prose{ max-width:var(--serif-max); margin-left:auto; margin-right:auto; }
+  .muted{ color:var(--muted); }
+
+  /* ---------- BACKDROP: stars ---------- */
+  #starCanvas{
+    position:fixed; inset:0; z-index:-2; pointer-events:none;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(10,10,39,0.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  @media (max-width:640px){ .nav-inner{ padding:12px 20px; } }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand svg{ height:26px; width:auto; }
+  .brand span{
+    font-family:'Aref Ruqaa', serif;
+    font-weight:700; font-size:1.15rem; color:var(--amber);
+  }
+  .status{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:0.72rem; color:var(--muted);
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .status-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--primary-500);
+    box-shadow:0 0 0 0 rgba(177,109,255,0.5);
+    animation:pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(177,109,255,0.45); }
+    70%{ box-shadow:0 0 0 8px rgba(177,109,255,0); }
+    100%{ box-shadow:0 0 0 0 rgba(177,109,255,0); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:110px 32px 40px;
+  }
+  .hero-intro{
+    will-change:opacity, transform;
+    animation:heroIn 1.2s cubic-bezier(.16,.9,.3,1) both;
+  }
+  @keyframes heroIn{
+    from{ opacity:0; transform:translateY(28px) scale(0.96); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  .hero h1{
+    font-size:clamp(2rem, 4.6vw, 3.4rem);
+    max-width:920px; margin-left:auto; margin-right:auto;
+  }
+
+  .bulb-pin-wrap{ position:relative; height:840vh; }
+  .bulb-pin-inner{
+    position:sticky; top:0; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:26px; padding-top:90px;
+  }
+  .bulb-row{
+    display:flex; gap:clamp(36px, 7vw, 90px); align-items:flex-end; justify-content:center;
+    margin:0; flex-wrap:wrap;
+  }
+  .bulb-unit{ display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .bulb-unit svg{ width:clamp(80px, 11vw, 132px); height:auto; overflow:visible; }
+  .bulb-glass{
+    fill:rgba(255,255,255,0.06);
+    stroke:rgba(255,255,255,0.28);
+    stroke-width:1.4;
+    transition:fill 0.6s ease, stroke 0.6s ease, filter 0.6s ease;
+  }
+  .bulb-filament{
+    stroke:rgba(255,255,255,0.28);
+    stroke-width:1.6; fill:none;
+    transition:stroke 0.6s ease;
+  }
+  .bulb-base{ fill:rgba(255,255,255,0.14); transition:fill 0.6s ease; }
+  .bulb-unit.lit .bulb-glass{
+    fill:rgba(255,216,77,0.18);
+    stroke:var(--amber);
+    filter:drop-shadow(0 0 26px rgba(255,216,77,0.7));
+  }
+  .bulb-unit.lit .bulb-filament{ stroke:var(--amber); }
+  .bulb-unit.lit .bulb-base{ fill:rgba(255,216,77,0.35); }
+
+  .charge-track{
+    height:2px; width:100%; max-width:640px;
+    background:rgba(255,255,255,0.12);
+    position:relative; margin:0 auto 8px; overflow:visible;
+  }
+  .charge-fill{
+    position:absolute; top:0; left:0; height:100%;
+    width:0%; background:var(--amber);
+    transition:width 0.4s ease;
+  }
+  .charge-spark{
+    position:absolute; top:50%; left:0%;
+    width:10px; height:10px; border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 8px 2px rgba(255,216,77,0.9), 0 0 18px 6px rgba(255,216,77,0.45);
+    transform:translate(-50%, -50%);
+    transition:left 0.4s ease;
+  }
+  .hero-caption{
+    font-size:0.92rem; color:var(--muted); max-width:460px;
+    margin-left:auto; margin-right:auto;
+  }
+
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:150px 0; position:relative; }
+
+  section h2{
+    font-size:clamp(1.6rem, 3vw, 2.5rem);
+    margin:0 auto 28px;
+    max-width:640px;
+    will-change:transform, opacity;
+  }
+  section p{ color:var(--ink); }
+  section p + p{ margin-top:16px; }
+
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:0.78rem;
+    color:var(--primary-300);
+    border:1px solid rgba(177,109,255,0.35);
+    background:rgba(177,109,255,0.08);
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .chip.amber{ color:var(--amber); border-color:rgba(255,216,77,0.4); background:rgba(255,216,77,0.08); }
+
+  .subsection{ margin-top:72px; }
+  .subsection:first-child{ margin-top:0; }
+
+  /* ---------- LIQUID GLASS PANELS ---------- */
+  .panel{
+    background:rgba(255,255,255,0.055);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:32px;
+    margin-top:32px;
+    backdrop-filter:blur(16px) brightness(1.05);
+    -webkit-backdrop-filter:blur(16px) brightness(1.05);
+    box-shadow:0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .panel-title{
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:20px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+
+  .flow{
+    display:flex; align-items:center; justify-content:center; gap:0;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:0.82rem;
+  }
+  .flow-node{
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--line);
+    padding:14px 18px;
+    border-radius:var(--radius-xs);
+    color:var(--ink);
+    text-align:center;
+    min-width:150px;
+  }
+  .flow-node.amber{ border-color:rgba(255,216,77,0.4); color:var(--amber); }
+  .flow-node.purple{ border-color:rgba(177,109,255,0.4); color:var(--primary-300); }
+  .flow-arrow{ color:var(--muted); padding:0 14px; font-size:1.1rem; }
+  @media (max-width:640px){
+    .flow{ flex-direction:column; align-items:stretch; }
+    .flow-node{ width:100%; }
+    .flow-arrow{ align-self:center; transform:rotate(90deg); padding:6px 0; }
+  }
+
+  .dash{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:560px){ .dash{ grid-template-columns:1fr; } }
+  .dash-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--line);
+    border-radius:var(--radius-xs);
+    padding:18px;
+  }
+  .dash-card .k{ font-family:var(--mono); font-size:0.68rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  .dash-card .v{ font-family:var(--mono); font-size:1.5rem; color:var(--ink); }
+  .dash-card .v span{ font-size:0.9rem; color:var(--muted); }
+  .dash-bar{ margin-top:12px; height:5px; border-radius:3px; background:rgba(255,255,255,0.08); overflow:hidden; }
+  .dash-bar i{ display:block; height:100%; background:var(--primary-500); }
+
+  .filt-stack{ display:flex; flex-direction:column; gap:6px; max-width:220px; margin:0 auto; }
+  .filt-mod{
+    height:30px; border:1px solid var(--line); border-radius:var(--radius-xs);
+    background:linear-gradient(180deg, rgba(177,109,255,0.16), rgba(177,109,255,0.03));
+    display:flex; align-items:center; padding:0 12px;
+    font-family:var(--mono); font-size:0.66rem; color:var(--muted); letter-spacing:0.04em; text-transform:uppercase;
+  }
+
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  @media (max-width:800px){ .two-col{ grid-template-columns:1fr; } }
+
+  .spec-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); margin-top:8px;
+    border-radius:var(--radius-md); overflow:hidden;
+  }
+  @media (max-width:640px){ .spec-grid{ grid-template-columns:1fr; } }
+  .spec-item{ background:var(--secondary-900); padding:28px; }
+  .spec-item h3{ font-size:1.05rem; margin-bottom:8px; font-weight:600; }
+  .spec-item p{ color:var(--muted); font-size:0.92rem; }
+
+  /* ---------- PARTNERS ---------- */
+  .partner-grid{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
+    margin-top:16px;
+  }
+  .partner-card{
+    width:150px; height:96px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--line);
+    border-radius:var(--radius-sm);
+    display:flex; align-items:center; justify-content:center;
+    padding:16px;
+    backdrop-filter:blur(10px);
+  }
+  .partner-card img{
+    max-width:100%; max-height:56px; width:auto; height:auto;
+    filter:grayscale(1) brightness(1.6) opacity(0.75);
+    transition:filter 0.3s ease;
+  }
+  .partner-card:hover img{ filter:none; }
+
+  .closer{ padding:120px 0 140px; }
+  .closer h2{ font-size:clamp(1.7rem, 3.6vw, 2.5rem); max-width:660px; }
+
+  footer{ border-top:1px solid var(--line); padding:32px 0; position:relative; }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:0.72rem; color:var(--muted);
+    flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="starCanvas"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <div class="status"><span class="status-dot"></span>Systems nominal</div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hero-intro" id="heroIntro">
+    <h1>What if we could make medicine with the power it takes to light three LED bulbs?</h1>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="bulb-pin-wrap" id="bulbPinWrap">
+    <div class="bulb-pin-inner">
+      <div class="bulb-row" id="bulbRow">
+        <div class="bulb-unit" data-index="1">
+          <svg viewBox="0 0 40 64"><path class="bulb-glass" d="M20 2C10 2 3 9 3 19c0 7 4 11 7 15 2 2.5 3 5 3 8h14c0-3 1-5.5 3-8 3-4 7-8 7-15C37 9 30 2 20 2Z"/><path class="bulb-filament" d="M14 20c2-3 10-3 12 0M14 24c2-3 10-3 12 0"/><rect class="bulb-base" x="13" y="42" width="14" height="14" rx="2"/></svg>
+        </div>
+        <div class="bulb-unit" data-index="2">
+          <svg viewBox="0 0 40 64"><path class="bulb-glass" d="M20 2C10 2 3 9 3 19c0 7 4 11 7 15 2 2.5 3 5 3 8h14c0-3 1-5.5 3-8 3-4 7-8 7-15C37 9 30 2 20 2Z"/><path class="bulb-filament" d="M14 20c2-3 10-3 12 0M14 24c2-3 10-3 12 0"/><rect class="bulb-base" x="13" y="42" width="14" height="14" rx="2"/></svg>
+        </div>
+        <div class="bulb-unit" data-index="3">
+          <svg viewBox="0 0 40 64"><path class="bulb-glass" d="M20 2C10 2 3 9 3 19c0 7 4 11 7 15 2 2.5 3 5 3 8h14c0-3 1-5.5 3-8 3-4 7-8 7-15C37 9 30 2 20 2Z"/><path class="bulb-filament" d="M14 20c2-3 10-3 12 0M14 24c2-3 10-3 12 0"/><rect class="bulb-base" x="13" y="42" width="14" height="14" rx="2"/></svg>
+        </div>
+      </div>
+
+      <div class="charge-track">
+        <div class="charge-fill" id="chargeFill"></div>
+        <div class="charge-spark" id="chargeSpark"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="wrap">
+    <h2>Medicine can't always wait for resupply</h2>
+    <div class="prose">
+      <p>As human space exploration advances, longer-duration missions are becoming more common. Astronauts on board need access to therapeutics that can manage health conditions arising mid-flight. Pharmaceuticals can be loaded before launch, but predicting the full range of conditions a crew might face over months or years is difficult, and carrying an extensive inventory of medicine adds payload mass, and with it, cost.</p>
+      <p>Producing therapeutics on demand, during the mission itself, offers a more flexible and resource-efficient alternative, especially for long-haul expeditions where resupply isn't an option.</p>
+      <p>Astronauts aren't trained to run complex biological protocols. So we built the SHIHAB Bioreactor: a biomanufacturing platform (a bioreactor paired with a protein purification system) designed to be simple, compact, modular, and highly automated. The crew only needs to bring the compact unit itself, along with a small inventory of "pills," to begin producing their medicine of choice on board.</p>
+      <p class="muted">The result is on-demand, small-scale pharmaceutical production in space and in remote areas on Earth, without extensive technical support or equipment, putting medicine within reach where it's needed most.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 style="margin-top:80px;">Two systems, one pill</h2>
+
+    <div class="subsection">
+      <span class="chip">Pills</span>
+      <div class="prose">
+        <p>A compact inventory of lyophilized bacteria, each engineered to produce a specific nanobody for a different therapeutic purpose. The crew picks the pill they need and loads it into the bioreactor before the reaction begins.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <span class="chip amber">Part I: Bioreactor</span>
+      <div class="prose">
+        <p>Once the pill is loaded, the user sets the culture conditions and reagent quantities on an interactive dashboard. From there, onboard sensors and feedback controls hold those conditions steady on their own, so no one needs to check in on the culture as it grows.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span>Dashboard · live readout</span><span>Sim</span></div>
+        <div class="dash">
+          <div class="dash-card">
+            <div class="k">Temperature</div>
+            <div class="v">37.0<span>°C</span></div>
+            <div class="dash-bar"><i style="width:78%; background:var(--amber);"></i></div>
+          </div>
+          <div class="dash-card">
+            <div class="k">pH</div>
+            <div class="v">7.20<span>pH</span></div>
+            <div class="dash-bar"><i style="width:64%;"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Temperature control loop</div>
+        <div class="flow">
+          <div class="flow-node amber">Temperature sensor</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">PID control</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node amber">Flexible heating element</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">pH control loop</div>
+        <div class="flow">
+          <div class="flow-node purple">pH sensor</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">PID control</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node purple">Acid / base dispensing</div>
+        </div>
+      </div>
+
+      <p class="prose muted" style="margin-top:28px;">At the end of the reaction, the culture is transferred by tubes and pumps to the protein purification system to recover the nanobodies.</p>
+    </div>
+
+    <div class="subsection">
+      <span class="chip amber">Part II: Protein purification system</span>
+      <div class="prose">
+        <p>Once fermentation is complete, the broth containing the secreted proteins passes through the protein purification system to yield the purified nanobodies. The system has two stages: filtration, then affinity chromatography.</p>
+      </div>
+
+      <div class="two-col" style="margin-top:32px;">
+        <div>
+          <h3 style="font-size:1.05rem; margin-bottom:10px; font-weight:600;">Filtration unit</h3>
+          <p class="muted" style="font-size:0.94rem; margin-bottom:20px;">A modular design lets the user choose how many filtration stages suit the culture. Filter papers of decreasing pore size sit in each module, connected by gaskets to prevent leakage, a multi-stage approach that stays simple while avoiding clogs.</p>
+          <div class="filt-stack">
+            <div class="filt-mod">Stage 1 · coarse</div>
+            <div class="filt-mod">Stage 2 · medium</div>
+            <div class="filt-mod">Stage 3 · fine</div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:1.05rem; margin-bottom:10px; font-weight:600;">Affinity chromatography</h3>
+          <p class="muted" style="font-size:0.94rem; margin-bottom:20px;">Syringe pumps dispense precise volumes of each buffer: equilibration, wash, elution, and reconstitution. Each pump pairs a sterile 60 mL syringe with a stepper-motor-driven linear actuator, pre-calibrated for accurate dispensing.</p>
+          <div class="flow" style="font-size:0.72rem;">
+            <div class="flow-node">Buffer store</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node purple">Column</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node amber">Waste / collection</div>
+          </div>
+        </div>
+      </div>
+      <p class="prose muted" style="margin-top:24px;">After each buffer runs through, negative pressure at the waste port draws it out of the column, except during elution, when the eluate is routed to a sterile collection vial instead.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 style="margin-top:80px;">Built for lower gravity</h2>
+    <div class="prose">
+      <p>On Mars, gravity is roughly a third of Earth's, about 0.33<em>g</em>, so fluid behaves differently than it does in a terrestrial lab. Rather than relying on gravity to move liquid through the system, every fluid path in the SHIHAB Bioreactor runs through closed tubing and pumps, keeping fluid handling consistent regardless of the gravity environment it's operating in.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 style="margin-top:80px;">Hardware, sensing, and sterility</h2>
+    <div class="spec-grid">
+      <div class="spec-item">
+        <h3>Sterilization</h3>
+        <p>Keeping the culture and purification path free of contamination throughout the run.</p>
+      </div>
+      <div class="spec-item">
+        <h3>Materials</h3>
+        <p>Components selected to meet NASA material guidelines for spaceflight hardware.</p>
+      </div>
+      <div class="spec-item">
+        <h3>Sensors</h3>
+        <p>Temperature and pH sensors feed the feedback loops that keep culture conditions stable.</p>
+      </div>
+      <div class="spec-item">
+        <h3>Actuators</h3>
+        <p>Heating elements, acid/base dispensers, and stepper-motor syringe pumps carry out each control loop.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 style="margin-top:80px;">Validation in progress</h2>
+    <div class="prose">
+      <p class="muted">We're currently testing the bioreactor and purification system as an integrated platform. Results will be added here as they come in.</p>
+    </div>
+  </section>
+
+  <section class="closer wrap">
+    <h2>A pill, a bioreactor, and a medicine wherever it's needed</h2>
+    <div class="prose">
+      <p>The next iterations of SHIHAB aim to expand the pill library, tighten the hardware footprint further, and push the platform toward flight-ready reliability, so that producing medicine on demand becomes as routine, off-world or off-grid, as taking it.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>kaust-ksa · iGEM 2026</span>
+    <span>SHIHAB bioreactor · prototype documentation</span>
+  </div>
+</footer>
+
+<script>
+  // ---------- starfield ----------
+  (function(){
+    var canvas = document.getElementById('starCanvas');
+    var ctx = canvas.getContext('2d');
+    var stars = [];
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      canvas.width = window.innerWidth;
+      canvas.height = document.documentElement.scrollHeight;
+    }
+
+    function seed(){
+      stars = [];
+      var count = Math.round((canvas.width * Math.min(canvas.height, window.innerHeight * 3)) / 9000);
+      count = Math.max(60, Math.min(220, count));
+      for(var i = 0; i < count; i++){
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * Math.min(canvas.height, window.innerHeight * 3),
+          r: Math.random() * 1.2 + 0.3,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.4 + Math.random() * 0.6
+        });
+      }
+    }
+
+    function draw(t){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for(var i = 0; i < stars.length; i++){
+        var s = stars[i];
+        var alpha = reduced ? 0.5 : 0.35 + 0.5 * (0.5 + 0.5 * Math.sin(t * 0.0006 * s.speed + s.phase));
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,255,255,' + alpha.toFixed(2) + ')';
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      if(!reduced) window.requestAnimationFrame(draw);
+    }
+
+    resize();
+    seed();
+    draw(0);
+    window.addEventListener('resize', function(){ resize(); seed(); });
+  })();
+
+  // ---------- hero intro: hold, then fade + rise ----------
+  (function(){
+    var heroIntro = document.getElementById('heroIntro');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced) return;
+
+    function update(){
+      var vh = window.innerHeight;
+      var s = window.scrollY;
+      var holdEnd = vh * 0.2;   // stays fully visible for the first bit of scrolling
+      var fadeEnd = vh * 0.95;  // fully gone just as the bulb section takes over
+
+      var p;
+      if(s <= holdEnd) p = 0;
+      else if(s >= fadeEnd) p = 1;
+      else p = (s - holdEnd) / (fadeEnd - holdEnd);
+
+      heroIntro.style.opacity = (1 - p).toFixed(3);
+      heroIntro.style.transform = 'translateY(' + (-p * 90).toFixed(1) + 'px)';
+    }
+
+    window.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // ---------- bulb pin / lighting sequence ----------
+  (function(){
+    var pinWrap = document.getElementById('bulbPinWrap');
+    var bulbs = Array.prototype.slice.call(document.querySelectorAll('.bulb-unit'));
+    var chargeFill = document.getElementById('chargeFill');
+    var chargeSpark = document.getElementById('chargeSpark');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var BUFFER = 4; // extra "slots" of scroll range reserved as a hold after the last bulb
+
+    function setCharge(fraction){
+      var pct = (fraction * 100).toFixed(2) + '%';
+      chargeFill.style.width = pct;
+      chargeSpark.style.left = pct;
+    }
+
+    function update(){
+      var rect = pinWrap.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var total = rect.height - vh;
+      var scrolled = -rect.top;
+      var progress = total > 0 ? scrolled / total : 0;
+      progress = Math.max(0, Math.min(1, progress));
+
+      // the bulbs finish lighting at progress = bulbs.length/(bulbs.length+BUFFER);
+      // everything after that is just a hold. Map the current fill to that
+      // same range so the spark reaches the end exactly when bulb 3 lights,
+      // instead of continuing to travel through the hold.
+      var lightRange = bulbs.length / (bulbs.length + BUFFER);
+      var fillFraction = Math.min(1, progress / lightRange);
+      setCharge(fillFraction);
+
+      bulbs.forEach(function(b, i){
+        var threshold = (i + 1) / (bulbs.length + BUFFER);
+        var shouldLight = progress >= threshold - 0.02;
+        b.classList.toggle('lit', shouldLight);
+      });
+    }
+
+    if(reduced){
+      bulbs.forEach(function(b){ b.classList.add('lit'); });
+      setCharge(1);
+    } else {
+      window.addEventListener('scroll', update, { passive:true });
+      window.addEventListener('resize', update);
+      update();
+    }
+  })();
+
+  // ---------- header grow / fade / rise ----------
+  (function(){
+    var headers = Array.prototype.slice.call(document.querySelectorAll('section h2'));
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced || !headers.length) return;
+
+    var ticking = false;
+
+    function apply(){
+      var vh = window.innerHeight;
+      headers.forEach(function(h){
+        var rect = h.getBoundingClientRect();
+        var centerY = rect.top + rect.height / 2;
+        var norm = centerY / vh;
+        var p = 1 - norm;
+        p = Math.max(0, Math.min(1, p));
+
+        var scale, opacity, translateY;
+        if(p < 0.35){
+          var t = p / 0.35;
+          scale = 0.85 + 0.23 * t;
+          opacity = t;
+          translateY = (1 - t) * 20;
+        } else if(p < 0.6){
+          scale = 1.08; opacity = 1; translateY = 0;
+        } else {
+          var t2 = (p - 0.6) / 0.4;
+          scale = 1.08 - 0.08 * t2;
+          opacity = 1 - t2;
+          translateY = -t2 * 60;
+        }
+
+        h.style.transform = 'translateY(' + translateY.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
+        h.style.opacity = opacity.toFixed(3);
+      });
+      ticking = false;
+    }
+
+    function onScroll(){
+      if(!ticking){
+        window.requestAnimationFrame(apply);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    apply();
+  })();
+</script>
+
+</body>
+</html>

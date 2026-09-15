@@ -1,6 +1,7 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import sections from "../../content/en/hardware.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import BulbHero from "./BulbHero";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 import styles from "./Hardware.module.scss";
@@ -33,7 +34,12 @@ export default function Hardware() {
         gradient,
       }}
     >
-      <SectionedArticle title="Hardware" sections={sections} defaultSelected={sections[0]?.title} />
+      <SectionedArticle
+        title="Hardware"
+        intro={<BulbHero />}
+        sections={sections}
+        defaultSelected={sections[0]?.title}
+      />
 
       <a
         href="https://science.nasa.gov/image-detail/ssc2006-02a-0/"

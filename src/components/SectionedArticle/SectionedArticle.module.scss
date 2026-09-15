@@ -412,6 +412,193 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
             border-bottom: none;
         }
     }
+
+    // A short pipeline/control-loop diagram: a row of labelled stages
+    // joined by arrows (e.g. "Sensor → PID control → Actuator"), for
+    // hardware/process pages where a sentence would undersell how
+    // mechanical the sequence is. Monospace per the small-caps/mono =
+    // metadata convention (see ARTICLE-STANDARDS.md §5) since each node is
+    // a component name, not prose. Author with raw HTML in the .md source:
+    //   <div class="flow">
+    //
+    //   <span class="flow-node">Sensor</span>
+    //   <span class="flow-arrow">→</span>
+    //   <span class="flow-node accent">Controller</span>
+    //   <span class="flow-arrow">→</span>
+    //   <span class="flow-node amber">Actuator</span>
+    //
+    //   </div>
+    // `accent`/`amber` on a node are optional tint modifiers for the two
+    // ends of a loop (sensing vs. actuation) — plain nodes (the shared
+    // control-logic step) stay neutral.
+    :global(.flow) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.82rem;
+        margin-block: 20px;
+
+        :global(.flow-node) {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 18px;
+            border-radius: var(--radius-xs);
+            color: white;
+            text-align: center;
+        }
+
+        :global(.flow-node.amber) {
+            border-color: rgba(255, 216, 77, 0.4);
+            color: var(--amber);
+        }
+
+        :global(.flow-node.accent) {
+            border-color: rgba(177, 109, 255, 0.4);
+            color: var(--primary-300);
+        }
+
+        :global(.flow-arrow) {
+            color: rgba(255, 255, 255, 0.45);
+            padding: 0 14px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 640px) {
+            flex-direction: column;
+            align-items: stretch;
+
+            :global(.flow-node) {
+                width: 100%;
+            }
+
+            :global(.flow-arrow) {
+                align-self: center;
+                transform: rotate(90deg);
+                padding: 6px 0;
+            }
+        }
+    }
+
+    // A small pill-shaped label standing in for a subheading — used where a
+    // one- or two-word tag ("Pills", "Part I: ...") reads better as a badge
+    // than as another <h3> in the outline. Default tone is violet/primary;
+    // add `chip amber` for the amber tint. Author with raw HTML:
+    //   <span class="chip">Pills</span>
+    :global(.chip) {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.78rem;
+        color: var(--primary-300);
+        border: 1px solid rgba(177, 109, 255, 0.35);
+        background: rgba(177, 109, 255, 0.08);
+        padding: 5px 14px;
+        border-radius: 999px;
+        margin-bottom: 18px;
+    }
+
+    :global(.chip.amber) {
+        color: var(--amber);
+        border-color: rgba(255, 216, 77, 0.4);
+        background: rgba(255, 216, 77, 0.08);
+    }
+
+    // A bordered glass panel for grouping a figure/readout that's more than
+    // a plain image or table — a labelled instrument readout, a diagram
+    // with its own caption row. `.panel-title` is a small-caps mono header
+    // row (its two children/spans lay out at opposite ends, e.g. a name and
+    // a status tag). Author with raw HTML, blank lines around nested
+    // markdown-bearing content per the .card-grid convention above:
+    //   <div class="panel">
+    //   <div class="panel-title"><span>Name</span><span>Tag</span></div>
+    //   ...
+    //   </div>
+    :global(.panel) {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.045);
+        padding: 20px 22px 16px;
+        margin-block: 20px;
+    }
+
+    :global(.panel-title) {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // A 2-up instrument readout (a labelled value plus a small progress
+    // bar per cell) — built for a "current settings/telemetry" panel. Sits
+    // inside a `.panel` above. Author with raw HTML:
+    //   <div class="dash">
+    //   <div class="dash-card">
+    //   <div class="k">Label</div>
+    //   <div class="v">Value<span>Unit</span></div>
+    //   <div class="dash-bar"><i style="width:50%"></i></div>
+    //   </div>
+    //   ...
+    //   </div>
+    :global(.dash) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+
+        @media (max-width: 560px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    :global(.dash-card) {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-xs);
+        padding: 18px;
+    }
+
+    :global(.dash-card .k) {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.68rem;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    :global(.dash-card .v) {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 1.5rem;
+        color: white;
+
+        span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+
+    :global(.dash-bar) {
+        margin-top: 12px;
+        height: 5px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+
+        i {
+            display: block;
+            height: 100%;
+            background: var(--primary-500);
+        }
+    }
 }
 
 .panelContainer {
