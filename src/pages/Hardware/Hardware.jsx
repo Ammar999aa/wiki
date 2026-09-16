@@ -1,10 +1,22 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
-import sections from "../../content/en/hardware.md";
+import rawSections from "../../content/en/hardware.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import BulbHero from "./BulbHero";
+import BioreactorModel from "./BioreactorModel";
 import bg from "../../assets/bg.svg?url";
 import gradient from "../../assets/gradient.svg?url";
 import styles from "./Hardware.module.scss";
+
+// The 3D model is a real React component (needs a bundled asset import and
+// a dynamic import of model-viewer), not something markdown can express —
+// so it's attached here as a `content` override on the section it belongs
+// under (Article.jsx renders `section.content` after that section's
+// markdown), rather than authored inline in hardware.md like the page's
+// other rich blocks (.panel/.dash/.chip). See ARTICLE-STANDARDS.md for this
+// `content`-prop extension point.
+const sections = rawSections.map((section) =>
+  section.title === "Two systems, one pill" ? { ...section, content: <BioreactorModel /> } : section,
+);
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.

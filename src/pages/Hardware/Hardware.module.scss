@@ -167,6 +167,42 @@
   }
 }
 
+/* ─── BioreactorModel.jsx ──────────────────────────────────────────────
+   Sits inside a `.panel` (SectionedArticle.module.scss's shared markdown
+   primitive — see BioreactorModel.jsx for why this is a real component
+   instead of that panel being authored inline in hardware.md). `model-viewer`
+   is a plain tag selector (not a CSS-module class) so it stays unscoped —
+   the same reason `img`/`a`/`table` rules elsewhere aren't wrapped in
+   :global() either. */
+.modelViewerWrap {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+
+  model-viewer {
+    display: block;
+    width: 100%;
+    height: 420px;
+    --poster-color: transparent;
+  }
+}
+
+.modelStatus {
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+}
+
+.modelCaption {
+  margin: 14px 2px 4px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
 /* Credit for the fixed background photo — same corner-link convention as
    Sponsors.module.scss's photoCredit / Home's earthCredit/rocketCredit. */
 .photoCredit {
