@@ -74,10 +74,13 @@ const students = [
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
 ];
 
-// Same two PIs as on Roster — no photo asset for either there either.
+// Same five PIs as on Roster — no photo asset for any of them there either.
 const principalInvestigators = [
   { key: "raik", title: "Raik Grünberg" },
   { key: "wayne", title: "Wayne Yang" },
+  { key: "fabian", title: "Fabian Schmidt" },
+  { key: "samah", title: "Samah Gadhoum" },
+  { key: "selena", title: "Selena Franchini" },
 ];
 
 export default function Attributions() {

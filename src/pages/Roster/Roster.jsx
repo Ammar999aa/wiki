@@ -59,19 +59,23 @@ const members = [
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
-// The two PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
-// — same names/role, no photo asset for either there either. Their bios are
-// still real placeholder text ("Bio coming soon.", src/i18n/en.json), not
+// The five PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
+// — same names/role, no photo asset for any of them there either. Their bios
+// are still real placeholder text ("Bio coming soon.", src/i18n/en.json), not
 // invented copy — same convention a couple of team members above use too.
 const principalInvestigators = [
   { name: "Raik Grünberg", roleKey: "pi", memberKey: "raik", photo: null, countryCode: null },
   { name: "Wayne Yang", roleKey: "pi", memberKey: "wayne", photo: null, countryCode: null },
+  { name: "Fabian Schmidt", roleKey: "pi", memberKey: "fabian", photo: null, countryCode: null },
+  { name: "Samah Gadhoum", roleKey: "pi", memberKey: "samah", photo: null, countryCode: null },
+  { name: "Selena Franchini", roleKey: "pi", memberKey: "selena", photo: null, countryCode: null },
 ];
 
-// A handful of unfilled slots woven into the PI cluster — room for the
-// roster of advisors to grow into (5 total PI slots: 2 filled, 3 open).
-// Purely decorative: not clickable, no name tag.
-const PI_EMPTY_SLOT_COUNT = 3;
+// Unfilled slots woven into the PI cluster, decorative room for the roster
+// of advisors to grow into — none needed right now since all 5 PI slots
+// above are filled. Purely decorative when nonzero: not clickable, no name
+// tag.
+const PI_EMPTY_SLOT_COUNT = 0;
 
 // Display order for the department clusters — deliberately not the
 // roster.roles order in src/i18n/en.json (Wet Lab and Dry Lab are swapped,

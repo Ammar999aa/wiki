@@ -47,7 +47,10 @@
       "genesis": { "bio": "Background in Bioengineering." },
       "mariaFernanda": { "bio": "Background in bioengineering with experience in protein expression in bacteria and purification, nanobodies in specific. Bioinformatics skills including Python, C++, RStudio, and Matlab." },
       "raik": { "bio": "Bio coming soon." },
-      "wayne": { "bio": "Bio coming soon." }
+      "wayne": { "bio": "Bio coming soon." },
+      "fabian": { "bio": "Bio coming soon." },
+      "samah": { "bio": "Bio coming soon." },
+      "selena": { "bio": "Bio coming soon." }
     }
   },
   "attributions": {
@@ -174,6 +177,24 @@
       "specificTasks": "Specific tasks description here."
     },
     "wayne": {
+      "role": "Principal Investigator",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "fabian": {
+      "role": "Principal Investigator",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "samah": {
+      "role": "Principal Investigator",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "selena": {
       "role": "Principal Investigator",
       "department": "",
       "tasks": "Tasks description here.",
