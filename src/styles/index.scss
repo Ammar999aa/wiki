@@ -64,10 +64,24 @@
   --nav-clearance: 130px;
 }
 
+html {
+  /* Belt-and-suspenders with body's rule below: some mobile browsers apply
+     rubber-band overscroll to the document element rather than body. */
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: inherit;
   color: white;
+  /* Pages here never intend horizontal scroll (see DESIGN.md's page
+     archetypes) — this whole site scrolls the window vertically only. On
+     mobile Safari/Chrome, if scrollWidth exceeds the viewport by even a
+     fraction of a pixel (a vw-based width, a wide table, etc.), the page
+     becomes horizontally rubber-band-draggable a few px before snapping
+     back, which reads as a UI glitch. Clip it here at the root instead of
+     chasing every possible sub-pixel offender individually. */
+  overflow-x: hidden;
 }
 
 code {
