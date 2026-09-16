@@ -442,6 +442,12 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         margin-block: 20px;
 
         :global(.flow-node) {
+            // border-box: the mobile rule below sets width: 100% of `.flow`
+            // (a normal block, not a grid track, so nothing else corrects
+            // for it) — without this, that 100% is the content box alone,
+            // and the border + padding add on top, pushing the node past
+            // the article column's edge on narrow (iPhone-width) screens.
+            box-sizing: border-box;
             display: inline-block;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.12);

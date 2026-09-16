@@ -14,8 +14,15 @@ import styles from "./Hardware.module.scss";
 // markdown), rather than authored inline in hardware.md like the page's
 // other rich blocks (.panel/.dash/.chip). See ARTICLE-STANDARDS.md for this
 // `content`-prop extension point.
+//
+// Attached to the opening section (content renders after that section's
+// markdown, so right after its "device-cad-render.avif" image) rather than
+// deeper in the article — the interactive follow-up to the static CAD
+// render, seen right where the SHIHAB Bioreactor is first introduced.
 const sections = rawSections.map((section) =>
-  section.title === "Two systems, one pill" ? { ...section, content: <BioreactorModel /> } : section,
+  section.title === "Medicine can't always wait for resupply"
+    ? { ...section, content: <BioreactorModel /> }
+    : section,
 );
 
 // Hosted on iGEM's asset server rather than bundled locally — see
