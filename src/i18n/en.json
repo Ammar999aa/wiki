@@ -25,7 +25,8 @@
       "hardware": "Hardware",
       "publicEngagement": "Public Engagement",
       "humanPractices": "Human Integrated Practices",
-      "pi": "Principal Investigator"
+      "pi": "Principal Investigator",
+      "advisor": "Advisor"
     },
     "members": {
       "jeremy": { "bio": "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Skills include Python, Nextflow, and R. Participated and won previously the iGEM Design League." },
@@ -50,13 +51,17 @@
       "wayne": { "bio": "Bio coming soon." },
       "fabian": { "bio": "Bio coming soon." },
       "samah": { "bio": "Bio coming soon." },
-      "selena": { "bio": "Bio coming soon." }
+      "selena": { "bio": "Bio coming soon." },
+      "muhammadTehseen": { "bio": "Bio coming soon." },
+      "alejandra": { "bio": "Bio coming soon." },
+      "jordi": { "bio": "Bio coming soon." }
     }
   },
   "attributions": {
     "headings": {
       "students": "Students",
-      "principalInvestigators": "Principal Investigators"
+      "principalInvestigators": "Principal Investigators",
+      "advisors": "Advisors"
     },
     "labels": {
       "tasks": "Tasks",
@@ -183,19 +188,37 @@
       "specificTasks": "Specific tasks description here."
     },
     "fabian": {
-      "role": "Principal Investigator",
+      "role": "Advisor",
       "department": "",
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."
     },
     "samah": {
-      "role": "Principal Investigator",
+      "role": "Advisor",
       "department": "",
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."
     },
     "selena": {
-      "role": "Principal Investigator",
+      "role": "Advisor",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "muhammadTehseen": {
+      "role": "Advisor",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "alejandra": {
+      "role": "Advisor",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "jordi": {
+      "role": "Advisor",
       "department": "",
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."

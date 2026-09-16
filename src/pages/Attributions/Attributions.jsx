@@ -74,13 +74,21 @@ const students = [
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
 ];
 
-// Same five PIs as on Roster — no photo asset for any of them there either.
+// Same two PIs as on Roster — no photo asset for either there either.
 const principalInvestigators = [
   { key: "raik", title: "Raik Grünberg" },
   { key: "wayne", title: "Wayne Yang" },
+];
+
+// Same six advisors as on Roster, same order — no photo asset for any of
+// them there either.
+const advisors = [
   { key: "fabian", title: "Fabian Schmidt" },
   { key: "samah", title: "Samah Gadhoum" },
   { key: "selena", title: "Selena Franchini" },
+  { key: "muhammadTehseen", title: "Muhammad Tehseen" },
+  { key: "alejandra", title: "Alejandra Rodríguez Llerena" },
+  { key: "jordi", title: "Jordi Plau" },
 ];
 
 export default function Attributions() {
@@ -108,6 +116,13 @@ export default function Attributions() {
       photo: null,
       role: t(`attributions.${pi.key}.role`),
       content: memberContent(t, pi.key),
+    })),
+    { heading: t("attributions.headings.advisors") },
+    ...advisors.map((advisor) => ({
+      title: advisor.title,
+      photo: null,
+      role: t(`attributions.${advisor.key}.role`),
+      content: memberContent(t, advisor.key),
     }))
   );
 

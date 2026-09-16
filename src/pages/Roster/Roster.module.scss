@@ -104,6 +104,17 @@
     filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
 }
 
+// A permanent, tiny gold glow marking a team lead's bubble — pairs with
+// the gold LiquidGlass tint (see isTeamLead in renderPerson below and
+// Honeycomb.jsx's .nodeLead) as a second, always-on cue. Deliberately much
+// smaller/dimmer than .selected's white glow (that one's a transient
+// "you clicked this" state, not an identity marker), and defined before
+// .selected in source so a lead bubble that's also currently selected
+// shows the selected glow, not a muddy mix of both.
+.leadGlow {
+    filter: drop-shadow(0 0 5px rgba(255, 216, 77, 0.65));
+}
+
 .icon {
     width: 94px;
     height: 94px;
@@ -197,6 +208,14 @@
 
 .nodeEmpty {
     cursor: default;
+}
+
+// Honeycomb equivalent of .leadGlow above — same tiny, permanent gold
+// drop-shadow marking a team lead's bubble, kept as its own class (rather
+// than reusing .leadGlow directly) since .node's own transform/transition
+// setup differs from the fallback grid's .bubble.
+.nodeLead {
+    filter: drop-shadow(0 0 6px rgba(255, 216, 77, 0.6));
 }
 
 // Sized relative to .node (set from RADIUS in Honeycomb.jsx) rather than a
@@ -357,6 +376,24 @@
         margin-top: 4px;
         font-weight: 400;
         color: rgba(255, 255, 255, 0.6);
+    }
+
+    // The text counterpart to .leadGlow/.nodeLead's gold tint out on the
+    // roster bubbles — same accent color, quiet pill treatment so it reads
+    // as a label, not a second heading.
+    .leadBadge {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: rgba(255, 216, 77, 0.16);
+        border: 1px solid rgba(255, 216, 77, 0.4);
+        color: #ffd84d;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        vertical-align: middle;
     }
 
     p {

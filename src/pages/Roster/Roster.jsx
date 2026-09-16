@@ -38,12 +38,18 @@ const mafer     = `${ROSTER_CDN}/mafer.avif`;
 // honeycomb and the fallback grid (departmentGroups below filters this
 // array, preserving order) — Ansal' leads Wet Lab and Shahad Hersi leads
 // Public Engagement deliberately, not just alphabetically/by join date.
+//
+// `isTeamLead` marks the team's actual leads (Ansal' and Francesca, Wet
+// Lab) — rendered with the same warm gold LiquidGlass tint the PI cluster
+// uses (see `isPi`/`isTeamLead` in Honeycomb.jsx and renderPerson below),
+// felt as a quiet signal on their normal bubble rather than a separate
+// section or duplicate entry.
 const members = [
   { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy, countryCode: "pe" },
   { name: "Taiba Zeya", roleKey: "dryLab", memberKey: "taiba", photo: taiba, countryCode: "in" },
   { name: "Ammar Almarzooq", roleKey: "wiki", memberKey: "ammar", photo: ammar, countryCode: "sa" },
-  { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz" },
-  { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca, countryCode: "pe" },
+  { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz", isTeamLead: true },
+  { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca, countryCode: "pe", isTeamLead: true },
   { name: "Mariana Villegas", roleKey: "wetLab", memberKey: "mariana", photo: mariana, countryCode: "co" },
   { name: "Kexin Niu", roleKey: "dryLab", memberKey: "kexin", photo: kexin, countryCode: "cn" },
   { name: "Shahad Hersi", roleKey: "publicEngagement", memberKey: "shahad", photo: shahad, countryCode: "sa" },
@@ -59,36 +65,29 @@ const members = [
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
-// Team leads — Ansal, Francesca, and Shahad each also lead their own
-// department, so they get a deliberate second, duplicate entry up front in
-// a "Team Leaders" line of their own — set apart the same way the PI
-// cluster is (its own line, own gap, own caption — see Honeycomb.jsx's
-// leaderPositions/stackAbove), ahead of every per-department section. This
-// is on top of, not instead of, their normal single entry within their own
-// department further down — a real duplicate bubble, not a move.
-const TEAM_LEADER_KEYS = ["ansal", "francesca", "shahad"];
-const teamLeaders = TEAM_LEADER_KEYS.map((key) => members.find((member) => member.memberKey === key));
-const leaderHoneycombItems = teamLeaders.map((member) => ({
-  kind: "member",
-  group: "team",
-  id: `leaders-${member.memberKey}`,
-  ...member,
-}));
-
-// The five PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
-// — same names/role, no photo asset for any of them there either. Their bios
-// are still real placeholder text ("Bio coming soon.", src/i18n/en.json), not
-// invented copy — same convention a couple of team members above use too.
+// The two PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
+// — same names/role, no photo asset for either there either.
 const principalInvestigators = [
   { name: "Raik Grünberg", roleKey: "pi", memberKey: "raik", photo: null, countryCode: null },
   { name: "Wayne Yang", roleKey: "pi", memberKey: "wayne", photo: null, countryCode: null },
-  { name: "Fabian Schmidt", roleKey: "pi", memberKey: "fabian", photo: null, countryCode: null },
-  { name: "Samah Gadhoum", roleKey: "pi", memberKey: "samah", photo: null, countryCode: null },
-  { name: "Selena Franchini", roleKey: "pi", memberKey: "selena", photo: null, countryCode: null },
 ];
 
-// Unfilled slots woven into the PI cluster, decorative room for the roster
-// of advisors to grow into — none needed right now since all 5 PI slots
+// A separate advisory group, below PI — same idea (outside any department,
+// no photo asset yet, "Bio coming soon." placeholder bios/tasks in
+// src/i18n/en.json, not invented copy) but its own category, its own line
+// in the honeycomb (see satelliteGroups below) and its own section on
+// Attributions.
+const advisors = [
+  { name: "Fabian Schmidt", roleKey: "advisor", memberKey: "fabian", photo: null, countryCode: null },
+  { name: "Samah Gadhoum", roleKey: "advisor", memberKey: "samah", photo: null, countryCode: null },
+  { name: "Selena Franchini", roleKey: "advisor", memberKey: "selena", photo: null, countryCode: null },
+  { name: "Muhammad Tehseen", roleKey: "advisor", memberKey: "muhammadTehseen", photo: null, countryCode: null },
+  { name: "Alejandra Rodríguez Llerena", roleKey: "advisor", memberKey: "alejandra", photo: null, countryCode: null },
+  { name: "Jordi Plau", roleKey: "advisor", memberKey: "jordi", photo: null, countryCode: null },
+];
+
+// Unfilled slots woven into the PI cluster, decorative room for that group
+// specifically to grow into — none needed right now since both PI slots
 // above are filled. Purely decorative when nonzero: not clickable, no name
 // tag.
 const PI_EMPTY_SLOT_COUNT = 0;
@@ -112,23 +111,36 @@ const DEPARTMENT_ORDER = Object.keys(DEPARTMENT_LABELS);
 // `members` grouped by department — computed once since `members` is
 // static. Each group becomes its own labeled line in the honeycomb
 // (Honeycomb.jsx's `departments` prop) and its own row in the
-// touch/coarse-pointer fallback grid. Team Leaders isn't one of these —
-// it isn't a `roleKey` (its members keep their own department's roleKey and
-// appear a second time there too) and it always gets its own line above
-// the whole department block rather than tiling into it — see
-// leaderHoneycombItems above and the `sections` array below.
+// touch/coarse-pointer fallback grid.
 const departmentGroups = DEPARTMENT_ORDER.map((key) => ({
   key,
   label: DEPARTMENT_LABELS[key],
   members: members.filter((member) => member.roleKey === key),
 }));
 
-const piHoneycombItems = [
-  ...principalInvestigators.map((pi) => ({ kind: "pi", group: "pi", id: pi.name, ...pi })),
-  ...Array.from({ length: PI_EMPTY_SLOT_COUNT }, (_, i) => ({ kind: "empty", group: "pi", id: `pi-empty-${i}` })),
+// Groups that sit below the whole department block instead of inside it —
+// PI, then Advisors under that. Each becomes its own line in the honeycomb
+// (Honeycomb.jsx's `satelliteGroups` prop, stacked in this order) and its
+// own section in the fallback grid below. `group` on each item is what
+// Honeycomb.jsx keys its "not a department member" gold tint off of
+// (anything other than "team").
+const satelliteGroups = [
+  {
+    key: "pi",
+    label: "Principal Investigators",
+    items: [
+      ...principalInvestigators.map((pi) => ({ kind: "member", group: "pi", id: pi.name, ...pi })),
+      ...Array.from({ length: PI_EMPTY_SLOT_COUNT }, (_, i) => ({ kind: "empty", group: "pi", id: `pi-empty-${i}` })),
+    ],
+  },
+  {
+    key: "advisors",
+    label: "Advisors",
+    items: advisors.map((advisor) => ({ kind: "member", group: "advisor", id: advisor.name, ...advisor })),
+  },
 ];
 
-const allPeople = [...members, ...principalInvestigators];
+const allPeople = [...members, ...principalInvestigators, ...advisors];
 
 // The honeycomb's cursor-driven fisheye (Honeycomb.jsx) is a mouse-hover
 // effect with nothing meaningful to do on a touchscreen — `hover: hover`
@@ -151,9 +163,21 @@ function usePointerFine() {
 }
 
 // One bubble button in the touch/coarse-pointer fallback grid — shared
-// between the department and PI rows below.
+// between the department and PI rows below. `isTeamLead` gets the same warm
+// gold glass tint the honeycomb's team-lead bubbles use (DESIGN.md's one
+// warm accent color, used sparingly) so the cue reads identically on both
+// layouts — see Honeycomb.jsx's isTeamLead for why the opacity here is much
+// higher than the PI cluster's: a photo covers all but a thin margin ring
+// of the glass underneath, so a faint tint (fine for PI's usually-empty
+// circle) would simply disappear. PI bubbles keep the plain black glass
+// here, same as before — the gold tint on PI is a honeycomb-only cue (see
+// `isPi` in Honeycomb.jsx), not something this grid has ever shown.
+// `.leadGlow` (Roster.module.scss) adds a second, permanent cue on top of
+// the tint — a tiny gold drop-shadow, distinct from `.selected`'s
+// transient white one.
 function renderPerson(person, selected, setSelectedName) {
   const isSelected = person === selected;
+  const isGold = Boolean(person.isTeamLead);
   return (
     <button
       key={person.name}
@@ -164,8 +188,8 @@ function renderPerson(person, selected, setSelectedName) {
       aria-expanded={isSelected}
       aria-label={person.name}
     >
-      <span className={`${styles.bubble} ${isSelected ? styles.selected : ""}`}>
-        <LiquidGlass radius={300} color={[0, 0, 0]} opacity={0.07}>
+      <span className={`${styles.bubble} ${isGold ? styles.leadGlow : ""} ${isSelected ? styles.selected : ""}`}>
+        <LiquidGlass radius={300} color={isGold ? [255, 216, 77] : [0, 0, 0]} opacity={isGold ? 0.55 : 0.07}>
           {person.photo ? (
             <img src={person.photo} className={styles.icon} alt="" />
           ) : (
@@ -193,43 +217,27 @@ function renderPerson(person, selected, setSelectedName) {
 // cursor-reactive fisheye honeycomb (Honeycomb.jsx): a fixed field of
 // circles that never pans or scrolls; hovering near a bubble zooms it in
 // place (no displacement — neighbors don't move), and it springs back once
-// the cursor moves on. Team Leaders (see teamLeaders above) and the PIs
-// share one line together at the very top, set apart from the department
-// block below it — its own gap, its own pair of captions, no hard divider.
-// Under that, each department is one horizontal line of bubbles, wrapping
-// into a compact block of page-rows (see Honeycomb.jsx's MAX_ROW_WIDTH) —
-// same mesh, same bubbles throughout, every group just set apart by
-// distance and its own quiet caption rather than a hard divider.
-// Touch/coarse-pointer devices get the plain wrapping bubble grid instead,
-// since the fisheye is a hover effect with nothing to do on a screen with
-// no cursor — the same leaders/PI/department split, just as plain labeled
-// rows (see `sections` below — the fallback grid still lists PIs as its own
-// last row, since there's no shared "line" concept in a wrapping grid).
+// the cursor moves on. Each department is one horizontal line of bubbles,
+// wrapping into a compact 2-3-row block (see Honeycomb.jsx), and PI/Advisors
+// (satelliteGroups above) each get one further line below all of them —
+// PI first, Advisors under that — set apart by a noticeably bigger gap
+// (plus a few empty slots on PI's line, room to grow) — same mesh, same
+// bubbles throughout, every group just set apart by distance and its own
+// quiet caption rather than a hard divider. Touch/coarse-pointer devices
+// get the plain wrapping bubble grid instead, since the fisheye is a hover
+// effect with nothing to do on a screen with no cursor — the same
+// department/PI/Advisors split, just as plain labeled rows.
 export default function Roster() {
   const { t } = useLanguage();
   const pointerFine = usePointerFine();
   const [selectedName, setSelectedName] = useState(null);
   const selected = allPeople.find((person) => person.name === selectedName) || null;
 
-  // `id` is namespaced by department (not just `member.name`) because
-  // Team Leaders (leaderHoneycombItems above) deliberately repeats three of
-  // these same people — Honeycomb.jsx merges its departments/leaders/PI
-  // props into one flat list keyed by `id`, so a plain name would collide
-  // for those three. Selection itself still keys off `.name` (`onSelect`
-  // below, `allPeople.find` above), so the duplicate entries open the same
-  // detail panel either way.
   const departments = departmentGroups.map(({ key, label, members: deptMembers }) => ({
     key,
     label,
-    items: deptMembers.map((member) => ({ kind: "member", group: "team", id: `${key}-${member.memberKey}`, ...member })),
+    items: deptMembers.map((member) => ({ kind: "member", group: "team", id: member.name, ...member })),
   }));
-
-  // Fallback-grid-only: Team Leaders prepended as its own section ahead of
-  // the departments, same list `departments` reuses as-is for the honeycomb
-  // (which takes Team Leaders as a separate `leaderItems` prop instead —
-  // see below — so it can pin it to its own line rather than a flex-wrap
-  // row).
-  const sections = [{ key: "leaders", label: "Team Leaders", items: leaderHoneycombItems }, ...departments];
 
   const close = () => setSelectedName(null);
 
@@ -276,23 +284,28 @@ export default function Roster() {
 
         {pointerFine ? (
           <Honeycomb
-            leaderItems={leaderHoneycombItems}
             departments={departments}
-            piItems={piHoneycombItems}
+            satelliteGroups={satelliteGroups}
             onSelect={(person) => setSelectedName(person.name)}
           />
         ) : (
           <>
-            {sections.map((section, i) => (
-              <Fragment key={section.key}>
-                <p className={`${styles.rosterSectionLabel} ${i === 0 ? styles.rosterSectionLabelFirst : ""}`}>{section.label}</p>
-                <div className={styles.roster}>{section.items.map((item) => renderPerson(item, selected, setSelectedName))}</div>
+            {departments.map((dept, i) => (
+              <Fragment key={dept.key}>
+                <p className={`${styles.rosterSectionLabel} ${i === 0 ? styles.rosterSectionLabelFirst : ""}`}>{dept.label}</p>
+                <div className={styles.roster}>{dept.items.map((item) => renderPerson(item, selected, setSelectedName))}</div>
               </Fragment>
             ))}
-            <p className={styles.rosterSectionLabel}>Principal Investigators</p>
-            <div className={styles.roster}>
-              {principalInvestigators.map((pi) => renderPerson(pi, selected, setSelectedName))}
-            </div>
+            {satelliteGroups.map((group) => (
+              <Fragment key={group.key}>
+                <p className={styles.rosterSectionLabel}>{group.label}</p>
+                <div className={styles.roster}>
+                  {group.items
+                    .filter((item) => item.kind !== "empty")
+                    .map((item) => renderPerson(item, selected, setSelectedName))}
+                </div>
+              </Fragment>
+            ))}
           </>
         )}
       </div>

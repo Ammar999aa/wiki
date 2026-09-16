@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import Flag from "./Flag";
-import { generateRows, layoutRows, stackAbove, boundingBox } from "./honeycombLayout";
+import { generateRows, layoutRows, stackBelow, boundingBox } from "./honeycombLayout";
 import styles from "./Roster.module.scss";
 
 // Design-space constants — the cluster is always laid out at this fixed
 // size and then CSS-scaled down (never up, see the fit-to-viewport effect
 // below) to whatever room it actually has, so the layout math only ever
 // has to run once per item count.
-const RADIUS = 60; // resting bubble radius (120px diameter)
+const RADIUS = 64; // resting bubble radius (128px diameter)
 // Gap between two bubbles resting side by side within one department's own
 // line — kept deliberately smaller than DEPARTMENT_GAP/SATELLITE_GAP below,
 // so the *within-department* spacing reads as tighter than the *between-
@@ -16,52 +16,42 @@ const RADIUS = 60; // resting bubble radius (120px diameter)
 // bubbles' combined radii (2*RADIUS) — that's the floor, not a target: a
 // smaller number here doesn't mean "somewhat closer," it means the bubbles
 // overlap, which is a real bug an earlier tuning pass shipped.
-//
-// RADIUS/WITHIN_DEPARTMENT_GAP/DEPARTMENT_GAP/SATELLITE_GAP were all
-// trimmed down a notch together when the Team Leaders line (Roster.jsx's
-// teamLeaders) was added, to give that extra line of vertical room back
-// without shrinking the whole cluster more aggressively on shorter
-// viewports.
-const WITHIN_DEPARTMENT_GAP = 22;
+const WITHIN_DEPARTMENT_GAP = 26;
 const SPACING = RADIUS * 2 + WITHIN_DEPARTMENT_GAP;
-// Every department here is a single horizontal line at this width. Team
-// Leaders and the PI cluster (LEADER_MAX_PER_ROW/PI_MAX_PER_ROW) use a much
-// higher ceiling each — neither ever has enough people to hit it at
-// today's roster size — so both stay one line too, rather than wrapping
-// into a second internal line and eating extra vertical space the
-// fit-to-viewport budget then has to claw back from every bubble's size.
+// Every department here is a single horizontal line at this width.
 const DEPARTMENT_MAX_PER_ROW = 6;
-const PI_MAX_PER_ROW = 12;
-const LEADER_MAX_PER_ROW = 12;
-// How wide one page-row of department lines (or the Team Leaders + PI row)
-// is allowed to get before the next group wraps onto a new page-row below
-// (see layoutRows) — this is what turns "six single-line departments" into
-// a compact 2-row block instead of one very long strip.
+// Shared by every satellite group (PI, Advisors, ...) — a much higher
+// ceiling than DEPARTMENT_MAX_PER_ROW since none of them ever have enough
+// people to hit it at today's roster size, so each stays one line too,
+// rather than wrapping into a second internal line and eating extra
+// vertical space the fit-to-viewport budget then has to claw back from
+// every bubble's size.
+const SATELLITE_MAX_PER_ROW = 12;
+// How wide one page-row of department lines is allowed to get before the
+// next department wraps onto a new page-row below (see layoutRows) — this
+// is what turns "six single-line departments" into a compact 2-3-row block
+// instead of one very long strip.
 const MAX_ROW_WIDTH = 1600;
-// Extra horizontal space (beyond each line's own normal touching-neighbor
-// distance — see layoutRows in honeycombLayout.js) between two departments
-// sharing a page-row. Noticeably bigger than WITHIN_DEPARTMENT_GAP
-// (everyone in a department line is still one team, just subdivided).
-// SATELLITE_GAP is the same idea but for the seam *inside* the top row,
-// between Team Leaders and PI specifically — bigger again, since PI is a
-// genuinely different category, not just another line of the team. Both
-// stay soft either way: same bubbles, same spacing, no divider line — the
-// gap itself is the only boundary. Neither is used for the vertical seam
-// between the top row and the department block below it — see
-// PAGE_ROW_GAP just below, which is what that (and every other
-// line-to-line) seam actually needs.
-const DEPARTMENT_GAP = 34;
-const SATELLITE_GAP = 50;
-// Vertical gap between one line and the next — page-rows of departments,
-// and the top row (Team Leaders + PI) down to the department block below
-// it (see stackAbove below). Separate from (and bigger than) DEPARTMENT_GAP:
-// it has to leave room for a caption to sit clear of the line above it (and
-// that line's own flag badges, which hang slightly past each bubble's
-// bottom edge — see .flagBadge in Roster.module.scss), not just clear of
+// Extra space (beyond each line's own normal touching-neighbor distance —
+// see layoutRows/stackBelow in honeycombLayout.js) between two departments
+// sharing a page-row. SATELLITE_GAP is the same idea but for satellite
+// groups (PI, Advisors — see satelliteGroups in Roster.jsx): the seam
+// *between* them where they sit alongside each other in their one shared
+// line, and the seam between the whole department block and that shared
+// line. Noticeably bigger than WITHIN_DEPARTMENT_GAP (departments are
+// still one team, just subdivided), and bigger again for satellite groups
+// (each a genuinely different category, not a subdivision of the team).
+// Both stay soft either way: same bubbles, same spacing, no divider line —
+// the gap itself is the only boundary.
+const DEPARTMENT_GAP = 40;
+const SATELLITE_GAP = 58;
+// Vertical gap between page-rows of departments — separate from (and
+// bigger than) DEPARTMENT_GAP: it has to leave room for a department's own
+// caption to sit clear of the row above it, not just clear of its
 // horizontal neighbors, which needs a lot more headroom than a side-by-side
 // seam does. The "+60" is sized for .sectionLabel's actual font — bump it
-// if that font grows much further, or captions start crowding the line
-// above them again.
+// if that font grows much further, or captions start clipping into the
+// row above them again.
 const PAGE_ROW_GAP = DEPARTMENT_GAP + 60;
 const SIGMA = SPACING * 1.1; // how far the cursor's influence reaches
 const MAX_SCALE = 0.2; // peak extra scale at the cursor (resting scale is 1)
@@ -96,27 +86,23 @@ function topCenterAnchor(positions) {
 }
 
 // The whole team, laid out directly on the page as one fixed, cursor-
-// reactive fisheye cluster — no card chrome, no pan/scroll. Team Leaders
-// and the PI cluster share one line together at the very top (tiled
-// left-to-right via layoutRows, same mechanism the department rows below
-// use, then the whole row pinned above the department block via
-// stackAbove) — a real line of its own, not a row either group shares with
-// any department. They keep their own captions and PI keeps its own warm
-// tint (see `isPi` further down) — set apart from each other by
-// SATELLITE_GAP and from the department block by DEPARTMENT_GAP, no hard
-// divider either way. Each department below that top row is one horizontal
-// line of bubbles (wrapping only if it has more than
-// DEPARTMENT_MAX_PER_ROW people); those lines tile left-to-right and wrap
+// reactive fisheye cluster — no card chrome, no pan/scroll. Each
+// department is one horizontal line of bubbles (wrapping only if it has
+// more than DEPARTMENT_MAX_PER_ROW people); those lines tile left-to-right and wrap
 // onto further page-rows themselves once a row gets too wide (layoutRows),
-// so six departments read as a compact 2-row block rather than one very
-// long strip.
+// so six departments read as a compact 2-3-row block rather than one very
+// long strip. `satelliteGroups` (PI and Advisors — see Roster.jsx) sit
+// alongside each other in one shared line under the whole block — same
+// left-to-right tiling as the department rows, just one line, set apart by
+// a noticeably bigger gap — a different category, not another subdivision
+// of the team — plus a few empty slots on PI's cluster, room to grow.
 //
 // Every bubble's own scale responds to cursor distance — near it, a firm
 // zoom; further out, progressively less, then nothing — and it springs
 // back via CSS transition once the cursor moves on. `kind: "empty"` filler
 // bubbles ride the same physics but aren't clickable and never show a name
 // tag.
-export default function Honeycomb({ leaderItems, departments, piItems, onSelect }) {
+export default function Honeycomb({ departments, satelliteGroups, onSelect }) {
   const outerRef = useRef(null);
   const stageRef = useRef(null);
   const [scale, setScale] = useState(1);
@@ -133,60 +119,56 @@ export default function Honeycomb({ leaderItems, departments, piItems, onSelect 
 
   const teamPositions = useMemo(() => departmentBlobs.flat(), [departmentBlobs]);
 
-  // Team Leaders + PI, described as two named groups so the row-tiling
-  // below (and the caption/position split after it) stays generic instead
-  // of hardcoding "leaders first, then PI." Either can be empty (piItems
-  // has been in the past, via PI_EMPTY_SLOT_COUNT in Roster.jsx) without
-  // leaving a gap where an empty group would have sat.
-  const topGroups = useMemo(() => {
-    const groups = [];
-    if (leaderItems.length) groups.push({ key: "leaders", count: leaderItems.length, maxPerRow: LEADER_MAX_PER_ROW });
-    if (piItems.length) groups.push({ key: "pi", count: piItems.length, maxPerRow: PI_MAX_PER_ROW });
-    return groups;
-  }, [leaderItems.length, piItems.length]);
-
-  // Team Leaders and PI tiled left-to-right into one page-row, same
-  // mechanism the department block's own rows use (layoutRows) — then that
-  // whole row pinned above the department block via stackAbove, computed
-  // from teamPositions (not the other way around) so this row never
-  // reflows the departments themselves, only where it sits relative to
-  // them.
-  const { positions: topBlobs } = useMemo(() => {
-    const shapes = topGroups.map((g) => generateRows(g.count, SPACING, g.maxPerRow));
+  // Satellite groups (PI, Advisors) sit alongside each other — tiled
+  // left-to-right into one shared line below the department block, same
+  // mechanism the department block's own rows use (layoutRows), then that
+  // whole row pinned below via stackBelow. Empty groups (no people) are
+  // skipped entirely so they don't eat horizontal space or shift where the
+  // non-empty groups land.
+  const nonEmptySatelliteGroups = useMemo(
+    () => satelliteGroups.filter((group) => group.items.length > 0),
+    [satelliteGroups]
+  );
+  const { positions: satelliteBlobs } = useMemo(() => {
+    const shapes = nonEmptySatelliteGroups.map((group) => generateRows(group.items.length, SPACING, SATELLITE_MAX_PER_ROW));
     return layoutRows(shapes, SATELLITE_GAP + SPACING, PAGE_ROW_GAP + SPACING, MAX_ROW_WIDTH);
-  }, [topGroups]);
-  const topPositions = useMemo(() => {
-    const local = topBlobs.flat();
-    // PAGE_ROW_GAP, not DEPARTMENT_GAP — this seam is vertical (one line to
-    // the line below it, same as one department page-row to the next) and
-    // needs the same caption + flag-badge clearance those already budget
-    // for; DEPARTMENT_GAP is sized for a horizontal in-row seam only and
-    // left the "Wet Lab" caption crowding Team Leaders' flag badges above
-    // it.
-    return local.length ? stackAbove(teamPositions, local, PAGE_ROW_GAP + SPACING) : [];
-  }, [teamPositions, topBlobs]);
+  }, [nonEmptySatelliteGroups]);
+  const satelliteRow = useMemo(() => {
+    const local = satelliteBlobs.flat();
+    return local.length ? stackBelow(teamPositions, local, SATELLITE_GAP + SPACING) : [];
+  }, [teamPositions, satelliteBlobs]);
 
-  // Split the translated top row back into its two groups (same order as
-  // topGroups/topBlobs) so each can be rendered/captioned on its own.
-  const topPositionsByGroup = useMemo(() => {
+  // Split the shared row back into each group's own slice (same order as
+  // nonEmptySatelliteGroups/satelliteBlobs) so each still gets its own
+  // caption, keyed rather than indexed so a group that was skipped for
+  // being empty just falls back to [] below instead of shifting anyone
+  // else's slice.
+  const satellitePositionsByKey = useMemo(() => {
     const map = {};
     let cursor = 0;
-    topGroups.forEach((g) => {
-      map[g.key] = topPositions.slice(cursor, cursor + g.count);
-      cursor += g.count;
+    nonEmptySatelliteGroups.forEach((group) => {
+      map[group.key] = satelliteRow.slice(cursor, cursor + group.items.length);
+      cursor += group.items.length;
     });
     return map;
-  }, [topGroups, topPositions]);
-  const leaderPositions = topPositionsByGroup.leaders ?? [];
-  const satellitePositions = topPositionsByGroup.pi ?? [];
+  }, [nonEmptySatelliteGroups, satelliteRow]);
+  const satelliteResults = useMemo(
+    () =>
+      satelliteGroups.map((group) => ({
+        key: group.key,
+        label: group.label,
+        positions: satellitePositionsByKey[group.key] ?? [],
+      })),
+    [satelliteGroups, satellitePositionsByKey]
+  );
 
   const items = useMemo(
-    () => [...leaderItems, ...departments.flatMap((d) => d.items), ...piItems],
-    [leaderItems, departments, piItems]
+    () => [...departments.flatMap((d) => d.items), ...satelliteGroups.flatMap((g) => g.items)],
+    [departments, satelliteGroups]
   );
   const positions = useMemo(
-    () => [...leaderPositions, ...teamPositions, ...satellitePositions],
-    [leaderPositions, teamPositions, satellitePositions]
+    () => [...teamPositions, ...satelliteResults.flatMap((r) => r.positions)],
+    [teamPositions, satelliteResults]
   );
   const box = useMemo(() => boundingBox(positions, { top: PAD_TOP, sides: PAD_SIDES }), [positions]);
 
@@ -210,8 +192,10 @@ export default function Honeycomb({ leaderItems, departments, piItems, onSelect 
       return { key: dept.key, label: dept.label, anchor: anchor && { x: anchor.x, y: rowTops.get(rowOf[i]) } };
     });
   }, [departments, departmentBlobs, rowOf, teamPositions]);
-  const leaderLabel = useMemo(() => topCenterAnchor(leaderPositions), [leaderPositions]);
-  const satelliteLabel = useMemo(() => topCenterAnchor(satellitePositions), [satellitePositions]);
+  const satelliteLabels = useMemo(
+    () => satelliteResults.map((r) => ({ key: r.key, label: r.label, anchor: topCenterAnchor(r.positions) })),
+    [satelliteResults]
+  );
 
   // Shrink (never enlarge) the whole cluster to fit both the width its
   // container actually has and a fixed vertical budget — the lattice
@@ -308,16 +292,33 @@ export default function Honeycomb({ leaderItems, departments, piItems, onSelect 
       >
         {rendered.map(({ item, p, bubbleScale }) => {
           const isEmpty = item.kind === "empty";
-          // The PI cluster's bubbles (real and empty alike) carry a faint
-          // warm tint instead of the team departments' neutral black glass —
+          // Every satellite group's bubbles (PI, Advisors, real and empty
+          // alike — anything whose `group` isn't "team") carry a faint warm
+          // tint instead of the departments' neutral black glass —
           // DESIGN.md's one warm accent color, used this sparingly, is
-          // exactly for a cue like this: felt without a hard-edged badge.
-          const isPi = item.group === "pi";
+          // exactly for a cue like this: felt without a hard-edged badge. A
+          // low opacity is enough there since those bubbles are almost
+          // always empty (no photo), so the tint fills the whole circle.
+          //
+          // Team leads (Roster.jsx's `isTeamLead` — currently Ansal' and
+          // Francesca) get the same color on their normal department
+          // bubble, signaling "leads this department" without a separate
+          // section or a duplicate entry — but *with* a photo, only the
+          // thin margin ring around it (.nodeIcon's 6px inset) actually
+          // shows the glass underneath, so it needs a much higher opacity
+          // than a satellite bubble's to read as gold at all rather than
+          // disappearing. `.nodeLead` (Roster.module.scss) adds a second,
+          // permanent cue on top of that tint — a tiny gold drop-shadow
+          // around the whole bubble.
+          const isSatellite = item.group !== "team";
+          const isTeamLead = Boolean(item.isTeamLead);
+          const isGold = isSatellite || isTeamLead;
+          const glassOpacity = isTeamLead ? 0.55 : isSatellite ? 0.05 : 0.07;
           return (
             <button
               key={item.id}
               type="button"
-              className={`${styles.node} ${isEmpty ? styles.nodeEmpty : ""}`}
+              className={`${styles.node} ${isEmpty ? styles.nodeEmpty : ""} ${isTeamLead ? styles.nodeLead : ""}`}
               style={{
                 left: p.x - box.minX - RADIUS,
                 top: p.y - box.minY - RADIUS,
@@ -337,7 +338,7 @@ export default function Honeycomb({ leaderItems, departments, piItems, onSelect 
               aria-hidden={isEmpty || undefined}
               onClick={isEmpty ? undefined : () => onSelect(item)}
             >
-              <LiquidGlass radius={300} color={isPi ? [255, 216, 77] : [0, 0, 0]} opacity={isPi ? 0.05 : 0.07}>
+              <LiquidGlass radius={300} color={isGold ? [255, 216, 77] : [0, 0, 0]} opacity={glassOpacity}>
                 {isEmpty || !item.photo ? (
                   <div className={styles.nodeIconPlaceholder} />
                 ) : (
@@ -372,15 +373,6 @@ export default function Honeycomb({ leaderItems, departments, piItems, onSelect 
           </div>
         )}
 
-        {leaderLabel && (
-          <div
-            className={styles.sectionLabel}
-            style={{ left: leaderLabel.x - box.minX, top: leaderLabel.y - box.minY - RADIUS - 18 }}
-          >
-            Team Leaders
-          </div>
-        )}
-
         {departmentLabels.map(
           ({ key, label, anchor }) =>
             anchor && (
@@ -394,13 +386,17 @@ export default function Honeycomb({ leaderItems, departments, piItems, onSelect 
             )
         )}
 
-        {satelliteLabel && (
-          <div
-            className={styles.sectionLabel}
-            style={{ left: satelliteLabel.x - box.minX, top: satelliteLabel.y - box.minY - RADIUS - 18 }}
-          >
-            Principal Investigators
-          </div>
+        {satelliteLabels.map(
+          ({ key, label, anchor }) =>
+            anchor && (
+              <div
+                key={key}
+                className={styles.sectionLabel}
+                style={{ left: anchor.x - box.minX, top: anchor.y - box.minY - RADIUS - 18 }}
+              >
+                {label}
+              </div>
+            )
         )}
       </div>
     </div>
