@@ -124,6 +124,20 @@ export function stackBelow(abovePositions, shape, gap) {
   return shape.map((p) => ({ x: p.x + tx, y: p.y + ty }));
 }
 
+// The mirror of stackBelow: centers `shape` horizontally over
+// `belowPositions` and places it `gap` above their highest point — used for
+// the Team Leaders line, which always gets its own line above the whole
+// department block rather than tiling into row 1 alongside it.
+export function stackAbove(belowPositions, shape, gap) {
+  const below = rawBBox(belowPositions);
+  const local = rawBBox(shape);
+  const belowMidX = (below.minX + below.maxX) / 2;
+  const localMidX = (local.minX + local.maxX) / 2;
+  const tx = belowMidX - localMidX;
+  const ty = below.minY - gap - local.maxY;
+  return shape.map((p) => ({ x: p.x + tx, y: p.y + ty }));
+}
+
 // Bounding box of a set of positions, padded out to size the container that
 // holds the (absolutely positioned) circles. `sides` covers left/right/
 // bottom — just enough for the fisheye effect to scale/push a circle past

@@ -59,6 +59,22 @@ const members = [
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
+// Team leads — Ansal, Francesca, and Shahad each also lead their own
+// department, so they get a deliberate second, duplicate entry up front in
+// a "Team Leaders" line of their own — set apart the same way the PI
+// cluster is (its own line, own gap, own caption — see Honeycomb.jsx's
+// leaderPositions/stackAbove), ahead of every per-department section. This
+// is on top of, not instead of, their normal single entry within their own
+// department further down — a real duplicate bubble, not a move.
+const TEAM_LEADER_KEYS = ["ansal", "francesca", "shahad"];
+const teamLeaders = TEAM_LEADER_KEYS.map((key) => members.find((member) => member.memberKey === key));
+const leaderHoneycombItems = teamLeaders.map((member) => ({
+  kind: "member",
+  group: "team",
+  id: `leaders-${member.memberKey}`,
+  ...member,
+}));
+
 // The five PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
 // — same names/role, no photo asset for any of them there either. Their bios
 // are still real placeholder text ("Bio coming soon.", src/i18n/en.json), not
@@ -96,7 +112,11 @@ const DEPARTMENT_ORDER = Object.keys(DEPARTMENT_LABELS);
 // `members` grouped by department — computed once since `members` is
 // static. Each group becomes its own labeled line in the honeycomb
 // (Honeycomb.jsx's `departments` prop) and its own row in the
-// touch/coarse-pointer fallback grid.
+// touch/coarse-pointer fallback grid. Team Leaders isn't one of these —
+// it isn't a `roleKey` (its members keep their own department's roleKey and
+// appear a second time there too) and it always gets its own line above
+// the whole department block rather than tiling into it — see
+// leaderHoneycombItems above and the `sections` array below.
 const departmentGroups = DEPARTMENT_ORDER.map((key) => ({
   key,
   label: DEPARTMENT_LABELS[key],
@@ -173,26 +193,43 @@ function renderPerson(person, selected, setSelectedName) {
 // cursor-reactive fisheye honeycomb (Honeycomb.jsx): a fixed field of
 // circles that never pans or scrolls; hovering near a bubble zooms it in
 // place (no displacement — neighbors don't move), and it springs back once
-// the cursor moves on. Each department is one horizontal line of bubbles,
-// wrapping into a compact 2-3-row block (see Honeycomb.jsx), and the PIs
-// get one further line below all of them, set apart by a noticeably
-// bigger gap (plus a few empty slots, room to grow) — same mesh, same
-// bubbles throughout, every group just set apart by distance and its own
-// quiet caption rather than a hard divider. Touch/coarse-pointer devices
-// get the plain wrapping bubble grid instead, since the fisheye is a hover
-// effect with nothing to do on a screen with no cursor — the same
-// department/PI split, just as plain labeled rows.
+// the cursor moves on. Team Leaders (see teamLeaders above) and the PIs
+// share one line together at the very top, set apart from the department
+// block below it — its own gap, its own pair of captions, no hard divider.
+// Under that, each department is one horizontal line of bubbles, wrapping
+// into a compact block of page-rows (see Honeycomb.jsx's MAX_ROW_WIDTH) —
+// same mesh, same bubbles throughout, every group just set apart by
+// distance and its own quiet caption rather than a hard divider.
+// Touch/coarse-pointer devices get the plain wrapping bubble grid instead,
+// since the fisheye is a hover effect with nothing to do on a screen with
+// no cursor — the same leaders/PI/department split, just as plain labeled
+// rows (see `sections` below — the fallback grid still lists PIs as its own
+// last row, since there's no shared "line" concept in a wrapping grid).
 export default function Roster() {
   const { t } = useLanguage();
   const pointerFine = usePointerFine();
   const [selectedName, setSelectedName] = useState(null);
   const selected = allPeople.find((person) => person.name === selectedName) || null;
 
+  // `id` is namespaced by department (not just `member.name`) because
+  // Team Leaders (leaderHoneycombItems above) deliberately repeats three of
+  // these same people — Honeycomb.jsx merges its departments/leaders/PI
+  // props into one flat list keyed by `id`, so a plain name would collide
+  // for those three. Selection itself still keys off `.name` (`onSelect`
+  // below, `allPeople.find` above), so the duplicate entries open the same
+  // detail panel either way.
   const departments = departmentGroups.map(({ key, label, members: deptMembers }) => ({
     key,
     label,
-    items: deptMembers.map((member) => ({ kind: "member", group: "team", id: member.name, ...member })),
+    items: deptMembers.map((member) => ({ kind: "member", group: "team", id: `${key}-${member.memberKey}`, ...member })),
   }));
+
+  // Fallback-grid-only: Team Leaders prepended as its own section ahead of
+  // the departments, same list `departments` reuses as-is for the honeycomb
+  // (which takes Team Leaders as a separate `leaderItems` prop instead —
+  // see below — so it can pin it to its own line rather than a flex-wrap
+  // row).
+  const sections = [{ key: "leaders", label: "Team Leaders", items: leaderHoneycombItems }, ...departments];
 
   const close = () => setSelectedName(null);
 
@@ -238,13 +275,18 @@ export default function Roster() {
         </div>
 
         {pointerFine ? (
-          <Honeycomb departments={departments} piItems={piHoneycombItems} onSelect={(person) => setSelectedName(person.name)} />
+          <Honeycomb
+            leaderItems={leaderHoneycombItems}
+            departments={departments}
+            piItems={piHoneycombItems}
+            onSelect={(person) => setSelectedName(person.name)}
+          />
         ) : (
           <>
-            {departments.map((dept, i) => (
-              <Fragment key={dept.key}>
-                <p className={`${styles.rosterSectionLabel} ${i === 0 ? styles.rosterSectionLabelFirst : ""}`}>{dept.label}</p>
-                <div className={styles.roster}>{dept.items.map((item) => renderPerson(item, selected, setSelectedName))}</div>
+            {sections.map((section, i) => (
+              <Fragment key={section.key}>
+                <p className={`${styles.rosterSectionLabel} ${i === 0 ? styles.rosterSectionLabelFirst : ""}`}>{section.label}</p>
+                <div className={styles.roster}>{section.items.map((item) => renderPerson(item, selected, setSelectedName))}</div>
               </Fragment>
             ))}
             <p className={styles.rosterSectionLabel}>Principal Investigators</p>
