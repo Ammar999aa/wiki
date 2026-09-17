@@ -31,7 +31,7 @@ export default function RosterDetail({ member, onClose, t }) {
         aria-labelledby={titleId}
         onClick={(e) => e.stopPropagation()}
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09}>
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09} grain drift>
           <div className={styles.detailPanel}>
             <button ref={closeRef} type="button" className={styles.closeButton} onClick={onClose}>
               <span aria-hidden="true">×</span>

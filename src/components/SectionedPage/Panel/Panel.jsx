@@ -8,7 +8,7 @@ import styles from "../SectionedPage.module.scss";
 export default function Panel({ items, selected, collapsed, onToggle, onSelect }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
-      <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25}>
+      <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25} grain drift>
         <div className={styles.panelContents}>
           <button
             type="button"

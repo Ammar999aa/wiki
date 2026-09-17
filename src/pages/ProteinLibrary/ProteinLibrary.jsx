@@ -73,7 +73,7 @@ export default function ProteinLibrary() {
         </header>
 
         <div className={styles.infoBar}>
-          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
+          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
             <div className={styles.infoBarInner}>
               {INFO_BAR.map((item) => (
                 <div key={item.title} className={styles.infoItem}>
@@ -97,7 +97,7 @@ export default function ProteinLibrary() {
         </div>
 
         <footer className={styles.workflow}>
-          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
+          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
             <div className={styles.workflowInner}>
               <h2 className={styles.workflowTitle}>From Design to Delivery</h2>
               <div className={styles.workflowSteps}>

@@ -26,6 +26,8 @@ export default function LiquidGlass({
   color = [255, 255, 255],
   cornerGlow = true,
   glowMask = null,
+  grain = false,
+  drift = false,
 }) {
   const [r, g, b] = color;
   const ref = useRef(null);
@@ -87,6 +89,12 @@ export default function LiquidGlass({
       }}
     >
       {children}
+      {drift && <div className={styles.drift} aria-hidden="true" />}
+      {grain && (
+        <svg aria-hidden="true" className={styles.grain}>
+          <rect width="100%" height="100%" filter="url(#glassGrain)" />
+        </svg>
+      )}
       {hasGlow && (
         <svg
           aria-hidden="true"

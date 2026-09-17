@@ -56,7 +56,7 @@ export default function BioreactorModel() {
     // component, not authored inline in markdown, so it isn't tied to that
     // shared vocabulary the way BioreactorModel's caller (Hardware.jsx)
     // still is for everything else on the page.
-    <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
+    <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
       <div className={styles.modelPanelInner}>
         <div className={styles.modelPanelHeader}>
           <span>Bioreactor stand · CAD model</span>

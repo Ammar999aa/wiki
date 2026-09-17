@@ -121,7 +121,7 @@ export default function NotebookArticle({ sections, title }) {
   return (
     <div className={articleStyles.layout}>
       <div className={`${articleStyles.panelContainer} ${collapsed ? articleStyles.collapsed : ""}`}>
-        <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25}>
+        <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25} grain drift>
           <div className={articleStyles.panelContents}>
             <button
               type="button"
@@ -185,7 +185,7 @@ export default function NotebookArticle({ sections, title }) {
 
               {switcherOpen && (
                 <div className={styles.switcherMenu}>
-                  <LiquidGlass radius={24} color={[0, 0, 0]} opacity={0.25}>
+                  <LiquidGlass radius={24} color={[0, 0, 0]} opacity={0.25} grain>
                     {/* One dated entry per experiment, git-log style, in the
                         order the notebook itself logs them — reads faster
                         for "what happened when" than a flat name list did. */}

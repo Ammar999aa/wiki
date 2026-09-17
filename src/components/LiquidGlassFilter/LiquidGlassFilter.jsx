@@ -25,6 +25,16 @@ export default function LiquidGlassFilter() {
             yChannelSelector="G"
           />
         </filter>
+
+        {/* Film-grain texture for LiquidGlass's opt-in `grain` prop — fed into a rect the panel clips itself */}
+        <filter id="glassGrain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise" />
+          <feColorMatrix
+            in="noise"
+            type="matrix"
+            values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"
+          />
+        </filter>
       </svg>
     );
   }

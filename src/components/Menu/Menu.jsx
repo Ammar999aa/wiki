@@ -95,7 +95,7 @@ export default function Menu() {
         // bar's top edge sits, not just guess it.
         data-nav-bar
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)">
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)" grain>
           <nav className={styles.menu}>
             <Link
               to="/"
@@ -166,7 +166,7 @@ export default function Menu() {
       {/* Mobile menu panel */}
       {mobileOpen && (
         <div className={styles.mobilePanelContainer}>
-          <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07}>
+          <LiquidGlass radius={32} color={[0, 0, 0]} opacity={0.07} grain>
             <nav className={styles.mobileMenu}>
               <Link
                 to="/"

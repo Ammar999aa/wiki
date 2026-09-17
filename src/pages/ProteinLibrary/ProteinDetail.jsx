@@ -29,7 +29,7 @@ export default function ProteinDetail({ protein, onClose }) {
         style={{ "--accent": protein.color }}
         onClick={(e) => e.stopPropagation()}
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09}>
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09} grain drift>
           <div className={styles.detailPanel}>
             <div className={styles.detailHeader}>
               <div className={styles.glyphWrap}>

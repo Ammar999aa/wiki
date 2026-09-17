@@ -10,7 +10,7 @@ export default function Dropdown({ items, x, y, onMouseEnter, onMouseLeave }) {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
+      <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain>
         <nav className={styles.dropdown}>
           {items.map((item) => (
             <Link
