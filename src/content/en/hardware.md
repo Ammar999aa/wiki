@@ -8,9 +8,17 @@ Astronauts aren't trained to run complex biological protocols. So we built the S
 
 <div class="two-col-images">
 
+<div class="photo-frame">
+
 ![CAD render of the assembled prototype: bioreactor and protein purification system housed in a compact case](https://static.igem.wiki/teams/6341/wiki/content/hardware/device-cad-render.avif)
 
+</div>
+
+<div class="photo-frame">
+
 ![Inventory box of lyophilized "pill" cultures for the biomanufacturing platform](https://static.igem.wiki/teams/6341/wiki/content/hardware/pill-inventory-box.avif)
+
+</div>
 
 </div>
 
@@ -119,7 +127,11 @@ Syringe pumps dispense precise volumes of each buffer: equilibration, wash, elut
 
 After each buffer runs through, negative pressure at the waste port draws it out of the column, except during elution, when the eluate is routed to a sterile collection vial instead.
 
+<div class="photo-frame">
+
 ![Diagram of the affinity chromatography syringe pumps, buffer lines, and column](https://static.igem.wiki/teams/6341/wiki/content/hardware/purification-system-diagram.avif)
+
+</div>
 
 ## Built for lower gravity
 

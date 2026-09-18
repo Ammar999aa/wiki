@@ -268,6 +268,38 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         }
     }
 
+    // Mats a photo/render whose own background is opaque light/white
+    // (a CAD export, a studio product shot) in a dark bordered card, same
+    // border/background as `.panel` below — without it, that image's own
+    // white background butts straight against the dark page with nothing
+    // but a border-radius, reading as pasted from a different design
+    // system rather than a deliberately placed figure. Not needed for an
+    // image that's already dark/transparent (e.g. a poster on a night-sky
+    // background) — reach for it only when a figure's own background
+    // fights the page's. Combine with `.two-col-images` by wrapping each
+    // image in its own `.photo-frame` inside the pair, or use standalone
+    // for a single full-width image. Author with raw HTML, blank lines
+    // around the image per the `.card-grid` convention above:
+    //   <div class="photo-frame">
+    //
+    //   ![alt text](src)
+    //
+    //   </div>
+    :global(.photo-frame) {
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        margin-block: 20px;
+
+        img {
+            margin: 0;
+            display: block;
+            width: 100%;
+            border-radius: var(--radius-sm);
+        }
+    }
+
     // Generalizes the Model page's Card/CardGrid pattern (see
     // .claude/ARTICLE-STANDARDS.md) for plain markdown content: a set of
     // parallel, comparable short items (framework steps, categories,
