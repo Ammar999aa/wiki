@@ -2,3 +2,20 @@
   position: relative;
   z-index: 2;
 }
+
+/* Fallback for browsers without the View Transitions API (see App.jsx) —
+   a plain fade-in on the incoming page so navigation isn't a hard cut. */
+.routeFade {
+  animation: routeFadeIn 0.25s ease both;
+}
+
+@keyframes routeFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeFade {
+    animation: none;
+  }
+}

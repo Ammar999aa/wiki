@@ -90,3 +90,23 @@ h4 {
   color: #d6d6d6;
   font-weight: 500;
 }
+
+/* Route crossfade (View Transitions API) — see App.jsx. Kept short and
+   plain on purpose: this is meant to soften a hard cut, not to draw
+   attention to itself, especially since a lot of destinations are still
+   bare Stub pages. `::view-transition-old/new(root)` is where the browser
+   renders its before/after snapshots during the transition; JS skips
+   starting a transition at all under reduced motion, this media query is
+   just a second line of defense. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
