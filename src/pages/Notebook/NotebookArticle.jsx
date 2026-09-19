@@ -69,6 +69,12 @@ export default function NotebookArticle({ sections, title }) {
   const [switcherOpen, setSwitcherOpen] = useState(false);
   const articleRef = useRef(null);
   const switcherRef = useRef(null);
+  // See SectionedArticle.jsx — suppresses the scroll-position observer
+  // below while a panel click's smooth scroll is still animating, so the
+  // selection doesn't flicker through every subheading it passes on the
+  // way to the clicked one.
+  const scrollLockRef = useRef(null);
+  const scrollLockTimeoutRef = useRef(null);
 
   const active = sections[selectedIndex];
   const { html: contentHtml, subheadings } = useMemo(
@@ -97,9 +103,19 @@ export default function NotebookArticle({ sections, title }) {
   }, [selectedIndex, subheadings]);
 
   useEffect(() => {
+    const clearScrollLock = () => {
+      scrollLockRef.current = null;
+      clearTimeout(scrollLockTimeoutRef.current);
+    };
+    window.addEventListener("scrollend", clearScrollLock);
+    return () => window.removeEventListener("scrollend", clearScrollLock);
+  }, []);
+
+  useEffect(() => {
     if (!subheadings.length) return;
     const observer = new IntersectionObserver(
       (entries) => {
+        if (scrollLockRef.current) return;
         for (const entry of entries) {
           if (entry.isIntersecting) setSelectedSub(entry.target.id);
         }
@@ -115,13 +131,28 @@ export default function NotebookArticle({ sections, title }) {
 
   const selectSub = useCallback((id) => {
     setSelectedSub(id);
+    scrollLockRef.current = id;
+    clearTimeout(scrollLockTimeoutRef.current);
+    scrollLockTimeoutRef.current = setTimeout(() => {
+      scrollLockRef.current = null;
+    }, 1000);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   return (
     <div className={articleStyles.layout}>
       <div className={`${articleStyles.panelContainer} ${collapsed ? articleStyles.collapsed : ""}`}>
-        <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25} grain drift>
+        {/* See Panel.jsx — glowMask fades cornerGlow's idle ring to the
+            panel's upper third instead of hiding it outright; hovering
+            swaps in the usual cursor-follow radial. */}
+        <LiquidGlass
+          radius={32}
+          color={[0, 0, 0]}
+          opacity={0.08}
+          grain
+          drift
+          glowMask="linear-gradient(to bottom, white, transparent 60%)"
+        >
           <div className={articleStyles.panelContents}>
             <button
               type="button"
@@ -152,10 +183,7 @@ export default function NotebookArticle({ sections, title }) {
         </LiquidGlass>
       </div>
 
-      <div
-        className={`${articleStyles.article} ${collapsed ? articleStyles.articleShifted : ""}`}
-        ref={articleRef}
-      >
+      <div className={articleStyles.article} ref={articleRef}>
         {title && <h1 className={articleStyles.pageTitle}>{title}</h1>}
 
         <div>

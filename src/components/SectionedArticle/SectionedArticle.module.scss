@@ -1,6 +1,17 @@
-$panel-width: 320px; // actual slim panel width, drives panel visuals + collapse shift
+// <=1024px: collapsible overlay drawer (unchanged geometry, see the two
+// media queries at the bottom of this file).
 $panel-width-mobile: 280px;
-$article-inset: 430px; // article's reserved width/position stays as it was pre-slimming
+$article-inset: 430px; // mobile-only article width formula, see the 1024px query
+
+// >1024px: persistent in-flow rail — no collapse, no overlay. Sits at a
+// fixed distance from the viewport edge that shrinks to a flat 40px once
+// the page's own centered content column (--maxw) stops growing, so the
+// rail+article group stays anchored to that same centered column instead
+// of drifting apart on ultra-wide screens.
+$rail-width: 280px;
+$rail-gap: 56px;
+$side-gutter: max(40px, calc((100dvw - var(--maxw)) / 2));
+$article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
 // Document-scroll progress — see SectionedArticle.jsx. z-index above
 // .panelContainer (10) so it isn't hidden behind the jump-nav panel.
@@ -27,14 +38,16 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
 
 .article {
     box-sizing: border-box;
-    width: calc(100dvw - #{$article-inset});
     position: absolute;
     top: 0;
-    inset-inline-start: $panel-width;
-    inset-inline-end: 0;
+    inset-inline-start: $article-left;
+    inset-inline-end: $side-gutter;
+    // Caps the reading column on wide desktops instead of letting justified
+    // prose stretch edge to edge; auto margins center that capped width
+    // within the left/right band above rather than pinning it to one side.
+    max-width: 900px;
     margin-inline: auto;
-    padding: 50px;
-    padding-bottom: 140px;
+    padding: 110px 50px 140px;
 
     & > div {
         scroll-margin-top: 20px;
@@ -639,109 +652,150 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
     }
 }
 
+// Persistent desktop rail — no fixed height/collapse, just top+bottom
+// offsets clearing the fixed SiteMark logo (top:24px, height:44px) above
+// and the fixed bottom nav (bottom:38px, height:68px) below, so its own
+// height simply follows the viewport between the two.
 .panelContainer {
-    transition: transform 250ms ease;
     position: fixed;
-    top: 0;
-    inset-inline-start: 0;
+    top: 110px;
+    bottom: calc(var(--nav-clearance) + 10px);
+    inset-inline-start: $side-gutter;
+    width: $rail-width;
     z-index: 10;
 }
 
 .panelContents {
     box-sizing: border-box;
-    height: 100dvh;
-    width: calc(#{$panel-width} - 48px);
-    padding: 24px;
-    padding-top: 80px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
-    /* Reserve the same clearance as the page content (see PageWrapper) —
-       the fixed nav spans almost the full viewport width, so it sits under
-       the panel too; without this the last item can end up behind it with
-       no further scroll room to reveal it. */
-    padding-bottom: var(--nav-clearance);
+    // An explicit viewport-derived height, not a % one — LiquidGlass's own
+    // wrapper div (this element's direct parent) is a plain auto-height
+    // block, so a percentage here would resolve against nothing and
+    // collapse to content size instead of filling the rail. Mirrors
+    // .panelContainer's own top/bottom offsets above.
+    height: calc(100dvh - 110px - var(--nav-clearance) - 10px);
+    width: 100%;
+    padding: 28px 22px;
     color: white;
     font-weight: 600;
     /* Panel is position: fixed, so it can't rely on page scroll — when its
-       own item list is taller than the viewport it needs its own scroll
-       region, or a wheel/touch scroll over it falls through to the article
-       underneath instead of scrolling the panel. */
+       own item list is taller than its box a wheel/touch scroll over it
+       needs its own scroll region, or the scroll falls through to the
+       article underneath instead of scrolling the panel. */
     overflow-y: auto;
     overflow-x: hidden;
-    /* Scrolled-up items would otherwise pass behind the fixed SiteMark logo
-       (top: 24px, height: 28px, so clear by ~52px) instead of stopping —
-       mask them out over a short fade so they're gone by the time they'd
-       reach the logo, rather than visibly overlapping it. The mask is
-       painted against panelContents' own box, which starts at the same
-       y = 0 as the logo, so these px values line up with its coordinates
-       regardless of scroll position. */
-    mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
+    // Softens the item list's own top/bottom edges as entries scroll past
+    // them, rather than letting a line cut off flush against the box edge.
+    // The fade completes within the box's own padding, so a fully-visible
+    // header/last item is never itself faded.
+    mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 20px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 20px), transparent 100%);
 }
 
 .panelHeader {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+// A left accent bar per item — same "colored edge = emphasis" idiom as the
+// markdown `:global(.callout)` rules above — standing in for a plain
+// selected-color change; it reads as a lightweight stepper down the rail
+// without needing a separately measured/animated indicator. Shared as-is
+// across both breakpoints (only the rail's own position/size differs).
 .panelItem {
-    font-size: 19px;
-    margin-block: 0.6em;
+    box-sizing: border-box;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-block: 4px;
+    padding: 9px 16px;
+    border-inline-start: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 10px 10px 0;
     cursor: pointer;
-    max-width: calc(100% - 28px);
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+
+    &:hover {
+        color: rgba(255, 255, 255, 0.85);
+    }
 }
 
 .selected {
     color: var(--primary);
+    font-weight: 700;
+    border-inline-start-color: var(--primary);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
 }
 
+// The desktop rail is always open, so the collapse toggle only exists for
+// the <=1024px drawer below — hidden here, re-shown (with its geometry)
+// inside that media query.
 .arrow {
-    transition: transform 250ms ease;
-    background-color: transparent;
-    border: 0;
-    position: absolute;
-    top: 45%;
-    inset-inline-end: 0;
-
-    :global([dir="rtl"]) & {
-        transform: rotate(180deg);
-    }
-}
-
-.collapsed {
-    transform: translateX(-85%);
-
-    :global([dir="rtl"]) & {
-        transform: translateX(85%);
-    }
-}
-
-.flipped {
-    transform: rotate(180deg);
-
-    :global([dir="rtl"]) & {
-        transform: rotate(0deg);
-    }
-}
-
-.articleShifted {
-    transform: translateX(calc(0.85 * #{$panel-width} * 0.5 * -1));
-
-    :global([dir="rtl"]) & {
-        transform: translateX(calc(0.85 * #{$panel-width} * 0.5));
-    }
+    display: none;
 }
 
 @media (max-width: 1024px) {
+    // Panel becomes a fixed overlay drawer instead of an in-flow rail, so
+    // the article no longer reserves space for it or centers against it.
     .article {
         width: calc(100vw - 0.15 * #{$article-inset});
-        /* panel overlays instead of pushing content at this size, so don't center against it */
         inset-inline-start: auto;
+        inset-inline-end: 0;
+        max-width: none;
         margin-inline: 0;
         padding: 20px;
     }
 
+    .panelContainer {
+        top: 0;
+        bottom: auto;
+        inset-inline-start: 0;
+        width: auto;
+        transition: transform 250ms ease;
+    }
+
     .panelContents {
+        height: 100dvh;
         width: min(80dvw, #{$panel-width-mobile});
+        padding: 24px;
+        padding-top: 80px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
+        /* Reserve the same clearance as the page content (see PageWrapper) —
+           the fixed nav spans almost the full viewport width, so it sits
+           under the drawer too; without this the last item can end up
+           behind it with no further scroll room to reveal it. */
+        padding-bottom: var(--nav-clearance);
+        /* Scrolled-up items would otherwise pass behind the fixed SiteMark
+           logo (top: 24px, height: 28px, so clear by ~52px) instead of
+           stopping — mask them out over a short fade so they're gone by the
+           time they'd reach the logo, rather than visibly overlapping it. */
+        mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
+    }
+
+    .panelItem {
+        max-width: calc(100% - 28px);
+    }
+
+    .arrow {
+        display: block;
+        transition: transform 250ms ease;
+        background-color: transparent;
+        border: 0;
+        position: absolute;
+        top: 45%;
+        inset-inline-end: -8px;
+
+        :global([dir="rtl"]) & {
+            transform: rotate(180deg);
+        }
+    }
+
+    .flipped {
+        transform: rotate(180deg);
+
+        :global([dir="rtl"]) & {
+            transform: rotate(0deg);
+        }
     }
 
     .collapsed {
@@ -750,18 +804,6 @@ $article-inset: 430px; // article's reserved width/position stays as it was pre-
         :global([dir="rtl"]) & {
             transform: translateX(calc(100% - 36px));
         }
-    }
-
-    .articleShifted {
-        transform: none;
-
-        :global([dir="rtl"]) & {
-            transform: none;
-        }
-    }
-
-    .arrow {
-        inset-inline-end: -8px;
     }
 }
 

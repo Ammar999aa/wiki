@@ -4,7 +4,20 @@ import styles from "../SectionedArticle.module.scss";
 export default function Panel({ items, selected, collapsed, onToggle, onSelect, header }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
-      <LiquidGlass radius={0} color={[52, 52, 52]} opacity={0.25} grain drift>
+      {/* cornerGlow defaults on and, with no cursor over the panel, falls
+          back to this glowMask (see LiquidGlass.jsx's activeMask) — fades
+          the idle glow out by the panel's own upper third instead of
+          tracing the whole edge, same top-heavy treatment as the nav bar's
+          own glass (Menu.jsx). Hovering swaps it for the cursor-follow
+          radial mask as usual. */}
+      <LiquidGlass
+        radius={32}
+        color={[0, 0, 0]}
+        opacity={0.08}
+        grain
+        drift
+        glowMask="linear-gradient(to bottom, white, transparent 60%)"
+      >
         <div className={styles.panelContents}>
           <button
             type="button"

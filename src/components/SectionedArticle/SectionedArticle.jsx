@@ -8,6 +8,14 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
   const [selected, setSelected] = useState(defaultSelected || sections[0]?.title);
   const sectionRefs = useRef({});
   const progressFillRef = useRef(null);
+  // Set while a panel click's smooth scroll is still animating there — the
+  // scroll-position observer below would otherwise fire for every section
+  // that passes through its band along the way, flickering the panel's
+  // selection through them before settling on the clicked one. Cleared on
+  // "scrollend" (with a timeout backstop for the case the target was
+  // already in view, so the browser never fires one).
+  const scrollLockRef = useRef(null);
+  const scrollLockTimeoutRef = useRef(null);
 
   useEffect(() => {
     setSelected(sections[0]?.title);
@@ -77,13 +85,29 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
   }, [sections]);
 
   const scrollTo = (index) => {
-    setSelected(sections[index].title);
+    const title = sections[index].title;
+    setSelected(title);
+    scrollLockRef.current = title;
+    clearTimeout(scrollLockTimeoutRef.current);
+    scrollLockTimeoutRef.current = setTimeout(() => {
+      scrollLockRef.current = null;
+    }, 1000);
     sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
+    const clearScrollLock = () => {
+      scrollLockRef.current = null;
+      clearTimeout(scrollLockTimeoutRef.current);
+    };
+    window.addEventListener("scrollend", clearScrollLock);
+    return () => window.removeEventListener("scrollend", clearScrollLock);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        if (scrollLockRef.current) return;
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setSelected(entry.target.dataset.title);
@@ -118,7 +142,6 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
             intro={intro}
             sections={sections}
             sectionRefs={sectionRefs}
-            panelCollapsed={collapsed}
         />
     </div>
   );
