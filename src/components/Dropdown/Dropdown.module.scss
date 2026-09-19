@@ -13,6 +13,14 @@
     transform-origin: 50% 100%;
     z-index: 1000;
     animation: dropdownBurst 250ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    // Only affects re-positioning when switching between already-open
+    // dropdowns — on first mount there's no prior left/top to animate from.
+    transition: left 260ms cubic-bezier(0.22, 1, 0.36, 1), top 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sizer {
+    overflow: hidden;
+    transition: width 260ms cubic-bezier(0.22, 1, 0.36, 1), height 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dropdown {
@@ -23,6 +31,29 @@
     color: white;
     padding: 20px;
     align-items: left;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.dropdownFading {
+    opacity: 0;
+    transform: translateY(4px);
+}
+
+// Offscreen clone used only to measure the next item set's natural size.
+// Fixed + parked far off-screen, and rendered as a sibling of `.container`
+// rather than inside it, so it's never subject to `.container`'s own
+// transform/animation or shrink-to-fit width — either would silently
+// distort the measurement and make the real panel wrap or under/over-size.
+// `width: max-content` sizes it purely by its own content.
+.measure {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    width: max-content;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .dropdownItem:hover {

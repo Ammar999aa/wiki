@@ -129,6 +129,7 @@ export default function Menu() {
 
       {activeDropdown?.dropdown && (
         <Dropdown
+          activeKey={activeDropdown.label}
           items={activeDropdown.dropdown}
           x={dropdownPos.x}
           y={dropdownPos.y}
