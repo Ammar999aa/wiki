@@ -1,19 +1,30 @@
-import Home from "./pages/Home/Home";
-import Roster from "./pages/Roster/Roster";
-import Attributions from "./pages/Attributions/Attributions";
-import Sponsors from "./pages/Sponsors/Sponsors";
-import WetLab from "./pages/WetLab/WetLab";
-import DryLab from "./pages/DryLab/DryLab";
-import HumanPractices from "./pages/HumanPractices/HumanPractices";
-import Engagement from "./pages/Engagement/Engagement";
-import Education from "./pages/Education/Education";
-import ProteinLibrary from "./pages/ProteinLibrary/ProteinLibrary";
-import HumanIntegratedPractices from "./pages/HumanIntegratedPractices/HumanIntegratedPractices";
-import Hardware from "./pages/Hardware/Hardware";
-import Notebook from "./pages/Notebook/Notebook";
-import Notebook2 from "./pages/Notebook2/Notebook2";
-import Stub from "./pages/Stub/Stub";
-import Model from "./pages/Model/Model";
+import { lazy } from "react";
+
+// Lazy (route-level code-split) rather than static imports: every page used
+// to be bundled into one shared chunk, so visiting Home also downloaded and
+// parsed Model's ~1850-line data-heavy page, Roster's honeycomb layout
+// engine, ProteinLibrary, etc. — everything, on every route. Each of these
+// now ships as its own chunk fetched only when its route is actually
+// visited; <App>'s <Suspense> boundary covers the gap. `pages.js` staying
+// the single source of truth for routing + nav (see the block comment
+// below) isn't affected — `component` is still just a component reference,
+// lazy() returns one Suspense can render the same way.
+const Home = lazy(() => import("./pages/Home/Home"));
+const Roster = lazy(() => import("./pages/Roster/Roster"));
+const Attributions = lazy(() => import("./pages/Attributions/Attributions"));
+const Sponsors = lazy(() => import("./pages/Sponsors/Sponsors"));
+const WetLab = lazy(() => import("./pages/WetLab/WetLab"));
+const DryLab = lazy(() => import("./pages/DryLab/DryLab"));
+const HumanPractices = lazy(() => import("./pages/HumanPractices/HumanPractices"));
+const Engagement = lazy(() => import("./pages/Engagement/Engagement"));
+const Education = lazy(() => import("./pages/Education/Education"));
+const ProteinLibrary = lazy(() => import("./pages/ProteinLibrary/ProteinLibrary"));
+const HumanIntegratedPractices = lazy(() => import("./pages/HumanIntegratedPractices/HumanIntegratedPractices"));
+const Hardware = lazy(() => import("./pages/Hardware/Hardware"));
+const Notebook = lazy(() => import("./pages/Notebook/Notebook"));
+const Notebook2 = lazy(() => import("./pages/Notebook2/Notebook2"));
+const Stub = lazy(() => import("./pages/Stub/Stub"));
+const Model = lazy(() => import("./pages/Model/Model"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this

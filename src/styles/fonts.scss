@@ -6,9 +6,14 @@
    Home.jsx) fall back to the browser's faux-italic of the regular weight —
    an acceptable trade for emphasis text at this size, not worth reinstating
    unless the size budget opens back up. */
+/* WOFF2 (re-encoded losslessly from the same variable TTF with fontTools —
+   ~40% of the original size at identical glyph/instance data) rather than
+   the raw TTF: every browser this site otherwise relies on (backdrop-filter,
+   color-mix, View Transitions) already supports WOFF2, so there's no
+   fallback format to keep around. */
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -22,7 +27,7 @@
 
 @font-face {
   font-family: "Aref Ruqaa";
-  src: url("../assets/fonts/Aref_Ruqaa/ArefRuqaa-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/Aref_Ruqaa/ArefRuqaa-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -30,7 +35,7 @@
 
 @font-face {
   font-family: "Aref Ruqaa";
-  src: url("../assets/fonts/Aref_Ruqaa/ArefRuqaa-Bold.ttf") format("truetype");
+  src: url("../assets/fonts/Aref_Ruqaa/ArefRuqaa-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

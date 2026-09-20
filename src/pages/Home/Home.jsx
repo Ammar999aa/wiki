@@ -185,15 +185,19 @@ function Starfield() {
       rafId = requestAnimationFrame(rafLoop);
     }
 
-    const onScroll = () => ScrollEngine.run();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // No separate "scroll" listener driving ScrollEngine.run() — the rAF
+    // loop above already calls it unconditionally every frame and reads
+    // window.scrollY fresh each time, so a scroll-event-triggered call never
+    // has newer data than the next frame would supply anyway. It only
+    // doubled the per-scene offsetTop reads + style writes (13 scenes) on
+    // every frame while actively scrolling, which is exactly when that
+    // extra main-thread work is most likely to read as jank.
     window.addEventListener("resize", resize);
     resize();
     rafId = requestAnimationFrame(rafLoop);
 
     return () => {
       cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", resize);
     };
   }, []);
