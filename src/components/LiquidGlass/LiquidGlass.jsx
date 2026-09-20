@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState, useCallback } from "react";
+import { useRef, useLayoutEffect, useEffect, useState, useCallback } from "react";
 import styles from "./LiquidGlass.module.scss";
 
 function squirclePath(w, h, r) {
@@ -33,6 +33,13 @@ export default function LiquidGlass({
   const ref = useRef(null);
   const [squircleState, setSquircleState] = useState({ clipPath: "", pathD: "", circle: null });
   const [cursor, setCursor] = useState(null);
+  const moveRafRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (moveRafRef.current) cancelAnimationFrame(moveRafRef.current);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -57,15 +64,35 @@ export default function LiquidGlass({
     return () => ro.disconnect();
   }, [radius]);
 
+  // cornerGlow defaults on and nothing in the codebase turns it off, so this
+  // runs on every glass panel on every page — nav, dropdowns, every card,
+  // every one of Honeycomb's/ProteinCard's many repeated tiles. rAF-gated
+  // (same idiom as Menu.jsx's own mousemove listener) so a fast mouse or a
+  // high-poll-rate mouse can't drive more than one re-render per frame —
+  // native mousemove fires far more often than the screen repaints, and the
+  // glow only ever gets seen at the display's refresh rate anyway.
   const handleMouseMove = useCallback((e) => {
-    const rect = ref.current.getBoundingClientRect();
-    setCursor({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
+    if (moveRafRef.current) return;
+    const { clientX, clientY } = e;
+    moveRafRef.current = requestAnimationFrame(() => {
+      moveRafRef.current = null;
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      setCursor({
+        x: ((clientX - rect.left) / rect.width) * 100,
+        y: ((clientY - rect.top) / rect.height) * 100,
+      });
     });
   }, []);
 
-  const handleMouseLeave = useCallback(() => setCursor(null), []);
+  const handleMouseLeave = useCallback(() => {
+    if (moveRafRef.current) {
+      cancelAnimationFrame(moveRafRef.current);
+      moveRafRef.current = null;
+    }
+    setCursor(null);
+  }, []);
 
   const hasGlow = cornerGlow && (squircleState.pathD || squircleState.circle);
 
