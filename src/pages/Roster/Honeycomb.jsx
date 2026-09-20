@@ -365,7 +365,7 @@ export default function Honeycomb({ departments, satelliteGroups, onSelect }) {
             className={styles.nodeTag}
             style={{
               left: tag.p.x - box.minX,
-              top: tag.p.y - box.minY - RADIUS * tag.bubbleScale - 10,
+              top: tag.p.y - box.minY + RADIUS * tag.bubbleScale + 10,
               opacity: focused ? 1 : 0,
             }}
           >

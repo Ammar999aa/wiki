@@ -248,7 +248,7 @@
 .nodeTag {
     position: absolute;
     z-index: 999; // always above every .node, regardless of its own scale-driven z-index
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, 0%);
     padding: 8px 18px;
     border-radius: 999px;
     background: rgba(10, 10, 39, 0.85);
