@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useLayoutEffect, useState, Suspense } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState, Suspense } from "react";
 import { flushSync } from "react-dom";
 import LiquidGlassFilter from "./components/LiquidGlassFilter/LiquidGlassFilter";
 import Menu from "./components/Menu/Menu";
@@ -13,7 +13,11 @@ import styles from "./App.module.scss";
 const supportsViewTransitions = typeof document !== "undefined" && !!document.startViewTransition;
 
 export default function App() {
-  const pathMapping = getPathMapping();
+  // Stable across renders (pages.js's route list is static) — needed as a
+  // real dependency now that the transition effect below reads it directly
+  // to preload a route's chunk; a fresh object every render would re-run
+  // that effect on every unrelated re-render instead of just on navigation.
+  const pathMapping = useMemo(() => getPathMapping(), []);
   const location = useLocation();
   // The location actually rendered by <Routes> — kept one tick behind
   // `location` so the swap can happen *inside* document.startViewTransition
@@ -55,23 +59,48 @@ export default function App() {
   useEffect(() => {
     if (location.pathname === displayLocation.pathname) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!supportsViewTransitions || reduceMotion) {
-      setDisplayLocation(location);
-      return;
-    }
+    // Preload the target route's chunk *before* swapping displayLocation.
+    // Without this, the swap below makes the new route's lazy() component
+    // suspend, Suspense's null fallback renders instead, and the crossfade
+    // (View Transition or the plain CSS .routeFade) plays against that
+    // blank fallback — finishing well before the chunk actually arrives, so
+    // the real page content then just pops in untransitioned. Preloading
+    // first means both transition paths animate between two fully-rendered
+    // pages instead. `preload` re-runs pages.js's lazyWithPreload() import
+    // factory, which resolves near-instantly here if <Link>-hover/whatever
+    // already warmed it, or otherwise does the actual one-time fetch.
+    let cancelled = false;
+    const target = pathMapping[location.pathname];
+    const preload = target?.component?.preload?.() ?? Promise.resolve();
 
-    const transition = document.startViewTransition(() => {
-      flushSync(() => setDisplayLocation(location));
+    preload.catch(() => {}).then(() => {
+      // A second navigation landed before this one's chunk finished — let
+      // the newer effect run's own preload/swap own the transition instead
+      // of this stale one clobbering it.
+      if (cancelled) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!supportsViewTransitions || reduceMotion) {
+        setDisplayLocation(location);
+        return;
+      }
+
+      const transition = document.startViewTransition(() => {
+        flushSync(() => setDisplayLocation(location));
+      });
+      // Navigating again before this transition settles (e.g. clicking two
+      // nav links back to back) makes the browser skip it, which rejects
+      // these promises with an InvalidStateError — expected under fast
+      // navigation, not an error worth surfacing as an unhandled rejection.
+      transition.ready.catch(() => {});
+      transition.updateCallbackDone.catch(() => {});
+      transition.finished.catch(() => {});
     });
-    // Navigating again before this transition settles (e.g. clicking two
-    // nav links back to back) makes the browser skip it, which rejects
-    // these promises with an InvalidStateError — expected under fast
-    // navigation, not an error worth surfacing as an unhandled rejection.
-    transition.ready.catch(() => {});
-    transition.updateCallbackDone.catch(() => {});
-    transition.finished.catch(() => {});
-  }, [location, displayLocation]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [location, displayLocation, pathMapping]);
 
   return (
     <div className={styles.page}>

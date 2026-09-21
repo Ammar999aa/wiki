@@ -1,5 +1,22 @@
 import { lazy } from "react";
 
+// lazy() alone gives React a component that suspends until its chunk
+// arrives, but no way to kick that fetch off ahead of time — App.jsx's
+// route-transition effect needs exactly that (preload the target route,
+// *then* start the View Transition) so the crossfade animates between two
+// fully-rendered pages instead of old-page → blank Suspense fallback,
+// with the real content popping in untransitioned afterward once its
+// chunk finally lands. `.preload` re-invokes the same dynamic import()
+// factory; ES module imports of the same specifier are cache-deduped by
+// the engine, so this doesn't re-fetch anything lazy() would already have
+// triggered, and vice versa — whichever call happens first does the one
+// real fetch.
+function lazyWithPreload(factory) {
+  const Component = lazy(factory);
+  Component.preload = factory;
+  return Component;
+}
+
 // Lazy (route-level code-split) rather than static imports: every page used
 // to be bundled into one shared chunk, so visiting Home also downloaded and
 // parsed Model's ~1850-line data-heavy page, Roster's honeycomb layout
@@ -8,23 +25,25 @@ import { lazy } from "react";
 // visited; <App>'s <Suspense> boundary covers the gap. `pages.js` staying
 // the single source of truth for routing + nav (see the block comment
 // below) isn't affected — `component` is still just a component reference,
-// lazy() returns one Suspense can render the same way.
-const Home = lazy(() => import("./pages/Home/Home"));
-const Roster = lazy(() => import("./pages/Roster/Roster"));
-const Attributions = lazy(() => import("./pages/Attributions/Attributions"));
-const Sponsors = lazy(() => import("./pages/Sponsors/Sponsors"));
-const WetLab = lazy(() => import("./pages/WetLab/WetLab"));
-const DryLab = lazy(() => import("./pages/DryLab/DryLab"));
-const HumanPractices = lazy(() => import("./pages/HumanPractices/HumanPractices"));
-const Engagement = lazy(() => import("./pages/Engagement/Engagement"));
-const Education = lazy(() => import("./pages/Education/Education"));
-const ProteinLibrary = lazy(() => import("./pages/ProteinLibrary/ProteinLibrary"));
-const HumanIntegratedPractices = lazy(() => import("./pages/HumanIntegratedPractices/HumanIntegratedPractices"));
-const Hardware = lazy(() => import("./pages/Hardware/Hardware"));
-const Notebook = lazy(() => import("./pages/Notebook/Notebook"));
-const Notebook2 = lazy(() => import("./pages/Notebook2/Notebook2"));
-const Stub = lazy(() => import("./pages/Stub/Stub"));
-const Model = lazy(() => import("./pages/Model/Model"));
+// lazyWithPreload() returns one Suspense can render the same way lazy() did.
+const Home = lazyWithPreload(() => import("./pages/Home/Home"));
+const Roster = lazyWithPreload(() => import("./pages/Roster/Roster"));
+const Attributions = lazyWithPreload(() => import("./pages/Attributions/Attributions"));
+const Sponsors = lazyWithPreload(() => import("./pages/Sponsors/Sponsors"));
+const WetLab = lazyWithPreload(() => import("./pages/WetLab/WetLab"));
+const DryLab = lazyWithPreload(() => import("./pages/DryLab/DryLab"));
+const HumanPractices = lazyWithPreload(() => import("./pages/HumanPractices/HumanPractices"));
+const Engagement = lazyWithPreload(() => import("./pages/Engagement/Engagement"));
+const Education = lazyWithPreload(() => import("./pages/Education/Education"));
+const ProteinLibrary = lazyWithPreload(() => import("./pages/ProteinLibrary/ProteinLibrary"));
+const HumanIntegratedPractices = lazyWithPreload(() =>
+  import("./pages/HumanIntegratedPractices/HumanIntegratedPractices")
+);
+const Hardware = lazyWithPreload(() => import("./pages/Hardware/Hardware"));
+const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
+const Notebook2 = lazyWithPreload(() => import("./pages/Notebook2/Notebook2"));
+const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
+const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this

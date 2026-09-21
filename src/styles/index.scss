@@ -68,6 +68,26 @@ body {
   margin: 0;
   font-family: inherit;
   color: white;
+  // Fallback for the gap between routes: PageWrapper's actual background is
+  // two position:fixed divs portaled to <body> per-page — a tiled bg.svg
+  // starfield (which is black + white star noise on its own, per its own
+  // `size` prop, every page passes "1280px 1080px") under a gradient.svg
+  // overlay (a single, non-tiled vertical purple→indigo wash, `cover`d and
+  // centered — that overlay is what actually reads as "purple", bg.svg
+  // alone is black) — not a real CSS background here, so whenever nothing's
+  // painted yet (the lazy-loaded route's chunk still fetching behind
+  // Suspense's null fallback, or the View Transition API's before/after
+  // root snapshot), the browser falls back to this rather than a flat
+  // color (previously) or its default white canvas (before that). Both
+  // layers use background-attachment: fixed so `cover` sizes against the
+  // viewport like the real fixed-position divs do, not against body's own
+  // (possibly much taller) scrollable height.
+  background-color: var(--bg);
+  background-image: url("../assets/gradient.svg"), url("../assets/bg.svg");
+  background-repeat: no-repeat, repeat;
+  background-position: center, 0 0;
+  background-size: cover, 1280px 1080px;
+  background-attachment: fixed, fixed;
 }
 
 code {
@@ -91,17 +111,48 @@ h4 {
   font-weight: 500;
 }
 
-/* Route crossfade (View Transitions API) — see App.jsx. Kept short and
-   plain on purpose: this is meant to soften a hard cut, not to draw
-   attention to itself, especially since a lot of destinations are still
-   bare Stub pages. `::view-transition-old/new(root)` is where the browser
-   renders its before/after snapshots during the transition; JS skips
-   starting a transition at all under reduced motion, this media query is
-   just a second line of defense. */
-::view-transition-old(root),
+/* Route crossfade (View Transitions API) — see App.jsx.
+   `::view-transition-old/new(root)` is where the browser renders its
+   before/after snapshots during the transition. A plain opacity-only fade
+   at the browser's UA-default duration (~0.25s) turned out to be nearly
+   invisible here specifically: every page shares the exact same PageWrapper
+   background/nav/footer, so a crossfade of two almost-identical full-page
+   images reads as "nothing happened" — only the article text is actually
+   changing, and only for a couple hundred ms. Explicit keyframes (not just
+   an animation-duration override on the UA defaults) with a small
+   fade+rise/sink give the swap a real, perceptible motion independent of
+   how similar old/new happen to look, at a duration long enough to
+   register as a transition rather than a flicker. JS skips starting a
+   transition at all under reduced motion; this media query is just a
+   second line of defense. */
+::view-transition-old(root) {
+  animation: 360ms cubic-bezier(0.4, 0, 1, 1) both route-fade-out;
+}
+
 ::view-transition-new(root) {
-  animation-duration: 0.22s;
-  animation-timing-function: ease;
+  animation: 360ms cubic-bezier(0, 0, 0.2, 1) both route-fade-in;
+}
+
+@keyframes route-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
