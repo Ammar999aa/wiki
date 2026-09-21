@@ -313,6 +313,39 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         }
     }
 
+    // Generalizes the Model page's Caption: the one sentence that
+    // interprets a figure or table — what to notice, not just what it
+    // shows — instead of leaving a bare image or table-wrap to speak for
+    // itself. Bold "Figure N."/"Table N." lead-in (write it as markdown
+    // **bold**, not raw <b>, so it still parses normally) in a brighter
+    // tone, then muted mono body text. Tighter margins than a body
+    // paragraph so it reads as attached to whatever it's captioning —
+    // works placed either directly below a figure/`.photo-frame` (the
+    // usual case) or directly above a `.table-wrap` (notebook.md's own
+    // existing convention: "Table N." captions precede their table).
+    // Author with raw HTML, blank lines around the markdown bold per the
+    // .callout convention above:
+    //   <div class="caption">
+    //
+    //   **Figure 1.** What to notice, not just what it shows.
+    //
+    //   </div>
+    :global(.caption) {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 4px 4px 20px;
+
+        p {
+            margin: 0;
+        }
+
+        strong {
+            color: rgba(255, 255, 255, 0.85);
+        }
+    }
+
     // Generalizes the Model page's Card/CardGrid pattern (see
     // .claude/ARTICLE-STANDARDS.md) for plain markdown content: a set of
     // parallel, comparable short items (framework steps, categories,

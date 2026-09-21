@@ -20,6 +20,16 @@ Model page (`src/pages/Model/`, `/modeling`) read as far more polished than
 a plain markdown article, and gives a checklist for reproducing that.
 @.claude/ARTICLE-STANDARDS.md
 
+## Markdown components
+Read this before writing or reformatting *any* `src/content/en/*.md` page —
+it catalogues the styled classes (`.callout`, `.card-grid`, `.table-wrap`,
+`.flow`, `.chip`, `.panel`/`.dash`, `.photo-frame`, `.caption`, …) already
+available to plain markdown via `SectionedArticle.module.scss`, with a
+copy-pasteable snippet for each. The cheap tier between flat markdown and a
+full Model-style custom page — check here before adding a new class or
+building bespoke JSX for something this system already covers.
+@.claude/MARKDOWN-COMPONENTS.md
+
 ## Guardrails
 - Don't change `LICENSE` or the `Footer` component's license notice + GitLab
   repository link (both required on every page for judging).

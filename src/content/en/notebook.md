@@ -74,7 +74,11 @@ Overnight starter cultures were prepared by inoculating a single colony into 5 m
 
 The following morning, subcultures were prepared in 25 mL of fresh medium. The inoculation volume from each overnight culture was calculated individually for each organism based on its literature generation time, such that all cultures would reach mid-exponential phase simultaneously after 2.5 hours of incubation (Table 1). Growth was monitored by measuring optical density at 600 nm (OD600).
 
+<div class="caption">
+
 **Table 1.** Literature generation times, growth conditions, and inoculation parameters for each organism.
+
+</div>
 
 |  |  |  |  |  |  |
 |:--:|----|----|----|----|----|
@@ -109,20 +113,36 @@ Colony-forming units (CFUs) were counted for each plate and normalized to the un
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig1.avif" alt="Figure 1. B. subtilis colonies on LB agar after X-ray irradiation: mock, 10, 20, 30, 40 Gy (left to right)" style="width:25.7%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 1.** B. subtilis colonies on LB agar. From left to right: mock diluted, 10 Gy undiluted, 20 Gy undiluted, 30 Gy undiluted, 40 Gy undiluted. A slight progressive reduction in colony density is visible at higher nominal doses.
+
+</div>
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig2.avif" alt="Figure 2. P. pastoris colonies on YPD agar after X-ray irradiation: mock undiluted, mock 1:1000, 10, 20, 30, 40 Gy" style="width:20.2%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 2.** P. pastoris colonies on YPD agar. From left to right: mock undiluted, mock 1:1000 dilution, 10 Gy, 20 Gy, 30 Gy, 40 Gy. The diluted mock control shows well-isolated colonies for reference counting. Colony density decreases modestly with increasing dose.
+
+</div>
 
 <div class="notebook-img-row"><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig3a.avif" alt="Figure 3A. S. cerevisiae colonies, mock undiluted" style="width:15.8%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig3b.avif" alt="Figure 3B. S. cerevisiae colonies, mock 1:1000 dilution" style="width:15.8%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig3c.avif" alt="Figure 3C. S. cerevisiae colonies, 10 Gy" style="width:15.8%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig3d.avif" alt="Figure 3D. S. cerevisiae colonies, 20 Gy" style="width:15.8%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig3e.avif" alt="Figure 3E. S. cerevisiae colonies, 30 Gy" style="width:16.1%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp02-fig3f.avif" alt="Figure 3F. S. cerevisiae colonies, 40 Gy" style="width:15.4%" loading="lazy" /></div>
 
+<div class="caption">
+
 **Figure 3.** *S. cerevisiae* colonies on YPD agar. From left to right: mock undiluted, mock 1:1000 dilution, 10 Gy, 20 Gy, 30 Gy, 40 Gy. Progressive but mild reduction in CFUs is observed with increasing nominal dose.
+
+</div>
 
 The observed mild reduction in colony-forming units across all three organisms at nominal doses of 10–40 Gy is consistent with the known radiation resistance profiles of these microorganisms reported in the literature. As shown in Table 3, the doses tested in this experiment fall substantially below the estimated LD<sup>50</sup> for all three organisms, which explains why only subtle effects on survival were detected.
 
 
+<div class="caption">
+
 **Table 2.** Literature-reported lethal dose estimates for the three organisms used in this study. LD50 = dose lethal to 50% of the population; LD100 = dose required for complete inactivation. Values correspond to vegetative cells unless otherwise noted.
+
+</div>
 
 <table>
 <tbody>
@@ -196,15 +216,27 @@ Culture was diluted to an OD below 0.6 and allowed to grow in a shaking incubato
 
 <div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig1a.avif" alt="Figure 1A. B. subtilis, UV mock" style="width:28.6%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig1b.avif" alt="Figure 1B. B. subtilis, UV dose 1 (1 min)" style="width:30.2%" loading="lazy" />C)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig1c.avif" alt="Figure 1C. B. subtilis, UV dose 2 (2 min)" style="width:29.0%" loading="lazy" /></div>
 
+<div class="caption">
+
 **Figure 1.** UVC irradiation results for B.subtilis A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
+
+</div>
 
 <div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig2a.avif" alt="Figure 2A. S. cerevisiae, UV mock" style="width:31.5%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig2b.avif" alt="Figure 2B. S. cerevisiae, UV dose 1 (1 min)" style="width:29.5%" loading="lazy" />C)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig2c.avif" alt="Figure 2C. S. cerevisiae, UV dose 2 (2 min)" style="width:28.9%" loading="lazy" /></div>
 
+<div class="caption">
+
 **Figure 2.** UVC irradiation results for S.cerevisiae A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
+
+</div>
 
 <div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig3a.avif" alt="Figure 3A. P. pastoris, UV mock" style="width:30.9%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig3b.avif" alt="Figure 3B. P. pastoris, UV dose 1 (1 min)" style="width:29.3%" loading="lazy" />C)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-fig3c.avif" alt="Figure 3C. P. pastoris, UV dose 2 (2 min)" style="width:29.1%" loading="lazy" /></div>
 
+<div class="caption">
+
 **Figure 3.** UVC irradiation results for P.pastoris A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
+
+</div>
 
 ### Future Improvements
 
@@ -280,7 +312,11 @@ P. pastoris cell count - 1.05 * 10^4/mL (33% live)
 
 <div class="notebook-img-row"><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp04-fig1a.avif" alt="Figure 1A. FUN-1 fluorescence microscopy" style="width:43.7%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp04-fig1b.avif" alt="Figure 1B. FUN-1 fluorescence microscopy" style="width:43.9%" loading="lazy" /></div>
 
+<div class="caption">
+
 **Figure 1.** Fluorescence microscopy results
+
+</div>
 
 ### Short Conclusions
 
@@ -315,11 +351,19 @@ Cell colonies were picked from each agar plate and inoculated in 4 ml LB with AM
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp05-fig1.avif" alt="Figure 1. Nanodrop concentration/purity of six plasmid vectors, first and second elutions" style="width:100.0%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 1.** Concentration and purity of the all six plasmid vector right panel showing the first elution total volume of the elution was 100µl. This elution was used to aliquot 4 µg to ship to genescript singapore. Left panel showing the second elution with a total volume of 50 µl.
+
+</div>
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp05-fig2.avif" alt="Figure 2. Agarose gel of the first elution set of plasmid vectors" style="width:100.0%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 2.** Agarose gel run of the first elution set of the plasmid vectors.
+
+</div>
 
 
 ### Summary
@@ -376,7 +420,11 @@ Day 2
 
 4.  Measure OD600nm:
 
+<div class="caption">
+
 **Table 1.** Results of spectrophotometric measurements for overnight E.coli cultures
+
+</div>
 
 |        |                   |         |
 |:-------|-------------------|---------|
@@ -475,7 +523,11 @@ Day 2
 
 ### Part 2: Restriction Digestion with NdeI
 
+<div class="caption">
+
 **Table 1.** Restriction digestion reaction overview
+
+</div>
 
 |                     |                 |
 |:--------------------|-----------------|
@@ -587,7 +639,11 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig1.avif" alt="Figure 1. HO-Poly-KanMX4-HO restriction digestion gel (NdeI)" style="width:61.8%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 1.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 - 1kb plus ladder, Lane 2 - control uncut plasmid, Lane 3 - plasmid cut with NdeI
+
+</div>
 
 <div class="notebook-img-row">1)  <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2a.avif" alt="Figure 2A. 200 ug/mL G418 plate, 250 uL cells" style="width:37.7%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2b.avif" alt="Figure 2B. 200 ug/mL G418 plate, 120 uL cells" style="width:38.1%" loading="lazy" /></div>
 
@@ -595,7 +651,11 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif" alt="Figure 2E. 400 ug/mL G418 plate, 250 uL cells" style="width:38.3%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 2.** HO-Poly-KanMX4-HO S.cerevisiae recombineering results: A) 200 ug/ml G418 plate after 2 days of incubation (250 ul cells), B) 200 ug/ml G418 plate after 2 days of incubation (120 ul cells), C) 300 ug/ml G418 plate after 2 days of incubation (250 ul cells), D) 300 ug/ml G418 plate after 2 days of incubation (120 ul cells), E) 400 ug/ml G418 plate after 2 days of incubation (250 ul cells)
+
+</div>
 
 
 
@@ -730,7 +790,11 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 3.  Measure OD600nm:
 
+<div class="caption">
+
 **Table 1.** Results of spectrophotometric measurements for overnight E.coli cultures
+
+</div>
 
 |                    |         |         |
 |--------------------|---------|---------|
@@ -744,7 +808,11 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 4.  Dilute cells to about OD600nm = 0.1
 
+<div class="caption">
+
 **Table 2.** Dilution calculations
+
+</div>
 
 |          |            |                 |                     |              |
 |----------|------------|-----------------|---------------------|--------------|
@@ -767,7 +835,11 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 1.  Mix the reagents in the following manner:
 
+<div class="caption">
+
 **Table 1.** Restriction digestion reaction overview
+
+</div>
 
 |                     |                 |
 |---------------------|-----------------|
@@ -834,7 +906,11 @@ Transformation by electroporation
 
 ### Results
 
+<div class="caption">
+
 **Table 1.** Miniprep results
+
+</div>
 
 |           |            |               |                    |
 |:----------|------------|---------------|--------------------|
@@ -857,21 +933,37 @@ Transformation by electroporation
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig1.avif" alt="Figure 1. Agarose gel, miniprep samples #1" style="width:84.3%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 1.** Agarose gel results of miniprep samples #1
+
+</div>
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig2.avif" alt="Figure 2. Agarose gel, miniprep samples #4 and #5" style="width:100.0%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 2.** Agarose gel results of miniprep samples #4 & 5
+
+</div>
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig3.avif" alt="Figure 3. Agarose gel, SacI restriction digestion" style="width:46.6%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 3.** Agarose gel results of SacI restriction digestion
+
+</div>
 
 <div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4a.avif" alt="Figure 4A. P. pastoris IPD1 transformants, 100 uL" style="width:47.7%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4b.avif" alt="Figure 4B. P. pastoris IPD1 transformants, 200 uL" style="width:45.8%" loading="lazy" /></div>
 
 C)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4c.avif" alt="Figure 4C. P. pastoris IPD1 transformants, 250 uL" style="width:45.1%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 4.** P.pastoris transformants (IPD1) on YPD + 100 ug/ml zeocin plates: A) 100 ul B) 200 ul C) 250 ul
+
+</div>
 
 
 ### Conclusion
@@ -1149,7 +1241,13 @@ For each cell density and both measurements:
 
 <div class="notebook-img-row"><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp10-fig1.avif" alt="Image as embedded in the source document at this point (appears to be an unrelated gel photo)" style="width:22.8%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp10-fig2.avif" alt="Image as embedded in the source document at this point (appears to be an unrelated gel photo)" style="width:25.2%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp10-fig3.avif" alt="Image as embedded in the source document at this point (appears to be unrelated BSA tube photos)" style="width:47.0%" loading="lazy" /></div>
 
-*Note: the images embedded at this point in the source document do not appear to match this section's content (they show unrelated gel and tube photos) — worth checking against the original notebook.*
+<div class="callout warn">
+
+<p class="callout-label">Transcription note</p>
+
+The images embedded at this point in the source document do not appear to match this section's content (they show unrelated gel and tube photos) — worth checking against the original notebook.
+
+</div>
 
 ## Experiment #11
 
@@ -1397,7 +1495,13 @@ This follows Rogers et al. (Bio-protocol 4410), which is the reference to cite. 
 
 ## Experiment #10 (P.pastoris electroporation)
 
-*Note: this experiment is again numbered "10" in the source notebook — an earlier, unrelated entry also used that number.*
+<div class="callout">
+
+<p class="callout-label">Transcription note</p>
+
+This experiment is again numbered "10" in the source notebook — an earlier, unrelated entry also used that number.
+
+</div>
 
 **Dates:** _(not recorded)_
 **Title of Experiment:** P.pastoris electroporation (IPC1, IPC2, IPD2, IPD3, IPAL1, IPAF2)
@@ -1454,18 +1558,32 @@ Initially, electroporation failed as a spark appeared MOJHUIGO
 
 <div class="notebook-img-row">C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp10dup-fig2c.avif" alt="Figure 2C. P. pastoris recombineering, IPAL1" style="width:46.1%" loading="lazy" />D) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp10dup-fig2d.avif" alt="Figure 2D. P. pastoris recombineering, IPAF1" style="width:44.5%" loading="lazy" /></div>
 
+<div class="caption">
+
 **Figure 2.** P.pastoris recombineering results: A) IPC2 B) IPD3 C) IPAL1 D) IPAF1
+
+</div>
 
 ## Experiment #11 (S.cerevisiae recombineering)
 
-*Note: this experiment is again numbered "11" in the source notebook — an earlier, unrelated entry also used that number.*
+<div class="callout">
+
+<p class="callout-label">Transcription note</p>
+
+This experiment is again numbered "11" in the source notebook — an earlier, unrelated entry also used that number.
+
+</div>
 
 **Dates:** 07.08 - 08.08
 **Title of Experiment:** S.cerevisiae recombineering transformation (ISD1, ISD2, ISD3)
 
 ### Part 1: Restriction Digestion with NdeI
 
-Table 1. Restriction digestion reaction overview
+<div class="caption">
+
+**Table 1.** Restriction digestion reaction overview
+
+</div>
 
 |  |  |
 |----|----|
@@ -1539,13 +1657,21 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 ### Results
 
+<div class="caption">
+
 **Figure 1.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 - 1kb plus ladder, Lane 2 - control uncut plasmid, Lane 3 - plasmid cut with NdeI
+
+</div>
 
 <div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11dup-fig2a.avif" alt="Figure 2A. S. cerevisiae recombineering, ISD1" style="width:47.0%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11dup-fig2b.avif" alt="Figure 2B. S. cerevisiae recombineering, ISD2" style="width:45.0%" loading="lazy" /></div>
 
 C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11dup-fig2c.avif" alt="Figure 2C. S. cerevisiae recombineering, ISD3" style="width:46.0%" loading="lazy" />
 
+<div class="caption">
+
 **Figure 2.** Dsup-related S.cerevisiae recombineering results: A) ISD1 B) ISD2 C) ISD3
+
+</div>
 
 
 ## Experiment #12
@@ -1618,7 +1744,11 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 ### Results
 
+<div class="caption">
+
 **Figure 1.** S.cerevisiae payloads episomal transformation results after 3 days of incubation: A) 250 ul of ISC1, B) 100 ul of ISC1, C) 250 ul of ISC2, D) 100 ul of ISC2, E) 250 ul of ISC3, F) 100 ul of ISC3, G) 250 ul of SAF2, H) 100 ul of SAF2, I) 250 ul of SAL2, J) 100 ul of SAL2
+
+</div>
 
 
 
@@ -1659,7 +1789,11 @@ Same as above, but feed cells with 1% methanol instead
 
 ### Results
 
+<div class="caption">
+
 **Figure 1.** Visual representation of the ce A) 0.5% methanol induction for 2 days B) 1% methanol induction for 2 days
+
+</div>
 
 
 ## Experiment #14
@@ -1679,7 +1813,11 @@ Same as above, but feed cells with 1% methanol instead
 
 A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp14-fig1a.avif" alt="Figure 1A. IPC1 mutants, 0.5% methanol induction, 2 days (panel B was never embedded in the source document)" style="width:56.7%" loading="lazy" /> B)
 
+<div class="caption">
+
 **Figure 1.** Fluorescent imaging of IPC1 mutants after A) 0.5% methanol induction for 2 days B) 1% methanol induction for 2 days
+
+</div>
 
 Fluorescence microscopy confirmed that induction with 0.5% (v/v) methanol yielded noticeably higher fluorescence intensity in the transformed mutants compared to induction with 1.0% (v/v) methanol. Hence, for the further experiments, 0.5% concentration was used for induction of other constructs.
 

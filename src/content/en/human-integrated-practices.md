@@ -10,7 +10,15 @@ This question became the foundation of SHIHAB and of our Integrated Human Practi
 
 Through more than 30 activities and stakeholder engagements, we explored SHIHAB from multiple perspectives, learning from astronauts, space medicine specialists, researchers, industry representatives, regulatory experts, and the wider community. Their experiences helped us question our assumptions, identify limitations, and make decisions about the biological design, hardware, safety, implementation, and communication of our project.
 
-These conversations also pushed us to look beyond space. The need for local and reliable access to therapeutics is not unique to astronauts. Remote communities, disaster-affected regions, and other settings with disrupted or limited supply chains can face similar challenges in accessing essential medicines. What began as a question about medical autonomy beyond Earth therefore became a broader exploration of how decentralized biomanufacturing could contribute to healthcare both in space and on Earth.
+These conversations also pushed us to look beyond space. The need for local and reliable access to therapeutics is not unique to astronauts. Remote communities, disaster-affected regions, and other settings with disrupted or limited supply chains can face similar challenges in accessing essential medicines.
+
+<div class="callout accent">
+
+<p class="callout-label">Beyond space</p>
+
+What began as a question about medical autonomy beyond Earth therefore became a broader exploration of how decentralized biomanufacturing could contribute to healthcare both in space and on Earth.
+
+</div>
 
 Our Human Practices journey was not separate from SHIHAB, it became part of how we built it. By continuously connecting stakeholder needs, scientific evidence, societal perspectives, and our own experimental work, we aimed to transform an ambitious idea into a more responsible, relevant, and realistic solution.
 
@@ -91,19 +99,70 @@ As SHIHAB evolved, we identified the people and communities who could inform, ch
 
 ## Our Journey
 
-1. **Exploring The Unknown** — What do we think the problem is?
-2. **Listening to Astronauts & Space Medicine** — Is this really the problem?
-3. **Exploring Biological Solutions** — Could synthetic biology address it?
-4. **From Concept to Implementation** — What does it take to bring biomanufacturing beyond the laboratory?
-5. **Looking Back at Earth** — Can the challenges of space reveal solutions for healthcare on Earth?
-6. **Engaging Society** — How does society understand and perceive this technology?
+<div class="card-grid">
+
+<div>
+
+#### 1. Exploring The Unknown
+What do we think the problem is?
+
+</div>
+
+<div>
+
+#### 2. Listening to Astronauts & Space Medicine
+Is this really the problem?
+
+</div>
+
+<div>
+
+#### 3. Exploring Biological Solutions
+Could synthetic biology address it?
+
+</div>
+
+<div>
+
+#### 4. From Concept to Implementation
+What does it take to bring biomanufacturing beyond the laboratory?
+
+</div>
+
+<div>
+
+#### 5. Looking Back at Earth
+Can the challenges of space reveal solutions for healthcare on Earth?
+
+</div>
+
+<div>
+
+#### 6. Engaging Society
+How does society understand and perceive this technology?
+
+</div>
+
+</div>
 
 ## Closing the ORBIT
 
+<div class="callout warn">
+
+<p class="callout-label">Where this section is right now</p>
+
 Content coming soon.
+
+</div>
 
 ## Conclusions
 
+<div class="callout warn">
+
+<p class="callout-label">Where this section is right now</p>
+
 Content coming soon.
+
+</div>
 
 *(Reference: [iGEM Judging Rubric](https://2021.igem.org/Judging/Rubric))*
