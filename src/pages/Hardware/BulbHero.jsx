@@ -27,10 +27,12 @@ const BULB_COUNT = 3;
 // article and a long hold would just be delay before real content.
 const BUFFER = 0.6;
 const SLOTS = BULB_COUNT + BUFFER;
-// How dark the page (nav, footer, background — everything, via a portaled
-// full-viewport overlay) goes at the very start of the sequence, before any
-// bulb has power. 1 would go fully black and hide the headline entirely;
-// this leaves just enough through that the page never reads as broken.
+// How dark the page (background, article — everything under the Menu/
+// Footer chrome layer, via a fixed overlay stacked below them — see
+// dimOverlay's portal target and z-index) goes at the very start of the
+// sequence, before any bulb has power. 1 would go fully black and hide the
+// headline entirely; this leaves just enough through that the page never
+// reads as broken.
 const MAX_DIM = 0.82;
 
 export default function BulbHero() {
@@ -131,9 +133,17 @@ export default function BulbHero() {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  // Portaled into App.jsx's #app-content (a sibling of Menu/Footer, not
+  // document.body) so it participates in that div's own stacking context
+  // instead of bundling against it as one opaque unit — see the id's own
+  // comment in App.jsx. `.article`/`.content` don't set `transform`, so
+  // this position: fixed div still sizes against the true viewport despite
+  // being nested deeper than document.body.
+  const portalTarget = document.getElementById("app-content") || document.body;
+
   return (
     <div className={styles.bulbHero}>
-      {createPortal(<div className={styles.dimOverlay} ref={dimRef} aria-hidden="true" />, document.body)}
+      {createPortal(<div className={styles.dimOverlay} ref={dimRef} aria-hidden="true" />, portalTarget)}
 
       <div className={styles.heroIntro} ref={introRef}>
         <p>What if we could make medicine with the power it takes to light three LED bulbs?</p>

@@ -15,10 +15,18 @@
 // plain CSS (rather than pre-dimmed) so a JS error fails open to a normal
 // visible page instead of a permanently dark one; the rAF loop takes over
 // within a frame of mount.
+// Portaled into App.jsx's #app-content (see BulbHero.jsx), not
+// document.body — so this z-index is compared directly against Menu (11
+// desktop / 12 mobile) and Footer (11) in that shared local stacking
+// context, rather than the whole #app-content div being one bundled unit.
+// Kept comfortably below all of that site chrome (and SiteMark/the
+// SectionedArticle jump-nav rail, both 10) so it only ever dims the actual
+// page content/background underneath them — no geometry to track, so it
+// keeps working correctly even while Menu is mid-shrink-on-scroll.
 .dimOverlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 5;
   pointer-events: none;
   background: #000;
   opacity: 0;
