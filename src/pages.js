@@ -41,7 +41,6 @@ const HumanIntegratedPractices = lazyWithPreload(() =>
 );
 const Hardware = lazyWithPreload(() => import("./pages/Hardware/Hardware"));
 const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
-const Notebook2 = lazyWithPreload(() => import("./pages/Notebook2/Notebook2"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
 const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 
@@ -136,10 +135,6 @@ const Pages = [
   },
   // Pre-existing sectioned pages, superseded in the nav by the categories
   // above but left routable at their old URLs — see file header comment.
-  // Notebook (one-scroll) is a comparison copy of /notebook using the
-  // original continuous-scroll SectionedArticle layout instead of the
-  // pills/tabs redesign — same content (src/content/en/notebook.md).
-  { name: "Notebook (one-scroll)", title: "Notebook", path: "/notebook2", component: Notebook2, hidden: true },
   { name: "Wet Lab (overview)", title: "Wet Lab", path: "/wetlab", component: WetLab, hidden: true },
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
   { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },
