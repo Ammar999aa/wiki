@@ -191,7 +191,7 @@ function renderPerson(person, selected, setSelectedName) {
       <span className={`${styles.bubble} ${isGold ? styles.leadGlow : ""} ${isSelected ? styles.selected : ""}`}>
         <LiquidGlass radius={300} color={isGold ? [255, 216, 77] : [0, 0, 0]} opacity={isGold ? 0.55 : 0.07}>
           {person.photo ? (
-            <img src={person.photo} className={styles.icon} alt="" />
+            <img src={person.photo} className={styles.icon} alt={person.name} />
           ) : (
             <div className={styles.iconPlaceholder} />
           )}
