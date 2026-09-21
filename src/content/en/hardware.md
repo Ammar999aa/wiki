@@ -82,7 +82,7 @@ At the end of the reaction, the culture is transferred by tubes and pumps to the
 
 Once fermentation is complete, the broth containing the secreted proteins passes through the protein purification system to yield the purified nanobodies. The system has two stages: filtration, then affinity chromatography.
 
-#### Filtration unit
+### Filtration unit
 
 A modular design lets the user choose how many filtration stages suit the culture. Filter papers of decreasing pore size sit in each module, connected by gaskets to prevent leakage, a multi-stage approach that stays simple while avoiding clogs.
 
@@ -111,7 +111,7 @@ Fine filter
 
 </div>
 
-#### Affinity chromatography
+### Affinity chromatography
 
 Syringe pumps dispense precise volumes of each buffer: equilibration, wash, elution, and reconstitution. Each pump pairs a sterile 60 mL syringe with a stepper-motor-driven linear actuator, pre-calibrated for accurate dispensing.
 
