@@ -5,6 +5,12 @@
     width: calc(100dvw - (2 * 32px));
     height: 68px;
     z-index: 11;
+    transform-origin: center bottom;
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.container.shrunk {
+    transform: scale(0.7);
 }
 
 .menu {
@@ -46,6 +52,12 @@
     bottom: 38px;
     inset-inline-end: 32px;
     z-index: 12;
+    transform-origin: center bottom;
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobileContainer.shrunk {
+    transform: scale(0.7);
 }
 
 .hamburgerBtn {

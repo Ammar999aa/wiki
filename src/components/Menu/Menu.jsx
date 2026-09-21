@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import LiquidGlass from "../LiquidGlass/LiquidGlass";
 import Dropdown from "../Dropdown/Dropdown";
 import Pages from "../../pages.js";
@@ -59,6 +59,73 @@ export default function Menu() {
     }, 150);
   }, [cancelClose]);
 
+  // Shrinks the bottom bar while scrolling down (more content visible, less
+  // chrome in the way) and restores it on scroll-up or whenever the cursor
+  // comes near it, so it's never small while someone's about to use it.
+  // Shrinking reacts instantly, but expanding needs a bit of sustained
+  // upward scroll first — otherwise a tiny wobble mid-scroll flickers it
+  // back to full size.
+  const EXPAND_THRESHOLD = 500;
+  const [shrink, setShrink] = useState(false);
+  const lastScrollY = useRef(0);
+  const nearMenuRef = useRef(false);
+  const upDistance = useRef(0);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const recompute = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+      lastScrollY.current = currentY;
+
+      if (nearMenuRef.current || currentY < 80) {
+        upDistance.current = 0;
+        setShrink(false);
+        return;
+      }
+
+      if (delta > 0) {
+        upDistance.current = 0;
+        setShrink(true);
+      } else if (delta < 0) {
+        upDistance.current -= delta;
+        if (upDistance.current >= EXPAND_THRESHOLD) {
+          setShrink(false);
+        }
+      }
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        recompute();
+        ticking = false;
+      });
+    };
+
+    // "Near" the bar means the cursor is within reach of the bottom strip
+    // that holds it, not just hovering the bar itself.
+    const onMouseMove = (e) => {
+      const near = window.innerHeight - e.clientY < 220;
+      if (near === nearMenuRef.current) return;
+      nearMenuRef.current = near;
+      if (near) {
+        upDistance.current = 0;
+        setShrink(false);
+      } else recompute();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
+
   // Link to="/" doesn't scroll on its own — React Router only changes the
   // URL, and clicking the logo while already on "/" doesn't even trigger a
   // navigation. Scroll explicitly so the logo always brings you to the top.
@@ -87,7 +154,7 @@ export default function Menu() {
     <>
       {/* Desktop menu bar */}
       <div
-        className={styles.container}
+        className={`${styles.container} ${shrink ? styles.shrunk : ""}`}
         onMouseLeave={scheduleClose}
         // Lets other pages measure the nav's real position instead of
         // hand-copying its fixed bottom/height values — see Honeycomb.jsx's
@@ -139,7 +206,7 @@ export default function Menu() {
       )}
 
       {/* Mobile hamburger button */}
-      <div className={styles.mobileContainer}>
+      <div className={`${styles.mobileContainer} ${shrink ? styles.shrunk : ""}`}>
         <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)">
           <button
             type="button"
