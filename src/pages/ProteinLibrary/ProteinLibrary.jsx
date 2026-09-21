@@ -61,7 +61,7 @@ export default function ProteinLibrary() {
         image: bg,
         size: "1280px 1080px",
         photo: milkyWay,
-        photoOpacity: 0.35,
+        photoOpacity: 0.20,
         gradient,
       }}
     >
