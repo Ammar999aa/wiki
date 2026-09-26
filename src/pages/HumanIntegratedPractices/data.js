@@ -1,36 +1,28 @@
-// Sourced from src/content/en/human-integrated-practices.md's ORBIT and
-// stakeholder sections — kept here so OrbitTimeline.jsx and
-// StakeholderPuzzle.jsx don't hardcode copy inline. Edit the markdown file
-// for prose changes; edit this file only if the underlying data changes.
+// Copy for the page's custom components (QuestionMap, OrbitTimeline, JigsawTable).
 
 export const orbitSteps = [
   {
     letter: "O",
-    icon: "observe",
     title: "Observe the Challenge",
     body: "Understand the healthcare, biological, and logistical challenges of space exploration.",
   },
   {
     letter: "R",
-    icon: "reach",
     title: "Reach Stakeholders",
     body: "Engage astronauts, researchers, space medicine specialists, industry, regulatory experts and communities.",
   },
   {
     letter: "B",
-    icon: "build",
     title: "Build with Insights",
     body: "Translate stakeholder knowledge into concrete decisions for SHIHAB.",
   },
   {
     letter: "I",
-    icon: "iterate",
     title: "Iterate Responsibly",
     body: "Reassess assumptions, limitations, risks and design choices as new perspectives emerge.",
   },
   {
     letter: "T",
-    icon: "translate",
     title: "Translate the Impact",
     body: "Extend what we learn beyond the laboratory, toward space exploration, Earth applications, and society.",
   },

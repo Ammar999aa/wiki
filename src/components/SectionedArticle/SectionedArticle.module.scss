@@ -86,19 +86,6 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         margin-bottom: 32px;
     }
 
-    // A larger opening statement — the one-sentence hook a page leads with,
-    // read at a glance before the reader commits to the running prose below.
-    // Plain text, no border/background (that's `.callout`'s job for an
-    // aside mid-paragraph) — just bigger and slightly dimmer-than-white so
-    // it doesn't compete with the page's <h1>/<h2>.
-    //   <p class="lede">One-sentence hook.</p>
-    :global(.lede) {
-        font-size: clamp(1.15rem, 2.2vw, 1.4rem);
-        line-height: 1.5;
-        color: rgba(255, 255, 255, 0.88);
-        margin-block: 20px;
-    }
-
     // Optional masthead content between the title and the first section
     // (Model.jsx's `intro` prop is the only current user). It's a plain
     // `<div>` like each section wrapper below, so without this it would
@@ -294,14 +281,8 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         }
     }
 
-    // Crops a tall/oddly-proportioned photo into a fixed-aspect box
-    // without touching the source file — sets a CSS `aspect-ratio` on the
-    // wrapper and lets `object-fit: cover` do the cropping in the browser.
-    // Pass the box's aspect ratio and the crop's vertical anchor as inline
-    // custom properties (percentages stay correct at any container width,
-    // unlike a pixel `object-position` which only holds at one specific
-    // rendered size):
-    //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 32.4%;">
+    // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
+    //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
     //
     //   ![alt text](src)
     //
@@ -312,10 +293,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         border-radius: var(--radius-sm);
         margin-block: 20px;
 
-        // `marked` wraps a standalone image in <p><img></p> — without this,
-        // the img's own `height: 100%` has no definite parent height to
-        // resolve against (the <p> is auto-sized) and falls back to auto,
-        // silently ignoring the crop entirely.
+        // `marked` wraps images in <p>; the img's height: 100% needs it sized too.
         p {
             height: 100%;
             margin: 0;
@@ -733,21 +711,14 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         }
     }
 
-    // Inline emphasis stronger than plain **bold** — for the one or two
-    // phrases per page that genuinely need to jump out of running prose
-    // (a thesis statement, a pivotal phrase). Reach for this sparingly;
-    // most emphasis should stay as markdown **bold**.
+    // Accent-colored emphasis for the rare phrase that must stand out:
     //   Some prose <span class="hl">a phrase that matters</span> more prose.
     :global(.hl) {
         color: var(--accent);
         font-weight: 700;
     }
 
-    // A collapsible aside — content a reader can open on demand instead of
-    // the page carrying it open for everyone (a per-item deep-dive, a long
-    // aside). Native <details>/<summary>, styled as a bordered card with a
-    // rotating +/- marker; marked content inside still needs the usual
-    // blank-line spacing to parse as markdown.
+    // Collapsible card (native <details>); markdown inside needs blank lines:
     //   <details class="details">
     //   <summary class="details-summary">Label</summary>
     //

@@ -1,8 +1,3 @@
-// Each piece is a design-token color at full opacity — deeper shades
-// than the token scale's lightest steps, since at 100% opacity those
-// (amber, tertiary-400, primary-400) read as too bright/pale against the
-// dark page. --primary-700 #724A92, --tertiary-700 #1E3557, amber mixed
-// down toward a deep gold, --tertiary-500 #3F6FAF, --secondary-500 #3F4162.
 .wrap {
     --surface: rgba(255, 255, 255, 0.12);
     --piece-1: var(--primary-700);
@@ -15,10 +10,6 @@
     margin-block: 20px;
 }
 
-// No outer mat/card anymore — the board's own outer edge is rounded
-// directly (overflow: hidden clips the jigsaw pieces' sharp SVG corners
-// to it), so the board fills exactly the space the old dark card used to
-// occupy instead of sitting inset inside it.
 .svg {
     display: block;
     width: 100%;
@@ -27,68 +18,45 @@
     overflow: hidden;
 }
 
-// Scale (not just lift) reads as the piece coming toward the viewer.
-// `transform-box: fill-box` + `transform-origin: center` makes the scale
-// originate from the piece's own center rather than the SVG's (0,0)
-// corner — the default for SVG elements, and not what "grows toward you"
-// needs. `z-index` lifts the hovered piece above its neighbors so the
-// scaled-up edges/knob aren't clipped underneath an adjacent piece.
+// Every state uses the same translate–scale–translate shape around the piece's
+// pivot (--ox/--oy, set in JS), so the browser animates each part smoothly.
 .piece {
-    // 0.7s must match FLIP_MS in JigsawTable.jsx — the front/back text
-    // swap is timed off this duration, landing at the halfway point where
-    // the mirror scale crosses zero and the piece is edge-on.
+    // 0.7s must match FLIP_MS in JigsawTable.jsx.
     transition: transform 0.7s ease-in-out, filter 0.25s ease-out;
-    transform-box: fill-box;
-    transform-origin: center;
+    transform: translate(var(--ox), var(--oy)) scale(1, 1)
+        translate(calc(var(--ox) * -1), calc(var(--oy) * -1));
     cursor: pointer;
 
     &:not(.active):hover {
-        transform: scale(1.07) translateY(-8px);
+        transform: translate(var(--ox), calc(var(--oy) - 8px)) scale(1.07, 1.07)
+            translate(calc(var(--ox) * -1), calc(var(--oy) * -1));
         filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.45));
-        z-index: 2;
     }
 
     &:focus-visible {
-        outline: 2px solid var(--accent, #fff);
+        outline: 2px solid var(--accent);
         outline-offset: 4px;
     }
 }
 
-// Click-to-open state: scale up, move to the board's center (--dx/--dy,
-// computed per-piece in JS from that piece's own centroid), and mirror
-// vertically (negative Y scale) — the literal "flip over the x-axis" the
-// piece animates through on its way to showing the back face.
+// Moves the pivot to the board center; negative X scale = a left-right flip.
 .piece.active {
-    transform: translate(var(--dx), var(--dy)) scale(var(--scale), calc(var(--scale) * -1));
+    transform: translate(calc(var(--ox) + var(--dx)), calc(var(--oy) + var(--dy)))
+        scale(calc(var(--scale) * -1), var(--scale))
+        translate(calc(var(--ox) * -1), calc(var(--oy) * -1));
     filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55));
-    z-index: 5;
-}
-
-// The back face's text lives inside the already-mirrored .active piece,
-// so it gets its own scaleY(-1) to cancel that mirror back to upright.
-// Its transform-origin is this text block's own bbox center, which by
-// construction (see bodyFirstDy in JigsawTable.jsx) sits at the same
-// point the parent piece mirrors around — so the two cancel cleanly,
-// including multi-line stacking order, instead of just looking "flipped
-// twice" but out of place.
-.backFace {
-    transform-box: fill-box;
-    transform-origin: center;
-    transform: scaleY(-1);
 }
 
 @media (prefers-reduced-motion: reduce) {
     .piece {
         transition: none;
+    }
 
-        &:not(.active):hover {
-            transform: none;
-        }
+    .piece:not(.active):hover {
+        transform: none;
     }
 }
 
-// Inter is already the site's global base font (src/styles/index.scss) —
-// no need to redeclare font-family here.
 .pieceNum {
     font-weight: 800;
     font-size: 72px;
@@ -101,8 +69,14 @@
 
 .pieceBody {
     font-weight: 500;
-    font-size: 26px;
-    fill-opacity: 0.92;
+    font-size: 22px;
+}
+
+.pieceLabel {
+    font-weight: 800;
+    fill-opacity: 0.65;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .srOnly {
