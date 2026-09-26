@@ -90,6 +90,18 @@ body {
   background-attachment: fixed, fixed;
 }
 
+// Sitewide default so keyboard focus reads as part of the violet/glass
+// language instead of the browser's default blue ring. A handful of
+// components (Roster's circular bubbles, ProteinLibrary's clipped
+// LiquidGlass cards) already define their own tighter :focus-visible rule
+// where this default's outline-offset would get cut off or misshapen —
+// those take precedence via normal CSS specificity, this just covers
+// everywhere else.
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
