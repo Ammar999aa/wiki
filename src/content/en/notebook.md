@@ -80,12 +80,15 @@ The following morning, subcultures were prepared in 25 mL of fresh medium. The i
 
 </div>
 
-|  |  |  |  |  |  |
-|:--:|----|----|----|----|----|
+<div class="table-wrap">
+
 | **Organism** | **Medium** | **Temperature** | **Generation time** | **Target OD600 (mid-log)** | **Approx. inoculum (in 25 mL)** |
+|:--:|----|----|----|----|----|
 | **B. subtilis** | **LB broth** | **37 °C** | **~30 min** | **0.4 – 0.6** | **~50 µL** |
 | **S. cerevisiae** | **YPD broth** | **30 °C** | **~90 min** | **0.4 – 0.6** | **~250 µL** |
 | **P. pastoris** | **YPD broth** | **30 °C** | **~120 min** | **0.6 – 1.0** | **~400 µL** |
+
+</div>
 
 Generation times based on Harwood (1992) for *B. subtilis*; Sherman (2002) for *S. cerevisiae*; and Invitrogen/Thermo Fisher Scientific (2010) for *P. pastoris*.
 
@@ -144,6 +147,8 @@ The observed mild reduction in colony-forming units across all three organisms a
 
 </div>
 
+<div class="table-wrap">
+
 <table>
 <tbody>
 <tr>
@@ -176,6 +181,8 @@ The observed mild reduction in colony-forming units across all three organisms a
 </tr>
 </tbody>
 </table>
+
+</div>
 
 
 The most sensitive organism in this study is expected to be *S. cerevisiae*, for which X-ray doses of 40 Gy have been reported to reduce colony-forming ability by 50–90% depending on the repair capacity of the strain.<sup>1</sup> This is consistent with the slight reduction observed in *S. cerevisiae* plates at 40 Gy in the present experiment. *P. pastoris* is expected to show similar sensitivity given its shared eukaryotic DNA repair machinery and comparable genome ploidy.
@@ -426,15 +433,18 @@ Day 2
 
 </div>
 
-|        |                   |         |
-|:-------|-------------------|---------|
+<div class="table-wrap">
+
 | Sample | Plasmid           | OD600nm |
+|:-------|-------------------|---------|
 | #1    | HO-Poly-KanMX4-HO | 1.176   |
 | #2    | pYES2-HTH         | 1.269   |
 | #3    | pHT-ads           | 1.039   |
 | #4    | pBS4S             | 1.846   |
 | #5    | pBS2E             | 1.507   |
 | #6    | pBS1C             | 1.834   |
+
+</div>
 
 5.  Dilute cells to about OD600nm = 0.1 (50-80 minutes)
 
@@ -478,6 +488,8 @@ Day 2
 
 11. Resuspended the cell pellet in 3 ml of sterile 1x TE/LiAc solution (10 mM Tris-HCl, 1 mM EDTA + 100 mM LiAc):
 
+<div class="table-wrap">
+
 <table>
 <colgroup>
 <col style="width: 100%" />
@@ -497,6 +509,10 @@ Day 2
 </tbody>
 </table>
 
+</div>
+
+
+<div class="table-wrap">
 
 <table>
 <colgroup>
@@ -517,6 +533,8 @@ Day 2
 </tbody>
 </table>
 
+</div>
+
 12. Divided the sample into 15 cryovials, filling each vial with 200 ul of competent cells
 
 13. Put the cryovials into a styrofoam rack and slowly froze in an -80C freezer
@@ -529,14 +547,17 @@ Day 2
 
 </div>
 
-|                     |                 |
-|:--------------------|-----------------|
+<div class="table-wrap">
+
 | **Component**       | **Volume**      |
+|:--------------------|-----------------|
 | DNA                 | 6.0 µL (1.6 ug) |
 | 10× CutSmart Buffer | 5.0 µL          |
 | NdeI                | 1.1 µL          |
 | Nuclease-free water | 38.0 µL         |
 | **Total**           | **50.0 µL**     |
+
+</div>
 
 1.  Set up restriction digestion at 37 C for 1.5 h
 
@@ -591,6 +612,8 @@ Day 2
 Mix DNA and salmon sperm ssDNA first → add the competent cells → add the rest of the components
 
 
+<div class="table-wrap">
+
 <table>
 <colgroup>
 <col style="width: 100%" />
@@ -608,6 +631,8 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 </tr>
 </tbody>
 </table>
+
+</div>
 
 4.  Incubate the transformation reactions for 30 min at 30°C, 200 rpm
 
@@ -688,6 +713,8 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 4.  Prepare 1M sorbitol
 
+<div class="table-wrap">
+
 <table>
 <colgroup>
 <col style="width: 100%" />
@@ -705,6 +732,8 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 </tr>
 </tbody>
 </table>
+
+</div>
 
 ### Part II: Plasmid Amplification
 
@@ -796,15 +825,18 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 </div>
 
-|                    |         |         |
-|--------------------|---------|---------|
+<div class="table-wrap">
+
 | Sample             | Plasmid | OD600nm |
+|--------------------|---------|---------|
 | #1                | IPD1    | 0.824   |
 | #2 (for miniprep) | IPD1    | 0.670   |
 | #3                | IPD2    | 0.826   |
 | #4 (for miniprep) | IPD2    | 0.922   |
 | #5                | IPD3    | 0.759   |
 | #6 (for miniprep) | IPD3    | 0.831   |
+
+</div>
 
 4.  Dilute cells to about OD600nm = 0.1
 
@@ -814,12 +846,15 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 </div>
 
-|          |            |                 |                     |              |
-|----------|------------|-----------------|---------------------|--------------|
+<div class="table-wrap">
+
 | Sample   | Initial OD | Culture to take | Fresh medium to add | Final volume |
+|----------|------------|-----------------|---------------------|--------------|
 | 1 (IPD1) | 0.824      | 0.728 mL        | 5.272 mL            | 6.0 mL       |
 | 2 (IPD2) | 0.826      | 0.726 mL        | 5.274 mL            | 6.0 mL       |
 | 3 (IPD3) | 0.759      | 0.790 mL        | 5.21 mL             | 6.0 mL       |
+
+</div>
 
 5.  Grow cells to OD600nm = 0.6 (Took 1.5 hr)
 
@@ -841,14 +876,17 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 </div>
 
-|                     |                 |
-|---------------------|-----------------|
+<div class="table-wrap">
+
 | **Component**       | **Volume**      |
+|---------------------|-----------------|
 | DNA                 | 6.0 µL (1.6 ug) |
 | 10× CutSmart Buffer | 5.0 µL          |
 | SacI                | 1.1 µL          |
 | Nuclease-free water | 38.0 µL         |
 | **Total**           | **50.0 µL**     |
+
+</div>
 
 2.  Set up restriction digestion at 37 C for 30 min
 
@@ -912,9 +950,10 @@ Transformation by electroporation
 
 </div>
 
-|           |            |               |                    |
-|:----------|------------|---------------|--------------------|
+<div class="table-wrap">
+
 | Sample ID | Identifier | Concentration | Total DNA in 50 µL |
+|:----------|------------|---------------|--------------------|
 | IPD1      | #1        | 68.7 ng/µL    | 3.44 µg (- 2 µg)   |
 | IPD1      | #2        | 22.6 ng/µL    | 1.13 µg            |
 | IPD1      | #3        | 24.2 ng/µL    | 1.21 µg            |
@@ -930,6 +969,8 @@ Transformation by electroporation
 | IPD3      | #3        | 32.5 ng/µL    | 1.63 µg            |
 | IPD3      | #4        | 103.3 ng/µL   | 5.16 µg (- 2 µg)   |
 | IPD3      | #5        | 90.2 ng/µL    | 4.51 µg (- 3 µg)   |
+
+</div>
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig1.avif" alt="Figure 1. Agarose gel, miniprep samples #1" style="width:84.3%" loading="lazy" />
 
@@ -1146,14 +1187,17 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
 Prepare five bacterial suspensions with different densities in a total volume of 500 µL each:
 
-|              |                |                 |                  |
-|:------------:|----------------|-----------------|------------------|
+<div class="table-wrap">
+
 | **Dilution** | **Media (µL)** | **Sample (µL)** | **Target OD₆₀₀** |
+|:------------:|----------------|-----------------|------------------|
 |      1       | 400            | 100             | 0.2              |
 |      2       | 300            | 200             | 0.4              |
 |      3       | 200            | 300             | 0.6              |
 |      4       | 100            | 400             | 0.8              |
 |  Undiluted   | 0              | 500             | ~1.0             |
+
+</div>
 
 Measure OD₆₀₀ of each dilution to confirm actual densities.
 
@@ -1256,12 +1300,15 @@ The images embedded at this point in the source document do not appear to match 
 
 ### Protocol to Prepare the Medium for Bacillus and Yeast
 
-|  |  |  |
-|----|----|----|
+<div class="table-wrap">
+
 | **Type** | **Purpose** | **Contains its own carbon?** |
+|----|----|----|
 | Rich (pre-culture) | Grow the inoculum quickly and healthily | Yes (peptides) |
 | Defined base, no sugar (used for the experiment) | What the sugar gets added to | No |
 | Sugar stock | Carbon source that is varied | — |
+
+</div>
 
 ### 1. A few rules on sterilizing
 
@@ -1283,17 +1330,23 @@ These apply throughout, so it's worth having them in mind before starting:
 
 **LB Miller, for B. subtilis (Invitrogen Luria Broth Base, Cat. 12795-027):**
 
-|                                |                     |               |
-|--------------------------------|---------------------|---------------|
+<div class="table-wrap">
+
 | **Preparation**                | **Amount (100 mL)** | **Sterilize** |
+|--------------------------------|---------------------|---------------|
 | Dissolve powder, adjust pH 7.0 | 2.5 g (at 25 g/L)* | Autoclave     |
+
+</div>
 
 **YPD, for S. cerevisiae and P. pastoris (Sigma Y1375, the bottle says 50 g/L):**
 
-|                                 |                     |               |
-|---------------------------------|---------------------|---------------|
+<div class="table-wrap">
+
 | **Preparation**                 | **Amount (100 mL)** | **Sterilize** |
+|---------------------------------|---------------------|---------------|
 | Dissolve powder, adjust pH ~6.5 | 5 g (at 50 g/L)     | Autoclave     |
+
+</div>
 
 ### 3. Defined medium for B. subtilis: Spizizen 2× (no sugar)
 
@@ -1301,13 +1354,16 @@ This is the Spizizen minimal medium from Anagnostopoulos & Spizizen (J. Bacterio
 
 **The 2× base is salts only and goes in the autoclave. For 300 mL of the 2× stock:**
 
-|  |  |
-|----|----|
+<div class="table-wrap">
+
 | **Component** | **Amount (300 mL of 2×)** |
+|----|----|
 | Ammonium sulfate [(NH₄)₂SO₄] | 1.2 g |
 | Dipotassium phosphate / potassium phosphate dibasic [K₂HPO₄] | 8.4 g |
 | Monopotassium phosphate / potassium phosphate monobasic [KH₂PO₄] | 3.6 g |
 | Trisodium citrate dihydrate [Na₃C₆H₅O₇·2H₂O] | 0.6 g |
+
+</div>
 
 *Dissolve the salts in water, take the pH to about 7.0, bring it up to 300 mL and autoclave. The phosphates end up buffering the medium near pH 7, which is handy.*
 
@@ -1323,25 +1379,31 @@ This is the Spizizen minimal medium from Anagnostopoulos & Spizizen (J. Bacterio
 
 **Supplement stock preparation:**
 
-|  |  |  |  |  |
-|----|----|----|----|----|
+<div class="table-wrap">
+
 | **Supplement** | **Stock** | **Preparation** | **Sterilize** | **Add to medium** |
+|----|----|----|----|----|
 | Tryptophan | 5 mg/mL | 50 mg in 10 mL water | Filter (store dark, 4 °C) | 10 mL/L → 50 mg/L |
 | Magnesium sulfate heptahydrate [MgSO₄·7H₂O] | 100× (20 g/L) | 0.2 g in 10 mL water | Filter | 10 mL/L → 0.2 g/L |
 | Trace element solution | 100× | See composition below | Filter (store 4 °C) | 10 mL/L |
 | Fe-citrate solution | 100× | 30 mg FeSO₄·7H₂O (iron(II) sulfate heptahydrate) + 0.225 g trisodium citrate, bring to 225 mL | Filter (make fresh, store dark) | 10 mL/L |
 | Thiamine hydrochloride (vitamin B1) | 1 mg/mL | 10 mg in 10 mL water | Filter (store dark, 4 °C) | 1 mL/L → 1 mg/L (optional) |
 
+</div>
+
 **Trace element solution (100×), scaled to 250 mL from the SubtiWiki per-liter Spizizen recipe:**
 
-|  |  |
-|----|----|
+<div class="table-wrap">
+
 | **Component** | **Amount (per 250 mL of 100× stock)** |
+|----|----|
 | Calcium chloride [CaCl₂] (or CaCl₂·2H₂O, 0.184 g) | 0.1375 g |
 | Manganese(II) chloride tetrahydrate [MnCl₂·4H₂O] | 0.025 g |
 | Zinc sulfate heptahydrate [ZnSO₄·7H₂O] (substituted for ZnCl₂) | 0.090 g |
 | Copper(II) sulfate pentahydrate [CuSO₄·5H₂O] (substituted for CuCl₂) | 0.0121 g (≈12.1 mg) |
 | Cobalt(II) chloride hexahydrate [CoCl₂·6H₂O] | 0.015 g |
+
+</div>
 
 *Dissolve everything in deionized water, filter (0.22 µm), and keep it at 4 °C in the dark. You add 10 mL/L to the final medium, and 250 mL will last for about 25 L.*
 
@@ -1351,26 +1413,35 @@ We're using Invitrogen Yeast Nitrogen Base (the Pichia-tested one), without amin
 
 **Concentrated stock (for 25 mL):**
 
-|  |  |
-|----|----|
+<div class="table-wrap">
+
 | **Preparation** | **Amount** |
+|----|----|
 | Dissolve YNB (warm gently ~45 °C), FILTER 0.22 µm (do not autoclave) | 3.35 g in 25 mL (= 134 g/L) |
+
+</div>
 
 Store at 4 °C and use within ~2 months. A single 134 g/L stock serves both yeasts, changing the dilution:
 
-|               |               |                           |
-|---------------|---------------|---------------------------|
+<div class="table-wrap">
+
 | **Organism**  | **Final YNB** | **Dilution from 134 g/L** |
+|---------------|---------------|---------------------------|
 | S. cerevisiae | 6.7 g/L       | 1:20                      |
 | P. pastoris   | 13.4 g/L      | 1:10                      |
 
+</div>
+
 ### 5. Sugar stocks (glucose and sucrose)
 
-|           |              |                         |                          |
-|-----------|--------------|-------------------------|--------------------------|
+<div class="table-wrap">
+
 | **Sugar** | **Prepared** | **Actual final volume** | **Actual concentration** |
+|-----------|--------------|-------------------------|--------------------------|
 | Glucose   | 25 g         | ~61 mL                  | ≈ 410 g/L                |
 | Sucrose   | 12.5 g       | ~34 mL                  | ≈ 368 g/L                |
+
+</div>
 
 **Worth remembering for later, when you measure sugar: sucrose is a non-reducing sugar, so the DNS assay won't pick it up unless you hydrolyze it first (with acid or invertase).**
 
@@ -1380,25 +1451,31 @@ For each aliquot of base, add enough sugar stock to hit the concentration you wa
 
 **Glucose stock (≈ 410 g/L), volume to add per 25 mL of final medium:**
 
-|                          |                               |
-|--------------------------|-------------------------------|
+<div class="table-wrap">
+
 | **Target concentration** | **Glucose stock (for 25 mL)** |
+|--------------------------|-------------------------------|
 | 1 g/L                    | 0.061 mL (61 µL)              |
 | 2.5 g/L                  | 0.152 mL (152 µL)             |
 | 5 g/L                    | 0.305 mL (305 µL)             |
 | 10 g/L                   | 0.610 mL (610 µL)             |
 | 20 g/L                   | 1.220 mL                      |
 
+</div>
+
 **Sucrose stock (≈ 368 g/L), volume to add per 25 mL of final medium:**
 
-|                          |                               |
-|--------------------------|-------------------------------|
+<div class="table-wrap">
+
 | **Target concentration** | **Sucrose stock (for 25 mL)** |
+|--------------------------|-------------------------------|
 | 1 g/L                    | 0.068 mL (68 µL)              |
 | 2.5 g/L                  | 0.170 mL (170 µL)             |
 | 5 g/L                    | 0.340 mL (340 µL)             |
 | 10 g/L                   | 0.679 mL (679 µL)             |
 | 20 g/L                   | 1.359 mL                      |
+
+</div>
 
 ### 7. A ready-to-go 1.5× base (so you only add sugar)
 
@@ -1406,9 +1483,10 @@ To save time on the day of the experiment, it's worth making a complete 1.5× ba
 
 **Spizizen 1.5× complete base, for 50 mL (enough for 75 mL of final medium):**
 
-|                                  |                    |
-|----------------------------------|--------------------|
+<div class="table-wrap">
+
 | **Component (from your stocks)** | **Volume**         |
+|----------------------------------|--------------------|
 | 2× Spizizen salt base            | 37.5 mL            |
 | MgSO₄ (100× stock)               | 0.75 mL            |
 | Trace element solution (100×)    | 0.75 mL            |
@@ -1417,29 +1495,37 @@ To save time on the day of the experiment, it's worth making a complete 1.5× ba
 | Thiamine hydrochloride (1 mg/mL) | 0.075 mL           |
 | Sterile water                    | to 50 mL (~9.4 mL) |
 
+</div>
+
 *Put it together sterile and at room temperature, and keep it at 4 °C in the dark. Try to use it within a week or two. Before you rely on it, leave an aliquot in the incubator for a day or two to check nothing grows in it.*
 
 **YNB 1.5× complete base, for 50 mL (enough for 75 mL of final medium):**
 
-|                                  |                   |                 |
-|----------------------------------|-------------------|-----------------|
+<div class="table-wrap">
+
 | **Component**                    | **S. cerevisiae** | **P. pastoris** |
+|----------------------------------|-------------------|-----------------|
 | YNB (134 g/L stock)              | 3.75 mL           | 7.5 mL          |
 | Amino acids (if strain requires) | as needed         | His if GS115    |
 | Sterile water                    | to 50 mL          | to 50 mL        |
+
+</div>
 
 *Take it to about pH 5.5–6.0, and store and check it the same way.*
 
 **For the glucose run, here's how it comes together per 5 mL of final medium (glucose stock ≈ 410 g/L):**
 
-|                          |               |                   |                   |
-|--------------------------|---------------|-------------------|-------------------|
+<div class="table-wrap">
+
 | **Target concentration** | **1.5× base** | **Glucose stock** | **Sterile water** |
+|--------------------------|---------------|-------------------|-------------------|
 | 1 g/L                    | 3.33 mL       | 12 µL             | 1.65 mL           |
 | 2.5 g/L                  | 3.33 mL       | 30 µL             | 1.63 mL           |
 | 5 g/L                    | 3.33 mL       | 61 µL             | 1.60 mL           |
 | 10 g/L                   | 3.33 mL       | 122 µL            | 1.55 mL           |
 | 20 g/L                   | 3.33 mL       | 244 µL            | 1.42 mL           |
+
+</div>
 
 *The base is always the final volume over 1.5 (that two-thirds again, and it doesn't change), and the water is just whatever's left after the base and sugar. Mix it sterile and cold, then fill the wells. 5 mL gets you about 25 wells at 200 µL, or 8–9 at 500 µL, so scale up if a condition needs more than that.*
 
@@ -1585,14 +1671,17 @@ This experiment is again numbered "11" in the source notebook — an earlier, un
 
 </div>
 
-|  |  |
-|----|----|
+<div class="table-wrap">
+
 | **Component** | **Volume** |
+|----|----|
 | DNA | 6.0 µL (1.6 ug) |
 | 10× CutSmart Buffer | 5.0 µL |
 | NdeI | 1.1 µL |
 | Nuclease-free water | 38.0 µL |
 | **Total** | **50.0 µL** |
+
+</div>
 
 1.  Set up restriction digestion at 37 C for 1.5 h
 
@@ -1717,6 +1806,8 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 12. Using a sterile spreader, plate the entire transformation on Sc-Ura agar plates
 
+<div class="table-wrap">
+
 <table>
 <colgroup>
 <col style="width: 100%" />
@@ -1738,6 +1829,8 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 </tr>
 </tbody>
 </table>
+
+</div>
 
 13. Incubate the plates for 3-4 days at 30°C
 
@@ -1840,9 +1933,10 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 ### Key Parameters
 
-|  |  |
-|----|----|
+<div class="table-wrap">
+
 | **Cell types** | WT, M1, M2, M3 (separate cultures, 7 mL each) |
+|----|----|
 | **Overnight cultures dilution** | 1:10 into fresh YPD |
 | **Target late log density** | OD600 ≈ 0.8-1.0 |
 | **Tube type for irradiation** | 2 mL sterile Eppendorf tubes |
@@ -1852,6 +1946,8 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 | **Post-irradiation recovery** | 15 minutes at 30°C |
 | **Number of irradiation tubes** | 20 total (4 cell types × 5 treatments) |
 | **FUN-1 readout** | 96-well plate reader (100 µL per well, triplicates = 300 µL per sample) |
+
+</div>
 
 ### Phase 1: Culture Preparation (Day 1)
 
@@ -1882,6 +1978,8 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 > **Materials needed:** Overnight cultures (OD600 ≈ 0.8), sterile YPD broth, 4 × 100 mL Erlenmeyer flasks, spectrophotometer for OD measurement
 
 2.  1:10 dilution calculation:
+
+<div class="table-wrap">
 
 <table style="width:95%;">
 <colgroup>
@@ -1917,6 +2015,8 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 </tr>
 </tbody>
 </table>
+
+</div>
 
 3.  Measure OD600 of each overnight culture (should be OD 0.8-1.0)
 
@@ -1970,13 +2070,16 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 5.  Divide Cells for Downstream Analysis. IMPORTANT: Perform all sampling within 20 minutes to maintain consistency
 
-|  |  |  |  |
-|----|----|----|----|
+<div class="table-wrap">
+
 | **Analysis Type** | **Volume (µL)** | **Cells (approx.)** | **Storage/Use** |
+|----|----|----|----|
 | **Plating (dilution series)** | 20 | 1.6 × 10^5 | Use immediately |
 | **FUN-1 Viability (96-well plate)** | 100 | 2.4 × 10^6 | Use immediately |
 | **RNA Extraction** | 500 | 4.0 × 10^6 | Freeze at -80°C in RNA lysis buffer |
 | **Protein Extraction** | 500 | 2.8 × 10^6 | Freeze at -80°C or use immediately |
+
+</div>
 
 6.  Prepare Dilution Series (Per Sample)
 
@@ -1984,14 +2087,17 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 8.  You have 20 µL per treatment. Prepare serial dilutions for each sample:
 
-|               |                      |                |                           |
-|---------------|----------------------|----------------|---------------------------|
+<div class="table-wrap">
+
 | **Dilution**  | **Cells added (µL)** | **Media (µL)** | **Final dilution factor** |
+|---------------|----------------------|----------------|---------------------------|
 | **Undiluted** |                      | 0              | **10^0**                  |
 | **10^-1**     | 100 from undiluted   |                | **10^-1**                 |
 | **10^-2**     | 100 from 10^-1       |                | **10^-2**                 |
 | **10^-3**     | 100 from 10^-2       |                | **10^-3**                 |
 | **10^-4**     | 100 from 10^-3       |                | **10^-4**                 |
+
+</div>
 
 9.  Plate 100 µL from each dilution on YPD agar plates
 
@@ -2067,6 +2173,8 @@ For **25 mL staining buffer:**
 
 5.  Prepare FUN-1 Master Mix (for all 20 samples + 5 extra). Master Mix Calculation:
 
+<div class="table-wrap">
+
 <table style="width:95%;">
 <colgroup>
 <col style="width: 47%" />
@@ -2095,6 +2203,8 @@ For **25 mL staining buffer:**
 </tr>
 </tbody>
 </table>
+
+</div>
 
 6.  Remove FUN-1 stock from -20°C, warm to room temperature (~5 min)
 
@@ -2136,11 +2246,14 @@ Stain samples at 30 min in dark at 30°C with agitation. Mixing every 5-10 minut
 
 Settings:
 
-|                    |                 |               |
-|--------------------|-----------------|---------------|
+<div class="table-wrap">
+
 | Measurement        | Excitation (nm) | Emission (nm) |
+|--------------------|-----------------|---------------|
 | DEAD cells (green) | 485             | 530           |
 | LIVE cells (red)   | 485             | 620           |
+
+</div>
 
 > 34\. Set to fluorescence mode (dual-wavelength)
 >
@@ -2172,12 +2285,15 @@ Settings:
 
 **For each of 20 irradiation tubes (1.2 mL at OD 0.8 ≈ 9.6 × 10^6 cells):**
 
-|  |  |  |  |
-|----|----|----|----|
+<div class="table-wrap">
+
 | **Experiment** | **Volume (µL)** | **Cells** | **Step reference** |
+|----|----|----|----|
 | **Plating (dilution series)** | **20** | **1.6 × 10^5** | **Phase 6** |
 | **FUN-1 (96-well, 100 µL/well × 3 replicates)** | **300** | **2.4 × 10^6** | **Phase 7-8** |
 | **RNA extraction** | **500** | **4.0 × 10^6** | **Phase 9.1** |
 | **Protein extraction** | **350** | **2.8 × 10^6** | **Phase 9.2** |
 | **TOTAL USED** | **1170** | **9.6 × 10^6** | **—** |
 |  |  |  |  |
+
+</div>
