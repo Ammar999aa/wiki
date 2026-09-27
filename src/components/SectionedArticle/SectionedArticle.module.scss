@@ -736,8 +736,11 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
             padding-bottom: 14px;
         }
 
+        // Same open-state glyph as Model's own .details/.summary
+        // (src/pages/Model/Model.module.scss) — one collapsible-card
+        // affordance, used in two places, should read identically.
         &[open] :global(.details-summary)::before {
-            content: "\2212";
+            content: "\2013";
         }
     }
 
