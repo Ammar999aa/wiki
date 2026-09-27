@@ -1,5 +1,10 @@
 import fs from "fs";
 import { marked } from "marked";
+import markedKatex from "marked-katex-extension";
+
+// throwOnError: false — a typo'd formula should degrade to visible raw
+// LaTeX in the built page, not fail the whole site build.
+marked.use(markedKatex({ throwOnError: false }));
 
 export default function markdownSections() {
     return {

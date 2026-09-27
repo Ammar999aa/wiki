@@ -26,6 +26,7 @@
 # Dry Lab
 
     Modeling
+    Bioreactor Modeling
     Protein Mining
 
 # Beyond the Lab

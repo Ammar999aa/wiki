@@ -43,6 +43,7 @@ const Hardware = lazyWithPreload(() => import("./pages/Hardware/Hardware"));
 const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
 const Model = lazyWithPreload(() => import("./pages/Model/Model"));
+const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this
@@ -90,6 +91,12 @@ const Pages = [
     name: "Dry Lab",
     folder: [
       { name: "Modeling", title: "Model", path: "/modeling", component: Model },
+      {
+        name: "Bioreactor Modeling",
+        title: "Bioreactor Modeling",
+        path: "/bioreactor-modeling",
+        component: BioreactorModeling,
+      },
       { name: "Protein Mining", title: "Protein Mining", path: "/protein-mining", component: Stub },
     ],
   },
