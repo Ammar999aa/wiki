@@ -33,9 +33,11 @@
         filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.45));
     }
 
-    &:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 4px;
+    // Chrome doesn't match :focus-visible on this SVG <g> (it's not a native
+    // interactive element) — it draws its default ring on plain :focus
+    // instead, so that's what has to be suppressed here.
+    &:focus {
+        outline: none;
     }
 }
 
