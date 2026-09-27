@@ -1,13 +1,17 @@
 ## Overview: Building Research for the Future
 
 <div class="callout accent">
+
 SHIHAB began with a simple question: What are astronauts missing?
+
 </div>
 
 At first, this question felt distant from the research we encounter in our everyday lives. But as we explored the challenges of human spaceflight, we realized that the future we were imagining is no longer science fiction. Space agencies around the world are preparing for missions that will take humans farther from Earth [[1]](#ref-1) and for longer periods than ever before. Behind these missions are not only explorers, but scientists working to expand our understanding of life: from how the human body adapts to space to how biological systems respond to environments beyond Earth [[2]](#ref-2).
 
 <div class="callout warn">
+
 As scientists ourselves, this changed the way we saw the problem. If astronauts are helping us push the boundaries of research, how can research help them?
+
 </div>
 
 <span class="hl">This question became the foundation of SHIHAB and of our Integrated Human Practices (IHP).</span> Developing a system for on-demand biomanufacturing in space requires much more than engineering microorganisms in the laboratory. It requires understanding the people who may use it, the environments in which it must operate, the regulations that could govern it, and the broader consequences of introducing such a technology.
@@ -31,8 +35,11 @@ Our first questions soon led to many others.
 Our journey began before SHIHAB had a name or a defined solution. As a team with little previous experience in space research, we started from curiosity rather than certainty. Instead of assuming which challenges would be most important for future human space exploration, we began by brainstorming as a team and opening the same question to our KAUST community.
 
 <div class="callout accent">
+
 <p class="callout-label">The question we put to KAUST</p>
+
 When you think about living in space, what is the biggest challenge humans will face?
+
 </div>
 
 <div class="two-col-images">
@@ -96,7 +103,7 @@ Yet radiation protection remains complex. NASA continues to investigate knowledg
 
 Current spaceflight medical systems rely on carefully selected pharmaceutical formularies designed around anticipated medical events, while considering constraints such as storage, mass, volume, expiration dates, and opportunities for resupply [[14]](#ref-14). This approach is feasible in low-Earth orbit, where resupply and emergency return remain possible, but these possibilities become increasingly limited during long-duration exploration missions.
 
-Shelf life emerged as a particularly important challenge. Future exploration missions may last between one and five years, while many medications have expiration periods shorter than the mission itself. In addition, the long-term physical and chemical stability of many pharmaceuticals under the spaceflight environment remains insufficiently characterized. Factors such as radiation, altered atmospheric conditions, temperature and humidity, and prolonged storage could affect pharmaceutical quality. NASA therefore continues to investigate the risk that medications could lose active ingredients or accumulate degradation products during long-duration missions [[15]](#ref-15). Distance from Earth introduces an additional constraint: medications that are consumed, expire, or degrade may not be easily replaced.
+Shelf life emerged as a particularly important challenge. Future exploration missions may last between one and five years, while many medications have expiration periods shorter than the mission itself. In addition, the long-term physical and chemical stability of many pharmaceuticals under the spaceflight environment remains insufficiently characterized. Factors such as radiation, altered atmospheric conditions, temperature and humidity, and prolonged storage could affect pharmaceutical quality. NASA therefore continues to investigate the risk that medications could lose active ingredients or accumulate degradation products during long-duration missions [[15]](#ref-15) [[17]](#ref-17) [[18]](#ref-18). Distance from Earth introduces an additional constraint: medications that are consumed, expire, or degrade may not be easily replaced.
 
 These limitations have motivated research into alternatives to carrying every pharmaceutical from Earth. Among the approaches currently being investigated are improved storage and packaging, drug repurposing, and on-demand pharmaceutical production in space [[16]](#ref-16).
 
@@ -125,7 +132,9 @@ As we explored these different challenges, oxygen initially caught our attention
 Looking across the solutions we had encountered, we noticed a recurring element:
 
 <div class="callout warn">
+
 Microorganisms could serve as biological factories for producing valuable resources beyond Earth.
+
 </div>
 
 This shifted our perspective. Before deciding what we wanted microorganisms to produce, perhaps we first needed to understand how to make them reliable producers under the challenging conditions associated with space.
@@ -133,7 +142,9 @@ This shifted our perspective. Before deciding what we wanted microorganisms to p
 Our first direction therefore became the development of **more resilient microbial hosts**. We began exploring how microorganisms could be engineered to better tolerate space-associated stresses, particularly radiation and other environmental constraints that could compromise their growth and productivity. But a resilient microorganism is a platform, not yet a solution. This brought us back to an important question:
 
 <div class="callout accent">
+
 If we could engineer microorganisms capable of functioning under these conditions, what should they produce?
+
 </div>
 
 We returned to the challenges identified during our initial exploration and reconsidered where such a platform could have the greatest relevance. **Medicine** stood out. Unlike resources with established regenerative systems, access to therapeutics during long-duration missions remains constrained by factors such as shelf life, storage, mission duration, and limited opportunities for resupply. This gave our biological platform a purpose: rather than carrying every therapeutic that might be needed, **what if astronauts could carry the biological capacity to produce therapeutics on demand?**
