@@ -151,36 +151,88 @@ function backLines(item, maxChars) {
   return lines.map((line, li) => ({ ...line, dy: li === 0 ? 0 : BACK_LINE_HEIGHT + (line.gap ? BACK_SECTION_GAP : 0) }));
 }
 
+// The seam/path geometry above (PIECE_D, PIECE_RECT, NUM_POS, CENTER,
+// TITLE_MAX_CHARS, ...) is hand-built for exactly this many pieces — it
+// doesn't generalize to an arbitrary item count.
+const PIECE_COUNT = PIECE_D.length;
+
 export default function JigsawTable({ items }) {
+  const supported = items.length === PIECE_COUNT;
+  if (!supported && import.meta.env.DEV) {
+    console.error(
+      `JigsawTable's piece geometry is hardcoded for ${PIECE_COUNT} items, but received ${items.length}. ` +
+        "Falling back to a plain list — update PIECE_D/PIECE_RECT/NUM_POS/CENTER/TITLE_MAX_CHARS/TAB_OFFSET in JigsawTable.jsx for the new count.",
+    );
+  }
+
   const [hovered, setHovered] = useState(null);
   // `active` outlives `expanded` by one animation so the closing piece keeps
   // its markup; `showBack` swaps faces at the animation's midpoint.
   const [active, setActive] = useState(null);
   const [expanded, setExpanded] = useState(false);
   const [showBack, setShowBack] = useState(false);
-  const timers = useRef([]);
+  // Pending setTimeout/requestAnimationFrame cancellers, so a fresh click
+  // can cut off whatever an earlier one had queued.
+  const pending = useRef([]);
 
-  const clearTimers = () => {
-    timers.current.forEach(clearTimeout);
-    timers.current = [];
+  const clearPending = () => {
+    pending.current.forEach((cancel) => cancel());
+    pending.current = [];
   };
 
-  useEffect(() => clearTimers, []);
+  useEffect(() => clearPending, []);
 
-  const handleToggle = (i) => {
-    clearTimers();
-    if (active === i && expanded) {
-      setExpanded(false);
-      timers.current.push(
-        setTimeout(() => setShowBack(false), FLIP_MS / 2),
-        setTimeout(() => setActive(null), FLIP_MS)
-      );
-      return;
-    }
+  const after = (ms, fn) => {
+    const id = setTimeout(fn, ms);
+    pending.current.push(() => clearTimeout(id));
+  };
+
+  const afterPaint = (fn) => {
+    // Two rAFs, not one: the first just gets us to the frame where the
+    // *reorder* below has been committed; the callback queued inside it
+    // runs after that frame has actually painted.
+    const id = requestAnimationFrame(() => {
+      const id2 = requestAnimationFrame(fn);
+      pending.current.push(() => cancelAnimationFrame(id2));
+    });
+    pending.current.push(() => cancelAnimationFrame(id));
+  };
+
+  const openPiece = (i) => {
     setActive(i);
     setShowBack(false);
-    setExpanded(true);
-    timers.current.push(setTimeout(() => setShowBack(true), FLIP_MS / 2));
+    // `active` alone can move this piece to the end of the SVG's paint
+    // order (see `onTop`/`order` below — it's how the raised piece gets
+    // "on top" despite SVG ignoring z-index). If `expanded` also flips true
+    // in the same commit, the browser has to reorder the DOM node AND
+    // start the transform transition in one paint, and it renders that as
+    // an instant jump rather than an animation. Waiting for the reorder's
+    // own paint first gives the transition a real "before" frame to
+    // animate from.
+    afterPaint(() => {
+      setExpanded(true);
+      after(FLIP_MS / 2, () => setShowBack(true));
+    });
+  };
+
+  const handleToggle = (i) => {
+    clearPending();
+    if (active === i && expanded) {
+      setExpanded(false);
+      after(FLIP_MS / 2, () => setShowBack(false));
+      after(FLIP_MS, () => setActive(null));
+      return;
+    }
+    if (active !== null && expanded) {
+      // Another piece is already open — collapse it first so the two pieces
+      // never animate through each other, then open the new one once the
+      // old one has fully returned to rest.
+      setExpanded(false);
+      after(FLIP_MS / 2, () => setShowBack(false));
+      after(FLIP_MS, () => openPiece(i));
+      return;
+    }
+    openPiece(i);
   };
 
   const handleKeyDown = (i, e) => {
@@ -198,37 +250,39 @@ export default function JigsawTable({ items }) {
 
   return (
     <div className={styles.wrap}>
-      <svg className={styles.svg} viewBox={`0 0 ${W} ${H}`} role="group" aria-label="Stakeholder groups — select a piece for details">
-        {order.map((i) => {
-          const item = items[i];
-          const [nx, ny] = NUM_POS[i];
-          const [cx, cy] = CENTER[i];
-          const isActive = active === i;
-          return (
-            <g
-              key={item.title}
-              className={`${styles.piece} ${isActive && expanded ? styles.active : ""}`}
-              style={PIECE_STYLE[i]}
-              role="button"
-              tabIndex={0}
-              aria-expanded={isActive && expanded}
-              aria-label={item.title}
-              onClick={() => handleToggle(i)}
-              onKeyDown={(e) => handleKeyDown(i, e)}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
-            >
-              <path d={PIECE_D[i]} fill={`var(--piece-${i + 1})`} stroke="var(--surface)" strokeWidth="8" strokeLinejoin="round" />
-              {isActive && showBack ? (
-                <BackFace item={item} cx={cx} cy={cy} maxChars={BACK_MAX_CHARS[i]} />
-              ) : (
-                <FrontFace item={item} index={i} nx={nx} ny={ny} cx={cx} cy={cy} />
-              )}
-            </g>
-          );
-        })}
-      </svg>
-      <ul className={styles.srOnly}>
+      {supported && (
+        <svg className={styles.svg} viewBox={`0 0 ${W} ${H}`} role="group" aria-label="Stakeholder groups — select a piece for details">
+          {order.map((i) => {
+            const item = items[i];
+            const [nx, ny] = NUM_POS[i];
+            const [cx, cy] = CENTER[i];
+            const isActive = active === i;
+            return (
+              <g
+                key={item.title}
+                className={`${styles.piece} ${isActive && expanded ? styles.active : ""}`}
+                style={PIECE_STYLE[i]}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isActive && expanded}
+                aria-label={item.title}
+                onClick={() => handleToggle(i)}
+                onKeyDown={(e) => handleKeyDown(i, e)}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
+              >
+                <path d={PIECE_D[i]} fill={`var(--piece-${i + 1})`} stroke="var(--surface)" strokeWidth="8" strokeLinejoin="round" />
+                {isActive && showBack ? (
+                  <BackFace item={item} cx={cx} cy={cy} maxChars={BACK_MAX_CHARS[i]} />
+                ) : (
+                  <FrontFace item={item} index={i} nx={nx} ny={ny} cx={cx} cy={cy} />
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      )}
+      <ul className={supported ? styles.srOnly : styles.plainList}>
         {items.map((item) => (
           <li key={item.title}>
             <strong>{item.title}</strong>. Learn: {item.learn.join(" ")} Influence: {item.influence.join(", ")}.
