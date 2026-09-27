@@ -281,6 +281,33 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         }
     }
 
+    // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
+    //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
+    //
+    //   ![alt text](src)
+    //
+    //   </div>
+    :global(.crop-frame) {
+        aspect-ratio: var(--crop-ratio, 4 / 3);
+        overflow: hidden;
+        border-radius: var(--radius-sm);
+        margin-block: 20px;
+
+        // `marked` wraps images in <p>; the img's height: 100% needs it sized too.
+        p {
+            height: 100%;
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            object-fit: cover;
+            object-position: var(--crop-pos, center);
+        }
+    }
+
     // Mats a photo/render whose own background is opaque light/white
     // (a CAD export, a studio product shot) in a dark bordered card, same
     // border/background as `.panel` below — without it, that image's own
@@ -680,6 +707,60 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
             display: block;
             height: 100%;
             background: var(--primary-500);
+        }
+    }
+
+    // Accent-colored emphasis for the rare phrase that must stand out:
+    //   Some prose <span class="hl">a phrase that matters</span> more prose.
+    :global(.hl) {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+    // Collapsible card (native <details>); markdown inside needs blank lines:
+    //   <details class="details">
+    //   <summary class="details-summary">Label</summary>
+    //
+    //   Body markdown...
+    //
+    //   </details>
+    :global(.details) {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.04);
+        margin-block: 16px;
+        padding: 4px 18px;
+
+        &[open] {
+            padding-bottom: 14px;
+        }
+
+        // Same open-state glyph as Model's own .details/.summary
+        // (src/pages/Model/Model.module.scss) — one collapsible-card
+        // affordance, used in two places, should read identically.
+        &[open] :global(.details-summary)::before {
+            content: "\2013";
+        }
+    }
+
+    :global(.details-summary) {
+        cursor: pointer;
+        list-style: none;
+        padding: 14px 0;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: "+";
+            color: var(--accent);
+            font-weight: 700;
+            width: 1em;
         }
     }
 }

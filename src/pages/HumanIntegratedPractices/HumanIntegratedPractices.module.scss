@@ -1,0 +1,175 @@
+// Styles for QuestionMap and OrbitTimeline. Markdown content uses the shared
+// classes in SectionedArticle.module.scss instead.
+
+// Explicit `grid-row: 1` on connector + body/bubble below: without it, grid
+// auto-placement drops an item placed in an earlier column into a new row.
+
+.orbitTimeline {
+    position: relative;
+    margin-block: 20px;
+    padding-block: 8px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 11px;
+        top: 0;
+        bottom: 0;
+        border-inline-start: 2px dashed rgba(255, 255, 255, 0.25);
+    }
+}
+
+.orbitStep {
+    position: relative;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 16px;
+    align-items: center;
+    padding-block: 16px;
+}
+
+.orbitConnector {
+    grid-column: 1;
+    grid-row: 1;
+    height: 0;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+    }
+}
+
+.orbitBody {
+    grid-column: 2;
+    grid-row: 1;
+
+    h4 {
+        margin: 0 0 4px;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.75);
+    }
+}
+
+.orbitLetter {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+// Zigzag of question bubbles around a dashed central spine.
+.questionMap {
+    position: relative;
+    margin-block: 24px;
+    padding-block: 8px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 50%;
+        top: 0;
+        bottom: 0;
+        border-inline-start: 2px dashed rgba(255, 255, 255, 0.25);
+        transform: translateX(-50%);
+    }
+}
+
+.questionRow {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    align-items: center;
+    column-gap: 6px;
+    padding-block: 14px;
+}
+
+.questionConnector {
+    grid-column: 2;
+    grid-row: 1;
+    height: 0;
+    border-top: 2px dashed rgba(255, 255, 255, 0.3);
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+    }
+}
+
+.questionBubble {
+    position: relative;
+    max-width: 100%;
+    border-radius: 999px;
+    padding: 12px 22px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.85);
+        // Override the article's justified paragraphs for short pill text.
+        text-align: start;
+        hyphens: none;
+    }
+
+    &[data-tone="primary"] {
+        border-color: color-mix(in oklab, var(--primary-500) 55%, rgba(255, 255, 255, 0.15));
+    }
+
+    &[data-tone="accent"] {
+        border-color: color-mix(in oklab, var(--accent) 55%, rgba(255, 255, 255, 0.15));
+    }
+}
+
+.questionRow:nth-child(odd) .questionBubble {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+}
+
+.questionRow:nth-child(even) .questionBubble {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: start;
+}
+
+@media (max-width: 640px) {
+    .questionMap::before {
+        inset-inline-start: 19px;
+    }
+
+    .questionRow {
+        grid-template-columns: 40px 1fr;
+        column-gap: 10px;
+    }
+
+    .questionConnector {
+        grid-column: 1;
+    }
+
+    .questionRow:nth-child(odd) .questionBubble,
+    .questionRow:nth-child(even) .questionBubble {
+        grid-column: 2;
+        justify-self: start;
+        text-align: start;
+    }
+}
