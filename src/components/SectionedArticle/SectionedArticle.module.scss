@@ -717,11 +717,17 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         font-weight: 700;
     }
 
-    // Collapsible card (native <details>); markdown inside needs blank lines:
+    // Collapsible card (native <details>); markdown inside needs blank lines,
+    // and the body must sit in its own wrapper div for the expand/collapse
+    // transition below to have something to animate the height of:
     //   <details class="details">
     //   <summary class="details-summary">Label</summary>
     //
+    //   <div class="details-body">
+    //
     //   Body markdown...
+    //
+    //   </div>
     //
     //   </details>
     :global(.details) {
@@ -730,10 +736,6 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         background: rgba(255, 255, 255, 0.04);
         margin-block: 16px;
         padding: 4px 18px;
-
-        &[open] {
-            padding-bottom: 14px;
-        }
 
         // Same open-state glyph as Model's own .details/.summary
         // (src/pages/Model/Model.module.scss) — one collapsible-card
@@ -762,6 +764,37 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
             font-weight: 700;
             width: 1em;
         }
+    }
+
+    // The HTML spec's own UA stylesheet hides every non-summary child with
+    // `display: none` while a <details> is closed — overriding that back to
+    // `display: block` (that rule isn't `!important`, so an author style can
+    // win) keeps .details-body laid out and measurable at all times, which
+    // Article.jsx's toggleDetails() needs (it reads scrollHeight regardless
+    // of open/closed state). The actual expand/collapse animation is driven
+    // from there via the Web Animations API, not a CSS transition — a plain
+    // transition on max-height/opacity here does not animate the native
+    // <details> toggle in current Chromium no matter its duration, so these
+    // are just the two static open/closed states, no `transition` needed.
+    :global(.details:not([open])) > :global(.details-body) {
+        display: block;
+    }
+
+    :global(.details-body) {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-bottom: 0;
+    }
+
+    :global(.details[open]) :global(.details-body) {
+        // A generous fixed cap rather than the real content height —
+        // Article.jsx animates toward the real scrollHeight directly, so
+        // this only needs to comfortably exceed it as the resting state
+        // once the animation hands back off to plain CSS.
+        max-height: 800px;
+        opacity: 1;
+        padding-bottom: 14px;
     }
 }
 

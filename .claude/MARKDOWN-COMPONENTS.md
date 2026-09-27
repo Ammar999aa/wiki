@@ -62,6 +62,7 @@ so no blank lines are needed around those.
 | A short pipeline/control-loop sequence ("sensor → control → actuator") | `.flow` | Labelled nodes joined by arrows |
 | A one- or two-word tag standing in for a subheading | `.chip` | Small mono pill |
 | A labelled readout, diagram, or grouped figure that's more than a bare image | `.panel` (+ `.dash` for a live-value grid inside it) | Bordered glass card with a title row |
+| Content a careful reader wants but most readers should be able to skip | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
 | A photo/render whose own background is opaque light/white | `.photo-frame` | Dark matted card around the image |
 | The one sentence that interprets a figure or table | `.caption` | Bold "Figure N." + muted mono text, pulled up close under it |
 | Two side-by-side images, or two side-by-side prose+diagram blocks | `.two-col-images` / `.two-col-tracks` | Two even columns, stacks on mobile |
@@ -263,6 +264,42 @@ wrapping a `.flow` (see hardware.md's control-loop panels).
 reading (a number with a unit, an optional progress bar). It's built for
 the "current settings/telemetry" shape specifically, not a general 2-column
 layout — that's what a `.card-grid` or `.two-col-tracks` is for.
+
+### `.details` — content most readers can skip
+
+For a proof, a full data table, or background reading that a careful reader
+wants but the page shouldn't force on everyone — a native `<details>`,
+styled as a bordered card with a `+`/`–` marker, matching Model's own
+`Details` component (see ARTICLE-STANDARDS.md). The collapsible content
+**must** sit in its own `.details-body` wrapper — `Article.jsx`'s delegated
+click handler (`toggleDetails`) looks for exactly that class to animate the
+expand/collapse with the Web Animations API. Plain CSS can't do this: a
+`transition` on `.details-body`'s `max-height`/`opacity` does not animate
+the native `<details>` toggle in current Chromium no matter how long its
+duration is, since the browser applies the open/close style change with no
+intervening rendered frame to interpolate from — confirmed by forcing a
+multi-second transition in devtools and watching it still snap instantly.
+Skip the `.details-body` wrapper and the toggle still works, just without
+the animation (`Article.jsx` finds nothing to animate and the native
+instant snap is all that's left).
+
+```md
+<details class="details">
+<summary class="details-summary">Oxygen</summary>
+
+<div class="details-body">
+
+Body markdown...
+
+</div>
+
+</details>
+```
+
+**Don't** put more than one top-level `.details-body` per `<details>`, and
+don't skip the blank lines around it — same rule as every other block-level
+class here, but easy to miss since a bare `<details>`/`<summary>` pair
+doesn't otherwise need one.
 
 ### `.photo-frame` — mat a photo whose own background is opaque
 
