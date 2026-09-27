@@ -9,6 +9,11 @@ const X1 = W / 3;
 const X2 = (W * 2) / 3;
 const XB = W / 2;
 const YM = H / 2;
+// Room around the 1600×900 board so a piece's hover pop (translate + 1.07
+// scale, both centered on its own pivot, see .piece:hover) has space to
+// render without the viewBox clipping it — sized above the worst-case
+// overflow across all 5 pieces, computed from their pivots in TAB_OFFSET.
+const PAD = 50;
 
 const sub = (a, b) => [a[0] - b[0], a[1] - b[1]];
 const unit = (a) => {
@@ -251,7 +256,12 @@ export default function JigsawTable({ items }) {
   return (
     <div className={styles.wrap}>
       {supported && (
-        <svg className={styles.svg} viewBox={`0 0 ${W} ${H}`} role="group" aria-label="Stakeholder groups — select a piece for details">
+        <svg
+          className={styles.svg}
+          viewBox={`${-PAD} ${-PAD} ${W + PAD * 2} ${H + PAD * 2}`}
+          role="group"
+          aria-label="Stakeholder groups — select a piece for details"
+        >
           {order.map((i) => {
             const item = items[i];
             const [nx, ny] = NUM_POS[i];
