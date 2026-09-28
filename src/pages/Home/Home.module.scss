@@ -766,14 +766,42 @@
 .dead { filter: grayscale(1) brightness(0.4); box-shadow: none !important; }
 .alive { box-shadow: 0 0 30px rgba(39, 174, 96, 0.7), 0 0 64px rgba(39, 174, 96, 0.3) !important; }
 
+/* Status badge pinned to the organism shape's corner, like a presence dot —
+   sits on its own dark circle so the check/x icon stays legible over the
+   shape's own colored gradient, instead of a bare glyph floating on top of
+   whatever color happens to be underneath it. */
 .orgMark {
   position: absolute;
-  font-size: 1.1rem;
-  font-weight: 700;
+  right: -7px;
+  bottom: -7px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+
+  svg {
+    position: absolute;
+    inset: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    opacity: 0;
+  }
+}
+
+.orgMarkX,
+.orgMarkV {
+  opacity: 1;
+  background: #0A0A27;
+  border: 2px solid currentColor;
+  box-shadow: 0 0 10px currentColor;
 }
 
 .orgMarkX { color: rgba(255, 90, 90, 0.92); }
+.orgMarkX .orgMarkIconX { opacity: 1; }
+
 .orgMarkV { color: rgba(54, 230, 120, 0.95); }
+.orgMarkV .orgMarkIconV { opacity: 1; }
 
 .orgLabel {
   font-size: 0.62rem;
@@ -837,60 +865,59 @@
   color: rgba(54, 230, 120, 0.92);
 }
 
-/* Side-by-side comparison is too wide once each .scenario's own content
-   (organisms row, wrapping stressor pills) no longer fits in ~460px —
-   shrink everything in proportion rather than stacking, so the "before vs.
-   after" comparison stays a comparison instead of becoming two separate
-   screens. overflow-y: auto is a safety net: the pinned box is a fixed
-   100dvh, so if a very short viewport still can't fit it all, it scrolls
-   internally instead of silently clipping. */
+/* Side-by-side forced both panels into a ~168px column just to fit, which is
+   what was driving font sizes down near-illegibly small. Stack the two
+   panels instead — each gets the full (nearly-)phone width to breathe, so
+   type can stay close to desktop size instead of shrinking to compensate
+   for a cramped column. overflow-y: auto is a safety net: the pinned box is
+   a fixed 100dvh, so if a very short viewport still can't fit both stacked
+   panels, it scrolls internally instead of silently clipping. */
 @media (max-width: 700px) {
   .scenarioSticky {
-    padding-inline: 12px;
+    flex-direction: column;
+    gap: 22px;
+    padding-inline: 16px;
+    padding-block: 28px;
     overflow-y: auto;
   }
 
   .scenario {
-    gap: 16px;
-    padding-inline: 6px;
-    max-width: 168px;
+    gap: 18px;
+    padding-inline: 8px;
+    width: 100%;
+    max-width: 380px;
   }
 
   .scenarioDivider {
-    height: 240px;
+    width: min(220px, 70vw);
+    height: 1px;
   }
 
   .scenarioLabel {
-    font-size: 0.56rem;
-    padding: 5px 10px;
+    font-size: 0.68rem;
+    padding: 6px 16px;
   }
 
-  .organisms { gap: 16px; }
+  .organisms { gap: 30px; }
 
-  .bacteria { width: 62px; height: 24px; }
-  .yeast { width: 42px; height: 42px; }
+  .bacteria { width: 78px; height: 30px; }
+  .yeast { width: 50px; height: 50px; }
 
-  .orgLabel { font-size: 0.54rem; }
+  .orgLabel { font-size: 0.64rem; }
 
-  .stressors { gap: 5px; }
+  .stressors { gap: 8px; }
 
   .stressor {
-    font-size: 0.5rem;
-    padding: 4px 8px;
+    font-size: 0.6rem;
+    padding: 5px 12px;
   }
 
   .protein {
-    font-size: 0.48rem;
-    padding: 3px 7px;
+    font-size: 0.58rem;
+    padding: 4px 10px;
   }
 
-  .outcome { font-size: 0.76rem; }
-}
-
-@media (max-width: 400px) {
-  .scenario { max-width: 140px; }
-  .organisms { gap: 10px; }
-  .scenarioDivider { height: 200px; }
+  .outcome { font-size: 0.95rem; }
 }
 
 /* ── Problem cards (slide 3) ── */

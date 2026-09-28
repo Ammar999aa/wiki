@@ -696,7 +696,15 @@ function ScenarioOrganism({ type, orgRef, markRef, proteins, protRef }) {
   return (
     <div className={styles.orgWrap}>
       <div className={`${styles.organism} ${styles[type]}`} ref={orgRef}>
-        <span className={styles.orgMark} ref={markRef} />
+        <span className={styles.orgMark} ref={markRef}>
+          <svg className={styles.orgMarkIconX} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+            <line x1="5" y1="5" x2="19" y2="19" />
+            <line x1="19" y1="5" x2="5" y2="19" />
+          </svg>
+          <svg className={styles.orgMarkIconV} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="4 12 9 18 20 6" />
+          </svg>
+        </span>
       </div>
       {proteins && (
         <div className={styles.proteins} ref={protRef} style={{ opacity: 0 }}>
@@ -726,8 +734,8 @@ function ScenarioSection() {
     orgEl.classList.toggle(styles.dead, isDead);
     orgEl.classList.toggle(styles.alive, isAlive);
     if (markEl) {
-      markEl.textContent = isDead ? "✕" : isAlive ? "✓" : "";
-      markEl.className = `${styles.orgMark}${isDead ? " " + styles.orgMarkX : isAlive ? " " + styles.orgMarkV : ""}`;
+      markEl.classList.toggle(styles.orgMarkX, isDead);
+      markEl.classList.toggle(styles.orgMarkV, isAlive);
     }
   };
 
