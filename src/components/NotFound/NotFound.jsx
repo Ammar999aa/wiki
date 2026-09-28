@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import PageWrapper from "../PageWrapper/PageWrapper";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
 import styles from "./NotFound.module.scss";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 export default function NotFound() {
   return (

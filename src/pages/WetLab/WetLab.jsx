@@ -1,8 +1,8 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import sections from "../../content/en/wetlab.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 export default function WetLab() {
   return (

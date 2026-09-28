@@ -1,18 +1,14 @@
-// Importing the specific flags used instead of 'flag-icons/css/flag-icons.min.css'
-// — that stylesheet references every country's SVG (~140 files, ~4MB), which
-// blew past GitLab's CI artifact size limit for a 12MB build. Only 9 are
-// ever shown here. Source: flag-icons (MIT) — github.com/lipis/flag-icons
-import flagCn from "../../assets/flags/cn.svg";
-import flagCo from "../../assets/flags/co.svg";
-import flagIn from "../../assets/flags/in.svg";
-import flagKz from "../../assets/flags/kz.svg";
-import flagPe from "../../assets/flags/pe.svg";
-import flagSa from "../../assets/flags/sa.svg";
-import flagSg from "../../assets/flags/sg.svg";
-import flagTr from "../../assets/flags/tr.svg";
-import flagUs from "../../assets/flags/us.svg";
-
-const FLAGS = { cn: flagCn, co: flagCo, in: flagIn, kz: flagKz, pe: flagPe, sa: flagSa, sg: flagSg, tr: flagTr, us: flagUs };
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/svg-assets/flags/. Originally
+// picked as the specific flags used instead of pulling in
+// 'flag-icons/css/flag-icons.min.css' — that stylesheet references every
+// country's SVG (~140 files, ~4MB), which blew past GitLab's CI artifact
+// size limit for a 12MB build. Only 9 are ever shown here. Source:
+// flag-icons (MIT) — github.com/lipis/flag-icons
+const FLAGS_BASE = "https://static.igem.wiki/teams/6341/wiki/svg-assets/flags";
+const FLAGS = Object.fromEntries(
+  ["cn", "co", "in", "kz", "pe", "sa", "sg", "tr", "us"].map((code) => [code, `${FLAGS_BASE}/${code}.svg`])
+);
 
 // Shared by Roster.jsx (bubble grid needs no flag) and RosterDetail.jsx (the
 // selected member's overlay).

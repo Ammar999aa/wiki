@@ -83,7 +83,7 @@ body {
   // viewport like the real fixed-position divs do, not against body's own
   // (possibly much taller) scrollable height.
   background-color: var(--bg);
-  background-image: url("../assets/gradient.svg"), url("../assets/bg.svg");
+  background-image: url("https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg"), url("https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg");
   background-repeat: no-repeat, repeat;
   background-position: center, 0 0;
   background-size: cover, 1280px 1080px;

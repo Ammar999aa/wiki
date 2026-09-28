@@ -1,7 +1,7 @@
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
 import styles from "./Stub.module.scss";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 export default function Stub({ title }) {
   return (

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import shihabLogo from "../../assets/shihab-logo.svg?url";
 import styles from "./SiteMark.module.scss";
+const shihabLogo = "https://static.igem.wiki/teams/6341/wiki/svg-assets/shihab-logo.svg";
 
 // Small fixed wordmark in the top-left corner, present on every page except
 // Home (which already features this same logo prominently in its hero — see

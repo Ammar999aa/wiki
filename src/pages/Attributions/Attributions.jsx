@@ -2,8 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import SectionedPage from "../../components/SectionedPage/SectionedPage";
 import { useLanguage } from "../../i18n/LanguageContext";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/roster/.

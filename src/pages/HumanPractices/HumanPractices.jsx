@@ -1,9 +1,9 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import sections from "../../content/en/human-practices.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
 import styles from "./HumanPractices.module.scss";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.

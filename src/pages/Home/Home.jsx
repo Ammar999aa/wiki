@@ -6,9 +6,9 @@ import Sponsors from "../../components/Sponsors/Sponsors";
 import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import { SPONSORS } from "../../components/Sponsors/sponsorsData";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
-import shihabLogo from "../../assets/shihab-logo.svg?url";
+const shihabLogo = "https://static.igem.wiki/teams/6341/wiki/svg-assets/shihab-logo.svg";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.

@@ -6,8 +6,8 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import RosterDetail from "./RosterDetail";
 import Honeycomb from "./Honeycomb";
 import Flag from "./Flag";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.
 const astronautPhoto = "https://static.igem.wiki/teams/6341/wiki/images/apollo17-eva.webp";

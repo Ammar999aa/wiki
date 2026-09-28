@@ -1,12 +1,12 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import rawSections from "../../content/en/human-integrated-practices.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
 import QuestionMap from "./components/QuestionMap";
 import OrbitTimeline from "./components/OrbitTimeline";
 import JigsawTable from "./components/JigsawTable";
 import { stakeholderGroups } from "./data.js";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 const jigsawItems = stakeholderGroups.map((g) => ({ title: g.name, learn: g.learn, influence: g.influence }));
 

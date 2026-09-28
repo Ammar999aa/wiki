@@ -3,8 +3,8 @@ import rawSections from "../../content/en/hardware.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import BulbHero from "./BulbHero";
 import BioreactorModel from "./BioreactorModel";
-import bg from "../../assets/bg.svg?url";
-import gradient from "../../assets/gradient.svg?url";
+const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 // The 3D model is a real React component (needs a bundled asset import and
 // a dynamic import of model-viewer), not something markdown can express —
