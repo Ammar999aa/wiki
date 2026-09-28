@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
-import bioreactorGlb from "../../assets/3d-models/bioreactor.glb?url";
 import bioreactorUsdz from "../../assets/3d-models/Bioreactor_Assembly_1.usdz?url";
+const bioreactorGlb = "https://static.igem.wiki/teams/6341/wiki/3d-models/bioreactor.glb";
 import styles from "./Hardware.module.scss";
 
 // Interactive 3D render of the bioreactor stand (frame, motor/stirrer
