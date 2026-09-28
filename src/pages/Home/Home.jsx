@@ -960,25 +960,46 @@ const EXPLORE_CARDS = [
   {
     n: "02", t: "Wet Lab", d: "Strain engineering, assays, and protein expression.",
     to: "/wetlab",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/wetlab-card.avif", pos: "center 78%",
-    credit: { url: "https://images.nasa.gov/details/iss065e165874", title: "Cell Science-04 biology experiment aboard the ISS — NASA ID iss065e165874" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/wetlab.avif",
   },
   {
     n: "03", t: "Dry Lab", d: "Modelling, bioinformatics, and circuit design.",
     to: "/drylab",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/drylab-card.avif",
-    credit: { url: "https://images.nasa.gov/details/KSC-20181201-PH_RKL01_0002", title: "ELaNa 19 payload encapsulation — NASA ID KSC-20181201-PH_RKL01_0002" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/drylab.avif",
   },
-  { n: "04", t: "Human Practices",  d: "How real-world voices shaped the work.",                                                        to: "/human-practices" },
-  { n: "05", t: "Team",             d: "Meet the people behind the mission.",                                                           to: "/roster" },
+  {
+    n: "04", t: "Hardware", d: "The bioreactor stand, electronics, and physical build.",
+    to: "/hardware",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/hardware.avif",
+  },
+  {
+    n: "05", t: "Team", d: "Meet the people behind the mission.",
+    to: "/roster",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/team.avif",
+  },
   {
     n: "06", t: "Safety", d: "Biosafety and responsible design.",
     to: "/safety",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/safety-card.avif", pos: "center 64%",
-    credit: { url: "https://images.nasa.gov/details/PIA13920", title: "NASA ID PIA13920" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/safety.avif",
   },
-  { n: "07", t: "Engagement",       d: "Bringing space biology to the public.",                                                         to: "/engagement" },
-  { n: "08", t: "Attributions",     d: "Who did what, and our collaborators.",                                                          to: "/attributions" },
+  {
+    // TEMP: reusing the old Dry Lab card photo as a placeholder until Public
+    // Engagement has its own — see the equivalent note on Human Practices below.
+    n: "07", t: "Public Engagement", d: "Bringing space biology to the public.",
+    to: "/engagement",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/drylab-card.avif",
+    credit: { url: "https://images.nasa.gov/details/KSC-20181201-PH_RKL01_0002", title: "ELaNa 19 payload encapsulation — NASA ID KSC-20181201-PH_RKL01_0002" },
+  },
+  {
+    // TEMP: reusing the old Wet Lab card photo as a placeholder — this card
+    // had no photo of its own before, and this one is now unused elsewhere
+    // (superseded by team/wetlab.avif). Swap for a real Human Practices
+    // photo when one's ready, same as Wet/Dry Lab/Safety/Team already got.
+    n: "08", t: "Human Practices", d: "How real-world voices shaped the work.",
+    to: "/human-practices",
+    img: "https://static.igem.wiki/teams/6341/wiki/images/wetlab-card.avif", pos: "center 78%",
+    credit: { url: "https://images.nasa.gov/details/iss065e165874", title: "Cell Science-04 biology experiment aboard the ISS — NASA ID iss065e165874" },
+  },
 ];
 
 function ExploreSection() {
