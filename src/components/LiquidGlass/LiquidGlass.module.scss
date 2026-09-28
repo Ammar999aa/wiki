@@ -25,6 +25,20 @@
     blur(var(--glass-blur, 8px));
 }
 
+/* Firefox doesn't apply feDisplacementMap through backdrop-filter's url()
+   reference, and — same failure mode as Safari above — an unsupported
+   url() invalidates the whole backdrop-filter value, so blur/brightness
+   drop too. Firefox shares Chrome's unprefixed property name, so it can't
+   be split by prefix like Safari; `-moz-appearance` is Firefox-only, so
+   `@supports` on it is a reliable way to target just this browser. */
+@supports (-moz-appearance: none) {
+  .liquidGlass {
+    backdrop-filter:
+      brightness(1.1)
+      blur(var(--glass-blur, 8px));
+  }
+}
+
 /* fallback glow via box-shadow — used when cornerGlow is false */
 .liquidGlass::before {
   content: "";
