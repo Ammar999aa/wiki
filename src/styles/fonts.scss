@@ -1,5 +1,7 @@
-/* Self-hosted fonts (iGEM requirements §1: no runtime requests to third-party CDNs). */
-/* Licensed under the SIL Open Font License 1.1 — see the OFL.txt in each font's folder and the Footer credit. */
+/* Hosted on iGEM's own asset server (static.igem.wiki) rather than bundled
+   locally — satisfies requirements §1 (no runtime requests to third-party
+   CDNs) since igem.wiki is the team's own infrastructure, not external. */
+/* Licensed under the SIL Open Font License 1.1 — see the OFL.txt in each font's folder (kept locally as license/provenance paperwork, not a runtime asset) and the Footer credit. */
 
 /* No italic @font-face: dropped (~900KB) to fit GitLab CI's artifact size
    limit. font-style: italic usages (SectionedArticle/SectionedPage <em>,
@@ -13,7 +15,7 @@
    fallback format to keep around. */
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.woff2") format("woff2");
+  src: url("https://static.igem.wiki/teams/6341/wiki/fonts/inter-variablefont-opsz-wght.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -27,7 +29,7 @@
 
 @font-face {
   font-family: "Aref Ruqaa";
-  src: url("../assets/fonts/Aref_Ruqaa/ArefRuqaa-Regular.woff2") format("woff2");
+  src: url("https://static.igem.wiki/teams/6341/wiki/fonts/arefruqaa-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -35,7 +37,7 @@
 
 @font-face {
   font-family: "Aref Ruqaa";
-  src: url("../assets/fonts/Aref_Ruqaa/ArefRuqaa-Bold.woff2") format("woff2");
+  src: url("https://static.igem.wiki/teams/6341/wiki/fonts/arefruqaa-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
