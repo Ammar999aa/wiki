@@ -12,7 +12,23 @@ import shihabLogo from "../../assets/shihab-logo.svg?url";
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/images/.
-const earth = "https://static.igem.wiki/teams/6341/wiki/images/bluemarble-earth-web.avif";
+const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth-animated.webp";
+
+// TEMP, dev-only preview of the animated render while it awaits iGEM Video
+// Universe approval (see .claude/requirements.md §1) — gitignored, never
+// committed, so it's deliberately NOT a bundler `import` (that would break
+// `vite build`/CI for anyone without the local file). import.meta.env.DEV
+// is false in any production build, so live always renders the `earth`
+// image above; only `yarn dev` on a machine with the file on disk shows the
+// video. Delete this block (and the matching branch in EarthLayer) once the
+// approved asset replaces `earth` above.
+const earthVideoDevPreview = import.meta.env.DEV
+  ? `${import.meta.env.BASE_URL}src/assets/earth-animated.mp4`
+  : null;
+// TEMP: slows down the local preview only, via the video element's own
+// playbackRate — the source file itself is untouched, so this is easy to
+// retune (1 = source speed).
+const EARTH_VIDEO_PLAYBACK_RATE = 0.5;
 
 // Pulled from the shared sponsor data (not re-imported as a raw asset) so
 // there's still one source of truth for the logo file and its
@@ -320,10 +336,25 @@ function EarthLayer({ groupRef }) {
       <div className={styles.earthWrap} ref={earthRef}>
         <div className={styles.earthGlow} />
         <div className={styles.earthAtmo} />
-        <div className={styles.earthImg} style={{ backgroundImage: `url("${earth}")` }} />
+        {earthVideoDevPreview ? (
+          <video
+            className={styles.earthImg}
+            src={earthVideoDevPreview}
+            autoPlay
+            muted
+            loop
+            playsInline
+            ref={(el) => { if (el) el.playbackRate = EARTH_VIDEO_PLAYBACK_RATE; }}
+          />
+        ) : (
+          <div className={styles.earthImg} style={{ backgroundImage: `url("${earth}")` }} />
+        )}
         <div className={styles.earthSheen} />
-        {/* Positioned over Saudi Arabia on the underlying Blue Marble image */}
-        <div className={styles.sparkle} />
+        {/* Positioned over Saudi Arabia on the underlying Blue Marble image.
+            TEMP: sparkleVideoPreview nudges it to KAUST's spot on the new
+            video's framing, dev-only — live keeps the original position
+            since it still shows the older `earth` image. */}
+        <div className={`${styles.sparkle} ${earthVideoDevPreview ? styles.sparkleVideoPreview : ""}`} />
       </div>
       <a
         href="https://science.nasa.gov/earth/earth-observatory/twin-blue-marbles-8108/"

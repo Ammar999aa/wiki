@@ -50,6 +50,8 @@
   border-radius: 50%;
   background-size: cover;
   background-position: center;
+  object-fit: cover; /* TEMP: needed while earthImg is a <video>, see EarthLayer */
+  object-position: center;
   box-shadow:
     inset -30px -24px 80px rgba(0, 0, 0, 0.55),
     inset 10px 8px 30px rgba(150, 190, 255, 0.06);
@@ -135,6 +137,15 @@
     width: 1.5px;
     height: 18px;
   }
+}
+
+/* TEMP: dev-only override while EARTH_VIDEO_PLAYBACK_RATE / the video
+   preview is active — KAUST's spot on the new render's framing (Hijaz
+   interior, clear of the Red Sea coastline), center and slightly left of
+   frame. Delete alongside the other TEMP video-preview code in Home.jsx. */
+.sparkleVideoPreview {
+  left: 45.6%;
+  top: 50.4%;
 }
 
 @keyframes sparkleTwinkle {
