@@ -29,7 +29,10 @@ export default function StructureViewer({ structure, color }) {
           fetch(structure.file, { signal: controller.signal }),
         ]);
         if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-        const pdbText = await res.text();
+        // structure.file now points at a .json wrapper ({format, data}), not
+        // a raw .pdb — see proteins.js for why — so unwrap it here rather
+        // than treating the response body itself as PDB text.
+        const { data: pdbText } = await res.json();
         if (cancelled || !containerRef.current) return;
 
         // backgroundAlpha (not an alpha channel tacked onto backgroundColor,

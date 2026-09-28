@@ -25,20 +25,22 @@ const DELIVERY = "MOFs, hydrogels & other on-demand delivery formats";
 // once the team has one to point to — see StructureViewer.jsx for the
 // {pdbId, label, file} shape this expects.
 //
-// Bundled locally rather than hosted on static.igem.wiki — per the iGEM
-// wiki rules, static assets are technically supposed to go through the
-// Uploads tool instead of being committed as source, and that was tried
-// first here. The Uploads tool's file-type filter rejects this content
-// under both a .pdb and a plain .txt extension, with no accepted type left
-// to try it as, so this falls back to the same local-asset convention
-// every other image on this site already uses (see DESIGN.md's own note
-// on that same gap). Revisit if the team finds a type the tool will take.
-import gfpPdb from "../../assets/structures/gfp-1ema.pdb?url";
-import mcherryPdb from "../../assets/structures/mcherry-2h5q.pdb?url";
-import il10Pdb from "../../assets/structures/il10-2h24.pdb?url";
-import follistatinPdb from "../../assets/structures/follistatin-activin-2b0u.pdb?url";
-import ang1Pdb from "../../assets/structures/ang1-4epu.pdb?url";
-import insulinPdb from "../../assets/structures/insulin-4fka.pdb?url";
+// Hosted on iGEM's asset server rather than bundled locally — see
+// https://static.igem.wiki/teams/6341/wiki/3d-models/structures/. The
+// Uploads tool's file-type filter rejects raw PDB content under both a
+// .pdb and a plain .txt extension (checked on contents, not just the
+// extension), with no "structure data" category on its accepted list.
+// .json is accepted, though, so each file here is the original PDB text
+// wrapped verbatim as {"format":"pdb","data": "..."} — a real, valid JSON
+// document, not a renamed/disguised .pdb — which StructureViewer.jsx
+// unwraps before handing `data` to 3Dmol exactly as it always did.
+const STRUCTURES_BASE = "https://static.igem.wiki/teams/6341/wiki/3d-models/structures";
+const gfpPdb = `${STRUCTURES_BASE}/gfp-1ema.json`;
+const mcherryPdb = `${STRUCTURES_BASE}/mcherry-2h5q.json`;
+const il10Pdb = `${STRUCTURES_BASE}/il10-2h24.json`;
+const follistatinPdb = `${STRUCTURES_BASE}/follistatin-activin-2b0u.json`;
+const ang1Pdb = `${STRUCTURES_BASE}/ang1-4epu.json`;
+const insulinPdb = `${STRUCTURES_BASE}/insulin-4fka.json`;
 
 export const PROTEINS = [
   {
