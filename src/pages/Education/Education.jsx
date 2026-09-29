@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
+import education from "../../content/en/education.md";
 import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import styles from "./Education.module.scss";
@@ -7,9 +8,15 @@ const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.s
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 // Education is a picker over several sub-articles, each its own full
-// sectioned article (own ## table of contents). Add new entries here as
-// more sub-articles are written.
-const ARTICLES = [{ key: "tawasol-hackathon", title: "Tawasol Hackathon", sections: tawasolHackathon }];
+// sectioned article (own ## table of contents). The main Education article
+// is first, so it's the default tab; Tawasol Hackathon is kept as a second,
+// non-default tab for its own deeper dive (Education's own "## Tawasol
+// Hackathon" section already summarizes it and points here). Add new
+// entries here as more sub-articles are written.
+const ARTICLES = [
+  { key: "education", title: "Education", sections: education },
+  { key: "tawasol-hackathon", title: "Tawasol Hackathon", sections: tawasolHackathon },
+];
 
 export default function Education() {
   const [selectedKey, setSelectedKey] = useState(ARTICLES[0].key);

@@ -35,6 +35,7 @@ const DryLab = lazyWithPreload(() => import("./pages/DryLab/DryLab"));
 const HumanPractices = lazyWithPreload(() => import("./pages/HumanPractices/HumanPractices"));
 const Engagement = lazyWithPreload(() => import("./pages/Engagement/Engagement"));
 const Education = lazyWithPreload(() => import("./pages/Education/Education"));
+const ScienceCommunication = lazyWithPreload(() => import("./pages/ScienceCommunication/ScienceCommunication"));
 const ProteinLibrary = lazyWithPreload(() => import("./pages/ProteinLibrary/ProteinLibrary"));
 const HumanIntegratedPractices = lazyWithPreload(() =>
   import("./pages/HumanIntegratedPractices/HumanIntegratedPractices")
@@ -110,7 +111,7 @@ const Pages = [
         component: HumanIntegratedPractices,
       },
       { name: "Education", title: "Education", path: "/education", component: Education },
-      { name: "Science Communication", title: "Science Communication", path: "/science-communication", component: Stub },
+      { name: "Science Communication", title: "Science Communication", path: "/science-communication", component: ScienceCommunication },
     ],
   },
   {
