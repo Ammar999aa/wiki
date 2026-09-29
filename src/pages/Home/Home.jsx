@@ -355,15 +355,30 @@ function EarthLayer({ groupRef }) {
             video's framing, dev-only — live keeps the original position
             since it still shows the older `earth` image. */}
         <div className={`${styles.sparkle} ${earthVideoDevPreview ? styles.sparkleVideoPreview : ""}`} />
+        {/* Positioned relative to the globe itself (earthWrap), not the
+            viewport — moves/scales with it instead of sitting pinned over
+            whatever happens to be at a fixed screen corner (previously the
+            bottom nav dock). Three separate credits, one per composited
+            data source — see the render's own description for why a single
+            "NASA, public domain" line stopped being accurate once city
+            lights + a separate cloud layer were added on top of the base
+            Blue Marble surface. */}
+        <p className={styles.earthCredit}>
+          Earth:{" "}
+          <a href="https://earthobservatory.nasa.gov/features/BlueMarble/BlueMarble.php" target="_blank" rel="noopener noreferrer">
+            NASA Blue Marble (Stöckli)
+          </a>
+          {" · "}
+          <a href="https://svs.gsfc.nasa.gov/2916/" target="_blank" rel="noopener noreferrer">
+            Earth at Night (Mayhew/Simmon)
+          </a>
+          {" · clouds: "}
+          <a href="https://www.shadedrelief.com/natural3/pages/clouds.html" target="_blank" rel="noopener noreferrer">
+            Natural Earth (Patterson)
+          </a>
+          {" — public domain, rendered visualization"}
+        </p>
       </div>
-      <a
-        href="https://science.nasa.gov/earth/earth-observatory/twin-blue-marbles-8108/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.earthCredit}
-      >
-        Earth: NASA (Reto Stöckli / NASA·NOAA), public domain
-      </a>
     </>
   );
 }
@@ -446,13 +461,17 @@ function RocketLayer({ groupRef }) {
   });
 
   return (
-    <>
-      <div
-        className={styles.rocketLayer}
-        ref={rocketRef}
-        style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
-        aria-hidden="true"
-      />
+    <div
+      className={styles.rocketLayer}
+      ref={rocketRef}
+      style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
+    >
+      {/* Positioned relative to the rocket graphic itself (this element),
+          not the viewport — moves/fades with it instead of sitting pinned
+          at a fixed screen corner. Inheriting the parent's opacity is a
+          feature here: the credit now only appears while the rocket itself
+          is actually on screen. Not aria-hidden (unlike before) since this
+          div now holds a real link, not just decoration. */}
       <a
         href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
         target="_blank"
@@ -461,7 +480,7 @@ function RocketLayer({ groupRef }) {
       >
         Atlantis, STS-129: NASA/Kenny Allen
       </a>
-    </>
+    </div>
   );
 }
 

@@ -153,25 +153,32 @@
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
 }
 
+/* Anchored to the globe's own box (earthWrap), bottom-right — moves/scales
+   with it instead of sitting pinned at a fixed viewport corner (which used
+   to land on top of the nav dock regardless of where Earth actually was on
+   screen). earthWrap sets pointer-events: none so its transform-heavy
+   per-frame updates never block clicks through to page content behind it;
+   this re-enables them just for the credit links. */
 .earthCredit {
-  position: fixed;
-  right: 18px;
-  /* Cleared above two other fixed bottom elements that both span (near)
-     the full width at some breakpoint: Footer.jsx's .licenseBar (required
-     legal text, wraps to 2 lines at most widths) and Menu's nav dock —
-     a floating pill at bottom:38px/height:68px past 1024px, so its top
-     edge reaches 106px up. 18px was never enough headroom for either. */
-  bottom: 120px;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
   z-index: 1;
+  max-width: 220px;
+  margin: 0;
+  pointer-events: auto;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.35);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  white-space: nowrap;
+  text-align: right;
 
-  &:hover {
-    color: rgba(255, 255, 255, 0.65);
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover { color: rgba(255, 255, 255, 0.65); }
   }
 }
 
@@ -564,14 +571,23 @@
   will-change: transform, opacity;
 }
 
+/* Anchored to the rocket graphic's own box (rocketLayer), just below it —
+   moves/fades with it instead of sitting pinned at a fixed viewport corner.
+   rocketLayer sets pointer-events: none (it's a decorative background-image
+   box); this re-enables them just for the credit link. */
 .rocketCredit {
-  /* Bottom-left, not bottom-right — .earthCredit is also `position: fixed`
-     and sits at bottom-right, so the right corner is already taken. */
-  position: fixed;
-  left: 18px;
-  /* Cleared above the license bar and the nav dock — see .earthCredit. */
-  bottom: 120px;
+  position: absolute;
+  /* To the right of the rocket graphic, not centered under it — the engine
+     flame is bright and wide enough that low-opacity text on top of it was
+     unreadable. rocketLayer's own bottom edge sits almost exactly at the
+     viewport's bottom edge while the rocket is at rest (REST_TOP=56vh +
+     ~88vh height in Home.jsx), which is also where the nav dock lives, so
+     this also stays well up from the box's own bottom. */
+  left: 100%;
+  margin-left: 14px;
+  bottom: 100px;
   z-index: 1;
+  pointer-events: auto;
   font-size: 0.62rem;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.35);
@@ -593,27 +609,6 @@
   }
 }
 
-/* Both bottom-corner attribution links are always mounted (not scoped to
-   one slide), so on narrow screens their nowrap text overlaps in the
-   middle. Stack them bottom-left instead, one above the other. */
-@media (max-width: 640px) {
-  .earthCredit,
-  .rocketCredit {
-    left: 14px;
-    right: auto;
-    max-width: calc(100vw - 28px);
-    white-space: normal;
-    line-height: 1.35;
-    font-size: 0.58rem;
-  }
-
-  /* Cleared above the sitewide license bar (Footer.jsx's .licenseBar),
-     which is also fixed to the bottom of the viewport and — with its
-     required legal text wrapping to up to 3 lines on narrow screens —
-     tall enough to otherwise sit on top of both of these. */
-  .earthCredit { bottom: 82px; }
-  .rocketCredit { bottom: 56px; }
-}
 
 /* ── Reveal (slide 5) ── */
 // 280dvh = 100dvh sticky viewport + 180dvh (1.8 viewport-heights) of pin
