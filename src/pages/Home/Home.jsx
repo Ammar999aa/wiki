@@ -431,24 +431,16 @@ function PlanetDecor() {
 // slide 4's statement with a slow, continuous tilt/wobble (CSS-driven, not
 // scroll-tied, unlike the rest of this file's motion) so it reads as
 // drifting in zero-g rather than as a static cutout photo.
+// Purely decorative now — its attribution lives in the fixed SlideAttributions
+// bar above the nav (see Home()), not anchored to the image itself.
 function AstronautDecor() {
   return (
-    <div className={styles.astronautDecor}>
-      <div className={styles.astronautStack}>
-        <img
-          src={astronautMmu}
-          alt="Astronaut Bruce McCandless II performing an untethered spacewalk using the Manned Maneuvering Unit"
-          className={styles.astronautImg}
-        />
-        <a
-          href="https://images.nasa.gov/details/s84-27017"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.astronautCredit}
-        >
-          Bruce McCandless II, STS-41-B: NASA
-        </a>
-      </div>
+    <div className={styles.astronautDecor} aria-hidden="true">
+      <img
+        src={astronautMmu}
+        alt=""
+        className={styles.astronautImg}
+      />
     </div>
   );
 }
@@ -492,20 +484,63 @@ function RocketLayer({ groupRef }) {
       className={styles.rocketLayer}
       ref={rocketRef}
       style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
-    >
-      {/* Positioned relative to the rocket graphic itself (this element),
-          not the viewport — moves/fades with it instead of sitting pinned
-          at a fixed screen corner. Inheriting the parent's opacity is a
-          feature here: the credit now only appears while the rocket itself
-          is actually on screen. Not aria-hidden (unlike before) since this
-          div now holds a real link, not just decoration. */}
+      aria-hidden="true"
+    />
+  );
+}
+
+// Photo attributions for slides 2 and 4 (rocket, astronaut) — fixed to the
+// viewport just above the nav dock rather than anchored to each asset, so
+// the credit reads in one stable spot instead of drifting/rotating with the
+// graphic it's crediting. Each link fades in/out on exactly the same
+// schedule as its own slide's statement text (see StatementSection's
+// identical p-based formula), so it's only present while that slide — and
+// the asset it credits — is actually on screen. Earth's own credit is
+// intentionally exempt (see .earthCredit in EarthLayer): it's anchored to
+// the globe itself, which (unlike the rocket/astronaut) is on/near-screen
+// across several slides rather than one, so a single fixed "current slide"
+// credit doesn't fit it.
+function SlideAttributions({ rocketRef, astronautRef }) {
+  const rocketLinkRef = useRef(null);
+  const astronautLinkRef = useRef(null);
+
+  useScene(rocketRef, 1.2, (p) => {
+    const el = rocketLinkRef.current;
+    if (!el) return;
+    const o = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
+    el.style.opacity = o;
+    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
+  });
+
+  useScene(astronautRef, 1.2, (p) => {
+    const el = astronautLinkRef.current;
+    if (!el) return;
+    const o = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
+    el.style.opacity = o;
+    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
+  });
+
+  return (
+    <div className={styles.slideAttribution}>
       <a
+        ref={rocketLinkRef}
         href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.rocketCredit}
+        className={styles.slideAttributionLink}
+        style={{ opacity: 0 }}
       >
         Atlantis, STS-129: NASA/Kenny Allen
+      </a>
+      <a
+        ref={astronautLinkRef}
+        href="https://images.nasa.gov/details/s84-27017"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.slideAttributionLink}
+        style={{ opacity: 0 }}
+      >
+        Bruce McCandless II, STS-41-B: NASA
       </a>
     </div>
   );
@@ -1115,6 +1150,7 @@ function ExploreSection() {
 export default function Home() {
   const heroOrbitRef = useRef(null);
   const rocketGroupRef = useRef(null);
+  const astronautGroupRef = useRef(null);
 
   return (
     // ambientMeteors off — <Starfield/> below already renders Home's own,
@@ -1136,6 +1172,7 @@ export default function Home() {
         <OrbitSection />
       </div>
       <RocketLayer groupRef={rocketGroupRef} />
+      <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />
       <div ref={rocketGroupRef}>
         <StatementSection decor={<PlanetDecor />}>
           Future missions may last for <em>months&mdash;or even years</em>. Every medicine must{" "}
@@ -1146,10 +1183,12 @@ export default function Home() {
       <StatementSection>
         The <em>farther</em> we travel, the <em>less</em> we can depend on Earth.
       </StatementSection>
-      <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
-        What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
-        <em>ability to make them</em>?
-      </StatementSection>
+      <div ref={astronautGroupRef}>
+        <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
+          What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
+          <em>ability to make them</em>?
+        </StatementSection>
+      </div>
       <RevealSection />
       <StatementSection tag="Our Solution">
         We <em>engineer</em> resilient microbial systems &mdash;{" "}
