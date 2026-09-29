@@ -26,13 +26,13 @@ const sriharsha = `${ROSTER_CDN}/sriharsha.avif`;
 const kevser    = `${ROSTER_CDN}/kevser.avif`;
 const shahad    = `${ROSTER_CDN}/shahad.avif`;
 const francesca = `${ROSTER_CDN}/francesca.avif`;
-const nauryzbay = `${ROSTER_CDN}/nauryzbay.avif`;
 const ansal     = `${ROSTER_CDN}/ansal.avif`;
 const zeyad     = `${ROSTER_CDN}/zeyad.avif`;
 const nadia     = `${ROSTER_CDN}/nadia.avif`;
 const hassan    = `${ROSTER_CDN}/hassan.avif`;
 const raheema   = `${ROSTER_CDN}/raheema.avif`;
 const mafer     = `${ROSTER_CDN}/mafer.avif`;
+const kiran     = `${ROSTER_CDN}/kiran.avif`;
 
 // Order within each department controls display order in both the
 // honeycomb and the fallback grid (departmentGroups below filters this
@@ -53,15 +53,15 @@ const members = [
   { name: "Mariana Villegas", roleKey: "wetLab", memberKey: "mariana", photo: mariana, countryCode: "co" },
   { name: "Kexin Niu", roleKey: "dryLab", memberKey: "kexin", photo: kexin, countryCode: "cn" },
   { name: "Shahad Hersi", roleKey: "publicEngagement", memberKey: "shahad", photo: shahad, countryCode: "sa" },
-  { name: "Génesis Flores Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
+  { name: "Raheema Javid", roleKey: "publicEngagement", memberKey: "raheema", photo: raheema, countryCode: "us" },
   { name: "Sriharsha Chowdarapu", roleKey: "wetLab", memberKey: "sriharsha", photo: sriharsha, countryCode: "in" },
   { name: "Maria Camila Muñoz Vega", roleKey: "wetLab", memberKey: "mariaCamila", photo: maria, countryCode: "co"},
   { name: "Kevser Ciek", roleKey: "dryLab", memberKey: "kevser", photo: kevser, countryCode: "tr" },
   { name: "Zeyad Muazzen", roleKey: "wetLab", memberKey: "zeyad", photo: zeyad, countryCode: "sa" },
-  { name: "Nauryzbay Menlen", roleKey: "dryLab", memberKey: "nauryzbay", photo: nauryzbay, countryCode: "kz" },
   { name: "Nadia Houti", roleKey: "hardware", memberKey: "nadia", photo: nadia, countryCode: "sg" },
   { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan, countryCode: "sa" },
-  { name: "Raheema Javid", roleKey: "publicEngagement", memberKey: "raheema", photo: raheema, countryCode: "us" },
+  { name: "Génesis Flores Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
+  { name: "Kiran Ahmad", roleKey: "publicEngagement", memberKey: "kiran", photo: kiran, countryCode: "us" },
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
