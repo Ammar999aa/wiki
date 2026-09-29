@@ -451,6 +451,88 @@
 
 .accentText { color: var(--accent); }
 
+/* ── Drifting astronaut decoration (used beside slide-4 statement) ──
+   Sits in the same absolute-inset layer as .planetDecor, just further
+   forward (z-index 0 still, but painted after the planets in DOM order —
+   see AstronautDecor in Home.jsx), floating beside the centered statement
+   text rather than covering it. */
+/* Modifier for the astronaut slide's .taglineSticky — nudges the statement
+   text right just enough to clear the astronaut, which floats on the left
+   (see .astronautDecor below), by biasing the centering padding rather than
+   pinning it to the far edge (flex-end read as shoved into the corner).
+   Comes after .taglineSticky in this file so it wins at equal (single-class)
+   specificity. Reset on narrow screens, where the astronaut is downscaled
+   (see .astronautImg's own media query) and there's no width to spare. */
+.statementRight {
+  justify-content: center;
+  padding-inline: clamp(160px, 24vw, 340px) 40px;
+}
+
+@media (max-width: 760px) {
+  .statementRight {
+    justify-content: center;
+    padding-inline: 40px;
+  }
+}
+
+.astronautDecor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: clamp(16px, 6vw, 90px);
+  pointer-events: none;
+}
+
+.astronautStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.astronautImg {
+  width: clamp(200px, 24vw, 340px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.55));
+  transform-origin: 50% 45%;
+  animation: astronautWobble 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Same quiet credit-link treatment as .rocketCredit, just stacked under
+   the image instead of beside it. */
+.astronautCredit {
+  pointer-events: auto;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  text-align: center;
+
+  &:hover { color: rgba(255, 255, 255, 0.65); }
+}
+
+/* Slow, smooth tilt + drift — an idle loop, not tied to scroll position
+   (unlike .planet's drift keyframes, which share the same spirit but this
+   one also rotates, reading as the astronaut tumbling gently in zero-g). */
+@keyframes astronautWobble {
+  0% { transform: rotate(6deg) translateY(0); }
+  25% { transform: rotate(11deg) translateY(-8px); }
+  50% { transform: rotate(13deg) translateY(0); }
+  75% { transform: rotate(8deg) translateY(8px); }
+  100% { transform: rotate(6deg) translateY(0); }
+}
+
+@media (max-width: 700px) {
+  .astronautImg { width: clamp(150px, 38vw, 240px); }
+}
+
 /* ── Essentials row (slide 1) ── */
 .orbitSection {
   position: relative;
@@ -941,6 +1023,16 @@
   padding-inline: 40px;
 }
 
+.problemIntro {
+  max-width: min(620px, 90vw);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0;
+}
+
 .problemGrid {
   display: flex;
   gap: 22px;
@@ -952,7 +1044,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   padding: 32px 26px;
   border-radius: var(--radius-md);
   width: 248px;
@@ -962,8 +1054,15 @@
   backdrop-filter: blur(10px);
   will-change: transform, opacity;
 
+  strong {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+
   p {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.68);
     line-height: 1.55;
@@ -1098,6 +1197,65 @@
     overflow-wrap: break-word;
   }
   .capTile p {
+    grid-column: 2;
+    min-width: 0;
+    font-size: 0.76rem;
+    line-height: 1.42;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Same compact icon+title+description row treatment as .capTile above —
+   the problem cards grew a title once the copy got more specific, so they
+   need the same mobile stacking to avoid three tall centered cards. */
+@media (max-width: 760px) {
+  .problemSticky {
+    gap: 18px;
+    padding-inline: 24px;
+  }
+
+  .problemIntro {
+    font-size: 0.92rem;
+  }
+
+  .problemGrid {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+  }
+
+  .problemCard {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 2px;
+    align-items: start;
+    text-align: left;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 14px 16px;
+  }
+
+  .problemCard .capIco {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 26px;
+    height: 26px;
+    margin-top: 2px;
+  }
+
+  .problemCard strong {
+    grid-column: 2;
+    min-width: 0;
+    font-size: 0.94rem;
+    overflow-wrap: break-word;
+  }
+
+  .problemCard p {
     grid-column: 2;
     min-width: 0;
     font-size: 0.76rem;

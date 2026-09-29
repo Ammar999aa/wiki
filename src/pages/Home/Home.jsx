@@ -39,6 +39,7 @@ const EARTH_VIDEO_PLAYBACK_RATE = 0.5;
 const kaustIgem = SPONSORS.find((s) => s.id === "kaustigem");
 const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-launch.webp";
 const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
+const astronautMmu = "https://static.igem.wiki/teams/6341/wiki/images/astronaut-large.avif";
 
 // Section-by-section narrative below follows src/content/landing_page_content.md
 // (slides 1–9). Two pre-existing sections that weren't part of that brief —
@@ -426,6 +427,32 @@ function PlanetDecor() {
   );
 }
 
+// Bruce McCandless II's untethered MMU spacewalk (STS-41-B) — floats beside
+// slide 4's statement with a slow, continuous tilt/wobble (CSS-driven, not
+// scroll-tied, unlike the rest of this file's motion) so it reads as
+// drifting in zero-g rather than as a static cutout photo.
+function AstronautDecor() {
+  return (
+    <div className={styles.astronautDecor}>
+      <div className={styles.astronautStack}>
+        <img
+          src={astronautMmu}
+          alt="Astronaut Bruce McCandless II performing an untethered spacewalk using the Manned Maneuvering Unit"
+          className={styles.astronautImg}
+        />
+        <a
+          href="https://images.nasa.gov/details/s84-27017"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.astronautCredit}
+        >
+          Bruce McCandless II, STS-41-B: NASA
+        </a>
+      </div>
+    </div>
+  );
+}
+
 // Shuttle Atlantis departing Earth — the launch reads as the mission itself
 // leaving. Fixed to the viewport (like EarthLayer) rather than nested inside
 // slide 2's sticky box, so it isn't cropped by that box's `overflow: hidden`.
@@ -437,13 +464,13 @@ function RocketLayer({ groupRef }) {
   useScrollUnits(groupRef, (units) => {
     const el = rocketRef.current;
     if (!el) return;
-    // Slides up from below as slide 2 opens; holds at a fixed spot for the
-    // whole of slide 2 (2.2 units) — no motion in between, just entry and
-    // exit — then shoots straight up and out, continuing the launch, right
-    // as slide 2 hands off to slide 3.
+    // Slides up from below as slide 2 opens; holds at a fixed spot while
+    // slide 2's text is on screen, then launches shortly after that text has
+    // fully faded out (which happens at unit 1.2, when the pin ends) rather
+    // than waiting almost a full extra viewport-height of idle scroll.
     const REST_TOP = 56;
     const entryP = between(units, 0, 0.35);
-    const exitP = between(units, 2.15, 2.75);
+    const exitP = between(units, 1.3, 1.9);
     const exitEase = exitP * exitP; // ease-in — starts slow, accelerates away
     const entryDrop = (1 - entryP) * 75; // starts well below the viewport
     const exitShoot = exitEase * 140; // rockets up past the top edge
@@ -632,20 +659,34 @@ function IcoBroken({ className }) {
 }
 
 const PROBLEMS = [
-  { Ico: IcoCargo, text: "Every medicine must be carried onboard or resupplied from home." },
-  { Ico: IcoDecay, text: "Long storage and spaceflight conditions may affect some medicines." },
-  { Ico: IcoBroken, text: "Replacement medicines may be slow, costly, or impossible to deliver." },
+  {
+    Ico: IcoCargo,
+    title: "Resupply is limited",
+    text: "On long-duration missions, replacement medicines may take months to arrive — or may be impossible to deliver.",
+  },
+  {
+    Ico: IcoDecay,
+    title: "Medicines do not last forever",
+    text: "During long-term storage, some medicines can degrade and lose stability or effectiveness.",
+  },
+  {
+    Ico: IcoBroken,
+    title: "Crews cannot carry everything they might need",
+    text: "Spacecraft have limited mass and storage capacity, making it difficult to stock every medicine for every possible medical emergency.",
+  },
 ];
 
 function ProblemSection() {
   const ref = useRef(null);
   const kickerRef = useRef(null);
+  const introRef = useRef(null);
   const cardRefs = useRef([]);
 
   useScene(ref, 1.8, (p) => {
-    if (kickerRef.current) kickerRef.current.style.opacity = between(p, 0.0, 0.18);
+    if (kickerRef.current) kickerRef.current.style.opacity = between(p, 0.0, 0.12);
+    if (introRef.current) introRef.current.style.opacity = between(p, 0.04, 0.2);
     PROBLEMS.forEach((_, i) => {
-      const o = clamp01((p - (0.22 + i * 0.13)) / 0.16);
+      const o = clamp01((p - (0.26 + i * 0.13)) / 0.16);
       const el = cardRefs.current[i];
       if (el) {
         el.style.opacity = o;
@@ -657,16 +698,21 @@ function ProblemSection() {
   return (
     <section className={styles.problemSection} ref={ref}>
       <div className={styles.problemSticky}>
-        <span className={styles.kicker} ref={kickerRef} style={{ opacity: 0 }}>However&hellip;</span>
+        <span className={styles.kicker} ref={kickerRef} style={{ opacity: 0 }}>The challenge</span>
+        <p className={styles.problemIntro} ref={introRef} style={{ opacity: 0 }}>
+          Medicine is different from many other essentials: once it is used, degraded, or missing, replacing it may
+          not be simple.
+        </p>
         <div className={styles.problemGrid}>
-          {PROBLEMS.map(({ Ico, text }, i) => (
+          {PROBLEMS.map(({ Ico, title, text }, i) => (
             <div
-              key={text}
+              key={title}
               className={styles.problemCard}
               ref={(el) => (cardRefs.current[i] = el)}
               style={{ opacity: 0 }}
             >
               <Ico className={styles.capIco} />
+              <strong>{title}</strong>
               <p>{text}</p>
             </div>
           ))}
@@ -1092,12 +1138,17 @@ export default function Home() {
       <RocketLayer groupRef={rocketGroupRef} />
       <div ref={rocketGroupRef}>
         <StatementSection decor={<PlanetDecor />}>
-          Future missions will take astronauts away from Earth for <em>months&mdash;or years</em>.
+          Future missions may last for <em>months&mdash;or even years</em>. Every medicine must{" "}
+          <em>survive the journey</em>, remain effective, and be available when needed.
         </StatementSection>
       </div>
       <ProblemSection />
       <StatementSection>
-        What if <em>astronauts</em> could make the <em>biologics</em> they need?
+        The <em>farther</em> we travel, the <em>less</em> we can depend on Earth.
+      </StatementSection>
+      <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
+        What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
+        <em>ability to make them</em>?
       </StatementSection>
       <RevealSection />
       <StatementSection tag="Our Solution">
