@@ -5,12 +5,10 @@
 // detail view off the same objects, and so adding a new payload later is just
 // another entry here.
 //
-// `host` and `delivery` are shared across every entry rather than invented
-// per protein: the source material describes them as platform-wide
-// capabilities (S. cerevisiae / P. pastoris / B. subtilis; MOFs, hydrogels,
-// etc.), not a specific host/delivery pairing per payload.
+// `host` is shared across every entry rather than invented per protein: the
+// source material describes it as a platform-wide capability (S. cerevisiae
+// / P. pastoris / B. subtilis), not a specific host per payload.
 const HOST = "S. cerevisiae, P. pastoris, B. subtilis";
-const DELIVERY = "MOFs, hydrogels & other on-demand delivery formats";
 
 // `structure` wires a protein card into the 3D viewer in ProteinDetail.jsx.
 // Every entry here is a *real, published* PDB structure — verified against
@@ -73,9 +71,7 @@ export const PROTEINS = [
       "Food & agriculture freeze protection",
       "Cold-chain stability for space missions",
     ],
-    why: "Protects biological material from freeze damage — useful for storing and shipping biologics reliably, including in environments where cold-chain logistics are hard.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     structure: { pdbId: "3UYV", label: "LeIBP (Leucosporidium sp. AY30)", file: leibpPdb },
   },
@@ -95,9 +91,7 @@ export const PROTEINS = [
       "Food & agriculture freeze protection",
       "Cold-chain stability for space missions",
     ],
-    why: "Protects biological material from freeze damage — useful for storing and shipping biologics reliably, including in environments where cold-chain logistics are hard.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     structure: { pdbId: "4NU2", label: "FfIBP (Flavobacterium frigoris PS1)", file: ffibpPdb },
   },
@@ -118,9 +112,7 @@ export const PROTEINS = [
       "Protein detection & imaging",
       "Pull-down & co-IP assays",
     ],
-    why: "Nanobodies are small, stable, and easy to produce recombinantly — a practical antiviral format for a modular expression platform.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     // This is the nanobody bound to its actual target (HSV-1 glycoprotein B,
     // locked in the prefusion conformation Nb1_gbHSV traps it in) rather
@@ -145,9 +137,7 @@ export const PROTEINS = [
       "Tumor imaging & diagnostics",
       "Site-specific drug delivery",
     ],
-    why: "A compact, platform-producible alternative to full antibodies for probing and blocking immune checkpoint signaling.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     // A mouse PD-L1 nanobody — a reference structure for this class of
     // nanobody:PD-L1 interaction, not this team's own molecule solved (see
@@ -171,9 +161,7 @@ export const PROTEINS = [
       "Reporter assays",
       "Flow cytometry & cell sorting",
     ],
-    why: "A reliable, well-understood readout for confirming that a construct is expressing correctly.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     structure: { pdbId: "2H5Q", label: "mCherry", file: mcherryPdb },
   },
@@ -194,9 +182,7 @@ export const PROTEINS = [
       "Protein localization",
       "Gene expression reporting",
     ],
-    why: "The simplest possible proof that the expression platform works end-to-end.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     structure: { pdbId: "1EMA", label: "GFP (Aequorea victoria)", file: gfpPdb },
   },
@@ -216,9 +202,7 @@ export const PROTEINS = [
       "Postmenopausal osteoporosis treatment",
       "Osteogenesis imperfecta treatment",
     ],
-    why: "Meets a threat unique to long-duration spaceflight: astronauts lose about 1–1.5% of their bone mass every month in microgravity — roughly 10x faster than age-related bone loss on Earth, concentrated in weight-bearing areas like the hips, pelvis, and spine.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
   },
   {
@@ -238,11 +222,9 @@ export const PROTEINS = [
       "Duchenne muscular dystrophy treatment",
       "Spinal muscular atrophy treatment",
     ],
-    why: "Muscle wasting is a real risk on long-duration spaceflight; a locally producible countermeasure is valuable when resupply isn't an option.",
     // Source material specifies only these two hosts for Follistatin (no
     // B. subtilis) — not the shared HOST constant used everywhere else.
     host: "S. cerevisiae, P. pastoris",
-    delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
     // Standalone follistatin isn't in the PDB under a plain "just
     // follistatin" entry — this is follistatin in complex with activin, the
@@ -262,9 +244,7 @@ export const PROTEINS = [
     function:
       "Interferon-β is a type I interferon and one of the first-line antiviral defense systems, produced by most nucleated cells in response to viral infection, double-stranded RNA, or innate immune pattern recognition. It plays a central role in antiviral defense and immune modulation, and also shows anti-tumor effects by directly inhibiting tumor cell cycle progression, promoting tumor cell apoptosis, and enhancing NK cell and cytotoxic T lymphocyte activity. It can also support neuroprotection by reducing neuroinflammation through suppression of microglial activation.",
     applications: ["Multiple sclerosis treatment", "Radiation cancer protection", "Antiviral treatment"],
-    why: "A single protein with antiviral, anti-tumor, and neuroprotective activity — broad enough to be useful for both spaceflight (radiation exposure, limited access to Earth-side care) and terrestrial medicine.",
     host: HOST,
-    delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
     structure: { pdbId: "1AU1", label: "Human Interferon-β", file: interferonBetaPdb },
   },
@@ -280,9 +260,7 @@ export const PROTEINS = [
     function:
       "Uses the same expression, purification, and delivery pipeline developed for this library, adapted to a new coding sequence of your choosing.",
     applications: ["Endless possibilities — your target protein"],
-    why: "Every mission or patient need is different — this slot is the platform's answer to 'what if we need something not on this list?'",
     host: HOST,
-    delivery: DELIVERY,
     status: "Open — awaiting your target protein.",
   },
 ];

@@ -68,19 +68,8 @@ export default function ProteinDetail({ protein, onClose }) {
               </div>
 
               <div className={styles.detailSection}>
-                <p className={styles.detailLabel}>Why it matters</p>
-                <p className={styles.detailText}>{protein.why}</p>
-              </div>
-
-              <div className={styles.detailGrid}>
-                <div>
-                  <p className={styles.detailLabel}>Host organisms</p>
-                  <p className={styles.detailText}>{protein.host}</p>
-                </div>
-                <div>
-                  <p className={styles.detailLabel}>Delivery</p>
-                  <p className={styles.detailText}>{protein.delivery}</p>
-                </div>
+                <p className={styles.detailLabel}>Host organisms</p>
+                <p className={styles.detailText}>{protein.host}</p>
               </div>
 
               <p className={styles.detailStatus}>{protein.status}</p>

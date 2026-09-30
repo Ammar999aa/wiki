@@ -306,13 +306,6 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-.detailGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 18px;
-  padding: 0 26px 18px;
-}
-
 .detailStatus {
   margin: 0;
   padding: 14px 26px 26px;
@@ -600,7 +593,6 @@
   }
 
   .detailSection,
-  .detailGrid,
   .detailStatus {
     padding-inline: 18px;
   }
