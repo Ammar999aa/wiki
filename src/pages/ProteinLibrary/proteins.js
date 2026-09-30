@@ -1,7 +1,8 @@
-// Data source for the protein library grid — see src/content/protein_payload_library.md
-// for the original reference content. Kept as one array so the page (and any
-// future page) can render both the collapsed cards and the expanded detail
-// view off the same objects, and so adding a new payload later is just
+// Data source for the protein library grid — see src/content/Payloads library.md
+// for the current reference content (src/content/protein_payload_library.md is
+// an earlier draft, superseded by that file). Kept as one array so the page
+// (and any future page) can render both the collapsed cards and the expanded
+// detail view off the same objects, and so adding a new payload later is just
 // another entry here.
 //
 // `host` and `delivery` are shared across every entry rather than invented
@@ -18,9 +19,9 @@ const DELIVERY = "MOFs, hydrogels & other on-demand delivery formats";
 // this team solved themselves. StructureViewer labels each one accordingly.
 // Left unset (no `structure` field at all) wherever that distinction would
 // blur: both nanobodies are this team's own novel designs, not deposited
-// anywhere public; "Custom Payloads" has no fixed target; the antifreeze
-// protein entry doesn't specify which AFP type/isoform, and picking one
-// would misrepresent it as more specific than the actual content is. Add a
+// anywhere public; "Custom Payloads" has no fixed target; both antifreeze
+// protein entries (LeIBP, FfIBP) have a named source organism but no
+// structure yet ("Structure - to be sent" per the source material). Add a
 // real PDB ID (or a locally solved/predicted structure) to any of these
 // once the team has one to point to — see StructureViewer.jsx for the
 // {pdbId, label, file} shape this expects.
@@ -37,23 +38,42 @@ const DELIVERY = "MOFs, hydrogels & other on-demand delivery formats";
 const STRUCTURES_BASE = "https://static.igem.wiki/teams/6341/wiki/3d-models/structures";
 const gfpPdb = `${STRUCTURES_BASE}/gfp-1ema.json`;
 const mcherryPdb = `${STRUCTURES_BASE}/mcherry-2h5q.json`;
-const il10Pdb = `${STRUCTURES_BASE}/il10-2h24.json`;
 const follistatinPdb = `${STRUCTURES_BASE}/follistatin-activin-2b0u.json`;
 const ang1Pdb = `${STRUCTURES_BASE}/ang1-4epu.json`;
-const insulinPdb = `${STRUCTURES_BASE}/insulin-4fka.json`;
 
 export const PROTEINS = [
   {
-    id: "afp",
-    name: "Antifreeze Proteins",
-    subtitle: "AFPs — Ice-binding protein",
+    id: "leibp-afp",
+    name: "LeIBP Antifreeze Protein",
+    subtitle: "AFP — Leucosporidium sp. AY30 (psychrophilic yeast)",
     color: "#5FD4E0",
     tested: true,
     glyph: "spark",
     shortDescription:
-      "Prevent ice crystal growth and enhance freeze tolerance — built for cryopreservation, food, agriculture, and space applications.",
+      "A secreted antifreeze protein from an Arctic sea-ice yeast, isolated to limit ice-crystal damage during freezing.",
     function:
-      "Bind directly to the surface of forming ice crystals and inhibit further growth (the 'adsorption–inhibition' mechanism), limiting the damage ice formation causes to cells and tissue during freezing.",
+      "Binds directly to the surface of forming ice crystals and inhibits further growth, limiting the damage ice formation causes to cells and tissue during freezing. Shows moderate thermal hysteresis (TH) activity and strong ice recrystallization inhibition (IRI) activity.",
+    applications: [
+      "Cryopreservation of cells, tissue & biologics",
+      "Food & agriculture freeze protection",
+      "Cold-chain stability for space missions",
+    ],
+    why: "Protects biological material from freeze damage — useful for storing and shipping biologics reliably, including in environments where cold-chain logistics are hard.",
+    host: HOST,
+    delivery: DELIVERY,
+    status: "Tested — expressed & validated in our platform.",
+  },
+  {
+    id: "ffibp-afp",
+    name: "FfIBP Antifreeze Protein",
+    subtitle: "AFP — Flavobacterium frigoris PS1 (Antarctic lake sediment)",
+    color: "#4FC3D9",
+    tested: true,
+    glyph: "spark",
+    shortDescription:
+      "A secreted antifreeze protein from a gram-negative Antarctic bacterium, with stronger ice-shaping control than LeIBP.",
+    function:
+      "Binds directly to the surface of forming ice crystals and inhibits further growth, limiting the damage ice formation causes to cells and tissue during freezing. Shows higher thermal hysteresis (TH) activity, broader ice-shaping control, and stronger recrystallization inhibition than LeIBP.",
     applications: [
       "Cryopreservation of cells, tissue & biologics",
       "Food & agriculture freeze protection",
@@ -67,15 +87,20 @@ export const PROTEINS = [
   {
     id: "hsv-nanobody",
     name: "HSV Nanobody",
-    subtitle: "anti-HSV — Single-domain antibody",
+    subtitle: "Nb1_gbHSV — anti-HSV single-domain antibody",
     color: "#FF6B6B",
     tested: true,
     glyph: "shield",
     shortDescription:
-      "Binds HSV antigens and neutralizes viral entry — a compact antiviral therapeutic candidate.",
+      "An alpaca-derived nanobody that neutralizes herpes simplex virus by locking its envelope protein in an unstable conformation.",
     function:
-      "A single-domain antibody fragment (nanobody) that binds Herpes Simplex Virus surface antigens, blocking the virus's ability to enter and infect host cells.",
-    applications: ["Antiviral therapeutics", "Diagnostic & research reagents"],
+      "Alpaca-derived single-domain antibody fragment (nanobody) that neutralizes herpes simplex virus types 1 and 2 (HSV-1 and HSV-2) by locking the essential envelope protein glycoprotein B (gB) in its unstable prefusion conformation.",
+    applications: [
+      "Antiviral therapeutics",
+      "Biosensors",
+      "Protein detection & imaging",
+      "Pull-down & co-IP assays",
+    ],
     why: "Nanobodies are small, stable, and easy to produce recombinantly — a practical antiviral format for a modular expression platform.",
     host: HOST,
     delivery: DELIVERY,
@@ -84,15 +109,20 @@ export const PROTEINS = [
   {
     id: "pdl1-nanobody",
     name: "PD-L1 Nanobody",
-    subtitle: "anti-PD-L1 — Immune checkpoint blocker",
+    subtitle: "anti-PD-L1 — Single-domain antibody",
     color: "#FF7BD1",
     tested: true,
     glyph: "shield",
     shortDescription:
       "Blocks the PD-L1 / PD-1 interaction, a key immune checkpoint tumors exploit to evade immune attack.",
     function:
-      "Binds PD-L1 and prevents it from engaging PD-1 on immune cells, with potential to help restore the immune system's ability to recognize and attack tumor cells.",
-    applications: ["Cancer immunotherapy", "Immune checkpoint research"],
+      "Binds PD-L1 (Programmed Death-Ligand 1) and prevents it from engaging PD-1 on immune cells, with potential to help restore T cells' ability to recognize and attack tumor cells.",
+    applications: [
+      "Cancer immunotherapy",
+      "Immune checkpoint research",
+      "Tumor imaging & diagnostics",
+      "Site-specific drug delivery",
+    ],
     why: "A compact, platform-producible alternative to full antibodies for probing and blocking immune checkpoint signaling.",
     host: HOST,
     delivery: DELIVERY,
@@ -101,15 +131,20 @@ export const PROTEINS = [
   {
     id: "mcherry",
     name: "mCherry",
-    subtitle: "Fluorescent Protein — Monomeric red",
+    subtitle: "Proof of Concept — Red fluorescent protein",
     color: "#E0455F",
     tested: true,
     glyph: "orb",
     shortDescription:
       "A bright, photostable, monomeric red fluorescent protein used to visualize and track biological processes.",
     function:
-      "Emits red fluorescence when excited by the appropriate wavelength of light, without requiring any substrate or cofactor.",
-    applications: ["Live-cell & tissue imaging", "Protein / organelle tracking", "Reporter assays"],
+      "Emits red fluorescence when excited by the appropriate wavelength of light, without requiring any substrate or cofactor. Engineered through directed evolution of DsRed → mRFP1 → mCherry, and lacks the tendency to oligomerize — essential for fusion tagging.",
+    applications: [
+      "Cell & tissue imaging",
+      "Protein & organelle tracking",
+      "Reporter assays",
+      "Flow cytometry & cell sorting",
+    ],
     why: "A reliable, well-understood readout for confirming that a construct is expressing correctly.",
     host: HOST,
     delivery: DELIVERY,
@@ -126,49 +161,18 @@ export const PROTEINS = [
     shortDescription:
       "The classic, well-characterized fluorescent reporter — used here as a robust proof-of-concept for the expression platform.",
     function:
-      "Produces green fluorescence when excited by blue/UV light, requiring no external substrate — a simple, reliable readout of gene expression.",
-    applications: ["Proof-of-concept expression testing", "Imaging", "Expression control / calibration"],
+      "Produces green fluorescence when excited by blue/UV light, requiring no external substrate — a robust, simple, and reliable reporter.",
+    applications: [
+      "Proof-of-concept expression testing",
+      "Imaging",
+      "Protein localization",
+      "Gene expression reporting",
+    ],
     why: "The simplest possible proof that the expression platform works end-to-end.",
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
     structure: { pdbId: "1EMA", label: "GFP (Aequorea victoria)", file: gfpPdb },
-  },
-  {
-    id: "il-10",
-    name: "Interleukin-10",
-    subtitle: "IL-10 — Anti-inflammatory cytokine",
-    color: "#7FB3FF",
-    tested: false,
-    glyph: "network",
-    shortDescription:
-      "An anti-inflammatory cytokine that modulates immune response, with relevance to autoimmune and inflammatory conditions.",
-    function:
-      "Suppresses pro-inflammatory signaling and dampens excessive immune activation, helping regulate the scale of an immune response.",
-    applications: ["Autoimmune disease research", "Inflammation modulation"],
-    why: "A natural 'brake' on inflammation — useful wherever an overactive immune response is the problem.",
-    host: HOST,
-    delivery: DELIVERY,
-    status: "Conceptual — payload not yet tested in our platform.",
-    structure: { pdbId: "2H24", label: "Human IL-10", file: il10Pdb },
-  },
-  {
-    id: "insulin",
-    name: "Insulin",
-    subtitle: "Preproinsulin — Metabolic hormone",
-    color: "#FFD84D",
-    tested: false,
-    glyph: "hex",
-    shortDescription:
-      "The precursor form of the hormone that regulates blood glucose levels — a foundational therapeutic protein for metabolic disease.",
-    function:
-      "Once processed into its mature form, insulin signals cells to take up glucose from the bloodstream, regulating blood sugar levels.",
-    applications: ["Diabetes treatment", "Metabolic disorder research"],
-    why: "One of the most widely needed therapeutic proteins in the world — a benchmark for on-demand biologic production.",
-    host: HOST,
-    delivery: DELIVERY,
-    status: "Conceptual — payload not yet tested in our platform.",
-    structure: { pdbId: "4FKA", label: "Human insulin", file: insulinPdb },
   },
   {
     id: "follistatin",
