@@ -259,9 +259,10 @@ Aerobically, yeast grows at 0.40 h<sup>−1</sup> (a doubling roughly
 every 2 h). Anaerobically it falls to 0.10 h<sup>−1</sup> (roughly every
 7 h), a loss of about three quarters of its growth rate.
 
-<div class="notebook-img-row">
+<div data-chart="yeast-aerobic-anaerobic"></div>
 
-![Aerobic versus anaerobic growth.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/yeast-aerobic-vs-anaerobic.avif)
+<div class="photo-frame">
+
 ![Growth and CO2 output versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/yeast-o2-requirement-co2.avif)
 
 </div>
@@ -695,11 +696,7 @@ misleading.
 
 **Result: dynamic production.**
 
-<div class="photo-frame">
-
-![Analytical model (Model 1): biomass and nanobody concentration for a range of induction times.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/yeast/yeast-model1-induction-times.avif)
-
-</div>
+<div data-chart="yeast-model1-induction-times"></div>
 
 <div class="caption">
 
@@ -715,14 +712,13 @@ interior optimum.
 
 </div>
 
-<div class="notebook-img-row">
+<div data-chart="yeast-constitutive-vs-inducible"></div>
 
-![Constitutive versus inducible production.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/yeast/yeast-constitutive-vs-inducible.avif)
-![Resource-depleting simulation (Model 2).](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/yeast/yeast-resource-simulation.avif)
-![Induction-time scan.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/yeast/yeast-induction-scan.avif)
-![Nanobody production landscape.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/yeast/yeast-yield-loss-heatmap.avif)
+<div data-chart="yeast-resource-simulation"></div>
 
-</div>
+<div data-chart="yeast-induction-scan"></div>
+
+<div data-chart="yeast-yield-loss-heatmap"></div>
 
 <div class="caption">
 
@@ -1002,9 +998,10 @@ aerobic maximum.
 
 **Result.**
 
-<div class="notebook-img-row">
+<div data-chart="bacillus-aerobic-anaerobic"></div>
 
-![Aerobic versus anaerobic growth.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/bascillus-aerobic-anaerobic.avif)
+<div class="photo-frame">
+
 ![Growth and CO2 output versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/min-oxygen-for-viability.avif)
 
 </div>
@@ -1288,11 +1285,7 @@ set-point.
 
 **Result: dynamic production.**
 
-<div class="photo-frame">
-
-![Biomass and nanobody trajectories under different Bacillus induction strategies.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/bacillus/bacillus-multi-induction.avif)
-
-</div>
+<div data-chart="bacillus-fig9-multi-induction"></div>
 
 <div class="caption">
 
@@ -1310,13 +1303,11 @@ titre and harvest titre are not the same quantity.
 
 </div>
 
-<div class="notebook-img-row">
+<div data-chart="bacillus-fig2-sugar-nitrogen"></div>
 
-![Carbon and nitrogen resource dynamics.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/bacillus/fig2-sugar-nitrogen.avif)
-![Final nanobody yield versus induction time.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/bacillus/fig9-multiple-induction-comparison.avif)
-![Nanobody production landscape.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/bacillus/fig8-heatmap-nanobody.avif)
+<div data-chart="bacillus-fig6-final-nanobody"></div>
 
-</div>
+<div data-chart="bacillus-fig8-heatmap"></div>
 
 <div class="caption">
 
@@ -1485,11 +1476,7 @@ default photon, nitrogen and phosphate bounds gives a baseline growth
 rate of 0.2191 h<sup>−1</sup>. This is the operating point used for the
 rest of the cyanobacterial analysis.
 
-<div class="photo-frame">
-
-![Optimal growth rate of S. elongatus PCC 7942 versus the CO2/HCO3 uptake bound.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/co2-hco3-bounds-bof.avif)
-
-</div>
+<div data-chart="cyano-co2-hco3-bounds"></div>
 
 <div class="caption">
 
@@ -1557,13 +1544,11 @@ sit with one nutrient but moves:
   0.2782 mmol·h<sup>−1</sup>, with NH₄⁺ at about 3.425 and CO₂/HCO₃⁻ at
   12.728 (see panel (b) of Figure 12 below).
 
-<div class="notebook-img-row">
+<div data-chart="cyano-cn-bof"></div>
 
-![Carbon-nitrogen co-limitation surface.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/cn-bof.avif)
-![Joint scaling of CO2/HCO3, N and P.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/cpn-increased-bof.avif)
-![The cascade, stage by stage.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/limiting-factors-bounds.avif)
+<div data-chart="cyano-cpn-increased"></div>
 
-</div>
+<div data-chart="cyano-limiting-factors"></div>
 
 <div class="caption">
 
@@ -1662,11 +1647,7 @@ Sucrose export and biomass production compete for the same fixed
 carbon. Figure 13 maps that trade-off directly: maximum sucrose export
 falls approximately linearly as the biomass flux constraint is raised.
 
-<div class="photo-frame">
-
-![Sucrose excretion versus growth rate trade-off for S. elongatus PCC 7942 carrying cscB.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/sucrose-vs-growth.avif)
-
-</div>
+<div data-chart="cyano-sucrose-vs-growth"></div>
 
 <div class="caption">
 

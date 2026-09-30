@@ -1,0 +1,272 @@
+// Chart primitives for the Dry Lab Overview page's inline data charts
+// (see components/Chart.jsx, ChartSlots.jsx). These charts are portaled into
+// slot elements that live inside SectionedArticle's markdown-rendered
+// `.article` container (see MARKDOWN-COMPONENTS.md's `.panel`/`.caption`
+// classes, which the slots' surrounding markdown already uses) — kept as a
+// separate page-scoped module rather than added to SectionedArticle's shared
+// stylesheet since these rules are chart-specific, not general markdown
+// authoring classes, matching how Model.module.scss keeps its own chart
+// rules separate (see ARTICLE-STANDARDS.md).
+
+.chartWrap {
+  margin: 4px 0 2px;
+}
+
+.chartScroll {
+  overflow-x: auto;
+}
+
+.chartSvg {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+
+  text {
+    fill: rgba(255, 255, 255, 0.6);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+}
+
+.axl {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.gridline {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.axline {
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 1;
+}
+
+.refline {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.reflabel {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2.25;
+}
+
+.lineDashed {
+  fill: none;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+.dot {
+  stroke: var(--bg);
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: r 0.1s;
+
+  &:hover {
+    stroke: white;
+  }
+}
+
+.hoverLine {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.hitArea {
+  fill: transparent;
+  cursor: crosshair;
+}
+
+// Two panels side by side (biomass | nanobody, or growth | uptake-bounds) —
+// stacks on narrow screens like the markdown system's own .two-col-images.
+.chartPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chartStack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.swatchLine {
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  flex: none;
+}
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  background: #14142e;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-xs);
+  padding: 8px 11px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: white;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
+  z-index: 60;
+  max-width: 260px;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.tipTitle {
+  font-weight: 600;
+  font-size: 11.5px;
+  margin-bottom: 3px;
+  display: block;
+}
+
+.tipRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  span:first-child {
+    color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+// Simple categorical bar chart (aerobic vs anaerobic, the nutrient cascade).
+.barChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+  height: 180px;
+  padding: 4px 8px 0;
+}
+
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  max-width: 88px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.barFill {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.2s ease;
+  position: relative;
+}
+
+.barValue {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: white;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.barLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+  text-align: center;
+}
+
+// Heatmap grid + colorbar.
+.heatCell {
+  cursor: crosshair;
+}
+
+.colorbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.colorbarSwatch {
+  width: 14px;
+  height: 140px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.colorbarLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 9.5px;
+  color: rgba(255, 255, 255, 0.55);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.heatRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.statLine {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+
+  b {
+    color: white;
+    font-weight: 600;
+  }
+}
