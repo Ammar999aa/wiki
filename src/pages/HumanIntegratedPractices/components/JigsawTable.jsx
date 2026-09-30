@@ -102,7 +102,10 @@ const CENTER = PIECE_RECT.map((r, i) => [(r.left + r.right) / 2 + TITLE_X_NUDGE[
 
 const TITLE_MAX_CHARS = [20, 17, 17, 33, 32];
 const TITLE_LINE_HEIGHT = 44;
-const BACK_MAX_CHARS = TITLE_MAX_CHARS.map((n) => n * 2);
+// Narrower than the piece so back-face text stays clear of knobs and notches.
+const BACK_MAX_CHARS = [32, 28, 28, 46, 46];
+// Visual horizontal shift of back-face text (negative = left), in board units.
+const BACK_X_SHIFT = [0, 0, -40, 0, 0];
 const BACK_LINE_HEIGHT = 27;
 const BACK_SECTION_GAP = 16;
 
@@ -283,7 +286,8 @@ export default function JigsawTable({ items }) {
               >
                 <path d={PIECE_D[i]} fill={`var(--piece-${i + 1})`} stroke="var(--surface)" strokeWidth="8" strokeLinejoin="round" />
                 {isActive && showBack ? (
-                  <BackFace item={item} cx={cx} cy={cy} maxChars={BACK_MAX_CHARS[i]} />
+                  // The piece is mirrored, so a visual shift maps to the opposite local x.
+                  <BackFace item={item} cx={cx - BACK_X_SHIFT[i]} cy={cy} maxChars={BACK_MAX_CHARS[i]} />
                 ) : (
                   <FrontFace item={item} index={i} nx={nx} ny={ny} cx={cx} cy={cy} />
                 )}
