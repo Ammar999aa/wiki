@@ -722,18 +722,21 @@ const PROBLEMS = [
     Ico: IcoCargo,
     title: "Resupply is limited",
     text: "On long-duration missions, replacement medicines may take months to arrive — or may be impossible to deliver.",
+    credit: { url: "https://images.nasa.gov/details/PIA03276", label: "Mars: NASA/JPL/MSSS", title: "Mars at Ls 357°: Tharsis — NASA ID PIA03276 — NASA/JPL/Malin Space Science Systems" },
   },
   {
     planet: neptunePlanet,
     Ico: IcoBroken,
     title: "Crews cannot carry everything they might need",
     text: "Spacecraft have limited mass and storage capacity, making it difficult to stock every medicine for every possible medical emergency.",
+    credit: { url: "https://images.nasa.gov/details/PIA02210", label: "Neptune: NASA/JPL", title: "Neptune, imaged by Voyager 2 — NASA ID PIA02210 — NASA/JPL" },
   },
   {
     planet: jupiterPlanet,
     Ico: IcoDecay,
     title: "Medicines do not last forever",
     text: "During long-term storage, some medicines can degrade and lose stability or effectiveness.",
+    credit: { url: "https://images.nasa.gov/details/PIA00343", label: "Jupiter: NASA/JPL/USGS", title: "Jupiter, from Voyager imagery — NASA ID PIA00343 — NASA/JPL/USGS" },
   },
 ];
 
@@ -761,6 +764,7 @@ function ProblemSection() {
   const ref = useRef(null);
   const kickerRef = useRef(null);
   const introRef = useRef(null);
+  const attributionRef = useRef(null);
   const planetRefs = useRef([]);
   const flareRefs = useRef([]);
   const pulseRefs = useRef([]);
@@ -770,6 +774,18 @@ function ProblemSection() {
   useScene(ref, 1.8, (p) => {
     if (kickerRef.current) kickerRef.current.style.opacity = between(p, 0.0, 0.12);
     if (introRef.current) introRef.current.style.opacity = between(p, 0.04, 0.2);
+    // Fixed above the nav dock, visible only while this slide's planets are
+    // actually on screen — same fade-in/out formula and anchor spot as
+    // SlideAttributions uses for the rocket/astronaut slides, just driven by
+    // this section's own p instead of a second useScene subscription, and
+    // showing all three credits at once (rocket/astronaut are on separate
+    // slides so only ever show one at a time; these three discs are all
+    // visible together).
+    if (attributionRef.current) {
+      const o = Math.min(between(p, 0.2, 0.4), 1 - between(p, 0.9, 1));
+      attributionRef.current.style.opacity = `${o}`;
+      attributionRef.current.style.pointerEvents = o > 0.05 ? "auto" : "none";
+    }
     PROBLEMS.forEach((_, i) => {
       const start = 0.26 + i * 0.13;
 
@@ -904,6 +920,26 @@ function ProblemSection() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Fixed above the nav dock, desktop-only (see .planetAttribution's
+          media query) — mobile shows the icon cards above, not these
+          photos, so there's nothing to credit there. */}
+      <div className={styles.planetAttribution} ref={attributionRef} style={{ opacity: 0 }}>
+        {PROBLEMS.map(({ title, credit }) =>
+          credit ? (
+            <a
+              key={title}
+              href={credit.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.planetAttributionLink}
+              title={credit.title}
+            >
+              {credit.label}
+            </a>
+          ) : null
+        )}
       </div>
     </section>
   );

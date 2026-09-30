@@ -1172,6 +1172,54 @@
   will-change: transform, opacity;
 }
 
+/* NASA image credit for the three planets — fixed above the nav dock, same
+   anchor spot and fade formula as .slideAttribution below (rocket/astronaut),
+   just showing all three links at once instead of toggling one at a time:
+   those two are on separate slides so only one is ever on screen, but all
+   three planets are visible together. Desktop-only — mobile shows the icon
+   cards, not these photos (see the max-width: 760px media query further
+   down, same one that hides .planetGrid). */
+.planetAttribution {
+  position: fixed;
+  left: 50%;
+  bottom: calc(38px + 68px + 12px);
+  transform: translateX(-50%);
+  z-index: 5;
+  width: min(92vw, 620px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.planetAttributionLink {
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  transition: color 150ms ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  & + &::before {
+    content: "· ";
+    color: rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .planetAttribution {
+    bottom: calc(24px + 68px + 12px);
+  }
+}
+
 /* Mobile only (see the max-width: 760px media query below, which is what
    actually shows this and hides .planetGrid) — the original icon+title+text
    glass cards, kept as-is rather than shrinking the planet circles further,
@@ -1362,6 +1410,10 @@
   }
 
   .planetGrid {
+    display: none;
+  }
+
+  .planetAttribution {
     display: none;
   }
 
