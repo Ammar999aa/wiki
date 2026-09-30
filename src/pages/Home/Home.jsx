@@ -231,9 +231,16 @@ function HeroSection() {
   const copyRef = useRef(null);
 
   useScene(ref, 1.7, (p) => {
-    if (latinRef.current) latinRef.current.style.opacity = 1 - between(p, 0.30, 0.60);
+    // Logo -> Arabic wordmark crossfade starts almost as soon as scrolling
+    // begins (old 0.30-0.72 range read as "too late"), but stays stretched
+    // out to about two-thirds of the pinned hero scene rather than finishing
+    // by p=0.35 — an earlier attempt compressed it into the first third,
+    // which left a long dead stretch (p≈0.35→0.84) with no visible motion
+    // before the copy fade-out kicks in, reading as scrolling suddenly
+    // doing nothing rather than as an earlier transition.
+    if (latinRef.current) latinRef.current.style.opacity = 1 - between(p, 0.05, 0.55);
     if (arabicRef.current) {
-      const fo = between(p, 0.42, 0.72);
+      const fo = between(p, 0.15, 0.65);
       arabicRef.current.style.opacity = fo;
       arabicRef.current.style.transform = `scale(${lerp(0.82, 1, fo)})`;
     }
