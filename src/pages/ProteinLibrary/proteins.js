@@ -18,28 +18,43 @@ const DELIVERY = "MOFs, hydrogels & other on-demand delivery formats";
 // this, never guessed — for the general, natural protein, not a structure
 // this team solved themselves. StructureViewer labels each one accordingly.
 // Left unset (no `structure` field at all) wherever that distinction would
-// blur: both nanobodies are this team's own novel designs, not deposited
-// anywhere public; "Custom Payloads" has no fixed target; both antifreeze
-// protein entries (LeIBP, FfIBP) have a named source organism but no
-// structure yet ("Structure - to be sent" per the source material). Add a
-// real PDB ID (or a locally solved/predicted structure) to any of these
-// once the team has one to point to — see StructureViewer.jsx for the
-// {pdbId, label, file} shape this expects.
+// blur: "Custom Payloads" has no fixed target; Sclerostin-neutralizing
+// Nanobody has no structure cited in the source material yet. Add a real
+// PDB ID (or a locally solved/predicted structure) to either once the team
+// has one to point to — see StructureViewer.jsx for the {pdbId, label,
+// file} shape this expects.
 //
-// Hosted on iGEM's asset server rather than bundled locally — see
+// PD-L1 Nanobody's structure (5DXW) is a *mouse* PD-L1 nanobody — a
+// reference structure for the nanobody:PD-L1 interaction generally, not
+// this team's own (human-PD-L1-targeting) molecule solved. Labeled as such
+// in its `label` below, same "real structure, honestly scoped" approach as
+// the Follistatin : Activin complex and the Ang-1 receptor-binding domain
+// used before it.
+//
+// Hosted on iGEM's asset server — see
 // https://static.igem.wiki/teams/6341/wiki/3d-models/structures/. The
-// Uploads tool's file-type filter rejects raw PDB content under both a
-// .pdb and a plain .txt extension (checked on contents, not just the
-// extension), with no "structure data" category on its accepted list.
-// .json is accepted, though, so each file here is the original PDB text
-// wrapped verbatim as {"format":"pdb","data": "..."} — a real, valid JSON
-// document, not a renamed/disguised .pdb — which StructureViewer.jsx
-// unwraps before handing `data` to 3Dmol exactly as it always did.
+// Uploads tool's file-type filter rejects raw PDB content under both a .pdb
+// and a plain .txt extension (checked on contents, not just the extension),
+// with no "structure data" category on its accepted list. .json is
+// accepted, though, so each file here is the original PDB text wrapped
+// verbatim as {"format":"pdb","data": "..."} — a real, valid JSON document,
+// not a renamed/disguised .pdb — which StructureViewer.jsx unwraps before
+// handing `data` to 3Dmol exactly as it always did.
+//
+// leibp/ffibp/hsv-nanobody/pdl1-nanobody/interferon-beta were bundled
+// locally at first (fetched straight from RCSB, files.rcsb.org, since
+// nobody with CDN upload access had run them through the Uploads tool yet)
+// — now on static.igem.wiki like the rest, confirmed byte-identical to the
+// RCSB originals before switching these constants over.
 const STRUCTURES_BASE = "https://static.igem.wiki/teams/6341/wiki/3d-models/structures";
 const gfpPdb = `${STRUCTURES_BASE}/gfp-1ema.json`;
 const mcherryPdb = `${STRUCTURES_BASE}/mcherry-2h5q.json`;
 const follistatinPdb = `${STRUCTURES_BASE}/follistatin-activin-2b0u.json`;
-const ang1Pdb = `${STRUCTURES_BASE}/ang1-4epu.json`;
+const leibpPdb = `${STRUCTURES_BASE}/leibp-3uyv.json`;
+const ffibpPdb = `${STRUCTURES_BASE}/ffibp-4nu2.json`;
+const hsvNanobodyPdb = `${STRUCTURES_BASE}/hsv-nanobody-9q9n.json`;
+const pdl1NanobodyPdb = `${STRUCTURES_BASE}/pdl1-nanobody-5dxw.json`;
+const interferonBetaPdb = `${STRUCTURES_BASE}/interferon-beta-1au1.json`;
 
 export const PROTEINS = [
   {
@@ -62,6 +77,7 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
+    structure: { pdbId: "3UYV", label: "LeIBP (Leucosporidium sp. AY30)", file: leibpPdb },
   },
   {
     id: "ffibp-afp",
@@ -83,6 +99,7 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
+    structure: { pdbId: "4NU2", label: "FfIBP (Flavobacterium frigoris PS1)", file: ffibpPdb },
   },
   {
     id: "hsv-nanobody",
@@ -105,6 +122,11 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
+    // This is the nanobody bound to its actual target (HSV-1 glycoprotein B,
+    // locked in the prefusion conformation Nb1_gbHSV traps it in) rather
+    // than the nanobody solved alone — same "real complex, labeled
+    // honestly" approach as the Follistatin : Activin structure below.
+    structure: { pdbId: "9Q9N", label: "HSV-1 gB : Nb1_gbHSV complex", file: hsvNanobodyPdb },
   },
   {
     id: "pdl1-nanobody",
@@ -127,6 +149,10 @@ export const PROTEINS = [
     host: HOST,
     delivery: DELIVERY,
     status: "Tested — expressed & validated in our platform.",
+    // A mouse PD-L1 nanobody — a reference structure for this class of
+    // nanobody:PD-L1 interaction, not this team's own molecule solved (see
+    // the file-header comment above).
+    structure: { pdbId: "5DXW", label: "PD-L1 Nanobody (mouse PD-L1 reference structure)", file: pdl1NanobodyPdb },
   },
   {
     id: "mcherry",
@@ -175,6 +201,27 @@ export const PROTEINS = [
     structure: { pdbId: "1EMA", label: "GFP (Aequorea victoria)", file: gfpPdb },
   },
   {
+    id: "sclerostin-nanobody",
+    name: "Sclerostin-neutralizing Nanobody",
+    subtitle: "anti-SOST — Single-domain antibody",
+    color: "#E8D9C5",
+    tested: false,
+    glyph: "shield",
+    shortDescription:
+      "A nanobody that blocks sclerostin, the bone-formation inhibitor osteocytes secrete — aimed at the rapid bone loss astronauts face in microgravity.",
+    function:
+      "Sclerostin is a Wnt-pathway inhibitor secreted by osteocytes that suppresses bone formation; blocking it significantly increases bone density. In mice exposed to partial weight-bearing (simulating lunar gravity at 0.16 g), sclerostin-antibody treatment significantly inhibited skeletal deterioration and maintained cortical and trabecular bone parameters. A related approach, the IgG antibody romosozumab, was FDA-approved in 2019 for postmenopausal osteoporosis. Compared to conventional antibodies, nanobodies offer improved bone-tissue penetration and an easier production and purification process.",
+    applications: [
+      "Microgravity-induced osteoporosis treatment",
+      "Postmenopausal osteoporosis treatment",
+      "Osteogenesis imperfecta treatment",
+    ],
+    why: "Meets a threat unique to long-duration spaceflight: astronauts lose about 1–1.5% of their bone mass every month in microgravity — roughly 10x faster than age-related bone loss on Earth, concentrated in weight-bearing areas like the hips, pelvis, and spine.",
+    host: HOST,
+    delivery: DELIVERY,
+    status: "Conceptual — payload not yet tested in our platform.",
+  },
+  {
     id: "follistatin",
     name: "Follistatin",
     subtitle: "Myostatin Inhibitor",
@@ -184,10 +231,17 @@ export const PROTEINS = [
     shortDescription:
       "Inhibits myostatin to promote muscle growth and preserve muscle mass — relevant to muscle wasting in space and on Earth.",
     function:
-      "Binds and neutralizes myostatin (and related activins), releasing the brake myostatin normally puts on muscle growth.",
-    applications: ["Muscle-wasting treatment in spaceflight", "Sarcopenia", "Cachexia"],
+      "Binds and neutralizes myostatin (and related activins), releasing the brake myostatin normally puts on muscle growth. Skeletal muscle atrophy is essentially universal in spaceflight, affecting every astronaut regardless of pre-launch fitness, and recovery to preflight condition can take months to over a year after returning to Earth — on a Mars mission, muscle mass loss is predicted at around 25–40%, which could leave the crew too weak to perform surface operations. Daily resistance and aerobic exercise doesn't fully prevent this atrophy, which is why protein therapeutics like follistatin are considered crucial for space missions. Follistatin's dual anabolic/anti-catabolic mechanism makes it an especially powerful option: in animal models, follistatin overexpression has produced 2–4x normal muscle mass, the most dramatic hypertrophy observed from a protein treatment.",
+    applications: [
+      "Muscle atrophy treatment in spaceflight",
+      "Sarcopenia (age-related muscle loss) treatment",
+      "Duchenne muscular dystrophy treatment",
+      "Spinal muscular atrophy treatment",
+    ],
     why: "Muscle wasting is a real risk on long-duration spaceflight; a locally producible countermeasure is valuable when resupply isn't an option.",
-    host: HOST,
+    // Source material specifies only these two hosts for Follistatin (no
+    // B. subtilis) — not the shared HOST constant used everywhere else.
+    host: "S. cerevisiae, P. pastoris",
     delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
     // Standalone follistatin isn't in the PDB under a plain "just
@@ -197,24 +251,22 @@ export const PROTEINS = [
     structure: { pdbId: "2B0U", label: "Follistatin : Activin complex", file: follistatinPdb },
   },
   {
-    id: "ang-1",
-    name: "Angiopoietin-1",
-    subtitle: "ANG-1 — Vascular stabilizer",
-    color: "#FF6F91",
+    id: "interferon-beta",
+    name: "Interferon-β",
+    subtitle: "IFN-β — Type I interferon",
+    color: "#7FB3FF",
     tested: false,
-    glyph: "branch",
+    glyph: "network",
     shortDescription:
-      "Promotes blood vessel stability and supports tissue regeneration through the Tie2 signaling pathway.",
+      "A first-line antiviral cytokine with added anti-tumor and neuroprotective effects, produced by nearly all nucleated cells in response to infection.",
     function:
-      "Activates the Tie2 receptor on endothelial cells, strengthening blood vessel walls and supporting vessel stability.",
-    applications: ["Wound healing", "Ischemic disease research", "Tissue repair"],
-    why: "Supports the body's own vessel-repair machinery, relevant anywhere tissue needs to heal or regenerate.",
+      "Interferon-β is a type I interferon and one of the first-line antiviral defense systems, produced by most nucleated cells in response to viral infection, double-stranded RNA, or innate immune pattern recognition. It plays a central role in antiviral defense and immune modulation, and also shows anti-tumor effects by directly inhibiting tumor cell cycle progression, promoting tumor cell apoptosis, and enhancing NK cell and cytotoxic T lymphocyte activity. It can also support neuroprotection by reducing neuroinflammation through suppression of microglial activation.",
+    applications: ["Multiple sclerosis treatment", "Radiation cancer protection", "Antiviral treatment"],
+    why: "A single protein with antiviral, anti-tumor, and neuroprotective activity — broad enough to be useful for both spaceflight (radiation exposure, limited access to Earth-side care) and terrestrial medicine.",
     host: HOST,
     delivery: DELIVERY,
     status: "Conceptual — payload not yet tested in our platform.",
-    // The fibrinogen-related domain (FReD) — the receptor-binding part of
-    // Ang-1 — not the full-length protein, which hasn't been crystallized.
-    structure: { pdbId: "4EPU", label: "Ang-1 receptor-binding domain", file: ang1Pdb },
+    structure: { pdbId: "1AU1", label: "Human Interferon-β", file: interferonBetaPdb },
   },
   {
     id: "custom",
