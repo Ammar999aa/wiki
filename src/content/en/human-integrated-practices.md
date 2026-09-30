@@ -30,7 +30,7 @@ Our first questions soon led to many others.
 
 ## Exploring The Unknown
 
-**What do we think the problem is?**
+### What do we think the problem is?
 
 Our journey began before SHIHAB had a name or a defined solution. As a team with little previous experience in space research, we started from curiosity rather than certainty. Instead of assuming which challenges would be most important for future human space exploration, we began by brainstorming as a team and opening the same question to our KAUST community.
 
@@ -149,25 +149,11 @@ As we explored these different challenges, oxygen initially caught our attention
 
 </div>
 
-Looking across the solutions we had encountered, we noticed a recurring element:
+This led us to consider whether we could develop a microbial platform specifically adapted for space applications. Our first direction therefore focused on developing more resilient microbial chassis. We began exploring how microorganisms could be engineered to better tolerate space-associated stresses, particularly radiation and other environmental conditions that could compromise cellular function and production performance.
 
-<div class="callout warn">
+At this stage, resilience was the central goal of our platform. However, through discussions with our PIs, we were encouraged to think further. If we were developing microorganisms capable of functioning under these challenging conditions, could we use that capability to produce something important for astronauts?
 
-Microorganisms could serve as biological factories for producing valuable resources beyond Earth.
-
-</div>
-
-This shifted our perspective. Before deciding what we wanted microorganisms to produce, perhaps we first needed to understand how to make them reliable producers under the challenging conditions associated with space.
-
-Our first direction therefore became the development of **more resilient microbial hosts**. We began exploring how microorganisms could be engineered to better tolerate space-associated stresses, particularly radiation and other environmental constraints that could compromise their growth and productivity. But a resilient microorganism is a platform, not yet a solution. This brought us back to an important question:
-
-<div class="callout accent">
-
-If we could engineer microorganisms capable of functioning under these conditions, what should they produce?
-
-</div>
-
-We returned to the challenges identified during our initial exploration and reconsidered where such a platform could have the greatest relevance. **Medicine** stood out. Unlike resources with established regenerative systems, access to therapeutics during long-duration missions remains constrained by factors such as shelf life, storage, mission duration, and limited opportunities for resupply. This gave our biological platform a purpose: rather than carrying every therapeutic that might be needed, **what if astronauts could carry the biological capacity to produce therapeutics on demand?**
+This brought us back to the challenges identified during our initial exploration. Among them, access to medicines presented an interesting opportunity for microbial biomanufacturing. During long-duration missions, pharmaceutical availability can be constrained by limited storage capacity, shelf life, mission duration, and reduced opportunities for resupply. This gave our platform a more specific purpose. Instead of relying exclusively on medicines manufactured and stored on Earth, **could resilient microorganisms provide astronauts with the capacity to produce selected therapeutics on demand?**
 
 From the intersection of these two ideas, SHIHAB began to take shape:
 
@@ -183,7 +169,7 @@ From the intersection of these two ideas, SHIHAB began to take shape:
 
 ## Our ORBIT Framework
 
-To guide this process, we developed the ORBIT framework, a continuous cycle connecting stakeholder engagement with project development:
+To guide our process, we developed the ORBIT framework, a continuous cycle connecting stakeholder engagement with project development:
 
 ![The ORBIT framework: Observe, Reach, Build, Iterate, Translate](https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/orbit-framework-graphic.avif)
 
@@ -191,24 +177,54 @@ Rather than following these steps only once, ORBIT became an iterative process. 
 
 ## Defining Our Stakeholders
 
-As SHIHAB evolved, we identified the people and communities who could inform, challenge, evaluate, regulate, use, or be affected by our solution. We grouped our stakeholders according to the perspective they brought to the project and asked two questions for each group:
+As SHIHAB evolved, we identified the people and communities who could inform, challenge, evaluate, regulate, use, or be affected by our solution. We grouped our stakeholders according to the perspective they brought to the project and asked two questions for each group. Click the pieces below to explore.
 
 <div class="card-grid compact">
 
 <div>
 
-#### Learn
+#### <span class="hl">Learn</span>
 What do we need to learn from them?
 
 </div>
 
 <div>
 
-#### Influence
+#### <span class="hl">Influence</span>
 How could their perspective influence SHIHAB?
 
 </div>
 
+</div>
+
+## Listening to Astronauts & Space Medicine Experts
+
+### What does healthcare really require beyond Earth?
+
+Our initial research identified access to medicines as a potential challenge for long-duration space missions. Limitations in pharmaceutical shelf life, storage, and resupply suggested that producing therapeutics on demand could contribute to greater medical autonomy [[17]](#ref-17)[[18]](#ref-18). However, literature alone could not tell us what astronauts actually need, how healthcare is currently managed in space, or what would be required to operate a biological production system in this environment.
+
+To better understand these questions, we spoke with professionals whose experiences covered different aspects of human health and research in space: astronaut operations, space medicine, astronaut healthcare, and aerospace medicine. Through these conversations, we explored the medical needs of astronauts, the resources currently available to them, the practical limitations of conducting biological experiments in space, and the conditions our microorganisms would eventually need to withstand.
+
+<div class="person-card">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/starr.avif" alt="Starr Corbin" style="--photo-x: 55%; --photo-y: 26%; --photo-zoom: 2.6;">
+<h4 class="person-name">Starr Corbin</h4>
+<p>Our discussion with Starr Corbin, a registered nurse with experience in human factors and aerospace research, helped us move from understanding medicine as a general challenge to examining the actual healthcare needs and resources available to astronauts. Her clinical perspective allowed us to explore what medical care looks like when crews operate in a remote and resource-limited environment.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/observe.avif" alt="">Observe</h3>
+<p>We wanted to explore what health problems astronauts may face during spaceflight and how these conditions are currently managed. In particular, we wanted to learn what medical resources are available to astronauts.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/reach.avif" alt="">Reach</h3>
+<p>Starr gave us a closer look at how medical care is supported during spaceflight, showing us the medical kits and equipment available to crews, and the different environmental and physiological challenges that can affect astronaut health. Importantly, she introduced us to NASA’s Human Research Roadmap, which organizes the major human health and performance risks associated with space exploration. This gave us a resource through which we could investigate these risks systematically rather than selecting a therapeutic based only on our initial assumptions.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/build.avif" alt="">Build</h3>
+<p>From this conversation, we learned that healthcare in space cannot be approached only by considering the common diseases and medical conditions we encounter on Earth. Astronauts are exposed to additional risks associated with the space environment, including microgravity, radiation, decompression, altered day-night cycles, and the challenges of operating in a remote and resource-limited area.</p>
+<p>The Human Research Roadmap therefore became an important resource for identifying these space-specific health risks and understanding where new medical countermeasures could be valuable.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
+<p>Based on Starr's guidance, we used the NASA Human Research Roadmap to explore the health risks associated with spaceflight and identify areas where new medical countermeasures could be valuable. After this, we had a new question: What could SHIHAB produce that would actually address astronaut health needs?</p>
+<p>Through this exploration, Spaceflight-Associated Neuro-ocular Syndrome (SANS) and carcinogenesis emerged as relevant health risks to consider, and we added potential therapeutics addressing these conditions to our list of possible payloads for SHIHAB.</p>
+<p><a class="person-link-btn" href="/kaust-ksa/design">Go to page →</a></p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
+<p>Starr’s perspective shifted our therapeutic selection from being primarily production-driven to need-driven. The next step was therefore to connect the health challenges identified through the roadmap with therapeutics that could realistically be produced using a microbial platform.</p>
+</div>
 </div>
 
 ## References

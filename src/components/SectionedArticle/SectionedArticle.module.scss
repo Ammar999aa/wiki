@@ -464,6 +464,11 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin-block: 20px;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 
+    > p:first-child,
+    > :global(.callout-label) + p {
+      margin-top: 0;
+    }
+
     p:last-child {
       margin-bottom: 0;
     }
@@ -1124,6 +1129,102 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     max-height: 800px;
     opacity: 1;
     padding-bottom: 14px;
+  }
+
+  // A compact person card: round photo top-left, name beside it, summary
+  // below. --photo-x/--photo-y pick the crop point (higher = picture moves
+  // left/up) and --photo-zoom zooms in. Plain HTML, so no blank lines needed:
+  //   <div class="person-card">
+  //   <img class="person-photo" src="..." alt="Name" style="--photo-x: 60%; --photo-y: 26%; --photo-zoom: 2.6;">
+  //   <h4 class="person-name">Name</h4>
+  //   <p>Summary...</p>
+  //   </div>
+  :global(.person-card) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 20px;
+    align-items: start;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 18px 20px;
+    margin-block: 16px;
+
+    > :global(.person-photo) {
+      grid-row: 1 / span 3;
+    }
+
+    > p {
+      grid-column: 2;
+      margin: 8px 0 0;
+      font-size: 15px;
+    }
+
+    // Too narrow for text beside the photo: summary goes full width below.
+    @media (max-width: 560px) {
+      grid-template-rows: auto;
+      align-items: center;
+
+      > :global(.person-photo) {
+        grid-row: auto;
+      }
+
+      > p,
+      > :global(.person-more-btn) {
+        grid-column: 1 / -1;
+      }
+
+      > p {
+        margin-top: 14px;
+      }
+    }
+  }
+
+  // Opens the card's hidden .person-more content in a popup (Article.jsx).
+  :global(.person-more-btn) {
+    all: unset;
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-300, var(--primary));
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+
+  :global(.person-more) {
+    display: none;
+  }
+
+  :global(.person-photo) {
+    width: 88px;
+    height: 88px;
+    margin: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: var(--photo-x, 50%) var(--photo-y, 50%);
+    // Zooming around --photo-x is what shifts a tall photo sideways (cover
+    // leaves it no horizontal slack). The clip is offset by the inverse of
+    // that zoom so the visible circle stays in the card's corner.
+    scale: var(--photo-zoom, 1);
+    transform-origin: var(--photo-x, 50%) 50%;
+    clip-path: circle(
+      calc(50% / var(--photo-zoom, 1)) at
+        calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1)) 50%
+    );
+  }
+
+  :global(.person-name) {
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
   }
 }
 

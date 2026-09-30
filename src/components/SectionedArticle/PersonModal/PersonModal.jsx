@@ -1,0 +1,67 @@
+import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+import LiquidGlass from "../../LiquidGlass/LiquidGlass";
+import styles from "./PersonModal.module.scss";
+
+// The "See more" popup for a markdown .person-card — same look as the Roster
+// page's RosterDetail. Portalled to <body> so no article box can clip it.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export default function PersonModal({ person, onClose, onInternalLink }) {
+  const closeRef = useRef(null);
+  const backdropRef = useRef(null);
+
+  useEffect(() => {
+    if (!person) return undefined;
+    closeRef.current?.focus({ preventScroll: true });
+    if (backdropRef.current) backdropRef.current.scrollTop = person.initialScroll ?? 0;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [person, onClose]);
+
+  // Links to other pages of this site navigate in-app (not a full reload), so
+  // the article can remember this spot and restore it on Back.
+  const onBodyClick = (e) => {
+    const link = e.target.closest("a[href]");
+    const href = link?.getAttribute("href");
+    if (!href?.startsWith(`${BASE}/`) || link.target || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    onInternalLink(href.slice(BASE.length), backdropRef.current?.scrollTop ?? 0);
+  };
+
+  if (!person) return null;
+
+  return createPortal(
+    <div ref={backdropRef} className={styles.backdrop} onClick={onClose}>
+      <div
+        className={styles.panelWrap}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="person-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09} grain drift>
+          <div className={styles.panel}>
+            <button ref={closeRef} type="button" className={styles.close} onClick={onClose} aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            {person.photo && <img src={person.photo} alt={person.name} className={styles.photo} style={person.photoStyle} />}
+            <div className={styles.bio}>
+              <h2 id="person-modal-title">{person.name}</h2>
+              <div className={styles.body} onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: person.html }} />
+            </div>
+          </div>
+        </LiquidGlass>
+      </div>
+    </div>,
+    document.body
+  );
+}
