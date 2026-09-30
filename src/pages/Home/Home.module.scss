@@ -1028,11 +1028,156 @@
   margin: 0;
 }
 
-.problemGrid {
+/* Desktop only — hidden below the mobile breakpoint in favor of .problemGrid
+   (the original icon+title+text cards), see that media query further down. */
+.planetGrid {
   display: flex;
-  gap: 22px;
+  gap: 64px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Each problem is a graded planet still (see marsPlanet/jupiterPlanet/
+   neptunePlanet in Home.jsx) with its copy overlaid directly on the disc,
+   instead of a separate glass card below an icon — overflow: hidden +
+   border-radius: 50% is what actually clips the (already-circular, alpha-
+   cropped) image and its overlay layers, and the cinematic entrance's
+   oversized/blurred starting state, to a clean circle. No box-shadow ring
+   around the disc on purpose — it read as a thick painted border rather
+   than ambient glow; the wide gap between discs does the job of separating
+   them instead. */
+.planetCard {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.planetImg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Slow rotating conic highlight, screen-blended over the image — same idiom
+   as EarthLayer's .earthSheen/@keyframes earthspin below, so these three
+   read as "living" planets rather than static photos pasted onto the page. */
+.planetSheen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(180, 210, 255, 0.16) 18%, transparent 38%, transparent 100%);
+    animation: earthspin 46s linear infinite;
+  }
+}
+
+/* Centered vignette (darkest at the middle, clear by the rim) so the caption
+   — now dead-centered in the disc, not pinned to the bottom edge where the
+   circle's own curve was cramping longer captions against the sides — stays
+   legible over any part of the photographic surface without flattening the
+   whole disc to a dark circle. */
+.planetScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(5, 5, 20, 0.82) 0%, rgba(5, 5, 20, 0.5) 42%, transparent 72%);
+}
+
+/* Brief violet burst behind the caption right as it lands (see ProblemSection's
+   pulseIn/pulseOut envelope) — sits above the dark scrim so it actually
+   reads as a flash instead of being muted by it, and below the caption
+   itself so the text stays the sharpest thing on screen at that instant. */
+.planetPulse {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(150, 130, 255, 0.55) 0%, transparent 65%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* True center, not bottom-anchored — top/left 50% here is the *positioning*
+   half of the transform; the translate(-50%,-50%) that actually centers it
+   (plus the reveal rise offset riding on top of that) is written by
+   ProblemSection's scroll handler every frame, since JS fully owns this
+   element's transform. */
+.planetText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  width: 72%;
+  text-align: center;
+  will-change: transform, opacity;
+
+  strong {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.01em;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.48;
+    margin: 0;
+  }
+}
+
+/* Bright warp-flash burst timed to the instant each disc pops in (see
+   ProblemSection's flareIn/flareOut envelope) — gone well before the disc
+   actually lands, so it reads as "just arrived out of warp" rather than a
+   ring/border that lingers (that's exactly the "thick border" look this
+   section deliberately dropped elsewhere). Screen-blended so it lights the
+   disc up rather than painting flat over it. */
+.planetFlare {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(210, 220, 255, 0.9) 0%,
+    rgba(140, 160, 255, 0.45) 35%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+/* Mobile only (see the max-width: 760px media query below, which is what
+   actually shows this and hides .planetGrid) — the original icon+title+text
+   glass cards, kept as-is rather than shrinking the planet circles further,
+   which stopped being legible at phone width. */
+.problemGrid {
+  display: none;
 }
 
 .problemCard {
@@ -1200,9 +1345,12 @@
   }
 }
 
-/* Same compact icon+title+description row treatment as .capTile above —
-   the problem cards grew a title once the copy got more specific, so they
-   need the same mobile stacking to avoid three tall centered cards. */
+/* Below the mobile breakpoint, swap the planet grid out for the original
+   icon+title+text cards entirely — three 248px circles either overflow at
+   this width or shrink enough that the overlaid caption stops being
+   legible, so this isn't a resize of .planetCard, it's .planetGrid hidden
+   and .problemGrid (see its rules above) shown in its place. Same compact
+   icon+title+description row treatment as .capTile uses at this width. */
 @media (max-width: 760px) {
   .problemSticky {
     gap: 18px;
@@ -1213,7 +1361,12 @@
     font-size: 0.92rem;
   }
 
+  .planetGrid {
+    display: none;
+  }
+
   .problemGrid {
+    display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 10px;
@@ -1235,13 +1388,9 @@
     padding: 14px 16px;
   }
 
-  .problemCard .capIco {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    width: 26px;
-    height: 26px;
-    margin-top: 2px;
-  }
+  /* No .problemCard .capIco override needed — the bare .capIco rule above
+     (shared with .capTile's own mobile layout) already sizes/positions any
+     .capIco element the same way within this media query. */
 
   .problemCard strong {
     grid-column: 2;

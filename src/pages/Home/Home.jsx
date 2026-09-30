@@ -41,6 +41,12 @@ const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-lau
 const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 const astronautMmu = "https://static.igem.wiki/teams/6341/wiki/images/astronaut-large.avif";
 
+// Circular-cropped, colour-graded to a shared palette so the three read as
+// one set rather than three raw NASA textures — see ProblemSection below.
+const marsPlanet = "https://static.igem.wiki/teams/6341/wiki/images/mars.webp";
+const jupiterPlanet = "https://static.igem.wiki/teams/6341/wiki/images/jupiter.webp";
+const neptunePlanet = "https://static.igem.wiki/teams/6341/wiki/images/neptune.webp";
+
 // Section-by-section narrative below follows src/content/landing_page_content.md
 // (slides 1–9). Two pre-existing sections that weren't part of that brief —
 // a standalone "On-demand medicine. Anywhere." tagline and a nanobody
@@ -665,7 +671,15 @@ function OrbitSection() {
   );
 }
 
-// ── Problem cards (slide 3) ───────────────────────────────────────────────────
+// ── Problem cards / planets (slide 3) ─────────────────────────────────────────
+// Desktop illustrates each problem with one of the three graded planet
+// stills (mars/jupiter/venus — see the constants above), copy centered
+// directly over the disc; the mapping is just left-to-right array order, not
+// a scientific correspondence between planet and problem. Mobile keeps the
+// original icon+title+text glass cards instead — shrinking the planet
+// circles further to fit phone width stopped being legible, so both markups
+// render and CSS (`.planetGrid`/`.problemGrid`, see Home.module.scss) shows
+// whichever one fits the viewport rather than picking in JS.
 
 function IcoCargo({ className }) {
   return (
@@ -700,39 +714,133 @@ function IcoBroken({ className }) {
   );
 }
 
+// Neptune sits in the middle slot (Venus's old photo replaced with it) —
+// Jupiter moved to the last slot to make room, Mars stays first.
 const PROBLEMS = [
   {
+    planet: marsPlanet,
     Ico: IcoCargo,
     title: "Resupply is limited",
     text: "On long-duration missions, replacement medicines may take months to arrive — or may be impossible to deliver.",
   },
   {
-    Ico: IcoDecay,
-    title: "Medicines do not last forever",
-    text: "During long-term storage, some medicines can degrade and lose stability or effectiveness.",
-  },
-  {
+    planet: neptunePlanet,
     Ico: IcoBroken,
     title: "Crews cannot carry everything they might need",
     text: "Spacecraft have limited mass and storage capacity, making it difficult to stock every medicine for every possible medical emergency.",
   },
+  {
+    planet: jupiterPlanet,
+    Ico: IcoDecay,
+    title: "Medicines do not last forever",
+    text: "During long-term storage, some medicines can degrade and lose stability or effectiveness.",
+  },
+];
+
+// One quadratic-Bezier swoop per planet (`from` = where it pops in, `via` =
+// control point that bows the path, final point is always (0,0) — its
+// resting slot; `bank` = its own rotation at t=0, easing to level by the
+// time it lands) — a genuinely different compass direction per planet
+// (dropping from above, sweeping in from the side, rising from a corner)
+// rather than a mirrored left/right pair, so the three arrivals read as
+// distinct trajectories, not the same swoop flipped.
+const PLANET_ARCS = [
+  // Mars: sweeps in diagonally from the upper-left, curving down and
+  // rightward into place — was a straight overhead drop, changed to a
+  // shallower diagonal so it reads more distinctly from Jupiter's
+  // lower-left rise.
+  { from: { x: -220, y: -140 }, via: { x: -170, y: 30 }, bank: -20 },
+  // Neptune: sweeps in low from the right, arcing up and over the top of
+  // its slot before settling.
+  { from: { x: 210, y: 30 }, via: { x: 70, y: -110 }, bank: 14 },
+  // Jupiter: rises in from the lower-left corner, curving up and right.
+  { from: { x: -130, y: 160 }, via: { x: 40, y: 50 }, bank: -11 },
 ];
 
 function ProblemSection() {
   const ref = useRef(null);
   const kickerRef = useRef(null);
   const introRef = useRef(null);
+  const planetRefs = useRef([]);
+  const flareRefs = useRef([]);
+  const pulseRefs = useRef([]);
+  const textRefs = useRef([]);
   const cardRefs = useRef([]);
 
   useScene(ref, 1.8, (p) => {
     if (kickerRef.current) kickerRef.current.style.opacity = between(p, 0.0, 0.12);
     if (introRef.current) introRef.current.style.opacity = between(p, 0.04, 0.2);
     PROBLEMS.forEach((_, i) => {
-      const o = clamp01((p - (0.26 + i * 0.13)) / 0.16);
-      const el = cardRefs.current[i];
-      if (el) {
-        el.style.opacity = o;
-        el.style.transform = `translateY(${lerp(28, 0, o)}px)`;
+      const start = 0.26 + i * 0.13;
+
+      // Mobile card (old design): single fade + rise, unchanged from before
+      // the planet redesign.
+      const o = clamp01((p - start) / 0.16);
+      const cardEl = cardRefs.current[i];
+      if (cardEl) {
+        cardEl.style.opacity = o;
+        cardEl.style.transform = `translateY(${lerp(28, 0, o)}px)`;
+      }
+
+      // Desktop planet: cinematic arrival instead of a straight fade/drift.
+      //  1. The disc pops in already large and out of focus — as if close to
+      //     the camera — then arcs (not a straight line: PLANET_ARCS below is
+      //     a quadratic Bezier per index, each bowing a different way so the
+      //     row doesn't read as three identical swoops) into its slot while
+      //     shrinking to size and racking into focus, banking slightly into
+      //     the turn like it's actually flying rather than just easing.
+      //  2. A bright warp-flare flashes at the moment it pops in and is gone
+      //     well before the disc lands — the "just arrived" beat.
+      //  3. Once the disc has mostly landed, a brief violet glow pulses
+      //     behind the caption right as it fades up, giving the caption's
+      //     own arrival a small beat instead of just appearing.
+      const planetP = clamp01((p - start) / 0.14);
+      const textP = clamp01((p - (start + 0.08)) / 0.14);
+      const ease = smoothstep(planetP);
+
+      const planetEl = planetRefs.current[i];
+      if (planetEl) {
+        // Fast pop-in (opacity), independent of the slower eased arc/scale/
+        // focus below — reads as "suddenly there", then travelling.
+        planetEl.style.opacity = `${smoothstep(between(planetP, 0, 0.2))}`;
+
+        const arc = PLANET_ARCS[i];
+        const mt = 1 - ease;
+        const ax = mt * mt * arc.from.x + 2 * mt * ease * arc.via.x;
+        const ay = mt * mt * arc.from.y + 2 * mt * ease * arc.via.y;
+        const scale = lerp(1.55, 1, ease);
+        const blur = lerp(5, 0, ease);
+        const rot = lerp(arc.bank, 0, ease);
+        planetEl.style.filter = `blur(${blur}px)`;
+        planetEl.style.transform = `translate(${ax}px, ${ay}px) scale(${scale}) rotate(${rot}deg)`;
+      }
+
+      const flareEl = flareRefs.current[i];
+      if (flareEl) {
+        const flareIn = smoothstep(between(planetP, 0, 0.1));
+        const flareOut = 1 - smoothstep(between(planetP, 0.1, 0.45));
+        const flare = flareIn * flareOut;
+        flareEl.style.opacity = `${flare}`;
+        flareEl.style.transform = `scale(${lerp(0.6, 1.6, flareIn)})`;
+      }
+
+      const pulseEl = pulseRefs.current[i];
+      if (pulseEl) {
+        const pulseIn = smoothstep(between(textP, 0, 0.12));
+        const pulseOut = 1 - smoothstep(between(textP, 0.12, 0.55));
+        const pulse = pulseIn * pulseOut;
+        pulseEl.style.opacity = `${pulse}`;
+        pulseEl.style.transform = `scale(${lerp(0.7, 1.3, pulseIn)})`;
+      }
+
+      const textEl = textRefs.current[i];
+      if (textEl) {
+        textEl.style.opacity = textP;
+        // Centered in the disc (see .planetText) — the translate(-50%,-50%)
+        // half is the centering itself, not part of the reveal motion, so it
+        // has to be re-applied every frame alongside the rise offset rather
+        // than living in a static CSS rule.
+        textEl.style.transform = `translate(-50%, calc(-50% + ${lerp(14, 0, textP)}px))`;
       }
     });
   });
@@ -745,6 +853,43 @@ function ProblemSection() {
           Medicine is different from many other essentials: once it is used, degraded, or missing, replacing it may
           not be simple.
         </p>
+
+        {/* Desktop */}
+        <div className={styles.planetGrid}>
+          {PROBLEMS.map(({ planet, title, text }, i) => (
+            <div
+              key={title}
+              className={styles.planetCard}
+              ref={(el) => (planetRefs.current[i] = el)}
+              style={{ opacity: 0 }}
+            >
+              <div className={styles.planetSheen} aria-hidden="true" />
+              <img src={planet} alt="" className={styles.planetImg} />
+              <div className={styles.planetScrim} aria-hidden="true" />
+              <div
+                className={styles.planetPulse}
+                ref={(el) => (pulseRefs.current[i] = el)}
+                aria-hidden="true"
+              />
+              <div
+                className={styles.planetText}
+                ref={(el) => (textRefs.current[i] = el)}
+                style={{ opacity: 0, transform: "translate(-50%, -50%)" }}
+              >
+                <strong>{title}</strong>
+                <p>{text}</p>
+              </div>
+              <div
+                className={styles.planetFlare}
+                ref={(el) => (flareRefs.current[i] = el)}
+                style={{ opacity: 0 }}
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile (old design) */}
         <div className={styles.problemGrid}>
           {PROBLEMS.map(({ Ico, title, text }, i) => (
             <div
