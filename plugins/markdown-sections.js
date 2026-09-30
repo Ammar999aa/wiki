@@ -4,7 +4,16 @@ import markedKatex from "marked-katex-extension";
 
 // throwOnError: false — a typo'd formula should degrade to visible raw
 // LaTeX in the built page, not fail the whole site build.
-marked.use(markedKatex({ throwOnError: false }));
+// nonStandard: true — the strict mode requires a literal space (or
+// start-of-string) immediately before an opening "$" and whitespace/
+// punctuation immediately after the closing one, so inline math wrapped in
+// parentheses (`($0 < \beta < 1$)`) or split across a hard-wrapped source
+// line (a "$" as the first character after a line break) silently fails to
+// tokenize and falls through to literal text. No content in this repo uses
+// "$" for anything but LaTeX math (checked: only *.md files under
+// content/en/ that contain "$" are dry-lab-overview.md and
+// bioreactor-modeling.md, both math-only), so relaxing this is safe.
+marked.use(markedKatex({ throwOnError: false, nonStandard: true }));
 
 export default function markdownSections() {
     return {

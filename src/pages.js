@@ -46,6 +46,7 @@ const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
 const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
+const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this
@@ -92,13 +93,13 @@ const Pages = [
   {
     name: "Dry Lab",
     folder: [
-      { name: "Modeling", title: "Model", path: "/modeling", component: Model },
-      {
-        name: "Bioreactor Modeling",
-        title: "Bioreactor Modeling",
-        path: "/bioreactor-modeling",
-        component: BioreactorModeling,
-      },
+      // Bioreactor Modeling now lives at the nav's "Modeling" slot — see the
+      // Awards section below for where the previous occupant (Model, the
+      // data-heavy candidate-mining page) moved to instead. /bioreactor-modeling
+      // itself is kept working (hidden route at the bottom of this file) so
+      // any existing links to it don't break.
+      { name: "Overview", title: "Dry Lab Overview", path: "/dry-lab-overview", component: DryLabOverview },
+      { name: "Modeling", title: "Bioreactor Modeling", path: "/modeling", component: BioreactorModeling },
       { name: "Protein Mining", title: "Protein Mining", path: "/protein-mining", component: Stub },
     ],
   },
@@ -127,9 +128,14 @@ const Pages = [
   },
   {
     // Standard award/medal URLs required by requirements.md §4, not covered
-    // by pages.md's categories above. All render the shared "coming soon"
+    // by pages.md's categories above. Most render the shared "coming soon"
     // Stub until real content exists — the paths themselves are what's
-    // required to resolve, not the content yet.
+    // required to resolve, not the content yet. Software is the exception:
+    // it's what used to be at /modeling (see the Dry Lab section above) —
+    // that page's actual substance (candidate mining/scoring pipeline,
+    // Explorer tool, etc.) is a software deliverable, so it now lives at
+    // this standard URL instead of behind a nav path nobody judging the
+    // Software award would think to check.
     name: "Awards",
     folder: [
       { name: "Engineering", title: "Engineering", path: "/engineering", component: Stub },
@@ -138,7 +144,7 @@ const Pages = [
       { name: "Model", title: "Model", path: "/model", component: Stub },
       { name: "Plant Synthetic Biology", title: "Plant Synthetic Biology", path: "/plant", component: Stub },
       { name: "Safety & Security", title: "Safety & Security", path: "/safety-and-security", component: Stub },
-      { name: "Software", title: "Software", path: "/software", component: Stub },
+      { name: "Software", title: "Software", path: "/software", component: Model },
       { name: "Sustainable Development", title: "Sustainable Development", path: "/sustainability", component: Stub },
     ],
   },
@@ -148,6 +154,10 @@ const Pages = [
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
   { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },
   { name: "Engagement", title: "Engagement", path: "/engagement", component: Engagement, hidden: true },
+  // Bioreactor Modeling's old URL, from before it took over the "Modeling"
+  // nav slot at /modeling — kept resolving to the same component so any
+  // existing links to it don't break.
+  { name: "Bioreactor Modeling (old URL)", title: "Bioreactor Modeling", path: "/bioreactor-modeling", component: BioreactorModeling, hidden: true },
 ];
 
 export default Pages;
