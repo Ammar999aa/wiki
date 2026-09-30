@@ -258,8 +258,8 @@ export const PROTEINS = [
     shortDescription:
       "Design your own protein — the platform is built to express, purify, and deliver payloads beyond this initial library.",
     function:
-      "Uses the same expression, purification, and delivery pipeline developed for this library, adapted to a new coding sequence of your choosing.",
-    applications: ["Endless possibilities — your target protein"],
+      "Design your own payloads! The platform is built to express and purify any proteins that are needed for your mission. Since every project has different demands, this slot is SHIHAB's answer to 'what if we need something not on this list?'",
+    applications: ["Endless possibilities"],
     host: HOST,
     status: "Open — awaiting your target protein.",
   },
