@@ -7,7 +7,7 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 export default function Safety() {
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <SectionedArticle sections={sections} defaultSelected={sections[0]?.title} />
+      <SectionedArticle title="Safety" sections={sections} defaultSelected={sections[0]?.title} />
     </PageWrapper>
   );
 }
