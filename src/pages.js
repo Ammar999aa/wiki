@@ -37,6 +37,7 @@ const Engagement = lazyWithPreload(() => import("./pages/Engagement/Engagement")
 const Education = lazyWithPreload(() => import("./pages/Education/Education"));
 const ScienceCommunication = lazyWithPreload(() => import("./pages/ScienceCommunication/ScienceCommunication"));
 const ProteinLibrary = lazyWithPreload(() => import("./pages/ProteinLibrary/ProteinLibrary"));
+const Protocols = lazyWithPreload(() => import("./pages/Protocols/Protocols"));
 const HumanIntegratedPractices = lazyWithPreload(() =>
   import("./pages/HumanIntegratedPractices/HumanIntegratedPractices")
 );
@@ -74,7 +75,7 @@ const Pages = [
     folder: [
       { name: "Design", title: "Design", path: "/design", component: ProteinLibrary },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
-      { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Stub },
+      { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
       { name: "Results", title: "Results", path: "/results", component: Stub },
       { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub },
       { name: "Proof of Concept", title: "Proof of Concept", path: "/proof-of-concept", component: Stub },

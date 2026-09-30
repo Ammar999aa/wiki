@@ -1,0 +1,447 @@
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 120px 40px 160px;
+  color: white;
+}
+
+// ── Hero ─────────────────────────────────────────────────────────────────
+
+.hero {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.tagline {
+  margin: 0;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+// ── Part sections ────────────────────────────────────────────────────────
+
+.partSection {
+  margin-bottom: 48px;
+}
+
+.partHeading {
+  margin: 0 0 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// ── Grid ─────────────────────────────────────────────────────────────────
+// Uniform columns — every tile is the same width regardless of row, and
+// .card fixes a matching layout (below) so tiles line up regardless of how
+// much a given protocol's excerpt runs.
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+// ── Card ─────────────────────────────────────────────────────────────────
+
+.card {
+  position: relative;
+  border-radius: var(--radius-md);
+  transition: transform 320ms ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0 1px transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: box-shadow 320ms ease, opacity 320ms ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+
+    &::after {
+      opacity: 1;
+      box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 55%, transparent);
+    }
+  }
+}
+
+.cardButton {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 20px 20px 22px;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -3px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+// Reserved (not just clamped) heights — a title/excerpt shorter than the
+// cap still takes the same room as one that fills it, so every tile in a
+// row ends up the same height regardless of how much a given protocol's
+// title/excerpt runs (same technique as ProteinLibrary's .cardName/
+// .cardSubtitle, see that file's comment for why min-height is what does
+// this rather than line-clamp alone).
+
+.cardName {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: white;
+  min-height: calc(1.3em * 2);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.cardExcerpt {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  min-height: calc(1.55em * 3);
+}
+
+// ── Article view (ProtocolArticle.jsx) — the full page a selected card
+// swaps into. Same centered-column width as the grid page above, not the
+// modal's own width, since it now occupies the whole page rather than
+// floating over it.
+
+.articlePage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 120px 24px 100px;
+  animation: articleIn 220ms ease both;
+}
+
+.backButton {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px 16px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+
+  &:hover {
+    color: white;
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+    background: color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+.article {
+  margin-bottom: 28px;
+}
+
+.articleTitle {
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// ── Pager (prev/next protocol navigation at the bottom of the article) ───
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.pagerButton {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+  min-width: 0;
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+.pagerNext {
+  justify-content: flex-end;
+  text-align: end;
+  grid-column: 2;
+}
+
+.pagerArrow {
+  flex: none;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.pagerText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pagerLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pagerTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ── Rendered protocol markdown (.detailBody's dangerouslySetInnerHTML
+// content) — mirrors SectionedPage.module.scss's .content typography rules
+// so a protocol's own body reads the same as every other rendered-markdown
+// surface on the site.
+
+.detailBody {
+  padding-top: 20px;
+  color: rgba(255, 255, 255, 0.9);
+
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 26px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  p {
+    line-height: 1.7;
+    margin-bottom: 14px;
+    font-size: 0.92rem;
+  }
+
+  a {
+    color: #7b9eff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    word-break: break-word;
+
+    &:hover {
+      color: #a0bfff;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    color: white;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
+    padding-inline-start: 18px;
+    margin-inline: 0;
+    margin-block: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    padding-inline-start: 22px;
+    margin-bottom: 14px;
+  }
+
+  li {
+    line-height: 1.65;
+    margin-bottom: 6px;
+    font-size: 0.92rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 16px;
+    font-size: 0.86rem;
+  }
+
+  th {
+    background: rgba(255, 255, 255, 0.1);
+    text-align: start;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  code {
+    font-family: "Courier New", monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    font-size: 0.88em;
+  }
+
+  pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    margin-block: 16px;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-block: 24px;
+  }
+}
+
+@keyframes articleIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .articlePage {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 90px 20px 100px;
+  }
+
+  .articlePage {
+    padding: 90px 16px 80px;
+  }
+
+  .articleTitle {
+    padding-bottom: 16px;
+    font-size: 1.5rem;
+  }
+
+  .detailBody {
+    padding-top: 16px;
+  }
+
+  .pager {
+    grid-template-columns: 1fr;
+  }
+
+  .pagerNext {
+    grid-column: 1;
+  }
+}
+
+/* Credit for the fixed background photo — same corner-link convention as
+   ProteinLibrary.module.scss's .photoCredit / Sponsors'/Home's own. */
+.photoCredit {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
