@@ -63,6 +63,7 @@ so no blank lines are needed around those.
 | A one- or two-word tag standing in for a subheading                                                            | `.chip`                                                         | Small mono pill                                                           |
 | A labelled readout, diagram, or grouped figure that's more than a bare image                                   | `.panel` (+ `.dash` for a live-value grid inside it)            | Bordered glass card with a title row                                      |
 | Content a careful reader wants but most readers should be able to skip                                         | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
+| A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
 | A photo/render whose own background is opaque light/white                                                      | `.photo-frame`                                                  | Dark matted card around the image                                         |
 | The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
@@ -308,6 +309,41 @@ Body markdown...
 don't skip the blank lines around it — same rule as every other block-level
 class here, but easy to miss since a bare `<details>`/`<summary>` pair
 doesn't otherwise need one.
+
+### `.person-card` — a person with a photo and a summary
+
+A smaller, markdown-level version of the Attributions page's profile
+header, for stakeholders/interviewees inside an article: round photo
+top-left, name beside it, summary paragraph below at full text width. Write
+it as plain HTML (no nested markdown), so blank lines don't matter.
+
+```md
+<div class="person-card">
+<img class="person-photo" src="https://static.igem.wiki/..." alt="Full Name" style="--photo-x: 60%; --photo-y: 26%; --photo-zoom: 2.6;">
+<h4 class="person-name">Full Name</h4>
+<p>One-paragraph summary of who they are and what we learned.</p>
+</div>
+```
+
+`--photo-x`/`--photo-y` pick the crop point (raising a value moves the
+picture left/up) and `--photo-zoom` zooms in. Leave all three out for a
+square headshot; for a full-length photo, raise `--photo-zoom` until the
+face fills the circle, then nudge `--photo-x`/`--photo-y` to center it. Clicking the photo opens
+the full image in the lightbox, like every other article image.
+
+**Optional "See more" popup.** Add a button and a hidden `.person-more`
+block after the summary; clicking the button opens that content in a
+centered popup with the person's photo and name (same look as the Roster
+page's popup — `PersonModal.jsx`, wired up in `Article.jsx`):
+
+```md
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<p>Full write-up...</p>
+</div>
+```
+
+Leave both out if there's no longer write-up yet.
 
 ### `.photo-frame` — mat a photo whose own background is opaque
 
