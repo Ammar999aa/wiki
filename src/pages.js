@@ -101,6 +101,11 @@ const Pages = [
       { name: "Overview", title: "Dry Lab Overview", path: "/dry-lab-overview", component: DryLabOverview },
       { name: "Modeling", title: "Bioreactor Modeling", path: "/modeling", component: BioreactorModeling },
       { name: "Protein Mining", title: "Protein Mining", path: "/protein-mining", component: Stub },
+      // Same page/component/path as Awards → Software below — Model's
+      // candidate-mining content is genuinely Dry Lab work, so it's linked
+      // from both nav locations. getPathMapping() keys by path, so this
+      // doesn't create a duplicate route, just a second nav entry to it.
+      { name: "Software", title: "Software", path: "/software", component: Model },
     ],
   },
   {
