@@ -16,887 +16,1216 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 // Document-scroll progress — see SectionedArticle.jsx. z-index above
 // .panelContainer (10) so it isn't hidden behind the jump-nav panel.
 .progressRail {
-    position: fixed;
-    top: 0;
-    inset-inline: 0;
-    height: 3px;
-    z-index: 20;
-    background: rgba(255, 255, 255, 0.06);
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  height: 3px;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
 }
 
 .progressRailFill {
-    width: 0; // rAF sets the real value on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--primary-600));
-    box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 55%, transparent);
-    // No width transition — it's set every animation frame from the real
-    // scrollTop (SectionedArticle.jsx), so a CSS transition on top of that
-    // would only add lag, making the bar trail behind the actual scrollbar
-    // instead of tracking it 1:1.
+  width: 0; // rAF sets the real value on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--primary-600));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 55%, transparent);
+  // No width transition — it's set every animation frame from the real
+  // scrollTop (SectionedArticle.jsx), so a CSS transition on top of that
+  // would only add lag, making the bar trail behind the actual scrollbar
+  // instead of tracking it 1:1.
 }
 
 .article {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    inset-inline-start: $article-left;
-    inset-inline-end: $side-gutter;
-    // Caps the reading column on wide desktops instead of letting justified
-    // prose stretch edge to edge; auto margins center that capped width
-    // within the left/right band above rather than pinning it to one side.
-    max-width: 900px;
-    margin-inline: auto;
-    padding: 110px 50px 140px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  inset-inline-start: $article-left;
+  inset-inline-end: $side-gutter;
+  // Caps the reading column on wide desktops instead of letting justified
+  // prose stretch edge to edge; auto margins center that capped width
+  // within the left/right band above rather than pinning it to one side.
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 110px 50px 140px;
+
+  & > div {
+    scroll-margin-top: 20px;
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    // .preReveal is added in JS right before the section is observed,
+    // never in plain CSS — a section the observer never gets to (JS
+    // error, no IntersectionObserver support) stays in this rule's
+    // absence, i.e. normal and visible, instead of stuck invisible.
+    &.preReveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 550ms ease,
+        transform 550ms ease;
+    }
+
+    &.revealed {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  transition: transform 250ms ease;
+  color: white;
+
+  .pageTitle {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+
+  // Optional masthead content between the title and the first section
+  // (Model.jsx's `intro` prop is the only current user). It's a plain
+  // `<div>` like each section wrapper below, so without this it would
+  // also match `& > div` above and pick up that inter-section divider —
+  // a padding-bottom/margin-bottom/border-bottom meant to separate
+  // numbered sections from each other, not to trail a masthead. The
+  // class selector here outranks the bare `div` one on specificity, so
+  // this wins regardless of order.
+  & > .intro {
+    padding-bottom: 0;
+    margin-bottom: 40px;
+    border-bottom: none;
+  }
+
+  h2 {
+    margin: 0 0 20px;
+  }
+
+  img {
+    margin: 12px;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    cursor: zoom-in; // click opens the Lightbox — see Article.jsx's delegated click handler
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  p {
+    line-height: 1.7;
+    margin-bottom: 16px;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  a {
+    color: #7b9eff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #a0bfff;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
+    padding-inline-start: 20px;
+    margin-inline: 0;
+    margin-block: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    padding-inline-start: 24px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 20px;
+  }
+
+  th {
+    background: rgba(255, 255, 255, 0.1);
+    text-align: start;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  code {
+    font-family: "Courier New", monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    font-size: 0.9em;
+  }
+
+  pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    margin-block: 20px;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-block: 32px;
+  }
+
+  :global(.two-col-tracks) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-block: 20px;
 
     & > div {
-        scroll-margin-top: 20px;
-        padding-bottom: 48px;
-        margin-bottom: 48px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-
-        &:last-child {
-            padding-bottom: 0;
-            margin-bottom: 0;
-            border-bottom: none;
-        }
-
-        // .preReveal is added in JS right before the section is observed,
-        // never in plain CSS — a section the observer never gets to (JS
-        // error, no IntersectionObserver support) stays in this rule's
-        // absence, i.e. normal and visible, instead of stuck invisible.
-        &.preReveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 550ms ease, transform 550ms ease;
-        }
-
-        &.revealed {
-            opacity: 1;
-            transform: none;
-        }
-    }
-    transition: transform 250ms ease;
-    color: white;
-
-    .pageTitle {
-        font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 700;
-        margin-top: 0;
-        margin-bottom: 32px;
-    }
-
-    // Optional masthead content between the title and the first section
-    // (Model.jsx's `intro` prop is the only current user). It's a plain
-    // `<div>` like each section wrapper below, so without this it would
-    // also match `& > div` above and pick up that inter-section divider —
-    // a padding-bottom/margin-bottom/border-bottom meant to separate
-    // numbered sections from each other, not to trail a masthead. The
-    // class selector here outranks the bare `div` one on specificity, so
-    // this wins regardless of order.
-    & > .intro {
-        padding-bottom: 0;
-        margin-bottom: 40px;
-        border-bottom: none;
-    }
-
-    h2 {
-        margin: 0 0 20px;
-    }
-
-    img {
-        margin: 12px;
-        max-width: 100%;
-        border-radius: var(--radius-sm);
-        cursor: zoom-in; // click opens the Lightbox — see Article.jsx's delegated click handler
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 20px;
     }
 
     h3 {
-        font-size: 1.4rem;
-        margin-top: 32px;
-        margin-bottom: 12px;
+      margin-top: 0;
     }
 
-    h4 {
-        font-size: 1.1rem;
-        margin-top: 24px;
-        margin-bottom: 8px;
-        color: rgba(255, 255, 255, 0.8);
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
     }
+  }
+
+  // Wraps a run of <img> tags that sat on one line/paragraph in the source
+  // document (side-by-side composite figures, e.g. "A) ... B) ... C) ...")
+  // so they lay out as one row instead of each wrapping full-width. Each
+  // <img> carries its own inline width % (proportional to its size in the
+  // original document) — this just provides the flex row and closes the
+  // gap those percentages leave for.
+  :global(.notebook-img-row) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    margin-block: 12px;
+
+    img {
+      margin: 0;
+      flex: 0 0 auto;
+    }
+  }
+
+  :global(.two-col-images) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-block: 20px;
+    align-items: start;
 
     p {
-        line-height: 1.7;
-        margin-bottom: 16px;
-        text-align: justify;
-        text-justify: inter-word;
-        hyphens: auto;
+      margin: 0;
     }
 
-    a {
-        color: #7B9EFF;
-        text-decoration: underline;
-        text-underline-offset: 3px;
+    img {
+      margin: 0;
+      width: 100%;
+    }
 
-        &:hover {
-            color: #A0BFFF;
-        }
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
+  //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
+  //
+  //   ![alt text](src)
+  //
+  //   </div>
+  :global(.crop-frame) {
+    aspect-ratio: var(--crop-ratio, 4 / 3);
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    margin-block: 20px;
+
+    // `marked` wraps images in <p>; the img's height: 100% needs it sized too.
+    p {
+      height: 100%;
+      margin: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+      object-position: var(--crop-pos, center);
+    }
+  }
+
+  // Mats a photo/render whose own background is opaque light/white
+  // (a CAD export, a studio product shot) in a dark bordered card, same
+  // border/background as `.panel` below — without it, that image's own
+  // white background butts straight against the dark page with nothing
+  // but a border-radius, reading as pasted from a different design
+  // system rather than a deliberately placed figure. Not needed for an
+  // image that's already dark/transparent (e.g. a poster on a night-sky
+  // background) — reach for it only when a figure's own background
+  // fights the page's. Combine with `.two-col-images` by wrapping each
+  // image in its own `.photo-frame` inside the pair, or use standalone
+  // for a single full-width image. Author with raw HTML, blank lines
+  // around the image per the `.card-grid` convention above:
+  //   <div class="photo-frame">
+  //
+  //   ![alt text](src)
+  //
+  //   </div>
+  :global(.photo-frame) {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-block: 20px;
+
+    img {
+      margin: 0;
+      display: block;
+      width: 100%;
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  // Generalizes the Model page's Caption: the one sentence that
+  // interprets a figure or table — what to notice, not just what it
+  // shows — instead of leaving a bare image or table-wrap to speak for
+  // itself. Bold "Figure N."/"Table N." lead-in (write it as markdown
+  // **bold**, not raw <b>, so it still parses normally) in a brighter
+  // tone, then muted mono body text. Tighter margins than a body
+  // paragraph so it reads as attached to whatever it's captioning —
+  // works placed either directly below a figure/`.photo-frame` (the
+  // usual case) or directly above a `.table-wrap` (notebook.md's own
+  // existing convention: "Table N." captions precede their table).
+  // Author with raw HTML, blank lines around the markdown bold per the
+  // .callout convention above:
+  //   <div class="caption">
+  //
+  //   **Figure 1.** What to notice, not just what it shows.
+  //
+  //   </div>
+  :global(.caption) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 4px 4px 20px;
+
+    p {
+      margin: 0;
     }
 
     strong {
-        font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  // Generalizes the Model page's Card/CardGrid pattern (see
+  // .claude/ARTICLE-STANDARDS.md) for plain markdown content: a set of
+  // parallel, comparable short items (framework steps, categories,
+  // criteria) as bordered tiles instead of a bullet list. Author with
+  // raw HTML in the .md source, one blank-line-separated <div> per card
+  // so its heading/body still parse as markdown (same trick
+  // .two-col-tracks above already relies on):
+  //   <div class="card-grid">
+  //   <div>
+  //
+  //   #### Card title
+  //   Card body text.
+  //
+  //   </div>
+  //   </div>
+  // Flexbox rather than `grid-template-columns: repeat(auto-fit, ...)`:
+  // with a fixed column grid, a last row with fewer items than the grid
+  // has columns leaves those columns empty instead of the row's own
+  // cards growing to fill it — a 5-card grid at 4 columns strands the
+  // 5th card alone at its minimum width with a wide gap beside it. Flex
+  // with `flex: 1 1 <basis>` gives every row, including a short last
+  // one, cards that grow to fill it evenly.
+  :global(.card-grid) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-block: 24px;
+
+    & > div {
+      flex: 1 1 260px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 20px 22px;
     }
 
-    em {
-        font-style: italic;
+    h3,
+    h4 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
     }
 
-    blockquote {
-        border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
-        padding-inline-start: 20px;
-        margin-inline: 0;
-        margin-block: 20px;
-        color: rgba(255, 255, 255, 0.7);
-        font-style: italic;
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Modifier for a card-grid whose items are a title plus one short line
+  // (a stat, a tag) rather than a real paragraph — e.g. five judging
+  // criteria each worth "5 points". Stretching those to the default
+  // 260px basis leaves mostly empty tiles; a smaller basis packs more,
+  // appropriately snug cards per row instead. Add alongside the base
+  // class: `class="card-grid compact"`.
+  :global(.card-grid.compact) {
+    gap: 8px;
+
+    & > div {
+      flex-basis: 110px;
+      padding: 10px 12px;
     }
 
-    ul, ol {
-        padding-inline-start: 24px;
-        margin-bottom: 16px;
+    h3,
+    h4 {
+      font-size: 0.9rem;
+      margin-bottom: 2px;
     }
 
-    li {
-        line-height: 1.7;
-        margin-bottom: 8px;
+    p {
+      font-size: 0.85em;
+      line-height: 1.4;
     }
+  }
+
+  // Generalizes the Model page's Callout: a claim that needs to stand
+  // apart from running prose (a scope statement, a caveat, a retracted
+  // point). Default tone is neutral; add a second class for a tinted
+  // one — `class="callout accent"` / `"callout good"` / `"callout warn"`
+  // / `"callout critical"` — matching the tones used across the site's
+  // other status pills. Optional `<p class="callout-label">Label</p>`
+  // as the first line renders as a small-caps kicker above the text.
+  :global(.callout) {
+    border-inline-start: 3px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.045);
+    padding: 15px 18px;
+    margin-block: 20px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+
+    > p:first-child,
+    > :global(.callout-label) + p {
+      margin-top: 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.callout.accent) {
+    border-inline-start-color: var(--accent);
+  }
+
+  :global(.callout.good) {
+    border-inline-start-color: #0ca30c;
+    background: color-mix(in oklab, #0ca30c 14%, transparent);
+  }
+
+  :global(.callout.warn) {
+    border-inline-start-color: #fab219;
+    background: color-mix(in oklab, #fab219 12%, transparent);
+  }
+
+  :global(.callout.critical) {
+    border-inline-start-color: #d03b3b;
+    background: color-mix(in oklab, #d03b3b 14%, transparent);
+  }
+
+  :global(.callout-label) {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 6px !important;
+  }
+
+  // Generalizes the Model page's TableWrap: bounds a markdown table in
+  // its own bordered card instead of it sitting bare against the page,
+  // so a table reads as one discrete data object. Wrap the table (with
+  // the usual blank lines on either side so it still parses as GFM):
+  //   <div class="table-wrap">
+  //
+  //   | ... |
+  //
+  //   </div>
+  :global(.table-wrap) {
+    overflow-x: auto;
+    margin-block: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
 
     table {
+      margin-block: 0;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  // A short pipeline/control-loop diagram: a row of labelled stages
+  // joined by arrows (e.g. "Sensor → PID control → Actuator"), for
+  // hardware/process pages where a sentence would undersell how
+  // mechanical the sequence is. Monospace per the small-caps/mono =
+  // metadata convention (see ARTICLE-STANDARDS.md §5) since each node is
+  // a component name, not prose. Author with raw HTML in the .md source:
+  //   <div class="flow">
+  //
+  //   <span class="flow-node">Sensor</span>
+  //   <span class="flow-arrow">→</span>
+  //   <span class="flow-node accent">Controller</span>
+  //   <span class="flow-arrow">→</span>
+  //   <span class="flow-node amber">Actuator</span>
+  //
+  //   </div>
+  // `accent`/`amber` on a node are optional tint modifiers for the two
+  // ends of a loop (sensing vs. actuation) — plain nodes (the shared
+  // control-logic step) stay neutral.
+  :global(.flow) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    margin-block: 20px;
+
+    :global(.flow-node) {
+      // border-box: the mobile rule below sets width: 100% of `.flow`
+      // (a normal block, not a grid track, so nothing else corrects
+      // for it) — without this, that 100% is the content box alone,
+      // and the border + padding add on top, pushing the node past
+      // the article column's edge on narrow (iPhone-width) screens.
+      box-sizing: border-box;
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 12px 18px;
+      border-radius: var(--radius-xs);
+      color: white;
+      text-align: center;
+    }
+
+    :global(.flow-node.amber) {
+      border-color: rgba(255, 216, 77, 0.4);
+      color: var(--amber);
+    }
+
+    :global(.flow-node.accent) {
+      border-color: rgba(177, 109, 255, 0.4);
+      color: var(--primary-300);
+    }
+
+    :global(.flow-arrow) {
+      color: rgba(255, 255, 255, 0.45);
+      padding: 0 14px;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: stretch;
+
+      :global(.flow-node) {
         width: 100%;
-        border-collapse: collapse;
-        margin-block: 20px;
+      }
+
+      :global(.flow-arrow) {
+        align-self: center;
+        transform: rotate(90deg);
+        padding: 6px 0;
+      }
+    }
+  }
+
+  // A row of clickable, graduated-height cards — for a short ranked or
+  // staged list (by scope, depth, seniority, …) where the reader also
+  // wants to jump straight to the item's own section. Each `<a>` needs a
+  // `style="--h:<px>"` for its height and an `href="#<section-id>"`
+  // (Article.jsx renders every section wrapper with a real id — see
+  // plugins/markdown-sections.js's slugify()). Pair with `.ladder-axis`
+  // underneath to label what the height axis means — required, not
+  // decorative: an unlabeled height implies a precise metric nothing here
+  // actually measures. Author with raw HTML, blank lines per the
+  // `.card-grid` convention above:
+  //   <div class="ladder">
+  //
+  //   <a href="#a" style="--h:120px"><b>Item A</b><span>Detail</span></a>
+  //   <a href="#b" style="--h:200px"><b>Item B</b><span>Detail</span></a>
+  //
+  //   </div>
+  //   <div class="ladder-axis"><span>Low end</span><span>High end</span></div>
+  :global(.ladder) {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 28px 0 8px;
+
+    // `marked` wraps a run of consecutive inline tags with no blank
+    // lines between them in a single <p> (confirmed: the rendered DOM
+    // is `.ladder > p > a, a, a...`, not `.ladder > a, a, a...`) — for
+    // `.flow`'s <span>s that's invisible since inline elements lay out
+    // in a row on their own regardless, but it silently breaks flex
+    // sizing here, since flex properties on the <a>s only apply to
+    // children of a flex container, and their real parent is that <p>,
+    // not `.ladder`. `display: contents` removes the <p> from the box
+    // tree so its <a> children become the flex container's direct
+    // layout children, exactly as if marked hadn't inserted it.
+    > p {
+      display: contents;
     }
 
-    th {
-        background: rgba(255, 255, 255, 0.1);
-        text-align: start;
+    a {
+      flex: 1 1 130px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 6px;
+      min-height: var(--h, 120px);
+      padding: 16px 16px 14px;
+      border-radius: var(--radius-sm) var(--radius-sm) var(--radius-xs)
+        var(--radius-xs);
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: white;
+      text-decoration: none;
+      // Its real DOM parent is the <p> marked wraps this block in
+      // (see the `> p { display: contents }` rule above) — that <p>
+      // matches `.article p`'s justified body-text rule above, which
+      // otherwise leaks through via inheritance despite generating
+      // no box.
+      text-align: start;
+      transition:
+        background-color 200ms ease,
+        border-color 200ms ease,
+        transform 200ms ease;
+
+      &:hover {
+        background: color-mix(in oklab, var(--primary) 20%, transparent);
+        border-color: var(--primary);
+        transform: translateY(-4px);
+      }
+    }
+
+    b {
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    span {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      align-items: stretch;
+
+      a {
+        flex-basis: 100%;
+        min-height: 0 !important;
+      }
+    }
+  }
+
+  :global(.ladder-axis) {
+    display: flex;
+    justify-content: space-between;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+  }
+
+  // A pair (or row) of "ticket stub" cards for events that each have a
+  // headline number worth leading with (an attendance count, a capacity) —
+  // a bordered card split into a main info block and a narrow stub
+  // separated by a dashed perforation, with two small circular notches
+  // cut into the card's edge to sell the ticket metaphor. Each `<a>` can
+  // link to that event's own heading (give the heading a real `id`, e.g.
+  // `<h3 id="wall-e">`, since `###` markdown headings don't take one).
+  // `.ticket-main`/`.ticket-stub` MUST be `<span>`, not `<div>` — confirmed
+  // `marked` mis-tokenizes an `<a>` wrapping block-level `<div>` children
+  // (it auto-closes the `<a>` partway through, splitting one ticket into
+  // broken, duplicated markup); a `<span>` is inline-level (marked leaves
+  // it alone) and still renders as a block once it's a grid item, styled
+  // below same as any element would be. Author with raw HTML, blank lines
+  // per the `.card-grid` convention:
+  //   <div class="tickets">
+  //
+  //   <a class="ticket" href="#wall-e"><span class="ticket-main"><b>WALL-E</b><span>May 7, 2026<br>Discovery Cinema</span></span><span class="ticket-stub"><strong>70</strong><small>guests</small></span></a>
+  //
+  //   </div>
+  :global(.tickets) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 28px 0;
+
+    // See `.ladder`'s own `> p { display: contents }` note above — marked
+    // wraps this run of <a> tags in a shared <p>, breaking flex sizing
+    // unless that wrapper is removed from the box tree.
+    > p {
+      display: contents;
+    }
+  }
+
+  :global(.ticket) {
+    flex: 1 1 250px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 82px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    color: white;
+    text-decoration: none;
+    overflow: hidden;
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease;
+
+    &:hover {
+      background: color-mix(in oklab, var(--primary) 14%, transparent);
+      border-color: var(--primary);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      right: 74px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    &::before {
+      top: -8px;
+    }
+
+    &::after {
+      bottom: -8px;
+    }
+  }
+
+  :global(.ticket-main) {
+    display: block;
+    padding: 20px 18px;
+
+    b {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    span {
+      display: block;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 8px;
+    }
+  }
+
+  :global(.ticket-stub) {
+    border-inline-start: 2px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 4px;
+
+    strong {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    small {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 4px;
+    }
+  }
+
+  // Since headings only get a stable id at the `##` level (see
+  // plugins/markdown-sections.js), a `.ticket`'s target is usually a
+  // manually-id'd `###`/`####` heading nested deeper in the same section —
+  // give it its own scroll offset so the fixed progress rail at the very
+  // top of the viewport doesn't cover it.
+  h3[id],
+  h4[id] {
+    scroll-margin-top: 90px;
+  }
+
+  // A one-line "now playing" style panel for a single featured piece of
+  // media (a podcast, a video) that deserves more presence than a plain
+  // paragraph — an icon beside a name and one-line description. Author
+  // with raw HTML (no markdown needed inside, so no blank lines required).
+  // SVG `fill` is a plain presentation attribute, not CSS — it can't
+  // reference a custom property (`fill="var(--amber)"` wouldn't resolve),
+  // so use the literal hex (`--amber`/`--bg` in src/styles/index.scss):
+  //   <div class="pod">
+  //   <svg width="56" height="56" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFD84D"/><path d="M26 20 L46 32 L26 44 Z" fill="#0A0A27"/></svg>
+  //   <div><b>Show name</b><span>One-line description</span></div>
+  //   </div>
+  :global(.pod) {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 24px 0;
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    svg {
+      flex: none;
+    }
+
+    b {
+      display: block;
+      font-size: 1.25rem;
+      color: white;
+    }
+
+    span {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+    }
+  }
+
+  // A numbered list of goals/principles where the sequence itself matters
+  // (goal 1, goal 2, …) — large numbered circles instead of bullets, each
+  // item's top border acting as its own divider rather than the whole
+  // list sitting in a bordered card (contrast `.card-grid`, for items that
+  // are parallel but *not* ordered). Author with raw `<li>` tags, NOT
+  // markdown `1. 2. 3.` syntax — marked parses a numbered list into its
+  // own `<ol>`, which nests inside this raw one instead of reusing it
+  // (confirmed: `marked("<ol class=\"goals\">\n\n1. …")` emits
+  // `<ol class="goals"><ol>…</ol></ol>`, doubling the numbering and
+  // indent). Blank lines around each `<li>`'s markdown per the
+  // `.card-grid` convention above:
+  //   <ol class="goals">
+  //
+  //   <li>
+  //
+  //   **Goal name:** what it means.
+  //
+  //   </li>
+  //
+  //   </ol>
+  :global(ol.goals) {
+    counter-reset: goals;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+
+    li {
+      counter-increment: goals;
+      position: relative;
+      padding: 16px 0 16px 56px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 0;
+
+      p {
+        margin: 0;
+      }
+
+      &::before {
+        content: counter(goals);
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: var(--accent);
         font-weight: 700;
-        padding: 10px 14px;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-    }
-
-    td {
-        padding: 10px 14px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    tr:hover td {
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    code {
-        font-family: "Courier New", monospace;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 2px 6px;
-        border-radius: var(--radius-xs);
-        font-size: 0.9em;
-    }
-
-    pre {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 16px;
-        border-radius: var(--radius-sm);
-        overflow-x: auto;
-        margin-block: 20px;
-
-        code {
-            background: none;
-            padding: 0;
-        }
-    }
-
-    hr {
-        border: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        margin-block: 32px;
-    }
-
-    :global(.two-col-tracks) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
-        margin-block: 20px;
-
-        & > div {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-sm);
-            padding: 20px;
-        }
-
-        h3 {
-            margin-top: 0;
-        }
-
-        @media (max-width: 768px) {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    // Wraps a run of <img> tags that sat on one line/paragraph in the source
-    // document (side-by-side composite figures, e.g. "A) ... B) ... C) ...")
-    // so they lay out as one row instead of each wrapping full-width. Each
-    // <img> carries its own inline width % (proportional to its size in the
-    // original document) — this just provides the flex row and closes the
-    // gap those percentages leave for.
-    :global(.notebook-img-row) {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 8px;
-        margin-block: 12px;
-
-        img {
-            margin: 0;
-            flex: 0 0 auto;
-        }
-    }
-
-    :global(.two-col-images) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
-        margin-block: 20px;
-        align-items: start;
-
-        p {
-            margin: 0;
-        }
-
-        img {
-            margin: 0;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
-    //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
-    //
-    //   ![alt text](src)
-    //
-    //   </div>
-    :global(.crop-frame) {
-        aspect-ratio: var(--crop-ratio, 4 / 3);
-        overflow: hidden;
-        border-radius: var(--radius-sm);
-        margin-block: 20px;
-
-        // `marked` wraps images in <p>; the img's height: 100% needs it sized too.
-        p {
-            height: 100%;
-            margin: 0;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            object-fit: cover;
-            object-position: var(--crop-pos, center);
-        }
-    }
-
-    // Mats a photo/render whose own background is opaque light/white
-    // (a CAD export, a studio product shot) in a dark bordered card, same
-    // border/background as `.panel` below — without it, that image's own
-    // white background butts straight against the dark page with nothing
-    // but a border-radius, reading as pasted from a different design
-    // system rather than a deliberately placed figure. Not needed for an
-    // image that's already dark/transparent (e.g. a poster on a night-sky
-    // background) — reach for it only when a figure's own background
-    // fights the page's. Combine with `.two-col-images` by wrapping each
-    // image in its own `.photo-frame` inside the pair, or use standalone
-    // for a single full-width image. Author with raw HTML, blank lines
-    // around the image per the `.card-grid` convention above:
-    //   <div class="photo-frame">
-    //
-    //   ![alt text](src)
-    //
-    //   </div>
-    :global(.photo-frame) {
-        background: rgba(255, 255, 255, 0.045);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-md);
-        padding: 16px;
-        margin-block: 20px;
-
-        img {
-            margin: 0;
-            display: block;
-            width: 100%;
-            border-radius: var(--radius-sm);
-        }
-    }
-
-    // Generalizes the Model page's Caption: the one sentence that
-    // interprets a figure or table — what to notice, not just what it
-    // shows — instead of leaving a bare image or table-wrap to speak for
-    // itself. Bold "Figure N."/"Table N." lead-in (write it as markdown
-    // **bold**, not raw <b>, so it still parses normally) in a brighter
-    // tone, then muted mono body text. Tighter margins than a body
-    // paragraph so it reads as attached to whatever it's captioning —
-    // works placed either directly below a figure/`.photo-frame` (the
-    // usual case) or directly above a `.table-wrap` (notebook.md's own
-    // existing convention: "Table N." captions precede their table).
-    // Author with raw HTML, blank lines around the markdown bold per the
-    // .callout convention above:
-    //   <div class="caption">
-    //
-    //   **Figure 1.** What to notice, not just what it shows.
-    //
-    //   </div>
-    :global(.caption) {
-        font-family: ui-monospace, Menlo, Consolas, monospace;
-        font-size: 0.78rem;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.6);
-        margin: 4px 4px 20px;
-
-        p {
-            margin: 0;
-        }
-
-        strong {
-            color: rgba(255, 255, 255, 0.85);
-        }
-    }
-
-    // Generalizes the Model page's Card/CardGrid pattern (see
-    // .claude/ARTICLE-STANDARDS.md) for plain markdown content: a set of
-    // parallel, comparable short items (framework steps, categories,
-    // criteria) as bordered tiles instead of a bullet list. Author with
-    // raw HTML in the .md source, one blank-line-separated <div> per card
-    // so its heading/body still parse as markdown (same trick
-    // .two-col-tracks above already relies on):
-    //   <div class="card-grid">
-    //   <div>
-    //
-    //   #### Card title
-    //   Card body text.
-    //
-    //   </div>
-    //   </div>
-    // Flexbox rather than `grid-template-columns: repeat(auto-fit, ...)`:
-    // with a fixed column grid, a last row with fewer items than the grid
-    // has columns leaves those columns empty instead of the row's own
-    // cards growing to fill it — a 5-card grid at 4 columns strands the
-    // 5th card alone at its minimum width with a wide gap beside it. Flex
-    // with `flex: 1 1 <basis>` gives every row, including a short last
-    // one, cards that grow to fill it evenly.
-    :global(.card-grid) {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 18px;
-        margin-block: 24px;
-
-        & > div {
-            flex: 1 1 260px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-sm);
-            padding: 20px 22px;
-        }
-
-        h3, h4 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    // Modifier for a card-grid whose items are a title plus one short line
-    // (a stat, a tag) rather than a real paragraph — e.g. five judging
-    // criteria each worth "5 points". Stretching those to the default
-    // 260px basis leaves mostly empty tiles; a smaller basis packs more,
-    // appropriately snug cards per row instead. Add alongside the base
-    // class: `class="card-grid compact"`.
-    :global(.card-grid.compact) {
-        gap: 8px;
-
-        & > div {
-            flex-basis: 110px;
-            padding: 10px 12px;
-        }
-
-        h3, h4 {
-            font-size: 0.9rem;
-            margin-bottom: 2px;
-        }
-
-        p {
-            font-size: 0.85em;
-            line-height: 1.4;
-        }
-    }
-
-    // Generalizes the Model page's Callout: a claim that needs to stand
-    // apart from running prose (a scope statement, a caveat, a retracted
-    // point). Default tone is neutral; add a second class for a tinted
-    // one — `class="callout accent"` / `"callout good"` / `"callout warn"`
-    // / `"callout critical"` — matching the tones used across the site's
-    // other status pills. Optional `<p class="callout-label">Label</p>`
-    // as the first line renders as a small-caps kicker above the text.
-    :global(.callout) {
-        border-inline-start: 3px solid rgba(255, 255, 255, 0.3);
-        background: rgba(255, 255, 255, 0.045);
-        padding: 15px 18px;
-        margin-block: 20px;
-        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-
-        > p:first-child,
-        > :global(.callout-label) + p {
-            margin-top: 0;
-        }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    :global(.callout.accent) {
-        border-inline-start-color: var(--accent);
-    }
-
-    :global(.callout.good) {
-        border-inline-start-color: #0ca30c;
-        background: color-mix(in oklab, #0ca30c 14%, transparent);
-    }
-
-    :global(.callout.warn) {
-        border-inline-start-color: #fab219;
-        background: color-mix(in oklab, #fab219 12%, transparent);
-    }
-
-    :global(.callout.critical) {
-        border-inline-start-color: #d03b3b;
-        background: color-mix(in oklab, #d03b3b 14%, transparent);
-    }
-
-    :global(.callout-label) {
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.6);
-        margin: 0 0 6px !important;
-    }
-
-    // Generalizes the Model page's TableWrap: bounds a markdown table in
-    // its own bordered card instead of it sitting bare against the page,
-    // so a table reads as one discrete data object. Wrap the table (with
-    // the usual blank lines on either side so it still parses as GFM):
-    //   <div class="table-wrap">
-    //
-    //   | ... |
-    //
-    //   </div>
-    :global(.table-wrap) {
-        overflow-x: auto;
-        margin-block: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-sm);
-        background: rgba(255, 255, 255, 0.03);
-
-        table {
-            margin-block: 0;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-    }
-
-    // A short pipeline/control-loop diagram: a row of labelled stages
-    // joined by arrows (e.g. "Sensor → PID control → Actuator"), for
-    // hardware/process pages where a sentence would undersell how
-    // mechanical the sequence is. Monospace per the small-caps/mono =
-    // metadata convention (see ARTICLE-STANDARDS.md §5) since each node is
-    // a component name, not prose. Author with raw HTML in the .md source:
-    //   <div class="flow">
-    //
-    //   <span class="flow-node">Sensor</span>
-    //   <span class="flow-arrow">→</span>
-    //   <span class="flow-node accent">Controller</span>
-    //   <span class="flow-arrow">→</span>
-    //   <span class="flow-node amber">Actuator</span>
-    //
-    //   </div>
-    // `accent`/`amber` on a node are optional tint modifiers for the two
-    // ends of a loop (sensing vs. actuation) — plain nodes (the shared
-    // control-logic step) stay neutral.
-    :global(.flow) {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 0;
-        font-family: ui-monospace, Menlo, Consolas, monospace;
-        font-size: 0.82rem;
-        margin-block: 20px;
+      }
+    }
+  }
 
-        :global(.flow-node) {
-            // border-box: the mobile rule below sets width: 100% of `.flow`
-            // (a normal block, not a grid track, so nothing else corrects
-            // for it) — without this, that 100% is the content box alone,
-            // and the border + padding add on top, pushing the node past
-            // the article column's edge on narrow (iPhone-width) screens.
-            box-sizing: border-box;
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 12px 18px;
-            border-radius: var(--radius-xs);
-            color: white;
-            text-align: center;
-        }
+  // A small pill-shaped label standing in for a subheading — used where a
+  // one- or two-word tag ("Pills", "Part I: ...") reads better as a badge
+  // than as another <h3> in the outline. Default tone is violet/primary;
+  // add `chip amber` for the amber tint. Author with raw HTML:
+  //   <span class="chip">Pills</span>
+  :global(.chip) {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--primary-300);
+    border: 1px solid rgba(177, 109, 255, 0.35);
+    background: rgba(177, 109, 255, 0.08);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
 
-        :global(.flow-node.amber) {
-            border-color: rgba(255, 216, 77, 0.4);
-            color: var(--amber);
-        }
+  :global(.chip.amber) {
+    color: var(--amber);
+    border-color: rgba(255, 216, 77, 0.4);
+    background: rgba(255, 216, 77, 0.08);
+  }
 
-        :global(.flow-node.accent) {
-            border-color: rgba(177, 109, 255, 0.4);
-            color: var(--primary-300);
-        }
+  // A bordered glass panel for grouping a figure/readout that's more than
+  // a plain image or table — a labelled instrument readout, a diagram
+  // with its own caption row. `.panel-title` is a small-caps mono header
+  // row (its two children/spans lay out at opposite ends, e.g. a name and
+  // a status tag). Author with raw HTML, blank lines around nested
+  // markdown-bearing content per the .card-grid convention above:
+  //   <div class="panel">
+  //   <div class="panel-title"><span>Name</span><span>Tag</span></div>
+  //   ...
+  //   </div>
+  :global(.panel) {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.045);
+    padding: 20px 22px 16px;
+    margin-block: 20px;
+  }
 
-        :global(.flow-arrow) {
-            color: rgba(255, 255, 255, 0.45);
-            padding: 0 14px;
-            font-size: 1.1rem;
-        }
+  :global(.panel-title) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-        @media (max-width: 640px) {
-            flex-direction: column;
-            align-items: stretch;
+  // A 2-up instrument readout (a labelled value plus a small progress
+  // bar per cell) — built for a "current settings/telemetry" panel. Sits
+  // inside a `.panel` above. Author with raw HTML:
+  //   <div class="dash">
+  //   <div class="dash-card">
+  //   <div class="k">Label</div>
+  //   <div class="v">Value<span>Unit</span></div>
+  //   <div class="dash-bar"><i style="width:50%"></i></div>
+  //   </div>
+  //   ...
+  //   </div>
+  :global(.dash) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 
-            :global(.flow-node) {
-                width: 100%;
-            }
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
 
-            :global(.flow-arrow) {
-                align-self: center;
-                transform: rotate(90deg);
-                padding: 6px 0;
-            }
-        }
+  :global(.dash-card) {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-xs);
+    padding: 18px;
+  }
+
+  :global(.dash-card .k) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  :global(.dash-card .v) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 1.5rem;
+    color: white;
+
+    span {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  :global(.dash-bar) {
+    margin-top: 12px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+
+    i {
+      display: block;
+      height: 100%;
+      background: var(--primary-500);
+    }
+  }
+
+  // Accent-colored emphasis for the rare phrase that must stand out:
+  //   Some prose <span class="hl">a phrase that matters</span> more prose.
+  :global(.hl) {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  // Collapsible card (native <details>); markdown inside needs blank lines,
+  // and the body must sit in its own wrapper div for the expand/collapse
+  // transition below to have something to animate the height of:
+  //   <details class="details">
+  //   <summary class="details-summary">Label</summary>
+  //
+  //   <div class="details-body">
+  //
+  //   Body markdown...
+  //
+  //   </div>
+  //
+  //   </details>
+  :global(.details) {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    margin-block: 16px;
+    padding: 4px 18px;
+
+    // Same open-state glyph as Model's own .details/.summary
+    // (src/pages/Model/Model.module.scss) — one collapsible-card
+    // affordance, used in two places, should read identically.
+    &[open] :global(.details-summary)::before {
+      content: "\2013";
+    }
+  }
+
+  :global(.details-summary) {
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 0;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &::-webkit-details-marker {
+      display: none;
     }
 
-    // A small pill-shaped label standing in for a subheading — used where a
-    // one- or two-word tag ("Pills", "Part I: ...") reads better as a badge
-    // than as another <h3> in the outline. Default tone is violet/primary;
-    // add `chip amber` for the amber tint. Author with raw HTML:
-    //   <span class="chip">Pills</span>
-    :global(.chip) {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-family: ui-monospace, Menlo, Consolas, monospace;
-        font-size: 0.78rem;
-        color: var(--primary-300);
-        border: 1px solid rgba(177, 109, 255, 0.35);
-        background: rgba(177, 109, 255, 0.08);
-        padding: 5px 14px;
-        border-radius: 999px;
-        margin-bottom: 18px;
+    &::before {
+      content: "+";
+      color: var(--accent);
+      font-weight: 700;
+      width: 1em;
+    }
+  }
+
+  // The HTML spec's own UA stylesheet hides every non-summary child with
+  // `display: none` while a <details> is closed — overriding that back to
+  // `display: block` (that rule isn't `!important`, so an author style can
+  // win) keeps .details-body laid out and measurable at all times, which
+  // Article.jsx's toggleDetails() needs (it reads scrollHeight regardless
+  // of open/closed state). The actual expand/collapse animation is driven
+  // from there via the Web Animations API, not a CSS transition — a plain
+  // transition on max-height/opacity here does not animate the native
+  // <details> toggle in current Chromium no matter its duration, so these
+  // are just the two static open/closed states, no `transition` needed.
+  :global(.details:not([open])) > :global(.details-body) {
+    display: block;
+  }
+
+  :global(.details-body) {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+
+  :global(.details[open]) :global(.details-body) {
+    // A generous fixed cap rather than the real content height —
+    // Article.jsx animates toward the real scrollHeight directly, so
+    // this only needs to comfortably exceed it as the resting state
+    // once the animation hands back off to plain CSS.
+    max-height: 800px;
+    opacity: 1;
+    padding-bottom: 14px;
+  }
+
+  // A compact person card: round photo top-left, name beside it, summary
+  // below. --photo-x/--photo-y pick the crop point (higher = picture moves
+  // left/up) and --photo-zoom zooms in. Plain HTML, so no blank lines needed:
+  //   <div class="person-card">
+  //   <img class="person-photo" src="..." alt="Name" style="--photo-x: 60%; --photo-y: 26%; --photo-zoom: 2.6;">
+  //   <h4 class="person-name">Name</h4>
+  //   <p>Summary...</p>
+  //   </div>
+  :global(.person-card) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 20px;
+    align-items: start;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 18px 20px;
+    margin-block: 16px;
+
+    > :global(.person-photo) {
+      grid-row: 1 / span 3;
     }
 
-    :global(.chip.amber) {
-        color: var(--amber);
-        border-color: rgba(255, 216, 77, 0.4);
-        background: rgba(255, 216, 77, 0.08);
+    > p {
+      grid-column: 2;
+      margin: 8px 0 0;
+      font-size: 15px;
     }
 
-    // A bordered glass panel for grouping a figure/readout that's more than
-    // a plain image or table — a labelled instrument readout, a diagram
-    // with its own caption row. `.panel-title` is a small-caps mono header
-    // row (its two children/spans lay out at opposite ends, e.g. a name and
-    // a status tag). Author with raw HTML, blank lines around nested
-    // markdown-bearing content per the .card-grid convention above:
-    //   <div class="panel">
-    //   <div class="panel-title"><span>Name</span><span>Tag</span></div>
-    //   ...
-    //   </div>
-    :global(.panel) {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-md);
-        background: rgba(255, 255, 255, 0.045);
-        padding: 20px 22px 16px;
-        margin-block: 20px;
+    // Too narrow for text beside the photo: summary goes full width below.
+    @media (max-width: 560px) {
+      grid-template-rows: auto;
+      align-items: center;
+
+      > :global(.person-photo) {
+        grid-row: auto;
+      }
+
+      > p,
+      > :global(.person-more-btn) {
+        grid-column: 1 / -1;
+      }
+
+      > p {
+        margin-top: 14px;
+      }
     }
+  }
 
-    :global(.panel-title) {
-        font-family: ui-monospace, Menlo, Consolas, monospace;
-        font-size: 0.72rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  // Opens the card's hidden .person-more content in a popup (Article.jsx).
+  :global(.person-more-btn) {
+    all: unset;
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-300, var(--primary));
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
     }
+  }
 
-    // A 2-up instrument readout (a labelled value plus a small progress
-    // bar per cell) — built for a "current settings/telemetry" panel. Sits
-    // inside a `.panel` above. Author with raw HTML:
-    //   <div class="dash">
-    //   <div class="dash-card">
-    //   <div class="k">Label</div>
-    //   <div class="v">Value<span>Unit</span></div>
-    //   <div class="dash-bar"><i style="width:50%"></i></div>
-    //   </div>
-    //   ...
-    //   </div>
-    :global(.dash) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
+  :global(.person-more) {
+    display: none;
+  }
 
-        @media (max-width: 560px) {
-            grid-template-columns: 1fr;
-        }
-    }
+  :global(.person-photo) {
+    width: 88px;
+    height: 88px;
+    margin: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: var(--photo-x, 50%) var(--photo-y, 50%);
+    // Zooming around --photo-x is what shifts a tall photo sideways (cover
+    // leaves it no horizontal slack). The clip is offset by the inverse of
+    // that zoom so the visible circle stays in the card's corner.
+    scale: var(--photo-zoom, 1);
+    transform-origin: var(--photo-x, 50%) 50%;
+    clip-path: circle(
+      calc(50% / var(--photo-zoom, 1)) at
+        calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1)) 50%
+    );
+  }
 
-    :global(.dash-card) {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-xs);
-        padding: 18px;
-    }
-
-    :global(.dash-card .k) {
-        font-family: ui-monospace, Menlo, Consolas, monospace;
-        font-size: 0.68rem;
-        color: rgba(255, 255, 255, 0.6);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-bottom: 8px;
-    }
-
-    :global(.dash-card .v) {
-        font-family: ui-monospace, Menlo, Consolas, monospace;
-        font-size: 1.5rem;
-        color: white;
-
-        span {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-    }
-
-    :global(.dash-bar) {
-        margin-top: 12px;
-        height: 5px;
-        border-radius: 3px;
-        background: rgba(255, 255, 255, 0.08);
-        overflow: hidden;
-
-        i {
-            display: block;
-            height: 100%;
-            background: var(--primary-500);
-        }
-    }
-
-    // Accent-colored emphasis for the rare phrase that must stand out:
-    //   Some prose <span class="hl">a phrase that matters</span> more prose.
-    :global(.hl) {
-        color: var(--accent);
-        font-weight: 700;
-    }
-
-    // A compact person card: round photo top-left, name beside it, summary
-    // below. --photo-x/--photo-y pick the crop point (higher = picture moves
-    // left/up) and --photo-zoom zooms in. Plain HTML, so no blank lines needed:
-    //   <div class="person-card">
-    //   <img class="person-photo" src="..." alt="Name" style="--photo-x: 60%; --photo-y: 26%; --photo-zoom: 2.6;">
-    //   <h4 class="person-name">Name</h4>
-    //   <p>Summary...</p>
-    //   </div>
-    :global(.person-card) {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto 1fr;
-        column-gap: 20px;
-        align-items: start;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-sm);
-        background: rgba(255, 255, 255, 0.04);
-        padding: 18px 20px;
-        margin-block: 16px;
-
-        > :global(.person-photo) {
-            grid-row: 1 / span 3;
-        }
-
-        > p {
-            grid-column: 2;
-            margin: 8px 0 0;
-            font-size: 15px;
-        }
-
-        // Too narrow for text beside the photo: summary goes full width below.
-        @media (max-width: 560px) {
-            grid-template-rows: auto;
-            align-items: center;
-
-            > :global(.person-photo) {
-                grid-row: auto;
-            }
-
-            > p,
-            > :global(.person-more-btn) {
-                grid-column: 1 / -1;
-            }
-
-            > p {
-                margin-top: 14px;
-            }
-        }
-    }
-
-    // Opens the card's hidden .person-more content in a popup (Article.jsx).
-    :global(.person-more-btn) {
-        all: unset;
-        grid-column: 2;
-        justify-self: start;
-        margin-top: 10px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--primary-300, var(--primary));
-        cursor: pointer;
-
-        &:hover,
-        &:focus-visible {
-            text-decoration: underline;
-        }
-    }
-
-    :global(.person-more) {
-        display: none;
-    }
-
-    :global(.person-photo) {
-        width: 88px;
-        height: 88px;
-        margin: 0;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: var(--photo-x, 50%) var(--photo-y, 50%);
-        // Zooming around --photo-x is what shifts a tall photo sideways (cover
-        // leaves it no horizontal slack). The clip is offset by the inverse of
-        // that zoom so the visible circle stays in the card's corner.
-        scale: var(--photo-zoom, 1);
-        transform-origin: var(--photo-x, 50%) 50%;
-        clip-path: circle(
-            calc(50% / var(--photo-zoom, 1)) at
-                calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1)) 50%
-        );
-    }
-
-    :global(.person-name) {
-        margin: 0;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    // Collapsible card (native <details>); markdown inside needs blank lines,
-    // and the body must sit in its own wrapper div for the expand/collapse
-    // transition below to have something to animate the height of:
-    //   <details class="details">
-    //   <summary class="details-summary">Label</summary>
-    //
-    //   <div class="details-body">
-    //
-    //   Body markdown...
-    //
-    //   </div>
-    //
-    //   </details>
-    :global(.details) {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--radius-sm);
-        background: rgba(255, 255, 255, 0.04);
-        margin-block: 16px;
-        padding: 4px 18px;
-
-        // Same open-state glyph as Model's own .details/.summary
-        // (src/pages/Model/Model.module.scss) — one collapsible-card
-        // affordance, used in two places, should read identically.
-        &[open] :global(.details-summary)::before {
-            content: "\2013";
-        }
-    }
-
-    :global(.details-summary) {
-        cursor: pointer;
-        list-style: none;
-        padding: 14px 0;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-
-        &::before {
-            content: "+";
-            color: var(--accent);
-            font-weight: 700;
-            width: 1em;
-        }
-    }
-
-    // The HTML spec's own UA stylesheet hides every non-summary child with
-    // `display: none` while a <details> is closed — overriding that back to
-    // `display: block` (that rule isn't `!important`, so an author style can
-    // win) keeps .details-body laid out and measurable at all times, which
-    // Article.jsx's toggleDetails() needs (it reads scrollHeight regardless
-    // of open/closed state). The actual expand/collapse animation is driven
-    // from there via the Web Animations API, not a CSS transition — a plain
-    // transition on max-height/opacity here does not animate the native
-    // <details> toggle in current Chromium no matter its duration, so these
-    // are just the two static open/closed states, no `transition` needed.
-    :global(.details:not([open])) > :global(.details-body) {
-        display: block;
-    }
-
-    :global(.details-body) {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        padding-bottom: 0;
-    }
-
-    :global(.details[open]) :global(.details-body) {
-        // A generous fixed cap rather than the real content height —
-        // Article.jsx animates toward the real scrollHeight directly, so
-        // this only needs to comfortably exceed it as the resting state
-        // once the animation hands back off to plain CSS.
-        max-height: 800px;
-        opacity: 1;
-        padding-bottom: 14px;
-    }
+  :global(.person-name) {
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+  }
 }
 
 // Persistent desktop rail — no fixed height/collapse, just top+bottom
@@ -904,44 +1233,56 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 // and the fixed bottom nav (bottom:38px, height:68px) below, so its own
 // height simply follows the viewport between the two.
 .panelContainer {
-    position: fixed;
-    top: 110px;
-    bottom: calc(var(--nav-clearance) + 10px);
-    inset-inline-start: $side-gutter;
-    width: $rail-width;
-    z-index: 10;
+  position: fixed;
+  top: 110px;
+  bottom: calc(var(--nav-clearance) + 10px);
+  inset-inline-start: $side-gutter;
+  width: $rail-width;
+  z-index: 10;
 }
 
 .panelContents {
-    box-sizing: border-box;
-    // An explicit viewport-derived height, not a % one — LiquidGlass's own
-    // wrapper div (this element's direct parent) is a plain auto-height
-    // block, so a percentage here would resolve against nothing and
-    // collapse to content size instead of filling the rail. Mirrors
-    // .panelContainer's own top/bottom offsets above.
-    height: calc(100dvh - 110px - var(--nav-clearance) - 10px);
-    width: 100%;
-    padding: 28px 22px;
-    color: white;
-    font-weight: 600;
-    /* Panel is position: fixed, so it can't rely on page scroll — when its
+  box-sizing: border-box;
+  // An explicit viewport-derived height, not a % one — LiquidGlass's own
+  // wrapper div (this element's direct parent) is a plain auto-height
+  // block, so a percentage here would resolve against nothing and
+  // collapse to content size instead of filling the rail. Mirrors
+  // .panelContainer's own top/bottom offsets above.
+  height: calc(100dvh - 110px - var(--nav-clearance) - 10px);
+  width: 100%;
+  padding: 28px 22px;
+  color: white;
+  font-weight: 600;
+  /* Panel is position: fixed, so it can't rely on page scroll — when its
        own item list is taller than its box a wheel/touch scroll over it
        needs its own scroll region, or the scroll falls through to the
        article underneath instead of scrolling the panel. */
-    overflow-y: auto;
-    overflow-x: hidden;
-    // Softens the item list's own top/bottom edges as entries scroll past
-    // them, rather than letting a line cut off flush against the box edge.
-    // The fade completes within the box's own padding, so a fully-visible
-    // header/last item is never itself faded.
-    mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 20px), transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 20px), transparent 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  // Softens the item list's own top/bottom edges as entries scroll past
+  // them, rather than letting a line cut off flush against the box edge.
+  // The fade completes within the box's own padding, so a fully-visible
+  // header/last item is never itself faded.
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 20px,
+    black calc(100% - 20px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 20px,
+    black calc(100% - 20px),
+    transparent 100%
+  );
 }
 
 .panelHeader {
-    margin-bottom: 18px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 // A left accent bar per item — same "colored edge = emphasis" idiom as the
@@ -950,119 +1291,132 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 // without needing a separately measured/animated indicator. Shared as-is
 // across both breakpoints (only the rail's own position/size differs).
 .panelItem {
-    box-sizing: border-box;
-    font-size: 15px;
-    line-height: 1.4;
-    font-weight: 500;
-    margin-block: 4px;
-    padding: 9px 16px;
-    border-inline-start: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0 10px 10px 0;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.55);
-    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  box-sizing: border-box;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  margin-block: 4px;
+  padding: 9px 16px;
+  border-inline-start: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
 
-    &:hover {
-        color: rgba(255, 255, 255, 0.85);
-    }
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
 }
 
 .selected {
-    color: var(--primary);
-    font-weight: 700;
-    border-inline-start-color: var(--primary);
-    background: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary);
+  font-weight: 700;
+  border-inline-start-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
 }
 
 // The desktop rail is always open, so the collapse toggle only exists for
 // the <=1024px drawer below — hidden here, re-shown (with its geometry)
 // inside that media query.
 .arrow {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 1024px) {
-    // Panel becomes a fixed overlay drawer instead of an in-flow rail, so
-    // the article no longer reserves space for it or centers against it.
-    .article {
-        width: calc(100vw - 0.15 * #{$article-inset});
-        inset-inline-start: auto;
-        inset-inline-end: 0;
-        max-width: none;
-        margin-inline: 0;
-        padding: 20px;
-    }
+  // Panel becomes a fixed overlay drawer instead of an in-flow rail, so
+  // the article no longer reserves space for it or centers against it.
+  .article {
+    width: calc(100vw - 0.15 * #{$article-inset});
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+    max-width: none;
+    margin-inline: 0;
+    padding: 20px;
+  }
 
-    .panelContainer {
-        top: 0;
-        bottom: auto;
-        inset-inline-start: 0;
-        width: auto;
-        transition: transform 250ms ease;
-    }
+  .panelContainer {
+    top: 0;
+    bottom: auto;
+    inset-inline-start: 0;
+    width: auto;
+    transition: transform 250ms ease;
+  }
 
-    .panelContents {
-        height: 100dvh;
-        width: min(80dvw, #{$panel-width-mobile});
-        padding: 24px;
-        padding-top: 80px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
-        /* Reserve the same clearance as the page content (see PageWrapper) —
+  .panelContents {
+    height: 100dvh;
+    width: min(80dvw, #{$panel-width-mobile});
+    padding: 24px;
+    padding-top: 80px; /* clears the fixed SiteMark logo (top:24px + height:28px) */
+    /* Reserve the same clearance as the page content (see PageWrapper) —
            the fixed nav spans almost the full viewport width, so it sits
            under the drawer too; without this the last item can end up
            behind it with no further scroll room to reveal it. */
-        padding-bottom: var(--nav-clearance);
-        /* Scrolled-up items would otherwise pass behind the fixed SiteMark
+    padding-bottom: var(--nav-clearance);
+    /* Scrolled-up items would otherwise pass behind the fixed SiteMark
            logo (top: 24px, height: 28px, so clear by ~52px) instead of
            stopping — mask them out over a short fade so they're gone by the
            time they'd reach the logo, rather than visibly overlapping it. */
-        mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
-        -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 64px, black 80px);
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 64px,
+      black 80px
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 64px,
+      black 80px
+    );
+  }
+
+  .panelItem {
+    max-width: calc(100% - 28px);
+  }
+
+  .arrow {
+    display: block;
+    transition: transform 250ms ease;
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    top: 45%;
+    inset-inline-end: -8px;
+
+    :global([dir="rtl"]) & {
+      transform: rotate(180deg);
     }
+  }
 
-    .panelItem {
-        max-width: calc(100% - 28px);
+  .flipped {
+    transform: rotate(180deg);
+
+    :global([dir="rtl"]) & {
+      transform: rotate(0deg);
     }
+  }
 
-    .arrow {
-        display: block;
-        transition: transform 250ms ease;
-        background-color: transparent;
-        border: 0;
-        position: absolute;
-        top: 45%;
-        inset-inline-end: -8px;
+  .collapsed {
+    transform: translateX(calc(-100% + 36px));
 
-        :global([dir="rtl"]) & {
-            transform: rotate(180deg);
-        }
+    :global([dir="rtl"]) & {
+      transform: translateX(calc(100% - 36px));
     }
-
-    .flipped {
-        transform: rotate(180deg);
-
-        :global([dir="rtl"]) & {
-            transform: rotate(0deg);
-        }
-    }
-
-    .collapsed {
-        transform: translateX(calc(-100% + 36px));
-
-        :global([dir="rtl"]) & {
-            transform: translateX(calc(100% - 36px));
-        }
-    }
+  }
 }
 
 @media (max-width: 480px) {
-    .article {
-        width: calc(100vw - 50px);
-        padding: 20px;
-        overflow-x: hidden;
+  .article {
+    width: calc(100vw - 50px);
+    padding: 20px;
+    overflow-x: hidden;
 
-        & > div {
-            padding-bottom: 32px;
-            margin-bottom: 32px;
-        }
+    & > div {
+      padding-bottom: 32px;
+      margin-bottom: 32px;
     }
+  }
 }

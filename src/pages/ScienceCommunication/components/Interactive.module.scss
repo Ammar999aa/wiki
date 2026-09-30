@@ -1,0 +1,249 @@
+// Page-scoped styles for Science Communication's interactive components
+// (AttendanceFunnel, CrewGenerator, Timeline, TermFlipCards). Same
+// bordered/tinted-panel visual language as SectionedArticle.module.scss's
+// shared markdown classes — see .claude/ARTICLE-STANDARDS.md §5.
+
+.try {
+  margin: 28px 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 24px 26px 26px;
+}
+
+.tryLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 16px;
+}
+
+// --- AttendanceFunnel ---------------------------------------------------
+
+.funnel {
+  margin: 20px 0;
+}
+
+.funnelRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.funnelBarTrack {
+  height: 28px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.funnelBarFill {
+  height: 100%;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(90deg, var(--primary-600), var(--primary));
+}
+
+.funnelBarFill2 {
+  background: linear-gradient(90deg, var(--accent), #ffb84d);
+}
+
+.funnelLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+// --- CrewGenerator ---------------------------------------------------
+
+.crew {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.crewBtn {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+
+  &:hover {
+    background: var(--primary-600);
+  }
+}
+
+.badge {
+  min-width: 230px;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+}
+
+.badgeFilled {
+  border-style: solid;
+  border-color: var(--accent);
+}
+
+.badgeCrew {
+  display: block;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+.badgeRole {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  margin-top: 2px;
+}
+
+// --- Timeline ---------------------------------------------------
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    right: 9px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 22px;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.timelineItem {
+  padding: 32px 16px 0 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 3px solid var(--primary);
+  }
+}
+
+.timelineNext::before {
+  border-style: dashed;
+  border-color: var(--accent);
+}
+
+.timelineTitle {
+  display: block;
+  font-weight: 700;
+  color: white;
+  font-size: 1rem;
+}
+
+.timelineDate {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+// --- TermFlipCards ---------------------------------------------------
+
+.terms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.term {
+  perspective: 800px;
+  height: 100px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.termInner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.termFlipped .termInner {
+  transform: rotateY(180deg);
+}
+
+.termFace,
+.termBack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  backface-visibility: hidden;
+}
+
+.termFace {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.92rem;
+  color: white;
+}
+
+.termBack {
+  background: var(--primary);
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .termInner {
+    transition: none;
+  }
+}

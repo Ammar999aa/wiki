@@ -385,6 +385,24 @@
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     margin-block: 24px;
   }
+
+  // Protocol figures (sporulation cycle, comet assay workflow, FUN-1
+  // spectra, resazurin mechanism) are diagrams with opaque white
+  // backgrounds — matted the same way SectionedArticle's `.photo-frame`
+  // mats a light image against the dark page, since this page renders
+  // plain markdown img tags with no wrapper class to hang that convention
+  // off of.
+  img {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin-block: 20px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+  }
 }
 
 @keyframes articleIn {

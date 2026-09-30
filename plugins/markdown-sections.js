@@ -15,37 +15,52 @@ import markedKatex from "marked-katex-extension";
 // bioreactor-modeling.md, both math-only), so relaxing this is safe.
 marked.use(markedKatex({ throwOnError: false, nonStandard: true }));
 
+// Kebab-case anchor id for a "## Heading" title, e.g. "Tawasol: Uniting MENA
+// iGEM Teams" -> "tawasol-uniting-mena-igem-teams". Article.jsx already
+// renders each section's wrapper div with `id={section.id}` (for in-page
+// and cross-page deep links, e.g. "/education#tawasol-hackathon") — this is
+// what actually populates it.
+function slugify(title) {
+  return title
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export default function markdownSections() {
-    return {
-        name: "markdown-sections",
-        transform(code, id) {
-            if (!id.endsWith(".md")) return null;
-            if (!id.includes("/content/")) return null;
+  return {
+    name: "markdown-sections",
+    transform(code, id) {
+      if (!id.endsWith(".md")) return null;
+      if (!id.includes("/content/")) return null;
 
-            const raw = fs.readFileSync(id, "utf-8");
-            const lines = raw.split("\n");
-            const sections = [];
-            let current = null;
+      const raw = fs.readFileSync(id, "utf-8");
+      const lines = raw.split("\n");
+      const sections = [];
+      let current = null;
 
-            for (const line of lines) {
-                if (line.startsWith("## ")) {
-                    if (current) sections.push(current);
-                    current = { title: line.replace("## ", "").trim(), body: "" };
-                } else if (current) {
-                    current.body += line + "\n";
-                }
-            }
-            if (current) sections.push(current);
+      for (const line of lines) {
+        if (line.startsWith("## ")) {
+          if (current) sections.push(current);
+          current = { title: line.replace("## ", "").trim(), body: "" };
+        } else if (current) {
+          current.body += line + "\n";
+        }
+      }
+      if (current) sections.push(current);
 
-            const parsed = sections.map((s) => ({
-                title: s.title,
-                html: marked(s.body.trim()),
-            }));
+      const parsed = sections.map((s) => ({
+        title: s.title,
+        id: slugify(s.title),
+        html: marked(s.body.trim()),
+      }));
 
-            return {
-                code: `export default ${JSON.stringify(parsed)};`,
-                map: null,
-            };
-        },
-    };
+      return {
+        code: `export default ${JSON.stringify(parsed)};`,
+        map: null,
+      };
+    },
+  };
 }

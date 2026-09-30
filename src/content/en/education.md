@@ -6,24 +6,54 @@ At KAUST iGEM, our vision goes beyond the bench. We believe public literacy and 
 
 Our education work is built on four principles:
 
-- **Arabic-first:** we design materials in Arabic from the start, rather than translating them as an afterthought.
-- **Hands-on:** every program asks learners to do, build or decide something, not just listen.
-- **Tailored to the audience:** from elementary students cloning plants to undergraduates writing policy, each program meets learners where they are.
-- **Built to multiply:** we train mentors and volunteers who carry the material further than our own team could reach.
+<div class="card-grid">
+
+<div>
+
+#### Arabic-first
+
+We design materials in Arabic from the start, rather than translating them as an afterthought.
+
+</div>
+
+<div>
+
+#### Hands-on
+
+Every program asks learners to do, build or decide something, not just listen.
+
+</div>
+
+<div>
+
+#### Tailored to the audience
+
+From elementary students cloning plants to undergraduates writing policy, each program meets learners where they are.
+
+</div>
+
+<div>
+
+#### Built to multiply
+
+We train mentors and volunteers who carry the material further than our own team could reach.
+
+</div>
+
+</div>
 
 ## Our Programs at a Glance
 
-<div class="table-wrap">
+<div class="ladder">
 
-| Program | Audience | Format |
-|---|---|---|
-| Copy Paste Plants | Elementary students and families | Hands-on plant cloning activity for 70+ students |
-| School Outreach | Secondary school students | Arabic workshops with the Jeddah Department of Education |
-| Summer Mentorship Program | High school and undergraduate students | 10-week mentored program with two tracks |
-| Kallpa Multiplier Mentorship (Peru) | Youth volunteers who teach rural farmers | Four-module train-the-trainer course |
-| Tawasol Hackathon | High school (grades 10–12) and undergraduate students | Policy hackathon with expert judging |
+<a href="#copy-paste-plants" style="--h:120px"><b>Copy Paste Plants</b><span>Elementary students and families</span></a>
+<a href="#school-outreach" style="--h:160px"><b>School Outreach</b><span>Secondary school students</span></a>
+<a href="#summer-mentorship-program" style="--h:200px"><b>Summer Mentorship</b><span>High school and undergraduates</span></a>
+<a href="#tawasol-hackathon" style="--h:240px"><b>Tawasol Hackathon</b><span>Grades 10&ndash;12 and undergraduates</span></a>
+<a href="#kallpa-multiplier-mentorship-peru" style="--h:280px"><b>Kallpa Mentorship</b><span>Youth volunteers who teach rural farmers</span></a>
 
 </div>
+<div class="ladder-axis"><span>First encounter</span><span>Teaching others</span></div>
 
 ## Copy Paste Plants
 
@@ -35,16 +65,36 @@ On Tuesday, April 7, 2026, KAUST iGEM ran Copy Paste Plants as part of the Susta
 
 Our booth ran **Copy Paste Plants**, a hands-on plant cloning activity that introduced children to the idea of genetic identity. Children learned to propagate a pothos plant from a cutting in three steps: get your plant, make the cut, and watch it grow. Because the new plant grows from the parent's own tissue, it is an exact genetic copy, which gave us a simple, tangible way to explain genetic identity and similarity to elementary-aged learners.
 
+<div class="photo-frame">
+
 ![Copy Paste Plants poster explaining how to clone a pothos plant](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/copy-paste-plants-poster.avif)
 
-![Children taking pothos cuttings at the KAUST iGEM booth](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/copy-paste-plants-activity.avif)
+</div>
+
+<div class="caption">
+
+**Figure 1.** Our Copy Paste Plants activity poster, handed out at the booth.
+
+</div>
 
 ### Outcomes
 
 - **Hands-on learning:** engaged more than 70 TKS and visiting students in the basics of plant identity and propagation.
 - **A lasting collaboration:** we connected with Prof. Mark Tester, Chair of the Center of Excellence for Sustainable Food Security, who later advised our Kallpa Multiplier Mentorship Program.
 
+<div class="two-col-images">
+
+![Children taking pothos cuttings at the KAUST iGEM booth](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/copy-paste-plants-activity.avif)
+
 ![KAUST iGEM team members at the Sustainability Family Food Night booth](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/food-night-team-booth.avif)
+
+</div>
+
+<div class="caption">
+
+**Figure 2.** Children taking their own cuttings at our booth, and the KAUST iGEM team behind it.
+
+</div>
 
 ## School Outreach
 
@@ -52,9 +102,13 @@ Our booth ran **Copy Paste Plants**, a hands-on plant cloning activity that intr
 
 In collaboration with the Jeddah Department of Education, we delivered workshops that introduced synthetic biology to secondary school students using presentations we designed in Arabic to break complex concepts into accessible ideas.
 
-### Next Steps
+<div class="callout warn">
+
+<p class="callout-label">Next steps</p>
 
 We are planning further visits to schools across the region to bring synthetic biology directly into more classrooms.
+
+</div>
 
 ## Summer Mentorship Program
 
@@ -64,9 +118,18 @@ Synthetic biology is still not widely recognized as a career path in Saudi Arabi
 
 ### Program Structure
 
-Mentees were paired with graduate students, professors, research scientists and industry experts, and chose one of two tracks: **Applied Projects** or **Learning Journeys**.
+Mentees were paired with graduate students, professors, research scientists and industry experts, and chose one of two tracks:
 
-Alongside mentoring, we hosted a lecture series introducing students to interdisciplinary STEM fields, including genomics, microbiology, marine biology, bioinformatics and synthetic biology.
+<span class="chip">Applied Projects</span>
+<span class="chip">Learning Journeys</span>
+
+Alongside mentoring, we hosted a lecture series introducing students to interdisciplinary STEM fields:
+
+<span class="chip amber">Genomics</span>
+<span class="chip amber">Microbiology</span>
+<span class="chip amber">Marine biology</span>
+<span class="chip amber">Bioinformatics</span>
+<span class="chip amber">Synthetic biology</span>
 
 ## Kallpa Multiplier Mentorship (Peru)
 
@@ -92,37 +155,51 @@ Through several interviews with the project leader, we identified three gaps:
 
 We chose a train-the-trainer, or multiplier, model: KAUST iGEM trains Kallpa's youth volunteers, who then run weekly in-person sessions with rural farmers. Our goal was not to push volunteers toward a particular stance on GMOs, but to give them the knowledge and tools to understand what GMOs are, how they work, how they are used, and how they are regulated. We organized the course into four connected modules, with Prof. Mark Tester advising on its design.
 
-#### Module 1: GMO Fundamentals
-
-We built a foundation in molecular biology, genetic modification and conventional breeding, covering DNA, the central dogma, genes, traits, gene expression and how genetic material is modified. Through examples, exercises and visual aids, we explained how genetic modification can produce specific changes and why different modifications give different results. This session gave everyone a shared scientific language.
-
-#### Module 2: Agriculture and Food
-
-We applied those fundamentals to agriculture, exploring crop modification techniques and traits such as pest resistance and tolerance to extreme conditions. We focused on a crop that matters to local farming communities, the tomato. Volunteers analyzed the microorganisms that cause tomato diseases, how they spread, their symptoms and why they are hard to control. We then introduced greenhouses, which Kallpa Greenz builds across Peru. Together, volunteers worked through one question: how can we use biological knowledge to solve a problem a farmer actually faces?
-
-#### Module 3: Emerging Technologies
-
-We expanded into gene editing and CRISPR, controlled-environment agriculture and food production in space, linking them to space biomanufacturing and the biological systems space missions depend on. This connected Kallpa's hydroponics work to our own project, SHIHAB.
-
-#### Module 4: Law, Ethics and Society
-
-We examined the Peruvian laws and organizations involved in GMO decision-making. In role-playing activities, volunteers represented consumers, farmers, indigenous communities, scientists and other groups. We discussed farmers' rights, regulation, and ethical and social concerns, so participants could weigh these perspectives and form their own informed opinions.
-
 ## Tawasol Hackathon
 
 ### Overview
 
-The Tawasol Hackathon, held August 28–30, 2026 and co-organized with NYU Abu Dhabi iGEM, asked high school (grades 10–12) and undergraduate students a question most students never get to consider: once a powerful new biotechnology exists, who decides how it is used safely?
+<blockquote>
 
-Teams focused on the governance of SHIHAB, our platform for in-situ biomanufacturing of medicines for space missions and remote settings on Earth. The hackathon began as the SHIHAB Horizon Hackathon and was renamed Tawasol (تواصل, "connection") when NYU Abu Dhabi iGEM joined as co-organizer. It became the first project of the Tawasol Initiative, our coalition of MENA iGEM teams, described on our Science Communication page.
+Once a powerful new biotechnology exists, who decides how it is used safely?
+
+</blockquote>
+
+The Tawasol Hackathon, held August 28–30, 2026 and co-organized with NYU Abu Dhabi iGEM, asked high school (grades 10–12) and undergraduate students a question most students never get to consider. Teams focused on the governance of SHIHAB, our platform for in-situ biomanufacturing of medicines for space missions and remote settings on Earth.
+
+The hackathon began as the SHIHAB Horizon Hackathon and was renamed Tawasol (تواصل, "connection") when NYU Abu Dhabi iGEM joined as co-organizer. It became the first project of the Tawasol Initiative, our coalition of MENA iGEM teams, described on our <a href="/science-communication#tawasol-uniting-mena-igem-teams">Science Communication page</a>.
 
 ### Structure
 
 The hackathon ran as a virtual pitch sprint followed by a hybrid Grand Finale in the KAUST B20 lobby. Teams chose one of three tracks:
 
-- **Track A, Safety and Containment:** how to keep engineered organisms safe in closed or extreme environments.
-- **Track B, Public Trust and Ethics:** how to earn public trust in biomanufactured medicines.
-- **Track C, Integration and Liability:** who is responsible when things go wrong.
+<div class="card-grid">
+
+<div>
+
+#### Track A — Safety and Containment
+
+How to keep engineered organisms safe in closed or extreme environments.
+
+</div>
+
+<div>
+
+#### Track B — Public Trust and Ethics
+
+How to earn public trust in biomanufactured medicines.
+
+</div>
+
+<div>
+
+#### Track C — Integration and Liability
+
+Who is responsible when things go wrong.
+
+</div>
+
+</div>
 
 Each team produced a formal policy whitepaper, judged by external experts. The Grand Finale featured the deans of KAUST's BESE and BioMed divisions.
 
