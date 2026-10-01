@@ -1276,14 +1276,9 @@ const EXPLORE_CARDS = [
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/public-engagement.avif",
   },
   {
-    // TEMP: reusing the old Wet Lab card photo as a placeholder — this card
-    // had no photo of its own before, and this one is now unused elsewhere
-    // (superseded by team/wetlab.avif). Swap for a real Human Practices
-    // photo when one's ready, same as Wet/Dry Lab/Safety/Team already got.
     n: "08", t: "Human Practices", d: "How real-world voices shaped the work.",
     to: "/human-practices",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/wetlab-card.avif", pos: "center 78%",
-    credit: { url: "https://images.nasa.gov/details/iss065e165874", title: "Cell Science-04 biology experiment aboard the ISS — NASA ID iss065e165874" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/integrated-practices.avif", pos: "center 78%",
   },
 ];
 
