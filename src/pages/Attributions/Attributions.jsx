@@ -26,6 +26,8 @@ const nadia     = `${ROSTER_CDN}/nadia.avif`;
 const hassan    = `${ROSTER_CDN}/hassan.avif`;
 const raheema   = `${ROSTER_CDN}/raheema.avif`;
 const mafer     = `${ROSTER_CDN}/mafer.avif`;
+const shahada   = `${ROSTER_CDN}/shahada.avif`;
+const noureldin = `${ROSTER_CDN}/noureldin.avif`;
 
 function memberContent(t, key) {
   return (
@@ -91,6 +93,12 @@ const advisors = [
   { key: "jordi", title: "Jordi Plau" },
 ];
 
+// Same two volunteers as on Roster, same order, after Advisors.
+const volunteers = [
+  { key: "shahadAl", title: "Shahad Al Abdulomhssen", photo: shahada },
+  { key: "noureldin", title: "Noureldin Rihan", photo: noureldin },
+];
+
 export default function Attributions() {
   const { t } = useLanguage();
   const [searchParams] = useSearchParams();
@@ -123,6 +131,13 @@ export default function Attributions() {
       photo: null,
       role: t(`attributions.${advisor.key}.role`),
       content: memberContent(t, advisor.key),
+    })),
+    { heading: t("attributions.headings.volunteers") },
+    ...volunteers.map((volunteer) => ({
+      title: volunteer.title,
+      photo: volunteer.photo,
+      role: t(`attributions.${volunteer.key}.role`),
+      content: memberContent(t, volunteer.key),
     }))
   );
 
