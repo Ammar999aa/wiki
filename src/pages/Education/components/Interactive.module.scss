@@ -1,0 +1,247 @@
+// Page-scoped styles for Education's interactive components
+// (CloneStepper, ModuleTabs, MultiplierScale). Kept in the same
+// bordered/tinted-panel visual language as SectionedArticle.module.scss's
+// shared `.panel`/`.card-grid` markdown classes (same rgba(255,255,255,…)
+// borders/backgrounds, var(--radius-*) scale) so these custom React bits
+// don't read as a different design system bolted onto the markdown ones —
+// see .claude/ARTICLE-STANDARDS.md §5.
+
+.try {
+  margin: 28px 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 24px 26px 26px;
+}
+
+.tryLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 16px;
+}
+
+// --- CloneStepper ---------------------------------------------------
+
+// Illustration column + step-nav/text column, matching the original
+// mockup's `.stepper` layout (svg | content).
+.stepperLayout {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 26px;
+  align-items: center;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stepperSvg {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  justify-self: center;
+}
+
+// Three <g> stages share one viewBox and overlap exactly — only opacity
+// (toggled inline per step, see CloneIllustration) distinguishes them, so
+// the transition here is what makes that swap read as a cross-fade rather
+// than an instant cut.
+.stepperStage {
+  transition: opacity 350ms ease;
+}
+
+.stepperNav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.stepDot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.stepDotOn {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.stepBody h4 {
+  margin: 0 0 8px;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.stepBody p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+// --- Tabs (shared by hackathon tracks / Kallpa modules) --------------
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.tab {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: white;
+  }
+}
+
+.tabOn {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+
+  &:hover {
+    border-color: var(--primary);
+    color: white;
+  }
+}
+
+.tabPanel p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+// --- MultiplierScale ---------------------------------------------------
+
+.multControls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.multControls label {
+  display: block;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.multControls output {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.multControls input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+  margin-top: 10px;
+}
+
+.multFlow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.multNode {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-xs);
+  padding: 10px 14px;
+  color: white;
+  white-space: nowrap;
+}
+
+.multNodeAccent {
+  background: color-mix(in oklab, var(--primary) 22%, transparent);
+  border-color: var(--primary);
+}
+
+.multArrow {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.multDots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  min-height: 40px;
+  align-items: center;
+  flex: 1 1 140px;
+}
+
+.multDots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: block;
+}
+
+.multTotal {
+  margin-top: 18px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.multTotal strong {
+  font-size: 1.8rem;
+  color: white;
+  font-family: inherit;
+}
+
+.multNote {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}

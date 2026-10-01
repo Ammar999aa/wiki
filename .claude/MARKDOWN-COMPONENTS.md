@@ -3,7 +3,7 @@
 Companion to **[DESIGN.md](DESIGN.md)** and **[ARTICLE-STANDARDS.md](ARTICLE-STANDARDS.md)**.
 DESIGN.md names archetype 2 ("prose/article content → markdown +
 `SectionedArticle`") and archetype 3 ("bespoke layout → custom page, e.g.
-Model"). This file documents the tier that sits *between* them: a fixed set
+Model"). This file documents the tier that sits _between_ them: a fixed set
 of classes, already styled in `SectionedArticle.module.scss`, that any
 `src/content/en/*.md` page can reach for with plain HTML — no new component
 to build, no page to hand-roll. Nine sections in `hardware.md` use the whole
@@ -11,8 +11,8 @@ set and read close to Model-quality; most other content pages use one or two
 of these at most, not because the rest don't apply, but because nobody wrote
 this catalogue down until now.
 
-**Use this file to decide *which* class fits a piece of content you're
-about to format. If you're deciding *whether* a page needs this tier at all
+**Use this file to decide _which_ class fits a piece of content you're
+about to format. If you're deciding _whether_ a page needs this tier at all
 versus staying plain markdown versus becoming a full custom page, that
 decision lives in DESIGN.md's three archetypes and ARTICLE-STANDARDS.md's
 checklist — read those first.**
@@ -54,20 +54,24 @@ so no blank lines are needed around those.
 
 ## Quick reference
 
-| I have… | Reach for | Looks like |
-|---|---|---|
-| A claim that needs to stand apart from running prose — a caveat, a scope statement, a pending/in-progress note | `.callout` | Left accent bar + tinted background, optional small-caps label |
-| A set of parallel, comparable short items (steps, criteria, categories) | `.card-grid` (or `.card-grid.compact` for title + one line) | Bordered tiles in a row that wrap |
-| A markdown table that should read as one discrete data object | `.table-wrap` | Bordered card around the table |
-| A short pipeline/control-loop sequence ("sensor → control → actuator") | `.flow` | Labelled nodes joined by arrows |
-| A one- or two-word tag standing in for a subheading | `.chip` | Small mono pill |
-| A labelled readout, diagram, or grouped figure that's more than a bare image | `.panel` (+ `.dash` for a live-value grid inside it) | Bordered glass card with a title row |
-| Content a careful reader wants but most readers should be able to skip | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
-| A person you spoke with (interviewee, expert) with a photo and a short summary | `.person-card` | Round photo + name on top, summary below, in a bordered card |
-| A photo/render whose own background is opaque light/white | `.photo-frame` | Dark matted card around the image |
-| The one sentence that interprets a figure or table | `.caption` | Bold "Figure N." + muted mono text, pulled up close under it |
-| Two side-by-side images, or two side-by-side prose+diagram blocks | `.two-col-images` / `.two-col-tracks` | Two even columns, stacks on mobile |
-| A run of small images that should sit in one row (composite figure panels) | `.notebook-img-row` | Flex row, no forced full-width wrap |
+| I have…                                                                                                        | Reach for                                                       | Looks like                                                                |
+| -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| A claim that needs to stand apart from running prose — a caveat, a scope statement, a pending/in-progress note | `.callout`                                                      | Left accent bar + tinted background, optional small-caps label            |
+| A set of parallel, comparable short items (steps, criteria, categories)                                        | `.card-grid` (or `.card-grid.compact` for title + one line)     | Bordered tiles in a row that wrap                                         |
+| A markdown table that should read as one discrete data object                                                  | `.table-wrap`                                                   | Bordered card around the table                                            |
+| A short pipeline/control-loop sequence ("sensor → control → actuator")                                         | `.flow`                                                         | Labelled nodes joined by arrows                                           |
+| A one- or two-word tag standing in for a subheading                                                            | `.chip`                                                         | Small mono pill                                                           |
+| A labelled readout, diagram, or grouped figure that's more than a bare image                                   | `.panel` (+ `.dash` for a live-value grid inside it)            | Bordered glass card with a title row                                      |
+| Content a careful reader wants but most readers should be able to skip                                         | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
+| A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
+| A photo/render whose own background is opaque light/white                                                      | `.photo-frame`                                                  | Dark matted card around the image                                         |
+| The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
+| Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
+| A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
+| A short ranked/staged list where each item also jumps to its own section                                       | `.ladder` (+ `.ladder-axis`)                                    | Row of clickable cards, graduated height                                  |
+| An event with a headline number worth leading with, linking to its own heading                                 | `.tickets` (+ `.ticket`/`.ticket-main`/`.ticket-stub`)          | Card split into info + a dashed "stub" showing the number                 |
+| One featured piece of media (a podcast, a video) that deserves more than a plain paragraph                     | `.pod`                                                          | Icon beside a name and one-line description                               |
+| A numbered list where the sequence itself matters (goal 1, goal 2, …)                                          | `ol.goals`                                                      | Large numbered circles instead of bullets                                 |
 
 ## The components
 
@@ -92,7 +96,7 @@ integrated platform. Results will be added here as they come in.
 
 Tones: `callout` (neutral, default), `callout accent` (violet — a claim
 worth highlighting, not a warning), `callout good`, `callout warn`,
-`callout critical`. Pick the tone by what the sentence *means*, not by
+`callout critical`. Pick the tone by what the sentence _means_, not by
 habit — a pending-content note is `warn` (see the guardrail on honest
 pending states below), a genuine caveat about a method's limits is
 `neutral` or `warn` depending on severity, a retracted or wrong claim kept
@@ -117,6 +121,7 @@ still parses as markdown.
 <div>
 
 #### O — Observe the Challenge
+
 Understand the healthcare, biological, and logistical challenges of space
 exploration.
 
@@ -125,6 +130,7 @@ exploration.
 <div>
 
 #### R — Reach Stakeholders
+
 Engage astronauts, researchers, space medicine specialists, industry,
 regulatory experts and communities.
 
@@ -149,6 +155,7 @@ smaller basis that packs more, appropriately snug cards per row.
 <div>
 
 #### Stage 1
+
 Coarse filter
 
 </div>
@@ -156,6 +163,7 @@ Coarse filter
 <div>
 
 #### Stage 2
+
 Medium filter
 
 </div>
@@ -176,9 +184,9 @@ matching `.card-grid`'s and `.panel`'s visual language.
 ```md
 <div class="table-wrap">
 
-| Stakeholder group | What we need to learn from them | How it could influence SHIHAB |
-|---|---|---|
-| Astronauts & Space Medicine | What medical problems matter? | Therapeutic choice, usability, autonomy |
+| Stakeholder group           | What we need to learn from them | How it could influence SHIHAB           |
+| --------------------------- | ------------------------------- | --------------------------------------- |
+| Astronauts & Space Medicine | What medical problems matter?   | Therapeutic choice, usability, autonomy |
 
 </div>
 ```
@@ -361,8 +369,8 @@ standalone for a single full-width image.
 ### `.caption` — the sentence that interprets a figure or table
 
 The one gap the original eight classes left: Model's `Caption` component
-(numbered "Figure N."/"Table N.", one sentence saying what to *notice*,
-not just what the figure *shows*) had no markdown-level equivalent. Tight
+(numbered "Figure N."/"Table N.", one sentence saying what to _notice_,
+not just what the figure _shows_) had no markdown-level equivalent. Tight
 margins keep it read as attached to whatever it's captioning rather than a
 new paragraph — place it directly below a figure/`.photo-frame` (the usual
 case), or directly above a `.table-wrap` if you're following the
@@ -392,6 +400,111 @@ CFUs across 10–40 Gy, consistent with literature radiation-resistance
 profiles" interprets. Model's whole `Caption` convention (see
 ARTICLE-STANDARDS.md §2, §3) exists to make that distinction visible —
 don't let this class regress back to a label with a number in front of it.
+
+### `.ladder` — a ranked/staged list that also navigates
+
+For a short list that's both ordered (by scope, depth, seniority, …) _and_
+something a reader would want to jump from straight into its own section —
+a table doesn't invite a click, and a `.card-grid`'s items are all the same
+size, which hides the ranking. Each card's height is set individually via
+a `style="--h:<px>"` custom property, and doubles as a same-page link to
+that item's section (which needs a real `id` — every section already gets
+one, slugified from its `##` title, so `href="#your-section-title"` just
+works). Pair with a `.ladder-axis` line underneath labelling the two ends
+of the height axis — required, not decorative: an unlabeled height implies
+a precise metric nothing here actually measures, so the two-word labels
+("First encounter" → "Teaching others") are what keeps it honest rather
+than pseudo-quantitative.
+
+```md
+<div class="ladder">
+
+<a href="#copy-paste-plants" style="--h:120px"><b>Copy Paste Plants</b><span>Elementary students and families</span></a>
+<a href="#kallpa-multiplier-mentorship-peru" style="--h:280px"><b>Kallpa Mentorship</b><span>Youth volunteers who teach rural farmers</span></a>
+
+</div>
+<div class="ladder-axis"><span>First encounter</span><span>Teaching others</span></div>
+```
+
+**Don't** reach for `.ladder` when the items aren't actually ordered along
+some real axis — that's what `.card-grid` is for — and don't invent a
+height difference for items that are genuinely equivalent just to make the
+row look more dynamic.
+
+### `.tickets` — an event with a headline number
+
+For one or a few events/sessions that each have a real headline number
+worth leading with (attendance, capacity) and their own heading further
+down the page to jump to. `##` headings get a real `id` automatically
+(slugified from the title — see `.ladder` above), but a `.ticket` usually
+points at a `###`/`####` heading nested inside a bigger section, which
+needs one added by hand: write it as a raw HTML heading instead of markdown
+syntax (`<h3 id="wall-e">WALL-E</h3>` instead of `### WALL-E`) so the `id`
+attribute has somewhere to go. `.ticket-main`/`.ticket-stub` must be
+`<span>`, not `<div>` — confirmed `marked` mis-tokenizes an `<a>` wrapping
+block-level `<div>` children (it auto-closes the `<a>` partway through,
+splitting one ticket into broken, duplicated markup); a `<span>` still
+renders as a block once it's a grid item, styled the same either way.
+
+```md
+<div class="tickets">
+
+<a class="ticket" href="#wall-e"><span class="ticket-main"><b>WALL-E</b><span>May 7, 2026<br>Discovery Cinema</span></span><span class="ticket-stub"><strong>70</strong><small>guests</small></span></a>
+<a class="ticket" href="#hail-mary"><span class="ticket-main"><b>Project Hail Mary</b><span>Aug 30, 2026<br>Conference Room 0215</span></span><span class="ticket-stub"><strong>35</strong><small>guests</small></span></a>
+
+</div>
+```
+
+**Don't** use `.ticket-stub`'s big number for anything but a real reported
+count — it's built to read as a headline statistic, not a decoration.
+
+### `.pod` — one featured piece of media
+
+For a single podcast, video, or similar recurring show that deserves more
+presence than a plain paragraph mentioning its name — an icon beside a
+name and one-line description. SVG `fill` is a plain presentation
+attribute, not CSS, so it can't reference a custom property; use the
+token's literal hex value instead (`--amber` is `#FFD84D`, `--bg` is
+`#0A0A27` — see `src/styles/index.scss`).
+
+```md
+<div class="pod">
+<svg width="56" height="56" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFD84D"/><path d="M26 20 L46 32 L26 44 Z" fill="#0A0A27"/></svg>
+<div><b>Life in Orbit</b><span>Expert conversations in Arabic and English</span></div>
+</div>
+```
+
+### `ol.goals` — a numbered list where the order matters
+
+For a short list where the sequence itself is part of the content (goal 1,
+goal 2, …), not just parallel items that happen to be listed — large
+numbered circles (CSS counters, no JS) instead of bullets or a `.card-grid`.
+Author each item as a raw `<li>`, **not** markdown `1. 2. 3.` syntax —
+`marked` parses a numbered list into its own `<ol>`, which nests inside
+this one instead of reusing it (confirmed: doubles the numbering and the
+indent). Blank lines around each `<li>`'s markdown per the `.card-grid`
+convention above.
+
+```md
+<ol class="goals">
+
+<li>
+
+**Arabic synthetic biology education:** co-create accessible, standardized educational tools, glossaries and outreach materials in Arabic.
+
+</li>
+<li>
+
+**Unified regional outreach:** co-design Arabic public engagement tools and culturally tailored science communication.
+
+</li>
+
+</ol>
+```
+
+**Don't** reach for this over a plain `<ol>` just for the visual flourish —
+use it when the count itself is meaningful ("four goals," "three phases"),
+the same bar `.ladder` and `.tickets` hold their own numbers to.
 
 ## Layout utilities
 

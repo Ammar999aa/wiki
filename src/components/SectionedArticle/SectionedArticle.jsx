@@ -135,7 +135,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
             collapsed={collapsed}
             onToggle={() => setCollapsed((v) => !v)}
             onSelect={scrollTo}
-            header={panelHeader}
+            header={panelHeader || (title && <div className={styles.panelTitle}>{title}</div>)}
         />
         <Article
             title={title}

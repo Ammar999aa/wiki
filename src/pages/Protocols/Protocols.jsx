@@ -20,69 +20,74 @@ const PAGE_BACKGROUND = {
   gradient,
 };
 
-// Groups mirror src/content/iGEM Wet Lab Protocols.pdf's own "Part N" divider
-// pages verbatim — not a categorization we invented — so the page reads as
-// the same document structure the wiki content came from. Each markdown
-// `## ` title here must match a title in src/content/en/protocols.md exactly
-// (see that file / plugins/markdown-sections.js for how titles become
-// {title, html} entries); a typo here just silently drops that protocol from
-// the page, so keep the two in sync by hand when protocols.md changes.
+// Groups mirror src/content/SHIHAB - Protocols.docx's own "Part N" divider
+// pages — not a categorization we invented — so the page reads as the same
+// document structure the wiki content came from. One heading below is
+// renamed from the source doc ("Anaerobic Respiration" → "RNA & qPCR"): the
+// source doc's own Part 5 divider keeps that label from an older draft, but
+// its actual content (TRIzol extraction, RT-PCR/qPCR) has nothing to do with
+// anaerobic respiration, so propagating it here would just mislabel the
+// section on the public wiki. Each markdown `## ` title here must match a
+// title in src/content/en/protocols.md exactly (see that file /
+// plugins/markdown-sections.js for how titles become {title, html} entries);
+// a typo here just silently drops that protocol from the page, so keep the
+// two in sync by hand when protocols.md changes.
 const PARTS = [
   {
     heading: "Part 1 — General Protocols",
     titles: [
-      "S. cerevisiae Recombineering — Media & Stock Solutions",
       "S. cerevisiae Strain Maintenance",
-      "LiAc/ssDNA/PEG Transformation — Gietz & Woods Protocol",
-      "LiAc/ssDNA/PEG Transformation — Dr. Tehseen Protocol",
-      "P. pastoris Transformation Protocol (Dr. Tehseen)",
-      "Restriction Digestion",
-      "Electroporation Cuvette Cleaning Procedure",
       "B. subtilis Culturing and Maintenance",
-      "B. subtilis Anaerobic Culture Setup",
-      "B. subtilis Recombineering",
       "B. subtilis Sporulation",
       "Agarose Gel Electrophoresis",
       "SDS-PAGE",
       "Coomassie Staining",
       "Western Blot",
+      "Lyophilized Plasmid Revival",
     ],
   },
   {
-    heading: "Part 2 — UV-B, UV-C & X-Ray Radiation Resistance",
+    heading: "Part 2 — Transformations and Recombineering",
+    titles: [
+      "S. cerevisiae Transformation / Recombineering (LiAc/PEG Method)",
+      "P. pastoris Recombineering (Electroporation)",
+      "Electroporation Cuvette Cleaning Procedure",
+      "B. subtilis Recombineering",
+    ],
+  },
+  {
+    heading: "Part 3 — UV-B, UV-C & X-Ray Radiation Resistance",
     titles: ["UV-B / UV-C Irradiation", "X-Ray Irradiation", "Comet Assay (Single-Cell Gel Electrophoresis)"],
   },
   {
-    heading: "Part 3 — Freezing Resistance",
+    heading: "Part 4 — Freezing Resistance",
     titles: ["B. subtilis Freezing/Thawing", "S. cerevisiae Freezing/Thawing"],
   },
   {
-    heading: "Part 4 — Viability Assays",
+    heading: "Part 5 — Viability Assays",
     titles: [
-      "Colony Forming Unit (CFU) Assay (S.cerevisiae/Bacillus)",
+      "Colony Forming Unit (CFU) Assay (S. cerevisiae / Bacillus)",
       "FUN-1 Viability Assay (S. cerevisiae, P. pastoris)",
-      "Preparing 10 mL of Glucose-HEPES Solution",
       "Resazurin Viability Assay (Bacillus)",
     ],
   },
   {
-    heading: "Part 5 — Anaerobic Respiration",
+    heading: "Part 6 — RNA & qPCR",
     titles: ["RNA Extraction with TRIzol", "RT-PCR / qPCR"],
   },
   {
-    heading: "Part 6 — Nanobodies",
+    heading: "Part 7 — Purification",
     titles: [
-      "SnapGene Plasmid Design — S. cerevisiae",
-      "S. cerevisiae Transformation (Electroporation Protocol)",
-      "S. cerevisiae Nanobody Expression",
-      "Nanobody Production Workflow (Overview)",
-      "SnapGene Plasmid Design — B. subtilis",
-      "B. subtilis Transformation",
+      "P. pastoris Payload Expression",
+      "Harvesting Cells",
+      "AKTA His-Trap Purification",
       "B. subtilis Nanobody Expression",
-      "Nanobodies Purification",
-      "Lyophilized Plasmid Revival",
       "S. cerevisiae Galactose Induction",
     ],
+  },
+  {
+    heading: "Useful Recipes",
+    titles: ["Media & Stock Solution Recipes"],
   },
 ];
 
