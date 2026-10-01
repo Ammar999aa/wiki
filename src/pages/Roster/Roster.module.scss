@@ -22,16 +22,31 @@
     padding: 70px 40px 160px;
 }
 
+// Plain label + h1 heading, matching the rest of the Team category
+// (see Sponsors.jsx's .heading/.label) instead of the boxed LiquidGlass
+// pill this used to be — a floating title reads more consistent with
+// every other page's masthead than a standalone glass card did.
 .titleWrap {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 32px;
 }
 
+.titleLabel {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+}
+
 .title {
-    margin-block: 10px;
-    font-size: 74px;
-    color: white;
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 700;
     padding-inline: 40px;
     text-align: center;
@@ -467,10 +482,6 @@
 @media (max-width: 640px) {
     .page {
         padding: 90px 20px 160px;
-    }
-
-    .title {
-        font-size: 48px;
     }
 
     .person {

@@ -277,9 +277,8 @@ export default function Roster() {
     >
       <div className={styles.page}>
         <div className={styles.titleWrap}>
-          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
-            <h1 className={styles.title}>{t("roster.title")}</h1>
-          </LiquidGlass>
+          <p className={styles.titleLabel}>Team</p>
+          <h1 className={styles.title}>Team</h1>
         </div>
 
         {pointerFine ? (
