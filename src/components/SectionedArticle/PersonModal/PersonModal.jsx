@@ -53,7 +53,13 @@ export default function PersonModal({ person, onClose, onInternalLink }) {
             <button ref={closeRef} type="button" className={styles.close} onClick={onClose} aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            {person.photo && <img src={person.photo} alt={person.name} className={styles.photo} style={person.photoStyle} />}
+            {person.photos.length > 0 && (
+              <div className={styles.photos}>
+                {person.photos.map((photo) => (
+                  <img key={photo.src} src={photo.src} alt={photo.alt} className={styles.photo} style={photo.style} />
+                ))}
+              </div>
+            )}
             <div className={styles.bio}>
               <h2 id="person-modal-title">{person.name}</h2>
               <div className={styles.body} onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: person.html }} />

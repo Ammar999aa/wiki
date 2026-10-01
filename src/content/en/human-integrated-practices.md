@@ -215,6 +215,7 @@ To better understand these questions, we spoke with professionals whose experien
 <p>We wanted to explore what health problems astronauts may face during spaceflight and how these conditions are currently managed. In particular, we wanted to learn what medical resources are available to astronauts.</p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/reach.avif" alt="">Reach</h3>
 <p>Starr gave us a closer look at how medical care is supported during spaceflight, showing us the medical kits and equipment available to crews, and the different environmental and physiological challenges that can affect astronaut health. Importantly, she introduced us to NASA’s Human Research Roadmap, which organizes the major human health and performance risks associated with space exploration. This gave us a resource through which we could investigate these risks systematically rather than selecting a therapeutic based only on our initial assumptions.</p>
+<figure class="person-figure"><img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/starr-medical-kits.avif" alt="Screenshot from our call with Starr Corbin showing astronaut medical kit contents"><figcaption>Medical kit contents Starr showed us during our call. Photos courtesy of NASA.</figcaption></figure>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/build.avif" alt="">Build</h3>
 <p>From this conversation, we learned that healthcare in space cannot be approached only by considering the common diseases and medical conditions we encounter on Earth. Astronauts are exposed to additional risks associated with the space environment, including microgravity, radiation, decompression, altered day-night cycles, and the challenges of operating in a remote and resource-limited area.</p>
 <p>The Human Research Roadmap therefore became an important resource for identifying these space-specific health risks and understanding where new medical countermeasures could be valuable.</p>
@@ -226,6 +227,70 @@ To better understand these questions, we spoke with professionals whose experien
 <p>Starr’s perspective shifted our therapeutic selection from being primarily production-driven to need-driven. The next step was therefore to connect the health challenges identified through the roadmap with therapeutics that could realistically be produced using a microbial platform.</p>
 </div>
 </div>
+
+<div class="person-card">
+<div class="person-photos">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/konstantinos.avif" alt="Konstantinos Vergos" style="--photo-x: 45%; --photo-zoom: 1.4;">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/akshay.avif" alt="Dr. Akshay Chandrashekhar" style="--photo-zoom: 1.3;">
+</div>
+<h4 class="person-name">Konstantinos Vergos &amp; Dr. Akshay Chandrashekhar</h4>
+<p>Space medicine focuses on maintaining human health, safety, and performance during spaceflight. We therefore approached Konstantinos Vergos and Dr. Akshay Chandrashekhar to hear how our idea aligned with their experience, what limitations we might be overlooking, and what conditions would eventually need to be considered if such a system were intended for space. Their feedback went further than we expected, influencing how we thought about microgravity validation, the functionality of our produced therapeutics, and even what SHIHAB could produce.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/observe.avif" alt="">Observe</h3>
+<p>At this stage, we had a biological concept, but we were looking at it primarily from our own synthetic-biology perspective. We wanted to challenge that view by asking people familiar with human health and research under spaceflight conditions: What are we overlooking when we think about producing medicines in space?</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/reach.avif" alt="">Reach</h3>
+<p>Konstantinos helped us understand how medical needs are currently addressed aboard the ISS, including the use of common medications such as analgesics, decongestants, and sleep aids. Drawing from his experience with parabolic flights, he also emphasized that strong ground-based validation should precede experimental testing under microgravity.</p>
+<p>Dr. Akshay highlighted muscle and bone loss as important health challenges during long-duration spaceflight. He also emphasized that producing a therapeutic would not be sufficient on its own; its structure, quality, and biological function would need to be verified.</p>
+<p>Both experts also encouraged us to look beyond protein therapeutics. Depending on astronaut medical needs, small molecules and other microbial products could also be valuable outputs for in-space biomanufacturing.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/build.avif" alt="">Build</h3>
+<p>Their feedback expanded our definition of validation. SHIHAB would need to demonstrate more than microbial survival. The chassis must remain functional, the production system must operate reliably, and the resulting therapeutic must retain its expected quality and biological function. We also understood that this evidence would need to be built progressively, from ground-based experiments toward microgravity and eventually spaceflight conditions.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
+<p>The convergence of their feedback made microgravity a clear component of our validation strategy. Before progressing toward experimental platforms such as parabolic flights, we began investigating how altered gravity could affect our system through COMSOL simulations.</p>
+<p><a class="person-link-btn" href="/kaust-ksa/modeling">Go to page →</a></p>
+<p>Their medical perspectives also influenced the development of our payload library. In particular, the discussion around muscle and bone loss encouraged us to investigate therapeutics related to these challenges and add them to our list of potential payloads for SHIHAB.</p>
+<p><a class="person-link-btn" href="/kaust-ksa/design">Go to page →</a></p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
+<p>These conversations made us more curious about what would come after ground-based and microgravity validation. If SHIHAB were eventually intended for a real spaceflight experiment, what safety requirements, regulations, testing standards, and approvals would need to be considered?</p>
+</div>
+</div>
+
+<div class="person-card">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rayannah.avif" alt="Rayyanah Barnawi" style="--photo-x: 37%; --photo-zoom-y: 2%; --photo-zoom: 1.6;">
+<h4 class="person-name">Rayyanah Barnawi</h4>
+<p>Our conversation with Rayyanah Barnawi, Saudi Arabia's first female astronaut and a biomedical researcher, provided an operational perspective on how a biological production system would need to function beyond the laboratory. Her experience conducting scientific research aboard the ISS helped us consider constraints that were not immediately apparent from literature alone.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/observe.avif" alt="">Observe</h3>
+<p>Conducting biological experiments in space involves constraints that are difficult to fully understand from literature alone. Given Rayyanah’s experience as both an astronaut and biomedical researcher, we wanted to learn about the practical limitations of performing experiments in space and the factors that should be considered when designing a biological system for this environment.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/reach.avif" alt="">Reach</h3>
+<p>Through her experience conducting biomedical research aboard the ISS, Rayyanah introduced us to several practical aspects of performing experiments in space. She highlighted the importance of automation, particularly as astronauts have limited time to manually operate experiments, and encouraged us to consider the infrastructure already available aboard spacecraft.</p>
+<p>She also raised several considerations for our future experiments and system design, including limited power availability, restrictions on materials and electronic components, preservation methods that minimize energy consumption, and the possibility of using equipment already available aboard spacecraft for product analysis. She also encouraged us to look beyond the ISS and consider the specifications of future commercial space stations.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/build.avif" alt="">Build</h3>
+<p>Her perspective made us realize that producing a therapeutic in space would require more than engineering the microorganism itself. The biological process would eventually need to be integrated into a system capable of supporting its operation while accounting for the practical constraints of spaceflight.</p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
+<p>Based on these insights, we decided that developing a hardware system would be an important part of SHIHAB. Rather than considering only how microorganisms could produce therapeutics, we began thinking about how the complete process could eventually be contained, operated, and controlled.</p>
+<p>Rayyanah's comments also gave us some of our first design considerations. Power consumption became particularly important, as energy is a limited resource during spaceflight. This encouraged us to consider whether energy-intensive processes, such as maintaining microorganisms frozen, could be reduced or replaced by alternatives such as dormant spores. We also began considering automation to reduce the amount of astronaut intervention required, as well as the power requirements and compatibility of the different components incorporated into the system.</p>
+<p>Finally, her comments about restrictions on materials and electronic components aboard the ISS encouraged us to investigate which components could realistically be used in a space environment and to consider the requirements of both current and future space stations as the hardware developed.</p>
+<p><a class="person-link-btn" href="/kaust-ksa/hardware">Go to page →</a></p>
+<h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
+<p>This first conversation expanded SHIHAB from primarily a biological idea toward a biomanufacturing system. It also gave us our first set of practical considerations (power, automation, preservation, and component compatibility) that would guide the early development of our hardware and be further explored through subsequent stakeholder interactions.</p>
+</div>
+</div>
+
+### What did we learn?
+
+These conversations changed our understanding of the problem. Access to medicines was relevant, but producing a therapeutic was only one part of the challenge. We also needed to consider what astronauts may actually require, how the system would operate within the limitations of a spacecraft, and whether our microorganisms could remain functional and reliable under space-relevant conditions.
+
+## Engineering Microorganisms for Space
+
+### Which microorganisms should we use?
+
+We identified several potential chassis, including *Escherichia coli*, *Bacillus subtilis*, *Saccharomyces cerevisiae*, and *Deinococcus radiodurans* [[19]](#ref-19)[[20]](#ref-20). Each offered different advantages: some are well-established platforms for biotechnology with extensive genetic engineering tools, while others attracted our attention because of their remarkable ability to withstand harsh environmental conditions.
+
+However, natural resilience alone would not necessarily make an organism suitable for SHIHAB. We also needed to consider genetic tractability, the availability of established engineering tools, feasibility of working with the organism at KAUST, and previous evidence supporting its use in space-related research or biomanufacturing. With several possible organisms and different trade-offs to consider, we sought guidance from experts in extremophiles, microbial biotechnology, and astrobiology to help us determine which chassis would provide the most suitable starting point for SHIHAB.
+
+In parallel, we explored extremotolerant organisms as potential sources of protective mechanisms that could be introduced into our chassis. Tardigrades were particularly interesting because of their ability to enter cryptobiotic states and tolerate stresses such as severe dehydration and high levels of radiation. Some tardigrade species have even survived direct exposure to the space environment while in a desiccated state. Reports of tardigrade species along the Arabian Gulf coast of Saudi Arabia also made them particularly interesting within our regional context [[21]](#ref-21).
 
 ## References
 
@@ -247,3 +312,6 @@ To better understand these questions, we spoke with professionals whose experien
 16. <span id="ref-16"></span>[NASA — An Astropharmacy](https://www.nasa.gov/general/an-astropharmacy/)
 17. <span id="ref-17"></span>[NASA Ames — Laboratory of Countermeasures Development](https://www.nasa.gov/ames/space-biosciences/laboratory-of-countermeasures-development/)
 18. <span id="ref-18"></span>[PubMed — 21479701](https://pubmed.ncbi.nlm.nih.gov/21479701/)
+19. <span id="ref-19"></span>[NASA — Bionutrients](https://www.nasa.gov/ames/space-biosciences/bioengineering-branch/bionutrients/)
+20. <span id="ref-20"></span>[Frontiers in Microbiology — Proteomic and Metabolomic Profiling of Deinococcus radiodurans Recovering After Exposure to Simulated Low Earth Orbit Vacuum Conditions](https://pmc.ncbi.nlm.nih.gov/articles/PMC6501615/)
+21. <span id="ref-21"></span>[Hydrobiologia — The ‘Hyena Female’ of Tardigrades and Descriptions of Two New Species of Megastygarctides from Saudi Arabia](https://link.springer.com/article/10.1007/s10750-005-1409-5)

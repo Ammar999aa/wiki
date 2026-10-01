@@ -742,8 +742,16 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         padding: 18px 20px;
         margin-block: 16px;
 
-        > :global(.person-photo) {
+        > :global(.person-photo),
+        > :global(.person-photos) {
             grid-row: 1 / span 3;
+        }
+
+        // Several people in one card: photos stacked one under another.
+        > :global(.person-photos) {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         > p {
@@ -757,7 +765,8 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
             grid-template-rows: auto;
             align-items: center;
 
-            > :global(.person-photo) {
+            > :global(.person-photo),
+            > :global(.person-photos) {
                 grid-row: auto;
             }
 
@@ -804,10 +813,11 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         // leaves it no horizontal slack). The clip is offset by the inverse of
         // that zoom so the visible circle stays in the card's corner.
         scale: var(--photo-zoom, 1);
-        transform-origin: var(--photo-x, 50%) 50%;
+        transform-origin: var(--photo-x, 50%) var(--photo-zoom-y, 50%);
         clip-path: circle(
             calc(50% / var(--photo-zoom, 1)) at
-                calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1)) 50%
+                calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1))
+                calc(var(--photo-zoom-y, 50%) + (50% - var(--photo-zoom-y, 50%)) / var(--photo-zoom, 1))
         );
     }
 
