@@ -27,7 +27,6 @@
 
     Modeling
     Bioreactor Modeling
-    Protein Mining
 
 # Beyond the Lab
 
