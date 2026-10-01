@@ -6,25 +6,25 @@ Our system employs three engineered chassis (Saccharomyces cerevisiae, Pichia pa
 
 ### 1) Saccharomyces cerevisiae (Baker's Yeast)
 
-![Saccharomyces cerevisiae cells](https://static.igem.wiki/teams/6341/wiki/content/safety/image1.avif)
+![Saccharomyces cerevisiae cells](https://static.igem.wiki/teams/6341/wiki/content/safety/image3.avif)
 
 _S. cerevisiae_ is classified as **Risk Group 1** by the World Health Organization and is on the U.S. FDA's Generally Recognized as Safe (GRAS) list. It is one of the most extensively studied eukaryotic model organisms with a centuries-long history of safe use in food, beverage, and pharmaceutical manufacturing. Our strain is based on a standard laboratory background (INVSc1) further attenuated through auxotrophic engineering (see below). _S. cerevisiae_ does not sporulate under standard laboratory conditions and is not pathogenic to healthy humans, animals, or plants.
 
 ### 2) Pichia pastoris (Komagataella phaffii)
 
-![Pichia pastoris cells](https://static.igem.wiki/teams/6341/wiki/content/safety/image2.avif)
+![Pichia pastoris cells](https://static.igem.wiki/teams/6341/wiki/content/safety/image4.avif)
 
 _P. pastoris_ is classified as **Risk Group 1** and is widely used in industrial and pharmaceutical biotechnology for the production of recombinant proteins, including FDA-approved ones. It is non-pathogenic, non-sporulating under laboratory conditions, and has no known toxin-producing capability. Our _P. pastoris_ strain is based on the GS115 or X-33 background, modified to be auxotrophic.
 
 ### 3) Bacillus subtilis
 
-![Bacillus subtilis cells](https://static.igem.wiki/teams/6341/wiki/content/safety/image3.avif)
+![Bacillus subtilis cells](https://static.igem.wiki/teams/6341/wiki/content/safety/image2.avif)
 
 _B. subtilis_ is classified as **Risk Group 1** and is a GRAS organism commonly used in industrial enzyme and compound production. We use non-pathogenic, laboratory-adapted strain (168). 168 strain is also auxotrophic to prevent survival outside the controlled bioreactor environment.
 
 ## Containment Strategies
 
-![Schematic of the four containment layers](https://static.igem.wiki/teams/6341/wiki/content/safety/image4.avif)
+![Schematic of the four containment layers](https://static.igem.wiki/teams/6341/wiki/content/safety/image1.avif)
 
 <div class="caption">
 
