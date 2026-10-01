@@ -1271,12 +1271,9 @@ const EXPLORE_CARDS = [
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/safety.avif",
   },
   {
-    // TEMP: reusing the old Dry Lab card photo as a placeholder until Public
-    // Engagement has its own — see the equivalent note on Human Practices below.
     n: "07", t: "Public Engagement", d: "Bringing space biology to the public.",
     to: "/engagement",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/drylab-card.avif",
-    credit: { url: "https://images.nasa.gov/details/KSC-20181201-PH_RKL01_0002", title: "ELaNa 19 payload encapsulation — NASA ID KSC-20181201-PH_RKL01_0002" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/public-engagement.avif",
   },
   {
     // TEMP: reusing the old Wet Lab card photo as a placeholder — this card
