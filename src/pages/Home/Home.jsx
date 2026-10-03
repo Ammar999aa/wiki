@@ -1,34 +1,25 @@
-import { useRef, useEffect, Fragment } from "react";
+import { useRef, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Sponsors from "../../components/Sponsors/Sponsors";
 import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
+import EarthGlobe from "../../components/EarthGlobe/EarthGlobe";
 import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 const shihabLogo = "https://static.igem.wiki/teams/6341/wiki/svg-assets/shihab-logo.svg";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// Hosted on iGEM's asset server rather than bundled locally — see
-// https://static.igem.wiki/teams/6341/wiki/images/.
-const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth-animated.webp";
-
-// TEMP, dev-only preview of the animated render while it awaits iGEM Video
-// Universe approval (see .claude/requirements.md §1) — gitignored, never
-// committed, so it's deliberately NOT a bundler `import` (that would break
-// `vite build`/CI for anyone without the local file). import.meta.env.DEV
-// is false in any production build, so live always renders the `earth`
-// image above; only `yarn dev` on a machine with the file on disk shows the
-// video. Delete this block (and the matching branch in EarthLayer) once the
-// approved asset replaces `earth` above.
-const earthVideoDevPreview = import.meta.env.DEV
-  ? `${import.meta.env.BASE_URL}src/assets/earth-animated.mp4`
-  : null;
-// TEMP: slows down the local preview only, via the video element's own
-// playbackRate — the source file itself is untouched, so this is easy to
-// retune (1 = source speed).
-const EARTH_VIDEO_PLAYBACK_RATE = 0.5;
+// iGEM Video Universe never approved the animated render as an mp4 (see
+// .claude/requirements.md §1), so EarthLayer below renders it live in WebGL
+// instead — same shader, same day/night cycle, just driven by three static
+// textures instead of a baked video file. All hosted on iGEM's asset server.
+const earthDay = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-day.avif";
+const earthClouds = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-clouds.avif";
+const earthLights = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-lights.avif";
+// Shown instead if WebGL is unavailable or a texture fails to load.
+const earthFallback = "https://static.igem.wiki/teams/6341/wiki/images/earth-animated.webp";
 
 // Pulled from the shared sponsor data (not re-imported as a raw asset) so
 // there's still one source of truth for the logo file and its
@@ -310,6 +301,7 @@ function HeroSection() {
 // own reveal pacing instead of drifting out of step with it.
 function EarthLayer({ groupRef }) {
   const earthRef = useRef(null);
+  const [earthSettled, setEarthSettled] = useState(false);
 
   useScrollUnits(groupRef, (units) => {
     const el = earthRef.current;
@@ -350,25 +342,20 @@ function EarthLayer({ groupRef }) {
       <div className={styles.earthWrap} ref={earthRef}>
         <div className={styles.earthGlow} />
         <div className={styles.earthAtmo} />
-        {earthVideoDevPreview ? (
-          <video
-            className={styles.earthImg}
-            src={earthVideoDevPreview}
-            autoPlay
-            muted
-            loop
-            playsInline
-            ref={(el) => { if (el) el.playbackRate = EARTH_VIDEO_PLAYBACK_RATE; }}
-          />
-        ) : (
-          <div className={styles.earthImg} style={{ backgroundImage: `url("${earth}")` }} />
-        )}
+        <EarthGlobe
+          className={styles.earthImg}
+          dayUrl={earthDay}
+          cloudsUrl={earthClouds}
+          lightsUrl={earthLights}
+          fallbackSrc={earthFallback}
+          onSettled={() => setEarthSettled(true)}
+        />
         <div className={styles.earthSheen} />
-        {/* Positioned over Saudi Arabia on the underlying Blue Marble image.
-            TEMP: sparkleVideoPreview nudges it to KAUST's spot on the new
-            video's framing, dev-only — live keeps the original position
-            since it still shows the older `earth` image. */}
-        <div className={`${styles.sparkle} ${earthVideoDevPreview ? styles.sparkleVideoPreview : ""}`} />
+        {/* Positioned over KAUST's spot on the live render's fixed
+            24°N/45°E framing (see .sparkle in Home.module.scss). Only
+            twinkles once the intro spin has eased to a stop — it would
+            read as misplaced while the globe is still spinning past it. */}
+        <div className={`${styles.sparkle} ${earthSettled ? styles.sparkleActive : ""}`} />
         {/* Positioned relative to the globe itself (earthWrap), not the
             viewport — moves/scales with it instead of sitting pinned over
             whatever happens to be at a fixed screen corner (previously the

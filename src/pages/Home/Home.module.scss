@@ -50,7 +50,7 @@
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  object-fit: cover; /* TEMP: needed while earthImg is a <video>, see EarthLayer */
+  object-fit: cover; /* used by EarthGlobe's <img> fallback if WebGL fails */
   object-position: center;
   box-shadow:
     inset -30px -24px 80px rgba(0, 0, 0, 0.55),
@@ -102,12 +102,12 @@
 
 @keyframes earthspin { to { transform: rotate(360deg); } }
 
-/* Small twinkle over Saudi Arabia, on the Blue Marble image's east-hemisphere
-   view (interior desert, clear of the Red Sea / Gulf coastlines). */
+/* Small twinkle over KAUST's spot (22.3°N, 39.1°E) on the live globe's
+   fixed 24°N/45°E framing — Hijaz interior, clear of the Red Sea coastline. */
 .sparkle {
   position: absolute;
-  left: 10.5%;
-  top: 26.7%;
+  left: 45.6%;
+  top: 50.4%;
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -116,7 +116,13 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   mix-blend-mode: screen;
-  animation: sparkleTwinkle 3.4s ease-in-out infinite;
+  opacity: 0; /* hidden until .sparkleActive — see EarthLayer's onSettled */
+  transition: opacity 0.5s ease;
+
+  &.sparkleActive {
+    opacity: 1;
+    animation: sparkleTwinkle 3.4s ease-in-out infinite;
+  }
 
   &::before,
   &::after {
@@ -137,15 +143,6 @@
     width: 1.5px;
     height: 18px;
   }
-}
-
-/* TEMP: dev-only override while EARTH_VIDEO_PLAYBACK_RATE / the video
-   preview is active — KAUST's spot on the new render's framing (Hijaz
-   interior, clear of the Red Sea coastline), center and slightly left of
-   frame. Delete alongside the other TEMP video-preview code in Home.jsx. */
-.sparkleVideoPreview {
-  left: 45.6%;
-  top: 50.4%;
 }
 
 @keyframes sparkleTwinkle {
