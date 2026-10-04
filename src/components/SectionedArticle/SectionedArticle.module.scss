@@ -88,8 +88,9 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin-bottom: 32px;
   }
 
-  // Optional masthead content between the title and the first section
-  // (Model.jsx's `intro` prop is the only current user). It's a plain
+  // Optional masthead content between the title and the first section,
+  // passed via the `intro` prop (see Masthead.jsx below for the shared
+  // eyebrow+deck component most pages pass through it). It's a plain
   // `<div>` like each section wrapper below, so without this it would
   // also match `& > div` above and pick up that inter-section divider —
   // a padding-bottom/margin-bottom/border-bottom meant to separate
@@ -100,6 +101,51 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     padding-bottom: 0;
     margin-bottom: 40px;
     border-bottom: none;
+  }
+
+  // ─── Shared masthead (eyebrow + deck) ───────────────────────────────
+  // Rendered via the `intro` slot above through Masthead.jsx — the
+  // generalized form of the eyebrow/deck masthead Model.module.scss
+  // introduced, now available to any SectionedArticle-based page so it
+  // doesn't open straight into an h1 followed by section one's own
+  // heading. Font-family string matches Model's (not globally loaded as
+  // a webfont here either — it degrades the same way, straight to the
+  // system monospace fallback).
+  .masthead {
+    margin-bottom: 8px;
+  }
+
+  .mastheadEyebrow {
+    font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 0 0 18px;
+  }
+
+  .mastheadDot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .mastheadDeck {
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 62ch;
+    margin: 0;
+
+    b,
+    strong {
+      color: white;
+    }
   }
 
   h2 {

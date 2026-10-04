@@ -40,8 +40,15 @@ const catLegend = CATS.map((c) => ({ label: c.name, color: c.color }));
 // first numbered section.
 const pageIntro = (
   <>
+    {/* First two tokens are the nav trail ("Dry Lab" dropdown → "Software",
+        also reachable via Awards → "Software") the reader actually
+        clicked — the h1 below is a stylized headline that never says
+        either word, so the eyebrow is what confirms the nav label. See
+        the UI/UX audit finding on titles not confirming the nav label. */}
     <p className={styles.eyebrow}>
       <span>Dry Lab</span>
+      <span className={styles.dot} />
+      <span>Software</span>
       <span className={styles.dot} />
       <span>Screening pipeline &amp; audit</span>
       <span className={styles.dot} />

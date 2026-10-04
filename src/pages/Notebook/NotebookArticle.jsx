@@ -62,7 +62,7 @@ function addHeadingIds(html) {
 // One pill per experiment switches which section is shown (click-to-switch,
 // not scroll); the side panel lists that section's own subheadings (h3/h4/h5)
 // instead of the top-level experiment list, since the pills now cover that.
-export default function NotebookArticle({ sections, title }) {
+export default function NotebookArticle({ sections, title, intro }) {
   const [collapsed, setCollapsed] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedSub, setSelectedSub] = useState(null);
@@ -185,6 +185,7 @@ export default function NotebookArticle({ sections, title }) {
 
       <div className={articleStyles.article} ref={articleRef}>
         {title && <h1 className={articleStyles.pageTitle}>{title}</h1>}
+        {intro && <div className={articleStyles.intro}>{intro}</div>}
 
         <div>
           <div className={styles.pillsBanner}>
