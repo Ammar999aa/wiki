@@ -45,6 +45,16 @@
 
   --tertiary: var(--tertiary-500);
 
+  /* In-prose link color — deliberately more saturated than the --tertiary
+     scale above (which stays reserved for decorative/categorical accents,
+     e.g. Model's chart fills, JigsawTable's puzzle pieces) because a link
+     needs to read as clickable against the dark background, not just as
+     "a blue". Shared by SectionedArticle body links, Model's .cref
+     citations, and PersonModal popup links — keep these in sync rather
+     than re-hardcoding the hex in a new spot. */
+  --link: #7B9EFF;
+  --link-hover: #A0BFFF;
+
   /* Border radius — iOS continuous-curve scale */
   --radius-xs: 8px;   /* inline code */
   --radius-sm: 16px;  /* images, code blocks */

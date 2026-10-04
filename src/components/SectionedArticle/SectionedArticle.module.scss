@@ -135,12 +135,12 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   }
 
   a {
-    color: #7b9eff;
+    color: var(--link);
     text-decoration: underline;
     text-underline-offset: 3px;
 
     &:hover {
-      color: #a0bfff;
+      color: var(--link-hover);
     }
   }
 

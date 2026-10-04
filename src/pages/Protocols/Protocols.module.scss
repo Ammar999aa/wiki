@@ -295,13 +295,13 @@
   }
 
   a {
-    color: #7b9eff;
+    color: var(--link);
     text-decoration: underline;
     text-underline-offset: 3px;
     word-break: break-word;
 
     &:hover {
-      color: #a0bfff;
+      color: var(--link-hover);
     }
   }
 
