@@ -23,13 +23,16 @@
  * WebGL to read cross-origin images) — confirmed iGEM's static.igem.wiki
  * CDN does this automatically once a browser sends an Origin header.
  *
- * A parent can nudge the camera's longitude (e.g. to spin very slightly as
- * the page scrolls) via a ref: `ref.current.setScrollLon(radians)`. This is
- * a ref call rather than a prop so a scroll handler can drive it every
- * frame without round-tripping through React state. `LAT0`/`LON0` and
- * `projectGlobe` are also exported so a caller can keep an HTML overlay
- * (like a sparkle marking a city) locked onto the same point on the globe
- * as that offset changes — see Home.jsx's `.sparkle`.
+ * A parent can nudge the camera via a ref, imperatively rather than as a
+ * prop so a scroll handler can drive it every frame without round-tripping
+ * through React state:
+ *   ref.current.setScrollLon(radians)  // orbit around the polar axis
+ *   ref.current.setRoll(radians)       // roll around the view axis (tilt)
+ * `LAT0`/`LON0` and `projectGlobe` are also exported so a caller can keep an
+ * HTML overlay (like a sparkle marking a city) locked onto the same point
+ * on the globe as scrollLon changes — see Home.jsx's `.sparkle`. There's no
+ * equivalent helper for `roll` since nothing currently needs one; add it the
+ * same way (rotate the projected (x,y) by -roll) if that changes.
  */
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
@@ -43,7 +46,7 @@ in vec2 v; out vec4 o;
 uniform sampler2D uDay, uCloud, uLight;
 uniform vec2 uRes; uniform float uR;
 uniform vec3 uSunW, uSunV;        // sun direction, world and view space
-uniform float uLat0, uLon0, uDays;
+uniform float uLat0, uLon0, uDays, uRoll;
 const float PI = 3.14159265;
 
 float hash(float n){ return fract(sin(n * 127.1 + 11.7) * 43758.5453); }
@@ -85,10 +88,15 @@ void main(){
   if (rho < 1.0 + aa){
     float r = min(rho, 1.0);
     float z = sqrt(max(1.0 - r * r, 0.0));
-    vec3 N = vec3(q, z);
+    vec3 N = vec3(q, z);                        // sphere shape/specular normal — rotation-invariant, uses raw q
+    // uRoll rotates which texel maps to each screen pixel (a camera "roll"
+    // around the view axis) without touching N/limb/edge above, which only
+    // depend on rho = |q| and are unaffected by this rotation.
+    float rc = cos(uRoll), rs = sin(uRoll);
+    vec2 qr = vec2(q.x * rc - q.y * rs, q.x * rs + q.y * rc);
     float c = asin(r), sc = sin(c), cc = cos(c);
-    float lat = asin(cc * sin(uLat0) + (rho > 0.0 ? q.y * sc * cos(uLat0) / rho : 0.0));
-    float lon = uLon0 + atan(q.x * sc, rho * cos(uLat0) * cc - q.y * sin(uLat0) * sc);
+    float lat = asin(cc * sin(uLat0) + (rho > 0.0 ? qr.y * sc * cos(uLat0) / rho : 0.0));
+    float lon = uLon0 + atan(qr.x * sc, rho * cos(uLat0) * cc - qr.y * sin(uLat0) * sc);
 
     vec2 uv = vec2((lon + PI) / (2.0 * PI), (PI * 0.5 - lat) / PI);
     vec2 dx = wd(dFdx(uv)), dy = wd(dFdy(uv));
@@ -197,12 +205,15 @@ const EarthGlobe = forwardRef(function EarthGlobe({
   // whole WebGL context on every render.
   const onSettledRef = useRef(onSettled);
   onSettledRef.current = onSettled;
-  // Additional camera longitude (radians) from a scroll-driven spin — set
-  // imperatively by the parent so a scroll handler can update it every
-  // frame without going through React state/re-render.
+  // Additional camera longitude (radians) from a scroll-driven spin, and a
+  // camera "roll" (radians, rotation around the view axis — an axis tilt)
+  // — both set imperatively by the parent so a scroll handler can update
+  // them every frame without going through React state/re-render.
   const scrollLonRef = useRef(0);
+  const rollRef = useRef(0);
   useImperativeHandle(ref, () => ({
     setScrollLon(rad) { scrollLonRef.current = rad; },
+    setRoll(rad) { rollRef.current = rad; },
   }), []);
 
   useEffect(() => {
@@ -246,7 +257,7 @@ const EarthGlobe = forwardRef(function EarthGlobe({
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     U = Object.fromEntries(
-      ['uDay', 'uCloud', 'uLight', 'uRes', 'uR', 'uSunW', 'uSunV', 'uLat0', 'uLon0', 'uDays']
+      ['uDay', 'uCloud', 'uLight', 'uRes', 'uR', 'uSunW', 'uSunV', 'uLat0', 'uLon0', 'uDays', 'uRoll']
         .map((n) => [n, gl.getUniformLocation(prog, n)])
     );
     gl.uniform1f(U.uLat0, LAT0);
@@ -293,6 +304,7 @@ const EarthGlobe = forwardRef(function EarthGlobe({
       gl.uniform3fv(U.uSunW, s);
       gl.uniform3fv(U.uSunV, [dot(s, E), dot(s, N), dot(s, C)]);
       gl.uniform1f(U.uLon0, viewLon);
+      gl.uniform1f(U.uRoll, rollRef.current);
       gl.uniform1f(U.uDays, phase);
       gl.uniform2f(U.uRes, canvas.width, canvas.height);
       gl.uniform1f(U.uR, Math.min(canvas.width, canvas.height) * 0.5 * DISK_FILL);

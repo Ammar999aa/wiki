@@ -179,6 +179,23 @@
   }
 }
 
+/* Full-bleed wipe for EarthLayer's exit cinematic (see Home.jsx) — covers
+   the giant globe in the page's own background color, then fades away to
+   reveal the rocket slide underneath instead of a hard cut. A sibling of
+   .earthWrap, not a child, so it's unaffected by that element's transform;
+   above earthWrap/rocketLayer (z-index 1) and .slideAttribution (5) so it
+   fully masks both during the handoff, below Menu (11+) so nav stays usable
+   throughout. Opacity is driven entirely from EarthLayer's scroll handler. */
+.earthWipe {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
 /* Radial dark scrim behind copy */
 .heroScrim {
   position: absolute;
@@ -511,7 +528,12 @@
 /* ── Essentials row (slide 1) ── */
 .orbitSection {
   position: relative;
-  height: 260dvh;
+  // Sized to match EarthLayer's exit cinematic (see Home.jsx) — the globe's
+  // grow/spin/wipe sequence runs from scroll unit 3.15 to ~4.45, and this
+  // section's height needs to extend a bit past that (4.75 total, Hero's
+  // 200dvh + this) so the rocket slide doesn't start appearing mid-wipe,
+  // without leaving an excessively long dead scroll after it either.
+  height: 275dvh;
 }
 
 .orbitSticky {
