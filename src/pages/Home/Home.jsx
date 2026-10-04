@@ -5,7 +5,7 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Sponsors from "../../components/Sponsors/Sponsors";
 import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
-import EarthGlobe from "../../components/EarthGlobe/EarthGlobe";
+import EarthGlobe, { LAT0, LON0, DISK_FILL, projectGlobe } from "../../components/EarthGlobe/EarthGlobe";
 import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 const shihabLogo = "https://static.igem.wiki/teams/6341/wiki/svg-assets/shihab-logo.svg";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
@@ -20,6 +20,17 @@ const earthClouds = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/ea
 const earthLights = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-lights.avif";
 // Shown instead if WebGL is unavailable or a texture fails to load.
 const earthFallback = "https://static.igem.wiki/teams/6341/wiki/images/earth-animated.webp";
+
+// Thuwal, Saudi Arabia (KAUST's location) — used to keep the .sparkle marker
+// pinned to this actual point on the globe as EarthLayer spins it slightly
+// on scroll, rather than a hand-tuned screen position that only lines up
+// when the camera sits exactly at (LAT0, LON0).
+const THUWAL_LAT = (22.2853 * Math.PI) / 180;
+const THUWAL_LON = (39.1028 * Math.PI) / 180;
+// Max additional camera rotation applied as the user scrolls through the
+// Earth's on-screen lifespan (see EarthLayer's useScrollUnits) — kept small
+// so it reads as a subtle drift, not an obvious spin.
+const SCROLL_SPIN_MAX_RAD = (26 * Math.PI) / 180;
 
 // Pulled from the shared sponsor data (not re-imported as a raw asset) so
 // there's still one source of truth for the logo file and its
@@ -301,7 +312,16 @@ function HeroSection() {
 // own reveal pacing instead of drifting out of step with it.
 function EarthLayer({ groupRef }) {
   const earthRef = useRef(null);
+  const globeRef = useRef(null);
+  const sparkleRef = useRef(null);
   const [earthSettled, setEarthSettled] = useState(false);
+  // Read once — scroll-tied rotation is still scroll-triggered motion, so it
+  // stays off under prefers-reduced-motion like the rest of EarthGlobe's
+  // animation (see that component's own reduceMotion handling).
+  const reduceMotionRef = useRef(null);
+  if (reduceMotionRef.current === null) {
+    reduceMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
 
   useScrollUnits(groupRef, (units) => {
     const el = earthRef.current;
@@ -335,6 +355,24 @@ function EarthLayer({ groupRef }) {
     // compositor-only work, which is what was actually causing the
     // stutter reported when Earth is moving/exiting.
     el.style.transform = `translate3d(calc(${left}vw - 50%), calc(${top}vh - 50%), 0) scale(${scale})`;
+
+    if (!reduceMotionRef.current) {
+      // A small clockwise nudge over the same span the globe is on screen
+      // for (q's 0→3.15 plus the exit drift) — increasing the camera's
+      // longitude is what reads as clockwise for a disk tilted this way
+      // (verified in-browser; the opposite sign spun it counterclockwise).
+      const spinT = clamp01(units / 4.4);
+      const scrollLon = spinT * SCROLL_SPIN_MAX_RAD;
+      globeRef.current?.setScrollLon(scrollLon);
+      // Re-project Thuwal's real coordinates at the camera's current
+      // longitude so the sparkle rides along with the globe's surface
+      // instead of sitting at a screen position only correct at scrollLon=0.
+      const proj = projectGlobe(LAT0, LON0 + scrollLon, THUWAL_LAT, THUWAL_LON);
+      if (proj && sparkleRef.current) {
+        sparkleRef.current.style.left = `${50 + proj.x * DISK_FILL * 50}%`;
+        sparkleRef.current.style.top = `${50 - proj.y * DISK_FILL * 50}%`;
+      }
+    }
   });
 
   return (
@@ -343,6 +381,7 @@ function EarthLayer({ groupRef }) {
         <div className={styles.earthGlow} />
         <div className={styles.earthAtmo} />
         <EarthGlobe
+          ref={globeRef}
           className={styles.earthImg}
           dayUrl={earthDay}
           cloudsUrl={earthClouds}
@@ -351,11 +390,13 @@ function EarthLayer({ groupRef }) {
           onSettled={() => setEarthSettled(true)}
         />
         <div className={styles.earthSheen} />
-        {/* Positioned over KAUST's spot on the live render's fixed
-            24°N/45°E framing (see .sparkle in Home.module.scss). Only
-            twinkles once the intro spin has eased to a stop — it would
+        {/* Base left/top below are the scrollLon=0 resting position — a
+            fallback for the instant before the scroll engine's first run,
+            which immediately overrides them (see projectGlobe above) and
+            keeps the dot locked to Thuwal as EarthGlobe spins on scroll.
+            Only twinkles once the intro spin has eased to a stop — it would
             read as misplaced while the globe is still spinning past it. */}
-        <div className={`${styles.sparkle} ${earthSettled ? styles.sparkleActive : ""}`} />
+        <div ref={sparkleRef} className={`${styles.sparkle} ${earthSettled ? styles.sparkleActive : ""}`} />
         {/* Positioned relative to the globe itself (earthWrap), not the
             viewport — moves/scales with it instead of sitting pinned over
             whatever happens to be at a fixed screen corner (previously the

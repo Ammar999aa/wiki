@@ -22,8 +22,16 @@
  * The texture host must send Access-Control-Allow-Origin (required for
  * WebGL to read cross-origin images) — confirmed iGEM's static.igem.wiki
  * CDN does this automatically once a browser sends an Origin header.
+ *
+ * A parent can nudge the camera's longitude (e.g. to spin very slightly as
+ * the page scrolls) via a ref: `ref.current.setScrollLon(radians)`. This is
+ * a ref call rather than a prop so a scroll handler can drive it every
+ * frame without round-tripping through React state. `LAT0`/`LON0` and
+ * `projectGlobe` are also exported so a caller can keep an HTML overlay
+ * (like a sparkle marking a city) locked onto the same point on the globe
+ * as that offset changes — see Home.jsx's `.sparkle`.
  */
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 const VS = `#version 300 es
 in vec2 p; out vec2 v;
@@ -123,9 +131,13 @@ void main(){
   o = vec4(col, 1.0);
 }`;
 
-const LAT0 = (24 * Math.PI) / 180;
-const LON0 = (45 * Math.PI) / 180;
+export const LAT0 = (24 * Math.PI) / 180;
+export const LON0 = (45 * Math.PI) / 180;
 const SUN_LAT = (8 * Math.PI) / 180;
+// Fraction of the canvas's half-width the rendered disk actually fills —
+// mirrors the shader's own `uR = min(w,h)*0.5*DISK_FILL`, so an HTML overlay
+// using `projectGlobe` below lines up with the rendered globe exactly.
+export const DISK_FILL = 0.985;
 // View basis (east, north, toward-viewer) for a camera centered at (lat0,
 // lon0) — a function rather than a fixed constant because the intro spin
 // below sweeps the camera's longitude before it settles on LON0.
@@ -136,6 +148,19 @@ function viewBasis(lat0, lon0) {
   return { E, N, C };
 }
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+
+// Forward orthographic projection: where a (lat, lon) point on the sphere
+// lands in the shader's unit-disk coords (x right, y up) for a camera
+// centered at (lat0, lon0) — the inverse of the lat/lon lookup the fragment
+// shader does per-pixel. Returns null if the point is on the far side.
+export function projectGlobe(lat0, lon0, lat, lon) {
+  const dlon = lon - lon0;
+  const cosC = Math.sin(lat0) * Math.sin(lat) + Math.cos(lat0) * Math.cos(lat) * Math.cos(dlon);
+  if (cosC < 0) return null;
+  const x = Math.cos(lat) * Math.sin(dlon);
+  const y = Math.cos(lat0) * Math.sin(lat) - Math.sin(lat0) * Math.cos(lat) * Math.cos(dlon);
+  return { x, y };
+}
 const clamp01 = (x) => Math.max(0, Math.min(1, x));
 const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
@@ -154,7 +179,7 @@ function loadImage(src) {
   });
 }
 
-export default function EarthGlobe({
+const EarthGlobe = forwardRef(function EarthGlobe({
   dayUrl,
   cloudsUrl,
   lightsUrl,
@@ -164,7 +189,7 @@ export default function EarthGlobe({
   className,
   style,
   ariaLabel = 'Animated Earth centered on Saudi Arabia, cycling through day and night',
-}) {
+}, ref) {
   const canvasRef = useRef(null);
   const [failed, setFailed] = useState(false);
   // Ref rather than an effect dependency — Home.jsx passes an inline
@@ -172,6 +197,13 @@ export default function EarthGlobe({
   // whole WebGL context on every render.
   const onSettledRef = useRef(onSettled);
   onSettledRef.current = onSettled;
+  // Additional camera longitude (radians) from a scroll-driven spin — set
+  // imperatively by the parent so a scroll handler can update it every
+  // frame without going through React state/re-render.
+  const scrollLonRef = useRef(0);
+  useImperativeHandle(ref, () => ({
+    setScrollLon(rad) { scrollLonRef.current = rad; },
+  }), []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -243,9 +275,15 @@ export default function EarthGlobe({
       gl.viewport(0, 0, w, h);
     };
 
-    // Spin-in longitude for a given amount of visible animation time: starts
-    // INTRO_SPIN_TURNS short of LON0 and eases down to exactly LON0.
-    const introLon = (t) => LON0 - INTRO_SPIN_TURNS * 2 * Math.PI * (1 - easeOutQuart(clamp01(t / INTRO_SPIN_SECONDS)));
+    // Camera longitude for a given amount of visible animation time: starts
+    // INTRO_SPIN_TURNS short of the current target and eases in to it. The
+    // target itself tracks scrollLonRef, so once the intro's done this just
+    // follows scroll directly (and if the user scrolls mid-intro, the spin
+    // eases toward wherever the target has moved to).
+    const introLon = (t) => {
+      const target = LON0 + scrollLonRef.current;
+      return target - INTRO_SPIN_TURNS * 2 * Math.PI * (1 - easeOutQuart(clamp01(t / INTRO_SPIN_SECONDS)));
+    };
 
     const draw = (phase, viewLon) => {
       resize();
@@ -257,7 +295,7 @@ export default function EarthGlobe({
       gl.uniform1f(U.uLon0, viewLon);
       gl.uniform1f(U.uDays, phase);
       gl.uniform2f(U.uRes, canvas.width, canvas.height);
-      gl.uniform1f(U.uR, Math.min(canvas.width, canvas.height) * 0.5 * 0.985);
+      gl.uniform1f(U.uR, Math.min(canvas.width, canvas.height) * 0.5 * DISK_FILL);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
 
@@ -322,4 +360,6 @@ export default function EarthGlobe({
     <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className={className}
             style={{ display: 'block', background: '#000', ...style }} />
   );
-}
+});
+
+export default EarthGlobe;
