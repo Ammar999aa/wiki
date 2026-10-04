@@ -18,6 +18,8 @@ function niceTicks(domain, count = 5) {
 // `series`: [{ label, color, x: [...], y: [...], dashed? }]
 // `vLines`: [{ x, label, color? }] vertical reference lines (e.g. an
 //   induction time or an optimum), drawn full chart height.
+// `hLines`: [{ y, label, color? }] horizontal reference lines (e.g. a
+//   viability threshold), drawn full chart width.
 // `points`: [{ x, y, color, label }] highlighted markers (e.g. a peak).
 export default function LineChart({
   series,
@@ -28,6 +30,7 @@ export default function LineChart({
   xTicks,
   yTicks,
   vLines = [],
+  hLines = [],
   points = [],
   formatX = (v) => v.toFixed(0),
   formatY = (v) => v.toFixed(2),
@@ -117,6 +120,15 @@ export default function LineChart({
             <line className={styles.refline} x1={X(v.x)} y1={y0} x2={X(v.x)} y2={y1} stroke={v.color} />
             <text className={`${styles.axl} ${styles.reflabel}`} x={X(v.x) + 5} y={y1 + 10} textAnchor="start">
               {v.label}
+            </text>
+          </g>
+        ))}
+
+        {hLines.map((hl) => (
+          <g key={hl.label}>
+            <line className={styles.refline} x1={x0} y1={Y(hl.y)} x2={x1} y2={Y(hl.y)} stroke={hl.color} />
+            <text className={`${styles.axl} ${styles.reflabel}`} x={x1 - 5} y={Y(hl.y) - 5} textAnchor="end">
+              {hl.label}
             </text>
           </g>
         ))}

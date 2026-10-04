@@ -261,11 +261,7 @@ every 2 h). Anaerobically it falls to 0.10 h<sup>−1</sup> (roughly every
 
 <div data-chart="yeast-aerobic-anaerobic"></div>
 
-<div class="photo-frame">
-
-![Growth and CO2 output versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/yeast-o2-requirement-co2.avif)
-
-</div>
+<div data-chart="yeast-o2-sweep"></div>
 
 <div class="caption">
 
@@ -340,12 +336,9 @@ At the minimum viable oxygen uptake, combined GFP + nanobody flux is
 
 </div>
 
-<div class="notebook-img-row">
+<div data-chart="yeast-nanobody-by-construct"></div>
 
-![Maximum nanobody flux by construct.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/yeast-max-nanobody-production.avif)
-![Combined GFP + nanobody flux versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/yeast-combined-production-vs-o2.avif)
-
-</div>
+<div data-chart="yeast-combined-production-vs-o2"></div>
 
 <div class="caption">
 
@@ -782,12 +775,9 @@ comparator, under the same 5% viability convention.
 
 </div>
 
-<div class="notebook-img-row">
+<div data-chart="pichia-o2-sweep"></div>
 
-![Growth and CO2 output versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/pastoris-o2-requirement-co2.avif)
-![Combined GFP + nanobody flux versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/pastoris-combined-production-vs-o2.avif)
-
-</div>
+<div data-chart="pichia-combined-production-vs-o2"></div>
 
 <div class="caption">
 
@@ -1000,11 +990,7 @@ aerobic maximum.
 
 <div data-chart="bacillus-aerobic-anaerobic"></div>
 
-<div class="photo-frame">
-
-![Growth and CO2 output versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/min-oxygen-for-viability.avif)
-
-</div>
+<div data-chart="bacillus-o2-sweep"></div>
 
 <div class="caption">
 
@@ -1077,12 +1063,9 @@ from Table 5 above for comparison.
 
 </div>
 
-<div class="notebook-img-row">
+<div data-chart="bacillus-nanobody-by-construct"></div>
 
-![Maximum nanobody flux by construct.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/bacillus-max-nanobody-production.avif)
-![Combined GFP + nanobody flux versus O2 uptake.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/figures/noureldin/bacillus-combined-production-vs-o2.avif)
-
-</div>
+<div data-chart="bacillus-combined-production-vs-o2"></div>
 
 <div class="caption">
 
