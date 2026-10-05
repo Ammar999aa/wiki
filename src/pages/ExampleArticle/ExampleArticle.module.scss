@@ -1,0 +1,85 @@
+// Example article (/example-article) — the yellow author notes in the
+// left margin, plus Figure 3's chart. Everything else on the page is the
+// shared markdown component system in SectionedArticle.module.scss.
+
+.page {
+  // Yellow "why we did this" boxes. On desktop they sit in the margin the
+  // jump-nav rail would normally occupy (ArticleBody's .article is the
+  // positioned ancestor; ExampleArticle.jsx sets each note's `top`).
+  :global(.author-note) {
+    position: absolute;
+    right: calc(100% + 24px);
+    width: 260px;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border-radius: var(--radius-xs);
+    background: #fff1a8;
+    color: #2e2700;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+
+    b {
+      display: block;
+      margin-bottom: 4px;
+      color: #1c1700;
+    }
+
+    i {
+      color: inherit;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    :global(.author-note) {
+      position: static;
+      width: auto;
+      margin: 12px 0 20px;
+    }
+  }
+}
+
+.legend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.chartSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+
+  text {
+    fill: rgba(255, 255, 255, 0.6);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+}
+
+.axl {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.gridline {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.axline {
+  stroke: rgba(255, 255, 255, 0.25);
+}

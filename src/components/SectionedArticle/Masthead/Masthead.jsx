@@ -14,7 +14,12 @@ import styles from "../SectionedArticle.module.scss";
 // nav label, not just metadata — see ARTICLE-STANDARDS.md §1 and the UI/UX
 // audit finding "Page title doesn't confirm the nav label the reader
 // clicked."
-export default function Masthead({ eyebrow, deck }) {
+//
+// `stats` (optional) is the headline-number grid from Model's masthead:
+// [{ value: "25 min", label: "Doubling time at 37 °C", hi: true }, ...].
+// 3–6 cells, `hi` on at most two — every number must also appear, sourced,
+// in the page body.
+export default function Masthead({ eyebrow, deck, stats }) {
   return (
     <div className={styles.masthead}>
       {eyebrow?.length > 0 && (
@@ -28,6 +33,16 @@ export default function Masthead({ eyebrow, deck }) {
         </p>
       )}
       {deck && <p className={styles.mastheadDeck}>{deck}</p>}
+      {stats?.length > 0 && (
+        <div className={styles.mastheadStats}>
+          {stats.map((stat) => (
+            <div key={stat.label} className={`${styles.mastheadStat} ${stat.hi ? styles.mastheadStatHi : ""}`}>
+              <span className={styles.mastheadStatValue}>{stat.value}</span>
+              <span className={styles.mastheadStatLabel}>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
