@@ -182,6 +182,67 @@
   hyphens: auto;
 }
 
+// --- LmoCheck (option buttons reuse RolePlay's .voice/.voiceOn) ---------
+
+.lmoOptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 18px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Result card in the same tones as the markdown `.callout.warn` / `.good`
+// (SectionedArticle.module.scss): amber = restricted, green = exempt.
+.lmoResult {
+  border-inline-start: 3px solid;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 14px 18px;
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+}
+
+.lmoYes {
+  border-inline-start-color: #fab219;
+  background: color-mix(in oklab, #fab219 12%, transparent);
+
+  .lmoVerdict {
+    color: #fab219;
+  }
+}
+
+.lmoNo {
+  border-inline-start-color: #0ca30c;
+  background: color-mix(in oklab, #0ca30c 14%, transparent);
+
+  .lmoVerdict {
+    color: #3fd13f;
+  }
+}
+
+.lmoResult .lmoVerdict {
+  margin-bottom: 4px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.lmoHint {
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 // --- RolePlay -----------------------------------------------------------
 
 .voiceList {

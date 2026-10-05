@@ -190,6 +190,60 @@ export function Tabs({ items, ariaLabel }) {
   );
 }
 
+// "Is it an LMO?" check for the Kallpa section's Context: pick how a plant
+// was modified, see how Peru classifies it — the same rule the Context prose
+// and the Mateo/Rosa dialogue state (Law No. 31.111 vs. the 2026 resolution).
+const LMO_OPTIONS = [
+  {
+    key: "foreign",
+    label: "Foreign DNA added",
+    lmo: true,
+    verdict: "Classified as LMO",
+    reason: "Foreign DNA is introduced, so it falls under the moratorium (Law 31.111).",
+  },
+  {
+    key: "crispr",
+    label: "Own gene edited (CRISPR)",
+    lmo: false,
+    verdict: "Not classified as an LMO",
+    reason: "Its own gene is modified or silenced with no exogenous DNA, so it is exempt under the 2026 resolution.",
+  },
+];
+
+export function LmoCheck() {
+  const [picked, setPicked] = useState(null);
+  const current = LMO_OPTIONS.find((o) => o.key === picked);
+
+  return (
+    <div className={styles.try}>
+      <p className={styles.tryLabel}>Try it: Is it an LMO?</p>
+      <div className={styles.lmoOptions} role="group" aria-label="How was the plant modified?">
+        {LMO_OPTIONS.map((o) => (
+          <button
+            key={o.key}
+            type="button"
+            aria-pressed={o.key === picked}
+            className={`${styles.voice} ${o.key === picked ? styles.voiceOn : ""}`}
+            onClick={() => setPicked(o.key)}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+      <AnimatedSwap swapKey={picked ?? "none"} aria-live="polite">
+        {current ? (
+          <div className={`${styles.lmoResult} ${current.lmo ? styles.lmoYes : styles.lmoNo}`}>
+            <p className={styles.lmoVerdict}>{current.verdict}</p>
+            <p>{current.reason}</p>
+          </div>
+        ) : (
+          <p className={styles.lmoHint}>Pick how the plant was modified to see how Peru classifies it.</p>
+        )}
+      </AnimatedSwap>
+    </div>
+  );
+}
+
 // "Pick a voice" selector for the Week 4 role-play: one button per role,
 // the chosen role's question shown as a pull quote below. Items:
 // [{ key, role, question }].

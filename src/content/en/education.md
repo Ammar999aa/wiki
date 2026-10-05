@@ -98,11 +98,21 @@ In April 2026, Peru approved Ministerial Resolution No. D000068-2026-MINAM-DM. I
 
 ### What We Identified
 
-Despite this significant change, farmers, students and the public reacted with concern, fear and confusion, often shaped by misinformation about the safety, environmental impact and consequences of GMOs and gene editing.
+Despite this significant change, farmers, students and the public reacted with concern, fear and confusion, often shaped by misinformation about the safety, environmental impact and consequences of GMOs and gene editing. To understand the situation, we partnered with Kallpa Greenz.
 
-To understand the situation on the ground, we partnered with Kallpa Greenz, a Peruvian company led by Darwin Paul Díaz Cancino, a winner of the tenth Start-Up Perú call and a gold medalist at the 2021 iGEM Design League. Kallpa Greenz combines sustainability with social commitment, using hydroponics, bioclimatic greenhouses and photobioreactors to support vulnerable communities, with a team of more than 76 young professionals and students led by 8 managers.
+<div class="panel">
+<div class="panel-title"><span>Impact partner</span><span>Kallpa Greenz · Peru</span></div>
 
-Through several interviews with the project leader, we identified three gaps:
+Led by Darwin Paul Díaz Cancino, winner of the 10th Start-Up Perú call and gold medalist at the 2021 iGEM Design League. Kallpa Greenz combines sustainability with social commitment through hydroponics, bioclimatic greenhouses and photobioreactors, supporting vulnerable communities.
+
+<div class="stat-grid">
+<div><strong>76+</strong><span>Young professionals &amp; students</span></div>
+<div><strong>8</strong><span>Managers</span></div>
+<div class="hi"><strong>2021</strong><span>iGEM Design League gold</span></div>
+</div>
+</div>
+
+After several interviews with the project leader, we identified three gaps:
 
 <div class="card-grid row">
 

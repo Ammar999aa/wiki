@@ -1090,6 +1090,53 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     align-items: center;
   }
 
+  // Headline-number row — the markdown-tier version of the masthead stat
+  // grid above (.mastheadStats), same look. Each cell is a big number over
+  // a small-caps label; `.hi` tints the number amber. Author with raw HTML:
+  //   <div class="stat-grid">
+  //   <div><strong>76</strong><span>Label</span></div>
+  //   <div class="hi"><strong>2021</strong><span>Label</span></div>
+  //   </div>
+  :global(.stat-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-block: 18px 6px;
+
+    & > div {
+      background: rgba(10, 10, 39, 0.65);
+      padding: 16px 18px 15px;
+    }
+
+    strong {
+      display: block;
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 31px);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      color: white;
+    }
+
+    span {
+      display: block;
+      margin-top: 8px;
+      font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    & > :global(.hi) strong {
+      color: var(--accent);
+    }
+  }
+
   // A 2-up instrument readout (a labelled value plus a small progress
   // bar per cell) — built for a "current settings/telemetry" panel. Sits
   // inside a `.panel` above. Author with raw HTML:

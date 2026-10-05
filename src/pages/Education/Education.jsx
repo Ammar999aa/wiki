@@ -4,7 +4,7 @@ import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import education from "../../content/en/education.md";
 import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import { CloneStepper, Tabs, MultiplierScale, ModuleIcon, RolePlay } from "./components/Interactive";
+import { CloneStepper, Tabs, MultiplierScale, ModuleIcon, RolePlay, LmoCheck } from "./components/Interactive";
 import { Principles, ProgramsGlance } from "./components/Overview";
 import MoratoriumDialogue from "./components/MoratoriumDialogue";
 import styles from "./Education.module.scss";
@@ -85,6 +85,7 @@ function withInteractiveContent(sections) {
         content: (
           <>
             <MoratoriumDialogue />
+            <LmoCheck />
             <div dangerouslySetInnerHTML={{ __html: section.html.slice(cut) }} />
             <MultiplierScale />
             <h3>The four modules</h3>

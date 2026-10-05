@@ -62,6 +62,7 @@ so no blank lines are needed around those.
 | A short pipeline/control-loop sequence ("sensor → control → actuator")                                         | `.flow`                                                         | Labelled nodes joined by arrows                                           |
 | A one- or two-word tag standing in for a subheading                                                            | `.chip`                                                         | Small mono pill                                                           |
 | A labelled readout, diagram, or grouped figure that's more than a bare image                                   | `.panel` (+ `.dash` for a live-value grid inside it)            | Bordered glass card with a title row                                      |
+| A few real headline numbers (team size, counts, a year) | `.stat-grid` | Bordered strip of big numbers over small-caps labels |
 | Content a careful reader wants but most readers should be able to skip                                         | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
 | A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
 | A photo/render whose own background is opaque light/white                                                      | `.photo-frame`                                                  | Dark matted card around the image                                         |
@@ -280,6 +281,24 @@ wrapping a `.flow` (see hardware.md's control-loop panels).
 reading (a number with a unit, an optional progress bar). It's built for
 the "current settings/telemetry" shape specifically, not a general 2-column
 layout — that's what a `.card-grid` or `.two-col-tracks` is for.
+
+### `.stat-grid` — a row of headline numbers
+
+The markdown-level version of the masthead stat grid (ARTICLE-STANDARDS.md
+§1): big numbers over small-caps labels, in one bordered strip. Add `hi`
+to a cell to tint its number amber. Works on its own or inside a `.panel`
+(see education.md's Kallpa Greenz partner card).
+
+```md
+<div class="stat-grid">
+<div><strong>76+</strong><span>Young professionals &amp; students</span></div>
+<div><strong>8</strong><span>Managers</span></div>
+<div class="hi"><strong>2021</strong><span>iGEM Design League gold</span></div>
+</div>
+```
+
+**Don't** put anything here but real, reported numbers — same rule as
+`.ticket-stub`.
 
 ### `.details` — content most readers can skip
 
