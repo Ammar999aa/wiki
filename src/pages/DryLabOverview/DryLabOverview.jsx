@@ -4,7 +4,7 @@ import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import sections from "../../content/en/dry-lab-overview.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import ChartSlots from "./components/ChartSlots";
-import { TooltipProvider } from "./components/Tooltip";
+import { TooltipProvider } from "../../components/Tooltip/Tooltip";
 import CHARTS from "./components/charts";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
@@ -34,6 +34,10 @@ export default function DryLabOverview() {
 
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+      {/* Kept at this level (SectionedArticle.jsx also wraps its own Article
+          in the shared TooltipProvider) because ChartSlots renders its
+          charts into portalled slots alongside the article, not inside it —
+          they need a provider that's an ancestor of both. */}
       <TooltipProvider>
         <div ref={containerRef}>
           <SectionedArticle

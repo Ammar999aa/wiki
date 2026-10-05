@@ -1,6 +1,6 @@
 import { useMemo, useRef } from "react";
 import styles from "../DryLabOverview.module.scss";
-import { useChartTooltip } from "./Tooltip";
+import { useTooltip } from "../../../components/Tooltip/Tooltip";
 
 const W = 640;
 const H = 360;
@@ -36,7 +36,7 @@ export default function LineChart({
   formatY = (v) => v.toFixed(2),
   height = H,
 }) {
-  const { show, hide } = useChartTooltip();
+  const { show, hide } = useTooltip();
   const svgRef = useRef(null);
 
   const xd = xDomain ?? [Math.min(...series.flatMap((s) => s.x)), Math.max(...series.flatMap((s) => s.x))];

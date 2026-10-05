@@ -8,7 +8,6 @@ import OrfChart from "./components/OrfChart";
 import { ConservationBars, SensitivityBars } from "./components/BarRows";
 import Explorer from "./components/Explorer";
 import References, { Cref } from "./components/References";
-import { TooltipProvider } from "./components/Tooltip";
 import {
   CategoryTable,
   DimensionTable,
@@ -1604,11 +1603,13 @@ const pageTitle = (
 export default function Model() {
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <TooltipProvider>
-        <div className={styles.doc}>
-          <SectionedArticle title={pageTitle} intro={pageIntro} sections={sections} defaultSelected={sections[0]?.title} />
-        </div>
-      </TooltipProvider>
+      {/* No TooltipProvider here — SectionedArticle.jsx now wraps its own
+          Article in the shared one (../../components/Tooltip/Tooltip.jsx),
+          which covers both this page's charts and Cref's hover preview
+          below, since both render inside a section's `content`. */}
+      <div className={styles.doc}>
+        <SectionedArticle title={pageTitle} intro={pageIntro} sections={sections} defaultSelected={sections[0]?.title} />
+      </div>
     </PageWrapper>
   );
 }

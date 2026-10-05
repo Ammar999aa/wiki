@@ -134,27 +134,10 @@
   flex: none;
 }
 
-.tip {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.1s;
-  background: #14142e;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-xs);
-  padding: 8px 11px;
-  font-family: ui-monospace, Menlo, Consolas, monospace;
-  font-size: 11px;
-  line-height: 1.6;
-  color: white;
-  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
-  z-index: 60;
-  max-width: 260px;
-
-  &.visible {
-    opacity: 1;
-  }
-}
+// The tooltip container itself (.tip/.visible) now lives in the shared
+// ../../components/Tooltip/Tooltip.module.scss — .tipTitle/.tipRow below
+// are this page's own tooltip *content* classes and are unaffected, since
+// they were never nested under a local `.tip` selector to begin with.
 
 .tipTitle {
   font-weight: 600;

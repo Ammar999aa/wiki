@@ -1,6 +1,6 @@
 import styles from "../Model.module.scss";
 import { CANDIDATES, F, catOf } from "../data";
-import { useTooltip } from "./Tooltip";
+import { useTooltip } from "../../../components/Tooltip/Tooltip";
 
 const FAMS = ["csp", "ibpA", "recA", "mutS", "uvrA", "uvrB", "uvrC", "phrB", "narI/narJ", "frdC/frdD", "otsB", "ectA"];
 

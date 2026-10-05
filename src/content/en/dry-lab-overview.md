@@ -1,7 +1,5 @@
 ## The Problem & Approach
 
-In-text citation markers (e.g. `[yeastgem]`) are carried over from the source report, but no bibliography file was available to resolve them to full references. The team should compile a proper reference list before this page is considered final — see requirements.md §5 on citation integrity.
-
 ### The problem
 
 Our project asks whether a nanobody can be manufactured on demand inside
@@ -89,10 +87,10 @@ so that another team can start from the same public artefacts.
 
 | Organism | Model | Source / notes |
 |---|---|---|
-| *S. cerevisiae* | Yeast9 <sup class="citekey">[yeastgem]</sup> | Anaerobic condition applied using the authors' own published protocol. |
-| *B. subtilis* | iBsu1147 <sup class="citekey">[ecbsu1]</sup> | Required two reaction additions before it could grow anaerobically (see §Oxygen Deprivation, "repairing the model before we could ask the question"). |
+| *S. cerevisiae* | Yeast9 <a class="cite" href="#ref-1">1</a> | Anaerobic condition applied using the authors' own published protocol. |
+| *B. subtilis* | iBsu1147 <a class="cite" href="#ref-2">2</a> | Required two reaction additions before it could grow anaerobically (see §Oxygen Deprivation, "repairing the model before we could ask the question"). |
 | *P. pastoris* | **[model name — to be filled in]** | Used as a comparator for oxygen requirement and production only. |
-| *S. elongatus* PCC 7942 | iMS837 | Updated PCC 7942 reconstruction of Santos-Merino et al. <sup class="citekey">[santosmerino2023model]</sup> (837 genes, 887 reactions, 801 metabolites). |
+| *S. elongatus* PCC 7942 | iMS837 | Updated PCC 7942 reconstruction of Santos-Merino et al. <a class="cite" href="#ref-3">3</a> (837 genes, 887 reactions, 801 metabolites). |
 
 </div>
 
@@ -366,10 +364,10 @@ a batch that starts, depletes its medium and is harvested. Yet the
 timing question is not a detail. Overexpressing a recombinant nanobody
 is a physiological burden on the host: high-level transcription and
 translation hijack the host's core cellular machinery, and that burden
-restricts growth<sup class="citekey">[kastberg2022burden]</sup>. The
+restricts growth<a class="cite" href="#ref-4">4</a>. The
 standard bioprocess response is an inducible promoter, which separates
 biomass accumulation from recombinant protein
-production<sup class="citekey">[pan2022pichia]</sup><sup class="citekey">[kastberg2022burden]</sup>:
+production<a class="cite" href="#ref-5">5</a><a class="cite" href="#ref-4">4</a>:
 an uninduced growth phase in which cells replicate at their maximum
 specific growth rate μ to build the cell factory, followed by a
 production phase in which synthesis is triggered and the growth rate
@@ -583,7 +581,7 @@ batch vessel has neither. Model 2 adds a depletable sugar pool $S(t)$,
 dissolved oxygen $O(t)$ and a headspace oxygen reservoir $O_g(t)$ that
 replenishes the liquid phase, with growth and production each scaled by
 a multiplicative Monod-type saturation
-function<sup class="citekey">[monod1949growth]</sup>:
+function<a class="cite" href="#ref-6">6</a>:
 
 $$
 \begin{aligned}
@@ -615,7 +613,7 @@ $V_{g}$ the liquid and headspace volumes, $\alpha$ converts headspace
 oxygen into an equivalent liquid saturation concentration, and $k_La$
 is the volumetric mass-transfer coefficient combining the liquid-side
 transfer coefficient and the specific interfacial
-area<sup class="citekey">[garciaochoa2009oxygen]</sup>. The system was
+area<a class="cite" href="#ref-7">7</a>. The system was
 integrated numerically from the initial conditions in Table 7 below.
 
 <div class="table-wrap">
@@ -673,8 +671,8 @@ one undifferentiated table:
 - **Literature-derived:** none of the numerical values was taken
   directly from a specific publication. The *model structure* is
   literature-supported (Monod kinetics for nutrient-limited
-  growth<sup class="citekey">[monod1949growth]</sup>, $k_La$-based
-  oxygen transfer<sup class="citekey">[garciaochoa2009oxygen]</sup>),
+  growth<a class="cite" href="#ref-6">6</a>, $k_La$-based
+  oxygen transfer<a class="cite" href="#ref-7">7</a>),
   but the numbers are not.
 - **Fitted/calibrated:** none.
 - **Assumed:** everything else, meaning all Monod constants, yields,
@@ -749,7 +747,7 @@ bound on how long one should wait, not a recommendation.
 
 *P. pastoris* is the other standard yeast expression host and is
 frequently preferred over *S. cerevisiae* for recombinant protein
-yield<sup class="citekey">[pan2022pichia]</sup>. We ran the same
+yield<a class="cite" href="#ref-5">5</a>. We ran the same
 oxygen-requirement and combined-production analyses on it as a
 comparator, under the same 5% viability convention.
 
@@ -842,13 +840,13 @@ section below.
 *Bacillus* species are Gram-positive bacteria widely used as microbial
 cell factories because they grow rapidly and secrete proteins directly
 into the culture
-medium<sup class="citekey">[schallmey2004bacillus]</sup><sup class="citekey">[cui2018bacillus]</sup>,
+medium<a class="cite" href="#ref-8">8</a><a class="cite" href="#ref-9">9</a>,
 an advantage for downstream processing in a habitat, where every
 purification step is mass and power that has to be launched.
 
 More importantly for our application, *B. subtilis* has genuine
 anaerobic capability that yeast lacks. It grows anaerobically through
-two routes<sup class="citekey">[nakano1998anaerobic]</sup>: anaerobic
+two routes<a class="cite" href="#ref-10">10</a>: anaerobic
 respiration using nitrate/nitrite as the terminal electron acceptor, via
 a respiratory nitrate reductase encoded by the `narGHJI` operon together
 with specific nitrite reductases; and, when external electron acceptors
@@ -952,7 +950,7 @@ Each replacement had to be defensible as a real *B. subtilis* enzyme:
   *B. subtilis* dihydroorotate dehydrogenase is natively a Class 1B
   enzyme (PyrDI/PyrDII subunits) that uses NAD as its physiological
   electron acceptor constitutively, independent of oxygen
-  availability<sup class="citekey">[dhod_class1b]</sup>.
+  availability<a class="cite" href="#ref-11">11</a>.
 - **ASPO6 → ASPOfum.** The obvious KEGG candidate for the NAD route was
   ASPDH (NADP-dependent aspartate dehydrogenase, K06989/R07407), and
   this was the reaction used in our first pass. A literature check
@@ -962,7 +960,7 @@ Each replacement had to be defensible as a real *B. subtilis* enzyme:
   mode of NadB/L-aspartate oxidase (BSU27870), which has been confirmed
   by direct enzymatic characterisation of purified *B. subtilis* NadB
   showing activity with both O₂ and fumarate as electron
-  acceptors<sup class="citekey">[nadb_fumarate]</sup>.
+  acceptors<a class="cite" href="#ref-12">12</a>.
 
 Both corrections were applied **unconditionally to all model
 conditions**, aerobic and anaerobic, because both represent constitutive
@@ -1100,7 +1098,7 @@ the yeast version, and are the *Bacillus*-specific extensions:
    precursor pool $N(t)$.
 2. **Protease-associated product loss.** *Bacillus* secretes
    extracellular proteases that can degrade heterologous
-   proteins<sup class="citekey">[schallmey2004bacillus]</sup>. Rather
+   proteins<a class="cite" href="#ref-8">8</a>. Rather
    than modelling protease concentration as its own state variable, we
    use a biomass-proportional loss term, which is minimal but still
    captures a genuinely *Bacillus*-specific bottleneck.
@@ -1247,14 +1245,14 @@ explicitly:
 
 - **Literature-guided (structure and order of magnitude):** the model
   structure is literature-supported: Monod kinetics for
-  nutrient-limited growth<sup class="citekey">[monod1949growth]</sup>,
-  $k_La$-based oxygen transfer<sup class="citekey">[garciaochoa2009oxygen]</sup>,
+  nutrient-limited growth<a class="cite" href="#ref-6">6</a>,
+  $k_La$-based oxygen transfer<a class="cite" href="#ref-7">7</a>,
   and the *Bacillus*-specific elements based on its use as a
   heterologous protein production host and on protease-related product
-  loss<sup class="citekey">[schallmey2004bacillus]</sup><sup class="citekey">[cui2018bacillus]</sup>.
+  loss<a class="cite" href="#ref-8">8</a><a class="cite" href="#ref-9">9</a>.
   The maximum growth rate $\mu_B = 0.40$ h<sup>−1</sup> was chosen as
   an approximate illustrative value consistent with reported
-  *B. subtilis* growth studies<sup class="citekey">[dauner2001bacillus]</sup>.
+  *B. subtilis* growth studies<a class="cite" href="#ref-13">13</a>.
 - **Assumed:** all Monod constants, yields, the protease coefficient
   $k_{\mathrm{prot}}$, transfer parameters and initial conditions.
 - **Fitted/calibrated:** none.
@@ -1400,7 +1398,7 @@ where the sugar comes from.
 
 Cyanobacteria are photoautotrophs that produce sucrose directly from
 photosynthesis. Other sugars can be produced phototrophically (glucose,
-fructose, polysaccharides<sup class="citekey">[niederholtmeyer2010]</sup><sup class="citekey">[arias2021]</sup>),
+fructose, polysaccharides<a class="cite" href="#ref-14">14</a><a class="cite" href="#ref-15">15</a>),
 but sucrose is the highest-yielding carbohydrate, and the *Bacillus*
 Alternative Carbon Source section above shows it costs our preferred
 host nothing per carbon atom anaerobically. The obstacle is that
@@ -1429,7 +1427,7 @@ output is a flux that becomes another model's input.
 
 Before evaluating either export strategy we characterised the
 unmodified aerobic PCC 7942 model
-(iMS837)<sup class="citekey">[santosmerino2023model]</sup>. We swept the
+(iMS837)<a class="cite" href="#ref-3">3</a>. We swept the
 CO₂/HCO₃⁻ uptake bound to locate the growth plateau, then used **shadow
 price analysis** to identify which constraints were actually binding. A
 shadow price is the marginal improvement in the objective per unit
@@ -1453,7 +1451,7 @@ CO₂/HCO₃⁻ uptake capping growth; the model's native bound on that
 uptake is 2 mmol·h<sup>−1</sup>. Figure 11 shows optimal growth as a
 function of the bound: it rises approximately linearly and plateaus
 around ≈4.2 mmol·h<sup>−1</sup>. Supported by experimental work in the
-literature<sup class="citekey">[Abernathy2017]</sup>, we raised the
+literature<a class="cite" href="#ref-22">22</a>, we raised the
 bound to 5.1 mmol·h<sup>−1</sup>, which with the model's inherited
 default photon, nitrogen and phosphate bounds gives a baseline growth
 rate of 0.2191 h<sup>−1</sup>. This is the operating point used for the
@@ -1610,7 +1608,7 @@ logic is to close off the first two routes while opening the third.
 
 The transporter is CscB, the sucrose permease from *E. coli*, whose
 incorporation into PCC 7942 has been experimentally
-validated<sup class="citekey">[ducat2012]</sup><sup class="citekey">[santosmerino2023]</sup>.
+validated<a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a>.
 Its native reaction in *E. coli* is a sucrose/H⁺ symport *into* the
 cell; in the cyanobacterial context the high intracellular sucrose
 concentration reverses this, giving effectively irreversible export of
@@ -1781,7 +1779,7 @@ The knockouts, in other words, did essentially nothing:
 
 This appears to conflict with the literature. Published knockouts of
 *invA*, *glgA*/*glgC* and *ggpS* report 15–300% increases in
-sucrose<sup class="citekey">[santosmerino2023]</sup><sup class="citekey">[ducat2012]</sup><sup class="citekey">[kirsch2018]</sup><sup class="citekey">[xu2013]</sup>,
+sucrose<a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-18">18</a><a class="cite" href="#ref-19">19</a>,
 but only under salt-stress conditions.
 
 Our interpretation is that the reported effects operate through
@@ -1809,11 +1807,11 @@ The literature makes the case for export. Cytosolic volume constrains
 how much sucrose can be accumulated intracellularly, and the costs of
 cyanobacterial cell recovery, lysis and processing would likely exceed
 the economic value of the commodity products contained in the
-cytosol<sup class="citekey">[prabha2022]</sup>. Secreting sugars into
+cytosol<a class="cite" href="#ref-20">20</a>. Secreting sugars into
 the supernatant for collection has been proposed as the more viable
 strategy, and cyanobacteria have been engineered to express
 heterologous transporters capable of exporting lactate and
-hexoses<sup class="citekey">[niederholtmeyer2010]</sup><sup class="citekey">[angermayr2012]</sup>.
+hexoses<a class="cite" href="#ref-14">14</a><a class="cite" href="#ref-21">21</a>.
 In a habitat, where lysis-and-recovery hardware is mass and power that
 has to be launched, this argument is if anything stronger than it is on
 Earth.
@@ -1865,26 +1863,26 @@ and a set of concrete, testable recommendations flowing out of them.
 - **CO₂/HCO₃⁻ uptake bound.** The habitat-analog CO₂/HCO₃⁻ bound of
   5.1 mmol·h<sup>−1</sup> used throughout the cyanobacterial work is
   supported by published experimental
-  measurements<sup class="citekey">[Abernathy2017]</sup>, not chosen
+  measurements<a class="cite" href="#ref-22">22</a>, not chosen
   for convenience.
 - **CscB feasibility.** The export strategy rests on the experimentally
   validated incorporation of CscB into PCC
-  7942<sup class="citekey">[ducat2012]</sup><sup class="citekey">[santosmerino2023]</sup>.
+  7942<a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a>.
   We are modelling a strain that has been built, not a hypothetical
   one.
 - **Gap-fill reaction identity.** Both reactions added to iBsu1147 were
   accepted only after literature confirmation: dihydroorotate
   dehydrogenase as a constitutively NAD-dependent Class 1B
-  enzyme<sup class="citekey">[dhod_class1b]</sup>, and NadB's
+  enzyme<a class="cite" href="#ref-11">11</a>, and NadB's
   fumarate-linked mode by direct enzymatic characterisation of the
   purified *B. subtilis*
-  protein<sup class="citekey">[nadb_fumarate]</sup>. A candidate that
+  protein<a class="cite" href="#ref-12">12</a>. A candidate that
   lacked such evidence (ASPDH) was rejected.
 - **Anaerobic yeast protocol.** Applied from the Yeast9 authors' own
   published implementation rather than reconstructed by us.
 - **Knockout expectations.** The 15–300% sucrose increases reported
   under salt
-  stress<sup class="citekey">[santosmerino2023]</sup><sup class="citekey">[ducat2012]</sup><sup class="citekey">[kirsch2018]</sup><sup class="citekey">[xu2013]</sup>
+  stress<a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-18">18</a><a class="cite" href="#ref-19">19</a>
   are what allowed us to recognise our null in-silico result as a
   method limitation rather than as evidence against the knockouts.
 
@@ -2136,3 +2134,32 @@ phenomenologically.
 </div>
 
 </div>
+
+## References
+
+<ol class="ref-list">
+
+<li id="ref-1">Zhang C, et al. Yeast9: A consensus genome-scale metabolic model for <i>S. cerevisiae</i> curated by the community. <i>Molecular Systems Biology</i>, 20, 2024. <a href="https://doi.org/10.1038/s44320-024-00060-7" target="_blank" rel="noopener noreferrer">doi:10.1038/s44320-024-00060-7</a></li>
+<li id="ref-2">Hao T, Han B, Ma H, Fu J, Wang H, Wang Z, Tang B, Chen T, Zhao X. In silico metabolic engineering of <i>Bacillus subtilis</i> for improved production of riboflavin, Egl-237, (R,R)-2,3-Butanediol and isobutanol. <i>Molecular BioSystems</i>, 9(8):2034–2044, 2013. <a href="https://doi.org/10.1039/c3mb25568a" target="_blank" rel="noopener noreferrer">doi:10.1039/c3mb25568a</a></li>
+<li id="ref-3">Santos-Merino M, Gargantilla-Becerra Á, de la Cruz F, Nogales J. Highlighting the potential of <i>Synechococcus elongatus</i> PCC 7942 as platform to produce α-linolenic acid through an updated genome-scale metabolic modeling. <i>Frontiers in Microbiology</i>, 14:1126030, 2023. <a href="https://doi.org/10.3389/fmicb.2023.1126030" target="_blank" rel="noopener noreferrer">doi:10.3389/fmicb.2023.1126030</a></li>
+<li id="ref-4">Kastberg LLB, Ard R, Jensen MK, Workman CT. Burden imposed by heterologous protein production in two major industrial yeast cell factories: Identifying sources and mitigation strategies. <i>Frontiers in Fungal Biology</i>, 3:827704, 2022. <a href="https://doi.org/10.3389/ffunb.2022.827704" target="_blank" rel="noopener noreferrer">doi:10.3389/ffunb.2022.827704</a></li>
+<li id="ref-5">Pan Y, Yang J, Wu J, Yang L, Fang H. Current advances of <i>Pichia pastoris</i> as cell factories for production of recombinant proteins. <i>Frontiers in Microbiology</i>, 13:1059777, 2022. <a href="https://doi.org/10.3389/fmicb.2022.1059777" target="_blank" rel="noopener noreferrer">doi:10.3389/fmicb.2022.1059777</a></li>
+<li id="ref-6">Monod J. The growth of bacterial cultures. <i>Annual Review of Microbiology</i>, 3:371–394, 1949. <a href="https://doi.org/10.1146/annurev.mi.03.100149.002103" target="_blank" rel="noopener noreferrer">doi:10.1146/annurev.mi.03.100149.002103</a></li>
+<li id="ref-7">Garcia-Ochoa F, Gomez E. Bioreactor scale-up and oxygen transfer rate in microbial processes: An overview. <i>Biotechnology Advances</i>, 27(2):153–176, 2009. <a href="https://doi.org/10.1016/j.biotechadv.2008.10.006" target="_blank" rel="noopener noreferrer">doi:10.1016/j.biotechadv.2008.10.006</a></li>
+<li id="ref-8">Schallmey M, Singh A, Ward OP. Developments in the use of <i>Bacillus</i> species for industrial production. <i>Canadian Journal of Microbiology</i>, 50(1):1–17, 2004. <a href="https://doi.org/10.1139/w03-076" target="_blank" rel="noopener noreferrer">doi:10.1139/w03-076</a></li>
+<li id="ref-9">Cui W, Han L, Suo F, Liu Z, Zhou L, Zhou Z. Exploitation of <i>Bacillus subtilis</i> as a robust workhorse for production of heterologous proteins and beyond. <i>World Journal of Microbiology and Biotechnology</i>, 34(10):145, 2018. <a href="https://doi.org/10.1007/s11274-018-2531-7" target="_blank" rel="noopener noreferrer">doi:10.1007/s11274-018-2531-7</a></li>
+<li id="ref-10">Nakano MM, Zuber P. Anaerobic growth of a &ldquo;strict aerobe&rdquo; (<i>Bacillus subtilis</i>). <i>Annual Review of Microbiology</i>, 52:165–190, 1998. <a href="https://doi.org/10.1146/annurev.micro.52.1.165" target="_blank" rel="noopener noreferrer">doi:10.1146/annurev.micro.52.1.165</a></li>
+<li id="ref-11">Kahler AE, Nielsen FS, Switzer RL. Biochemical characterization of the heteromeric <i>Bacillus subtilis</i> dihydroorotate dehydrogenase and its isolated subunits. <i>Archives of Biochemistry and Biophysics</i>, 371(2):191–201, 1999. <a href="https://doi.org/10.1006/abbi.1999.1455" target="_blank" rel="noopener noreferrer">doi:10.1006/abbi.1999.1455</a></li>
+<li id="ref-12">Marinoni I, Nonnis S, Monteferrante C, Heathcote P, Härtig E, Böttger LH, Trautwein AX, Negri A, Albertini AM, Tedeschi G. Characterization of L-aspartate oxidase and quinolinate synthase from <i>Bacillus subtilis</i>. <i>The FEBS Journal</i>, 275(20):5090–5107, 2008. <a href="https://doi.org/10.1111/j.1742-4658.2008.06641.x" target="_blank" rel="noopener noreferrer">doi:10.1111/j.1742-4658.2008.06641.x</a></li>
+<li id="ref-13">Dauner M, Storni T, Sauer U. <i>Bacillus subtilis</i> metabolism and energetics in carbon-limited and excess-carbon chemostat culture. <i>Journal of Bacteriology</i>, 183(24):7308–7317, 2001. <a href="https://doi.org/10.1128/JB.183.24.7308-7317.2001" target="_blank" rel="noopener noreferrer">doi:10.1128/JB.183.24.7308-7317.2001</a></li>
+<li id="ref-14">Niederholtmeyer H, Wolfstädter BT, Savage DF, Silver PA, Way JC. Engineering cyanobacteria to synthesize and export hydrophilic products. <i>Applied and Environmental Microbiology</i>, 76(11):3462–3466, 2010. <a href="https://doi.org/10.1128/AEM.00202-10" target="_blank" rel="noopener noreferrer">doi:10.1128/AEM.00202-10</a></li>
+<li id="ref-15">Arias DM, Ortíz-Sánchez E, Okoye PU, Rodríguez-Rangel H, Balbuena Ortega A, Longoria A, Domínguez-Espíndola R, Sebastian PJ. A review on cyanobacteria cultivation for carbohydrate-based biofuels: Cultivation aspects, polysaccharides accumulation strategies, and biofuels production scenarios. <i>Science of The Total Environment</i>, 794:148636, 2021. <a href="https://doi.org/10.1016/j.scitotenv.2021.148636" target="_blank" rel="noopener noreferrer">doi:10.1016/j.scitotenv.2021.148636</a></li>
+<li id="ref-16">Ducat DC, Avelar-Rivas JA, Way JC, Silver PA. Rerouting carbon flux to enhance photosynthetic productivity. <i>Applied and Environmental Microbiology</i>, 78(8):2660–2668, 2012. <a href="https://doi.org/10.1128/AEM.07901-11" target="_blank" rel="noopener noreferrer">doi:10.1128/AEM.07901-11</a></li>
+<li id="ref-17">Santos-Merino M, Yun L, Ducat DC. Cyanobacteria as cell factories for the photosynthetic production of sucrose. <i>Frontiers in Microbiology</i>, 14:1126032, 2023. <a href="https://doi.org/10.3389/fmicb.2023.1126032" target="_blank" rel="noopener noreferrer">doi:10.3389/fmicb.2023.1126032</a></li>
+<li id="ref-18">Kirsch F, Klähn S, Hagemann M. Salt-regulated accumulation of the compatible solutes sucrose and glucosylglycerol in cyanobacteria and its biotechnological potential. <i>Frontiers in Microbiology</i>, 10:2139, 2019. <a href="https://doi.org/10.3389/fmicb.2019.02139" target="_blank" rel="noopener noreferrer">doi:10.3389/fmicb.2019.02139</a></li>
+<li id="ref-19">Du W, Liang F, Duan Y, Tan X, Lu X. Exploring the photosynthetic production capacity of sucrose by cyanobacteria. <i>Metabolic Engineering</i>, 19:17–25, 2013. <a href="https://doi.org/10.1016/j.ymben.2013.05.001" target="_blank" rel="noopener noreferrer">doi:10.1016/j.ymben.2013.05.001</a></li>
+<li id="ref-20">Prabha S, Vijay AK, Paul RR, George B. Cyanobacterial biorefinery: Towards economic feasibility through the maximum valorization of biomass. <i>Science of The Total Environment</i>, 814:152795, 2022. <a href="https://doi.org/10.1016/j.scitotenv.2021.152795" target="_blank" rel="noopener noreferrer">doi:10.1016/j.scitotenv.2021.152795</a></li>
+<li id="ref-21">Angermayr SA, Paszota M, Hellingwerf KJ. Engineering a cyanobacterial cell factory for production of lactic acid. <i>Applied and Environmental Microbiology</i>, 78(19):7098–7106, 2012. <a href="https://doi.org/10.1128/AEM.01587-12" target="_blank" rel="noopener noreferrer">doi:10.1128/AEM.01587-12</a></li>
+<li id="ref-22">Abernathy MH, Yu J, Ma F, Liberton M, Ungerer J, Hollinshead WD, Gopalakrishnan S, He L, Maranas CD, Allen DK, Tang YJ. Deciphering cyanobacterial phenotypes for fast photoautotrophic growth via isotopically nonstationary metabolic flux analysis. <i>Biotechnology for Biofuels</i>, 10:273, 2017. <a href="https://doi.org/10.1186/s13068-017-0958-y" target="_blank" rel="noopener noreferrer">doi:10.1186/s13068-017-0958-y</a></li>
+
+</ol>

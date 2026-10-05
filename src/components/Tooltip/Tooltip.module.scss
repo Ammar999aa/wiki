@@ -1,0 +1,34 @@
+// Visual language lifted from Model.module.scss's .tip/.visible (the
+// best-looking version of the three near-duplicate tooltips this replaces)
+// — literal token values here instead of Model's page-scoped --doc-* custom
+// properties, so the same look works on any page, not just Model's.
+.tip {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  background: #14142e;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-xs);
+  padding: 9px 12px;
+  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-size: 11.5px;
+  line-height: 1.62;
+  color: white;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
+  z-index: 60;
+  max-width: 280px;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  // A `.cite` preview (see Article.jsx's showCiteTip) clones a `.ref-list`
+  // entry's real innerHTML, link markup included — neutralize it here
+  // since the tip itself is inert (pointer-events: none above) and a blue
+  // underlined link inside it would read as clickable when it isn't.
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
