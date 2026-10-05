@@ -189,6 +189,10 @@ export const PROTEINS = [
   {
     id: "sclerostin-nanobody",
     name: "Sclerostin-neutralizing Nanobody",
+    // Grid tiles only (ProteinCard) — the full name wraps to 3 lines there
+    // and stretches its tile; matches the "<Target> Nanobody" naming of
+    // HSV/PD-L1 above. The detail overlay still shows `name`.
+    cardName: "Sclerostin Nanobody",
     subtitle: "anti-SOST — Single-domain antibody",
     color: "#E8D9C5",
     tested: false,

@@ -26,7 +26,7 @@ export default function ProteinCard({ protein, active, onSelect }) {
               <ProteinGlyph variant={protein.glyph} color={protein.color} />
             </div>
             <div className={styles.headerText}>
-              <h3 className={styles.cardName}>{protein.name}</h3>
+              <h3 className={styles.cardName}>{protein.cardName ?? protein.name}</h3>
               <p className={styles.cardSubtitle}>{protein.subtitle}</p>
             </div>
           </div>
