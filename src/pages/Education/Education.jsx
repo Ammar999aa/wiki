@@ -6,6 +6,7 @@ import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import { CloneStepper, Tabs, MultiplierScale } from "./components/Interactive";
 import { Principles, ProgramsGlance } from "./components/Overview";
+import MoratoriumDialogue from "./components/MoratoriumDialogue";
 import styles from "./Education.module.scss";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
@@ -54,10 +55,19 @@ function withInteractiveContent(sections) {
       return { ...section, content: <CloneStepper /> };
     }
     if (section.title === "Kallpa Multiplier Mentorship (Peru)") {
+      // The dialogue belongs right after the "Context" subsection, so the
+      // rendered markdown is split at the next <h3> ("What We Identified")
+      // and the rest is re-rendered after it.
+      const firstH3 = section.html.indexOf("<h3");
+      const splitAt = section.html.indexOf("<h3", firstH3 + 1);
+      const cut = splitAt === -1 ? section.html.length : splitAt;
       return {
         ...section,
+        html: section.html.slice(0, cut),
         content: (
           <>
+            <MoratoriumDialogue />
+            <div dangerouslySetInnerHTML={{ __html: section.html.slice(cut) }} />
             <MultiplierScale />
             <h3>The four modules</h3>
             <Tabs items={KALLPA_MODULES} ariaLabel="Course modules" />
