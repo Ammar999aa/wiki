@@ -50,7 +50,7 @@
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  object-fit: cover; /* TEMP: needed while earthImg is a <video>, see EarthLayer */
+  object-fit: cover; /* used by EarthGlobe's <img> fallback if WebGL fails */
   object-position: center;
   box-shadow:
     inset -30px -24px 80px rgba(0, 0, 0, 0.55),
@@ -102,12 +102,12 @@
 
 @keyframes earthspin { to { transform: rotate(360deg); } }
 
-/* Small twinkle over Saudi Arabia, on the Blue Marble image's east-hemisphere
-   view (interior desert, clear of the Red Sea / Gulf coastlines). */
+/* Small twinkle over KAUST's spot (22.3°N, 39.1°E) on the live globe's
+   fixed 24°N/45°E framing — Hijaz interior, clear of the Red Sea coastline. */
 .sparkle {
   position: absolute;
-  left: 10.5%;
-  top: 26.7%;
+  left: 45.6%;
+  top: 50.4%;
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -116,7 +116,13 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   mix-blend-mode: screen;
-  animation: sparkleTwinkle 3.4s ease-in-out infinite;
+  opacity: 0; /* hidden until .sparkleActive — see EarthLayer's onSettled */
+  transition: opacity 0.5s ease;
+
+  &.sparkleActive {
+    opacity: 1;
+    animation: sparkleTwinkle 3.4s ease-in-out infinite;
+  }
 
   &::before,
   &::after {
@@ -137,15 +143,6 @@
     width: 1.5px;
     height: 18px;
   }
-}
-
-/* TEMP: dev-only override while EARTH_VIDEO_PLAYBACK_RATE / the video
-   preview is active — KAUST's spot on the new render's framing (Hijaz
-   interior, clear of the Red Sea coastline), center and slightly left of
-   frame. Delete alongside the other TEMP video-preview code in Home.jsx. */
-.sparkleVideoPreview {
-  left: 45.6%;
-  top: 50.4%;
 }
 
 @keyframes sparkleTwinkle {
@@ -180,6 +177,23 @@
 
     &:hover { color: rgba(255, 255, 255, 0.65); }
   }
+}
+
+/* Full-bleed wipe for EarthLayer's exit cinematic (see Home.jsx) — covers
+   the giant globe in the page's own background color, then fades away to
+   reveal the rocket slide underneath instead of a hard cut. A sibling of
+   .earthWrap, not a child, so it's unaffected by that element's transform;
+   above earthWrap/rocketLayer (z-index 1) and .slideAttribution (5) so it
+   fully masks both during the handoff, below Menu (11+) so nav stays usable
+   throughout. Opacity is driven entirely from EarthLayer's scroll handler. */
+.earthWipe {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
 }
 
 /* Radial dark scrim behind copy */
@@ -514,7 +528,12 @@
 /* ── Essentials row (slide 1) ── */
 .orbitSection {
   position: relative;
-  height: 260dvh;
+  // Sized to match EarthLayer's exit cinematic (see Home.jsx) — the globe's
+  // grow/spin/wipe sequence runs from scroll unit 3.15 to ~4.45, and this
+  // section's height needs to extend a bit past that (4.75 total, Hero's
+  // 200dvh + this) so the rocket slide doesn't start appearing mid-wipe,
+  // without leaving an excessively long dead scroll after it either.
+  height: 275dvh;
 }
 
 .orbitSticky {

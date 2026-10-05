@@ -779,46 +779,29 @@
   }
 }
 
-.tip {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.1s;
-  background: #14142e;
-  border: 1px solid var(--doc-border-strong);
-  border-radius: var(--radius-xs);
-  padding: 9px 12px;
-  font-family: var(--doc-mono);
-  font-size: 11.5px;
-  line-height: 1.62;
-  color: white;
-  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
-  z-index: 60;
-  max-width: 280px;
+// The tooltip container itself (.tip/.visible) now lives in the shared
+// ../../components/Tooltip/Tooltip.module.scss — ScatterChart/OrfChart's
+// tooltip *content* still carries these two classes directly, so they stay
+// here, just no longer nested under a local `.tip` ancestor selector (the
+// shared component's own container class is what wraps them now).
+.tt {
+  font-weight: 600;
+  font-size: 12.5px;
+  margin-bottom: 4px;
+  display: block;
+  font-family: inherit;
+}
 
-  &.visible {
-    opacity: 1;
-  }
+.tr {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
 
-  .tt {
-    font-weight: 600;
-    font-size: 12.5px;
-    margin-bottom: 4px;
-    display: block;
-    font-family: inherit;
-  }
-
-  .tr {
-    display: flex;
-    justify-content: space-between;
-    gap: 18px;
-  }
-
-  .tr span:first-child {
+  span:first-child {
     color: var(--doc-muted);
   }
 
-  .tr span:last-child {
+  span:last-child {
     color: white;
     font-weight: 500;
   }
@@ -890,30 +873,30 @@
 .rd {
   font-family: var(--doc-mono);
   font-size: 11px;
-  color: #7B9EFF;
+  color: var(--link);
   word-break: break-all;
   text-decoration: none;
   border-bottom: 1px dotted var(--doc-border-strong);
 
   &:hover {
-    color: #A0BFFF;
+    color: var(--link-hover);
     border-bottom-style: solid;
-    border-bottom-color: #A0BFFF;
+    border-bottom-color: var(--link-hover);
   }
 }
 
 .cref {
   font-family: var(--doc-mono);
   font-size: 0.82em;
-  color: #7B9EFF;
+  color: var(--link);
   text-decoration: none;
   padding: 0 1px;
   border-bottom: 1px dotted var(--doc-border-strong);
 
   &:hover {
-    color: #A0BFFF;
+    color: var(--link-hover);
     border-bottom-style: solid;
-    border-bottom-color: #A0BFFF;
+    border-bottom-color: var(--link-hover);
   }
 }
 

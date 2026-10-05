@@ -29,8 +29,3 @@ dist-ssr
 # Local notes (not part of the assistant instruction set)
 .claude/recommendations.md
 .claude/requirements.md
-
-# Temp local preview of the animated Earth render, pending iGEM Video
-# Universe approval — see EarthLayer in src/pages/Home/Home.jsx. Not meant
-# to ever be committed; production always uses the iGEM-hosted `earth` URL.
-src/assets/earth-animated.mp4

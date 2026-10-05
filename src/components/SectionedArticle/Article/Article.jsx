@@ -150,6 +150,38 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
     }
   };
 
+  // Markdown's plain-text citation mark (`.cite`, see
+  // SectionedArticle.module.scss). No hover tooltip for now — the earlier
+  // per-element and delegated hover versions both left the tooltip stuck
+  // open on these pages (Model's Cref, a real React element, never did), so
+  // it's been removed until that's properly debugged.
+  //
+  // The click is handled here rather than left to the browser's native
+  // `href="#ref-N"` navigation: on a long article already mounted (as
+  // opposed to a fresh page load landing straight on the fragment), that
+  // native jump was unreliable — confirmed in testing to silently no-op on
+  // this page's content while the identical `target.scrollIntoView()` call
+  // below always lands correctly. `history.pushState` keeps the URL (and
+  // back button) behaving the way a real anchor click would. Delegated from
+  // the article root so it survives the markdown HTML being re-rendered.
+  useEffect(() => {
+    const root = articleRef.current;
+    if (!root) return undefined;
+
+    const onCiteClick = (e) => {
+      const cite = e.target instanceof Element ? e.target.closest(".cite") : null;
+      const id = cite?.getAttribute("href")?.slice(1);
+      const target = id ? root.querySelector(`#${CSS.escape(id)}`) : null;
+      if (!target) return;
+      e.preventDefault();
+      history.pushState(null, "", cite.getAttribute("href"));
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    root.addEventListener("click", onCiteClick);
+    return () => root.removeEventListener("click", onCiteClick);
+  }, []);
+
   return (
     <div ref={articleRef} className={styles.article} onClick={onClick}>
       {title && <h1 className={styles.pageTitle}>{title}</h1>}

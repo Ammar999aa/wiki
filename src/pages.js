@@ -48,6 +48,7 @@ const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
 const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
+const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this
@@ -101,7 +102,6 @@ const Pages = [
       // any existing links to it don't break.
       { name: "Overview", title: "Dry Lab Overview", path: "/dry-lab-overview", component: DryLabOverview },
       { name: "Modeling", title: "Bioreactor Modeling", path: "/modeling", component: BioreactorModeling },
-      { name: "Protein Mining", title: "Protein Mining", path: "/protein-mining", component: Stub },
       // Same page/component/path as Awards → Software below — Model's
       // candidate-mining content is genuinely Dry Lab work, so it's linked
       // from both nav locations. getPathMapping() keys by path, so this
@@ -164,6 +164,10 @@ const Pages = [
   // nav slot at /modeling — kept resolving to the same component so any
   // existing links to it don't break.
   { name: "Bioreactor Modeling (old URL)", title: "Bioreactor Modeling", path: "/bioreactor-modeling", component: BioreactorModeling, hidden: true },
+  // Authoring reference for the team: a fictional article applying every
+  // wiki authoring convention, annotated. Not wiki content — remove
+  // before the wiki freeze.
+  { name: "Example Article", title: "Example Article", path: "/example-article", component: ExampleArticle, hidden: true },
 ];
 
 export default Pages;

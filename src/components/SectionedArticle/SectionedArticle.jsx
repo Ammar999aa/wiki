@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Panel from "./Panel/Panel";
 import Article from "./Article/Article";
+import { TooltipProvider } from "../Tooltip/Tooltip";
 import styles from "./SectionedArticle.module.scss";
 
 export default function SectionedArticle({ sections, defaultSelected, title, panelHeader, intro }) {
@@ -137,12 +138,18 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
             onSelect={scrollTo}
             header={panelHeader || (title && <div className={styles.panelTitle}>{title}</div>)}
         />
-        <Article
-            title={title}
-            intro={intro}
-            sections={sections}
-            sectionRefs={sectionRefs}
-        />
+        {/* Wraps Article only, not Panel — the jump-nav panel never shows a
+            tooltip, and this is also what makes useTooltip() available to
+            any section's own rich `content` JSX (e.g. Model's charts),
+            not just markdown-rendered citation marks. */}
+        <TooltipProvider>
+          <Article
+              title={title}
+              intro={intro}
+              sections={sections}
+              sectionRefs={sectionRefs}
+          />
+        </TooltipProvider>
     </div>
   );
 }

@@ -1,34 +1,44 @@
-import { useRef, useEffect, Fragment } from "react";
+import { useRef, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Sponsors from "../../components/Sponsors/Sponsors";
 import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
+import EarthGlobe, { LAT0, LON0, DISK_FILL, projectGlobe } from "../../components/EarthGlobe/EarthGlobe";
 import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 const shihabLogo = "https://static.igem.wiki/teams/6341/wiki/svg-assets/shihab-logo.svg";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// Hosted on iGEM's asset server rather than bundled locally — see
-// https://static.igem.wiki/teams/6341/wiki/images/.
-const earth = "https://static.igem.wiki/teams/6341/wiki/images/earth-animated.webp";
+// iGEM Video Universe never approved the animated render as an mp4 (see
+// .claude/requirements.md §1), so EarthLayer below renders it live in WebGL
+// instead — same shader, same day/night cycle, just driven by three static
+// textures instead of a baked video file. All hosted on iGEM's asset server.
+const earthDay = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-day.avif";
+const earthClouds = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-clouds.avif";
+const earthLights = "https://static.igem.wiki/teams/6341/wiki/3d-models/earth/earth-lights.avif";
+// Shown instead if WebGL is unavailable or a texture fails to load.
+const earthFallback = "https://static.igem.wiki/teams/6341/wiki/images/earth-animated.webp";
 
-// TEMP, dev-only preview of the animated render while it awaits iGEM Video
-// Universe approval (see .claude/requirements.md §1) — gitignored, never
-// committed, so it's deliberately NOT a bundler `import` (that would break
-// `vite build`/CI for anyone without the local file). import.meta.env.DEV
-// is false in any production build, so live always renders the `earth`
-// image above; only `yarn dev` on a machine with the file on disk shows the
-// video. Delete this block (and the matching branch in EarthLayer) once the
-// approved asset replaces `earth` above.
-const earthVideoDevPreview = import.meta.env.DEV
-  ? `${import.meta.env.BASE_URL}src/assets/earth-animated.mp4`
-  : null;
-// TEMP: slows down the local preview only, via the video element's own
-// playbackRate — the source file itself is untouched, so this is easy to
-// retune (1 = source speed).
-const EARTH_VIDEO_PLAYBACK_RATE = 0.5;
+// Thuwal, Saudi Arabia (KAUST's location) — used to keep the .sparkle marker
+// pinned to this actual point on the globe as EarthLayer spins it slightly
+// on scroll, rather than a hand-tuned screen position that only lines up
+// when the camera sits exactly at (LAT0, LON0).
+const THUWAL_LAT = (22.2853 * Math.PI) / 180;
+const THUWAL_LON = (39.1028 * Math.PI) / 180;
+// Max additional camera rotation applied as the user scrolls through the
+// Earth's on-screen lifespan (see EarthLayer's useScrollUnits) — kept small
+// so it reads as a subtle drift, not an obvious spin.
+const SCROLL_SPIN_MAX_RAD = (26 * Math.PI) / 180;
+// Leaving Hero/Orbit (see EarthLayer's "grow" phase below): instead of
+// shrinking away, the globe grows to fill the screen while accelerating
+// into a multi-turn spin and an axis tilt (roll), then a full-bleed wipe in
+// this same purple (--bg) takes over before the rocket slide appears —
+// a cinematic transition rather than a cut. Tuned together; see the phase
+// comments in EarthLayer for how they overlap in scroll-unit terms.
+const EXIT_SPIN_TURNS = 3;                      // full extra rotations by the top of the grow phase
+const EXIT_ROLL_MAX_RAD = (55 * Math.PI) / 180;  // max axis tilt by the top of the grow phase
 
 // Pulled from the shared sponsor data (not re-imported as a raw asset) so
 // there's still one source of truth for the logo file and its
@@ -305,11 +315,30 @@ function HeroSection() {
 // un-pinning the moment Hero's own sticky box ends. `groupRef` points at a
 // plain wrapper spanning Hero + Orbit; phase boundaries below mirror those
 // two sections' own `useScene(ref, range, …)` calls (Hero: range 1.7 over a
-// 200dvh section, Orbit: range 1.5 over a 260dvh section starting right
+// 200dvh section, Orbit: range 1.5 over a 275dvh section starting right
 // after Hero's 200dvh) so Earth's motion stays in sync with each section's
 // own reveal pacing instead of drifting out of step with it.
 function EarthLayer({ groupRef }) {
   const earthRef = useRef(null);
+  const globeRef = useRef(null);
+  const sparkleRef = useRef(null);
+  const wipeRef = useRef(null);
+  const [earthSettled, setEarthSettled] = useState(false);
+  // Read once — scroll-tied rotation is still scroll-triggered motion, so it
+  // stays off under prefers-reduced-motion like the rest of EarthGlobe's
+  // animation (see that component's own reduceMotion handling). The grow/
+  // move/fade below stays on even under reduced motion, matching how the
+  // old shrink-and-drift exit it replaced was never gated either — only the
+  // spin/roll rotation (the part closer to actual motion sickness) is new
+  // enough here that it gets the explicit opt-out.
+  const reduceMotionRef = useRef(null);
+  if (reduceMotionRef.current === null) {
+    reduceMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+  // Tracks whether .earthWrap is currently `display:none` so the write below
+  // only happens on the one frame the state actually flips, not every frame
+  // for the rest of the page — see the comment where it's used.
+  const hiddenRef = useRef(false);
 
   useScrollUnits(groupRef, (units) => {
     const el = earthRef.current;
@@ -323,18 +352,41 @@ function EarthLayer({ groupRef }) {
     // scroll section reads as the animation freezing.
     const q = smoothstep(clamp01(units / 3.15));
     // Orbit's own essentials-row reveal (useScene range 1.5, last item fully
-    // in by p≈0.72) finishes at units≈3.08 — the exit drift starts right
-    // after that, not overlapping it, using raw scroll units so it isn't
-    // capped by orbitP maxing out at 1. Eased to start from zero velocity,
-    // matching `q`'s zero velocity at the same 3.15 handoff — pairing an
-    // eased approach with a linear departure was a hard speed jump (coast
-    // to a near-stop, then instantly snap to full speed), which read as
-    // the drift getting stuck and then teleporting rather than continuing
-    // smoothly.
-    const exitP = smoothstep(between(units, 3.15, 4.4));
-    const left = lerp(79, 85, q) + exitP * 60;
-    const top = lerp(50, 78, q) + exitP * 60;
-    const scale = lerp(1, 1.35, q) * lerp(1, 0.7, exitP);
+    // in by p≈0.72) finishes at units≈3.08 — the cinematic exit below starts
+    // right after that, not overlapping it, using raw scroll units so it
+    // isn't capped by orbitP maxing out at 1. Eased to start from zero
+    // velocity, matching `q`'s zero velocity at the same 3.15 handoff —
+    // pairing an eased approach with a linear departure was a hard speed
+    // jump (coast to a near-stop, then instantly snap to full speed), which
+    // read as the drift getting stuck and then teleporting rather than
+    // continuing smoothly.
+    //
+    // Replaces the old shrink-and-drift-off-bottom-right exit with a bigger
+    // beat: the globe grows to dominate the screen while accelerating into
+    // a multi-turn spin and an axis tilt, then a full-bleed wipe in the
+    // page's own background color covers it and fades away, so the handoff
+    // to the rocket slide reads as a cut on a wipe rather than Earth just
+    // shrinking off the corner. `growEase` (smooth both ends) drives
+    // position/scale/opacity; the spin and roll below reuse the same
+    // 3.15→3.8 span but with their own ease-IN curves (slow→fast), so
+    // everything starts together but visibly accelerates independently —
+    // that's what reads as "spinning faster and faster" rather than at a
+    // constant rate.
+    //
+    // The whole sequence (grow through purple-out below) is deliberately
+    // kept inside heroOrbitRef's own height (Hero 200dvh + Orbit 275dvh =
+    // 4.75 units) and finishes by ~4.45 — the rocket slide's own StatementSection
+    // starts fading in almost as soon as its section is reached (~4.75, right
+    // after this group ends), so any part of this animation still running
+    // past that point would mean the rocket slide visibly arriving while
+    // Earth is still mid-wipe instead of after it's done. The ~0.3-unit gap
+    // between 4.45 and 4.75 is a deliberate short settle, not dead scroll —
+    // Orbit's own section height was sized to match (see .orbitSection).
+    const growT = between(units, 3.15, 4.2);
+    const growEase = smoothstep(growT);
+    const left = lerp(79, 85, q) + growEase * (40 - 85);
+    const top = lerp(50, 78, q) + growEase * (48 - 78);
+    const scale = lerp(1, 1.35, q) + growEase * (4.5 - 1.35);
     // `left`/`top` stay untouched (see .earthWrap) — this callback runs
     // every animation frame regardless of whether the value actually
     // changed, and writing to layout properties (even to an unchanged
@@ -343,6 +395,74 @@ function EarthLayer({ groupRef }) {
     // compositor-only work, which is what was actually causing the
     // stutter reported when Earth is moving/exiting.
     el.style.transform = `translate3d(calc(${left}vw - 50%), calc(${top}vh - 50%), 0) scale(${scale})`;
+
+    // Fades out as the purple wipe (below) takes over, so by the time it's
+    // fully covered there's nothing left to reveal once the wipe clears —
+    // reversible like everything else here, so scrolling back up before the
+    // wipe completes brings Earth back rather than leaving it stuck hidden.
+    // Starts well before growT=1 (4.2) and finishes covering it at 4.0 — the
+    // globe should disappear into the wipe mid-spin (growT≈0.81 there), not
+    // finish the whole spin fully exposed and only then get covered.
+    const purpleIn = smoothstep(between(units, 3.6, 4.0));
+    // Held fully opaque for a short stretch (4.0→4.1) before fading away
+    // over a shorter span than the fade-in took — "quickly fades away" per
+    // the brief, relative to the fade-in above.
+    const purpleOut = smoothstep(between(units, 4.1, 4.45));
+    if (wipeRef.current) wipeRef.current.style.opacity = String(purpleIn * (1 - purpleOut));
+    el.style.opacity = String(1 - purpleIn);
+    // Once the wipe has fully cleared, Earth is long since invisible but
+    // .earthWrap is still sitting on-screen at a huge scale (left/top/scale
+    // above saturate rather than reset past growT=1) — left rendering, its
+    // IntersectionObserver would report it as visible for the rest of the
+    // page and EarthGlobe would keep drawing a multi-thousand-pixel canvas
+    // nobody can see. Pull it out of layout instead, and only touch
+    // `display` on the one frame this actually flips (see hiddenRef above)
+    // so scrolling through the rest of the page isn't forcing a style
+    // recalc on it every frame for nothing.
+    const hide = purpleOut >= 1;
+    if (hide !== hiddenRef.current) {
+      el.style.display = hide ? "none" : "";
+      hiddenRef.current = hide;
+    }
+
+    if (!reduceMotionRef.current) {
+      // A small clockwise nudge over the span the globe is gently on screen
+      // for (q's 0→3.15 plus the pre-exit hold), increasing the camera's
+      // longitude is what reads as clockwise for a disk tilted this way
+      // (verified in-browser; the opposite sign spun it counterclockwise).
+      // On top of that, the exit's own spin (several full turns, eased IN —
+      // cubic, so it visibly accelerates rather than spinning at a constant
+      // rate) and a roll (axis tilt, quadratic ease-in so it lags the spin
+      // slightly) share growT's 3.15→3.8 span above.
+      const spinT = clamp01(units / 4.4);
+      const exitSpin = Math.pow(growT, 3) * EXIT_SPIN_TURNS * 2 * Math.PI;
+      const scrollLon = spinT * SCROLL_SPIN_MAX_RAD + exitSpin;
+      const roll = Math.pow(growT, 2) * EXIT_ROLL_MAX_RAD;
+      globeRef.current?.setScrollLon(scrollLon);
+      globeRef.current?.setRoll(roll);
+      // Re-project Thuwal's real coordinates at the camera's current
+      // longitude so the sparkle rides along with the globe's surface
+      // instead of sitting at a screen position only correct at scrollLon=0
+      // — then rotate that by -roll too (roll is a screen-space rotation
+      // applied after the projection, so undoing it is how the sparkle
+      // follows the same texel through the tilt instead of drifting off it).
+      const proj = projectGlobe(LAT0, LON0 + scrollLon, THUWAL_LAT, THUWAL_LON);
+      if (sparkleRef.current) {
+        // null when Thuwal has spun around to the far side of the globe
+        // (expected during the multi-turn exit spin) — hidden via
+        // `visibility` rather than left alone, since `.sparkleActive`'s own
+        // twinkle keyframes would otherwise override any opacity we set
+        // here on the very next frame.
+        sparkleRef.current.style.visibility = proj ? "visible" : "hidden";
+        if (proj) {
+          const cr = Math.cos(roll), sr = Math.sin(roll);
+          const sx = proj.x * cr + proj.y * sr;
+          const sy = -proj.x * sr + proj.y * cr;
+          sparkleRef.current.style.left = `${50 + sx * DISK_FILL * 50}%`;
+          sparkleRef.current.style.top = `${50 - sy * DISK_FILL * 50}%`;
+        }
+      }
+    }
   });
 
   return (
@@ -350,25 +470,23 @@ function EarthLayer({ groupRef }) {
       <div className={styles.earthWrap} ref={earthRef}>
         <div className={styles.earthGlow} />
         <div className={styles.earthAtmo} />
-        {earthVideoDevPreview ? (
-          <video
-            className={styles.earthImg}
-            src={earthVideoDevPreview}
-            autoPlay
-            muted
-            loop
-            playsInline
-            ref={(el) => { if (el) el.playbackRate = EARTH_VIDEO_PLAYBACK_RATE; }}
-          />
-        ) : (
-          <div className={styles.earthImg} style={{ backgroundImage: `url("${earth}")` }} />
-        )}
+        <EarthGlobe
+          ref={globeRef}
+          className={styles.earthImg}
+          dayUrl={earthDay}
+          cloudsUrl={earthClouds}
+          lightsUrl={earthLights}
+          fallbackSrc={earthFallback}
+          onSettled={() => setEarthSettled(true)}
+        />
         <div className={styles.earthSheen} />
-        {/* Positioned over Saudi Arabia on the underlying Blue Marble image.
-            TEMP: sparkleVideoPreview nudges it to KAUST's spot on the new
-            video's framing, dev-only — live keeps the original position
-            since it still shows the older `earth` image. */}
-        <div className={`${styles.sparkle} ${earthVideoDevPreview ? styles.sparkleVideoPreview : ""}`} />
+        {/* Base left/top below are the scrollLon=0 resting position — a
+            fallback for the instant before the scroll engine's first run,
+            which immediately overrides them (see projectGlobe above) and
+            keeps the dot locked to Thuwal as EarthGlobe spins on scroll.
+            Only twinkles once the intro spin has eased to a stop — it would
+            read as misplaced while the globe is still spinning past it. */}
+        <div ref={sparkleRef} className={`${styles.sparkle} ${earthSettled ? styles.sparkleActive : ""}`} />
         {/* Positioned relative to the globe itself (earthWrap), not the
             viewport — moves/scales with it instead of sitting pinned over
             whatever happens to be at a fixed screen corner (previously the
@@ -393,6 +511,12 @@ function EarthLayer({ groupRef }) {
           {" — public domain, rendered visualization"}
         </p>
       </div>
+      {/* Full-bleed wipe for the exit cinematic above — a sibling of
+          .earthWrap, not a child, so it never inherits that element's own
+          transform (it must stay pinned edge-to-edge regardless of where
+          the giant globe currently is). Opacity driven entirely by the
+          purpleIn/purpleOut above. */}
+      <div className={styles.earthWipe} ref={wipeRef} />
     </>
   );
 }
@@ -628,9 +752,10 @@ const ESSENTIALS = [
   { key: "medicine", label: "Medicine", Ico: IcoMedicine, hl: true },
 ];
 
-function OrbitSection() {
+function OrbitSection({ groupRef }) {
   const ref = useRef(null);
   const itemRefs = useRef([]);
+  const stickyRef = useRef(null);
 
   useScene(ref, 1.5, (p) => {
     ESSENTIALS.forEach((_, i) => {
@@ -643,9 +768,22 @@ function OrbitSection() {
     });
   });
 
+  // Separate from the reveal-in above (whose own `p` saturates at 1 well
+  // before this point — see useScene) because this needs heroOrbitRef's
+  // absolute scroll position, not this section's own 0–1 progress: it has
+  // to fade out in step with EarthLayer's grow phase (units 3.15→4.2,
+  // itself keyed to the same groupRef) so the headline/essentials row is
+  // gone before the globe grows large enough to sit on top of them, not
+  // just sitting there fully opaque underneath it. Starts at 3.1, just after
+  // the reveal-in above finishes (~3.08) — any earlier and the last item
+  // would still be fading in while the whole group started fading out.
+  useScrollUnits(groupRef, (units) => {
+    if (stickyRef.current) stickyRef.current.style.opacity = String(1 - smoothstep(between(units, 3.1, 3.5)));
+  });
+
   return (
     <section className={styles.orbitSection} ref={ref}>
-      <div className={styles.orbitSticky}>
+      <div className={styles.orbitSticky} ref={stickyRef}>
         <p className={`${styles.bigLine} ${styles.orbitLine}`} style={{ maxWidth: 480 }}>
           Astronauts depend on a fragile chain of <em>essentials.</em>
         </p>
@@ -1271,22 +1409,14 @@ const EXPLORE_CARDS = [
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/safety.avif",
   },
   {
-    // TEMP: reusing the old Dry Lab card photo as a placeholder until Public
-    // Engagement has its own — see the equivalent note on Human Practices below.
     n: "07", t: "Public Engagement", d: "Bringing space biology to the public.",
     to: "/engagement",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/drylab-card.avif",
-    credit: { url: "https://images.nasa.gov/details/KSC-20181201-PH_RKL01_0002", title: "ELaNa 19 payload encapsulation — NASA ID KSC-20181201-PH_RKL01_0002" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/public-engagement.avif",
   },
   {
-    // TEMP: reusing the old Wet Lab card photo as a placeholder — this card
-    // had no photo of its own before, and this one is now unused elsewhere
-    // (superseded by team/wetlab.avif). Swap for a real Human Practices
-    // photo when one's ready, same as Wet/Dry Lab/Safety/Team already got.
     n: "08", t: "Human Practices", d: "How real-world voices shaped the work.",
     to: "/human-practices",
-    img: "https://static.igem.wiki/teams/6341/wiki/images/wetlab-card.avif", pos: "center 78%",
-    credit: { url: "https://images.nasa.gov/details/iss065e165874", title: "Cell Science-04 biology experiment aboard the ISS — NASA ID iss065e165874" },
+    img: "https://static.igem.wiki/teams/6341/wiki/images/team/integrated-practices.avif", pos: "center 78%",
   },
 ];
 
@@ -1357,7 +1487,7 @@ export default function Home() {
       <EarthLayer groupRef={heroOrbitRef} />
       <div ref={heroOrbitRef}>
         <HeroSection />
-        <OrbitSection />
+        <OrbitSection groupRef={heroOrbitRef} />
       </div>
       <RocketLayer groupRef={rocketGroupRef} />
       <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />

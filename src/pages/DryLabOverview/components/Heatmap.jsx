@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "../DryLabOverview.module.scss";
-import { useChartTooltip } from "./Tooltip";
+import { useTooltip } from "../../../components/Tooltip/Tooltip";
 
 const W = 560;
 const H = 340;
@@ -45,7 +45,7 @@ export default function Heatmap({
 }) {
   const canvasRef = useRef(null);
   const wrapRef = useRef(null);
-  const { show, hide } = useChartTooltip();
+  const { show, hide } = useTooltip();
 
   const x0 = M.l, x1 = W - M.r, y0 = height - M.b, y1 = M.t;
   const nx = xValues.length, ny = yValues.length;

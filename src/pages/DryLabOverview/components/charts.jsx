@@ -3,6 +3,7 @@ import ChartPanel, { Legend } from "./ChartPanel";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import Heatmap from "./Heatmap";
+import WorkflowDiagram from "./WorkflowDiagram";
 import styles from "../DryLabOverview.module.scss";
 
 const VIOLET = "#B16DFF";
@@ -273,6 +274,118 @@ function BacillusFig9() {
   );
 }
 
+// ---- O2 viability sweeps (yeast / bacillus / pichia) -----------------
+function O2SweepPanel({ title, d }) {
+  const hLines = [{ y: d.viabilityThreshold, label: `5% viability (${d.viabilityThreshold.toFixed(4)})`, color: AMBER }];
+  const vLines = [{ x: d.minViableO2, label: `min viable O2 = ${d.minViableO2.toFixed(3)}`, color: VIOLET }];
+  return (
+    <ChartPanel title={title}>
+      <div className={styles.chartPair}>
+        <div>
+          <p className={styles.statLine}>Growth rate vs. O2 uptake</p>
+          <LineChart
+            series={[{ label: "Growth rate", color: BLUE, x: d.o2, y: d.growth }]}
+            hLines={hLines}
+            vLines={vLines}
+            xLabel="O2 uptake (mmol/gDW/h)"
+            yLabel="Growth rate (h⁻¹)"
+            formatX={fmt(2)}
+            formatY={fmt(3)}
+          />
+        </div>
+        <div>
+          <p className={styles.statLine}>CO2 secretion vs. O2 uptake</p>
+          <LineChart
+            series={[{ label: "CO2 secretion", color: GREEN, x: d.o2, y: d.co2 }]}
+            vLines={vLines}
+            xLabel="O2 uptake (mmol/gDW/h)"
+            yLabel="CO2 secretion (mmol/gDW/h)"
+            formatX={fmt(2)}
+            formatY={fmt(1)}
+          />
+        </div>
+      </div>
+      <p className={styles.statLine}>
+        Max growth <b>{d.maxGrowth.toFixed(4)} h⁻¹</b>; at the minimum viable O2 uptake (
+        <b>{d.minViableO2.toFixed(4)}</b>): growth <b>{d.growthAtMin.toFixed(4)} h⁻¹</b>, CO2{" "}
+        <b>{d.co2AtMin.toFixed(4)} mmol/gDW/h</b>.
+      </p>
+    </ChartPanel>
+  );
+}
+
+function CombinedProductionPanel({ title, d }) {
+  return (
+    <ChartPanel title={title}>
+      <LineChart
+        series={[{ label: "Combined GFP + nanobody flux", color: RED, x: d.o2, y: d.combined }]}
+        vLines={[{ x: d.minViableO2, label: "min viable O2", color: AMBER }]}
+        xLabel="O2 uptake (mmol/gDW/h)"
+        yLabel="Combined production flux (mmol/gDW/h)"
+        formatX={fmt(2)}
+        formatY={fmt(4)}
+      />
+      <p className={styles.statLine}>
+        Combined flux at the minimum viable O2 uptake: <b>{d.productionAtMin.toFixed(4)} mmol/gDW/h</b>
+      </p>
+    </ChartPanel>
+  );
+}
+
+function NanobodyByConstructBars({ title, d }) {
+  const bars = d.constructs.flatMap((c) => [
+    { label: `${c.name} (aerobic)`, value: c.aerobic, color: BLUE },
+    { label: `${c.name} (anaerobic)`, value: c.anaerobic, color: RED },
+  ]);
+  return (
+    <ChartPanel title={title}>
+      <BarChart bars={bars} unit=" mmol/gDW/h" formatValue={fmt(4)} />
+    </ChartPanel>
+  );
+}
+
+function YeastO2Sweep() {
+  return <O2SweepPanel title="S. cerevisiae — O2 requirement and CO2 output" d={data["yeast-o2-sweep"]} />;
+}
+function YeastCombinedProductionSweep() {
+  return (
+    <CombinedProductionPanel
+      title="S. cerevisiae — combined GFP + nanobody flux vs. O2"
+      d={data["yeast-combined-production-vs-o2"]}
+    />
+  );
+}
+function YeastNanobodyByConstruct() {
+  return <NanobodyByConstructBars title="S. cerevisiae — maximum nanobody flux by construct" d={data["yeast-nanobody-by-construct"]} />;
+}
+
+function BacillusO2Sweep() {
+  return <O2SweepPanel title="B. subtilis — O2 requirement and CO2 output" d={data["bacillus-o2-sweep"]} />;
+}
+function BacillusCombinedProductionSweep() {
+  return (
+    <CombinedProductionPanel
+      title="B. subtilis — combined GFP + nanobody flux vs. O2"
+      d={data["bacillus-combined-production-vs-o2"]}
+    />
+  );
+}
+function BacillusNanobodyByConstruct() {
+  return <NanobodyByConstructBars title="B. subtilis — maximum nanobody flux by construct" d={data["bacillus-nanobody-by-construct"]} />;
+}
+
+function PichiaO2Sweep() {
+  return <O2SweepPanel title="P. pastoris — O2 requirement and CO2 output" d={data["pichia-o2-sweep"]} />;
+}
+function PichiaCombinedProductionSweep() {
+  return (
+    <CombinedProductionPanel
+      title="P. pastoris — combined GFP + nanobody flux vs. O2"
+      d={data["pichia-combined-production-vs-o2"]}
+    />
+  );
+}
+
 // ---- GEM bar charts ------------------------------------------------
 function YeastAerobicAnaerobic() {
   const d = data["yeast-aerobic-anaerobic"];
@@ -300,6 +413,36 @@ function BacillusAerobicAnaerobic() {
         ]}
         unit=" h⁻¹"
       />
+    </ChartPanel>
+  );
+}
+
+function BacillusGlucoseVsSucrose() {
+  const d = data["bacillus-glucose-vs-sucrose"];
+  const mk = (aerKey, anaerKey) =>
+    ["glucose", "sucrose"].flatMap((sugar) => {
+      const name = sugar === "glucose" ? "Glucose" : "Sucrose";
+      return [
+        { label: `${name} aerobic`, value: d[sugar][aerKey], color: BLUE },
+        { label: `${name} anaerobic`, value: d[sugar][anaerKey], color: RED },
+      ];
+    });
+  return (
+    <ChartPanel
+      title="B. subtilis — glucose vs. sucrose"
+      sub="Uptake 5 mmol/gDW/h; 6 C per glucose, 12 C per sucrose."
+      legend={<Legend items={[{ label: "Aerobic", color: BLUE }, { label: "Anaerobic", color: RED }]} />}
+    >
+      <div className={styles.chartPair}>
+        <div>
+          <p className={styles.statLine}>Total growth rate (h⁻¹)</p>
+          <BarChart bars={mk("aerobic", "anaerobic")} formatValue={fmt(4)} />
+        </div>
+        <div>
+          <p className={styles.statLine}>Growth per mmol carbon (h⁻¹ / mmol C)</p>
+          <BarChart bars={mk("aerobicPerC", "anaerobicPerC")} formatValue={fmt(5)} />
+        </div>
+      </div>
     </ChartPanel>
   );
 }
@@ -426,6 +569,7 @@ function CyanoSucroseVsGrowth() {
 
 // Map of data-chart slot id (see dry-lab-overview.md) -> rendered chart.
 const CHARTS = {
+  workflow: <WorkflowDiagram />,
   "yeast-model1-induction-times": <YeastModel1 />,
   "yeast-constitutive-vs-inducible": <YeastConstitutiveVsInducible />,
   "yeast-resource-simulation": <YeastResourceSimulation />,
@@ -437,6 +581,15 @@ const CHARTS = {
   "bacillus-fig9-multi-induction": <BacillusFig9 />,
   "yeast-aerobic-anaerobic": <YeastAerobicAnaerobic />,
   "bacillus-aerobic-anaerobic": <BacillusAerobicAnaerobic />,
+  "bacillus-glucose-vs-sucrose": <BacillusGlucoseVsSucrose />,
+  "yeast-o2-sweep": <YeastO2Sweep />,
+  "yeast-combined-production-vs-o2": <YeastCombinedProductionSweep />,
+  "yeast-nanobody-by-construct": <YeastNanobodyByConstruct />,
+  "bacillus-o2-sweep": <BacillusO2Sweep />,
+  "bacillus-combined-production-vs-o2": <BacillusCombinedProductionSweep />,
+  "bacillus-nanobody-by-construct": <BacillusNanobodyByConstruct />,
+  "pichia-o2-sweep": <PichiaO2Sweep />,
+  "pichia-combined-production-vs-o2": <PichiaCombinedProductionSweep />,
   "cyano-co2-hco3-bounds": <CyanoCo2Hco3 />,
   "cyano-cn-bof": <CyanoCnBof />,
   "cyano-limiting-factors": <CyanoLimitingFactors />,

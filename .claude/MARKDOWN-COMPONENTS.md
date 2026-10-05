@@ -66,6 +66,7 @@ so no blank lines are needed around those.
 | A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
 | A photo/render whose own background is opaque light/white                                                      | `.photo-frame`                                                  | Dark matted card around the image                                         |
 | The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
+| A sourced claim that needs an in-text citation, plus the reference list it points to                           | `.cite` + `.ref-list`                                           | Small mono numeral, dotted underline; clicking scrolls to the reference |
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
 | A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
 | A short ranked/staged list where each item also jumps to its own section                                       | `.ladder` (+ `.ladder-axis`)                                    | Row of clickable cards, graduated height                                  |
@@ -400,6 +401,43 @@ CFUs across 10–40 Gy, consistent with literature radiation-resistance
 profiles" interprets. Model's whole `Caption` convention (see
 ARTICLE-STANDARDS.md §2, §3) exists to make that distinction visible —
 don't let this class regress back to a label with a number in front of it.
+
+### `.cite` + `.ref-list` — in-text citations and a references list
+
+The markdown-tier counterpart to the Model page's `Cref`/`References.jsx`
+(see ARTICLE-STANDARDS.md) — added per a UI/UX audit finding that every
+other article page was either hand-rolling its own citation scheme or
+citing nothing at all for claims that read as sourced. `.cite` is a plain
+inline citation mark; `.ref-list` is the numbered list it points into.
+Clicking a `.cite` mark scrolls to the matching `.ref-list` entry. (A
+hover tooltip showing the reference was tried and removed for now — it
+stuck open on markdown pages; see the comment in `Article.jsx`.)
+
+```md
+Space agencies are preparing for longer missions <a class="cite" href="#ref-1">1</a>,
+and the systems that support them already recycle water in orbit <a class="cite" href="#ref-2">2</a>.
+
+<ol class="ref-list">
+
+<li id="ref-1"><a href="https://www.nasa.gov/humans-in-space/" target="_blank" rel="noopener noreferrer">NASA — Humans in Space</a></li>
+<li id="ref-2"><a href="https://www.nasa.gov/reference/environmental-control-and-life-support-systems-eclss/" target="_blank" rel="noopener noreferrer">NASA — Environmental Control and Life Support Systems (ECLSS)</a></li>
+
+</ol>
+```
+
+Write `.cite` as plain HTML (`<a class="cite" href="#ref-N">N</a>`, not
+markdown link syntax) and keep every `<li id="ref-N">` on its own line —
+both are already valid HTML, so neither needs the blank-line treatment
+nested markdown syntax would (see "How these are authored" above). The
+list auto-numbers itself from a CSS counter in the order the `<li>`s
+appear, so inserting a reference later never desyncs a visible number from
+its position — only the `id`/`href` pair has to stay matched.
+
+**Don't** invent a citation you can't back with a real source. A page with
+a real, acknowledged gap (a citekey carried over from a source document
+with no bibliography to resolve it, say) should say so with a `.callout
+warn` rather than leave an unresolved marker unexplained or, worse, filled
+in with a guessed reference.
 
 ### `.ladder` — a ranked/staged list that also navigates
 

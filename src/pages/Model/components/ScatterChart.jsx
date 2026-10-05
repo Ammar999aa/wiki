@@ -1,6 +1,6 @@
 import styles from "../Model.module.scss";
 import { CANDIDATES, F, catOf } from "../data";
-import { useTooltip } from "./Tooltip";
+import { useTooltip } from "../../../components/Tooltip/Tooltip";
 
 // Figure 2 — instability index vs. CA-pLDDT for all 45 candidates, marker
 // area ∝ molecular weight, with the two decision thresholds the score uses

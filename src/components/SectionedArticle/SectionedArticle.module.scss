@@ -88,8 +88,9 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin-bottom: 32px;
   }
 
-  // Optional masthead content between the title and the first section
-  // (Model.jsx's `intro` prop is the only current user). It's a plain
+  // Optional masthead content between the title and the first section,
+  // passed via the `intro` prop (see Masthead.jsx below for the shared
+  // eyebrow+deck component most pages pass through it). It's a plain
   // `<div>` like each section wrapper below, so without this it would
   // also match `& > div` above and pick up that inter-section divider —
   // a padding-bottom/margin-bottom/border-bottom meant to separate
@@ -100,6 +101,92 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     padding-bottom: 0;
     margin-bottom: 40px;
     border-bottom: none;
+  }
+
+  // ─── Shared masthead (eyebrow + deck) ───────────────────────────────
+  // Rendered via the `intro` slot above through Masthead.jsx — the
+  // generalized form of the eyebrow/deck masthead Model.module.scss
+  // introduced, now available to any SectionedArticle-based page so it
+  // doesn't open straight into an h1 followed by section one's own
+  // heading. Font-family string matches Model's (not globally loaded as
+  // a webfont here either — it degrades the same way, straight to the
+  // system monospace fallback).
+  .masthead {
+    margin-bottom: 8px;
+  }
+
+  .mastheadEyebrow {
+    font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 0 0 18px;
+  }
+
+  .mastheadDot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .mastheadDeck {
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 62ch;
+    margin: 0;
+
+    b,
+    strong {
+      color: white;
+    }
+  }
+
+  // Optional headline-number grid under the deck (Masthead's `stats`
+  // prop) — same look as Model.module.scss's .statGrid/.statCell.
+  .mastheadStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 28px;
+  }
+
+  .mastheadStat {
+    background: rgba(10, 10, 39, 0.65);
+    padding: 16px 18px 15px;
+  }
+
+  .mastheadStatValue {
+    display: block;
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 31px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mastheadStatLabel {
+    display: block;
+    margin-top: 8px;
+    font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .mastheadStatHi .mastheadStatValue {
+    color: var(--accent);
   }
 
   h2 {
@@ -135,12 +222,12 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   }
 
   a {
-    color: #7b9eff;
+    color: var(--link);
     text-decoration: underline;
     text-underline-offset: 3px;
 
     &:hover {
-      color: #a0bfff;
+      color: var(--link-hover);
     }
   }
 
@@ -1253,6 +1340,80 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     font-size: 20px;
     font-weight: 700;
   }
+
+  // ── Citations ──────────────────────────────────────────────────────
+  // The markdown-tier counterpart to Model's Cref/References.jsx (see
+  // .claude/ARTICLE-STANDARDS.md) — promoted here per the UI/UX audit
+  // finding "No shared citation component" so any plain-markdown page can
+  // cite a source without hand-rolling its own `[[N]](#ref-N)` scheme.
+  // `.cite` is a plain anchor, `<a class="cite" href="#ref-3">3</a>`,
+  // pointing at the matching `<li id="ref-3">` inside a `.ref-list`.
+  // Article.jsx's delegated hover/focus handler reads that `<li>`'s own
+  // rendered content to fill the shared tooltip (see
+  // ../../Tooltip/Tooltip.jsx), so a reference's text is written once and
+  // never duplicated into a data-attribute.
+  :global(.cite) {
+    font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+    font-size: 0.78em;
+    color: var(--link);
+    text-decoration: none;
+    padding: 0 1px;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.35);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--link-hover);
+      border-bottom-color: var(--link-hover);
+    }
+  }
+
+  // Numbers itself via a CSS counter (not a hand-typed "1." "2." …) so
+  // reordering or inserting a reference later never desyncs the visible
+  // number from its list position — only the id/href pair (stable) has to
+  // stay matched.
+  :global(.ref-list) {
+    list-style: none;
+    counter-reset: ref-list;
+    padding: 0;
+    margin: 8px 0 0;
+
+    li {
+      counter-increment: ref-list;
+      position: relative;
+      padding: 9px 0 9px 42px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.92em;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.82);
+
+      &::before {
+        content: "[" counter(ref-list) "]";
+        position: absolute;
+        inset-inline-start: 0;
+        top: 9px;
+        font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+        font-size: 11px;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      word-break: break-word;
+
+      &:hover {
+        color: var(--link-hover);
+      }
+    }
+  }
+
 }
 
 // Persistent desktop rail — no fixed height/collapse, just top+bottom

@@ -266,42 +266,47 @@
 }
 
 // ── Rendered protocol markdown (.detailBody's dangerouslySetInnerHTML
-// content) — mirrors SectionedPage.module.scss's .content typography rules
-// so a protocol's own body reads the same as every other rendered-markdown
-// surface on the site.
+// content) — mirrors SectionedArticle.module.scss's `.article` typography
+// rules (not SectionedPage's `.content`, which this used to mirror — see
+// the UI/UX audit finding "Protocols' reading view forks the shared
+// typography") so a protocol's own body, the site's single densest
+// content, reads the same as every other rendered-markdown surface rather
+// than as its own smaller, left-aligned third tier.
 
 .detailBody {
   padding-top: 20px;
   color: rgba(255, 255, 255, 0.9);
 
   h3 {
-    font-size: 1.2rem;
-    margin-top: 26px;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    margin-top: 32px;
+    margin-bottom: 12px;
     color: white;
   }
 
   h4 {
-    font-size: 1rem;
-    margin-top: 20px;
+    font-size: 1.1rem;
+    margin-top: 24px;
     margin-bottom: 8px;
     color: rgba(255, 255, 255, 0.8);
   }
 
   p {
     line-height: 1.7;
-    margin-bottom: 14px;
-    font-size: 0.92rem;
+    margin-bottom: 16px;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
   }
 
   a {
-    color: #7b9eff;
+    color: var(--link);
     text-decoration: underline;
     text-underline-offset: 3px;
     word-break: break-word;
 
     &:hover {
-      color: #a0bfff;
+      color: var(--link-hover);
     }
   }
 
@@ -316,42 +321,40 @@
 
   blockquote {
     border-inline-start: 4px solid rgba(255, 255, 255, 0.3);
-    padding-inline-start: 18px;
+    padding-inline-start: 20px;
     margin-inline: 0;
-    margin-block: 16px;
+    margin-block: 20px;
     color: rgba(255, 255, 255, 0.7);
     font-style: italic;
   }
 
   ul,
   ol {
-    padding-inline-start: 22px;
-    margin-bottom: 14px;
+    padding-inline-start: 24px;
+    margin-bottom: 16px;
   }
 
   li {
-    line-height: 1.65;
-    margin-bottom: 6px;
-    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 8px;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-block: 16px;
-    font-size: 0.86rem;
+    margin-block: 20px;
   }
 
   th {
     background: rgba(255, 255, 255, 0.1);
     text-align: start;
     font-weight: 700;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   }
 
   td {
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -364,15 +367,15 @@
     background: rgba(255, 255, 255, 0.1);
     padding: 2px 6px;
     border-radius: var(--radius-xs);
-    font-size: 0.88em;
+    font-size: 0.9em;
   }
 
   pre {
     background: rgba(0, 0, 0, 0.3);
-    padding: 14px;
+    padding: 16px;
     border-radius: var(--radius-sm);
     overflow-x: auto;
-    margin-block: 16px;
+    margin-block: 20px;
 
     code {
       background: none;

@@ -16,7 +16,6 @@
     "introducing": "Introducing"
   },
   "roster": {
-    "title": "TEAM",
     "seeMore": "See More",
     "roles": {
       "dryLab": "Dry Lab",
@@ -26,7 +25,8 @@
       "publicEngagement": "Public Engagement",
       "humanPractices": "Human Integrated Practices",
       "pi": "Principal Investigator",
-      "advisor": "Advisor"
+      "advisor": "Advisor",
+      "volunteer": "Volunteer"
     },
     "members": {
       "jeremy": { "bio": "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Skills include Python, Nextflow, and R. Participated and won previously the iGEM Design League." },
@@ -47,6 +47,8 @@
       "kiran": { "bio": "Kiran Ahmad is a Bioengineering MS student at KAUST, where she studies stem cells, early human development, and synthetic biology. Before KAUST, she studied Human Developmental and Regenerative Biology at Harvard and worked on research spanning nanomedicine, gene delivery, and cancer immunotherapy. Outside the lab, Kiran is passionate about science communication, creative design, mentoring, organizing events, and finding ways to make complicated science actually fun and accessible." },
       "genesis": { "bio": "Background in Bioengineering." },
       "mariaFernanda": { "bio": "Background in bioengineering with experience in protein expression in bacteria and purification, nanobodies in specific. Bioinformatics skills including Python, C++, RStudio, and Matlab." },
+      "shahadAl": { "bio": "Background in molecular and cell biology with experience in neuroscience and molecular genetics." },
+      "noureldin": { "bio": "Medical graduate and intern, Faculty of Medicine, October 6th University, Egypt. I work at the intersection of computational biology, synthetic biology, and clinical medicine, with experience in oligo design, protein engineering, metabolic modeling and Clinical Genomics." },
       "raik": { "bio": "Bio coming soon." },
       "wayne": { "bio": "Bio coming soon." },
       "fabian": { "bio": "Bio coming soon." },
@@ -61,7 +63,8 @@
     "headings": {
       "students": "Students",
       "principalInvestigators": "Principal Investigators",
-      "advisors": "Advisors"
+      "advisors": "Advisors",
+      "volunteers": "Volunteers"
     },
     "labels": {
       "tasks": "Tasks",
@@ -219,6 +222,18 @@
     },
     "jordi": {
       "role": "Advisor",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "shahadAl": {
+      "role": "Volunteer",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
+    },
+    "noureldin": {
+      "role": "Volunteer",
       "department": "",
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."

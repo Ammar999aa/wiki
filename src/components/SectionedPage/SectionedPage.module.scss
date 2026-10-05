@@ -49,12 +49,12 @@ $content-inset: 430px; // space reserved for the full-width panel on desktop
   }
 
   a {
-    color: #7B9EFF;
+    color: var(--link);
     text-decoration: underline;
     text-underline-offset: 3px;
 
     &:hover {
-      color: #A0BFFF;
+      color: var(--link-hover);
     }
   }
 

@@ -1,9 +1,12 @@
 import { createContext, useCallback, useContext, useLayoutEffect, useRef, useState } from "react";
-import styles from "../Model.module.scss";
+import styles from "./Tooltip.module.scss";
 
-// Shared hover tooltip for the scatter and strip charts — one fixed-position
-// element, shown/hidden via context instead of each chart managing its own,
-// mirroring the single #tip div the reference implementation used.
+// Shared fixed-position hover tooltip — one context/provider instead of
+// every consumer (a chart, an in-text citation mark) managing its own
+// floating box. Originally written for Model's scatter/strip charts and
+// duplicated near-verbatim for Dry Lab Overview's charts; extracted here so
+// both of those and SectionedArticle's citation marks (see Article.jsx)
+// share one implementation and one visual language instead of a third copy.
 const TooltipContext = createContext(null);
 
 export function TooltipProvider({ children }) {
@@ -18,8 +21,8 @@ export function TooltipProvider({ children }) {
 
   const hide = useCallback(() => setContent(null), []);
 
-  // Clamp to the viewport once the tooltip's real size is known — same
-  // "flip to the other side of the cursor" behaviour as the reference page.
+  // Clamp to the viewport once the tooltip's real size is known — flips to
+  // the other side of the cursor (or anchor point) instead of overflowing.
   useLayoutEffect(() => {
     const el = elRef.current;
     if (!el || !content) return;

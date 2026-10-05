@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
+import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import sections from "../../content/en/science-communication.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import {
@@ -76,6 +77,25 @@ function withInteractiveContent(baseSections) {
   });
 }
 
+// Eyebrow echoes the nav trail ("Beyond the Lab" dropdown → "Science
+// Communication") the reader clicked.
+const pageIntro = (
+  <Masthead
+    eyebrow={["Beyond the Lab", "Science Communication"]}
+    // TODO(humanize): AI-drafted deck sentence, a close paraphrase of
+    // this page's own opening paragraph rather than copied verbatim —
+    // needs a human rewrite before this page is final. See
+    // .claude/TODO-HUMANIZE-COPY.md.
+    deck={
+      <>
+        Synthetic biology mostly stays inside labs and journals, in English &mdash; our science communication
+        work brings it into everyday conversation in <b>Arabic and English</b>, through film, podcasts and
+        social media, and unites MENA iGEM teams through the Tawasol Initiative.
+      </>
+    }
+  />
+);
+
 export default function ScienceCommunication() {
   const enrichedSections = useMemo(() => withInteractiveContent(sections), []);
 
@@ -90,6 +110,7 @@ export default function ScienceCommunication() {
     >
       <SectionedArticle
         title="Science Communication"
+        intro={pageIntro}
         sections={enrichedSections}
         defaultSelected={enrichedSections[0]?.title}
       />

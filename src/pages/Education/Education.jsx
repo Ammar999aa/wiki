@@ -1,9 +1,12 @@
 import { useState, useMemo } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
+import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import education from "../../content/en/education.md";
 import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import { CloneStepper, Tabs, MultiplierScale } from "./components/Interactive";
+import { Principles, ProgramsGlance } from "./components/Overview";
+import MoratoriumDialogue from "./components/MoratoriumDialogue";
 import styles from "./Education.module.scss";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
@@ -42,14 +45,29 @@ const KALLPA_MODULES = [
 // rendered markdown — see .claude/ARTICLE-STANDARDS.md on this pattern.
 function withInteractiveContent(sections) {
   return sections.map((section) => {
+    if (section.title === "Overview") {
+      return { ...section, content: <Principles /> };
+    }
+    if (section.title === "Our Programs at a Glance") {
+      return { ...section, content: <ProgramsGlance /> };
+    }
     if (section.title === "Copy Paste Plants") {
       return { ...section, content: <CloneStepper /> };
     }
     if (section.title === "Kallpa Multiplier Mentorship (Peru)") {
+      // The dialogue belongs right after the "Context" subsection, so the
+      // rendered markdown is split at the next <h3> ("What We Identified")
+      // and the rest is re-rendered after it.
+      const firstH3 = section.html.indexOf("<h3");
+      const splitAt = section.html.indexOf("<h3", firstH3 + 1);
+      const cut = splitAt === -1 ? section.html.length : splitAt;
       return {
         ...section,
+        html: section.html.slice(0, cut),
         content: (
           <>
+            <MoratoriumDialogue />
+            <div dangerouslySetInnerHTML={{ __html: section.html.slice(cut) }} />
             <MultiplierScale />
             <h3>The four modules</h3>
             <Tabs items={KALLPA_MODULES} ariaLabel="Course modules" />
@@ -60,6 +78,30 @@ function withInteractiveContent(sections) {
     return section;
   });
 }
+
+// Eyebrow echoes the nav trail ("Beyond the Lab" dropdown → "Education")
+// the reader clicked. Only the main Education sub-article gets one —
+// Tawasol Hackathon is reached from inside this page's own picker, not
+// from the nav, so there's no nav label for it to confirm.
+const educationIntro = (
+  <Masthead
+    eyebrow={["Beyond the Lab", "Education"]}
+    // TODO(humanize): AI-drafted deck sentence. The first clause
+    // paraphrases this page's own opening paragraph; "a primary-school
+    // cloning game" and "a four-module mentorship program for rural
+    // farmers" are AI synthesis pulled from the Copy Paste Plants and
+    // Kallpa Multiplier Mentorship sections further down the page, not a
+    // quote — read this one closely before the page is final. See
+    // .claude/TODO-HUMANIZE-COPY.md.
+    deck={
+      <>
+        Synthetic biology barely exists in Saudi and wider MENA secondary curricula yet &mdash; our education
+        work closes that gap in <b>Arabic and English</b>, from a primary-school cloning game to a four-module
+        mentorship program for rural farmers.
+      </>
+    }
+  />
+);
 
 // Education is a picker over several sub-articles, each its own full
 // sectioned article (own ## table of contents). The main Education article
@@ -73,6 +115,7 @@ export default function Education() {
       {
         key: "education",
         title: "Education",
+        intro: educationIntro,
         sections: withInteractiveContent(education),
       },
       {
@@ -113,6 +156,7 @@ export default function Education() {
       <SectionedArticle
         key={article.key}
         title={article.title}
+        intro={article.intro}
         sections={article.sections}
         defaultSelected={article.sections[0]?.title}
         panelHeader={picker}

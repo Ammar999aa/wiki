@@ -1,4 +1,5 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
+import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import rawSections from "../../content/en/human-integrated-practices.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import QuestionMap from "./components/QuestionMap";
@@ -25,11 +26,31 @@ const sections = rawSections.map((section) =>
   CONTENT_BY_TITLE[section.title] ? { ...section, content: CONTENT_BY_TITLE[section.title] } : section
 );
 
+// Eyebrow echoes the nav trail ("Beyond the Lab" dropdown → "Integrated
+// Human Practices") the reader clicked.
+const pageIntro = (
+  <Masthead
+    eyebrow={["Beyond the Lab", "Integrated Human Practices"]}
+    // TODO(humanize): AI-drafted deck sentence. The first clause quotes
+    // this page's own opening callout; the second clause ("how should
+    // that shape...") is AI synthesis of the stakeholder/ORBIT content
+    // further down the page, not a quote — read this one closely before
+    // the page is final. See .claude/TODO-HUMANIZE-COPY.md.
+    deck={
+      <>
+        SHIHAB&rsquo;s human-practices work started from one question: <b>what are astronauts missing</b>{" "}
+        &mdash; and how should that shape who we build with and what we build for them?
+      </>
+    }
+  />
+);
+
 export default function HumanIntegratedPractices() {
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
       <SectionedArticle
         title="Integrated Human Practices"
+        intro={pageIntro}
         sections={sections}
         defaultSelected={sections[0]?.title}
       />

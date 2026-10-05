@@ -33,6 +33,8 @@ const hassan    = `${ROSTER_CDN}/hassan.avif`;
 const raheema   = `${ROSTER_CDN}/raheema.avif`;
 const mafer     = `${ROSTER_CDN}/mafer.avif`;
 const kiran     = `${ROSTER_CDN}/kiran.avif`;
+const shahada   = `${ROSTER_CDN}/shahada.avif`;
+const noureldin = `${ROSTER_CDN}/noureldin.avif`;
 
 // Order within each department controls display order in both the
 // honeycomb and the fallback grid (departmentGroups below filters this
@@ -60,7 +62,7 @@ const members = [
   { name: "Zeyad Muazzen", roleKey: "wetLab", memberKey: "zeyad", photo: zeyad, countryCode: "sa" },
   { name: "Nadia Houti", roleKey: "hardware", memberKey: "nadia", photo: nadia, countryCode: "sg" },
   { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan, countryCode: "sa" },
-  { name: "Génesis Flores Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
+  { name: "Génesis Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
   { name: "Kiran Ahmad", roleKey: "publicEngagement", memberKey: "kiran", photo: kiran, countryCode: "us" },
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
@@ -84,6 +86,14 @@ const advisors = [
   { name: "Muhammad Tehseen", roleKey: "advisor", memberKey: "muhammadTehseen", photo: null, countryCode: null },
   { name: "Alejandra Rodríguez Llerena", roleKey: "advisor", memberKey: "alejandra", photo: null, countryCode: null },
   { name: "Jordi Plau", roleKey: "advisor", memberKey: "jordi", photo: null, countryCode: null },
+];
+
+// A third satellite group, below Advisors — same idea again (outside any
+// department, its own line in the honeycomb, its own section on
+// Attributions).
+const volunteers = [
+  { name: "Shahad Al Abdulomhssen", roleKey: "volunteer", memberKey: "shahadAl", photo: shahada, countryCode: "sa" },
+  { name: "Noureldin Rihan", roleKey: "volunteer", memberKey: "noureldin", photo: noureldin, countryCode: "eg" },
 ];
 
 // Unfilled slots woven into the PI cluster, decorative room for that group
@@ -119,11 +129,11 @@ const departmentGroups = DEPARTMENT_ORDER.map((key) => ({
 }));
 
 // Groups that sit below the whole department block instead of inside it —
-// PI, then Advisors under that. Each becomes its own line in the honeycomb
-// (Honeycomb.jsx's `satelliteGroups` prop, stacked in this order) and its
-// own section in the fallback grid below. `group` on each item is what
-// Honeycomb.jsx keys its "not a department member" gold tint off of
-// (anything other than "team").
+// PI, then Advisors, then Volunteers under that. Each becomes its own line
+// in the honeycomb (Honeycomb.jsx's `satelliteGroups` prop, stacked in this
+// order) and its own section in the fallback grid below. `group` on each
+// item is what Honeycomb.jsx keys its "not a department member" gold tint
+// off of (anything other than "team").
 const satelliteGroups = [
   {
     key: "pi",
@@ -138,9 +148,14 @@ const satelliteGroups = [
     label: "Advisors",
     items: advisors.map((advisor) => ({ kind: "member", group: "advisor", id: advisor.name, ...advisor })),
   },
+  {
+    key: "volunteers",
+    label: "Volunteers",
+    items: volunteers.map((volunteer) => ({ kind: "member", group: "volunteer", id: volunteer.name, ...volunteer })),
+  },
 ];
 
-const allPeople = [...members, ...principalInvestigators, ...advisors];
+const allPeople = [...members, ...principalInvestigators, ...advisors, ...volunteers];
 
 // The honeycomb's cursor-driven fisheye (Honeycomb.jsx) is a mouse-hover
 // effect with nothing meaningful to do on a touchscreen — `hover: hover`
@@ -277,9 +292,8 @@ export default function Roster() {
     >
       <div className={styles.page}>
         <div className={styles.titleWrap}>
-          <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07}>
-            <h1 className={styles.title}>{t("roster.title")}</h1>
-          </LiquidGlass>
+          <p className={styles.titleLabel}>Team</p>
+          <h1 className={styles.title}>Team</h1>
         </div>
 
         {pointerFine ? (
