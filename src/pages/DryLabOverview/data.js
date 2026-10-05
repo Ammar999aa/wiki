@@ -35,7 +35,7 @@
 //   - Nanobody-by-construct bars (yeast/bacillus-nanobody-by-construct): not
 //     a new simulation -- these are the aerobic/anaerobic flux values already
 //     published in Tables 5 and 10, turned into bars.
-//   - B. subtilis glucose-vs-sucrose (bacillus-glucose-vs-sucrose, Figure 6):
+//   - B. subtilis glucose-vs-sucrose (bacillus-glucose-vs-sucrose, Figure 7):
 //     the exact cached printout of cell 58 ("sucr vs glu test", end of
 //     Objective 2) in github.com/Halion1/iGEM-KAUST-Drylab obj2_gem/Notebooks/
 //     Bacillus_Subtilis_revised.ipynb -- growth rate (h^-1, 4 d.p.) and growth

@@ -3,6 +3,7 @@ import ChartPanel, { Legend } from "./ChartPanel";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import Heatmap from "./Heatmap";
+import WorkflowDiagram from "./WorkflowDiagram";
 import styles from "../DryLabOverview.module.scss";
 
 const VIOLET = "#B16DFF";
@@ -568,6 +569,7 @@ function CyanoSucroseVsGrowth() {
 
 // Map of data-chart slot id (see dry-lab-overview.md) -> rendered chart.
 const CHARTS = {
+  workflow: <WorkflowDiagram />,
   "yeast-model1-induction-times": <YeastModel1 />,
   "yeast-constitutive-vs-inducible": <YeastConstitutiveVsInducible />,
   "yeast-resource-simulation": <YeastResourceSimulation />,

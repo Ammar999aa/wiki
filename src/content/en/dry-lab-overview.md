@@ -45,16 +45,19 @@ oxygen budget, and how much protein can it make. The cyanobacterial
 model plays a different role from the other two: it is not a production
 host but the supplier that makes the other two viable in a closed loop.
 
-<!-- Source figure fig:workflow had a <figcaption> but no <img> — no
-     diagram file was ever attached to it, so no image is rendered here
-     rather than fabricating one. -->
+<div data-chart="workflow"></div>
 
-Each host model answers the same three questions independently; the cyanobacterial
+<div class="caption">
+
+**Figure 1.** The three chassis models and their relationship. Each host
+model answers the same three questions independently; the cyanobacterial
 model supplies the feedstock that makes either host viable in a closed
-loop. Only the cyanobacteria → yeast
-arrow corresponds to an actual numerical hand-off in this work (sucrose
-and oxygen fluxes used as uptake bounds); the equivalent calculation for
-*B. subtilis* has not yet been done (see Limitations & Future Directions).
+loop. Only the cyanobacteria → yeast arrow corresponds to an actual
+numerical hand-off in this work (sucrose and oxygen fluxes used as uptake
+bounds); the equivalent calculation for *B. subtilis* has not yet been
+done (see Limitations and Future Directions).
+
+</div>
 
 <div class="table-wrap">
 
@@ -263,7 +266,7 @@ every 2 h). Anaerobically it falls to 0.10 h<sup>−1</sup> (roughly every
 
 <div class="caption">
 
-**Figure 1.** Oxygen dependence of *S. cerevisiae*. (a) Growth drops
+**Figure 2.** Oxygen dependence of *S. cerevisiae*. (a) Growth drops
 from 0.40 h<sup>−1</sup> to 0.10 h<sup>−1</sup> on removing oxygen. (b)
 Growth rate (left axis, blue) rises very steeply over the first fraction
 of a mmol·h<sup>−1</sup> of oxygen and then close to linearly; the 5%
@@ -291,7 +294,7 @@ viability threshold is 5% of the aerobic maximum.
 
 </div>
 
-The shape of the oxygen-sweep panel in Figure 1 (panel b) is the
+The shape of the oxygen-sweep panel in Figure 2 (panel b) is the
 important part. Growth rises so steeply out of zero that a trickle of
 oxygen, 0.0503 mmol·h<sup>−1</sup>, already brings yeast to
 0.0917 h<sup>−1</sup>, more than four times its own viability threshold
@@ -340,12 +343,12 @@ At the minimum viable oxygen uptake, combined GFP + nanobody flux is
 
 <div class="caption">
 
-**Figure 2.** Nanobody production capacity in *S. cerevisiae*. (a) Both
+**Figure 3.** Nanobody production capacity in *S. cerevisiae*. (a) Both
 constructs lose roughly 80% of their production capacity on removing
 oxygen. (b) Combined output rises with oxygen uptake and saturates near
 7.5 mmol·h<sup>−1</sup>; the minimum viable cutoff is marked in orange.
 Note the y-axis maximum of 0.008 mmol·h<sup>−1</sup>, an order of
-magnitude below the equivalent *B. subtilis* figure (see Figure 8
+magnitude below the equivalent *B. subtilis* figure (see Figure 9
 below).
 
 </div>
@@ -691,7 +694,7 @@ misleading.
 
 <div class="caption">
 
-**Figure 3.** Analytical model (Model 1): biomass (left) and nanobody
+**Figure 4.** Analytical model (Model 1): biomass (left) and nanobody
 concentration (right) for a range of induction times over a 48 h batch.
 Early induction gives a long production window but a small cell
 population to produce with; late induction gives a large population but
@@ -713,7 +716,7 @@ interior optimum.
 
 <div class="caption">
 
-**Figure 4.** Yeast dynamic simulation results. (a) Inducible expression
+**Figure 5.** Yeast dynamic simulation results. (a) Inducible expression
 at $t_i^* = 32.7$ h overtakes constitutive expression ($t_i = 0$) before
 harvest, despite producing nothing for the first two thirds of the
 batch. This is the case for an inducible promoter, made quantitatively.
@@ -732,7 +735,7 @@ induction time.
 The two models disagree, and the disagreement is the point. Under ideal
 conditions the analytical model favours late induction
 ($t_{\mathrm{i}}^* = 32.7$ h of a 48 h batch); under resource
-limitation, the induction-time scan (Figure 4c) favours early induction.
+limitation, the induction-time scan (Figure 5c) favours early induction.
 The reason is that Model 1 has no way for the batch to run out of
 anything, so delaying induction is free; once sugar and oxygen deplete,
 biomass accumulated late in the batch cannot be converted into product
@@ -779,7 +782,7 @@ comparator, under the same 5% viability convention.
 
 <div class="caption">
 
-**Figure 5.** *P. pastoris* oxygen dependence. Its aerobic growth
+**Figure 6.** *P. pastoris* oxygen dependence. Its aerobic growth
 advantage (0.5806 h<sup>−1</sup>, the highest of any chassis tested)
 does not survive oxygen restriction: at the minimum viable oxygen point
 it grows more slowly than *S. cerevisiae* and produces less than half
@@ -878,7 +881,7 @@ a raw comparison of growth rates would flatter it for trivial reasons.
 
 <div class="caption">
 
-**Figure 6.** Glucose versus sucrose for *B. subtilis*: total growth
+**Figure 7.** Glucose versus sucrose for *B. subtilis*: total growth
 rate (left panel) and growth per mmol of carbon (right panel),
 under aerobic and anaerobic conditions. Sucrose wins on total growth in
 both conditions; per carbon atom the two are equivalent anaerobically,
@@ -932,7 +935,7 @@ Diagnosis proceeded in stages:
    **DHORDfum**, an O₂-dependent step in pyrimidine synthesis.
 4. To confirm these two were sufficient to explain the failure, we
    opened free exchanges for their products individually: the ASPO6
-   product<!-- TODO: source text does not name this metabolite explicitly (likely a NAD-synthesis intermediate); confirm before publishing --> alone: growth = 0. Orotate (the
+   product alone: growth = 0. Orotate (the
    DHORDfum product) alone: growth = 0. **Both together:
    0.224 h<sup>−1</sup>.** Growth resumed, at a plausible fraction of
    the aerobic rate.
@@ -988,9 +991,9 @@ aerobic maximum.
 
 <div class="caption">
 
-**Figure 7.** Oxygen dependence of *B. subtilis*. (a) Growth falls from
+**Figure 8.** Oxygen dependence of *B. subtilis*. (a) Growth falls from
 0.31 h<sup>−1</sup> to 0.22 h<sup>−1</sup> on removing oxygen, a 29%
-loss, against 75% for yeast (Figure 1a above). Panel (a) is non-zero
+loss, against 75% for yeast (Figure 2a above). Panel (a) is non-zero
 only because of the two reactions added in the model-repair discussion
 above; the unrepaired model gives zero. (b) The oxygen sweep, with the
 5% viability threshold marked.
@@ -1063,9 +1066,9 @@ from Table 5 above for comparison.
 
 <div class="caption">
 
-**Figure 8.** Nanobody production capacity in *B. subtilis*. Note the
+**Figure 9.** Nanobody production capacity in *B. subtilis*. Note the
 y-axis of panel (a) extends to 0.045 mmol·h<sup>−1</sup>, against
-0.008 mmol·h<sup>−1</sup> for the equivalent yeast figure (Figure 2a
+0.008 mmol·h<sup>−1</sup> for the equivalent yeast figure (Figure 3a
 above). The two panels are not on the same scale, and the difference
 between the hosts is larger than it looks.
 
@@ -1266,7 +1269,7 @@ set-point.
 
 <div class="caption">
 
-**Figure 9.** Biomass (left) and nanobody (right) trajectories under
+**Figure 10.** Biomass (left) and nanobody (right) trajectories under
 different *Bacillus* induction strategies; the same colour denotes the
 same induction time in both panels. Very early induction ($t_i = 0$ h)
 produces little of either because there is no biomass to produce with.
@@ -1288,7 +1291,7 @@ titre and harvest titre are not the same quantity.
 
 <div class="caption">
 
-**Figure 10.** Supporting *Bacillus* dynamic outputs. (a) Sugar is
+**Figure 11.** Supporting *Bacillus* dynamic outputs. (a) Sugar is
 driven to exhaustion by about 40 h while the nitrogen/amino-acid pool is
 only partially consumed, so under this parameter set carbon, not
 nitrogen, is the binding resource. (b) The induction-time scan is
@@ -1303,13 +1306,13 @@ to slightly earlier induction as cultivation time is extended.
 Three things come out of the dynamic model.
 
 **Induction timing matters more than the idealised analysis suggests.**
-The yield curve in Figure 10b is a sharp peak, not a broad plateau:
+The yield curve in Figure 11b is a sharp peak, not a broad plateau:
 induction around 6.5 h–7 h gives the highest predicted final titre, and
 missing it by a few hours costs most of the product. That is a
 process-control requirement, not a modelling curiosity.
 
 **Carbon is the dominant limiting resource under this parameter set**,
-not nitrogen (Figure 10a), even though nitrogen limitation was the main
+not nitrogen (Figure 11a), even though nitrogen limitation was the main
 reason for adding the $N(t)$ pool. That is a negative result about our
 own extension and worth stating: the pool was sized generously enough
 ($N_0 = 5.00$ g·l<sup>−1</sup>) that it never became binding. Whether
@@ -1317,7 +1320,7 @@ nitrogen matters in practice depends on a medium composition we have
 not yet fixed.
 
 **Peak and harvest titre diverge.** Because the protease term scales
-with biomass, product accumulated early can be lost later (Figure 9,
+with biomass, product accumulated early can be lost later (Figure 10,
 right panel). This argues for harvesting at the product peak rather
 than at a fixed end time, an operational recommendation that neither
 the analytical model nor FBA could have generated.
@@ -1444,7 +1447,7 @@ across all three constraints) until they converged.
 
 The default model grows at approximately 0.102 h<sup>−1</sup>, with
 CO₂/HCO₃⁻ uptake capping growth; the model's native bound on that
-uptake is 2 mmol·h<sup>−1</sup>. Figure 11 shows optimal growth as a
+uptake is 2 mmol·h<sup>−1</sup>. Figure 12 shows optimal growth as a
 function of the bound: it rises approximately linearly and plateaus
 around ≈4.2 mmol·h<sup>−1</sup>. Supported by experimental work in the
 literature<a class="cite" href="#ref-22">22</a>, we raised the
@@ -1457,7 +1460,7 @@ rest of the cyanobacterial analysis.
 
 <div class="caption">
 
-**Figure 11.** Optimal growth rate of *S. elongatus* PCC 7942 as a
+**Figure 12.** Optimal growth rate of *S. elongatus* PCC 7942 as a
 function of the CO₂/HCO₃⁻ uptake bound. Growth saturates beyond
 approximately 4.2 mmol·h<sup>−1</sup>; the habitat-analog operating
 point of 5.1 mmol·h<sup>−1</sup> (green, giving 0.2191 h<sup>−1</sup>)
@@ -1519,7 +1522,7 @@ sit with one nutrient but moves:
   magnitude larger than either nitrogen or carbon. Growth plateaued at
   0.6343 h<sup>−1</sup> once the phosphate bound exceeded approximately
   0.2782 mmol·h<sup>−1</sup>, with NH₄⁺ at about 3.425 and CO₂/HCO₃⁻ at
-  12.728 (see panel (b) of Figure 12 below).
+  12.728 (see panel (b) of Figure 13 below).
 
 <div data-chart="cyano-cn-bof"></div>
 
@@ -1529,7 +1532,7 @@ sit with one nutrient but moves:
 
 <div class="caption">
 
-**Figure 12.** Sequential nutrient co-limitation in *S. elongatus* PCC
+**Figure 13.** Sequential nutrient co-limitation in *S. elongatus* PCC
 7942. (a) Growth rate over the CO₂/HCO₃⁻ × NH₄⁺ plane with phosphate
 held at the model default; the marked point is where phosphate takes
 over as the binding constraint. (b) Growth as all three bounds are
@@ -1621,14 +1624,14 @@ find what limits production rather than growth.
 **Result: the export–growth trade-off.**
 
 Sucrose export and biomass production compete for the same fixed
-carbon. Figure 13 maps that trade-off directly: maximum sucrose export
+carbon. Figure 14 maps that trade-off directly: maximum sucrose export
 falls approximately linearly as the biomass flux constraint is raised.
 
 <div data-chart="cyano-sucrose-vs-growth"></div>
 
 <div class="caption">
 
-**Figure 13.** Sucrose excretion versus growth rate trade-off for
+**Figure 14.** Sucrose excretion versus growth rate trade-off for
 *S. elongatus* PCC 7942 carrying *cscB*, at CO₂/HCO₃⁻ =
 5.1 mmol·h<sup>−1</sup>. The near-linear relationship means that every
 unit of cyanobacterial growth is paid for in sucrose not exported,
@@ -1959,7 +1962,7 @@ currently unassigned.
 
 #### 8. Induce early and harvest at the product peak
 Not at a fixed endpoint, because product declines under protease loss
-once resources deplete (Figure 9 above).
+once resources deplete (Figure 10 above).
 
 </div>
 
