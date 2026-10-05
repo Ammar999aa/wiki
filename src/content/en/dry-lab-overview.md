@@ -874,16 +874,12 @@ a raw comparison of growth rates would flatter it for trivial reasons.
 
 **Result.**
 
-<div class="photo-frame">
-
-![Glucose versus sucrose for B. subtilis growth, total and per carbon.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/glucose-vs-suc-bascillus.avif)
-
-</div>
+<div data-chart="bacillus-glucose-vs-sucrose"></div>
 
 <div class="caption">
 
 **Figure 6.** Glucose versus sucrose for *B. subtilis*: total growth
-rate (left pair of panels) and growth per mmol of carbon (right pair),
+rate (left panel) and growth per mmol of carbon (right panel),
 under aerobic and anaerobic conditions. Sucrose wins on total growth in
 both conditions; per carbon atom the two are equivalent anaerobically,
 but glucose is the better substrate aerobically.

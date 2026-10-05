@@ -416,6 +416,36 @@ function BacillusAerobicAnaerobic() {
   );
 }
 
+function BacillusGlucoseVsSucrose() {
+  const d = data["bacillus-glucose-vs-sucrose"];
+  const mk = (aerKey, anaerKey) =>
+    ["glucose", "sucrose"].flatMap((sugar) => {
+      const name = sugar === "glucose" ? "Glucose" : "Sucrose";
+      return [
+        { label: `${name} aerobic`, value: d[sugar][aerKey], color: BLUE },
+        { label: `${name} anaerobic`, value: d[sugar][anaerKey], color: RED },
+      ];
+    });
+  return (
+    <ChartPanel
+      title="B. subtilis — glucose vs. sucrose"
+      sub="Uptake 5 mmol/gDW/h; 6 C per glucose, 12 C per sucrose."
+      legend={<Legend items={[{ label: "Aerobic", color: BLUE }, { label: "Anaerobic", color: RED }]} />}
+    >
+      <div className={styles.chartPair}>
+        <div>
+          <p className={styles.statLine}>Total growth rate (h⁻¹)</p>
+          <BarChart bars={mk("aerobic", "anaerobic")} formatValue={fmt(4)} />
+        </div>
+        <div>
+          <p className={styles.statLine}>Growth per mmol carbon (h⁻¹ / mmol C)</p>
+          <BarChart bars={mk("aerobicPerC", "anaerobicPerC")} formatValue={fmt(5)} />
+        </div>
+      </div>
+    </ChartPanel>
+  );
+}
+
 // ---- Cyanobacteria GEM sweeps ------------------------------------------
 function CyanoCo2Hco3() {
   const d = data["cyano-co2-hco3-bounds"];
@@ -549,6 +579,7 @@ const CHARTS = {
   "bacillus-fig9-multi-induction": <BacillusFig9 />,
   "yeast-aerobic-anaerobic": <YeastAerobicAnaerobic />,
   "bacillus-aerobic-anaerobic": <BacillusAerobicAnaerobic />,
+  "bacillus-glucose-vs-sucrose": <BacillusGlucoseVsSucrose />,
   "yeast-o2-sweep": <YeastO2Sweep />,
   "yeast-combined-production-vs-o2": <YeastCombinedProductionSweep />,
   "yeast-nanobody-by-construct": <YeastNanobodyByConstruct />,
