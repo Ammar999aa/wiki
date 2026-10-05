@@ -142,6 +142,37 @@
   }
 }
 
+// Icon badge + module title above the tab body.
+.tabHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+
+  h4 {
+    margin: 0;
+    color: white;
+    font-size: 1.1rem;
+  }
+}
+
+.tabIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--primary);
+  background: color-mix(in oklab, var(--primary) 22%, transparent);
+  color: var(--primary-200);
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .tabPanel p {
   margin: 0;
   color: rgba(255, 255, 255, 0.85);
@@ -149,6 +180,83 @@
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
+}
+
+// --- RolePlay -----------------------------------------------------------
+
+.voiceList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Same look as .tab, but squarer tiles so four roles fill the row evenly.
+.voice {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  padding: 12px 10px;
+  border-radius: var(--radius-xs);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: white;
+  }
+}
+
+.voiceOn {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+
+  &:hover {
+    border-color: var(--primary);
+  }
+}
+
+.voiceQuote {
+  position: relative;
+  padding: 4px 0 0 44px;
+
+  // Large opening quote mark as the visual anchor, in the panel's accent.
+  &::before {
+    content: "\201C";
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 3.6rem;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  p {
+    margin: 0 0 10px;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  span {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-400);
+  }
 }
 
 // --- MultiplierScale ---------------------------------------------------

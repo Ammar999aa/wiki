@@ -150,7 +150,8 @@ export function CloneStepper() {
 // Generic tab group shared by any section with several parallel,
 // substantial sub-topics a reader may want to switch between rather than
 // scroll through all of (currently: Kallpa's four course modules). Items:
-// [{ key, label, body }].
+// [{ key, label, body, icon?, title? }] — `icon` and `title` render as a
+// header row above the body in the panel (the pill itself stays text-only).
 export function Tabs({ items, ariaLabel }) {
   const [active, setActive] = useState(items[0]?.key);
   const current = items.find((it) => it.key === active) || items[0];
@@ -177,9 +178,103 @@ export function Tabs({ items, ariaLabel }) {
         role="tabpanel"
         aria-live="polite"
       >
+        {(current.icon || current.title) && (
+          <div className={styles.tabHead}>
+            {current.icon && <span className={styles.tabIcon}>{current.icon}</span>}
+            {current.title && <h4>{current.title}</h4>}
+          </div>
+        )}
         <p>{current.body}</p>
       </AnimatedSwap>
     </div>
+  );
+}
+
+// "Pick a voice" selector for the Week 4 role-play: one button per role,
+// the chosen role's question shown as a pull quote below. Items:
+// [{ key, role, question }].
+export function RolePlay({ items }) {
+  const [active, setActive] = useState(items[0]?.key);
+  const current = items.find((it) => it.key === active) || items[0];
+
+  return (
+    <div className={styles.try}>
+      <p className={styles.tryLabel}>Role-play: pick a voice</p>
+      <div className={styles.voiceList} role="tablist" aria-label="Role-play voices">
+        {items.map((it) => (
+          <button
+            key={it.key}
+            type="button"
+            role="tab"
+            aria-selected={it.key === active}
+            className={`${styles.voice} ${it.key === active ? styles.voiceOn : ""}`}
+            onClick={() => setActive(it.key)}
+          >
+            {it.role}
+          </button>
+        ))}
+      </div>
+      <AnimatedSwap
+        swapKey={active}
+        className={styles.voiceQuote}
+        role="tabpanel"
+        aria-live="polite"
+      >
+        <p>{current.question}</p>
+        <span>{current.role}</span>
+      </AnimatedSwap>
+    </div>
+  );
+}
+
+// Line icons for the Kallpa module tab panels (24×24 viewBox, stroked in
+// currentColor so the badge they sit in sets their color).
+const MODULE_ICON_PATHS = {
+  // Double helix: two crossing strands plus base-pair rungs.
+  dna: (
+    <>
+      <path d="M6 2c0 5 12 5 12 10S6 17 6 22" />
+      <path d="M18 2c0 5-12 5-12 10s12 5 12 10" />
+      <path d="M7.5 4h9M7 12h10M7.5 20h9" />
+    </>
+  ),
+  apple: (
+    <>
+      <path d="M12 7.5c-1.5-1.2-3-1.5-4.5-1.2C4.8 6.9 3.8 10 4.4 13c.8 4 3.2 7.5 5.3 7.5 1 0 1.4-.5 2.3-.5s1.3.5 2.3.5c2.1 0 4.5-3.5 5.3-7.5.6-3-.4-6.1-3.1-6.7-1.5-.3-3 0-4.5 1.2z" />
+      <path d="M12 7.5c0-2 .8-3.6 2.5-4.5" />
+    </>
+  ),
+  rocket: (
+    <>
+      <path d="M12 2.5c3 2.2 4.5 5.5 4.5 9.5v4h-9v-4c0-4 1.5-7.3 4.5-9.5z" />
+      <circle cx="12" cy="10" r="1.6" />
+      <path d="M7.5 12.5 5 15v3.5l2.5-2.5M16.5 12.5 19 15v3.5L16.5 16" />
+      <path d="M10.5 19v2.5M13.5 19v2.5" />
+    </>
+  ),
+  // Scales of justice.
+  justice: (
+    <>
+      <path d="M12 3v17M8 20.5h8M5 6.5h14" />
+      <path d="M5 6.5 2.5 12.5a2.5 2.5 0 0 0 5 0z" />
+      <path d="M19 6.5l-2.5 6a2.5 2.5 0 0 0 5 0z" />
+    </>
+  ),
+};
+
+export function ModuleIcon({ name }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {MODULE_ICON_PATHS[name]}
+    </svg>
   );
 }
 

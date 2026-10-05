@@ -172,6 +172,12 @@ Medium filter
 </div>
 ```
 
+**Modifier — `.card-grid.row`**: for a short set (2–4 cards) that should
+read side by side as one comparison, e.g. the three gaps in education.md's
+Kallpa section. The default 260px basis wraps the last card onto its own
+row in the article column; `class="card-grid row"` keeps every card on one
+row at equal widths on wide screens and still stacks them on narrow ones.
+
 **Don't** reach for `card-grid` when the items aren't actually parallel —
 three sequential process steps that depend on each other read better as an
 ordered list, or as a `.flow` if the sequence itself is the point.

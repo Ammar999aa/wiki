@@ -4,7 +4,7 @@ import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import education from "../../content/en/education.md";
 import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import { CloneStepper, Tabs, MultiplierScale } from "./components/Interactive";
+import { CloneStepper, Tabs, MultiplierScale, ModuleIcon, RolePlay } from "./components/Interactive";
 import { Principles, ProgramsGlance } from "./components/Overview";
 import MoratoriumDialogue from "./components/MoratoriumDialogue";
 import styles from "./Education.module.scss";
@@ -16,28 +16,46 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // and into data here so they can be presented as switchable tabs (see
 // components/Interactive.jsx's <Tabs>) instead of four stacked ####
 // subsections — the content itself is unchanged from what education.md
-// used to contain inline.
+// used to contain inline. One module per week, so the tabs are labelled by
+// week with the module name shown as the panel's heading.
 const KALLPA_MODULES = [
   {
     key: "m1",
-    label: "1. GMO fundamentals",
+    label: "Week 1",
+    icon: <ModuleIcon name="dna" />,
+    title: "GMO fundamentals",
     body: "We built a foundation in molecular biology, genetic modification and conventional breeding, covering DNA, the central dogma, genes, traits, gene expression and how genetic material is modified. Through examples, exercises and visual aids, we explained how genetic modification can produce specific changes and why different modifications give different results. This session gave everyone a shared scientific language.",
   },
   {
     key: "m2",
-    label: "2. Agriculture and food",
+    label: "Week 2",
+    icon: <ModuleIcon name="apple" />,
+    title: "Agriculture and food",
     body: "We applied those fundamentals to agriculture, exploring crop modification techniques and traits such as pest resistance and tolerance to extreme conditions. We focused on a crop that matters to local farming communities, the tomato. Volunteers analyzed the microorganisms that cause tomato diseases, how they spread, their symptoms and why they are hard to control. We then introduced greenhouses, which Kallpa Greenz builds across Peru. Together, volunteers worked through one question: how can we use biological knowledge to solve a problem a farmer actually faces?",
   },
   {
     key: "m3",
-    label: "3. Emerging technologies",
+    label: "Week 3",
+    icon: <ModuleIcon name="rocket" />,
+    title: "Emerging technologies",
     body: "We expanded into gene editing and CRISPR, controlled-environment agriculture and food production in space, linking them to space biomanufacturing and the biological systems space missions depend on. This connected Kallpa's hydroponics work to our own project, SHIHAB.",
   },
   {
     key: "m4",
-    label: "4. Law, ethics and society",
+    label: "Week 4",
+    icon: <ModuleIcon name="justice" />,
+    title: "Law, ethics and society",
     body: "We examined the Peruvian laws and organizations involved in GMO decision-making. In role-playing activities, volunteers represented consumers, farmers, indigenous communities, scientists and other groups. We discussed farmers' rights, regulation, and ethical and social concerns, so participants could weigh these perspectives and form their own informed opinions.",
   },
+];
+
+// The role-play from Week 4 (Law, ethics and society): the question each
+// role brings to the GMO debate. Shown after the module tabs.
+const ROLE_PLAY_VOICES = [
+  { key: "consumers", role: "Consumers", question: "Is it safe to eat? Will labels tell me what I am buying?" },
+  { key: "farmers", role: "Farmers", question: "Will it protect my crops, cut costs, and keep my rights over seeds?" },
+  { key: "indigenous", role: "Indigenous", question: "How does it affect our lands, seeds and traditional knowledge?" },
+  { key: "scientists", role: "Scientists", question: "What does the evidence say, and how do we communicate the limits?" },
 ];
 
 // Attaches rich per-section JSX (SectionedArticle/Article.jsx's `content`
@@ -71,6 +89,7 @@ function withInteractiveContent(sections) {
             <MultiplierScale />
             <h3>The four modules</h3>
             <Tabs items={KALLPA_MODULES} ariaLabel="Course modules" />
+            <RolePlay items={ROLE_PLAY_VOICES} />
           </>
         ),
       };

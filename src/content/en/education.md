@@ -104,13 +104,37 @@ To understand the situation on the ground, we partnered with Kallpa Greenz, a Pe
 
 Through several interviews with the project leader, we identified three gaps:
 
-1. Many farmers in rural areas lack access to the scientific concepts behind the technologies being debated.
-2. Reliable scientific information is unequally available, because few educational resources are tailored to rural farming contexts.
-3. There is no sustainable, replicable educational model that can be rolled out to new communities and new generations of mentors.
+<div class="card-grid row">
+
+<div>
+
+#### Knowledge Gap
+
+Many farmers in rural areas lack access to the scientific concepts behind the technologies being debated.
+
+</div>
+
+<div>
+
+#### Access Gap
+
+Reliable scientific information is unequally available, because few educational resources are tailored to rural farming contexts.
+
+</div>
+
+<div>
+
+#### Model Gap
+
+There is no sustainable, replicable educational model that can be rolled out to new communities and new generations of mentors.
+
+</div>
+
+</div>
 
 ### Our Educational Strategy: A Multiplier Model
 
-We chose a train-the-trainer, or multiplier, model: KAUST iGEM trains Kallpa's youth volunteers, who then run weekly in-person sessions with rural farmers. Our goal was not to push volunteers toward a particular stance on GMOs, but to give them the knowledge and tools to understand what GMOs are, how they work, how they are used, and how they are regulated. We organized the course into four connected modules, with Prof. Mark Tester advising on its design.
+We chose a train-the-trainer, or multiplier, model: KAUST iGEM trains Kallpa's youth volunteers, who then run weekly in-person sessions with rural farmers. Our goal was not to push volunteers toward a particular stance on GMOs, but to give them the knowledge and tools to understand what GMOs are, how they work, how they are used, and how they are regulated. We organized the course into four connected modules.
 
 ## Tawasol Hackathon
 

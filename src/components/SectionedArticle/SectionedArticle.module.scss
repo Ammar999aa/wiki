@@ -517,6 +517,27 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   // 260px basis leaves mostly empty tiles; a smaller basis packs more,
   // appropriately snug cards per row instead. Add alongside the base
   // class: `class="card-grid compact"`.
+  // Modifier that keeps every card on one row (equal widths) instead of
+  // wrapping at the 260px basis — for a short set (2–4 cards) that reads as
+  // one comparison. Still stacks on narrow screens. Usage:
+  // `class="card-grid row"`.
+  :global(.card-grid.row) {
+    @media (min-width: 701px) {
+      flex-wrap: nowrap;
+
+      & > div {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 18px 18px;
+      }
+
+      // Justified text opens wide word gaps in cards this narrow.
+      p {
+        text-align: left;
+      }
+    }
+  }
+
   :global(.card-grid.compact) {
     gap: 8px;
 
