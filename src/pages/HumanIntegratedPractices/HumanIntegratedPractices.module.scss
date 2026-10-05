@@ -12,39 +12,41 @@
     &::before {
         content: "";
         position: absolute;
-        inset-inline-start: 11px;
+        inset-inline-start: 20px;
         top: 0;
         bottom: 0;
         border-inline-start: 2px dashed rgba(255, 255, 255, 0.25);
+        transform: translateX(-50%);
     }
 }
 
 .orbitStep {
     position: relative;
     display: grid;
-    grid-template-columns: 24px 1fr;
+    grid-template-columns: 40px 1fr;
     column-gap: 16px;
     align-items: center;
     padding-block: 16px;
 }
 
-.orbitConnector {
+// The round step icon sits on the dashed spine, same as on the person cards.
+// Doubled selector: the article-wide `img { margin: 12px }` rule would
+// otherwise win and push the icon 12px right of the spine.
+.orbitTimeline .orbitIcon {
+    margin: 0;
+    cursor: default;
+    pointer-events: none; // decorative: don't open the article lightbox
     grid-column: 1;
     grid-row: 1;
-    height: 0;
     position: relative;
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset-inline-start: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: var(--accent);
-    }
+    justify-self: start;
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    // clip-path, not border-radius: the source art isn't a perfect circle.
+    clip-path: circle(50%);
+    background: var(--bg, #0a0a27);
 }
 
 .orbitBody {
@@ -172,4 +174,352 @@
         justify-self: start;
         text-align: start;
     }
+}
+
+// Our Values: 2x2 grid of flip cards. Both faces share one grid cell so the
+// card is as tall as its longer face and the back text is never clipped.
+.valuesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-block: 24px;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.valueCard {
+    all: unset;
+    box-sizing: border-box;
+    display: block;
+    cursor: pointer;
+    perspective: 1000px;
+    border-radius: var(--radius-md);
+    --tone: var(--primary);
+
+    &[data-tone="blue"] {
+        --tone: var(--tertiary);
+    }
+
+    &[data-tone="amber"] {
+        --tone: var(--amber);
+    }
+
+    &[data-tone="green"] {
+        --tone: #3ddc97;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--tone);
+        outline-offset: 3px;
+    }
+}
+
+.valueInner {
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    .valueCard[data-flipped="true"] & {
+        transform: rotateY(180deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.valueFace {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 240px;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid color-mix(in oklab, var(--tone) 55%, transparent);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.valueFront {
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    background: linear-gradient(
+        160deg,
+        color-mix(in oklab, var(--tone) 38%, transparent),
+        color-mix(in oklab, var(--tone) 12%, transparent)
+    );
+}
+
+.valueName {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.valueHint {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.valueBack {
+    transform: rotateY(180deg);
+    gap: 10px;
+    text-align: start;
+    background: color-mix(in oklab, var(--tone) 16%, #0a0a27);
+}
+
+.valueBackTitle {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tone);
+}
+
+.valueText {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+// Our IHP Journey at a Glance: 3x3 tiles in the Home page's "Explore" card style
+// (Home.module.scss .xcard): glass card, mono number, corner arrow, photo that
+// wakes up on hover, glow line along the bottom. Titles only by default; the
+// description reveals on hover/focus (always shown where there's no hover).
+.glance {
+    margin-block: 8px 24px;
+}
+
+.glanceGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    // start, not the default stretch: a hovered tile grows to fit its description
+    // without dragging the other tiles in its row taller with it.
+    align-items: start;
+    // Lets .glanceCol size itself from the grid's width (see --col-h) so tiles stay 16:9.
+    container-type: inline-size;
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
+
+// Wide screens: each column is a fixed-height stack of three tiles. Hovering one
+// raises its flex-grow and lowers its neighbours', so the column (and the whole
+// grid) keeps the same height while the hovered tile opens up for its text.
+// Tweak the three numbers below to taste: column height, hovered grow, others' grow.
+.glanceCol {
+    // Three 16:9 tiles plus two 18px gaps, where one column is (grid width - 2 gaps) / 3 wide.
+    // That works out to height = (100cqw - 36px) * 0.5625 + 36px.
+    --col-h: calc((100cqw - 36px) * 0.5625 + 36px);
+    --grow-hover: 1.6;
+    --grow-others: 0.7;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: var(--col-h);
+
+    .glanceTile {
+        flex: 1 1 0;
+        min-height: 0;
+    }
+
+    &:has(.glanceTile:hover, .glanceTile:focus-visible) .glanceTile {
+        flex-grow: var(--grow-others);
+    }
+
+    &:has(.glanceTile:hover, .glanceTile:focus-visible) .glanceTile:hover,
+    &:has(.glanceTile:hover, .glanceTile:focus-visible) .glanceTile:focus-visible {
+        flex-grow: var(--grow-hover);
+    }
+
+    // Narrower screens: no shared columns; tiles flow back into the 2/1-column grid.
+    @media (max-width: 900px) {
+        display: contents;
+
+        .glanceTile {
+            aspect-ratio: 16 / 9;
+        }
+    }
+}
+
+.glanceTile {
+    all: unset;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    color: #fff;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s ease, background 0.3s ease, flex-grow 0.4s ease;
+
+    // The photo sits on a layer behind the content, under a dark overlay, so it
+    // reads as the card "waking up" on hover rather than switching to a photograph.
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(155deg, rgba(6, 4, 20, 0.55) 0%, rgba(20, 8, 42, 0.4) 55%, rgba(30, 14, 58, 0.25) 100%),
+            var(--tile-photo, none);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.7;
+        // Zoomed in at rest; the hover rule below eases it out to scale(1).
+        // Raise 1.15 for a closer crop at rest (and a bigger zoom-out).
+        transform: scale(1.15);
+        transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-6px);
+        border-color: rgba(177, 109, 255, 0.45);
+        background: rgba(255, 255, 255, 0.07);
+
+        &::before {
+            opacity: 0.8;
+            transform: scale(1);
+        }
+
+        .glanceArrow {
+            transform: translate(4px, -4px);
+            color: var(--primary-300);
+        }
+
+        .glanceGlow {
+            opacity: 0.8;
+        }
+
+        .glanceBody {
+            max-height: 14em;
+            opacity: 1;
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+
+    @media (max-width: 560px) {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &::before {
+            transition: none;
+        }
+
+        &:hover,
+        &:focus-visible {
+            transform: none;
+        }
+    }
+}
+
+.glanceNum,
+.glanceText {
+    position: relative;
+    z-index: 1;
+}
+
+.glanceNum {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.58);
+}
+
+.glanceArrow {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+
+    @media (max-width: 560px) {
+        top: 18px;
+        right: 18px;
+    }
+}
+
+.glanceTitle {
+    display: block;
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+
+    @media (max-width: 560px) {
+        font-size: 1.2rem;
+    }
+}
+
+.glanceBody {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+
+    .glanceTile:hover &,
+    .glanceTile:focus-visible & {
+        margin-top: 8px;
+    }
+
+    @media (hover: none) {
+        max-height: none;
+        opacity: 1;
+        margin-top: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.glanceGlow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
