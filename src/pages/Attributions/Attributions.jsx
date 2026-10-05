@@ -70,7 +70,7 @@ const students = [
   { key: "nadia",         title: "Nadia Houti",                    photo: nadia,     deptKey: "hardware" },
   { key: "hassan",        title: "Hassan Abuali",                  photo: hassan,    deptKey: "hardware" },
   { key: "shahad",        title: "Shahad Hersi",                   photo: shahad,    deptKey: "publicEngagement" },
-  { key: "genesis",       title: "Génesis Flores Arroyo",          photo: genesis,   deptKey: "publicEngagement" },
+  { key: "genesis",       title: "Génesis Arroyo",                 photo: genesis,   deptKey: "publicEngagement" },
   { key: "raheema",       title: "Raheema Javid",                  photo: raheema,   deptKey: "publicEngagement" },
   { key: "mariaFernanda", title: "Maria Fernanda Gutierrez",       photo: mafer,     deptKey: "humanPractices" },
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },

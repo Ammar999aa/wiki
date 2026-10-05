@@ -173,7 +173,7 @@ Background in biology with clinical and infectious disease research experience a
 
 ---
 
-### Génesis Flores Arroyo
+### Génesis Arroyo
 
 Background in Bioengineering.
 
