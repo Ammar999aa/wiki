@@ -5,6 +5,7 @@ import education from "../../content/en/education.md";
 import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import { CloneStepper, Tabs, MultiplierScale } from "./components/Interactive";
+import { Principles, ProgramsGlance } from "./components/Overview";
 import styles from "./Education.module.scss";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
@@ -43,6 +44,12 @@ const KALLPA_MODULES = [
 // rendered markdown — see .claude/ARTICLE-STANDARDS.md on this pattern.
 function withInteractiveContent(sections) {
   return sections.map((section) => {
+    if (section.title === "Overview") {
+      return { ...section, content: <Principles /> };
+    }
+    if (section.title === "Our Programs at a Glance") {
+      return { ...section, content: <ProgramsGlance /> };
+    }
     if (section.title === "Copy Paste Plants") {
       return { ...section, content: <CloneStepper /> };
     }

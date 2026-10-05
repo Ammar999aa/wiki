@@ -6,54 +6,11 @@ At KAUST iGEM, our vision goes beyond the bench. We believe public literacy and 
 
 Our education work is built on four principles:
 
-<div class="card-grid">
-
-<div>
-
-#### Arabic-first
-
-We design materials in Arabic from the start, rather than translating them as an afterthought.
-
-</div>
-
-<div>
-
-#### Hands-on
-
-Every program asks learners to do, build or decide something, not just listen.
-
-</div>
-
-<div>
-
-#### Tailored to the audience
-
-From elementary students cloning plants to undergraduates writing policy, each program meets learners where they are.
-
-</div>
-
-<div>
-
-#### Built to multiply
-
-We train mentors and volunteers who carry the material further than our own team could reach.
-
-</div>
-
-</div>
+<!-- The four principle cards are rendered by <Principles /> in src/pages/Education/components/Overview.jsx -->
 
 ## Our Programs at a Glance
 
-<div class="ladder">
-
-<a href="#copy-paste-plants" style="--h:120px"><b>Copy Paste Plants</b><span>Elementary students and families</span></a>
-<a href="#school-outreach" style="--h:160px"><b>School Outreach</b><span>Secondary school students</span></a>
-<a href="#summer-mentorship-program" style="--h:200px"><b>Summer Mentorship</b><span>High school and undergraduates</span></a>
-<a href="#tawasol-hackathon" style="--h:240px"><b>Tawasol Hackathon</b><span>Grades 10&ndash;12 and undergraduates</span></a>
-<a href="#kallpa-multiplier-mentorship-peru" style="--h:280px"><b>Kallpa Mentorship</b><span>Youth volunteers who teach rural farmers</span></a>
-
-</div>
-<div class="ladder-axis"><span>First encounter</span><span>Teaching others</span></div>
+<!-- Rendered by <ProgramsGlance /> in src/pages/Education/components/Overview.jsx -->
 
 ## Copy Paste Plants
 
