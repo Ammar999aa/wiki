@@ -207,6 +207,7 @@
         align-items: center;
         gap: 16px;
         height: min(85vh, 640px);
+        height: min(85dvh, 640px); // dvh: phone browser toolbars shrink the real viewport
         padding: 30px 22px 26px;
     }
 
@@ -215,8 +216,12 @@
         height: 110px;
     }
 
+    // In this column layout a flex item won't shrink below its content height
+    // unless min-height is 0, so without it .bio grew past the card and .body
+    // never became the scroller (the write-up was cut off, not scrollable).
     .bio {
         align-self: stretch;
+        min-height: 0;
     }
 
     .bio h2 {

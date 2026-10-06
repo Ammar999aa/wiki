@@ -582,7 +582,7 @@ How does society understand and perceive this technology?
 
 </div>
 
-### Anticipating Our Impact
+## Anticipating Our Impact
 
 SHIHAB was developed with the goal of increasing access to therapeutic production in environments where conventional pharmaceutical supply chains may be difficult to rely on. However, a technology intended to operate in challenging environments can also introduce new risks, dependencies, and uncertainties. Throughout our Human Practices journey, we tried to identify these limitations alongside SHIHAB's potential benefits. We did not address every question, nor do we consider every risk resolved. Some concerns influenced decisions we could make during this iGEM season, while others revealed gaps that will require further research, testing, or engagement before SHIHAB could move toward real-world implementation.
 
