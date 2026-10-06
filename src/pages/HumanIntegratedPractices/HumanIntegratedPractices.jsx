@@ -22,9 +22,15 @@ const CONTENT_BY_TITLE = {
   "Defining Our Stakeholders": <JigsawTable items={jigsawItems} />,
 };
 
-const sections = rawSections.map((section) =>
-  CONTENT_BY_TITLE[section.title] ? { ...section, content: CONTENT_BY_TITLE[section.title] } : section
-);
+// Sections kept in the markdown but hidden for now, to be revisited. Remove a
+// title from this list to show that section again.
+const HIDDEN_TITLES = ["Our IHP Journey at a Glance"];
+
+const sections = rawSections
+  .filter((section) => !HIDDEN_TITLES.includes(section.title))
+  .map((section) =>
+    CONTENT_BY_TITLE[section.title] ? { ...section, content: CONTENT_BY_TITLE[section.title] } : section
+  );
 
 // Eyebrow echoes the nav trail ("Beyond the Lab" dropdown → "Integrated
 // Human Practices") the reader clicked.
