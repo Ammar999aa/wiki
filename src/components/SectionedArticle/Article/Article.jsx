@@ -8,17 +8,18 @@ import PersonModal from "../PersonModal/PersonModal";
 const RETURN_KEY = "person-modal-return";
 
 function personFromCard(card, cardIndex) {
-  const img = card.querySelector(".person-photo");
-  const photoStyle = {};
-  ["--photo-x", "--photo-y", "--photo-zoom"].forEach((prop) => {
-    const value = img?.style.getPropertyValue(prop);
-    if (value) photoStyle[prop] = value.trim();
+  const photos = [...card.querySelectorAll(".person-photo")].map((img) => {
+    const style = {};
+    ["--photo-x", "--photo-y", "--photo-zoom-y", "--photo-zoom"].forEach((prop) => {
+      const value = img.style.getPropertyValue(prop);
+      if (value) style[prop] = value.trim();
+    });
+    return { src: img.currentSrc || img.src, alt: img.alt, style };
   });
   return {
     cardIndex,
     name: card.querySelector(".person-name")?.textContent ?? "",
-    photo: img?.currentSrc || img?.src,
-    photoStyle,
+    photos,
     html: card.querySelector(".person-more")?.innerHTML ?? "",
   };
 }

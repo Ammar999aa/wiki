@@ -113,8 +113,8 @@ const Pages = [
     name: "Beyond the Lab",
     folder: [
       {
-        name: "Human Integrated Practices",
-        title: "Human Integrated Practices",
+        name: "Integrated Human Practices",
+        title: "Integrated Human Practices",
         path: "/human-integrated-practices",
         component: HumanIntegratedPractices,
       },

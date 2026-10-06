@@ -9,12 +9,12 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 export default function PersonModal({ person, onClose, onInternalLink }) {
   const closeRef = useRef(null);
-  const backdropRef = useRef(null);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
     if (!person) return undefined;
     closeRef.current?.focus({ preventScroll: true });
-    if (backdropRef.current) backdropRef.current.scrollTop = person.initialScroll ?? 0;
+    if (bodyRef.current) bodyRef.current.scrollTop = person.initialScroll ?? 0;
     const onKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
@@ -34,13 +34,13 @@ export default function PersonModal({ person, onClose, onInternalLink }) {
     const href = link?.getAttribute("href");
     if (!href?.startsWith(`${BASE}/`) || link.target || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
-    onInternalLink(href.slice(BASE.length), backdropRef.current?.scrollTop ?? 0);
+    onInternalLink(href.slice(BASE.length), bodyRef.current?.scrollTop ?? 0);
   };
 
   if (!person) return null;
 
   return createPortal(
-    <div ref={backdropRef} className={styles.backdrop} onClick={onClose}>
+    <div className={styles.backdrop} onClick={onClose}>
       <div
         className={styles.panelWrap}
         role="dialog"
@@ -48,15 +48,21 @@ export default function PersonModal({ person, onClose, onInternalLink }) {
         aria-labelledby="person-modal-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09} grain drift>
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.09} grain>
           <div className={styles.panel}>
             <button ref={closeRef} type="button" className={styles.close} onClick={onClose} aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            {person.photo && <img src={person.photo} alt={person.name} className={styles.photo} style={person.photoStyle} />}
+            {person.photos.length > 0 && (
+              <div className={styles.photos}>
+                {person.photos.map((photo) => (
+                  <img key={photo.src} src={photo.src} alt={photo.alt} className={styles.photo} style={photo.style} />
+                ))}
+              </div>
+            )}
             <div className={styles.bio}>
               <h2 id="person-modal-title">{person.name}</h2>
-              <div className={styles.body} onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: person.html }} />
+              <div ref={bodyRef} className={styles.body} onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: person.html }} />
             </div>
           </div>
         </LiquidGlass>
