@@ -87,13 +87,33 @@ const ScrollEngine = {
   },
 };
 
-function useScene(ref, range, onUpdate) {
+// Animations play once. A scene animates normally on the first pass, then
+// latches "static" the first time its section has scrolled completely out
+// of view past the top — chosen as the latch point so the switch is never
+// on screen. From then on it's pinned to `peak` (the progress at which its
+// content is fully revealed), so scrolling back up shows the content sitting
+// still instead of replaying the reveal/fade-out in reverse. Static calls
+// pass `inView` as the second arg for the fixed-position credits, which
+// have no section of their own to scroll away with; they're deduped on it
+// since `peak` itself never changes.
+function useScene(ref, range, onUpdate, peak = 1) {
   const cb = useRef(onUpdate);
   cb.current = onUpdate;
+  const doneRef = useRef(false);
+  const lastViewRef = useRef(null);
   useEffect(() => {
     return ScrollEngine.add((y) => {
       const el = ref.current;
       if (!el) return;
+      const end = el.offsetTop + el.offsetHeight;
+      if (!doneRef.current && y >= end) doneRef.current = true;
+      if (doneRef.current) {
+        const inView = y + window.innerHeight > el.offsetTop && y < end;
+        if (inView === lastViewRef.current) return;
+        lastViewRef.current = inView;
+        cb.current(peak, inView);
+        return;
+      }
       const p = clamp01((y - el.offsetTop) / (window.innerHeight * range));
       cb.current(p);
     });
@@ -102,15 +122,22 @@ function useScene(ref, range, onUpdate) {
 
 // Like useScene, but hands back raw "viewport-heights scrolled past ref"
 // instead of a single 0–1 progress — for elements (like EarthLayer) whose
-// motion spans more than one section, each with its own phase.
-function useScrollUnits(ref, onUpdate) {
+// motion spans more than one section, each with its own phase. Same
+// play-once latch as useScene (second arg `isStatic`), but the callback
+// keeps receiving live units so a fixed-position layer can still scroll
+// away with its section; `latchAfter` (viewport-heights past the end of
+// ref) delays the latch for a layer that overhangs its section.
+function useScrollUnits(ref, onUpdate, latchAfter = 0) {
   const cb = useRef(onUpdate);
   cb.current = onUpdate;
+  const doneRef = useRef(false);
   useEffect(() => {
     return ScrollEngine.add((y) => {
       const el = ref.current;
       if (!el) return;
-      cb.current((y - el.offsetTop) / window.innerHeight);
+      const units = (y - el.offsetTop) / window.innerHeight;
+      if (!doneRef.current && units >= el.offsetHeight / window.innerHeight + latchAfter) doneRef.current = true;
+      cb.current(units, doneRef.current);
     });
   }, []);
 }
@@ -264,7 +291,7 @@ function HeroSection() {
       copyRef.current.style.transform = `translateY(${-p * 50}px)`;
       copyRef.current.style.opacity = 1 - between(p, 0.84, 1);
     }
-  });
+  }, 0.7); // static pose: Arabic wordmark in, copy still visible
 
   return (
     <section className={styles.hero} ref={ref}>
@@ -340,9 +367,19 @@ function EarthLayer({ groupRef }) {
   // for the rest of the page — see the comment where it's used.
   const hiddenRef = useRef(false);
 
-  useScrollUnits(groupRef, (units) => {
+  // Latched static (see useScrollUnits) only once the docked globe below
+  // would itself be off-screen, since it overhangs Orbit's bottom edge.
+  useScrollUnits(groupRef, (liveUnits, isStatic) => {
     const el = earthRef.current;
     if (!el) return;
+    // Static: the opening drift from Hero into the Orbit dock (0→3.15)
+    // still plays every time — it's the one exception to play-once — but
+    // the globe then holds at that docked pose instead of running the exit
+    // cinematic again, and is carried up off-screen with Orbit's content
+    // once its sticky box unpins (2 + 1.75 = 3.75 units), as if part of the
+    // page.
+    const units = isStatic ? Math.min(liveUnits, 3.15) : liveUnits;
+    const scrollAway = isStatic ? Math.max(0, liveUnits - 3.75) * 100 : 0;
     // One continuous drift spanning Hero → all of Orbit (not "up through
     // Hero, then reverse into the corner") — by the time Orbit's own
     // content starts revealing, Earth is essentially docked bottom-right.
@@ -385,7 +422,7 @@ function EarthLayer({ groupRef }) {
     const growT = between(units, 3.15, 4.2);
     const growEase = smoothstep(growT);
     const left = lerp(79, 85, q) + growEase * (40 - 85);
-    const top = lerp(50, 78, q) + growEase * (48 - 78);
+    const top = lerp(50, 78, q) + growEase * (48 - 78) - scrollAway;
     const scale = lerp(1, 1.35, q) + growEase * (4.5 - 1.35);
     // `left`/`top` stay untouched (see .earthWrap) — this callback runs
     // every animation frame regardless of whether the value actually
@@ -419,7 +456,7 @@ function EarthLayer({ groupRef }) {
     // `display` on the one frame this actually flips (see hiddenRef above)
     // so scrolling through the rest of the page isn't forcing a style
     // recalc on it every frame for nothing.
-    const hide = purpleOut >= 1;
+    const hide = isStatic ? liveUnits > 5.3 : purpleOut >= 1;
     if (hide !== hiddenRef.current) {
       el.style.display = hide ? "none" : "";
       hiddenRef.current = hide;
@@ -463,7 +500,7 @@ function EarthLayer({ groupRef }) {
         }
       }
     }
-  });
+  }, 0.6);
 
   return (
     <>
@@ -532,7 +569,7 @@ function StatementSection({ range = 1.2, tag, decor, className = "", children })
       innerRef.current.style.opacity = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
       innerRef.current.style.transform = `translateY(${lerp(30, -30, p)}px)`;
     }
-  });
+  }, 0.5); // static pose: fully in, centered
 
   return (
     <section className={styles.tagline} ref={ref}>
@@ -590,9 +627,11 @@ function AstronautDecor() {
 function RocketLayer({ groupRef }) {
   const rocketRef = useRef(null);
 
-  useScrollUnits(groupRef, (units) => {
+  useScrollUnits(groupRef, (units, isStatic) => {
     const el = rocketRef.current;
     if (!el) return;
+    // Static (after the first pass): the launch already happened — stays gone.
+    if (isStatic) { el.style.opacity = 0; return; }
     // Slides up from below as slide 2 opens; holds at a fixed spot while
     // slide 2's text is on screen, then launches shortly after that text has
     // fully faded out (which happens at unit 1.2, when the pin ends) rather
@@ -641,6 +680,9 @@ function SlideAttributions({ rocketRef, astronautRef }) {
   const rocketLinkRef = useRef(null);
   const astronautLinkRef = useRef(null);
 
+  // Static: the rocket itself is gone (see RocketLayer), so its credit is
+  // too; the astronaut stays put in its slide, so its credit shows whenever
+  // that slide is on screen.
   useScene(rocketRef, 1.2, (p) => {
     const el = rocketLinkRef.current;
     if (!el) return;
@@ -649,10 +691,10 @@ function SlideAttributions({ rocketRef, astronautRef }) {
     el.style.pointerEvents = o > 0.05 ? "auto" : "none";
   });
 
-  useScene(astronautRef, 1.2, (p) => {
+  useScene(astronautRef, 1.2, (p, inView) => {
     const el = astronautLinkRef.current;
     if (!el) return;
-    const o = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
+    const o = inView !== undefined ? +inView : Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
     el.style.opacity = o;
     el.style.pointerEvents = o > 0.05 ? "auto" : "none";
   });
@@ -777,8 +819,8 @@ function OrbitSection({ groupRef }) {
   // just sitting there fully opaque underneath it. Starts at 3.1, just after
   // the reveal-in above finishes (~3.08) — any earlier and the last item
   // would still be fading in while the whole group started fading out.
-  useScrollUnits(groupRef, (units) => {
-    if (stickyRef.current) stickyRef.current.style.opacity = String(1 - smoothstep(between(units, 3.1, 3.5)));
+  useScrollUnits(groupRef, (units, isStatic) => {
+    if (stickyRef.current) stickyRef.current.style.opacity = isStatic ? "1" : String(1 - smoothstep(between(units, 3.1, 3.5)));
   });
 
   return (
@@ -909,7 +951,7 @@ function ProblemSection() {
   const textRefs = useRef([]);
   const cardRefs = useRef([]);
 
-  useScene(ref, 1.8, (p) => {
+  useScene(ref, 1.8, (p, inView) => {
     if (kickerRef.current) kickerRef.current.style.opacity = between(p, 0.0, 0.12);
     if (introRef.current) introRef.current.style.opacity = between(p, 0.04, 0.2);
     // Fixed above the nav dock, visible only while this slide's planets are
@@ -920,7 +962,7 @@ function ProblemSection() {
     // slides so only ever show one at a time; these three discs are all
     // visible together).
     if (attributionRef.current) {
-      const o = Math.min(between(p, 0.2, 0.4), 1 - between(p, 0.9, 1));
+      const o = inView !== undefined ? +inView : Math.min(between(p, 0.2, 0.4), 1 - between(p, 0.9, 1));
       attributionRef.current.style.opacity = `${o}`;
       attributionRef.current.style.pointerEvents = o > 0.05 ? "auto" : "none";
     }
@@ -997,7 +1039,7 @@ function ProblemSection() {
         textEl.style.transform = `translate(-50%, calc(-50% + ${lerp(14, 0, textP)}px))`;
       }
     });
-  });
+  }, 0.85); // static pose: all three planets landed, captions in, flares/pulses spent
 
   return (
     <section className={styles.problemSection} ref={ref}>
@@ -1097,14 +1139,18 @@ function RevealSection() {
   // purely to give the backdrop more room to hold and fade out slowly;
   // every other element's breakpoints below are scaled by 1.4/1.8 so their
   // absolute on-screen timing is unchanged from before the stretch.
-  useScene(ref, 1.8, (p) => {
+  useScene(ref, 1.8, (p, inView) => {
     // Backdrop: eases up quickly from the very start of the slide (unchanged
     // absolute pace), holds at its (subtle) peak for a long stretch, then
     // eases back out slowly near the end — `smoothstep` rounds off both
     // edges so the in/out never feels like a hard snap. Drifts upward a
     // handful of pixels the whole time, a slow parallax rather than
     // anything tied to the fade.
-    if (bgRef.current) {
+    // Static (after the first pass): the galaxy backdrop is gone for good —
+    // it's part of the initial reveal only, not the slide's resting state.
+    if (bgRef.current && inView !== undefined) {
+      bgRef.current.style.opacity = 0;
+    } else if (bgRef.current) {
       const envelope = Math.min(smoothstep(between(p, 0, 0.17)), 1 - smoothstep(between(p, 0.78, 1)));
       bgRef.current.style.opacity = envelope * 0.3;
       bgRef.current.style.transform = `translateY(${lerp(16, -16, p)}px)`;
@@ -1121,7 +1167,7 @@ function RevealSection() {
       arRef.current.style.transform = `scale(${lerp(0.82, 1, o)})`;
     }
     if (glossRef.current) glossRef.current.style.opacity = between(p, 0.48, 0.64);
-  });
+  }, 0.65); // static pose: backdrop at its hold, label + logo + Arabic + gloss all in
 
   return (
     <section className={styles.revealSection} ref={ref}>
