@@ -24,6 +24,8 @@ import styles from "./Hardware.module.scss";
 // rationale as StructureViewer's dynamic 3Dmol.js import: it's a large
 // dependency only this one page needs, so it shouldn't cost every other
 // route a bigger shared chunk.
+// Figure 5's caption lives in hardware.md, right after this component's
+// `data-slot="model"` marker (see Hardware.jsx).
 export default function BioreactorModel() {
   const [status, setStatus] = useState("loading"); // "loading" | "ready" | "error"
 
@@ -56,38 +58,33 @@ export default function BioreactorModel() {
     // component, not authored inline in markdown, so it isn't tied to that
     // shared vocabulary the way BioreactorModel's caller (Hardware.jsx)
     // still is for everything else on the page.
-    <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
-      <div className={styles.modelPanelInner}>
-        <div className={styles.modelPanelHeader}>
-          <span>Bioreactor stand · CAD model</span>
-          <span>Drag to rotate</span>
+    <div className={styles.glassFigure}>
+      <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
+        <div className={styles.modelPanelInner}>
+          <div className={styles.modelViewerWrap}>
+            {status === "ready" && (
+              // model-viewer's own attributes (kebab-case, per its
+              // custom-element API), not DOM/React props.
+              <model-viewer
+                src={bioreactorGlb}
+                alt="Interactive 3D CAD model of the SHIHAB bioreactor: a glass bottle vessel with rotor, held by four supports under the electronics tray"
+                ar
+                ar-src={bioreactorUsdz}
+                ar-modes="webxr scene-viewer quick-look"
+                camera-controls
+                auto-rotate={!reducedMotion}
+                shadow-intensity="1"
+                exposure="1"
+                camera-orbit="35deg 75deg 105%"
+              />
+            )}
+            {status === "loading" && <div className={styles.modelStatus}>Loading 3D model…</div>}
+            {status === "error" && (
+              <div className={styles.modelStatus}>Couldn&rsquo;t load the 3D model.</div>
+            )}
+          </div>
         </div>
-        <div className={styles.modelViewerWrap}>
-          {status === "ready" && (
-            // model-viewer's own attributes (kebab-case, per its
-            // custom-element API), not DOM/React props.
-            <model-viewer
-              src={bioreactorGlb}
-              ar
-              ar-src={bioreactorUsdz}
-              ar-modes="webxr scene-viewer quick-look"
-              camera-controls
-              auto-rotate={!reducedMotion}
-              shadow-intensity="1"
-              exposure="1"
-              camera-orbit="35deg 75deg 105%"
-            />
-          )}
-          {status === "loading" && <div className={styles.modelStatus}>Loading 3D model…</div>}
-          {status === "error" && (
-            <div className={styles.modelStatus}>Couldn&rsquo;t load the 3D model.</div>
-          )}
-        </div>
-        <p className={styles.modelCaption}>
-          The reactor frame, stirrer motor, and vessel, modeled to scale. On an iPhone or iPad,
-          open this page in Safari and tap the AR icon to place it at full size.
-        </p>
-      </div>
-    </LiquidGlass>
+      </LiquidGlass>
+    </div>
   );
 }

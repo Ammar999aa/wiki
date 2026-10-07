@@ -1,7 +1,7 @@
 /* Hosted on iGEM's own asset server (static.igem.wiki) rather than bundled
    locally — satisfies requirements §1 (no runtime requests to third-party
    CDNs) since igem.wiki is the team's own infrastructure, not external. */
-/* Licensed under the SIL Open Font License 1.1 — see the OFL.txt in each font's folder (kept locally as license/provenance paperwork, not a runtime asset) and the Footer credit. */
+/* Licensed under the SIL Open Font License 1.1 — see src/assets/fonts/<Font>/OFL.txt (kept locally as license/provenance paperwork, not a runtime asset; the served .woff2 files also carry the license in their own metadata), the Footer credit for Inter/Aref Ruqaa, and the credit under the Hardware page's dashboard for Silkscreen. */
 
 /* No italic @font-face: dropped (~900KB) to fit GitLab CI's artifact size
    limit. font-style: italic usages (SectionedArticle/SectionedPage <em>,
@@ -38,6 +38,26 @@
 @font-face {
   font-family: "Aref Ruqaa";
   src: url("https://static.igem.wiki/teams/6341/wiki/fonts/arefruqaa-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pixel font for the Hardware page's bioreactor dashboard simulation (the
+   LCD look — see BioreactorDashboard.jsx). Latin subset only. Until these
+   two files are uploaded the dashboard just falls back to the system
+   monospace. */
+@font-face {
+  font-family: "Silkscreen";
+  src: url("https://static.igem.wiki/teams/6341/wiki/fonts/silkscreen-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("https://static.igem.wiki/teams/6341/wiki/fonts/silkscreen-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

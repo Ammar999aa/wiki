@@ -50,7 +50,8 @@ the spacing, not just the tags.
 
 Inline classes (`.chip`, `.flow-node`, `.flow-arrow`) don't have this
 problem — `<span>` is inline HTML, `marked` leaves it alone mid-paragraph,
-so no blank lines are needed around those.
+so no blank lines are needed around those (and inside `.flow` there should
+be none — see `.flow` below).
 
 ## Quick reference
 
@@ -67,6 +68,10 @@ so no blank lines are needed around those.
 | A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
 | A photo/render whose own background is opaque light/white                                                      | `.photo-frame`                                                  | Dark matted card around the image                                         |
 | The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
+| A row of figures, each with its own caption                                                                    | `.figure-grid`                                                  | Even columns of matted photos with captions, optional equal heights       |
+| Parallel items whose full text is too long to show inline (features, subsystems)                               | `.popup-grid` + `.popup-card`                                   | Clickable tiles; each opens its hidden content in a popup                 |
+| A design iteration told as Design → Build → Test → Learn                                                       | `.iter-list` + `.iter`                                          | Numbered card, one row per stage with a colored label pill                |
+| A short key/value table (summary statistics), no header row                                                    | `table.kv-table` in a `.table-wrap`                             | Row headers on the left, values on the right                              |
 | A sourced claim that needs an in-text citation, plus the reference list it points to                           | `.cite` + `.ref-list`                                           | Small mono numeral, dotted underline; clicking scrolls to the reference |
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
 | A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
@@ -212,15 +217,18 @@ mono convention) and joined by arrow spans.
 
 ```md
 <div class="flow">
-
 <span class="flow-node amber">Temperature sensor</span>
 <span class="flow-arrow">→</span>
 <span class="flow-node">PID control</span>
 <span class="flow-arrow">→</span>
 <span class="flow-node amber">Flexible heating element</span>
-
 </div>
 ```
+
+**No blank lines inside `.flow`.** With blank lines, `marked` wraps the
+spans in one `<p>`, so they wrap like a sentence and a long row strands an
+arrow at the end of a line. Without them each node is its own flex item:
+the row stays on one line and long labels wrap inside their node.
 
 `amber`/`accent` on a node are optional tint modifiers, typically used for
 the two ends of a loop (sensing vs. actuation) while the shared
@@ -372,6 +380,19 @@ page's popup — `PersonModal.jsx`, wired up in `Article.jsx`):
 
 Leave both out if there's no longer write-up yet.
 
+**Quote variant.** For something the person said, put an optional
+`<p class="person-role">` under the name and the words in a `<blockquote>`
+(see hardware.md's "Beyond space"):
+
+```md
+<div class="person-card">
+<img class="person-photo" src="https://static.igem.wiki/..." alt="Portrait of Full Name">
+<h4 class="person-name">Full Name</h4>
+<p class="person-role">Their role and organisation</p>
+<blockquote><p>What they said, verbatim.</p></blockquote>
+</div>
+```
+
 ### `.photo-frame` — mat a photo whose own background is opaque
 
 An image that's already dark, or transparent, or sits on its own
@@ -427,6 +448,112 @@ CFUs across 10–40 Gy, consistent with literature radiation-resistance
 profiles" interprets. Model's whole `Caption` convention (see
 ARTICLE-STANDARDS.md §2, §3) exists to make that distinction visible —
 don't let this class regress back to a label with a number in front of it.
+
+### `.figure-grid` — a row of figures, each with its own caption
+
+`.two-col-images` pairs two images; when each image needs its own
+`.caption`, or there are three or four, use `.figure-grid`. Write it as
+plain HTML, one `<figure>` per line (no blank lines needed):
+
+```md
+<div class="figure-grid" style="--cols: 3; --fig-h: 160px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/..." alt="..."></div><figcaption class="caption"><strong>Figure 15. What to notice.</strong> More detail.</figcaption></figure>
+<figure>…</figure>
+</div>
+```
+
+- `--cols` sets the column count (default 2; one column on phones).
+- `--fig-h` gives every image the same height so captions line up;
+  `--fig-fit: cover` crops to fill it (default `contain` letterboxes).
+  `.photo-frame.contain` keeps one image uncropped in a `cover` grid.
+- `class="figure-grid single"` is one figure, centered at a readable
+  420px max; `single wide` lets it fill the column (charts, diagrams).
+
+### `.popup-grid` + `.popup-card` — tiles that open a popup
+
+For a set of parallel items (features, subsystems) where each has more
+text than belongs on the page. Each card's face is a button; clicking it
+opens the card's hidden `.popup-more` content in the same popup
+`.person-card`'s "See more" uses (`Article.jsx` → `PersonModal`), with the
+card's `.popup-title` as its heading. Links to the same page (citations,
+`#section-id`) close the popup and scroll there. The popup styles tables,
+`.table-wrap`, `.caption`, `####` subheadings and `.cite` marks.
+
+Keep each `<button>` on one line, and leave blank lines around the
+markdown inside `.popup-more`:
+
+```md
+<div class="popup-grid">
+
+<div class="popup-card">
+<button type="button" class="popup-open"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">Low power demand</span><span class="popup-hint">Tap to read more</span></span></button>
+<div class="popup-more">
+
+Popup markdown — paragraphs, tables, `#### Subheadings`, citations...
+
+</div>
+</div>
+
+</div>
+```
+
+The face takes either a `.popup-num` (numbered, beside the title) or a
+`.popup-icon` holding an inline SVG (above the title), then inside
+`.popup-face`: `.popup-title`, an optional `.popup-desc` line or
+`svg.popup-art` illustration, and `.popup-hint`.
+
+**Don't** hide content a reader needs to follow the page's argument in a
+popup — only the detail behind a tile that already stands on its own.
+
+### `.iter-list` + `.iter` — Design → Build → Test → Learn cards
+
+One card per design iteration, one row per stage, each row a colored
+label pill (`design` violet, `build` light violet, `test` amber outline,
+`learn` solid amber) beside its markdown. Leave out any stage the
+iteration didn't have. `.iter.final` (amber-tinted) is the summary card
+after a list:
+
+```md
+<div class="iter-list">
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">1</span>Iteration 1: Magnetic stirring</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+Markdown...
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+Markdown...
+
+</div></div>
+</div>
+
+</div>
+
+<div class="iter final">
+<h4 class="iter-title"><span class="iter-num">✓</span>Final design</h4>
+
+Summary markdown...
+
+</div>
+```
+
+### `table.kv-table` — a key/value table
+
+Markdown tables need a header row; a short set of labelled values (a
+setpoint, a mean, a standard deviation) doesn't have one. Write it as raw
+HTML inside a `.table-wrap`:
+
+```md
+<div class="table-wrap">
+<table class="kv-table"><tbody>
+<tr><th scope="row">Setpoint</th><td>36.00 °C</td></tr>
+<tr><th scope="row">Standard deviation</th><td>≈ 0.03 °C</td></tr>
+</tbody></table>
+</div>
+```
 
 ### `.cite` + `.ref-list` — in-text citations and a references list
 

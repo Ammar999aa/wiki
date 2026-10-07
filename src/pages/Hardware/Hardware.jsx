@@ -1,38 +1,61 @@
+import { Fragment } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import rawSections from "../../content/en/hardware.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import BulbHero from "./BulbHero";
 import BioreactorModel from "./BioreactorModel";
-const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+import BioreactorDashboard from "./components/BioreactorDashboard";
+import WorkflowDiagram from "./components/WorkflowDiagram";
+import { GrowthChart, PhChart, TempChart } from "./components/ValidationCharts";
+const gradient =
+  "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// The 3D model is a real React component (needs a bundled asset import and
-// a dynamic import of model-viewer), not something markdown can express —
-// so it's attached here as a `content` override on the section it belongs
-// under (Article.jsx renders `section.content` after that section's
-// markdown), rather than authored inline in hardware.md like the page's
-// other rich blocks (.panel/.dash/.chip). See ARTICLE-STANDARDS.md for this
-// `content`-prop extension point.
-//
-// Attached to the opening section (content renders after that section's
-// markdown, so right after its "device-cad-render.avif" image) rather than
-// deeper in the article — the interactive follow-up to the static CAD
-// render, seen right where the SHIHAB Bioreactor is first introduced.
-const sections = rawSections.map((section) =>
-  section.title === "Medicine can't always wait for resupply"
-    ? { ...section, content: <BioreactorModel /> }
-    : section,
-);
+// Real React components (the 3D model, the dashboard simulation, the charts)
+// can't be written in markdown, but they belong mid-section, between
+// paragraphs and captions that do live in hardware.md. So hardware.md marks
+// each one's spot with an empty `<div data-slot="name"></div>`, and the
+// section's HTML is split at those markers here, with the matching component
+// rendered in between. Everything else on the page, captions included, stays
+// in hardware.md where it can be edited as plain text.
+const SLOTS = {
+  workflow: WorkflowDiagram,
+  dashboard: BioreactorDashboard,
+  model: BioreactorModel,
+  "temp-chart": TempChart,
+  "ph-chart": PhChart,
+  "growth-chart": GrowthChart,
+};
+const SLOT_RE = /<div data-slot="([\w-]+)"><\/div>\n?/;
 
-// Converted from src/content/iGEM Hardware Wiki.docx. Internal author notes
-// ("consult wet lab to write", "insert image of filtration unit", etc.) were
-// stripped rather than published; prose gaps they marked are left as
-// "Content coming soon" instead, per .claude/RESPONSIBLE_AI_USE.md. The doc's
-// 3 embedded images are uploaded via iGEM's uploads tool and referenced from
-// static.igem.wiki in hardware.md, per README.md's asset rules.
+function withSlots(section) {
+  if (!SLOT_RE.test(section.html)) return section;
+  // split() with a capture group alternates [html, slotName, html, slotName, html, ...]
+  const parts = section.html.split(new RegExp(SLOT_RE.source, "g"));
+  const content = parts.map((part, i) => {
+    if (i % 2 === 0)
+      return part.trim() ? (
+        <div key={i} dangerouslySetInnerHTML={{ __html: part }} />
+      ) : null;
+    const Slot = SLOTS[part];
+    if (!Slot) throw new Error(`hardware.md: unknown data-slot "${part}"`);
+    return <Slot key={i} />;
+  });
+  return { ...section, html: null, content: <Fragment>{content}</Fragment> };
+}
+
+const sections = rawSections.map(withSlots);
+
 export default function Hardware() {
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+    <PageWrapper
+      background={{
+        color: "#0A0A27",
+        image: bg,
+        size: "1280px 1080px",
+        gradient,
+      }}
+    >
       <SectionedArticle
         title="Hardware"
         intro={<BulbHero />}

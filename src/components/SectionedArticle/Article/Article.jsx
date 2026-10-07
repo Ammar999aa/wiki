@@ -23,6 +23,16 @@ function personFromCard(card, cardIndex) {
     html: card.querySelector(".person-more")?.innerHTML ?? "",
   };
 }
+// A .popup-card (see SectionedArticle.module.scss) opens in the same popup,
+// with its title in place of a name and no photo.
+function popupFromCard(card) {
+  return {
+    cardIndex: -1,
+    name: card.querySelector(".popup-title")?.textContent ?? "",
+    photos: [],
+    html: card.querySelector(".popup-more")?.innerHTML ?? "",
+  };
+}
 import styles from "../SectionedArticle.module.scss";
 
 const DETAILS_ANIM_MS = 350;
@@ -69,6 +79,26 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
   const navigate = useNavigate();
 
   const cardAt = (index) => articleRef.current?.querySelectorAll(".person-card")[index];
+
+  // A same-page link inside the popup (a citation, "see Experimental
+  // validation"): close the popup, then scroll to the target. The scroll
+  // waits for the effect below, i.e. until the popup's own cleanup has
+  // given the page its scrolling back (body overflow) — scrolling any
+  // earlier gets cancelled.
+  const pendingScroll = useRef(null);
+  const followHashLink = (hash) => {
+    const target = articleRef.current?.querySelector(`#${CSS.escape(hash.slice(1))}`);
+    if (target) {
+      history.pushState(null, "", hash);
+      pendingScroll.current = target;
+    }
+    setPerson(null);
+  };
+  useEffect(() => {
+    if (person || !pendingScroll.current) return;
+    pendingScroll.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    pendingScroll.current = null;
+  }, [person]);
 
   const followPersonLink = (path, modalScroll) => {
     try {
@@ -133,6 +163,12 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
     const card = e.target.closest(".person-more-btn")?.closest(".person-card");
     if (card) {
       setPerson(personFromCard(card, [...articleRef.current.querySelectorAll(".person-card")].indexOf(card)));
+      return;
+    }
+
+    const popup = e.target.closest(".popup-open")?.closest(".popup-card");
+    if (popup) {
+      setPerson(popupFromCard(popup));
       return;
     }
 
@@ -201,7 +237,7 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
         </div>
       ))}
       <Lightbox src={zoomed?.src} alt={zoomed?.alt} onClose={() => setZoomed(null)} />
-      <PersonModal person={person} onClose={closePerson} onInternalLink={followPersonLink} />
+      <PersonModal person={person} onClose={closePerson} onInternalLink={followPersonLink} onHashLink={followHashLink} />
     </div>
   );
 }
