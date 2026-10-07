@@ -70,6 +70,7 @@ so no blank lines are needed around those.
 | A sourced claim that needs an in-text citation, plus the reference list it points to                           | `.cite` + `.ref-list`                                           | Small mono numeral, dotted underline; clicking scrolls to the reference |
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
 | A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
+| A set of event photos shown together as a gallery                                                              | `.gallery`                                                      | Even grid of 4:3-cropped thumbnails, each opens full-size in the lightbox |
 | A short ranked/staged list where each item also jumps to its own section                                       | `.ladder` (+ `.ladder-axis`)                                    | Row of clickable cards, graduated height                                  |
 | An event with a headline number worth leading with, linking to its own heading                                 | `.tickets` (+ `.ticket`/`.ticket-main`/`.ticket-stub`)          | Card split into info + a dashed "stub" showing the number                 |
 | One featured piece of media (a podcast, a video) that deserves more than a plain paragraph                     | `.pod`                                                          | Icon beside a name and one-line description                               |
@@ -571,7 +572,7 @@ the same bar `.ladder` and `.tickets` hold their own numbers to.
 
 ## Layout utilities
 
-Three more classes exist in the same stylesheet. They're layout
+Four more classes exist in the same stylesheet. They're layout
 primitives rather than typed content components — no tone, no label, just
 column arrangement — so they're grouped separately here, but they're just
 as available.
@@ -590,6 +591,18 @@ row instead of each wrapping full-width (composite figure panels, e.g.
 proportional to its size in the source figure; this class just supplies
 the flex row and gap. Despite the name, it isn't Notebook-specific —
 reach for it anywhere a multi-panel figure needs the same treatment.
+
+**`.gallery`** — a photo gallery: plain `<img>` tags in an even
+auto-fill grid, each thumbnail cropped to 4:3 with `object-fit: cover` so
+mixed portrait/landscape shots line up. Clicking one opens the full,
+uncropped image in the lightbox. See the end of `education.md`.
+
+```md
+<div class="gallery">
+<img src="https://static.igem.wiki/..." alt="..." loading="lazy">
+<img src="https://static.igem.wiki/..." alt="..." loading="lazy">
+</div>
+```
 
 ## Guardrails specific to this system
 

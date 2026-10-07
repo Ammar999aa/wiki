@@ -371,6 +371,24 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // A photo gallery: an even grid of same-size thumbnails, each cropped to
+  // 4:3 in the browser (source file untouched) so mixed portrait/landscape
+  // shots line up. Clicking one opens the full, uncropped image in the
+  // Lightbox like any other article image (see Article.jsx).
+  :global(.gallery) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-block: 20px;
+
+    img {
+      margin: 0;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+  }
+
   // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
   //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
   //

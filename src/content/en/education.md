@@ -197,3 +197,23 @@ Each team produced a formal policy whitepaper, judged by external experts. The G
 ## Alignment with Saudi Vision 2030
 
 Our education programs support Saudi Arabia's Vision 2030 and National Biotechnology Strategy by building scientific awareness, encouraging innovation and developing local talent. Through hands-on activities and early exposure to research, we aim to help grow the next generation of Saudi scientists and support the Kingdom's ambition to become a leading hub for biotechnology.
+
+## Gallery
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-08-23-195644.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-08-23-200137.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-09-06-193727.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-09-06-193934.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-56.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-56-1.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-56-2.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-56-3.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-57.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-57-2.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-57-3.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-58-1.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-58-2.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-58-3.avif" alt="Education program photo" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/whatsapp-image-2026-09-27-at-19-23-59.avif" alt="Education program photo" loading="lazy">
+</div>
