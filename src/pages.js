@@ -49,6 +49,7 @@ const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
 const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
+const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -95,7 +96,7 @@ const Pages = [
     name: "Engineering",
     folder: [
       { name: "Engineering Success", title: "Engineering Success", path: "/engineering-success", component: Stub },
-      { name: "Parts", title: "Parts", path: "/parts", component: Stub },
+      { name: "Parts", title: "Parts", path: "/parts", component: Parts },
       { name: "Hardware", title: "Hardware", path: "/hardware", component: Hardware },
     ],
   },
