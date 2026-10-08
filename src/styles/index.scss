@@ -88,16 +88,25 @@ body {
   // painted yet (the lazy-loaded route's chunk still fetching behind
   // Suspense's null fallback, or the View Transition API's before/after
   // root snapshot), the browser falls back to this rather than a flat
-  // color (previously) or its default white canvas (before that). Both
-  // layers use background-attachment: fixed so `cover` sizes against the
-  // viewport like the real fixed-position divs do, not against body's own
-  // (possibly much taller) scrollable height.
+  // color (previously) or its default white canvas (before that).
   background-color: var(--bg);
+}
+
+// The two image layers sit on a position: fixed pseudo-element rather than
+// `background-attachment: fixed` on body: both keep `cover` sized against
+// the viewport (not body's much taller scroll height), but a fixed
+// background makes Chrome repaint the whole viewport on every scroll frame,
+// while a fixed element gets its own layer that scrolling never repaints.
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
   background-image: url("https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg"), url("https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg");
   background-repeat: no-repeat, repeat;
   background-position: center, 0 0;
   background-size: cover, 1280px 1080px;
-  background-attachment: fixed, fixed;
 }
 
 // Sitewide default so keyboard focus reads as part of the violet/glass

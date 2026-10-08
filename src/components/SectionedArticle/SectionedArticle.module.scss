@@ -26,11 +26,13 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 }
 
 .progressRailFill {
-  width: 0; // rAF sets the real value on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
   height: 100%;
+  // rAF sets the real scale on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
+  transform: scaleX(0);
+  transform-origin: left center;
   background: linear-gradient(90deg, var(--accent), var(--primary-600));
   box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 55%, transparent);
-  // No width transition — it's set every animation frame from the real
+  // No transform transition — it's set every animation frame from the real
   // scrollTop (SectionedArticle.jsx), so a CSS transition on top of that
   // would only add lag, making the bar trail behind the actual scrollbar
   // instead of tracking it 1:1.
@@ -1517,6 +1519,41 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.75);
+  }
+
+  // A matrix table: a real column header row AND a row-header first
+  // column, e.g. components x chassis, or payload x chassis. Differs
+  // from `.kv-table` (which has row headers but no header row) and from
+  // a plain markdown table (header row only). Without this, a
+  // `<th scope="row">` in the body picks up the base `th` rules — tinted
+  // background and a 2px bottom border meant for a header row — so the
+  // label column renders as a stack of header bars whose borders don't
+  // line up with the 1px `td` borders beside them. Here the row headers
+  // keep a quieter tint and the body's own 1px rule; only `thead` keeps
+  // the full header treatment. Raw HTML inside a .table-wrap:
+  //   <table class="matrix-table">
+  //     <thead><tr><th></th><th scope="col">A</th></tr></thead>
+  //     <tbody><tr><th scope="row">Row</th><td>+</td></tr></tbody>
+  //   </table>
+  :global(.matrix-table) tbody th {
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  // `.matrix-table.marks` — modifier for a matrix whose body cells are
+  // each a single +/- verdict rather than text. Those read better
+  // centred under their column header than ragged-left; a matrix of
+  // text cells (vector names, selection markers) keeps the default
+  // start alignment, so this is opt-in. A spanning cell is a row-group
+  // label, not a mark, so it stays start-aligned either way.
+  :global(.matrix-table.marks) tbody td {
+    text-align: center;
+  }
+
+  :global(.matrix-table.marks) tbody td[colspan] {
+    text-align: start;
   }
 
   // Click-to-open cards: each card's face is a button, and its hidden

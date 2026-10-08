@@ -28,11 +28,12 @@ export default function LiquidGlass({
   glowMask = null,
   grain = false,
   drift = false,
+  refract = false,
 }) {
   const [r, g, b] = color;
   const ref = useRef(null);
   const [squircleState, setSquircleState] = useState({ clipPath: "", pathD: "", circle: null });
-  const [cursor, setCursor] = useState(null);
+  const glowRef = useRef(null);
   const moveRafRef = useRef(null);
 
   useEffect(() => {
@@ -70,7 +71,18 @@ export default function LiquidGlass({
   // (same idiom as Menu.jsx's own mousemove listener) so a fast mouse or a
   // high-poll-rate mouse can't drive more than one re-render per frame —
   // native mousemove fires far more often than the screen repaints, and the
-  // glow only ever gets seen at the display's refresh rate anyway.
+  // glow only ever gets seen at the display's refresh rate anyway. The mask
+  // is written straight onto the glow <svg>'s style rather than through
+  // React state, so following the cursor never re-renders the panel (and
+  // its whole child tree) — React leaves the inline mask alone on later
+  // renders as long as the `glowMask` prop itself doesn't change.
+  const setGlowMask = useCallback((mask) => {
+    const svg = glowRef.current;
+    if (!svg) return;
+    svg.style.maskImage = mask || "";
+    svg.style.webkitMaskImage = mask || "";
+  }, []);
+
   const handleMouseMove = useCallback((e) => {
     if (moveRafRef.current) return;
     const { clientX, clientY } = e;
@@ -79,31 +91,26 @@ export default function LiquidGlass({
       const el = ref.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      setCursor({
-        x: ((clientX - rect.left) / rect.width) * 100,
-        y: ((clientY - rect.top) / rect.height) * 100,
-      });
+      const x = ((clientX - rect.left) / rect.width) * 100;
+      const y = ((clientY - rect.top) / rect.height) * 100;
+      setGlowMask(`radial-gradient(circle at ${x}% ${y}%, white 0%, transparent 55%)`);
     });
-  }, []);
+  }, [setGlowMask]);
 
   const handleMouseLeave = useCallback(() => {
     if (moveRafRef.current) {
       cancelAnimationFrame(moveRafRef.current);
       moveRafRef.current = null;
     }
-    setCursor(null);
-  }, []);
+    setGlowMask(glowMask);
+  }, [setGlowMask, glowMask]);
 
   const hasGlow = cornerGlow && (squircleState.pathD || squircleState.circle);
-
-  const activeMask = cursor
-    ? `radial-gradient(circle at ${cursor.x}% ${cursor.y}%, white 0%, transparent 55%)`
-    : glowMask;
 
   return (
     <div
       ref={ref}
-      className={`${styles.liquidGlass} ${hasGlow ? styles.noGlowPseudo : ""}`}
+      className={`${styles.liquidGlass} ${refract ? styles.refract : ""} ${hasGlow ? styles.noGlowPseudo : ""}`}
       onMouseMove={hasGlow ? handleMouseMove : undefined}
       onMouseLeave={hasGlow ? handleMouseLeave : undefined}
       style={{
@@ -124,11 +131,12 @@ export default function LiquidGlass({
       )}
       {hasGlow && (
         <svg
+          ref={glowRef}
           aria-hidden="true"
           className={styles.glowSvg}
           style={{
-            maskImage: activeMask || undefined,
-            WebkitMaskImage: activeMask || undefined,
+            maskImage: glowMask || undefined,
+            WebkitMaskImage: glowMask || undefined,
           }}
         >
           {squircleState.pathD ? (

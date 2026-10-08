@@ -33,15 +33,23 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
   // scroll-linked. A "scroll" event fires at the browser's discretion and,
   // paired with a CSS transition, visibly lags a beat behind the real
   // scrollbar; reading scrollTop once a frame keeps the bar glued to it.
+  //
+  // Written as a scaleX transform, and only when the value actually changes:
+  // setting `width` every frame forced a layout pass 60 times a second even
+  // while the page sat still, and a transform is composited without one.
   useEffect(() => {
     let rafId;
+    let lastScale = -1;
     const tick = () => {
       const el = progressFillRef.current;
       if (el) {
         const h = document.documentElement;
         const max = h.scrollHeight - h.clientHeight;
-        const pct = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
-        el.style.width = `${pct}%`;
+        const scale = max > 0 ? Math.min(1, Math.max(0, h.scrollTop / max)) : 0;
+        if (scale !== lastScale) {
+          el.style.transform = `scaleX(${scale})`;
+          lastScale = scale;
+        }
       }
       rafId = requestAnimationFrame(tick);
     };

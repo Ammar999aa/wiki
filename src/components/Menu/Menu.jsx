@@ -162,7 +162,7 @@ export default function Menu() {
         // bar's top edge sits, not just guess it.
         data-nav-bar
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)" grain>
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} glowMask="linear-gradient(to bottom, white, transparent 60%)" grain refract>
           <nav className={styles.menu}>
             <Link
               to="/"

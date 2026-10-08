@@ -72,6 +72,7 @@ be none — see `.flow` below).
 | Parallel items whose full text is too long to show inline (features, subsystems)                               | `.popup-grid` + `.popup-card`                                   | Clickable tiles; each opens its hidden content in a popup                 |
 | A design iteration told as Design → Build → Test → Learn                                                       | `.iter-list` + `.iter`                                          | Numbered card, one row per stage with a colored label pill                |
 | A short key/value table (summary statistics), no header row                                                    | `table.kv-table` in a `.table-wrap`                             | Row headers on the left, values on the right                              |
+| A grid of X-by-Y values (components x chassis, payload x chassis)                                              | `table.matrix-table` in a `.table-wrap`                         | Column header row *and* a labelled first column                           |
 | A sourced claim that needs an in-text citation, plus the reference list it points to                           | `.cite` + `.ref-list`                                           | Small mono numeral, dotted underline; clicking scrolls to the reference |
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
 | A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
@@ -554,6 +555,42 @@ HTML inside a `.table-wrap`:
 </tbody></table>
 </div>
 ```
+
+### `table.matrix-table` — an X-by-Y matrix
+
+A markdown table gives you a header row only. A matrix — components x
+chassis, payload x chassis — also needs a *labelled first column*, and a
+`<th scope="row">` written into a plain table picks up the base `th`
+rules (tinted background, 2px bottom border) that are meant for a header
+row, so the label column renders as a stack of header bars whose borders
+don't line up with the `td` borders beside them. `.matrix-table` gives
+`tbody` row headers a quieter tint and the body's own 1px rule, leaving
+the full header treatment to `thead`. Raw HTML inside a `.table-wrap`:
+
+```md
+<div class="table-wrap">
+<table class="matrix-table">
+<thead>
+<tr><th></th><th colspan="3">Chassis</th></tr>
+<tr><th scope="col">Components</th><th scope="col"><i>B. subtilis</i></th><th scope="col"><i>P. pastoris</i></th><th scope="col"><i>S. cerevisiae</i></th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Vectors</th><td>pBS4S, pHT-ads</td><td>pPIC Z, pPICZα A</td><td>HO-poly-KanMX4-HO, pYES2</td></tr>
+</tbody>
+</table>
+</div>
+```
+
+Raw HTML (not markdown pipes) is what makes the two things a markdown
+table can't express available: a `colspan` group header above the real
+header row, and a spanning cell used as a row-group label mid-table.
+Reach for it when the source table genuinely has one of those — a plain
+markdown table in a `.table-wrap` is still correct for everything else.
+
+**Modifier — `.matrix-table.marks`**: when every body cell is a single
+`+`/`-` verdict rather than text, this centres them under their column
+headers. A matrix of text cells keeps the default start alignment, so
+it's opt-in; a spanning row-group label stays start-aligned either way.
 
 ### `.cite` + `.ref-list` — in-text citations and a references list
 
