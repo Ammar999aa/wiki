@@ -45,7 +45,7 @@ export default function WorkflowDiagram() {
         <div className={styles.wfDown} style={{ gridColumn: 5 }} />
 
         <Node
-          href="#chassis-models-yeast-saccharomyces-cerevisiae"
+          href="#yeast-saccharomyces-cerevisiae"
           name="Yeast"
           species="S. cerevisiae"
           role="Candidate host"
@@ -59,14 +59,14 @@ export default function WorkflowDiagram() {
           <i aria-hidden="true" />
         </div>
         <Node
-          href="#chassis-models-cyanobacteria-synechococcus-elongatus"
+          href="#cyanobacteria-synechococcus-elongatus-pcc-7942"
           name="Cyanobacteria"
           species="S. elongatus PCC 7942"
           role="The supplier"
           className={styles.wfCyano}
         />
         <Node
-          href="#chassis-models-bacteria-bacillus-subtilis"
+          href="#bacteria-bacillus-subtilis"
           name="Bacteria"
           species="B. subtilis"
           role="Candidate host"

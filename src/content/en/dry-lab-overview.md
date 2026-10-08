@@ -1,128 +1,121 @@
-## The Problem & Approach
+## The Question
 
-### The problem
+SHIHAB asks whether a nanobody can be manufactured on demand inside a
+closed, resource-limited habitat rather than shipped there pre-made.
+That setting changes what counts as a good chassis. Oxygen cannot be
+assumed abundant, carbon cannot be trucked in as bags of glucose, and
+nitrogen and phosphate have to be recovered from what the crew already
+produces.
 
-Our project asks whether a nanobody can be manufactured on demand inside
-a closed, resource-limited habitat rather than shipped there pre-made.
-That setting, a Mars-analog or spaceflight life-support loop, changes
-almost every assumption a normal bioprocess makes. Oxygen is expensive
-and cannot be assumed to be abundant. Carbon feedstock cannot be trucked
-in as bags of glucose. Nitrogen and phosphate have to be recovered from
-what the crew already produces, principally urine. Illumination and
-availability are set by the habitat, not by the engineer.
+Three decisions needed answers that no single experiment could give us
+at our scale: which host to build in, what to feed it, and when to
+switch production on. We built one genome-scale metabolic model (GEM)
+per organism to answer the first two, and a dynamic layer of ordinary
+differential equations (ODEs) to answer the third, because flux balance
+analysis (FBA) assumes a steady state and cannot answer a timing
+question at all.
 
-### Why computational work was necessary
+<div class="callout accent">
 
-Three things the project needed to know are expensive or impossible to
-measure at our scale.
+<p class="callout-label">What this page is and is not</p>
 
-**Which host to build in.** Comparing candidate chassis across a
-continuous range of oxygen availability is a combinatorial problem, and
-the quantity that actually matters, the *maximum theoretical* nanobody
-production flux, is not something a shake flask reports at all.
-Genome-scale metabolic models (GEMs) compute exactly that, and compute
-it identically for every organism, which is what makes the comparison
-fair.
+Every number here is a model output. No prediction on this page has yet
+been tested against our own experimental data, and FBA measures
+metabolic capacity, not protein quality. Read the chassis recommendation
+as "*B. subtilis* has the metabolic headroom", not "*B. subtilis* will
+fold a better nanobody".
 
-**What to feed it.** A heterotrophic chassis in a closed habitat needs a
-carbon source that can be regenerated in situ. Testing whether
-cyanobacteria can be engineered to supply one is a multi-gene project;
-stoichiometric modeling lets us evaluate export strategies and knockouts
-before committing cloning effort, and lets us ask which *nutrient*, not
-just which gene, is capping output.
-
-**How to run the culture.** Recombinant expression competes with growth
-for the same finite resources, so the moment production is switched on
-determines how much is harvested. GEMs are steady-state by construction
-and cannot answer a timing question at all, which is why we added a
-dynamic ordinary differential equation (ODE) layer on top of them.
-
-### Three chassis models, and how they relate
-
-We built one genome-scale model per organism and asked each of them the
-same family of questions: can it use our feedstock, can it survive our
-oxygen budget, and how much protein can it make. The cyanobacterial
-model plays a different role from the other two: it is not a production
-host but the supplier that makes the other two viable in a closed loop.
+</div>
 
 <div data-chart="workflow"></div>
 
 <div class="caption">
 
-**Figure 1.** The three chassis models and their relationship. Each host
-model answers the same three questions independently; the cyanobacterial
-model supplies the feedstock that makes either host viable in a closed
-loop. Only the cyanobacteria → yeast arrow corresponds to an actual
-numerical hand-off in this work (sucrose and oxygen fluxes used as uptake
-bounds); the equivalent calculation for *B. subtilis* has not yet been
-done (see Limitations and Future Directions).
-
-</div>
-
-<div class="table-wrap">
-
-| Coupling | What is actually passed | Strength |
-|---|---|---|
-| Cyanobacteria → Yeast | Sucrose export flux (0.234 and 0.8078 mmol·h<sup>−1</sup>) and O₂ flux (4.2305 mmol·h<sup>−1</sup>) used as uptake bounds in the yeast GEM, giving 0.011132, 0.038429 and 0.175773 h<sup>−1</sup> respectively | **Strong**: direct numerical hand-off |
-| Hosts → Cyanobacteria | CO₂ output at the micro-aerophilic operating point (7.75–9.23 mmol·h<sup>−1</sup>) is a candidate carbon input to the supplier | **Identified, not yet computed** |
-| GEM → ODE | Chassis selection determined which host each dynamic model was built for; $\mu = 0.0854$ h<sup>−1</sup> in the yeast ODE is described as FBA-derived | **Weak**: motivational; the numerical link is unverified (see §Parameter provenance below) |
-| Cyanobacteria → Bacteria | Sucrose-versus-glucose per-carbon analysis (see Bacillus subtilis §Alternative Carbon Source) confirms the feedstock decision does not penalise the preferred host | **Moderate**: same question, separate calculations |
+**Figure 1. The cyanobacterial model feeds the host models, not the
+other way round.** Each host was asked the same three questions
+independently; the supplier model produces a sucrose and oxygen flux
+that becomes an input to the yeast model. Only the
+cyanobacteria-to-yeast arrow is a real numerical hand-off in this work;
+the same calculation for *B. subtilis* has not been done yet.
 
 </div>
 
 <div class="caption">
 
-**Table 1.** Quantitative hand-offs between the models. We distinguish strong
-couplings (a number computed in one model is used as an input in
-another) from weak ones (one model motivated another without a direct
-numerical hand-off), because presenting a weak coupling as a strong
-one would overstate the integration.
+**Table 1. Only one link between our models is a real numerical
+hand-off.** How each model connects to the next, and whether the
+connection is measured, modelled or assumed.
 
 </div>
 
-### Models, software and common constraints
+<div class="table-wrap">
 
-All flux balance analysis (FBA) was performed on published,
-peer-reviewed reconstructions rather than on models we built ourselves,
-so that another team can start from the same public artefacts.
+| Link | What is actually passed | Strength |
+|---|---|---|
+| Cyanobacteria → Yeast | Sucrose and O₂ fluxes used as uptake bounds in the yeast model | **Modelled**, direct hand-off |
+| Hosts → Cyanobacteria | CO₂ output at the micro-aerophilic point is a candidate carbon input | **Identified**, not computed |
+| GEM → ODE | Chassis choice set which host each dynamic model was built for | **Assumed**, numerically unverified |
+| Cyanobacteria → Bacteria | Per-carbon sucrose analysis confirms the feedstock does not penalise the host | **Modelled**, separate calculations |
+
+</div>
+
+<details class="details">
+<summary class="details-summary">Models, software and the constraints shared by every simulation</summary>
+
+<div class="details-body">
+
+All FBA used published reconstructions rather than models we built
+ourselves, so that another team can start from the same public
+artefacts.
 
 <div class="table-wrap">
 
-| Organism | Model | Source / notes |
+| Organism | Model | Notes |
 |---|---|---|
 | *S. cerevisiae* | Yeast9 <a class="cite" href="#ref-1">1</a> | Anaerobic condition applied using the authors' own published protocol. |
-| *B. subtilis* | iBsu1147 <a class="cite" href="#ref-2">2</a> | Required two reaction additions before it could grow anaerobically (see §Oxygen Deprivation, "repairing the model before we could ask the question"). |
-| *P. pastoris* | **[model name — to be filled in]** | Used as a comparator for oxygen requirement and production only. |
-| *S. elongatus* PCC 7942 | iMS837 | Updated PCC 7942 reconstruction of Santos-Merino et al. <a class="cite" href="#ref-3">3</a> (837 genes, 887 reactions, 801 metabolites). |
+| *B. subtilis* | iBsu1147 <a class="cite" href="#ref-2">2</a> | Needed two reaction additions before it could grow anaerobically (see [the gap-filling section](#gap-fill)). |
+| *P. pastoris* | **[model name — to be filled in]** | Comparator for oxygen requirement and production only. |
+| *S. elongatus* PCC 7942 | iMS837 <a class="cite" href="#ref-3">3</a> | 837 genes, 887 reactions, 801 metabolites. |
 
 </div>
 
-<div class="caption">
+Unless a section says otherwise, heterotrophic simulations used glucose
+exchange 5 mmol·h<sup>−1</sup>, glycerol 0 mmol·h<sup>−1</sup>, and
+oxygen 10 mmol·h<sup>−1</sup> (aerobic) or 0 mmol·h<sup>−1</sup>
+(anaerobic). Cyanobacterial simulations used habitat-analogue light
+(145 µE·m<sup>−2</sup>·s<sup>−1</sup>) and the carbon bound stated per
+analysis.
 
-**Table 2.** Genome-scale models used, and their provenance.
+Dynamic models were integrated with `scipy.integrate.solve_ivp` (RK45).
+Code: [ODE models](https://github.com/taibazeyak/drylab-ode_igem) and
+[GEM notebooks](https://github.com/Halion1/iGEM-KAUST-Drylab).
 
 </div>
 
-Unless stated otherwise in a specific subsection, heterotrophic
-simulations used a common constraint set so that chassis could be
-compared on equal terms:
+</details>
 
-- glucose exchange: 5 mmol·h<sup>−1</sup>;
-- glycerol exchange: 0 mmol·h<sup>−1</sup>;
-- oxygen exchange: 10 mmol·h<sup>−1</sup> (aerobic) or 0 mmol·h<sup>−1</sup>
-  (anaerobic).
+<div class="callout warn">
 
-Cyanobacterial simulations used habitat-analog light and carbon bounds
-(145 µE·m<sup>−2</sup>·s<sup>−1</sup> photon flux; CO₂/HCO₃⁻ as stated per analysis).
+<p class="callout-label">Missing: the P. pastoris model identifier</p>
 
-Analysis notebooks (draft, unpolished) are available at [our Dry Lab
-GitHub repository](https://github.com/Halion1/iGEM-KAUST-Drylab/blob/master/obj2_gem/Notebooks/cyanobacteria_model.ipynb).
+The *Pichia pastoris* reconstruction used for [the *Pichia*
+comparison](#pichia) is not recorded in our notes. The name will be
+added once we confirm which reconstruction was loaded.
 
-## Chassis Models: Yeast (Saccharomyces cerevisiae)
+</div>
 
-### Yeast: *Saccharomyces cerevisiae*
+## Yeast: Saccharomyces cerevisiae
 
-#### Design Goals
+*S. cerevisiae* is the chassis a team picks by default: generally
+recognised as safe (GRAS), easy to transform, and carrying the secretory
+machinery and oxidising endoplasmic reticulum (ER) that disulfide-bonded
+antibody fragments usually want <a class="cite" href="#ref-4">4</a>.
+That is exactly why we tested it rather than assuming it.
+
+<details class="details">
+<summary class="details-summary">What had to be established before yeast could be accepted or rejected</summary>
+
+<div class="details-body">
 
 *S. cerevisiae* is the reference eukaryotic production host: it is
 GRAS-classified, easy to transform and, unlike a bacterial host, has the
@@ -150,9 +143,17 @@ rejected for a habitat application:
 
 All yeast work used the Yeast9 reconstruction.
 
-#### Alternative Carbon Source
+</div>
 
-**Method.**
+</details>
+
+<h3 id="yeast-carbon">A photosynthetic partner can feed anaerobic yeast</h3>
+
+Anaerobic yeast fed the sucrose a growth-capped cyanobacterial culture
+can deliver reaches 0.038 h<sup>−1</sup>, roughly three times its unfed
+anaerobic baseline. Add the oxygen that same culture co-produces and it
+reaches 0.18 h<sup>−1</sup>, a **13-fold** increase. That is the largest
+single improvement anywhere in our modelling.
 
 Alternative to glucose, yeast can use sucrose as a carbon source well
 enough to be viable. The efficiency problem is not the sugar identity
@@ -173,35 +174,41 @@ cyanobacterial oxygen output included as well. This is a direct
 numerical hand-off between two of our models rather than a literature
 assumption.
 
-**Result.**
+<div class="caption">
+
+**Table 2. Capping the supplier's growth more than triples what the
+yeast partner can do, and adding its oxygen triples it again.**
+Anaerobic yeast growth on fluxes computed from the engineered
+*S. elongatus* model. The O₂ figure is that culture's total output;
+transfer losses in a real vessel would reduce what reaches the yeast.
+
+</div>
 
 <div class="table-wrap">
 
 | Supply condition | Sucrose (mmol·h<sup>−1</sup>) | O₂ (mmol·h<sup>−1</sup>) | Yeast μ (h<sup>−1</sup>) |
 |---|---|---|---|
-| No carbon supply (anaerobic baseline) | none | 0 | 0.0138 |
-| Supplier at maximum growth | 0.234 | 0 | 0.011132 |
-| Supplier growth-capped (preferred) | 0.8078 | 0 | **0.038429** |
-| Growth-capped supplier, O₂ included | 0.8078<sup>*</sup> | ≤ 4.2305<sup>*</sup> | **0.175773** |
+| Anaerobic baseline, no supplier | none | 0 | 0.014 |
+| Supplier at maximum growth | 0.23 | 0 | 0.011 |
+| Supplier growth-capped (preferred) | 0.81 | 0 | **0.038** |
+| Growth-capped, O₂ included | 0.81 | ≤ 4.2 | **0.18** |
 
 </div>
 
-<div class="caption">
+<div class="callout warn">
 
-**Table 3.** Anaerobic yeast growth on cyanobacteria-derived sucrose.
-Each row uses a sucrose (and, in the last row, oxygen) flux computed
-from the engineered *S. elongatus* model as a yeast uptake bound.
-<sup>*</sup>Sucrose and oxygen supplied by the same growth-capped
-cyanobacterial culture; 4.2305 mmol·h<sup>−1</sup> is that culture's
-total oxygen output, and the oxygen actually transferred to the yeast
-partner in a real vessel would be at most this.
+<p class="callout-label">One row in this table does not add up</p>
+
+The baseline row grows faster with no supplied carbon than the row
+supplied with sucrose, which cannot be right. It is almost certainly
+inheriting the model's default carbon bound rather than supplying
+nothing. The row needs relabelling before this page is frozen, because
+the 13-fold improvement is measured against it.
 
 </div>
 
-At the supplier's maximum-growth operating point, sucrose export is
-0.234 mmol·h<sup>−1</sup> and yeast reaches 0.011132 h<sup>−1</sup>, at a
-biomass carbon percentage of 14.9. Because uptake equals export at
-steady state, the required biomass ratio is
+At the supplier's maximum-growth point, sucrose uptake equals export, so
+the steady state needs a 1:1 biomass ratio between the two organisms:
 
 $$
 \frac{\mathrm{gDW}_{\text{cyanobacteria}}}{\mathrm{gDW}_{\text{yeast}}}
@@ -210,23 +217,24 @@ $$
 $$
 
 assuming both models are at steady state and that all exported sucrose
-reaches the yeast.
+reaches the yeast. That ratio is not a *stable* operating point, because
+cyanobacteria grow faster than yeast and the culture would drift.
+Capping the supplier's growth ([the sucrose export
+result](#cyano-export)) moves the system along the trade-off and fixes
+both problems at once: more sucrose released, and a partner culture that
+holds.
 
-Deliberately capping the supplier's growth releases substantially more
-sucrose (see the cyanobacterial sucrose-export analysis below) and
-raises yeast growth more than threefold, to 0.038429 h<sup>−1</sup>.
-Including the oxygen the supplier co-produces raises it to
-0.175773 h<sup>−1</sup>, a **13-fold increase** over the strictly
-anaerobic yeast baseline of 0.0138 h<sup>−1</sup>, and the single
-largest predicted improvement anywhere in our Dry Lab work.
+**For the Wet Lab:** this sets the co-culture operating point to test
+first, and it says the partner is not merely a sugar workaround. It also
+supplies the resource that [the oxygen result below](#yeast-oxygen)
+identifies as yeast's binding constraint.
 
-The reading is that a photosynthetic partner is not merely a sugar
-workaround. It also supplies the resource that the oxygen-deprivation
-analysis below identifies as yeast's binding constraint.
+<h3 id="yeast-oxygen">Removing oxygen costs yeast three quarters of its growth</h3>
 
-#### Oxygen Deprivation
-
-**Method.**
+Aerobically, yeast grows at 0.41 h<sup>−1</sup> and doubles about every
+1.7 hours. Without oxygen, growth falls to 0.11 h<sup>−1</sup> and it
+doubles about every 6.4 hours. This is a large drop for a habitat with
+little oxygen.
 
 Yeast9 does not grow anaerobically out of the box. Rather than devise
 our own workaround, we applied the anaerobic condition using the
@@ -254,61 +262,80 @@ the minimum oxygen uptake that still clears it. CO₂ was tracked
 throughout because in our system it is not waste but the supplier's
 feedstock.
 
-**Result.**
-
-Aerobically, yeast grows at 0.40 h<sup>−1</sup> (a doubling roughly
-every 2 h). Anaerobically it falls to 0.10 h<sup>−1</sup> (roughly every
-7 h), a loss of about three quarters of its growth rate.
-
 <div data-chart="yeast-aerobic-anaerobic"></div>
 
 <div data-chart="yeast-o2-sweep"></div>
 
 <div class="caption">
 
-**Figure 2.** Oxygen dependence of *S. cerevisiae*. (a) Growth drops
-from 0.40 h<sup>−1</sup> to 0.10 h<sup>−1</sup> on removing oxygen. (b)
-Growth rate (left axis, blue) rises very steeply over the first fraction
-of a mmol·h<sup>−1</sup> of oxygen and then close to linearly; the 5%
-viability threshold (red dashed) is cleared almost immediately. CO₂
-secretion (right axis, green) saturates much earlier than growth does.
+**Figure 2. Yeast growth falls by about three quarters without oxygen,
+and recovers roughly in proportion to the oxygen supplied.** Simulated.
+(a) Growth falls from 0.41 h<sup>−1</sup> to 0.11 h<sup>−1</sup> when
+oxygen is removed. (b) Growth rate (left axis, blue) rises very steeply
+over the first fraction of a mmol·h<sup>−1</sup> of oxygen and then close
+to linearly; the 5% viability threshold (red dashed) is cleared almost
+immediately. CO₂ secretion (right axis, green) saturates much earlier
+than growth does.
 
 </div>
 
 <div class="table-wrap">
-
-| Quantity | Value | Unit |
-|---|---|---|
-| Maximum growth rate | 0.4091 | h<sup>−1</sup> |
-| Viability threshold (5% of max) | 0.0205 | h<sup>−1</sup> |
-| Minimum viable O₂ uptake | 0.0503 | mmol·h<sup>−1</sup> |
-| Growth rate at that point | 0.0917 | h<sup>−1</sup> |
-| CO₂ output at that point | 7.7513 | mmol·h<sup>−1</sup> |
-
+<table class="kv-table"><tbody>
+<tr><th scope="row">Maximum growth rate</th><td>0.4091 h<sup>−1</sup></td></tr>
+<tr><th scope="row">Viability threshold (5% of max)</th><td>0.0205 h<sup>−1</sup></td></tr>
+<tr><th scope="row">Minimum viable O₂ uptake</th><td>0.0503 mmol·h<sup>−1</sup></td></tr>
+<tr><th scope="row">Growth rate at that point</th><td>0.0917 h<sup>−1</sup></td></tr>
+<tr><th scope="row">CO₂ output at that point</th><td>7.7513 mmol·h<sup>−1</sup></td></tr>
+</tbody></table>
 </div>
 
 <div class="caption">
 
-**Table 4.** Minimum viable oxygen analysis for *S. cerevisiae*. The
-viability threshold is 5% of the aerobic maximum.
+**Minimum viable oxygen, *S. cerevisiae*.** Growth is already 0.0917
+h<sup>−1</sup> at the lowest non-zero oxygen value in the sweep: about
+85% of the strict-anaerobic rate, and more than four times the viability
+threshold.
 
 </div>
 
 The shape of the oxygen-sweep panel in Figure 2 (panel b) is the
 important part. Growth rises so steeply out of zero that a trickle of
-oxygen, 0.0503 mmol·h<sup>−1</sup>, already brings yeast to
-0.0917 h<sup>−1</sup>, more than four times its own viability threshold
-and close to its strict-anaerobic rate. The design target for a habitat
-is therefore not "aerobic or anaerobic" but "how little oxygen can we
-get away with", and the answer is: very little.
+oxygen, 0.0503 mmol·h<sup>−1</sup>, already brings yeast close to its
+strict-anaerobic rate. Beyond that point growth rises roughly in
+proportion to oxygen supply, reaching 0.41 h<sup>−1</sup> at
+10 mmol·h<sup>−1</sup>.
 
-#### Protein Production
+**For the Wet Lab:** the design target is not "aerobic or anaerobic" but
+"how little oxygen can we get away with", and the answer is very little.
+Do not over-engineer aeration.
 
-Growth is a proxy. This subsection addresses production directly, in
-two parts: the steady-state ceiling (how much *can* yeast make) and the
-dynamic question (*when* should we ask it to).
+<div class="callout warn">
 
-**Method: steady-state capacity (FBA).**
+<p class="callout-label">This number is a grid artefact, and we have confirmed it</p>
+
+The minimum viable oxygen uptake came out as exactly
+0.0503 mmol·h<sup>−1</sup> for all three organisms we swept, to four
+significant figures. Three metabolically different organisms cannot
+genuinely agree to that precision: 0.0503 is simply the step size of a
+200-point sweep over 0–10 mmol·h<sup>−1</sup> (10/199), so what we had
+recorded was the first grid point above the threshold rather than the
+minimum. Re-solving it exactly, by fixing growth at the viability
+threshold and minimising oxygen uptake, is what produced the zero reported
+for *B. subtilis* in [the *Bacillus* oxygen section](#bac-oxygen). The
+yeast and *P. pastoris* figures above have **not** yet been re-solved that
+way, so both should still be read as upper bounds.
+
+</div>
+
+<h3 id="yeast-protein">Yeast loses four fifths of its nanobody capacity</h3>
+
+Both nanobody constructs lose about 80% of their maximum production flux
+when oxygen is removed. Since the habitat scenario is precisely the
+oxygen-poor case, this is the number that counts against yeast.
+
+Growth is only a proxy, so this subsection addresses production
+directly, in two parts: the steady-state ceiling (how much *can* yeast
+make) and the dynamic question (*when* should we ask it to).
 
 We re-optimised the model for combined recombinant protein output (GFP
 plus anti-GFP nanobody) across the same oxygen range used in the
@@ -316,10 +343,15 @@ oxygen-deprivation analysis above, and separately computed the maximum
 theoretical production flux for each of our two nanobody constructs,
 Nb14 and Nb1_gbHSV, under aerobic and anaerobic conditions.
 
-**Result: steady-state capacity.**
+<div class="caption">
 
-At the minimum viable oxygen uptake, combined GFP + nanobody flux is
+**Table 3. Nb1_gbHSV is the easier construct, but both lose four fifths
+of their capacity without oxygen.** Maximum theoretical nanobody
+production flux (mmol·h<sup>−1</sup>) in *S. cerevisiae*. Combined GFP
+plus nanobody flux at the minimum viable oxygen point is
 0.0035 mmol·h<sup>−1</sup>.
+
+</div>
 
 <div class="table-wrap">
 
@@ -330,26 +362,19 @@ At the minimum viable oxygen uptake, combined GFP + nanobody flux is
 
 </div>
 
-<div class="caption">
-
-**Table 5.** Maximum theoretical nanobody production flux
-(mmol·h<sup>−1</sup>) in *S. cerevisiae*.
-
-</div>
-
 <div data-chart="yeast-nanobody-by-construct"></div>
 
 <div data-chart="yeast-combined-production-vs-o2"></div>
 
 <div class="caption">
 
-**Figure 3.** Nanobody production capacity in *S. cerevisiae*. (a) Both
-constructs lose roughly 80% of their production capacity on removing
-oxygen. (b) Combined output rises with oxygen uptake and saturates near
-7.5 mmol·h<sup>−1</sup>; the minimum viable cutoff is marked in orange.
-Note the y-axis maximum of 0.008 mmol·h<sup>−1</sup>, an order of
-magnitude below the equivalent *B. subtilis* figure (see Figure 9
-below).
+**Figure 3. Yeast's whole production range sits an order of magnitude
+below *B. subtilis*.** Simulated. (a) Both constructs lose roughly 80% of
+their production capacity on removing oxygen. (b) Combined output rises
+with oxygen uptake and saturates near 7.5 mmol·h<sup>−1</sup>; the
+minimum viable cutoff is marked in orange. Note the y-axis maximum of
+0.008 mmol·h<sup>−1</sup>, against 0.045 for the equivalent
+*B. subtilis* figure ([Figure 8a](#bac-protein)).
 
 </div>
 
@@ -359,7 +384,15 @@ conditions, which is what one expects from Nb1_gbHSV having fewer amino
 acids, and so less precursor and ATP demand per molecule, rather than
 from noise.
 
-**Method: dynamic production and induction timing (ODE).**
+**For the Wet Lab:** where the two constructs are otherwise
+interchangeable, prefer Nb1_gbHSV.
+
+<h3 id="yeast-induction">Resource limits flip the induction-timing advice</h3>
+
+Under ideal conditions the best moment to switch production on is late
+in the batch, at 32.7 h of 48. Once the batch can actually run out of
+sugar and oxygen, the advice reverses and early induction wins. The
+disagreement is the finding.
 
 FBA gives a ceiling, not a protocol. It assumes a steady state by
 construction: it reports rates, not trajectories, and has no notion of
@@ -388,9 +421,14 @@ models:
   of things.
 
 *Note on scope.* The mathematical framework developed here is shared
-with the *Bacillus* model in the Protein Production subsection of the
-bacteria section below; it is derived once, in full, at this point, and
+with the *Bacillus* model in [the *Bacillus* induction
+section](#bac-induction); it is derived once, in full, at this point, and
 that section presents only the host-specific extensions.
+
+<details class="details">
+<summary class="details-summary">The two induction models in full: equations, closed-form optimum and parameters</summary>
+
+<div class="details-body">
 
 <div class="table-wrap">
 
@@ -406,8 +444,7 @@ that section presents only the host-specific extensions.
 
 <div class="caption">
 
-**Table 6.** State variables in the yeast dynamic models (Models 1 and
-2).
+**State variables** in the two yeast dynamic models.
 
 </div>
 
@@ -617,7 +654,7 @@ oxygen into an equivalent liquid saturation concentration, and $k_La$
 is the volumetric mass-transfer coefficient combining the liquid-side
 transfer coefficient and the specific interfacial
 area<a class="cite" href="#ref-7">7</a>. The system was
-integrated numerically from the initial conditions in Table 7 below.
+integrated numerically from the initial conditions in the parameter table below.
 
 <div class="table-wrap">
 
@@ -656,7 +693,7 @@ integrated numerically from the initial conditions in Table 7 below.
 
 <div class="caption">
 
-**Table 7.** Parameter values used in the yeast dynamic models.
+**Parameter values** used in the yeast dynamic models.
 <sup>†</sup> marks the FBA/GEM-informed growth-rate estimate; all
 remaining values are illustrative simulation settings, not
 strain-specific fitted parameters.
@@ -688,21 +725,23 @@ our strain. We state this prominently because quoting a specific
 optimal induction time as though it were a prediction would be
 misleading.
 
-**Result: dynamic production.**
+</div>
+
+</details>
 
 <div data-chart="yeast-model1-induction-times"></div>
 
 <div class="caption">
 
-**Figure 4.** Analytical model (Model 1): biomass (left) and nanobody
-concentration (right) for a range of induction times over a 48 h batch.
-Early induction gives a long production window but a small cell
-population to produce with; late induction gives a large population but
-little time. The dashed trajectory is the analytically predicted
-optimum $t_i^* = 32.7$ h from the boxed $\tau^*$ result above, which
-reaches a final titre comparable to much earlier induction while
-leaving substantially more biomass, the visual signature of a genuine
-interior optimum.
+**Figure 4. With unlimited resources, waiting pays.** Simulated.
+Analytical model: biomass (left) and nanobody concentration (right) for a
+range of induction times over a 48 h batch. Early induction gives a long
+production window but a small cell population to produce with; late
+induction gives a large population but little time. The dashed trajectory
+is the analytically predicted optimum $t_i^* = 32.7$ h, which reaches a
+final titre comparable to much earlier induction while leaving
+substantially more biomass, the visual signature of a genuine interior
+optimum.
 
 </div>
 
@@ -716,15 +755,17 @@ interior optimum.
 
 <div class="caption">
 
-**Figure 5.** Yeast dynamic simulation results. (a) Inducible expression
-at $t_i^* = 32.7$ h overtakes constitutive expression ($t_i = 0$) before
-harvest, despite producing nothing for the first two thirds of the
-batch. This is the case for an inducible promoter, made quantitatively.
-(b) Model 2 dynamics (normalised): biomass, product, sugar, dissolved
+**Figure 5. An induction time derived from a resource-unlimited model is
+an upper bound on how long to wait, not a recommendation.** Simulated.
+(a) Inducible expression at $t_i^* = 32.7$ h overtakes constitutive
+expression ($t_i = 0$) before harvest, despite producing nothing for the
+first two thirds of the batch. This is the case for an inducible
+promoter, made quantitatively.
+(b) Resource-limited dynamics (normalised): biomass, product, sugar, dissolved
 oxygen and headspace oxygen, with induction at 10 h. Sugar and dissolved
 oxygen are driven toward exhaustion in the second half of the batch, at
-which point biomass and product both stall, behaviour Model 1 cannot
-produce. (c) Final product versus induction time under resource
+which point biomass and product both stall, behaviour the analytical
+model cannot produce. (c) Final product versus induction time under resource
 limitation. Unlike the analytical case, the curve decreases
 monotonically: once resources are finite, delaying induction only
 wastes substrate. (d) Nanobody concentration across cultivation time and
@@ -736,17 +777,31 @@ The two models disagree, and the disagreement is the point. Under ideal
 conditions the analytical model favours late induction
 ($t_{\mathrm{i}}^* = 32.7$ h of a 48 h batch); under resource
 limitation, the induction-time scan (Figure 5c) favours early induction.
-The reason is that Model 1 has no way for the batch to run out of
-anything, so delaying induction is free; once sugar and oxygen deplete,
-biomass accumulated late in the batch cannot be converted into product
-because the substrate to make it from is gone.
+The reason is that the analytical model has no way for the batch to run
+out of anything, so delaying induction is free; once sugar and oxygen
+deplete, biomass accumulated late in the batch cannot be converted into
+product because the substrate to make it from is gone.
 
-Any induction time derived from a resource-unlimited model is an upper
-bound on how long one should wait, not a recommendation.
+<div class="callout accent">
 
-#### A Second Yeast: *Pichia pastoris*
+<p class="callout-label">How to read these numbers</p>
 
-**Method.**
+Only the maximum growth rate is FBA-informed. Every Monod constant,
+yield and transfer coefficient is an illustrative setting, and nothing
+was fitted to data. These models demonstrate the induction-timing
+trade-off; they are not calibrated predictions for our strain, and the
+specific optimum should not be used as a process set-point until the
+parameters are grounded.
+
+</div>
+
+<h3 id="pichia">Pichia pastoris does not survive the restriction either</h3>
+
+*P. pastoris* is an established recombinant protein host and the fastest
+grower of any chassis we tested aerobically, doubling about every 1.25
+hours. Under oxygen restriction that advantage disappears completely: it
+grows more slowly than *S. cerevisiae* and makes less than half the
+combined protein flux.
 
 *P. pastoris* is the other standard yeast expression host and is
 frequently preferred over *S. cerevisiae* for recombinant protein
@@ -754,7 +809,13 @@ yield<a class="cite" href="#ref-5">5</a>. We ran the same
 oxygen-requirement and combined-production analyses on it as a
 comparator, under the same 5% viability convention.
 
-**Result.**
+<div class="caption">
+
+**Table 4. The fastest aerobic grower is the worst performer once oxygen
+is restricted.** *P. pastoris* against *S. cerevisiae* at the same 5%
+viability convention.
+
+</div>
 
 <div class="table-wrap">
 
@@ -769,43 +830,41 @@ comparator, under the same 5% viability convention.
 
 </div>
 
-<div class="caption">
-
-**Table 8.** Minimum viable oxygen analysis for *P. pastoris*, alongside
-*S. cerevisiae* for comparison.
-
-</div>
-
 <div data-chart="pichia-o2-sweep"></div>
 
 <div data-chart="pichia-combined-production-vs-o2"></div>
 
 <div class="caption">
 
-**Figure 6.** *P. pastoris* oxygen dependence. Its aerobic growth
-advantage (0.5806 h<sup>−1</sup>, the highest of any chassis tested)
-does not survive oxygen restriction: at the minimum viable oxygen point
-it grows more slowly than *S. cerevisiae* and produces less than half
-the combined protein flux.
+**Figure 6. *P. pastoris* buys its aerobic speed with a steeper oxygen
+dependence.** Simulated. Growth and production against oxygen uptake,
+under the same conditions as Figures 2 and 3. Its aerobic advantage
+(0.5806 h<sup>−1</sup>, the highest of any chassis tested) does not
+survive oxygen restriction: at the minimum viable oxygen point it grows
+more slowly than *S. cerevisiae* and produces less than half the combined
+protein flux.
 
 </div>
 
-*P. pastoris* is the fastest grower of any chassis we tested
-aerobically, doubling roughly every 1.25 h. Under oxygen restriction
-that advantage disappears entirely: 0.0744 h<sup>−1</sup> against
-0.0917 h<sup>−1</sup> for *S. cerevisiae*, and a combined production
-flux of 0.0016 mmol·h<sup>−1</sup>, less than half. It was therefore not
-carried forward, and no per-construct nanobody or dynamic analysis was
-run for it.
+Under oxygen restriction the advantage disappears entirely:
+0.0744 h<sup>−1</sup> against 0.0917 h<sup>−1</sup> for
+*S. cerevisiae*, and a combined production flux of
+0.0016 mmol·h<sup>−1</sup>, less than half. It was therefore not carried
+forward, and no per-construct nanobody or dynamic analysis was run for
+it.
 
-#### Discussion
+**For the Wet Lab:** a chassis chosen on aerobic benchmarks would have
+been the wrong one. This is the clearest case in our work of modelling
+changing a decision rather than confirming it.
+
+### What the yeast models settled
 
 Yeast is a workable but fragile choice for this application, and the
 three analyses agree on why.
 
 **It can run on our feedstock, but only just.** Anaerobic yeast on the
 sucrose a growth-capped cyanobacterial supplier can deliver reaches
-0.038429 h<sup>−1</sup>. That is a viable culture, not a productive one.
+0.038 h<sup>−1</sup>. That is a viable culture, not a productive one.
 
 **Oxygen is its binding constraint, and the constraint is steep.**
 Removing oxygen costs three quarters of the growth rate and roughly 80%
@@ -822,8 +881,8 @@ both in the same figure.
 
 **Two outputs are usable regardless of the final chassis choice.** The
 induction-timing framework (the $\tau^*$/$t_i^*$ equations above) is
-host-agnostic and is reused for *B. subtilis* in the Protein Production
-section below. And the finding that a resource-unlimited model
+host-agnostic and is reused for *B. subtilis* in [the *Bacillus*
+induction section](#bac-induction). And the finding that a resource-unlimited model
 recommends late induction while a resource-limited one recommends early
 induction is a general caution, not a yeast-specific result.
 
@@ -834,11 +893,19 @@ stoichiometric model, and none of the numbers above should be read as
 evidence against them. See the Limitations and Future Directions
 section below.
 
-## Chassis Models: Bacteria (Bacillus subtilis)
+## Bacteria: Bacillus subtilis
 
-### Bacteria: *Bacillus subtilis*
+*B. subtilis* secretes protein straight into the medium, which saves
+purification steps that would otherwise be mass and power launched into a
+habitat. More importantly it has real anaerobic capability that yeast
+lacks: nitrate respiration through the `narGHJI` operon, and mixed
+acid–butanediol fermentation when no electron acceptor is available at
+all <a class="cite" href="#ref-10">10</a><a class="cite" href="#ref-8">8</a>.
 
-#### Design Goals
+<details class="details">
+<summary class="details-summary">Why this chassis, in more detail</summary>
+
+<div class="details-body">
 
 *Bacillus* species are Gram-positive bacteria widely used as microbial
 cell factories because they grow rapidly and secrete proteins directly
@@ -859,12 +926,19 @@ lactate, acetate and 2,3-butanediol without formate.
 We asked the same three questions of *B. subtilis* as of yeast: can it
 run on cyanobacteria-derived sucrose, can it survive our oxygen budget,
 and how much nanobody can it make and when. All work used the iBsu1147
-reconstruction, which, as the model-repair discussion below describes,
+reconstruction, which, as [the gap-filling section](#gap-fill) describes,
 could not answer the second question at all until we repaired it.
 
-#### Alternative Carbon Source
+</div>
 
-**Method.**
+</details>
+
+<h3 id="bac-carbon">Sucrose costs Bacillus nothing per carbon atom</h3>
+
+Anaerobically, sucrose and glucose are equally efficient per carbon
+delivered, both around 0.0046 h<sup>−1</sup> per mmol C. Aerobically
+glucose is better, 0.0106 against 0.0075. Since the project runs
+anaerobically, the feedstock decision costs the chassis decision nothing.
 
 Having established in the cyanobacteria section below that our in-situ
 feedstock will be sucrose rather than glucose, we needed to know what
@@ -874,15 +948,17 @@ informatively, normalised each by the carbon delivered, giving a growth
 yield per mmol of carbon. The normalisation matters because sucrose is
 a disaccharide: it delivers twice the carbon per molecule taken up, so
 a raw comparison of growth rates would flatter it for trivial reasons.
-
-**Result.**
+Carbon flux distribution in *B. subtilis* is substrate-dependent
+<a class="cite" href="#ref-13">13</a>, so the switch had to be checked
+rather than assumed.
 
 <div data-chart="bacillus-glucose-vs-sucrose"></div>
 
 <div class="caption">
 
-**Figure 7.** Glucose versus sucrose for *B. subtilis*: total growth
-rate (left panel) and growth per mmol of carbon (right panel),
+**Figure 7. Sucrose's apparent advantage is carbon delivery, not
+metabolic efficiency.** Simulated. Total growth rate (left panel) and
+growth per mmol of carbon (right panel),
 under aerobic and anaerobic conditions. Sucrose wins on total growth in
 both conditions; per carbon atom the two are equivalent anaerobically,
 but glucose is the better substrate aerobically.
@@ -908,15 +984,30 @@ feedstock decision does not compromise the chassis decision.
 Aerobically there would be a real per-carbon penalty, worth remembering
 if the project ever moves toward a better-aerated design.
 
-#### Oxygen Deprivation
+**For the Wet Lab:** switching to a cyanobacteria-derived feedstock is
+safe for the preferred chassis. If the project ever moves toward a
+better-aerated design, this conclusion changes.
 
-**Method: repairing the model before we could ask the question.**
+<div class="callout warn">
 
-The iBsu1147 reconstruction is validated aerobically, but with oxygen
-uptake set to zero it produced *zero* biomass flux. Since *B. subtilis*
-is known to grow anaerobically (see Design Goals above), this was a
-model gap, not biology, and it had to be fixed before any oxygen
-analysis was possible.
+<p class="callout-label">What we have not done yet</p>
+
+The calculation in [Table 2](#yeast-carbon), feeding real cyanobacterial
+sucrose fluxes into the host model, was done for yeast but not for
+*B. subtilis*, which is the chassis we actually recommend. Both the model
+and the flux values already exist, so this is the cheapest missing piece
+of work in the whole Dry Lab.
+
+</div>
+
+<h3 id="gap-fill">Filling in the model: two missing reactions stopped the model growing at all</h3>
+
+The published iBsu1147 reconstruction produces *zero* biomass with oxygen
+uptake set to zero, even though *B. subtilis* is known to grow
+anaerobically. This was a gap in the model, not biology, and it had to be
+closed before any oxygen question could be asked. Repairing it needed two
+reaction additions, and that repaired model is the most reusable single
+thing our Dry Lab produced.
 
 Diagnosis proceeded in stages:
 
@@ -944,7 +1035,8 @@ Having localised the gap, we did not simply insert generic bypasses.
 Each replacement had to be defensible as a real *B. subtilis* enzyme:
 
 - **DHORDfum → DHORDnad.** We identified DHORDnad (NAD-dependent
-  dihydroorotate dehydrogenase, EC 1.3.1.14, BSU15540) in KEGG. This is
+  dihydroorotate dehydrogenase, EC 1.3.1.14, assigned in our model to
+  BSU15530 and BSU15540) in KEGG. This is
   not merely an anaerobic workaround: the literature confirms that
   *B. subtilis* dihydroorotate dehydrogenase is natively a Class 1B
   enzyme (PyrDI/PyrDII subunits) that uses NAD as its physiological
@@ -968,14 +1060,69 @@ only anaerobically would have encoded a regulatory assumption we have
 no evidence for. The corrected model was packaged as a reusable function
 so that every downstream analysis starts from the same object.
 
-This sequence, *model fails → systematic diagnosis → candidate fix →
-literature check rejects the first candidate → second candidate
-accepted on direct enzymatic evidence*, is a complete
-Design–Build–Test–Learn cycle carried out entirely in the Dry Lab, and
-it is arguably the most reusable single output of our modeling work:
-any team wanting an anaerobic iBsu1147 needs these two reactions.
+<div class="caption">
 
-**Method: the oxygen analyses.**
+**Two reactions, one idea: filling in the model gaps.** The published
+model recorded only the O₂-linked mode of each enzyme, so both steps
+stopped without oxygen. Our replacements give the same enzymes a
+different electron acceptor and are applied in all conditions.
+
+</div>
+
+<div class="table-wrap">
+<table class="matrix-table">
+<thead>
+<tr><th></th><th scope="col">NAD route</th><th scope="col">Pyrimidine route</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Enzyme (job)</th><td>NadB, L-aspartate oxidase (starts <i>de novo</i> NAD synthesis)</td><td>PyrD/PyrK, dihydroorotate dehydrogenase (makes orotate for pyrimidines)</td></tr>
+<tr><th scope="row">Published model reaction (O₂ is the acceptor)</th><td>ASPO6</td><td>DHORDfum</td></tr>
+<tr><th scope="row">Our replacement</th><td>ASPOfum</td><td>DHORDnad</td></tr>
+<tr><th scope="row">New electron acceptor</th><td>Fumarate (becomes succinate)</td><td>NAD<sup>+</sup> (becomes NADH)</td></tr>
+<tr><th scope="row">Gene(s) in the model</th><td>BSU27870</td><td>BSU15530 and BSU15540</td></tr>
+<tr><th scope="row">Evidence</th><td><i>In vitro</i>: purified <i>B. subtilis</i> NadB uses fumarate and supports quinolinate formation <a class="cite" href="#ref-12">12</a></td><td>Class 1B enzyme, EC 1.3.1.14, with NAD<sup>+</sup> as physiological acceptor <a class="cite" href="#ref-11">11</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout good">
+
+<p class="callout-label">A complete design cycle, run entirely in silico</p>
+
+<div class="flow">
+<span class="flow-node amber">Model fails</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Systematic diagnosis</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Candidate fix</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Literature check rejects it</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node accent">Second candidate accepted on direct enzymatic evidence</span>
+</div>
+
+Any team wanting an anaerobic-capable iBsu1147 needs these two
+reactions. Our anaerobic model function fills in these gaps.
+
+</div>
+
+**For the Wet Lab:** this is the one prediction on the page that is cheap
+and directly testable. Grow *B. subtilis* on nitrate under strict
+anaerobiosis, with and without pyrimidine and NAD supplementation. A
+positive result validates our own correction rather than reproducing
+someone else's literature.
+
+<h3 id="bac-oxygen">Bacillus needs no oxygen, and with nitrate it outgrows yeast without it</h3>
+
+*B. subtilis* grows without oxygen in our model, and how fast it grows
+depends on what else it can respire. With nitrate uptake capped at
+10 mmol·h<sup>−1</sup>, growth falls from 0.32 h<sup>−1</sup> aerobically
+to 0.14 h<sup>−1</sup> anaerobically, a loss of 57%, against 73% for
+yeast. It then doubles about every five hours, where yeast takes six. The
+aerobic value is the rate at an oxygen limit of 10 mmol·h<sup>−1</sup>;
+growth is still rising at that limit, and without it the model reaches
+0.40 h<sup>−1</sup>. The ranking of the two chassis therefore flips
+without oxygen, but only if nitrate is available.
 
 With the corrected model, we ran the same three analyses used for
 yeast: growth with oxygen exchange bounded at [−10, 10] versus [0, 10];
@@ -983,80 +1130,104 @@ a continuous sweep of the oxygen uptake bound recording growth and CO₂
 output; and location of the minimum oxygen uptake sustaining 5% of the
 aerobic maximum.
 
-**Result.**
-
 <div data-chart="bacillus-aerobic-anaerobic"></div>
 
-<div data-chart="bacillus-o2-sweep"></div>
+<!-- Figure 8b is the matplotlib export of cell 27 in
+     obj2_gem/Notebooks/Bacillus_Subtilis_revised.ipynb (the nitrate-capped
+     run, np.linspace(0, 10, 200)), matted with .photo-frame because its own
+     background is white. TODO(chart): to rebuild it as a React chart like
+     the rest of the page, that cell needs to export its `o2_scan`,
+     `growth_rates` and `co2_fluxes` arrays -- it currently saves only the
+     rendered figure. The old `bacillus-o2-sweep` chart stays unreferenced
+     either way, because its data predates the nitrate cap. -->
+
+<div class="photo-frame">
+
+![B. subtilis growth rate and CO₂ secretion against O₂ uptake, 0 to 10 mmol gDW⁻¹ h⁻¹. Growth without nitrate rises from 0.071 h⁻¹ at zero oxygen to 0.32 h⁻¹ at the cap, crossing the flat anaerobic-plus-nitrate reference line at about 2.5. CO₂ secretion falls from 9.2, dips near 7.7 around an uptake of 7, then rises to 10.8.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/whatsapp-image-2026-10-08-at-12-23-03-am.avif)
+
+</div>
 
 <div class="caption">
 
-**Figure 8.** Oxygen dependence of *B. subtilis*. (a) Growth falls from
-0.31 h<sup>−1</sup> to 0.22 h<sup>−1</sup> on removing oxygen, a 29%
-loss, against 75% for yeast (Figure 2a above). Panel (a) is non-zero
-only because of the two reactions added in the model-repair discussion
-above; the unrepaired model gives zero. (b) The oxygen sweep, with the
-5% viability threshold marked.
+**Figure 8. *B. subtilis* needs no oxygen to stay viable, and a small
+oxygen supply does the work of nitrate.** Simulated. (a) Growth falls
+from 0.32 h<sup>−1</sup> to 0.14 h<sup>−1</sup> anaerobically, with
+nitrate capped at 10 mmol·h<sup>−1</sup>. This is a 57% loss, against 73%
+for yeast ([Figure 2a](#yeast-oxygen)). It is non-zero only because of
+the two reactions added in [the gap-filling section](#gap-fill); the
+unrepaired model gives zero. (b) With no nitrate, growth is
+0.071 h<sup>−1</sup> at zero oxygen (solid line), already well above the
+5% viability line (red dashed), so the minimum viable oxygen is zero — the
+"min viable O₂" marker in the legend sits on the vertical axis itself,
+which is why it is not visible in the plot. The grey dotted line marks
+anaerobic growth with nitrate at zero oxygen. Growth without nitrate
+overtakes it at an oxygen uptake of about 2.5 mmol·h<sup>−1</sup>. CO₂
+secretion is on the right axis.
 
 </div>
 
 <div class="table-wrap">
-
-| Quantity | Value | Unit |
-|---|---|---|
-| Maximum growth rate | 0.3186 | h<sup>−1</sup> |
-| Viability threshold (5% of max) | 0.0159 | h<sup>−1</sup> |
-| Minimum viable O₂ uptake | 0.0503 | mmol·h<sup>−1</sup> |
-| Growth rate at that point | 0.0726 | h<sup>−1</sup> |
-| CO₂ output at that point | 9.2262 | mmol·h<sup>−1</sup> |
-
+<table class="kv-table"><tbody>
+<tr><th scope="row">Aerobic growth rate (O₂ limit 10 mmol·h<sup>−1</sup>)</th><td>0.3192 h<sup>−1</sup></td></tr>
+<tr><th scope="row">Anaerobic growth, nitrate capped at 10 mmol·h<sup>−1</sup></th><td>0.1380 h<sup>−1</sup></td></tr>
+<tr><th scope="row">Anaerobic growth, no nitrate (fermentation)</th><td>0.0709 h<sup>−1</sup></td></tr>
+<tr><th scope="row">Viability threshold (5% of aerobic max)</th><td>0.0160 h<sup>−1</sup></td></tr>
+<tr><th scope="row">Minimum viable O₂ uptake</th><td>0 mmol·h<sup>−1</sup></td></tr>
+<tr><th scope="row">CO₂ output at zero O₂, no nitrate</th><td>9.244 mmol·h<sup>−1</sup></td></tr>
+</tbody></table>
 </div>
 
 <div class="caption">
 
-**Table 9.** Minimum viable oxygen analysis for *B. subtilis*. The
-viability threshold is 5% of the aerobic maximum.
+**Minimum viable oxygen, *B. subtilis*.** Fermentation alone clears the
+viability threshold more than fourfold, so unlike both yeasts this
+chassis has no non-zero oxygen requirement at all.
 
 </div>
 
-*B. subtilis* starts from a lower aerobic ceiling than yeast
-(0.31 h<sup>−1</sup> versus 0.40 h<sup>−1</sup>) but loses far less on
-losing oxygen: a 29% drop against 75%. Anaerobically it doubles roughly
-every 3 h where yeast takes about 7 h. **The ranking of the two chassis
-inverts once oxygen becomes scarce**, which is the first indication
-that the conventional choice is the wrong one for this application.
+With no oxygen and no nitrate, *Bacillus* still grows by fermentation at
+0.071 h<sup>−1</sup>, more than four times the viability threshold of
+0.016 h<sup>−1</sup>, so the minimum oxygen uptake for viability is zero.
+Oxygen then raises growth roughly in proportion to supply and matches the
+nitrate-supported anaerobic rate at about 2.5 mmol·h<sup>−1</sup>. **The
+ranking of the two chassis inverts once oxygen becomes scarce**, which is
+the first indication that the conventional choice is the wrong one for
+this application.
 
-Its CO₂ output at the micro-aerophilic point (9.2262 mmol·h<sup>−1</sup>)
-is also the highest of the three hosts tested, which is relevant
-because in a closed loop that is the supplier's feedstock, not waste.
+CO₂ output starts at 9.2 mmol·h<sup>−1</sup>, dips to about
+7.7 mmol·h<sup>−1</sup> near an O₂ uptake of 7, and reaches
+10.8 mmol·h<sup>−1</sup> at 10 as the cell shifts from fermentation to
+respiration. It is the highest of the three hosts tested, which matters
+because in a closed loop that CO₂ is the supplier's feedstock, not waste.
 
-#### Protein Production
+<h3 id="bac-protein">Bacillus makes roughly five times more nanobody</h3>
 
-**Method: steady-state capacity (FBA).**
+Under optimal aerobic growth *B. subtilis* reaches
+0.042 mmol·h<sup>−1</sup> for Nb1_gbHSV against 0.0076 for yeast, about
+**5.5 times higher**. Going anaerobic costs it 27% of that, where yeast
+loses 80%. Since the habitat scenario is the oxygen-poor case, this is
+the decisive comparison on the page.
 
-As for yeast (see the Protein Production section above): combined
+As for yeast ([the yeast production section](#yeast-protein)): combined
 GFP + anti-GFP output swept across oxygen, and maximum theoretical
 per-construct nanobody flux aerobically and anaerobically.
 
-**Result: steady-state capacity.**
+<div class="caption">
 
-At the minimum viable oxygen uptake, combined GFP + nanobody flux is
+**Table 5. *B. subtilis* both starts higher and falls less.** Maximum
+theoretical nanobody production flux (mmol·h<sup>−1</sup>), with the ratio
+to the equivalent *S. cerevisiae* value from [Table 3](#yeast-protein).
+Combined GFP plus nanobody flux at the minimum viable oxygen point is
 0.0050 mmol·h<sup>−1</sup>.
+
+</div>
 
 <div class="table-wrap">
 
 | Construct | Aerobic | Anaerobic | Loss | Aerobic vs. yeast |
 |---|---|---|---|---|
-| Nb14 | 0.0381 | 0.0280 | −27% | 5.6× |
-| Nb1_gbHSV | 0.0423 | 0.0310 | −27% | 5.6× |
-
-</div>
-
-<div class="caption">
-
-**Table 10.** Maximum theoretical nanobody production flux
-(mmol·h<sup>−1</sup>) in *B. subtilis*, with the *S. cerevisiae* values
-from Table 5 above for comparison.
+| Nb14 | 0.038 | 0.028 | −27% | 5.6× |
+| Nb1_gbHSV | 0.042 | 0.031 | −27% | 5.6× |
 
 </div>
 
@@ -1066,30 +1237,26 @@ from Table 5 above for comparison.
 
 <div class="caption">
 
-**Figure 9.** Nanobody production capacity in *B. subtilis*. Note the
-y-axis of panel (a) extends to 0.045 mmol·h<sup>−1</sup>, against
-0.008 mmol·h<sup>−1</sup> for the equivalent yeast figure (Figure 3a
-above). The two panels are not on the same scale, and the difference
-between the hosts is larger than it looks.
+**Figure 9. The gap between the two hosts is wider than it looks, because
+the axes differ.** Simulated. Panel (a) extends to
+0.045 mmol·h<sup>−1</sup> against 0.008 for the equivalent yeast figure
+([Figure 3a](#yeast-protein)). As in yeast, Nb1_gbHSV holds a systematic
+advantage of about 10% over Nb14, in the same direction in both hosts,
+consistent with a construct-length effect rather than noise.
 
 </div>
 
-Under optimal aerobic growth *B. subtilis* reaches 0.0423 mmol·h<sup>−1</sup>
-for Nb1_gbHSV against 0.0076 mmol·h<sup>−1</sup> for yeast, roughly
-**5.5 times higher**. Going anaerobic costs it about 27% of that
-capacity, where yeast loses about 80%. Since our habitat scenario is
-precisely the oxygen-poor case, this is the decisive comparison.
+<h3 id="bac-induction">The induction window is narrow</h3>
 
-As in yeast, Nb1_gbHSV is consistently marginally easier to produce
-than Nb14, the same ≈10% systematic advantage, in the same direction,
-consistent with a construct-length effect rather than noise.
+Inducing around 6.5 h–7 h gives the highest predicted titre, and missing
+it by a few hours costs most of the product. The yield curve is a sharp
+peak, not a broad plateau, which makes this a process-control requirement
+rather than a modelling curiosity.
 
-**Method: dynamic production (ODE).**
-
-The dynamic framework is the one derived in the Protein Production
-section above; the biomass, production and induction-timing equations
-there apply unchanged. Two features of this host are not captured by
-the yeast version, and are the *Bacillus*-specific extensions:
+The dynamic framework is [the one used for yeast](#yeast-induction); the
+biomass, production and induction-timing equations there apply unchanged.
+Two features of this host are not captured by the yeast version, and are
+the *Bacillus*-specific extensions:
 
 1. **Nitrogen/amino-acid precursor limitation.** A nanobody is a
    protein, so its synthesis needs not just carbon and energy but
@@ -1101,6 +1268,11 @@ the yeast version, and are the *Bacillus*-specific extensions:
    than modelling protease concentration as its own state variable, we
    use a biomass-proportional loss term, which is minimal but still
    captures a genuinely *Bacillus*-specific bottleneck.
+
+<details class="details">
+<summary class="details-summary">The six-state Bacillus model in full: equations and parameters</summary>
+
+<div class="details-body">
 
 <div class="table-wrap">
 
@@ -1117,7 +1289,7 @@ the yeast version, and are the *Bacillus*-specific extensions:
 
 <div class="caption">
 
-**Table 11.** State variables in the *Bacillus* dynamic model.
+**State variables** in the *Bacillus* dynamic model.
 <sup>†</sup> marks the host-specific addition.
 
 </div>
@@ -1231,7 +1403,7 @@ concentration at harvest, final biomass and remaining resources.
 
 <div class="caption">
 
-**Table 12.** Illustrative parameter values for the *Bacillus* dynamic
+**Illustrative parameter values** for the *Bacillus* dynamic
 model. <sup>†</sup> marks the two host-specific additions:
 nitrogen/amino-acid limitation and protease-associated product loss.
 
@@ -1263,13 +1435,16 @@ from FBA. The predicted optimal induction time is therefore
 FBA-derived parameter estimates before it is used as a process
 set-point.
 
-**Result: dynamic production.**
+</div>
+
+</details>
 
 <div data-chart="bacillus-fig9-multi-induction"></div>
 
 <div class="caption">
 
-**Figure 10.** Biomass (left) and nanobody (right) trajectories under
+**Figure 10. Peak titre and harvest titre are not the same quantity.**
+Simulated. Biomass (left) and nanobody (right) trajectories under
 different *Bacillus* induction strategies; the same colour denotes the
 same induction time in both panels. Very early induction ($t_i = 0$ h)
 produces little of either because there is no biomass to produce with.
@@ -1291,7 +1466,8 @@ titre and harvest titre are not the same quantity.
 
 <div class="caption">
 
-**Figure 11.** Supporting *Bacillus* dynamic outputs. (a) Sugar is
+**Figure 11. Carbon, not nitrogen, is the binding resource under this
+parameter set.** Simulated. (a) Sugar is
 driven to exhaustion by about 40 h while the nitrogen/amino-acid pool is
 only partially consumed, so under this parameter set carbon, not
 nitrogen, is the binding resource. (b) The induction-time scan is
@@ -1325,7 +1501,11 @@ right panel). This argues for harvesting at the product peak rather
 than at a fixed end time, an operational recommendation that neither
 the analytical model nor FBA could have generated.
 
-#### Discussion
+**For the Wet Lab:** induce early, and harvest at the product peak rather
+than at a fixed end time. That recommendation comes from the dynamic
+model alone; neither FBA nor the analytical model could have produced it.
+
+### What the Bacillus models settled
 
 **_B. subtilis_ is the preferred chassis, and three independent
 objectives agree on it.** Growth rate, combined protein output and
@@ -1334,25 +1514,28 @@ oxygen limitation. That convergence across different objective
 functions is a useful internal cross-check: it is not an artefact of
 how we posed one optimisation problem.
 
+<div class="caption">
+
+**Table 6. The conventional choice loses on every measure that matters
+here.** Chassis comparison summary; all values from this section, [the
+yeast oxygen section](#yeast-oxygen) and [the *Pichia*
+comparison](#pichia). *B. subtilis* anaerobic growth is the
+nitrate-supported rate.
+
+</div>
+
 <div class="table-wrap">
 
 | Quantity | *S. cerevisiae* | *B. subtilis* | *P. pastoris* |
 |---|---|---|---|
-| Aerobic μ (h<sup>−1</sup>) | 0.4091 | 0.3186 | 0.5806 |
-| Anaerobic μ (h<sup>−1</sup>) | 0.10 | 0.22 | n/a |
-| Growth lost without O₂ | −75% | −29% | n/a |
-| μ at min viable O₂ (h<sup>−1</sup>) | 0.0917 | 0.0726 | 0.0744 |
+| Aerobic μ (h<sup>−1</sup>) | 0.41 | 0.32 | 0.58 |
+| Anaerobic μ (h<sup>−1</sup>) | 0.11 | **0.14** | n/a |
+| Growth lost without O₂ | −73% | **−57%** | n/a |
+| Minimum viable O₂ (mmol·h<sup>−1</sup>) | 0.0503 | **0** | 0.0503 |
 | Combined flux at min O₂ | 0.0035 | **0.0050** | 0.0016 |
-| Best aerobic Nb flux | 0.0076 | **0.0423** | n/a |
-| Best anaerobic Nb flux | 0.0015 | **0.0310** | n/a |
+| Best aerobic Nb flux | 0.0076 | **0.042** | n/a |
+| Best anaerobic Nb flux | 0.0015 | **0.031** | n/a |
 | Nb capacity lost without O₂ | −80% | **−27%** | n/a |
-
-</div>
-
-<div class="caption">
-
-**Table 13.** Chassis comparison summary. All values from this section
-and the yeast oxygen-deprivation and Pichia sections above.
 
 </div>
 
@@ -1384,27 +1567,29 @@ does not match this section's own FBA result. The chassis
 recommendation rests on the FBA comparison, which is well grounded; the
 induction timing rests on the dynamic model, which is not yet.
 
-## Chassis Models: Cyanobacteria (Synechococcus elongatus)
+## Cyanobacteria: Synechococcus elongatus PCC 7942
 
-### Cyanobacteria: *Synechococcus elongatus* PCC 7942
-
-#### Design Goals
-
-The two previous subsections assume a sugar feedstock. In a closed
-habitat that assumption has to be earned: glucose is not a given, and
-the only large-scale carbon input available is CO₂. This model answers
-where the sugar comes from.
+Both host sections assume a sugar feedstock. In a closed habitat that
+assumption has to be earned, because glucose is not a given and the only
+large carbon input is CO₂. This model answers where the sugar comes from.
+It is the one model on this page that is not asked to make protein: its
+output is a flux that becomes another model's input.
 
 Cyanobacteria are photoautotrophs that produce sucrose directly from
 photosynthesis. Other sugars can be produced phototrophically (glucose,
 fructose, polysaccharides<a class="cite" href="#ref-14">14</a><a class="cite" href="#ref-15">15</a>),
-but sucrose is the highest-yielding carbohydrate, and the *Bacillus*
-Alternative Carbon Source section above shows it costs our preferred
-host nothing per carbon atom anaerobically. The obstacle is that
-cyanobacteria make sucrose and then keep it: **they do not secrete
-it**.
+but sucrose is the highest-yielding carbohydrate, and [the per-carbon
+analysis](#bac-carbon) shows it costs our preferred host nothing per
+carbon atom anaerobically. The obstacle is that *S. elongatus* makes
+sucrose and then keeps it: **it does not secrete it**. Everything below
+follows from trying to get it out.
 
-The goals for this model were therefore:
+<details class="details">
+<summary class="details-summary">The four goals set for this model</summary>
+
+<div class="details-body">
+
+The goals for this model were:
 
 1. **Characterise the unmodified organism** and find out what actually
    limits it, rather than assuming it is simply because it is a
@@ -1417,12 +1602,16 @@ The goals for this model were therefore:
    lysis in a separate culture.
 4. **Choose between them** on grounds the models can support.
 
-Unlike the two host models, this one is not asked to make protein. Its
-output is a flux that becomes another model's input.
+</div>
 
-#### Nutrient Supply and Limitation
+</details>
 
-**Method.**
+<h3 id="cyano-limits">Nitrogen limits the supplier, not carbon or light</h3>
+
+At our operating point neither CO₂ nor light is binding. Both return
+shadow prices of essentially zero, meaning more of either buys no growth
+at all. The limiting resource is ammonium, at a shadow price of −0.124.
+We did not expect that from a photoautotroph.
 
 Before evaluating either export strategy we characterised the
 unmodified aerobic PCC 7942 model
@@ -1443,8 +1632,6 @@ which raises the phosphate requirement, and so on. We therefore refined
 the breakpoints by **iterative joint optimisation** (coordinate descent
 across all three constraints) until they converged.
 
-**Result: baseline and the binding constraint.**
-
 The default model grows at approximately 0.102 h<sup>−1</sup>, with
 CO₂/HCO₃⁻ uptake capping growth; the model's native bound on that
 uptake is 2 mmol·h<sup>−1</sup>. Figure 12 shows optimal growth as a
@@ -1460,8 +1647,9 @@ rest of the cyanobacterial analysis.
 
 <div class="caption">
 
-**Figure 12.** Optimal growth rate of *S. elongatus* PCC 7942 as a
-function of the CO₂/HCO₃⁻ uptake bound. Growth saturates beyond
+**Figure 12. Carbon supply stops helping well below the bound we chose.**
+Simulated. Optimal growth rate of *S. elongatus* PCC 7942 against the
+CO₂/HCO₃⁻ uptake bound. Growth saturates beyond
 approximately 4.2 mmol·h<sup>−1</sup>; the habitat-analog operating
 point of 5.1 mmol·h<sup>−1</sup> (green, giving 0.2191 h<sup>−1</sup>)
 sits just past the knee, and the model's native default bound of
@@ -1486,9 +1674,12 @@ not expect.
 
 <div class="caption">
 
-**Table 14.** Shadow prices at the baseline operating point (CO₂/HCO₃⁻
-bound 5.1 mmol·h<sup>−1</sup>, growth rate 0.2191 h<sup>−1</sup>),
-growth objective.
+**Table 7. Nitrogen is the only binding constraint at the baseline
+operating point.** Shadow prices for the growth objective at CO₂/HCO₃⁻
+bound 5.1 mmol·h<sup>−1</sup>, growth rate 0.2191 h<sup>−1</sup>. Ammonium
+and nitrate carry identical prices, which is what should happen if both
+converge on the same assimilation pathway (GS-GOGAT) once inside the
+cell: a useful check that the dual solution is behaving.
 
 </div>
 
@@ -1501,7 +1692,16 @@ expected if both nitrogen sources converge on the same downstream
 assimilation pathway (GS-GOGAT) once inside the cell, a useful sanity
 check that the dual solution is behaving sensibly.
 
-**Result: a three-stage co-limitation cascade.**
+**For the Wet Lab:** nitrogen supplementation, not lighting or carbon
+sparging, is what moves this culture at our operating point. That is an
+argument for recovered urine as a nitrogen source.
+
+<h3 id="cyano-cascade">The limitation moves through three nutrients in turn</h3>
+
+Relieving nitrogen does not uncap growth. It hands the limitation to
+carbon, and relieving carbon hands it to phosphate, which has by far the
+steepest shadow price of the three. Growth roughly triples across the
+cascade, from 0.219 h<sup>−1</sup> to 0.63 h<sup>−1</sup>.
 
 Relaxing each constraint in turn revealed that the limitation does not
 sit with one nutrient but moves:
@@ -1532,8 +1732,9 @@ sit with one nutrient but moves:
 
 <div class="caption">
 
-**Figure 13.** Sequential nutrient co-limitation in *S. elongatus* PCC
-7942. (a) Growth rate over the CO₂/HCO₃⁻ × NH₄⁺ plane with phosphate
+**Figure 13. Fixing one nutrient only reveals the next one.** Simulated.
+Sequential nutrient co-limitation in *S. elongatus* PCC 7942.
+(a) Growth rate over the CO₂/HCO₃⁻ × NH₄⁺ plane with phosphate
 held at the model default; the marked point is where phosphate takes
 over as the binding constraint. (b) Growth as all three bounds are
 scaled proportionally toward the converged solution, showing the
@@ -1551,7 +1752,7 @@ PO₄³⁻ ≈ 0.27 mmol·h<sup>−1</sup>.
 
 with photon supply (145 µE·m<sup>−2</sup>·s<sup>−1</sup>) and nitrate,
 sulfate, iron and magnesium all remaining non-binding throughout (see
-Table 15 below).
+Table 8 below).
 
 <div class="table-wrap">
 
@@ -1571,13 +1772,19 @@ Table 15 below).
 
 <div class="caption">
 
-**Table 15.** Shadow price analysis for the growth objective at the
-converged nutrient-sufficient bounds (CO₂/HCO₃⁻ = 12.2203, NH₄⁺ = 3.3,
+**Table 8. At the converged optimum only carbon is still binding.**
+Ammonium and phosphate sit exactly on their bounds yet price at zero:
+that is solution degeneracy, not an error, and it is the reason every
+breakpoint above was confirmed by a direct growth sweep rather than by
+looking for a shadow price crossing zero. Shadow price analysis for the
+growth objective at the converged nutrient-sufficient bounds (CO₂/HCO₃⁻ = 12.2203, NH₄⁺ = 3.3,
 PO₄³⁻ = 0.2671 mmol·h<sup>−1</sup>). Growth rate = 0.6274 h<sup>−1</sup>.
 
 </div>
 
-**A methodological negative result worth recording.**
+<div class="callout warn">
+
+<p class="callout-label">A method failure worth recording</p>
 
 Shadow price analysis was reliable for *identifying* which constraints
 were binding, but unreliable for *precisely locating* breakpoints near
@@ -1586,19 +1793,22 @@ flux distributions give identical growth rates but different dual
 values. All breakpoints reported above were therefore confirmed by
 direct growth-rate sweeps rather than by looking for a shadow-price
 zero-crossing. Any team using shadow prices to find limiting nutrients
-should be aware of this failure mode.
+should expect this and confirm with direct sweeps.
 
-**Design consequence.**
+</div>
 
-Supplying CO₂ alone is not enough: nitrogen and phosphate become
-binding in turn, and phosphate has by far the steepest shadow price.
-That strengthens the case for using recovered urine as a nutrient
-source, since it supplies nitrogen, and it raises **phosphate sourcing
-as an unsolved design problem** the project needs an answer to.
+**For the Wet Lab:** supplying CO₂ alone will not do. Nitrogen and
+phosphate become binding in turn, and phosphate is the steepest of the
+three. That strengthens the case for recovered urine as a nitrogen
+source, and it raises **phosphate sourcing as an unsolved design
+problem** the project needs an answer to.
 
-#### Exporting Sucrose
+<h3 id="cyano-export">Capping the supplier's growth more than triples sucrose export</h3>
 
-**Method.**
+Letting the engineered culture grow as fast as it can gives
+0.23 mmol·h<sup>−1</sup> of sucrose. Capping its biomass flux at
+0.013 h<sup>−1</sup> gives 0.81 mmol·h<sup>−1</sup>, a 3.5× increase, and
+that is the operating point we recommend.
 
 Sucrose sits at a metabolic junction inside the cyanobacterial cell. It
 can be held as an osmolyte, broken back down into hexoses and fed into
@@ -1617,11 +1827,9 @@ We added the CscB reaction to the model and then (i) mapped the
 trade-off between sucrose export and biomass production by sweeping the
 biomass flux constraint; (ii) selected candidate operating points and
 fed the resulting sucrose fluxes into the yeast model (see the yeast
-Alternative Carbon Source section above); and (iii) ran shadow price
+[yeast carbon section](#yeast-carbon)); and (iii) ran shadow price
 analysis with *sucrose export* rather than growth as the objective, to
 find what limits production rather than growth.
-
-**Result: the export–growth trade-off.**
 
 Sucrose export and biomass production compete for the same fixed
 carbon. Figure 14 maps that trade-off directly: maximum sucrose export
@@ -1631,7 +1839,8 @@ falls approximately linearly as the biomass flux constraint is raised.
 
 <div class="caption">
 
-**Figure 14.** Sucrose excretion versus growth rate trade-off for
+**Figure 14. Every unit of supplier growth is paid for in sucrose not
+exported.** Simulated. Sucrose excretion versus growth rate trade-off for
 *S. elongatus* PCC 7942 carrying *cscB*, at CO₂/HCO₃⁻ =
 5.1 mmol·h<sup>−1</sup>. The near-linear relationship means that every
 unit of cyanobacterial growth is paid for in sucrose not exported,
@@ -1640,12 +1849,10 @@ rather than simply a loss.
 
 </div>
 
-**Result: co-culture operating points.**
-
 At the high-growth end of the trade-off, maximum sucrose export is
 0.234 mmol·h<sup>−1</sup> at a cyanobacterial biomass flux of 0.03,
 which supports a 1:1 biomass ratio with the yeast partner (see the
-yeast Alternative Carbon Source section above). A 1:1 ratio is not,
+[yeast carbon section](#yeast-carbon)). A 1:1 ratio is not,
 however, a *stable* operating point, because the cyanobacteria grow
 faster than the yeast and the co-culture would drift over time. Capping
 cyanobacterial growth lower moves the system along the trade-off curve
@@ -1662,10 +1869,13 @@ in the direction we want.
 
 <div class="caption">
 
-**Table 16.** Two candidate co-culture operating points. Capping
+**Table 9. The growth-capped supplier is both more productive and more
+stable.** The maximum-growth point needs a 1:1 biomass ratio to balance,
+which drifts because cyanobacteria grow faster than yeast; capping removes
+that problem and raises export at the same time. Capping
 cyanobacterial growth more aggressively releases substantially more
 sucrose and gives a faster-growing, more stable partner culture. Yeast
-growth rates from Table 3 above.
+growth rates from [Table 2](#yeast-carbon).
 
 </div>
 
@@ -1675,11 +1885,9 @@ over the high-growth point, and the yeast partner reaches
 0.038429 h<sup>−1</sup>. This is the co-culture operating point we
 recommend.
 
-**Result: oxygen is the second product.**
-
 A co-culture supplies more than sugar. The oxygen flux of the
 *cscB*-carrying cyanobacteria is 4.2305 mmol·h<sup>−1</sup>, and the
-yeast oxygen-deprivation section above established that a small amount
+[yeast oxygen section](#yeast-oxygen) established that a small amount
 of oxygen buys a disproportionate amount of metabolic capability.
 Supplying the yeast with both sucrose and oxygen raises its growth rate
 to 0.175773 h<sup>−1</sup>, a **13-fold increase** over the strictly
@@ -1688,7 +1896,11 @@ anaerobic baseline of 0.0138 h<sup>−1</sup>.
 This reframes the co-culture: it is not a feedstock workaround, it is a
 partial solution to the oxygen problem as well.
 
-**Result: what limits export is not what limits growth.**
+<h3 id="cyano-dissociation">What limits export is not what limits growth</h3>
+
+Under the capped growth rate the only binding constraint on sucrose
+production is carbon. Nitrogen and phosphate, which govern growth, price
+at zero.
 
 <div class="table-wrap">
 
@@ -1708,7 +1920,9 @@ partial solution to the oxygen problem as well.
 
 <div class="caption">
 
-**Table 17.** Shadow price analysis for the sucrose production
+**Table 10. Sucrose export is carbon-limited even where growth is not.**
+Compare Table 8: the two objectives have different bottlenecks. Shadow
+price analysis for the sucrose production
 objective, habitat-analog CO₂/HCO₃⁻ bound (5.1 mmol·h<sup>−1</sup>),
 biomass objective capped at 0.013 h<sup>−1</sup>.
 
@@ -1718,18 +1932,24 @@ Under the capped growth rate, the only binding constraint on sucrose
 production is CO₂/HCO₃⁻, and increasing CO₂ does increase sucrose
 output.
 
-Comparing Table 17 with Table 15 above gives a clean and genuinely
+Comparing Table 10 with Table 8 above gives a clean and genuinely
 useful dissociation: **sucrose export and biomass growth are governed
 by different limiting resources**. Nutrient supplementation strategies
 such as urine-derived nitrogen and phosphate sourcing matter a great
 deal for growth optimisation but do not move the sucrose-production
 bottleneck at all, which remains carbon/Calvin-cycle-limited regardless
-of nitrogen or phosphate availability. Practically: if the goal is more
-sucrose, invest in CO₂ delivery, not in richer medium.
+of nitrogen or phosphate availability.
 
-#### Retaining Sucrose: the Knockout Strategy
+**For the Wet Lab:** if the goal is more sucrose, invest in CO₂ delivery,
+not in richer medium. If the goal is more supplier biomass, the opposite.
 
-**Method.**
+<h3 id="cyano-knockouts">The knockouts did nothing, and that is the finding</h3>
+
+Knocking out the pathways that consume sucrose changed the predicted
+sucrose flux by nothing at all, in every combination we tried, even under
+unlimited light and carbon. The literature reports increases of 15 to 300%
+for the same knockouts. We think we know why our model cannot see them,
+and the reason is worth more than the result.
 
 The alternative to export is to stop the cell consuming its own
 sucrose and let it accumulate. Two knockouts were the obvious targets:
@@ -1746,8 +1966,6 @@ analysis across the genome, traced flux to locate the bottleneck, and
 ran flux variability analysis (FVA) at fixed biomass flux
 0.013 h<sup>−1</sup> and CO₂/HCO₃⁻ uptake 5.1 mmol·h<sup>−1</sup> to
 screen for any gene whose deletion would *force* higher sucrose flux.
-
-**Result.**
 
 Sucrose accumulation flux at a biomass flux capped at 0.013 h<sup>−1</sup>
 was 0.2895 mmol·h<sup>−1</sup> under habitat-analog light and CO₂
@@ -1774,8 +1992,6 @@ The knockouts, in other words, did essentially nothing:
 - The FVA screen found **no single gene candidate**: sucrose and growth
   remained uncoupled for every gene tested.
 
-**A negative result that teaches something about the method.**
-
 This appears to conflict with the literature. Published knockouts of
 *invA*, *glgA*/*glgC* and *ggpS* report 15–300% increases in
 sucrose<a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-18">18</a><a class="cite" href="#ref-19">19</a>,
@@ -1789,12 +2005,24 @@ through the competing pathways in the first place, so knocking them out
 changes nothing in silico. The knockouts are not wrong; the model
 cannot see what makes them work.
 
+<div class="callout accent">
+
+<p class="callout-label">Why the model disagrees with the literature</p>
+
 This is a real limitation of the method rather than a failure of the
 analysis: **GEM-based knockout screening cannot discover
 regulation-dependent targets.** A knockout that only helps because it
 changes how a cell responds to stress will look like a no-op to FBA.
 
-#### Discussion
+</div>
+
+**For the Wet Lab:** build the exporter. We would still keep the *invA*
+knockout under salt-stress induction on literature grounds, precisely
+because we have identified why our own model cannot demonstrate its
+benefit. Engineering effort belongs in CO₂ delivery and Calvin-cycle
+capacity.
+
+### What the cyanobacterial models settled
 
 **The two strategies give the same flux, so the choice is made on
 other grounds.** Under both scenarios (sucrose excreted via an
@@ -1835,8 +2063,9 @@ is where the headroom is.
 **The supplier solves two problems, not one.** The strongest result in
 this subsection is not the sucrose flux but the oxygen. The co-culture
 raises partner growth 13-fold over strict anaerobiosis, which addresses
-the constraint that the yeast and bacteria oxygen-deprivation sections
-above identify as decisive for both hosts.
+the constraint that [the yeast](#yeast-oxygen) and
+[*Bacillus*](#bac-oxygen) oxygen sections identify as decisive for both
+hosts.
 
 The co-culture arithmetic assumes steady state and that all exported
 sucrose reaches the partner organism; it ignores transfer losses,
@@ -1849,13 +2078,39 @@ from our own results: could the oxygen supply be raised further by
 increasing the cyanobacteria:host ratio above 1:1? More cyanobacteria
 means more and faster partner growth, but our models cannot settle it.
 
-## Wet Lab Experiments from the Results
+## What the Model Changed
 
-At the time of writing, no experimental measurement generated by our
-own Wet Lab has been used as a model input, and no model prediction has
-yet been tested experimentally by our team. What exists is a set of
-literature- and database-derived constraints flowing into the models,
-and a set of concrete, testable recommendations flowing out of them.
+<div class="callout accent">
+
+<p class="callout-label">The honest summary</p>
+
+No prediction on this page has been tested against our own experimental
+data yet, and no wet-lab measurement went into any model. What follows is
+what the modelling decided, and what it is waiting on.
+
+</div>
+
+### Decisions the modelling made
+
+**The chassis.** We started expecting yeast, which is the default for a
+secreted eukaryotic-style product, and the models argued against it:
+*B. subtilis* keeps 73% of its growth without oxygen where yeast keeps
+20%, and carries roughly 5.5× the nanobody flux aerobically.
+This is the clearest case in our work of modelling changing a decision
+rather than confirming one.
+
+**The feedstock.** Sucrose from a growth-capped cyanobacterial partner,
+not glucose. [The per-carbon analysis](#bac-carbon) showed the switch
+costs *B. subtilis* nothing anaerobically, which is what made the
+co-culture defensible rather than merely necessary.
+
+**The aeration target.** Not "aerobic or anaerobic" but the smallest
+oxygen trickle that clears viability, which both host models put very
+low. That changes what the bioreactor has to do.
+
+**Where not to spend engineering effort.** Competing-pathway knockouts in
+the supplier, which our models say do nothing and which we now understand
+why FBA cannot evaluate.
 
 ### What went into the models
 
@@ -1885,7 +2140,7 @@ and a set of concrete, testable recommendations flowing out of them.
   are what allowed us to recognise our null in-silico result as a
   method limitation rather than as evidence against the knockouts.
 
-### Experiments the models recommend
+### What the Wet Lab is being asked to test
 
 Each item is something the Wet Lab could act on directly. The first
 three are the ones we would prioritise.
@@ -1896,7 +2151,7 @@ three are the ones we would prioritise.
 
 #### 1. Build in *B. subtilis* first
 5.5× higher theoretical aerobic production than yeast and a 27% rather
-than 80% loss going anaerobic (Table 13 above). If resources allow only
+than 80% loss going anaerobic (Table 6). If resources allow only
 one chassis to be built, this is it.
 
 </div>
@@ -1936,7 +2191,7 @@ consistently and systematically easier to produce in both hosts.
 A supply on the order of 0.05 mmol·h<sup>−1</sup> keeps all three
 tested chassis well above their 5% viability thresholds. Worth testing
 directly, since the identical value across three organisms may be a
-grid artefact (see the yeast oxygen-deprivation section above).
+grid artefact (see [the yeast oxygen section](#yeast-oxygen)).
 
 </div>
 
@@ -1962,7 +2217,7 @@ currently unassigned.
 
 #### 8. Induce early and harvest at the product peak
 Not at a fixed endpoint, because product declines under protease loss
-once resources deplete (Figure 10 above).
+once resources deplete (Figure 10).
 
 </div>
 
@@ -1984,11 +2239,11 @@ In the absence of experimental data, the checks available to us were
 internal. We record them rather than claim more.
 
 - **Analytical limit checks.** All three limiting cases of the
-  $\tau^*$ equation (see the Protein Production section above) recover
+  $\tau^*$ equation (see [the yeast induction section](#yeast-induction)) recover
   the biologically correct answer.
 - **Dual-solution sanity check.** NH₄⁺ and NO₃⁻ return identical shadow
   prices, as they must if both converge on GS-GOGAT (see the Nutrient
-  Supply and Limitation section above).
+  Supply and Limitation section, [above](#cyano-limits)).
 - **Convergent evidence for the cyanobacterial bottleneck.** Shadow
   prices under a sucrose objective, flux tracing to the `f6p_c` pool,
   and NDH-1 single-gene deletions all independently identify CO₂
@@ -2001,9 +2256,9 @@ internal. We record them rather than claim more.
   weak but real evidence that the gap is in the model rather than in a
   particular analysis script.
 
-## Limitations and Future Directions
+## Limitations and Next Steps
 
-### What these models do not capture
+### What these models cannot see
 
 We list these in rough order of how much they constrain the
 conclusions.
@@ -2024,7 +2279,7 @@ recommendation as "*B. subtilis* has the metabolic headroom", not
 #### Stoichiometric models cannot see regulation.
 
 Demonstrated directly by the cyanobacterial knockout screen (see the
-Knockout Strategy section above). Any engineering target whose benefit
+[Knockout Strategy section](#cyano-knockouts)). Any engineering target whose benefit
 is regulatory will be invisible to this method.
 
 #### FBA has no time axis; the ODEs have no metabolic detail.
@@ -2074,7 +2329,7 @@ model-to-model variation was not assessed.
 <div>
 
 #### Feed cyanobacterial sucrose into the *Bacillus* model
-The calculation done for yeast (Table 3 above) has not been done for
+The calculation done for yeast ([Table 2](#yeast-carbon)) has not been done for
 the chassis we actually recommend. Both the models and the flux values
 already exist; this is the cheapest missing piece of work in the whole
 Dry Lab and it closes an obvious hole a judge will notice.
@@ -2131,6 +2386,17 @@ burden that the $\beta$ parameter currently represents
 phenomenologically.
 
 </div>
+
+</div>
+
+<div class="callout warn">
+
+<p class="callout-label">Known inconsistencies still to resolve</p>
+
+Two numbers need checking before this page is frozen: the minimum viable
+oxygen uptake, which comes out identical to four significant figures for
+all three organisms and is almost certainly our sweep's grid spacing, and
+the anaerobic yeast baseline in [Table 2](#yeast-carbon), flagged there.
 
 </div>
 

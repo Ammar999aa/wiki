@@ -409,7 +409,9 @@ function BacillusAerobicAnaerobic() {
       <BarChart
         bars={[
           { label: "Aerobic", value: d.aerobic, color: BLUE },
-          { label: "Anaerobic", value: d.anaerobic, color: RED },
+          // Nitrate respiration, not fermentation: the anaerobic bar is the
+          // EX_no3_e >= -10 run (see data.js's note on this key).
+          { label: "Anaerobic (+ nitrate)", value: d.anaerobic, color: RED },
         ]}
         unit=" h⁻¹"
       />
@@ -581,6 +583,13 @@ const CHARTS = {
   "bacillus-fig9-multi-induction": <BacillusFig9 />,
   "yeast-aerobic-anaerobic": <YeastAerobicAnaerobic />,
   "bacillus-aerobic-anaerobic": <BacillusAerobicAnaerobic />,
+  // `bacillus-o2-sweep` is deliberately unreferenced by
+  // dry-lab-overview.md: its data (min viable O2 0.0503) predates the
+  // nitrate-capped run the page's Figure 8 describes, where the notebook
+  // solves min viable O2 exactly and gets zero. Figure 8b currently shows
+  // the notebook's own matplotlib export instead. Kept registered so a
+  // rebuilt chart can be dropped in by updating data.js and re-adding the
+  // `data-chart` slot -- see the TODO(chart) note at Figure 8b.
   "bacillus-glucose-vs-sucrose": <BacillusGlucoseVsSucrose />,
   "yeast-o2-sweep": <YeastO2Sweep />,
   "yeast-combined-production-vs-o2": <YeastCombinedProductionSweep />,
