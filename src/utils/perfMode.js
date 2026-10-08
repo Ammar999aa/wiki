@@ -11,14 +11,20 @@
 //      fewer translucent surfaces (Chromium-based browsers only, for now);
 //   4. otherwise, a measurement: frame times while the visitor scrolls,
 //      since scrolling is when the glass panels cost the most. If more
-//      than a third of those frames miss ~40fps, the machine is flagged
-//      and the result remembered for next time.
+//      than a quarter of those frames miss ~50fps, the machine is flagged
+//      and the result remembered for next time. (This used to be a third
+//      of frames under ~40fps, which let a machine scrolling at a steady
+//      40–45fps keep every effect — visibly laggy, especially next to the
+//      120Hz scrolling recent laptops and phones are used to.)
 
-const STORAGE_KEY = "perfMode";
+// Versioned: bump the suffix whenever the thresholds below change, so a
+// result remembered under the old thresholds (a stale "high", say) is
+// ignored and the visitor gets re-measured.
+const STORAGE_KEY = "perfMode.v2";
 const SAMPLE_FRAMES = 45;
 const SCROLL_GAP_MS = 150;
-const SLOW_FRAME_MS = 25;
-const SLOW_SHARE = 1 / 3;
+const SLOW_FRAME_MS = 20;
+const SLOW_SHARE = 1 / 4;
 
 function readStored() {
   try {

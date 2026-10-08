@@ -22,9 +22,12 @@
    (LiquidGlassFilter's #liquidDisplacement). Off by default because it's
    the single most expensive effect on the site: content scrolls under a
    fixed background, so the browser re-runs the displacement for every
-   visible panel on every scroll frame. Only the nav bar opts in — it's one
-   element, and the only place the distortion is actually noticeable (page
-   content sliding behind it). Chromium-only: Safari and Firefox drop the
+   visible panel on every scroll frame. Only the nav dropdown opts in: it's
+   unmounted while closed (Menu.jsx), so it costs nothing during normal
+   scrolling. The nav bar itself used to opt in, but measured with GPU
+   acceleration off (a stand-in for a weak laptop GPU) that one always-on,
+   full-width fixed bar cut scrolling from ~21 to ~15 fps on article pages
+   and ~18 to ~11 fps on Home. Chromium-only: Safari and Firefox drop the
    whole backdrop-filter value when it contains url(), so they're excluded
    below and keep the plain blur. */
 .refract {
