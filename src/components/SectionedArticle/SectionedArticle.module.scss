@@ -26,11 +26,13 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 }
 
 .progressRailFill {
-  width: 0; // rAF sets the real value on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
   height: 100%;
+  // rAF sets the real scale on the first frame (see SectionedArticle.jsx) — starts empty rather than flashing full-width for a frame.
+  transform: scaleX(0);
+  transform-origin: left center;
   background: linear-gradient(90deg, var(--accent), var(--primary-600));
   box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 55%, transparent);
-  // No width transition — it's set every animation frame from the real
+  // No transform transition — it's set every animation frame from the real
   // scrollTop (SectionedArticle.jsx), so a CSS transition on top of that
   // would only add lag, making the bar trail behind the actual scrollbar
   // instead of tracking it 1:1.
@@ -371,6 +373,24 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // A photo gallery: an even grid of same-size thumbnails, each cropped to
+  // 4:3 in the browser (source file untouched) so mixed portrait/landscape
+  // shots line up. Clicking one opens the full, uncropped image in the
+  // Lightbox like any other article image (see Article.jsx).
+  :global(.gallery) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-block: 20px;
+
+    img {
+      margin: 0;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+  }
+
   // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
   //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
   //
@@ -657,7 +677,10 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    // One row: long node labels wrap inside their node rather than the row
+    // wrapping and stranding an arrow at a line end (narrow screens stack
+    // the whole flow vertically instead, below).
+    flex-wrap: nowrap;
     gap: 0;
     font-family: ui-monospace, Menlo, Consolas, monospace;
     font-size: 0.82rem;
@@ -690,6 +713,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
 
     :global(.flow-arrow) {
+      flex: none;
       color: rgba(255, 255, 255, 0.45);
       padding: 0 14px;
       font-size: 1.1rem;
@@ -1407,6 +1431,399 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     color: #fff;
     font-size: 20px;
     font-weight: 700;
+  }
+
+  // A quote from a person inside a .person-card (e.g. an expert we
+  // interviewed): an optional `<p class="person-role">` under the name, then
+  // a `<blockquote>`, both beside the photo like the card's summary <p>.
+  :global(.person-card) > blockquote {
+    grid-column: 2;
+    margin: 12px 0 0;
+    font-size: 15px;
+
+    p {
+      margin: 0;
+    }
+
+    @media (max-width: 560px) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  :global(.person-card) > :global(.person-role) {
+    margin-top: 4px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: start;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  // A row of figures, each with its own caption (a `.photo-frame` + a
+  // `figcaption.caption`). Two columns by default; `--cols` sets another
+  // count, `--fig-h` gives every image the same height (`--fig-fit: cover`
+  // crops to fill it, default `contain` letterboxes), and `single` is one
+  // narrower centered figure (`single wide` for a full-width one). Plain
+  // HTML, one <figure> per line:
+  //   <div class="figure-grid" style="--cols: 3; --fig-h: 160px;">
+  //   <figure><div class="photo-frame"><img src="..." alt="..."></div><figcaption class="caption"><strong>Figure 1. Lead.</strong> Body.</figcaption></figure>
+  //   </div>
+  :global(.figure-grid) {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+    margin-block: 20px;
+
+    figure {
+      margin: 0;
+    }
+
+    :global(.photo-frame) {
+      margin: 0;
+      padding: 10px;
+    }
+
+    img {
+      height: var(--fig-h, auto);
+      object-fit: var(--fig-fit, contain);
+    }
+
+    :global(.photo-frame.contain) img {
+      object-fit: contain;
+    }
+
+    :global(.caption) {
+      margin: 8px 4px 0;
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  :global(.figure-grid.single) {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  :global(.figure-grid.single.wide) {
+    max-width: none;
+  }
+
+  // A key/value table (row headers, no column header row), e.g. a set of
+  // summary statistics. Raw HTML inside a .table-wrap:
+  //   <table class="kv-table"><tbody><tr><th scope="row">Key</th><td>Value</td></tr></tbody></table>
+  :global(.kv-table) th {
+    width: 44%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  // A matrix table: a real column header row AND a row-header first
+  // column, e.g. components x chassis, or payload x chassis. Differs
+  // from `.kv-table` (which has row headers but no header row) and from
+  // a plain markdown table (header row only). Without this, a
+  // `<th scope="row">` in the body picks up the base `th` rules — tinted
+  // background and a 2px bottom border meant for a header row — so the
+  // label column renders as a stack of header bars whose borders don't
+  // line up with the 1px `td` borders beside them. Here the row headers
+  // keep a quieter tint and the body's own 1px rule; only `thead` keeps
+  // the full header treatment. Raw HTML inside a .table-wrap:
+  //   <table class="matrix-table">
+  //     <thead><tr><th></th><th scope="col">A</th></tr></thead>
+  //     <tbody><tr><th scope="row">Row</th><td>+</td></tr></tbody>
+  //   </table>
+  :global(.matrix-table) tbody th {
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  // `.matrix-table.marks` — modifier for a matrix whose body cells are
+  // each a single +/- verdict rather than text. Those read better
+  // centred under their column header than ragged-left; a matrix of
+  // text cells (vector names, selection markers) keeps the default
+  // start alignment, so this is opt-in. A spanning cell is a row-group
+  // label, not a mark, so it stays start-aligned either way.
+  :global(.matrix-table.marks) tbody td {
+    text-align: center;
+  }
+
+  :global(.matrix-table.marks) tbody td[colspan] {
+    text-align: start;
+  }
+
+  // Click-to-open cards: each card's face is a button, and its hidden
+  // `.popup-more` content opens in the same popup a .person-card's "See
+  // more" uses (Article.jsx). Face = optional `.popup-num` (a numbered
+  // feature) or `.popup-icon` (an icon above the title), then a
+  // `.popup-face` holding `.popup-title`, optional `.popup-desc` /
+  // `svg.popup-art`, and a `.popup-hint`. Keep the button on one line; the
+  // markdown inside `.popup-more` needs blank lines around it:
+  //   <div class="popup-grid">
+  //
+  //   <div class="popup-card">
+  //   <button type="button" class="popup-open"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">Title</span><span class="popup-hint">Tap to read more</span></span></button>
+  //   <div class="popup-more">
+  //
+  //   Popup markdown...
+  //
+  //   </div>
+  //   </div>
+  //
+  //   </div>
+  :global(.popup-grid) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-block: 20px;
+
+    @media (max-width: 680px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  :global(.popup-card) {
+    display: flex;
+  }
+
+  :global(.popup-more) {
+    display: none;
+  }
+
+  :global(.popup-open) {
+    all: unset;
+    box-sizing: border-box;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    cursor: pointer;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+      background: color-mix(in oklab, var(--primary) 8%, transparent);
+      transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-300);
+      outline-offset: 3px;
+    }
+
+    &:has(> :global(.popup-icon)) {
+      flex-direction: column;
+    }
+  }
+
+  :global(.popup-num),
+  :global(.iter-num) {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    border: 1px solid rgba(255, 216, 77, 0.4);
+    background: rgba(255, 216, 77, 0.08);
+  }
+
+  :global(.popup-icon) {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: var(--amber);
+    border: 1px solid rgba(255, 216, 77, 0.4);
+    background: rgba(255, 216, 77, 0.08);
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  // Stretches to the card's full height so the hint can sit at the bottom
+  // of every card in a row, however long its title is.
+  :global(.popup-face) {
+    flex: 1;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  :global(.popup-title) {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  :global(.popup-desc) {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  :global(.popup-art) {
+    display: block;
+    width: 100%;
+    max-width: 290px;
+    height: auto;
+    margin: 4px 0 2px;
+  }
+
+  :global(.popup-hint) {
+    margin-top: auto;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  // One design iteration as a Design → Build → Test → Learn card. Each row
+  // is a label pill beside its markdown body; any row can be left out.
+  // `.iter.final` is the summary card that closes a list. Raw HTML with
+  // blank lines around each row's markdown:
+  //   <div class="iter-list">
+  //
+  //   <div class="iter">
+  //   <h4 class="iter-title"><span class="iter-num">1</span>Iteration 1: Title</h4>
+  //   <div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+  //
+  //   Markdown...
+  //
+  //   </div></div>
+  //   <div class="iter-row build">…</div></div>   (also: test, learn)
+  //   </div>
+  //
+  //   </div>
+  :global(.iter-list) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-block: 16px 20px;
+  }
+
+  :global(.iter) {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 20px var(--iter-pad, 24px) 0;
+    overflow: hidden;
+
+    @media (max-width: 560px) {
+      --iter-pad: 16px;
+    }
+  }
+
+  :global(.iter.final) {
+    border-color: rgba(255, 216, 77, 0.35);
+    background: rgba(255, 216, 77, 0.05);
+    padding-bottom: 4px;
+    margin-block: 20px;
+  }
+
+  :global(.iter-title) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 14px;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    color: white;
+  }
+
+  :global(.iter-row) {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 6px 18px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    &:last-child {
+      padding-bottom: 18px;
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+    }
+  }
+
+  :global(.iter-body) {
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.iter-label) {
+    align-self: start;
+    justify-self: start;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+
+  :global(.iter-row.design) :global(.iter-label) {
+    color: var(--primary);
+    border-color: rgba(177, 109, 255, 0.5);
+    background: rgba(177, 109, 255, 0.1);
+  }
+
+  :global(.iter-row.build) :global(.iter-label) {
+    color: var(--primary-300);
+    border-color: rgba(209, 168, 255, 0.4);
+    background: rgba(209, 168, 255, 0.08);
+  }
+
+  :global(.iter-row.test) :global(.iter-label) {
+    color: var(--amber);
+    border-color: rgba(255, 216, 77, 0.45);
+    background: rgba(255, 216, 77, 0.08);
+  }
+
+  :global(.iter-row.learn) {
+    margin-inline: calc(-1 * var(--iter-pad, 24px));
+    padding-inline: var(--iter-pad, 24px);
+    background: linear-gradient(90deg, rgba(255, 216, 77, 0.07), rgba(255, 216, 77, 0));
+
+    :global(.iter-label) {
+      color: var(--bg);
+      border-color: var(--amber);
+      background: var(--amber);
+    }
+  }
+
+  :global(.iter-list) + :global(.iter.final) {
+    margin-top: 0;
   }
 
   // ── Citations ──────────────────────────────────────────────────────

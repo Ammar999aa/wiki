@@ -10,33 +10,54 @@
     / var(--glass-opacity, 0.15)
   );
 
-  /* depth / separation */
-  filter: drop-shadow(-8px -10px 46px rgba(0, 0, 0, 0.35));
+  /* glass blur. No `filter: drop-shadow()` for depth: the squircle
+     clip-path cuts away everything outside the panel, so the shadow never
+     showed outside it, yet it still forced every panel through an extra
+     offscreen filter pass on every scroll frame. */
+  backdrop-filter: brightness(1.1) blur(var(--glass-blur, 8px));
+  -webkit-backdrop-filter: brightness(1.1) blur(var(--glass-blur, 8px));
+}
 
-  /* glass refraction + liquid distortion */
+/* Opt-in `refract` prop: adds the feDisplacementMap "liquid" distortion
+   (LiquidGlassFilter's #liquidDisplacement). Off by default because it's
+   the single most expensive effect on the site: content scrolls under a
+   fixed background, so the browser re-runs the displacement for every
+   visible panel on every scroll frame. Only the nav dropdown opts in: it's
+   unmounted while closed (Menu.jsx), so it costs nothing during normal
+   scrolling. The nav bar itself used to opt in, but measured with GPU
+   acceleration off (a stand-in for a weak laptop GPU) that one always-on,
+   full-width fixed bar cut scrolling from ~21 to ~15 fps on article pages
+   and ~18 to ~11 fps on Home. Chromium-only: Safari and Firefox drop the
+   whole backdrop-filter value when it contains url(), so they're excluded
+   below and keep the plain blur. */
+.refract {
   backdrop-filter:
     brightness(1.1)
     blur(var(--glass-blur, 8px))
     url(#liquidDisplacement);
-
-  /* Safari: omit url() — it breaks the entire chain including blur */
-  -webkit-backdrop-filter:
-    brightness(1.1)
-    blur(var(--glass-blur, 8px));
 }
 
-/* Firefox doesn't apply feDisplacementMap through backdrop-filter's url()
-   reference, and — same failure mode as Safari above — an unsupported
-   url() invalidates the whole backdrop-filter value, so blur/brightness
-   drop too. Firefox shares Chrome's unprefixed property name, so it can't
-   be split by prefix like Safari; `-moz-appearance` is Firefox-only, so
-   `@supports` on it is a reliable way to target just this browser. */
 @supports (-moz-appearance: none) {
-  .liquidGlass {
-    backdrop-filter:
-      brightness(1.1)
-      blur(var(--glass-blur, 8px));
+  .refract {
+    backdrop-filter: brightness(1.1) blur(var(--glass-blur, 8px));
   }
+}
+
+/* Low-performance mode (`data-perf="low"` on <html>, see utils/perfMode.js):
+   no backdrop blur at all — a mostly opaque dark tint stands in for it, so
+   text stays readable over the star field without the per-frame blur. */
+:global(:root[data-perf="low"]) .liquidGlass {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background-color: rgb(16 16 48 / 0.95);
+  background-image: linear-gradient(
+    rgb(var(--glass-r, 255) var(--glass-g, 255) var(--glass-b, 255) / var(--glass-opacity, 0.15)),
+    rgb(var(--glass-r, 255) var(--glass-g, 255) var(--glass-b, 255) / var(--glass-opacity, 0.15))
+  );
+}
+
+:global(:root[data-perf="low"]) .drift {
+  animation: none;
 }
 
 /* fallback glow via box-shadow — used when cornerGlow is false */

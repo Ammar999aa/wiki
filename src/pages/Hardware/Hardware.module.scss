@@ -175,30 +175,21 @@
   }
 }
 
-/* ─── BioreactorModel.jsx ──────────────────────────────────────────────
-   Wrapped in `LiquidGlass` (the site's frosted-glass primitive — see
-   .claude/DESIGN.md) rather than SectionedArticle's flatter `.panel`
-   markdown block; LiquidGlass itself carries no padding/margin of its own
-   (it's just the clipped, blurred surface), so `.modelPanelInner` supplies
-   what `.panel`'s own padding used to, and the margin-block that kept it
-   spaced from the surrounding article prose. `model-viewer` is a plain tag
-   selector (not a CSS-module class) so it stays unscoped — the same reason
-   `img`/`a`/`table` rules elsewhere aren't wrapped in :global() either. */
-.modelPanelInner {
-  padding: 20px 22px 16px;
-  margin-block: 20px;
+/* ─── Glass figures (BioreactorModel.jsx, BioreactorDashboard.jsx) ──────
+   Both are real components wrapped in `LiquidGlass` (the site's
+   frosted-glass primitive — see .claude/DESIGN.md) rather than the flatter
+   `.panel` markdown block. LiquidGlass carries no margin of its own, so
+   `.glassFigure` spaces it from the prose around it; the bottom margin is
+   small because a `.caption` (from hardware.md) always follows. */
+.glassFigure {
+  margin-block: 20px 10px;
 }
 
-.modelPanelHeader {
-  font-family: ui-monospace, Menlo, Consolas, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* `model-viewer` is a plain tag selector (not a CSS-module class) so it
+   stays unscoped — the same reason `img`/`a`/`table` rules elsewhere aren't
+   wrapped in :global() either. */
+.modelPanelInner {
+  padding: 16px;
 }
 
 .modelViewerWrap {
@@ -224,8 +215,481 @@
   font-size: 0.85rem;
 }
 
-.modelCaption {
-  margin: 14px 2px 4px;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.55);
+/* ─── WorkflowDiagram.jsx (Figure 3) ─────────────────────────────────────
+   Scrolls sideways below 620px instead of shrinking its labels to an
+   unreadable size on phones. */
+.workflowScroll {
+  overflow-x: auto;
+}
+
+.workflow {
+  display: block;
+  width: 100%;
+  min-width: 620px;
+  height: auto;
+}
+
+/* ─── LineChart.jsx (Figures 28–30) ──────────────────────────────────────
+   Mono for axis text, per the metadata-is-monospace convention
+   (.claude/ARTICLE-STANDARDS.md §5); line/dot colors are the brand violet. */
+.chart {
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    touch-action: pan-y;
+  }
+}
+
+.gridline {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.gridlineV {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+.axis {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+.tick,
+.axisTitle,
+.setpointLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+.axisTitle {
+  font-size: 12px;
+  fill: rgba(255, 255, 255, 0.75);
+}
+
+.setpoint {
+  stroke: var(--amber);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+.setpointLabel {
+  fill: var(--amber);
+}
+
+.line {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.dot {
+  fill: var(--primary-300);
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+
+.crosshair {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-dasharray: 3 3;
+  pointer-events: none;
+}
+
+/* ─── BioreactorDashboard.jsx ────────────────────────────────────────────
+   The LCD (.bezel/.screen) keeps the real touchscreen's look — Silkscreen
+   pixel font, cyan-on-blue, scanlines — since it depicts that device
+   (Figure 18). The controls around it follow the site: mono small-caps
+   labels, glass surface, violet focus/arc, amber primary action. */
+$lcd: #7fe3f4;
+$lcd-font: "Silkscreen", ui-monospace, Menlo, Consolas, monospace;
+
+.dash {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) 112px;
+  gap: 18px;
+  align-items: center;
+  padding: 22px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 12px;
+    align-items: start;
+    padding: 16px;
+
+    .bezel {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    .dashDial,
+    .dashSetpoints {
+      grid-row: 2;
+    }
+  }
+}
+
+.dashSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ctlLabel {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dashHint {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dial {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+
+  &.dragging {
+    cursor: grabbing;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--primary);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+}
+
+.dialTicks {
+  stroke: rgba(255, 255, 255, 0.35);
+
+  text {
+    stroke: none;
+    fill: rgba(255, 255, 255, 0.5);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+}
+
+.dialArc {
+  fill: none;
+  stroke: var(--primary-300);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.dialPointer {
+  stroke: var(--primary-300);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+}
+
+// A miniature LCD readout (dial value, pending setpoints).
+.lcdChip {
+  font-family: $lcd-font;
+  font-size: 0.74rem;
+  color: $lcd;
+  background: #060a1c;
+  border-radius: var(--radius-xs);
+  padding: 6px 8px;
+  min-width: 0;
+  text-align: center;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 5px rgba(127, 227, 244, 0.5);
+}
+
+.dashDial .lcdChip {
+  min-width: 88px;
+}
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+
+  .ctlLabel {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+.stepRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+
+  .lcdChip {
+    flex: 1;
+    padding-inline: 0;
+  }
+}
+
+.stepBtn {
+  all: unset;
+  box-sizing: border-box;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 150ms ease, border-color 150ms ease;
+
+  &:hover:not(:disabled) {
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+    background: color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.setBtn {
+  all: unset;
+  box-sizing: border-box;
+  margin-top: 4px;
+  width: 100%;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--amber);
+  color: var(--bg);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  transition: filter 150ms ease;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+// Always reserves two lines (the longest message wraps to two in this
+// column), so the setpoint controls above don't shift when it appears.
+.setStatus {
+  line-height: 1.3;
+  min-height: 2.6em;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  color: #4cd16b;
+}
+
+// Attribution for the LCD's Silkscreen font, right under the dashboard.
+// Mono and muted like the footer's own typeface credit. Scoped under
+// .glassFigure so it outranks `.article p`/`.article a` (justify, link blue).
+.glassFigure .fontCredit {
+  margin: 8px 4px 0;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  text-align: end;
+  hyphens: manual;
+  color: rgba(255, 255, 255, 0.45);
+
+  a {
+    color: inherit;
+  }
+}
+
+.setStatusPending {
+  color: var(--amber);
+}
+
+.bezel {
+  background: linear-gradient(145deg, #202225, #060607 55%);
+  border-radius: var(--radius-xs);
+  padding: 1.6%;
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
+    inset 0 10px 24px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.screen {
+  box-sizing: border-box;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: radial-gradient(130% 110% at 14% 8%, #3f63b0 0%, #28407e 22%, #142252 42%, #060a1c 68%, #020309 100%);
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.6),
+    inset 0 0 2px rgba(255, 255, 255, 0.15);
+  padding: 6.4% 6% 5%;
+  color: $lcd;
+  font-family: $lcd-font;
+  container-type: inline-size;
+
+  // scanlines
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  // glass glare
+  &::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 70%;
+    height: 140%;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 55%);
+    transform: rotate(8deg);
+    pointer-events: none;
+  }
+}
+
+.screenTitle {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 4.6cqw, 1.9rem);
+  letter-spacing: 0.06em;
+  text-shadow:
+    0 0 6px rgba(127, 227, 244, 0.55),
+    0 0 18px rgba(127, 227, 244, 0.25);
+  margin: 0 0 7%;
+}
+
+.screenRows {
+  position: relative;
+  z-index: 1;
+}
+
+.screenRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: clamp(0.5rem, 2.8cqw, 1.05rem);
+  padding: 1.7% 0;
+  text-shadow: 0 0 5px rgba(127, 227, 244, 0.4);
+
+  span:first-child {
+    color: #bfe9ef;
+    opacity: 0.92;
+  }
+}
+
+.screenDivider {
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55) 70%, rgba(255, 255, 255, 0.1));
+  margin: 1.5% 0 3.4%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+.cautionWrap {
+  position: relative;
+  z-index: 1;
+  margin-top: 6.5%;
+  text-align: center;
+}
+
+.caution {
+  display: inline-block;
+  font-size: clamp(0.45rem, 2.5cqw, 0.95rem);
+  letter-spacing: 0.05em;
+  color: #ff6a4d;
+  text-shadow:
+    0 0 8px rgba(255, 106, 77, 0.8),
+    0 0 18px rgba(255, 106, 77, 0.4);
+  animation: lcdFlash 1.1s steps(1, end) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes lcdFlash {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0.12;
+  }
+}
+
+// `.article img` adds a margin, zoom cursor and a click-to-lightbox handler
+// (Article.jsx) — none of which fit a logo printed on the screen.
+.screenLogo {
+  position: absolute;
+  left: 6%;
+  bottom: 5.5%;
+  z-index: 1;
+  height: clamp(12px, 5.6cqw, 26.6px);
+  width: auto;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(127, 227, 244, 0.35));
 }

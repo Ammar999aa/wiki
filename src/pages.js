@@ -37,6 +37,7 @@ const Engagement = lazyWithPreload(() => import("./pages/Engagement/Engagement")
 const Education = lazyWithPreload(() => import("./pages/Education/Education"));
 const ScienceCommunication = lazyWithPreload(() => import("./pages/ScienceCommunication/ScienceCommunication"));
 const ProteinLibrary = lazyWithPreload(() => import("./pages/ProteinLibrary/ProteinLibrary"));
+const WetLabDesign = lazyWithPreload(() => import("./pages/WetLabDesign/WetLabDesign"));
 const Protocols = lazyWithPreload(() => import("./pages/Protocols/Protocols"));
 const HumanIntegratedPractices = lazyWithPreload(() =>
   import("./pages/HumanIntegratedPractices/HumanIntegratedPractices")
@@ -48,6 +49,7 @@ const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
 const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
+const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
@@ -68,7 +70,13 @@ const Pages = [
   {
     name: "Project",
     folder: [
-      { name: "Description", title: "Description", path: "/project", component: Stub },
+      // The protein payload library used to be Wet Lab → Design; it reads
+      // as the project's own description of what SHIHAB makes, so it moved
+      // here and /design now carries the chassis/vector design write-up
+      // (WetLabDesign). src/content/en/project.md is left in the repo but
+      // is no longer rendered by any route — it was placeholder text plus
+      // an unfinished Pectin Hydrogel section.
+      { name: "Description", title: "Description", path: "/project", component: ProteinLibrary },
       { name: "Safety", title: "Safety", path: "/safety", component: Safety },
       { name: "Contribution", title: "Contribution", path: "/contribution", component: Stub },
     ],
@@ -76,7 +84,7 @@ const Pages = [
   {
     name: "Wet Lab",
     folder: [
-      { name: "Design", title: "Design", path: "/design", component: ProteinLibrary },
+      { name: "Design", title: "Design", path: "/design", component: WetLabDesign },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
       { name: "Results", title: "Results", path: "/results", component: Stub },
@@ -88,7 +96,7 @@ const Pages = [
     name: "Engineering",
     folder: [
       { name: "Engineering Success", title: "Engineering Success", path: "/engineering-success", component: Stub },
-      { name: "Parts", title: "Parts", path: "/parts", component: Stub },
+      { name: "Parts", title: "Parts", path: "/parts", component: Parts },
       { name: "Hardware", title: "Hardware", path: "/hardware", component: Hardware },
     ],
   },

@@ -21,7 +21,9 @@ const INFO_BAR = [
 
 const WORKFLOW_STEPS = ["Design", "Clone", "Express", "Purify", "Deliver", "Make an Impact"];
 
-// Wired into the nav as Wet Lab → Design (/design), see src/pages.js. See
+// Wired into the nav as Project → Description (/project), see src/pages.js
+// — it was Wet Lab → Design until the chassis/vector design write-up
+// (src/pages/WetLabDesign) took that slot over. See
 // src/content/library_page.md for the design brief this was built from,
 // src/content/protein_payload_library.md for the source content, and
 // .claude/DESIGN.md for the site-wide visual system this was brought in

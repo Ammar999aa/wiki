@@ -5,9 +5,10 @@ import styles from "./PersonModal.module.scss";
 
 // The "See more" popup for a markdown .person-card — same look as the Roster
 // page's RosterDetail. Portalled to <body> so no article box can clip it.
+// Also opens a .popup-card's content (no photo, its title as the name).
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-export default function PersonModal({ person, onClose, onInternalLink }) {
+export default function PersonModal({ person, onClose, onInternalLink, onHashLink }) {
   const closeRef = useRef(null);
   const bodyRef = useRef(null);
 
@@ -32,6 +33,11 @@ export default function PersonModal({ person, onClose, onInternalLink }) {
   const onBodyClick = (e) => {
     const link = e.target.closest("a[href]");
     const href = link?.getAttribute("href");
+    if (href?.startsWith("#") && onHashLink) {
+      e.preventDefault();
+      onHashLink(href);
+      return;
+    }
     if (!href?.startsWith(`${BASE}/`) || link.target || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     onInternalLink(href.slice(BASE.length), bodyRef.current?.scrollTop ?? 0);
@@ -61,7 +67,9 @@ export default function PersonModal({ person, onClose, onInternalLink }) {
               </div>
             )}
             <div className={styles.bio}>
-              <h2 id="person-modal-title">{person.name}</h2>
+              <h2 id="person-modal-title" className={person.photos.length ? undefined : styles.titleOnly}>
+                {person.name}
+              </h2>
               <div ref={bodyRef} className={styles.body} onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: person.html }} />
             </div>
           </div>

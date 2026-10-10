@@ -56,7 +56,7 @@ export default function Dropdown({ activeKey, items, x, y, onMouseEnter, onMouse
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain>
+        <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain refract>
           <div
             className={styles.sizer}
             style={boxSize ? { width: boxSize.width, height: boxSize.height } : undefined}

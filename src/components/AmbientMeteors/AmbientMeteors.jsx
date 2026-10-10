@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { isLowPerf } from "../../utils/perfMode";
 import styles from "./AmbientMeteors.module.scss";
 
 // A quiet, low-rate echo of Home's meteor field (Home.jsx's <Starfield>)
@@ -19,12 +20,13 @@ export default function AmbientMeteors({ rgb = "255,216,77" }) {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    if (isLowPerf()) return undefined;
 
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
     const ctx = canvas.getContext("2d");
     let meteors = [];
-    let W = 0, H = 0, dpr = 1, rafId, nextShoot = 0;
+    let W = 0, H = 0, dpr = 1, rafId = 0, timerId;
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -46,15 +48,26 @@ export default function AmbientMeteors({ rgb = "255,216,77" }) {
       });
     }
 
-    function draw(t) {
-      ctx.clearRect(0, 0, W, H);
+    // One streak roughly every 7–13s — a whisper next to Home's hero rate
+    // (a burst every ~2–3.5s), so it reads as ambient, not a beat. The
+    // canvas only animates while a streak is actually on screen (about a
+    // second); between streaks there's no rAF loop at all, rather than
+    // clearing an empty full-screen canvas 60 times a second for nothing.
+    // A low-performance flag set mid-visit (utils/perfMode.js measures the
+    // first scrolls) stops new streaks from being scheduled.
+    function schedule(delay) {
+      timerId = setTimeout(() => {
+        if (isLowPerf()) return;
+        // Skipped in a background tab (rAF is paused there), so streaks
+        // don't pile up and all fire at once when the tab comes back.
+        if (!document.hidden) spawn();
+        if (!rafId && meteors.length) rafId = requestAnimationFrame(draw);
+        schedule(7000 + Math.random() * 6000);
+      }, delay);
+    }
 
-      // One streak roughly every 7–13s — a whisper next to Home's hero
-      // rate (a burst every ~2–3.5s), so it reads as ambient, not a beat.
-      if (t > nextShoot) {
-        spawn();
-        nextShoot = t + 7000 + Math.random() * 6000;
-      }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
 
       for (let i = meteors.length - 1; i >= 0; i--) {
         const s = meteors[i];
@@ -74,16 +87,16 @@ export default function AmbientMeteors({ rgb = "255,216,77" }) {
         if (prog >= 1 || s.x - s.len > W + 40 || tailY > H + 40) meteors.splice(i, 1);
       }
 
-      rafId = requestAnimationFrame(draw);
+      rafId = meteors.length ? requestAnimationFrame(draw) : 0;
     }
 
     window.addEventListener("resize", resize);
     resize();
     // First streak arrives soon after landing on the page, not instantly.
-    nextShoot = performance.now() + 1500 + Math.random() * 2500;
-    rafId = requestAnimationFrame(draw);
+    schedule(1500 + Math.random() * 2500);
 
     return () => {
+      clearTimeout(timerId);
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
     };

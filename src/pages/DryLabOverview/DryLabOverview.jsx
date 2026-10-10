@@ -14,18 +14,27 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // the nav label.
 const pageIntro = (
   <Masthead
-    eyebrow={["Dry Lab", "Overview"]}
-    // TODO(humanize): AI-drafted deck sentence, paraphrased from this
-    // page's own "The problem" section rather than copied verbatim —
-    // needs a human rewrite before this page is final. See
-    // .claude/TODO-HUMANIZE-COPY.md.
+    eyebrow={["Dry Lab", "Overview", "Flux balance analysis", "Dynamic modelling"]}
+    // Deck and stats are the team's own wording/numbers from the Dry Lab
+    // write-up (src/assets/main.html); every stat is restated, sourced, in
+    // the page body (Tables 2, 3, 5 and the gap-filling section).
     deck={
       <>
-        Can a nanobody be manufactured <b>on demand</b> inside a closed, resource-limited habitat instead of
-        shipped there pre-made? This page covers the problem a Mars-analog life-support loop poses, and the
-        modeling approach built to answer it.
+        We modelled three organisms to decide where SHIHAB should build its nanobody and what to feed it.{" "}
+        <b>
+          The conventional choice is the wrong one: under the oxygen restriction that defines a closed habitat,{" "}
+          <i>Bacillus subtilis</i> out-produces yeast roughly fivefold and loses only a quarter of its capacity,
+          where yeast loses four fifths.
+        </b>{" "}
+        A cyanobacterial partner supplies both the sugar and the oxygen that make either host viable.
       </>
     }
+    stats={[
+      { value: "5.5×", label: "Bacillus nanobody flux over yeast, aerobic", hi: true },
+      { value: "−27% vs −80%", label: "Capacity lost without oxygen, Bacillus vs yeast", hi: true },
+      { value: "13×", label: "Yeast growth with a cyanobacterial partner" },
+      { value: "2", label: "Reactions added to repair iBsu1147" },
+    ]}
   />
 );
 

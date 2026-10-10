@@ -70,6 +70,12 @@
         margin: 0 0 12px;
         padding-right: 30px; // clear the close button
     }
+
+    // A .popup-card's title, often a full sentence: smaller than a name.
+    h2.titleOnly {
+        font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+        line-height: 1.3;
+    }
 }
 
 .body {
@@ -95,6 +101,73 @@
 
     p {
         margin: 0 0 12px;
+    }
+
+    // Markdown-tier blocks a .popup-card's content can use (outside
+    // `.article`, so SectionedArticle.module.scss's rules don't reach here).
+    h4 {
+        margin: 22px 0 8px;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    :global(.caption) {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 4px 0 12px;
+
+        p {
+            margin: 0;
+        }
+
+        strong {
+            color: rgba(255, 255, 255, 0.85);
+        }
+    }
+
+    :global(.table-wrap) {
+        overflow-x: auto;
+        margin: 8px 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    table {
+        width: 100%;
+        min-width: 480px;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    th,
+    td {
+        padding: 9px 14px;
+        text-align: start;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+        background: rgba(255, 255, 255, 0.1);
+        font-weight: 700;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    :global(.cite) {
+        font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+        font-size: 0.78em;
+        text-decoration: none;
+        padding: 0 1px;
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.35);
     }
 
     // A subtitle with a round icon before it (e.g. the ORBIT steps).

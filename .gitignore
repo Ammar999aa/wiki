@@ -32,3 +32,6 @@ dist-ssr
 
 # Generated authoring-conventions audit reports
 outputs/page-reports/
+
+# Editable page exports sent to authors (page-export skill)
+outputs/exports/
