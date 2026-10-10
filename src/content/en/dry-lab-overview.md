@@ -1132,20 +1132,7 @@ aerobic maximum.
 
 <div data-chart="bacillus-aerobic-anaerobic"></div>
 
-<!-- Figure 8b is the matplotlib export of cell 27 in
-     obj2_gem/Notebooks/Bacillus_Subtilis_revised.ipynb (the nitrate-capped
-     run, np.linspace(0, 10, 200)), matted with .photo-frame because its own
-     background is white. TODO(chart): to rebuild it as a React chart like
-     the rest of the page, that cell needs to export its `o2_scan`,
-     `growth_rates` and `co2_fluxes` arrays -- it currently saves only the
-     rendered figure. The old `bacillus-o2-sweep` chart stays unreferenced
-     either way, because its data predates the nitrate cap. -->
-
-<div class="photo-frame">
-
-![B. subtilis growth rate and CO₂ secretion against O₂ uptake, 0 to 10 mmol gDW⁻¹ h⁻¹. Growth without nitrate rises from 0.071 h⁻¹ at zero oxygen to 0.32 h⁻¹ at the cap, crossing the flat anaerobic-plus-nitrate reference line at about 2.5. CO₂ secretion falls from 9.2, dips near 7.7 around an uptake of 7, then rises to 10.8.](https://static.igem.wiki/teams/6341/wiki/content/dry-lab/whatsapp-image-2026-10-08-at-12-23-03-am.avif)
-
-</div>
+<div data-chart="bacillus-o2-sweep"></div>
 
 <div class="caption">
 
@@ -1156,13 +1143,12 @@ nitrate capped at 10 mmol·h<sup>−1</sup>. This is a 57% loss, against 73%
 for yeast ([Figure 2a](#yeast-oxygen)). It is non-zero only because of
 the two reactions added in [the gap-filling section](#gap-fill); the
 unrepaired model gives zero. (b) With no nitrate, growth is
-0.071 h<sup>−1</sup> at zero oxygen (solid line), already well above the
-5% viability line (red dashed), so the minimum viable oxygen is zero — the
-"min viable O₂" marker in the legend sits on the vertical axis itself,
-which is why it is not visible in the plot. The grey dotted line marks
-anaerobic growth with nitrate at zero oxygen. Growth without nitrate
+0.071 h<sup>−1</sup> at zero oxygen, already well above the 5% viability
+line, so the minimum viable oxygen is zero and its marker sits on the
+vertical axis itself. The grey line marks anaerobic growth with nitrate
+at zero oxygen. Growth without nitrate
 overtakes it at an oxygen uptake of about 2.5 mmol·h<sup>−1</sup>. CO₂
-secretion is on the right axis.
+secretion is in the right-hand panel.
 
 </div>
 

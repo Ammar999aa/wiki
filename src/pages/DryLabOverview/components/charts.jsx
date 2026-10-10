@@ -275,22 +275,31 @@ function BacillusFig9() {
 }
 
 // ---- O2 viability sweeps (yeast / bacillus / pichia) -----------------
+// `d.anaerobicNitrateGrowth` (Bacillus only) adds the anaerobic-with-nitrate
+// growth rate as a reference line; the swept curve itself has no nitrate.
+// Stacked rather than a chartPair: side by side, each SVG scales to half the
+// column and its axis text shrinks to ~6px.
 function O2SweepPanel({ title, d }) {
+  const nitrate = d.anaerobicNitrateGrowth != null;
   const hLines = [{ y: d.viabilityThreshold, label: `5% viability (${d.viabilityThreshold.toFixed(4)})`, color: AMBER }];
+  if (nitrate) {
+    hLines.push({ y: d.anaerobicNitrateGrowth, label: `anaerobic + nitrate (${d.anaerobicNitrateGrowth.toFixed(4)})`, color: MUTED });
+  }
   const vLines = [{ x: d.minViableO2, label: `min viable O2 = ${d.minViableO2.toFixed(3)}`, color: VIOLET }];
   return (
     <ChartPanel title={title}>
-      <div className={styles.chartPair}>
+      <div className={styles.chartStack}>
         <div>
           <p className={styles.statLine}>Growth rate vs. O2 uptake</p>
           <LineChart
-            series={[{ label: "Growth rate", color: BLUE, x: d.o2, y: d.growth }]}
+            series={[{ label: nitrate ? "Growth rate, no nitrate" : "Growth rate", color: BLUE, x: d.o2, y: d.growth }]}
             hLines={hLines}
             vLines={vLines}
             xLabel="O2 uptake (mmol/gDW/h)"
             yLabel="Growth rate (h⁻¹)"
             formatX={fmt(2)}
             formatY={fmt(3)}
+            height={300}
           />
         </div>
         <div>
@@ -302,14 +311,22 @@ function O2SweepPanel({ title, d }) {
             yLabel="CO2 secretion (mmol/gDW/h)"
             formatX={fmt(2)}
             formatY={fmt(1)}
+            height={300}
           />
         </div>
       </div>
-      <p className={styles.statLine}>
-        Max growth <b>{d.maxGrowth.toFixed(4)} h⁻¹</b>; at the minimum viable O2 uptake (
-        <b>{d.minViableO2.toFixed(4)}</b>): growth <b>{d.growthAtMin.toFixed(4)} h⁻¹</b>, CO2{" "}
-        <b>{d.co2AtMin.toFixed(4)} mmol/gDW/h</b>.
-      </p>
+      {nitrate ? (
+        <p className={styles.statLine}>
+          Max growth <b>{d.maxGrowth.toFixed(4)} h⁻¹</b>; at zero O2 uptake, no nitrate: growth{" "}
+          <b>{d.growth[0].toFixed(4)} h⁻¹</b>, CO2 <b>{d.co2[0].toFixed(4)} mmol/gDW/h</b>.
+        </p>
+      ) : (
+        <p className={styles.statLine}>
+          Max growth <b>{d.maxGrowth.toFixed(4)} h⁻¹</b>; at the minimum viable O2 uptake (
+          <b>{d.minViableO2.toFixed(4)}</b>): growth <b>{d.growthAtMin.toFixed(4)} h⁻¹</b>, CO2{" "}
+          <b>{d.co2AtMin.toFixed(4)} mmol/gDW/h</b>.
+        </p>
+      )}
     </ChartPanel>
   );
 }
@@ -583,13 +600,6 @@ const CHARTS = {
   "bacillus-fig9-multi-induction": <BacillusFig9 />,
   "yeast-aerobic-anaerobic": <YeastAerobicAnaerobic />,
   "bacillus-aerobic-anaerobic": <BacillusAerobicAnaerobic />,
-  // `bacillus-o2-sweep` is deliberately unreferenced by
-  // dry-lab-overview.md: its data (min viable O2 0.0503) predates the
-  // nitrate-capped run the page's Figure 8 describes, where the notebook
-  // solves min viable O2 exactly and gets zero. Figure 8b currently shows
-  // the notebook's own matplotlib export instead. Kept registered so a
-  // rebuilt chart can be dropped in by updating data.js and re-adding the
-  // `data-chart` slot -- see the TODO(chart) note at Figure 8b.
   "bacillus-glucose-vs-sucrose": <BacillusGlucoseVsSucrose />,
   "yeast-o2-sweep": <YeastO2Sweep />,
   "yeast-combined-production-vs-o2": <YeastCombinedProductionSweep />,
