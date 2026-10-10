@@ -1044,7 +1044,11 @@ function ProblemSection() {
   return (
     <section className={styles.problemSection} ref={ref}>
       <div className={styles.problemSticky}>
-        <span className={styles.kicker} ref={kickerRef} style={{ opacity: 0 }}>The challenge</span>
+        {/* Same pill as the "Our Solution" tag (StatementSection). */}
+        <span className={styles.tag} ref={kickerRef} style={{ opacity: 0 }}>
+          <span className={styles.tagDot} />
+          The challenge
+        </span>
         <p className={styles.problemIntro} ref={introRef} style={{ opacity: 0 }}>
           Medicine is different from many other essentials: once it is used, degraded, or missing, replacing it may
           not be simple.
@@ -1189,7 +1193,10 @@ function RevealSection() {
   );
 }
 
-// ── Scenarios (slide 7) ───────────────────────────────────────────────────────
+// ── Solution + scenarios (slide 7) ─────────────────────────────────────────────
+// The "Our Solution" statement and the without/with-SHIHAB scenario share one
+// pinned slide: the statement fades in first, then the scenario builds under it.
+// (Used to be two slides.) ───────────────────────────────────────────────────────
 
 const B_SUBTILIS_PROTEINS = ["Chaperone A", "Repair B"];
 const S_CEREVISIAE_PROTEINS = ["Stress C"];
@@ -1221,6 +1228,7 @@ function ScenarioOrganism({ type, orgRef, markRef, proteins, protRef }) {
 
 function ScenarioSection() {
   const ref = useRef(null);
+  const statementRef = useRef(null);
 
   const labelARef = useRef(null), labelBRef = useRef(null);
   const orgsARef = useRef(null), orgsBRef = useRef(null);
@@ -1243,11 +1251,16 @@ function ScenarioSection() {
   };
 
   useScene(ref, 2.2, (p) => {
-    const labelsOp = between(p, 0.00, 0.15);
-    const orgsOp   = between(p, 0.15, 0.32);
-    const stressOp = between(p, 0.32, 0.48);
-    const protOp   = between(p, 0.48, 0.62);
-    const outOp    = between(p, 0.65, 0.80);
+    if (statementRef.current) {
+      const o = between(p, 0.0, 0.1);
+      statementRef.current.style.opacity = o;
+      statementRef.current.style.transform = `translateY(${lerp(22, 0, o)}px)`;
+    }
+    const labelsOp = between(p, 0.10, 0.22);
+    const orgsOp   = between(p, 0.22, 0.38);
+    const stressOp = between(p, 0.38, 0.52);
+    const protOp   = between(p, 0.52, 0.64);
+    const outOp    = between(p, 0.66, 0.80);
     const survOp   = between(p, 0.80, 0.92);
 
     if (labelARef.current) labelARef.current.style.opacity = labelsOp;
@@ -1270,6 +1283,19 @@ function ScenarioSection() {
   return (
     <section className={styles.scenarioSection} ref={ref}>
       <div className={styles.scenarioSticky}>
+        <div className={styles.scenarioStatement} ref={statementRef} style={{ opacity: 0 }}>
+          <span className={styles.tag}>
+            <span className={styles.tagDot} />
+            Our Solution
+          </span>
+          <p className={styles.scenarioLine}>
+            We <em>engineer</em> resilient microbial systems &mdash;{" "}
+            <span className={styles.vio}>B. subtilis</span> and <span className={styles.vio}>S. cerevisiae</span>{" "}
+            &mdash; that <em>thrive under space stressors</em>.
+          </p>
+        </div>
+
+        <div className={styles.scenarioPanels}>
 
         {/* Without SHIHAB */}
         <div className={styles.scenario}>
@@ -1303,6 +1329,7 @@ function ScenarioSection() {
           </p>
         </div>
 
+        </div>
       </div>
     </section>
   );
@@ -1539,7 +1566,7 @@ export default function Home() {
       <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />
       <div ref={rocketGroupRef}>
         <StatementSection decor={<PlanetDecor />}>
-          Future missions may last for <em>months&mdash;or even years</em>. Every medicine must{" "}
+          Future missions may last for <em>month or even years</em>. Every medicine must{" "}
           <em>survive the journey</em>, remain effective, and be available when needed.
         </StatementSection>
       </div>
@@ -1554,11 +1581,6 @@ export default function Home() {
         </StatementSection>
       </div>
       <RevealSection />
-      <StatementSection tag="Our Solution">
-        We <em>engineer</em> resilient microbial systems &mdash;{" "}
-        <span className={styles.vio}>B. subtilis</span> and <span className={styles.vio}>S. cerevisiae</span>{" "}
-        &mdash; that <em>thrive under space stressors</em>.
-      </StatementSection>
       <ScenarioSection />
       <CapabilitiesSection />
       <OutroSection />

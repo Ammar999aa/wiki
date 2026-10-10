@@ -783,11 +783,49 @@
   position: sticky;
   top: 0;
   height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 40px);
+  overflow: hidden;
+  padding: 70px 24px 100px;
+}
+
+/* The "Our Solution" statement that sits above the two panels. */
+.scenarioStatement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 780px;
+  will-change: opacity, transform;
+}
+
+.scenarioLine {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-align: center;
+  text-wrap: balance;
+
+  em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 700;
+  }
+}
+
+/* The without / with SHIHAB panels, side by side. */
+.scenarioPanels {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding-inline: 24px;
+  width: 100%;
 }
 
 .scenario {
@@ -976,11 +1014,17 @@
    panels, it scrolls internally instead of silently clipping. */
 @media (max-width: 700px) {
   .scenarioSticky {
-    flex-direction: column;
-    gap: 22px;
-    padding-inline: 16px;
-    padding-block: 28px;
+    gap: 12px;
+    padding: 56px 16px 92px;
     overflow-y: auto;
+  }
+
+  .scenarioStatement { gap: 10px; }
+  .scenarioLine { font-size: 1.1rem; }
+
+  .scenarioPanels {
+    flex-direction: column;
+    gap: 14px;
   }
 
   .scenario {
