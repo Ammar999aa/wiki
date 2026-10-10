@@ -317,6 +317,12 @@ $content-inset: 430px; // space reserved for the full-width panel on desktop
     :global([dir="rtl"]) & {
       transform: translateX(calc(-100% + 36px));
     }
+
+    // Collapsed strip must not swallow page swipes — see the matching rule
+    // in SectionedArticle.module.scss.
+    .panelContents {
+      overflow-y: hidden;
+    }
   }
 
   .contentHeader {

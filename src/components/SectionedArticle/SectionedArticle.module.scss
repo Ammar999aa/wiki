@@ -2091,6 +2091,15 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     :global([dir="rtl"]) & {
       transform: translateX(calc(100% - 36px));
     }
+
+    // The collapsed drawer still leaves a full-height 36px strip on screen,
+    // and while its list was scrollable a swipe starting on that strip
+    // scrolled the hidden list instead of the page — the page seemed to
+    // ignore the first swipe or two near the screen edge. Only the open
+    // drawer scrolls.
+    .panelContents {
+      overflow-y: hidden;
+    }
   }
 }
 

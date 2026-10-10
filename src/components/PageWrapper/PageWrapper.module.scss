@@ -23,7 +23,11 @@
 }
 
 .wrapper {
-    min-height: 100dvh;
+    /* svh, not dvh: this sets the document's height, and dvh changes as a
+       mobile address bar shows/hides mid-scroll, which would resize the
+       page under the reader's finger. */
+    min-height: 100vh;
+    min-height: 100svh;
     position: relative;
     /* content-box (the default): padding-bottom adds on top of min-height,
        so every page has at least --nav-clearance of scroll room below its

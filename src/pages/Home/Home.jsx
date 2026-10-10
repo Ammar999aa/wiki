@@ -69,6 +69,26 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const between = (p, a, b) => clamp01((p - a) / (b - a));
 const smoothstep = (t) => t * t * (3 - 2 * t);
 
+// One "viewport height" for scroll math, matching the svh unit the scroll
+// sections are sized in (Home.module.scss). window.innerHeight changes as a
+// mobile address bar shows/hides, which used to make every scene's progress
+// jump mid-scroll; 100svh doesn't. Measured off a hidden probe element and
+// cached, re-read only on resize.
+let _vh = 0;
+let _vhProbe = null;
+function viewportH() {
+  if (!_vh) {
+    if (!_vhProbe) {
+      _vhProbe = document.createElement("div");
+      _vhProbe.style.cssText = "position:fixed;top:0;left:0;width:0;height:100vh;height:100svh;visibility:hidden;pointer-events:none";
+      document.body.appendChild(_vhProbe);
+      window.addEventListener("resize", () => { _vh = 0; });
+    }
+    _vh = _vhProbe.offsetHeight || window.innerHeight;
+  }
+  return _vh;
+}
+
 const _subs = new Set();
 const ScrollEngine = {
   motion: 1,
@@ -108,13 +128,13 @@ function useScene(ref, range, onUpdate, peak = 1) {
       const end = el.offsetTop + el.offsetHeight;
       if (!doneRef.current && y >= end) doneRef.current = true;
       if (doneRef.current) {
-        const inView = y + window.innerHeight > el.offsetTop && y < end;
+        const inView = y + viewportH() > el.offsetTop && y < end;
         if (inView === lastViewRef.current) return;
         lastViewRef.current = inView;
         cb.current(peak, inView);
         return;
       }
-      const p = clamp01((y - el.offsetTop) / (window.innerHeight * range));
+      const p = clamp01((y - el.offsetTop) / (viewportH() * range));
       cb.current(p);
     });
   }, []);
@@ -135,8 +155,9 @@ function useScrollUnits(ref, onUpdate, latchAfter = 0) {
     return ScrollEngine.add((y) => {
       const el = ref.current;
       if (!el) return;
-      const units = (y - el.offsetTop) / window.innerHeight;
-      if (!doneRef.current && units >= el.offsetHeight / window.innerHeight + latchAfter) doneRef.current = true;
+      const vh = viewportH();
+      const units = (y - el.offsetTop) / vh;
+      if (!doneRef.current && units >= el.offsetHeight / vh + latchAfter) doneRef.current = true;
       cb.current(units, doneRef.current);
     });
   }, []);
@@ -154,13 +175,19 @@ function Starfield() {
     let stars = [], meteors = [], nextShoot = 1400;
     let W = 0, H = 0, dpr = 1, rafId;
 
+    // A mobile address bar showing/hiding fires "resize" with only the
+    // height changed, mid-scroll — re-randomizing the stars then made the
+    // whole field visibly reshuffle under the reader. Stars are only rebuilt
+    // when the width changes (rotation, a real window resize); a height-only
+    // change just resizes the canvas and keeps the existing field.
     function resize() {
+      const widthChanged = window.innerWidth !== W;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = window.innerWidth; H = window.innerHeight;
       canvas.width = W * dpr; canvas.height = H * dpr;
       canvas.style.width = W + "px"; canvas.style.height = H + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      buildStars();
+      if (widthChanged || !stars.length) buildStars();
     }
 
     function buildStars() {
@@ -342,8 +369,8 @@ function HeroSection() {
 // un-pinning the moment Hero's own sticky box ends. `groupRef` points at a
 // plain wrapper spanning Hero + Orbit; phase boundaries below mirror those
 // two sections' own `useScene(ref, range, …)` calls (Hero: range 1.7 over a
-// 200dvh section, Orbit: range 1.5 over a 275dvh section starting right
-// after Hero's 200dvh) so Earth's motion stays in sync with each section's
+// 200svh section, Orbit: range 1.5 over a 275svh section starting right
+// after Hero's 200svh) so Earth's motion stays in sync with each section's
 // own reveal pacing instead of drifting out of step with it.
 function EarthLayer({ groupRef }) {
   const earthRef = useRef(null);
@@ -411,7 +438,7 @@ function EarthLayer({ groupRef }) {
     // constant rate.
     //
     // The whole sequence (grow through purple-out below) is deliberately
-    // kept inside heroOrbitRef's own height (Hero 200dvh + Orbit 275dvh =
+    // kept inside heroOrbitRef's own height (Hero 200svh + Orbit 275svh =
     // 4.75 units) and finishes by ~4.45 — the rocket slide's own StatementSection
     // starts fading in almost as soon as its section is reached (~4.75, right
     // after this group ends), so any part of this animation still running

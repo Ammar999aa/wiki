@@ -7,9 +7,17 @@
 }
 
 /* ── Hero ── */
+// Every scroll-pinned section's *length* is in svh, not dvh: mobile
+// browsers resize dvh as the address bar shows/hides mid-scroll, and with
+// ~20 viewport-heights of dvh sections stacked up, each toolbar toggle
+// changed the page height by well over 1000px and yanked the content out
+// from under the reader's finger. svh never changes during a scroll. The
+// sticky boxes inside stay 100dvh so they still fill the visible screen —
+// their height doesn't feed into the document's, so it can't cause a jump.
+// Home.jsx's scroll engine measures in the same unit (see viewportH()).
 .hero {
   position: relative;
-  height: 200dvh;
+  height: 200svh;
 }
 
 .heroSticky {
@@ -432,7 +440,7 @@
 /* ── Statement beats (slides 2, 4, 6) ── */
 .tagline {
   position: relative;
-  height: 220dvh;
+  height: 220svh;
 }
 
 .taglineSticky {
@@ -531,9 +539,9 @@
   // Sized to match EarthLayer's exit cinematic (see Home.jsx) — the globe's
   // grow/spin/wipe sequence runs from scroll unit 3.15 to ~4.45, and this
   // section's height needs to extend a bit past that (4.75 total, Hero's
-  // 200dvh + this) so the rocket slide doesn't start appearing mid-wipe,
+  // 200svh + this) so the rocket slide doesn't start appearing mid-wipe,
   // without leaving an excessively long dead scroll after it either.
-  height: 275dvh;
+  height: 275svh;
 }
 
 .orbitSticky {
@@ -707,11 +715,11 @@
 
 
 /* ── Reveal (slide 5) ── */
-// 280dvh = 100dvh sticky viewport + 180dvh (1.8 viewport-heights) of pin
+// 280svh = 100svh sticky viewport + 180svh (1.8 viewport-heights) of pin
 // duration, matching the 1.8 range passed to useScene in RevealSection —
-// stretched from 240dvh/1.4 to give the backdrop room for a longer hold
+// stretched from 240svh/1.4 to give the backdrop room for a longer hold
 // and a slower fade-out (see the comment there).
-.revealSection { height: 280dvh; }
+.revealSection { height: 280svh; }
 
 .revealSticky {
   position: sticky;
@@ -777,7 +785,7 @@
 }
 
 /* ── Scenarios ── */
-.scenarioSection { height: 320dvh; }
+.scenarioSection { height: 320svh; }
 
 .scenarioSticky {
   position: sticky;
@@ -1023,7 +1031,7 @@
 }
 
 /* ── Problem cards (slide 3) ── */
-.problemSection { height: 260dvh; }
+.problemSection { height: 260svh; }
 
 .problemSticky {
   position: sticky;
@@ -1278,7 +1286,7 @@
 }
 
 /* ── Capabilities ── */
-.capSection { height: 280dvh; }
+.capSection { height: 280svh; }
 
 .capSticky {
   position: sticky;
@@ -1480,7 +1488,7 @@
 }
 
 /* ── Outro (slide 9) ── */
-.outroSection { height: 220dvh; }
+.outroSection { height: 220svh; }
 
 .outroSticky {
   position: sticky;
