@@ -1458,12 +1458,12 @@ const EXPLORE_CARDS = [
   },
   {
     n: "02", t: "Wet Lab", d: "Strain engineering, assays, and protein expression.",
-    to: "/wetlab",
+    to: "/design",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/wetlab.avif",
   },
   {
     n: "03", t: "Dry Lab", d: "Modelling, bioinformatics, and circuit design.",
-    to: "/drylab",
+    to: "/dry-lab-overview",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/drylab.avif",
   },
   {
@@ -1483,12 +1483,12 @@ const EXPLORE_CARDS = [
   },
   {
     n: "07", t: "Public Engagement", d: "Bringing space biology to the public.",
-    to: "/engagement",
+    to: "/education",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/public-engagement.avif",
   },
   {
     n: "08", t: "Human Practices", d: "How real-world voices shaped the work.",
-    to: "/human-practices",
+    to: "/human-integrated-practices",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/integrated-practices.avif", pos: "center 78%",
   },
 ];
