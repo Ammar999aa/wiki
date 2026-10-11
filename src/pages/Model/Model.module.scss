@@ -404,8 +404,10 @@
       border-bottom: none;
     }
 
-    tbody tr:hover td {
-      background: rgba(255, 255, 255, 0.04);
+    @media (hover: hover) {
+      tbody tr:hover td {
+        background: rgba(255, 255, 255, 0.04);
+      }
     }
 
     tfoot td {

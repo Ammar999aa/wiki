@@ -104,8 +104,12 @@ $content-inset: 430px; // space reserved for the full-width panel on desktop
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  tr:hover td {
-    background: rgba(255, 255, 255, 0.05);
+  // Row-tracking aid for wide tables; body rows only, and only where a real
+  // hover exists (touch devices would leave a tapped row stuck highlighted).
+  @media (hover: hover) {
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.05);
+    }
   }
 
   code {

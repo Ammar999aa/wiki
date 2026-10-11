@@ -280,8 +280,12 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  tr:hover td {
-    background: rgba(255, 255, 255, 0.05);
+  // Row-tracking aid for wide tables; body rows only, and only where a real
+  // hover exists (touch devices would leave a tapped row stuck highlighted).
+  @media (hover: hover) {
+    tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.05);
+    }
   }
 
   code {
@@ -1545,6 +1549,11 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.75);
+  }
+
+  // Two short columns: nothing to track across, so no row hover.
+  :global(.kv-table) tbody tr:hover td {
+    background: none;
   }
 
   // A matrix table: a real column header row AND a row-header first
