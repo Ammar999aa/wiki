@@ -1,0 +1,531 @@
+// "Who shaped SHIHAB" orbit map. Selectors start from `.map` so they win over
+// the article-wide `img`, `p`, `ul` and `h4` rules in SectionedArticle.module.scss.
+
+$mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+
+.map {
+  margin-block: 20px 8px;
+
+  [data-tone="violet"] { --tone: var(--primary-400); }
+  [data-tone="blue"] { --tone: var(--tertiary-300); }
+  [data-tone="green"] { --tone: #3ddc97; }
+  [data-tone="amber"] { --tone: var(--amber); }
+}
+
+// ── Legend ────────────────────────────────────────────────────────────────
+
+// Sits in the stage's empty top-left corner, outside the outer orbit.
+.map .legend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-family: $mono;
+    font-size: 10.5px;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.62);
+
+    &::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--tone);
+    }
+  }
+}
+
+// ── Stage ─────────────────────────────────────────────────────────────────
+
+.stage {
+  position: relative;
+  aspect-ratio: 1000 / 540;
+  container-type: inline-size;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.orbit {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+}
+
+.spoke {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+  transition: stroke 0.25s, opacity 0.25s;
+
+  &[data-state="lit"] { stroke: rgba(255, 216, 77, 0.55); }
+  &[data-state="dim"] { opacity: 0.4; }
+}
+
+.beam {
+  fill: none;
+  stroke: var(--tone);
+  stroke-width: 1.4;
+  opacity: 0.32;
+  transition: opacity 0.25s, stroke-width 0.25s;
+
+  &[data-state="lit"] {
+    opacity: 1;
+    stroke-width: 2.6;
+    stroke-dasharray: 10 6;
+    animation: flow 1.1s linear infinite;
+  }
+
+  &[data-state="dim"] { opacity: 0.06; }
+}
+
+// Dashes travel from the person toward the part: influence flowing inward.
+@keyframes flow {
+  to { stroke-dashoffset: -16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam[data-state="lit"] { animation: none; }
+}
+
+.coreHalo {
+  fill: rgba(177, 109, 255, 0.08);
+  stroke: rgba(177, 109, 255, 0.25);
+  stroke-dasharray: 2 5;
+}
+
+.core {
+  fill: #140f33;
+  stroke: var(--amber);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 14px rgba(255, 216, 77, 0.35));
+}
+
+.coreText {
+  fill: #fff;
+  font-family: $mono;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-anchor: middle;
+}
+
+// Shared by part pills and person buttons: centred on their (--x, --y) point.
+.part,
+.person {
+  all: unset;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.25s;
+
+  &[data-state="dim"] { opacity: 0.3; }
+
+  &:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+}
+
+.part {
+  transform: translate(-50%, -50%);
+  max-width: 15cqw;
+  padding: 0.55cqw 1.2cqw;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: #13123a;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(10px, 1.35cqw, 14px);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+
+  &:hover,
+  &[data-state="lit"] {
+    border-color: var(--amber);
+    color: #fff;
+  }
+
+  &[aria-pressed="true"] {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--bg);
+  }
+}
+
+// The avatar's centre sits on the orbit; the name hangs below it.
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5cqw;
+  transform: translate(-50%, -3.2cqw);
+  width: 16cqw;
+
+  &:hover .avatar,
+  &[data-state="lit"] .avatar {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px var(--tone), 0 0 18px var(--tone);
+  }
+
+  &[aria-pressed="true"] .avatar {
+    box-shadow: 0 0 0 3px var(--amber), 0 0 22px rgba(255, 216, 77, 0.6);
+  }
+}
+
+.personName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(10px, 1.3cqw, 13px);
+  line-height: 1.25;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+
+  span + span { color: rgba(255, 255, 255, 0.55); }
+}
+
+// ── Avatar (round photo, same crop vars as .person-photo) ─────────────────
+
+.avatar {
+  position: relative;
+  display: flex;
+  flex: none;
+  width: 6.4cqw;
+  height: 6.4cqw;
+  border-radius: 50%;
+  background: #1e203f;
+  box-shadow: 0 0 0 2px var(--tone);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.map .avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 50%;
+  pointer-events: none; // keep clicks off Article.jsx's image lightbox
+  object-fit: cover;
+  object-position: var(--photo-x, 50%) var(--photo-y, 50%);
+  scale: var(--photo-zoom, 1);
+  transform-origin: var(--photo-x, 50%) var(--photo-zoom-y, 50%);
+  clip-path: circle(
+    calc(50% / var(--photo-zoom, 1)) at
+      calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1))
+      calc(var(--photo-zoom-y, 50%) + (50% - var(--photo-zoom-y, 50%)) / var(--photo-zoom, 1))
+  );
+}
+
+// Two people in one conversation: one circle, each person in one half. Each
+// half is a background image: `cover` on a tall half scales the photo to the
+// circle's height and shows its middle, which is where these faces are.
+.map .avatar[data-pair] {
+  overflow: hidden;
+}
+
+.half {
+  flex: 1;
+  background-size: cover;
+  background-position: 50% 35%;
+
+  & + & {
+    border-inline-start: 1.5px solid var(--bg);
+  }
+}
+
+// ── Readout ───────────────────────────────────────────────────────────────
+
+.readout {
+  margin-top: 4px;
+  scroll-margin-bottom: 110px; // clear the floating nav bar
+  box-sizing: content-box; // height is set to the inner box's height, borders on top
+  overflow: hidden;
+  transition: height 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.readoutInner {
+  padding: 20px 22px;
+}
+
+// New content fades up in place while the box resizes around it.
+.readoutFade {
+  animation: readoutIn 0.3s ease-out;
+}
+
+@keyframes readoutIn {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .readout { transition: none; }
+  .readoutFade { animation: none; }
+}
+
+.idle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 150px;
+  text-align: center;
+
+  p { margin: 0 auto; max-width: 52ch; color: rgba(255, 255, 255, 0.7); }
+}
+
+.map .idle p {
+  text-align: center;
+}
+
+.map .idleStats {
+  max-width: none;
+  margin-bottom: 10px;
+  font-family: $mono;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  strong { color: var(--amber); font-size: 22px; letter-spacing: 0; }
+}
+
+// Person details in two columns (what changed | links and actions), so the
+// map and its details fit on one screen together.
+.readCols {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 24px;
+}
+
+.readSide .chips {
+  margin-top: 6px;
+}
+
+.readSide .actions {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 14px;
+}
+
+.readHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.map .readAvatar {
+  width: 56px;
+  height: 56px;
+}
+
+.map .kicker,
+.map .label {
+  margin: 0;
+  font-family: $mono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tone, rgba(255, 255, 255, 0.55));
+}
+
+.map .label {
+  margin-top: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.map .readName {
+  margin: 4px 0 0;
+  font-size: 20px;
+  color: #fff;
+}
+
+.map .readName + .label {
+  margin-top: 12px;
+}
+
+.map .changed {
+  margin: 12px 0 0;
+  font-size: 15px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.map .chip,
+.map .personChip {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 216, 77, 0.45);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 216, 77, 0.12);
+    border-color: var(--amber);
+  }
+}
+
+.map .personChip {
+  padding-left: 4px;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.map .chipAvatar {
+  width: 24px;
+  height: 24px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.map .primaryBtn,
+.map .ghostBtn {
+  all: unset;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+}
+
+.map .primaryBtn {
+  background: var(--amber);
+  color: var(--bg);
+
+  &:hover { filter: brightness(1.08); }
+}
+
+.map .ghostBtn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+
+  &:hover { border-color: #fff; }
+}
+
+// ── Narrow-screen list ────────────────────────────────────────────────────
+
+.map .list {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0 0 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.row {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  cursor: pointer;
+
+  &:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; border-radius: var(--radius-sm); }
+}
+
+.map .rowAvatar {
+  width: 44px;
+  height: 44px;
+}
+
+.rowText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+
+  b { color: #fff; font-size: 15px; }
+  span { color: rgba(255, 255, 255, 0.6); font-size: 12.5px; }
+}
+
+.rowMark {
+  font-family: $mono;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.rowBody {
+  padding: 4px 14px 16px;
+
+  .readCols { grid-template-columns: 1fr; gap: 16px; }
+  .changed { margin-top: 0; }
+
+  // Person details in two columns (what changed | links and actions), so the
+// map and its details fit on one screen together.
+.readCols {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 24px;
+}
+
+.readSide .chips {
+  margin-top: 6px;
+}
+
+.readSide .actions {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 14px;
+}
+
+.readHead { display: none; } // the row above already shows photo and name
+}
+
+@media (max-width: 640px) {
+  .map .legend,
+  .stage,
+  .readout {
+    display: none;
+  }
+
+  .map .list {
+    display: block;
+  }
+}

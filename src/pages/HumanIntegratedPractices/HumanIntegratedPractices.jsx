@@ -6,7 +6,7 @@ import QuestionMap from "./components/QuestionMap";
 import OrbitTimeline from "./components/OrbitTimeline";
 import JigsawTable from "./components/JigsawTable";
 import ValuesCards from "./components/ValuesCards";
-import GlanceGrid from "./components/GlanceGrid";
+import ShapedByMap from "./components/ShapedByMap";
 import { stakeholderGroups } from "./data.js";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
@@ -15,7 +15,7 @@ const jigsawItems = stakeholderGroups.map((g) => ({ title: g.name, learn: g.lear
 
 // Rendered after each section's markdown, keyed by section title.
 const CONTENT_BY_TITLE = {
-  "Our IHP Journey at a Glance": <GlanceGrid />,
+  "Who Shaped SHIHAB": <ShapedByMap />,
   "Understanding Our Impact and Responsibility": <QuestionMap />,
   "Our Values": <ValuesCards />,
   "Our ORBIT Framework": <OrbitTimeline />,
@@ -24,7 +24,7 @@ const CONTENT_BY_TITLE = {
 
 // Sections kept in the markdown but hidden for now, to be revisited. Remove a
 // title from this list to show that section again.
-const HIDDEN_TITLES = ["Our IHP Journey at a Glance"];
+const HIDDEN_TITLES = [];
 
 const sections = rawSections
   .filter((section) => !HIDDEN_TITLES.includes(section.title))

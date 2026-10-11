@@ -1,6 +1,6 @@
-## Our IHP Journey at a Glance
+## Who Shaped SHIHAB
 
-Click on a section to explore more.
+Each expert conversation on this page changed something in our project. Pick a person to see what changed and which parts of SHIHAB they shaped.
 
 ## Overview: Building Research for the Future
 

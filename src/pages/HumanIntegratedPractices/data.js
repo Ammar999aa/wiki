@@ -170,3 +170,154 @@ export const glanceTiles = [
     body: "We learned that responsible design requires balancing autonomy, adaptability, responsibility, and accessibility, and that these priorities must continue to be revisited as new evidence and perspectives emerge.",
   },
 ];
+
+// "Who shaped SHIHAB" orbit map (ShapedByMap). Built only from the stakeholder
+// cards already on this page:
+// - `parts` are the wiki pages each card's own "→" buttons link to;
+// - `changed` is copied verbatim from that card's Iterate step ("…" marks a cut);
+// - `card` is the card's exact <h4 class="person-name"> text, used to find it;
+// - `photos` reuse each card's photo and crop (--photo-x/-y/-zoom/-zoom-y).
+// `topic` is a short label for what we asked them about, written for this map.
+export const shapedParts = [
+  { id: "payload", label: "Payload library", path: "/design" },
+  { id: "experiments", label: "Wet-lab experiments", path: "/experiments" },
+  { id: "drylab", label: "Dry Lab & gene mining", path: "/dry-lab-overview" },
+  { id: "roadmap", label: "Long-term roadmap", path: "/proposed-implementation" },
+  { id: "safety", label: "Safety handbook", path: "/safety" },
+  { id: "hardware", label: "Hardware", path: "/hardware" },
+  { id: "modeling", label: "Modeling & dashboard", path: "/modeling" },
+];
+
+// `tone` matches the ValuesCards tones (see `data-tone` in the stylesheet).
+export const shapedGroups = [
+  { id: "astronauts", label: "Astronauts & medicine", tone: "violet" },
+  { id: "microbes", label: "Microbiology", tone: "blue" },
+  { id: "mission", label: "Mission & safety", tone: "green" },
+  { id: "earth", label: "Humanitarian", tone: "amber" },
+];
+
+export const shapedPeople = [
+  {
+    id: "starr",
+    group: "astronauts",
+    lines: ["Starr Corbin"],
+    card: "Starr Corbin",
+    topic: "Astronaut healthcare",
+    photos: [{ file: "starr.avif", x: "55%", y: "26%", zoom: 2.6 }],
+    parts: ["payload"],
+    changed:
+      "Through this exploration, Spaceflight-Associated Neuro-ocular Syndrome (SANS) and carcinogenesis emerged as relevant health risks to consider, and we added potential therapeutics addressing these conditions to our list of possible payloads for SHIHAB.",
+  },
+  {
+    id: "vergos-chandrashekhar",
+    group: "astronauts",
+    lines: ["Konstantinos Vergos", "& Akshay Chandrashekhar"],
+    card: "Konstantinos Vergos & Dr. Akshay Chandrashekhar",
+    topic: "Space medicine",
+    photos: [
+      { file: "konstantinos.avif", x: "45%", zoom: 1.4 },
+      { file: "akshay.avif", zoom: 1.3 },
+    ],
+    parts: ["modeling", "payload"],
+    changed:
+      "The convergence of their feedback made microgravity a clear component of our validation strategy. Before progressing toward experimental platforms such as parabolic flights, we began investigating how altered gravity could affect our system through COMSOL simulations.",
+  },
+  {
+    id: "barnawi",
+    group: "astronauts",
+    lines: ["Rayyanah Barnawi"],
+    card: "Rayyanah Barnawi",
+    topic: "Research aboard the ISS",
+    photos: [{ file: "rayannah.avif", x: "37%", zoomY: "2%", zoom: 1.6 }],
+    parts: ["hardware"],
+    changed:
+      "Based on these insights, we decided that developing a hardware system would be an important part of SHIHAB.",
+  },
+  {
+    id: "rosado",
+    group: "microbes",
+    lines: ["Alexandre Rosado"],
+    card: "Prof. Alexandre Rosado",
+    topic: "Choosing a chassis",
+    photos: [{ file: "rosado.avif" }],
+    parts: ["experiments", "roadmap"],
+    changed:
+      "Based on these considerations, we first selected <em>Bacillus subtilis</em> and <em>Saccharomyces cerevisiae</em> as our main chassis. We also began planning experiments to compare their resistance to UV exposure.",
+  },
+  {
+    id: "mason",
+    group: "microbes",
+    lines: ["Christopher E. Mason"],
+    card: "Dr. Christopher E. Mason",
+    topic: "Dsup & DNA damage",
+    photos: [{ file: "mason.avif" }],
+    parts: ["experiments", "drylab"],
+    changed:
+      "Following Dr. Mason's feedback, we moved forward with Dsup as one of the protective genes in our chassis-engineering strategy. We also incorporated the Comet assay into our experimental workflow …",
+  },
+  {
+    id: "zea",
+    group: "microbes",
+    lines: ["Luis Zea"],
+    card: "Dr. Luis Zea",
+    topic: "Microbes in spaceflight",
+    photos: [{ file: "luis.avif" }],
+    parts: ["drylab"],
+    changed:
+      "We also began investigating alternative nutrient sources and media-recycling strategies that could reduce dependence on supplies transported from Earth.",
+  },
+  {
+    id: "glowe",
+    group: "mission",
+    lines: ["Savi Glowe", "BIOASTRA"],
+    card: "BIOASTRA — Savi Glowe",
+    topic: "The path to spaceflight",
+    photos: [{ file: "savi.avif" }],
+    parts: ["roadmap"],
+    changed: "Savi's feedback became the starting point for developing a long-term pathway for SHIHAB.",
+  },
+  {
+    id: "alharbi",
+    group: "mission",
+    lines: ["Sarah Al Harbi"],
+    card: "Sarah Al Harbi",
+    topic: "Mission integration",
+    photos: [{ file: "incognito.svg" }],
+    parts: ["modeling", "hardware"],
+    changed:
+      "Sarah's feedback influenced both our dry-lab and hardware development. To reduce the need for continuous crew supervision, our dry-lab team developed a monitoring dashboard …",
+  },
+  {
+    id: "hse",
+    group: "mission",
+    lines: ["KAUST HSE"],
+    card: "Health, Safety & Environment (HSE) at KAUST",
+    topic: "Biosafety",
+    photos: [{ file: "rodion.avif" }],
+    parts: ["safety", "hardware"],
+    changed:
+      "Their feedback directly informed our Safety Handbook, including hazard identification, risk assessment, containment failure, accidental exposure, environmental release, and emergency response. It also shaped our Hardware manual …",
+  },
+  {
+    id: "macleod",
+    group: "earth",
+    lines: ["Andrew Macleod"],
+    card: "Andrew Macleod",
+    topic: "Humanitarian response",
+    photos: [{ file: "andrew.avif" }],
+    parts: ["hardware"],
+    changed:
+      "We incorporated disaster response and remote healthcare as a second application context when evaluating SHIHAB. … This reinforced the importance of designing SHIHAB to be portable, resource-efficient, safe, and increasingly autonomous.",
+  },
+  {
+    id: "kessler",
+    group: "earth",
+    lines: ["Rachel Kessler"],
+    card: "Rachel Kessler",
+    topic: "Humanitarian deployment",
+    photos: [{ file: "kessler.avif" }],
+    parts: ["hardware"],
+    changed:
+      "Rachel's feedback led us to define a new principle for SHIHAB's humanitarian application: design for a specific context, not for an abstract “disaster zone.”",
+  },
+];
