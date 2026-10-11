@@ -27,6 +27,8 @@
 // pill this used to be — a floating title reads more consistent with
 // every other page's masthead than a standalone glass card did.
 .titleWrap {
+    // Anchors TeamPhotos' absolutely positioned stack beside the title.
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;

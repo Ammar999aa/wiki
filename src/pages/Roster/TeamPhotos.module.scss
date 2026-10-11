@@ -1,0 +1,286 @@
+// ── Photo stack beside the title ───────────────────────────────────────────
+// Absolutely positioned against .titleWrap (Roster.module.scss) so it adds
+// no height to the title block — Honeycomb.jsx measures the space left
+// below the title to size the cluster, and this must not eat into it.
+
+.stack {
+    position: absolute;
+    top: 50%;
+    inset-inline-end: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.cards {
+    position: relative;
+    width: 128px;
+    height: 90px;
+    flex-shrink: 0;
+}
+
+// --i: 0 is the front card. Each card behind it sits a little further back
+// and more tilted; hovering fans them out so it reads as "more inside".
+.card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.75);
+    transform: rotate(calc(-4deg + var(--i) * 7deg)) translate(calc(var(--i) * 6px), calc(var(--i) * -4px));
+    transform-origin: 50% 90%;
+    transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: calc(10 - var(--i));
+}
+
+.stack:hover .card,
+.stack:focus-visible .card {
+    transform: rotate(calc(-10deg + var(--i) * 12deg)) translate(calc(var(--i) * 22px), calc(var(--i) * -6px));
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 216, 77, 0.45);
+    background: rgba(255, 216, 77, 0.1);
+    color: var(--amber);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: background 180ms ease, border-color 180ms ease;
+}
+
+.stack:hover .label,
+.stack:focus-visible .label {
+    background: rgba(255, 216, 77, 0.2);
+    border-color: rgba(255, 216, 77, 0.8);
+}
+
+.count {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--amber);
+    color: var(--bg);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.stack:focus-visible {
+    outline: none;
+
+    .cards {
+        outline: 2px solid var(--amber);
+        outline-offset: 10px;
+        border-radius: 12px;
+    }
+}
+
+// Narrow screens: the title is centered with no free space beside it, so
+// the stack drops into the flow under the title (this layout scrolls
+// anyway — it's the touch fallback grid, not the fit-to-viewport honeycomb).
+@media (max-width: 900px) {
+    .stack {
+        position: static;
+        transform: none;
+        margin-top: 14px;
+        gap: 22px;
+    }
+}
+
+// ── Gallery overlay ────────────────────────────────────────────────────────
+// Same backdrop/close-button look as SectionedArticle's Lightbox, plus
+// prev/next and a thumbnail strip.
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 48px 96px 28px;
+    box-sizing: border-box;
+    background: rgba(6, 6, 20, 0.9);
+    backdrop-filter: blur(6px);
+    animation: fadeIn 180ms ease;
+}
+
+.figure {
+    margin: 0;
+    min-height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 100%;
+}
+
+.image {
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 220ms ease;
+}
+
+.caption {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.counter {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+    font-variant-numeric: tabular-nums;
+}
+
+.close,
+.nav {
+    position: fixed;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 150ms ease;
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(255, 255, 255, 0.18);
+    }
+}
+
+.close {
+    top: 20px;
+    inset-inline-end: 24px;
+    width: 44px;
+    height: 44px;
+    font-size: 26px;
+}
+
+.nav {
+    top: 50%;
+    width: 52px;
+    height: 52px;
+    margin-top: -26px;
+    font-size: 30px;
+    padding-bottom: 4px;
+}
+
+.prev {
+    inset-inline-start: 24px;
+}
+
+.next {
+    inset-inline-end: 24px;
+}
+
+.thumbs {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.thumb {
+    width: 72px;
+    height: 50px;
+    flex-shrink: 0;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    background: none;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 150ms ease, border-color 150ms ease;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+.thumbActive {
+    opacity: 1;
+    border-color: var(--amber);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay {
+        padding: 64px 16px 20px;
+    }
+
+    .close {
+        top: 12px;
+        inset-inline-end: 12px;
+    }
+
+    .nav {
+        top: auto;
+        bottom: 84px;
+        margin-top: 0;
+        width: 44px;
+        height: 44px;
+    }
+
+    .prev {
+        inset-inline-start: 12px;
+    }
+
+    .next {
+        inset-inline-end: 12px;
+    }
+}

@@ -6,6 +6,7 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import RosterDetail from "./RosterDetail";
 import Honeycomb from "./Honeycomb";
 import Flag from "./Flag";
+import TeamPhotos from "./TeamPhotos";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // Hosted on iGEM's asset server rather than bundled locally — see
@@ -294,6 +295,7 @@ export default function Roster() {
         <div className={styles.titleWrap}>
           <p className={styles.titleLabel}>Team</p>
           <h1 className={styles.title}>Team</h1>
+          <TeamPhotos />
         </div>
 
         {pointerFine ? (
