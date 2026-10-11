@@ -96,11 +96,13 @@
     padding-block: 14px;
 }
 
+// A dot on the spine plus a dashed branch running only toward the row's
+// bubble (the branch also bridges the column gap so it meets the bubble).
 .questionConnector {
+    --branch-gap: 6px;
     grid-column: 2;
     grid-row: 1;
     height: 0;
-    border-top: 2px dashed rgba(255, 255, 255, 0.3);
     position: relative;
 
     &::before {
@@ -113,7 +115,24 @@
         height: 9px;
         border-radius: 50%;
         background: var(--accent);
+        z-index: 1;
     }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        width: calc(50% + var(--branch-gap));
+        border-top: 2px dashed rgba(255, 255, 255, 0.3);
+    }
+}
+
+.questionRow:nth-child(odd) .questionConnector::after {
+    inset-inline-end: 50%;
+}
+
+.questionRow:nth-child(even) .questionConnector::after {
+    inset-inline-start: 50%;
 }
 
 .questionBubble {
@@ -165,7 +184,14 @@
     }
 
     .questionConnector {
+        --branch-gap: 10px;
         grid-column: 1;
+    }
+
+    // Every bubble sits to the right of the spine on narrow screens.
+    .questionRow:nth-child(odd) .questionConnector::after {
+        inset-inline-end: auto;
+        inset-inline-start: 50%;
     }
 
     .questionRow:nth-child(odd) .questionBubble,
