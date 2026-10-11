@@ -1071,7 +1071,11 @@ function ProblemSection() {
   return (
     <section className={styles.problemSection} ref={ref}>
       <div className={styles.problemSticky}>
-        <span className={styles.kicker} ref={kickerRef} style={{ opacity: 0 }}>The challenge</span>
+        {/* Same pill as the "Our Solution" tag (StatementSection). */}
+        <span className={styles.tag} ref={kickerRef} style={{ opacity: 0 }}>
+          <span className={styles.tagDot} />
+          The challenge
+        </span>
         <p className={styles.problemIntro} ref={introRef} style={{ opacity: 0 }}>
           Medicine is different from many other essentials: once it is used, degraded, or missing, replacing it may
           not be simple.
@@ -1216,120 +1220,78 @@ function RevealSection() {
   );
 }
 
-// ── Scenarios (slide 7) ───────────────────────────────────────────────────────
+// ── Solution (slide 7) ────────────────────────────────────────────────────────
+// One slide: the "Our Solution" title and the three-step explanation
+// (recombineering → resilient chassis → protein production). Text only for now;
+// artwork for each step comes later.
 
-const B_SUBTILIS_PROTEINS = ["Chaperone A", "Repair B"];
-const S_CEREVISIAE_PROTEINS = ["Stress C"];
-const STRESSORS = ["Radiation", "Microgravity", "Temperature fluctuations"];
+const SOLUTION_STRESSORS = ["Radiation", "Microgravity", "Temperature fluctuations"];
+const SOLUTION_CHASSIS = ["B. subtilis", "S. cerevisiae", "P. pastoris"];
 
-function ScenarioOrganism({ type, orgRef, markRef, proteins, protRef }) {
-  return (
-    <div className={styles.orgWrap}>
-      <div className={`${styles.organism} ${styles[type]}`} ref={orgRef}>
-        <span className={styles.orgMark} ref={markRef}>
-          <svg className={styles.orgMarkIconX} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-            <line x1="5" y1="5" x2="19" y2="19" />
-            <line x1="19" y1="5" x2="5" y2="19" />
-          </svg>
-          <svg className={styles.orgMarkIconV} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="4 12 9 18 20 6" />
-          </svg>
-        </span>
-      </div>
-      {proteins && (
-        <div className={styles.proteins} ref={protRef} style={{ opacity: 0 }}>
-          {proteins.map((p) => <span key={p} className={styles.protein}>{p}</span>)}
-        </div>
-      )}
-      <small className={styles.orgLabel}>{type === "bacteria" ? "B. subtilis" : "S. cerevisiae"}</small>
-    </div>
-  );
-}
-
-function ScenarioSection() {
+function SolutionSection() {
   const ref = useRef(null);
+  const headRef = useRef(null);
+  const stepRefs = useRef([]);
 
-  const labelARef = useRef(null), labelBRef = useRef(null);
-  const orgsARef = useRef(null), orgsBRef = useRef(null);
-  const stressARef = useRef(null), stressBRef = useRef(null);
-  const prot1Ref = useRef(null), prot2Ref = useRef(null);
-  const outcomeARef = useRef(null), outcomeBRef = useRef(null);
-  const bDeadRef = useRef(null), bDeadMarkRef = useRef(null);
-  const yDeadRef = useRef(null), yDeadMarkRef = useRef(null);
-  const bAliveRef = useRef(null), bAliveMarkRef = useRef(null);
-  const yAliveRef = useRef(null), yAliveMarkRef = useRef(null);
-
-  const setOrg = (orgEl, markEl, isDead, isAlive) => {
-    if (!orgEl) return;
-    orgEl.classList.toggle(styles.dead, isDead);
-    orgEl.classList.toggle(styles.alive, isAlive);
-    if (markEl) {
-      markEl.classList.toggle(styles.orgMarkX, isDead);
-      markEl.classList.toggle(styles.orgMarkV, isAlive);
+  useScene(ref, 1.8, (p) => {
+    if (headRef.current) {
+      const o = between(p, 0.0, 0.16);
+      headRef.current.style.opacity = o;
+      headRef.current.style.transform = `translateY(${lerp(22, 0, o)}px)`;
     }
-  };
-
-  useScene(ref, 2.2, (p) => {
-    const labelsOp = between(p, 0.00, 0.15);
-    const orgsOp   = between(p, 0.15, 0.32);
-    const stressOp = between(p, 0.32, 0.48);
-    const protOp   = between(p, 0.48, 0.62);
-    const outOp    = between(p, 0.65, 0.80);
-    const survOp   = between(p, 0.80, 0.92);
-
-    if (labelARef.current) labelARef.current.style.opacity = labelsOp;
-    if (labelBRef.current) labelBRef.current.style.opacity = labelsOp;
-    if (orgsARef.current) orgsARef.current.style.opacity = orgsOp;
-    if (orgsBRef.current) orgsBRef.current.style.opacity = orgsOp;
-    if (stressARef.current) stressARef.current.style.opacity = stressOp;
-    if (stressBRef.current) stressBRef.current.style.opacity = stressOp;
-    if (prot1Ref.current) prot1Ref.current.style.opacity = protOp;
-    if (prot2Ref.current) prot2Ref.current.style.opacity = protOp;
-    if (outcomeARef.current) outcomeARef.current.style.opacity = outOp;
-    if (outcomeBRef.current) outcomeBRef.current.style.opacity = survOp;
-
-    setOrg(bDeadRef.current, bDeadMarkRef.current, outOp > 0.01, false);
-    setOrg(yDeadRef.current, yDeadMarkRef.current, outOp > 0.01, false);
-    setOrg(bAliveRef.current, bAliveMarkRef.current, false, survOp > 0.01);
-    setOrg(yAliveRef.current, yAliveMarkRef.current, false, survOp > 0.01);
+    stepRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const o = clamp01((p - (0.2 + i * 0.15)) / 0.16);
+      el.style.opacity = o;
+      el.style.transform = `translateY(${lerp(26, 0, o)}px)`;
+    });
   });
 
   return (
-    <section className={styles.scenarioSection} ref={ref}>
-      <div className={styles.scenarioSticky}>
-
-        {/* Without SHIHAB */}
-        <div className={styles.scenario}>
-          <p className={styles.scenarioLabel} ref={labelARef} style={{ opacity: 0 }}>Without SHIHAB</p>
-          <div className={styles.organisms} ref={orgsARef} style={{ opacity: 0 }}>
-            <ScenarioOrganism type="bacteria" orgRef={bDeadRef} markRef={bDeadMarkRef} />
-            <ScenarioOrganism type="yeast"    orgRef={yDeadRef} markRef={yDeadMarkRef} />
-          </div>
-          <div className={styles.stressors} ref={stressARef} style={{ opacity: 0 }}>
-            {STRESSORS.map((s) => <span key={s} className={styles.stressor}>{s}</span>)}
-          </div>
-          <p className={styles.outcome} ref={outcomeARef} style={{ opacity: 0 }}>
-            Reduced viability and productivity.
+    <section className={styles.solutionSection} ref={ref}>
+      <div className={styles.solutionSticky}>
+        <div className={styles.solHead} ref={headRef} style={{ opacity: 0 }}>
+          <span className={styles.tag}>
+            <span className={styles.tagDot} />
+            Our Solution
+          </span>
+          <h2 className={styles.solTitle}>
+            <span className={styles.vio}>Resilient microbial chassis</span> for on-demand{" "}
+            <em>biomanufacturing in space</em>
+          </h2>
+          <p className={styles.solLead}>
+            We use recombineering to stably integrate protective genes such as Dsup, strengthening our chassis against
+            space-related stressors and enabling reliable protein production.
           </p>
         </div>
 
-        <div className={styles.scenarioDivider} />
+        <div className={styles.solSteps}>
+          <div className={styles.solStep} ref={(el) => (stepRefs.current[0] = el)} style={{ opacity: 0 }}>
+            <h3><span className={styles.solNum}>1</span>Recombineering</h3>
+            <span className={styles.solPill}>Dsup integration</span>
+            <p>Stably integrate protective genes such as Dsup (Damage suppressor) into our chassis.</p>
+          </div>
 
-        {/* With SHIHAB */}
-        <div className={styles.scenario}>
-          <p className={`${styles.scenarioLabel} ${styles.scenarioLabelShihab}`} ref={labelBRef} style={{ opacity: 0 }}>With SHIHAB</p>
-          <div className={styles.organisms} ref={orgsBRef} style={{ opacity: 0 }}>
-            <ScenarioOrganism type="bacteria" orgRef={bAliveRef} markRef={bAliveMarkRef} proteins={B_SUBTILIS_PROTEINS} protRef={prot1Ref} />
-            <ScenarioOrganism type="yeast"    orgRef={yAliveRef} markRef={yAliveMarkRef} proteins={S_CEREVISIAE_PROTEINS} protRef={prot2Ref} />
+          <span className={styles.solArrow} aria-hidden="true">→</span>
+
+          <div className={styles.solStep} ref={(el) => (stepRefs.current[1] = el)} style={{ opacity: 0 }}>
+            <h3><span className={styles.solNum}>2</span>Resilient chassis</h3>
+            <div className={styles.solNames}>
+              {SOLUTION_CHASSIS.map((n) => <span key={n}>{n}</span>)}
+            </div>
+            <div className={styles.stressors}>
+              {SOLUTION_STRESSORS.map((x) => <span key={x} className={styles.stressor}>{x}</span>)}
+            </div>
+            <p>Engineered chassis with enhanced tolerance to space conditions.</p>
           </div>
-          <div className={styles.stressors} ref={stressBRef} style={{ opacity: 0 }}>
-            {STRESSORS.map((s) => <span key={s} className={styles.stressor}>{s}</span>)}
+
+          <span className={styles.solArrow} aria-hidden="true">→</span>
+
+          <div className={styles.solStep} ref={(el) => (stepRefs.current[2] = el)} style={{ opacity: 0 }}>
+            <h3><span className={styles.solNum}>3</span>Protein production</h3>
+            <p>Enables production of high-value proteins for space applications.</p>
           </div>
-          <p className={`${styles.outcome} ${styles.survive}`} ref={outcomeBRef} style={{ opacity: 0 }}>
-            Resilient cells capable of producing biologics.
-          </p>
         </div>
-
       </div>
     </section>
   );
@@ -1566,7 +1528,7 @@ export default function Home() {
       <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />
       <div ref={rocketGroupRef}>
         <StatementSection decor={<PlanetDecor />}>
-          Future missions may last for <em>months&mdash;or even years</em>. Every medicine must{" "}
+          Future missions may last for <em>months or even years</em>. Every medicine must{" "}
           <em>survive the journey</em>, remain effective, and be available when needed.
         </StatementSection>
       </div>
@@ -1581,12 +1543,7 @@ export default function Home() {
         </StatementSection>
       </div>
       <RevealSection />
-      <StatementSection tag="Our Solution">
-        We <em>engineer</em> resilient microbial systems &mdash;{" "}
-        <span className={styles.vio}>B. subtilis</span> and <span className={styles.vio}>S. cerevisiae</span>{" "}
-        &mdash; that <em>thrive under space stressors</em>.
-      </StatementSection>
-      <ScenarioSection />
+      <SolutionSection />
       <CapabilitiesSection />
       <OutroSection />
       <ExploreSection />

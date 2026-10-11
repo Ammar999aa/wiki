@@ -785,17 +785,215 @@
 }
 
 /* ── Scenarios ── */
+/* Our Solution: title + three-step explanation on one pinned slide (text only
+   for now — artwork per step is added later). */
+.solutionSection { height: 300svh; }
+
+.solutionSticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  box-sizing: border-box; /* the padding must not add to the 100dvh height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 4vh, 44px);
+  padding: 80px clamp(16px, 4vw, 48px) 110px;
+  overflow: hidden;
+}
+
+.solHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  max-width: 820px;
+  will-change: opacity, transform;
+}
+
+.solTitle {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.6vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-wrap: balance;
+
+  em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+}
+
+.solLead {
+  margin: 0;
+  max-width: 640px;
+  font-size: clamp(0.82rem, 1.2vw, 0.98rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.solSteps {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(8px, 1.4vw, 20px);
+  width: min(1100px, 100%);
+}
+
+.solStep {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 18px;
+  text-align: center;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(10px);
+  will-change: opacity, transform;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  p {
+    margin: 0;
+    margin-top: auto;
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
+  }
+}
+
+.solNum {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(177, 140, 255, 0.7);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-300);
+}
+
+.solArrow {
+  align-self: center;
+  flex: none;
+  font-size: 1.4rem;
+  color: rgba(177, 140, 255, 0.7);
+}
+
+.solPill {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFD84D;
+  background: rgba(255, 216, 77, 0.07);
+  border: 1px solid rgba(255, 216, 77, 0.35);
+  border-radius: 100px;
+  padding: 4px 12px;
+}
+
+.solNames {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 760px) {
+  /* Everything has to fit one pinned phone screen, so this is a compact layout. */
+  .solutionSticky {
+    gap: 12px;
+    padding: 56px 14px 92px;
+  }
+
+  .solHead { gap: 10px; }
+  .solTitle { font-size: 1.4rem; }
+  .solLead { font-size: 0.74rem; line-height: 1.45; }
+
+  .solSteps { flex-direction: column; gap: 8px; }
+  .solArrow { display: none; }
+  .solStep { padding: 12px; gap: 8px; }
+  .solStep h3 { font-size: 0.95rem; }
+  .solStep p { font-size: 0.72rem; line-height: 1.4; }
+  .solPill { font-size: 0.55rem; padding: 3px 9px; }
+  .solNames { font-size: 0.74rem; }
+  .stressors { gap: 6px; }
+  .stressor { font-size: 0.52rem; padding: 3px 8px; letter-spacing: 0.06em; }
+}
+
 .scenarioSection { height: 320svh; }
 
 .scenarioSticky {
   position: sticky;
   top: 0;
   height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 40px);
+  overflow: hidden;
+  padding: 70px 24px 100px;
+}
+
+/* The "Our Solution" statement that sits above the two panels. */
+.scenarioStatement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 780px;
+  will-change: opacity, transform;
+}
+
+.scenarioLine {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-align: center;
+  text-wrap: balance;
+
+  em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 700;
+  }
+}
+
+/* The without / with SHIHAB panels, side by side. */
+.scenarioPanels {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding-inline: 24px;
+  width: 100%;
 }
 
 .scenario {
@@ -984,11 +1182,17 @@
    panels, it scrolls internally instead of silently clipping. */
 @media (max-width: 700px) {
   .scenarioSticky {
-    flex-direction: column;
-    gap: 22px;
-    padding-inline: 16px;
-    padding-block: 28px;
+    gap: 12px;
+    padding: 56px 16px 92px;
     overflow-y: auto;
+  }
+
+  .scenarioStatement { gap: 10px; }
+  .scenarioLine { font-size: 1.1rem; }
+
+  .scenarioPanels {
+    flex-direction: column;
+    gap: 14px;
   }
 
   .scenario {
