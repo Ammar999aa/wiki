@@ -226,10 +226,12 @@ mono convention) and joined by arrow spans.
 </div>
 ```
 
-**No blank lines inside `.flow`.** With blank lines, `marked` wraps the
-spans in one `<p>`, so they wrap like a sentence and a long row strands an
-arrow at the end of a line. Without them each node is its own flex item:
-the row stays on one line and long labels wrap inside their node.
+**Long flows wrap onto more rows.** The `markdown-sections` build plugin
+glues each `.flow-arrow` to the node after it (in a `.flow-step` span), so
+every new row starts with "→ Node" and an arrow is never left alone at the
+end of a row. Nodes in the same row share one height, and a long label
+wraps inside its node (max ~22em wide). Blank lines inside the block are
+harmless, but leaving them out keeps the source tidy.
 
 `amber`/`accent` on a node are optional tint modifiers, typically used for
 the two ends of a loop (sensing vs. actuation) while the shared

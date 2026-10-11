@@ -662,29 +662,41 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   // metadata convention (see ARTICLE-STANDARDS.md §5) since each node is
   // a component name, not prose. Author with raw HTML in the .md source:
   //   <div class="flow">
-  //
   //   <span class="flow-node">Sensor</span>
   //   <span class="flow-arrow">→</span>
   //   <span class="flow-node accent">Controller</span>
   //   <span class="flow-arrow">→</span>
   //   <span class="flow-node amber">Actuator</span>
-  //
   //   </div>
   // `accent`/`amber` on a node are optional tint modifiers for the two
   // ends of a loop (sensing vs. actuation) — plain nodes (the shared
   // control-logic step) stay neutral.
+  //
+  // Long flows wrap onto more rows. The markdown-sections plugin
+  // (`groupFlowSteps`) wraps each arrow + the node after it in a
+  // `.flow-step`, so a new row always opens with "→ Node" and an arrow
+  // is never stranded at a row end. Nodes in a row share one height.
   :global(.flow) {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: stretch;
     justify-content: center;
-    // One row: long node labels wrap inside their node rather than the row
-    // wrapping and stranding an arrow at a line end (narrow screens stack
-    // the whole flow vertically instead, below).
-    flex-wrap: nowrap;
-    gap: 0;
+    row-gap: 12px;
     font-family: ui-monospace, Menlo, Consolas, monospace;
     font-size: 0.82rem;
+    line-height: 1.35;
     margin-block: 20px;
+
+    // Blank lines inside the block make marked wrap the spans in a <p>;
+    // dissolve it so the spans are still the flex items.
+    > p {
+      display: contents;
+    }
+
+    :global(.flow-step) {
+      display: flex;
+      align-items: stretch;
+    }
 
     :global(.flow-node) {
       // border-box: the mobile rule below sets width: 100% of `.flow`
@@ -693,38 +705,52 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
       // and the border + padding add on top, pushing the node past
       // the article column's edge on narrow (iPhone-width) screens.
       box-sizing: border-box;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 22em;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 12px 18px;
+      padding: 10px 16px;
       border-radius: var(--radius-xs);
       color: white;
       text-align: center;
+      text-wrap: balance;
     }
 
     :global(.flow-node.amber) {
       border-color: rgba(255, 216, 77, 0.4);
+      background: rgba(255, 216, 77, 0.05);
       color: var(--amber);
     }
 
     :global(.flow-node.accent) {
       border-color: rgba(177, 109, 255, 0.4);
+      background: rgba(177, 109, 255, 0.07);
       color: var(--primary-300);
     }
 
     :global(.flow-arrow) {
       flex: none;
+      display: flex;
+      align-items: center;
       color: rgba(255, 255, 255, 0.45);
-      padding: 0 14px;
+      padding: 0 10px;
       font-size: 1.1rem;
     }
 
     @media (max-width: 640px) {
       flex-direction: column;
       align-items: stretch;
+      row-gap: 0;
+
+      :global(.flow-step) {
+        flex-direction: column;
+      }
 
       :global(.flow-node) {
         width: 100%;
+        max-width: none;
       }
 
       :global(.flow-arrow) {

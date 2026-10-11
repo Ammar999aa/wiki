@@ -29,6 +29,17 @@ function slugify(title) {
     .replace(/^-+|-+$/g, "");
 }
 
+// Glue each `.flow-arrow` to the `.flow-node` after it in one `.flow-step`
+// span, so a `.flow` that wraps onto several rows starts each new row with
+// "→ Node" instead of stranding an arrow at the end of the previous row.
+// Authors keep writing flat arrow/node spans; this runs on marked's output.
+function groupFlowSteps(html) {
+  return html.replace(
+    /(<span class="flow-arrow">[^<]*<\/span>)\s*(<span class="flow-node[^"]*">[\s\S]*?<\/span>)/g,
+    '<span class="flow-step">$1$2</span>',
+  );
+}
+
 export default function markdownSections() {
   return {
     name: "markdown-sections",
@@ -54,7 +65,7 @@ export default function markdownSections() {
       const parsed = sections.map((s) => ({
         title: s.title,
         id: slugify(s.title),
-        html: marked(s.body.trim()),
+        html: groupFlowSteps(marked(s.body.trim())),
       }));
 
       return {
