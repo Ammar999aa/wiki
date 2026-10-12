@@ -8,7 +8,7 @@ import styles from "./PersonModal.module.scss";
 // Also opens a .popup-card's content (no photo, its title as the name).
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-export default function PersonModal({ person, onClose, onInternalLink, onHashLink }) {
+export default function PersonModal({ person, onClose, onInternalLink, onHashLink, onNext }) {
   const closeRef = useRef(null);
   const bodyRef = useRef(null);
 
@@ -71,6 +71,13 @@ export default function PersonModal({ person, onClose, onInternalLink, onHashLin
                 {person.name}
               </h2>
               <div ref={bodyRef} className={styles.body} onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: person.html }} />
+              {person.nextCard && onNext && (
+                <button type="button" className={styles.next} onClick={() => onNext(person.nextCard)}>
+                  <span className={styles.nextLabel}>Next</span>
+                  <span>{person.nextName}</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              )}
             </div>
           </div>
         </LiquidGlass>

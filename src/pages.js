@@ -37,6 +37,7 @@ const Engagement = lazyWithPreload(() => import("./pages/Engagement/Engagement")
 const Education = lazyWithPreload(() => import("./pages/Education/Education"));
 const ScienceCommunication = lazyWithPreload(() => import("./pages/ScienceCommunication/ScienceCommunication"));
 const ProteinLibrary = lazyWithPreload(() => import("./pages/ProteinLibrary/ProteinLibrary"));
+const ProjectDescription = lazyWithPreload(() => import("./pages/ProjectDescription/ProjectDescription"));
 const WetLabDesign = lazyWithPreload(() => import("./pages/WetLabDesign/WetLabDesign"));
 const Protocols = lazyWithPreload(() => import("./pages/Protocols/Protocols"));
 const HumanIntegratedPractices = lazyWithPreload(() =>
@@ -70,13 +71,16 @@ const Pages = [
   {
     name: "Project",
     folder: [
-      // The protein payload library used to be Wet Lab → Design; it reads
-      // as the project's own description of what SHIHAB makes, so it moved
-      // here and /design now carries the chassis/vector design write-up
-      // (WetLabDesign). src/content/en/project.md is left in the repo but
-      // is no longer rendered by any route — it was placeholder text plus
-      // an unfinished Pectin Hydrogel section.
-      { name: "Description", title: "Description", path: "/project", component: ProteinLibrary },
+      // The protein payload library used to be Wet Lab → Design, then sat
+      // at /project as the stand-in Description. Now that the real project
+      // description exists (ProjectDescription, from
+      // src/content/en/project-description.md), the library is its own page
+      // right after it, linked from the description's payload-library card.
+      // src/content/en/project.md is left in the repo but is no longer
+      // rendered by any route — it was placeholder text plus an unfinished
+      // Pectin Hydrogel section.
+      { name: "Description", title: "Description", path: "/project", component: ProjectDescription },
+      { name: "Protein Library", title: "Protein Library", path: "/protein-library", component: ProteinLibrary },
       { name: "Safety", title: "Safety", path: "/safety", component: Safety },
       { name: "Contribution", title: "Contribution", path: "/contribution", component: Stub },
     ],

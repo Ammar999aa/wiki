@@ -24,13 +24,19 @@ function personFromCard(card, cardIndex) {
   };
 }
 // A .popup-card (see SectionedArticle.module.scss) opens in the same popup,
-// with its title in place of a name and no photo.
+// with its title in place of a name and no photo. Inside a
+// `.popup-grid.sequence`, the cards are meant to be read in order, so the
+// popup also carries the following card for its "Next" button.
 function popupFromCard(card) {
+  const next = card.closest(".popup-grid.sequence") ? card.nextElementSibling : null;
+  const nextCard = next?.matches(".popup-card") ? next : null;
   return {
     cardIndex: -1,
     name: card.querySelector(".popup-title")?.textContent ?? "",
     photos: [],
     html: card.querySelector(".popup-more")?.innerHTML ?? "",
+    nextCard,
+    nextName: nextCard?.querySelector(".popup-title")?.textContent ?? "",
   };
 }
 import styles from "../SectionedArticle.module.scss";
@@ -237,7 +243,13 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
         </div>
       ))}
       <Lightbox src={zoomed?.src} alt={zoomed?.alt} onClose={() => setZoomed(null)} />
-      <PersonModal person={person} onClose={closePerson} onInternalLink={followPersonLink} onHashLink={followHashLink} />
+      <PersonModal
+        person={person}
+        onClose={closePerson}
+        onInternalLink={followPersonLink}
+        onHashLink={followHashLink}
+        onNext={(card) => setPerson(popupFromCard(card))}
+      />
     </div>
   );
 }

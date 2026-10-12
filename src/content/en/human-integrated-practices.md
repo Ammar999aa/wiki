@@ -230,7 +230,7 @@ To better understand these questions, we spoke with professionals whose experien
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
 <p>Based on Starr's guidance, we used the NASA Human Research Roadmap to explore the health risks associated with spaceflight and identify areas where new medical countermeasures could be valuable. After this, we had a new question: What could SHIHAB produce that would actually address astronaut health needs?</p>
 <p>Through this exploration, Spaceflight-Associated Neuro-ocular Syndrome (SANS) and carcinogenesis emerged as relevant health risks to consider, and we added potential therapeutics addressing these conditions to our list of possible payloads for SHIHAB.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/design">Payload library →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/protein-library">Payload library →</a></p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
 <p>Starr’s perspective shifted our therapeutic selection from being primarily production-driven to need-driven. The next step was therefore to connect the health challenges identified through the roadmap with therapeutics that could realistically be produced using a microbial platform.</p>
 </div>
@@ -257,7 +257,7 @@ To better understand these questions, we spoke with professionals whose experien
 <p>The convergence of their feedback made microgravity a clear component of our validation strategy. Before progressing toward experimental platforms such as parabolic flights, we began investigating how altered gravity could affect our system through COMSOL simulations.</p>
 <p><a class="person-link-btn" href="/kaust-ksa/modeling">Bioreactor modeling →</a></p>
 <p>Their medical perspectives also influenced the development of our payload library. In particular, the discussion around muscle and bone loss encouraged us to investigate therapeutics related to these challenges and add them to our list of potential payloads for SHIHAB.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/design">Payload library →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/protein-library">Payload library →</a></p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
 <p>These conversations made us more curious about what would come after ground-based and microgravity validation. If SHIHAB were eventually intended for a real spaceflight experiment, what safety requirements, regulations, testing standards, and approvals would need to be considered?</p>
 </div>

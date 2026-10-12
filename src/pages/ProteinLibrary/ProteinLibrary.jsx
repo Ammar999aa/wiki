@@ -15,15 +15,15 @@ const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-cent
 const INFO_BAR = [
   { title: "Produced in Engineered Microbes", detail: "S. cerevisiae, P. pastoris, B. subtilis" },
   { title: "Designed for Modularity & Safety", detail: "Kill switches, Auxotrophy" },
-  { title: "Versatile Delivery Platforms", detail: "MOFs, Hydrogels, etc." },
   { title: "Applications in Health, Space, & Beyond", detail: null },
 ];
 
 const WORKFLOW_STEPS = ["Design", "Clone", "Express", "Purify", "Deliver", "Make an Impact"];
 
-// Wired into the nav as Project → Description (/project), see src/pages.js
-// — it was Wet Lab → Design until the chassis/vector design write-up
-// (src/pages/WetLabDesign) took that slot over. See
+// Wired into the nav as Project → Protein Library (/protein-library), see
+// src/pages.js — it was Wet Lab → Design until the chassis/vector design
+// write-up (src/pages/WetLabDesign) took that slot over, then stood in as
+// Project → Description until the real project description was written. See
 // src/content/library_page.md for the design brief this was built from,
 // src/content/protein_payload_library.md for the source content, and
 // .claude/DESIGN.md for the site-wide visual system this was brought in

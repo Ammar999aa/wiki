@@ -582,6 +582,40 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // Modifier for a few long, parallel blocks that read better stacked one
+  // per row than squeezed side by side (e.g. project-description.md's
+  // Beyond Earth / Back on Earth / Looking ahead). Each card's heading
+  // becomes a small-caps label, tinted in turn violet → blue → amber so
+  // the stack reads as distinct modules. `class="card-grid stack"`.
+  :global(.card-grid.stack) {
+    flex-direction: column;
+
+    & > div {
+      flex: none;
+      border-inline-start: 3px solid var(--card-tone);
+    }
+
+    & > div:nth-child(3n + 1) {
+      --card-tone: var(--primary-300);
+    }
+
+    & > div:nth-child(3n + 2) {
+      --card-tone: var(--tertiary-300);
+    }
+
+    & > div:nth-child(3n) {
+      --card-tone: var(--amber);
+    }
+
+    h3,
+    h4 {
+      color: var(--card-tone);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  }
+
   // Generalizes the Model page's Callout: a claim that needs to stand
   // apart from running prose (a scope statement, a caveat, a retracted
   // point). Default tone is neutral; add a second class for a tinted
@@ -608,6 +642,19 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
   :global(.callout.accent) {
     border-inline-start-color: var(--accent);
+  }
+
+  // The one question a page is built around, set larger than body text:
+  // `class="callout accent question"`.
+  :global(.callout.question) {
+    padding: 20px 24px;
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.5;
+      text-align: left;
+    }
   }
 
   :global(.callout.good) {
@@ -1618,6 +1665,20 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
     @media (max-width: 680px) {
       grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  // Three cards on one row instead of 2 + 1 stranded: `popup-grid three`.
+  // Drops to one column at the same breakpoint as the base grid.
+  // (`popup-grid sequence` needs no styles — Article.jsx reads it to give
+  // each popup a "Next" button to the following card.)
+  :global(.popup-grid.three) {
+    @media (min-width: 681px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      :global(.popup-open) {
+        padding: 18px 18px;
+      }
     }
   }
 
