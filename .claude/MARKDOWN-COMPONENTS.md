@@ -111,6 +111,10 @@ pending states below), a genuine caveat about a method's limits is
 `neutral` or `warn` depending on severity, a retracted or wrong claim kept
 visible on purpose is `critical`.
 
+**Modifier — `.callout.question`**: for the one question a page is built
+around, set larger than body text (`class="callout accent question"`, see
+project-description.md). Use it once per page at most.
+
 **Don't** use `.callout` for a plain aside that doesn't need visual
 separation — that's what a normal paragraph, or `blockquote` (already
 styled by the base `.article` rules), is for. A page where every third
@@ -185,6 +189,12 @@ read side by side as one comparison, e.g. the three gaps in education.md's
 Kallpa section. The default 260px basis wraps the last card onto its own
 row in the article column; `class="card-grid row"` keeps every card on one
 row at equal widths on wide screens and still stacks them on narrow ones.
+
+**Modifier — `.card-grid.stack`**: for a few long parallel blocks
+(several sentences each) that would be cramped side by side, e.g.
+project-description.md's Beyond Earth / Back on Earth / Looking ahead.
+Cards stack one per row with a colored left bar, and each `####` heading
+becomes a small-caps label tinted violet → blue → amber in turn.
 
 **Don't** reach for `card-grid` when the items aren't actually parallel —
 three sequential process steps that depend on each other read better as an
@@ -504,6 +514,13 @@ The face takes either a `.popup-num` (numbered, beside the title) or a
 `.popup-icon` holding an inline SVG (above the title), then inside
 `.popup-face`: `.popup-title`, an optional `.popup-desc` line or
 `svg.popup-art` illustration, and `.popup-hint`.
+
+Modifiers on the grid:
+- `popup-grid three` puts three cards on one row (instead of two plus one
+  left alone on the next row) and drops to one column on phones.
+- `popup-grid sequence` is for cards meant to be read in order: each popup
+  gets a "Next" button that opens the following card's popup (see
+  project-description.md's Project overview).
 
 **Don't** hide content a reader needs to follow the page's argument in a
 popup — only the detail behind a tile that already stands on its own.

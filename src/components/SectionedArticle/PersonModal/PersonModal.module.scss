@@ -204,6 +204,12 @@
         }
     }
 
+    // Same accent emphasis as the article's `.hl`.
+    :global(.hl) {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
     :global(.person-link-btn) {
         display: inline-flex;
         align-items: center;
@@ -222,6 +228,46 @@
             background: color-mix(in oklab, var(--primary) 50%, transparent);
         }
     }
+}
+
+// "Next →" to the following card of a `.popup-grid.sequence` (Article.jsx).
+// Sits below the scrolling body, so it stays in view however long the text.
+.next {
+    all: unset;
+    box-sizing: border-box;
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+    margin-top: 16px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--primary) 60%, transparent);
+    background: color-mix(in oklab, var(--primary) 18%, transparent);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 150ms ease;
+
+    &:hover,
+    &:focus-visible {
+        background: color-mix(in oklab, var(--primary) 40%, transparent);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary-300);
+        outline-offset: 3px;
+    }
+}
+
+.nextLabel {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
 }
 
 .close {

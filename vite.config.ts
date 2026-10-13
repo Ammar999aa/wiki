@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import markdownSections from "./plugins/markdown-sections.js";
+import sitemap from "./plugins/sitemap.js";
 
 // Hardcoded rather than derived from VITE_TEAM_NAME: a GitLab CI/CD variable
 // outside this repo's control overrides the committed .env value at build
@@ -10,5 +11,5 @@ import markdownSections from "./plugins/markdown-sections.js";
 // hardcoding it removes that failure mode entirely.
 export default defineConfig({
   base: "/kaust-ksa/",
-  plugins: [react(), markdownSections()],
+  plugins: [react(), markdownSections(), sitemap()],
 });

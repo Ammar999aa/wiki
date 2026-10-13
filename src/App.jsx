@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer";
 import NotFound from "./components/NotFound/NotFound";
 import ChunkErrorBoundary, { RELOAD_FLAG } from "./components/ChunkErrorBoundary/ChunkErrorBoundary";
 import { getPathMapping } from "./utils";
+import { SITE_URL } from "./site";
+import { Stub } from "./pages";
 import styles from "./App.module.scss";
 
 const supportsViewTransitions = typeof document !== "undefined" && !!document.startViewTransition;
@@ -28,11 +30,48 @@ export default function App() {
   const [displayLocation, setDisplayLocation] = useState(location);
   const title = pathMapping[displayLocation.pathname]?.title;
 
+  const pathname = displayLocation.pathname;
+
   useEffect(() => {
     // Hardcoded team identity — see vite.config.ts for why this doesn't read
-    // import.meta.env.VITE_TEAM_NAME/VITE_TEAM_YEAR.
-    document.title = `${title ? title + " · " : ""}kaust-ksa · iGEM 2026`;
-  }, [title]);
+    // import.meta.env.VITE_TEAM_NAME/VITE_TEAM_YEAR. Home gets the bare site
+    // name rather than "Home · …" — it's what the search result should say.
+    const page = title && pathname !== "/" ? title + " · " : "";
+    document.title = `${page}SHIHAB · KAUST-KSA iGEM 2026`;
+  }, [title, pathname]);
+
+  useEffect(() => {
+    // Search snippet: the page's own `description` from pages.js, else the
+    // site-wide one index.html shipped with (read once, before any route
+    // overwrites it).
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.dataset.fallback ??= meta.content;
+      meta.content = pathMapping[pathname]?.description ?? meta.dataset.fallback;
+    }
+
+    // Canonical URL, so Google folds duplicate routes (e.g. /bioreactor-modeling
+    // → /modeling) into one result: the first path in pages.js that renders
+    // the same component. Stub is shared by every unwritten page, so those
+    // each stay their own canonical. Unknown paths (NotFound) get none.
+    const component = pathMapping[pathname]?.component;
+    const canonicalPath = !component
+      ? null
+      : component === Stub
+        ? pathname
+        : Object.keys(pathMapping).find((p) => pathMapping[p].component === component);
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!canonicalPath) {
+      link?.remove();
+      return;
+    }
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = SITE_URL + (canonicalPath === "/" ? "/" : canonicalPath);
+  }, [pathname, pathMapping]);
 
   useEffect(() => {
     // App rendering at all means ChunkErrorBoundary's one-time reload (if

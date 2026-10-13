@@ -37,6 +37,7 @@ const Engagement = lazyWithPreload(() => import("./pages/Engagement/Engagement")
 const Education = lazyWithPreload(() => import("./pages/Education/Education"));
 const ScienceCommunication = lazyWithPreload(() => import("./pages/ScienceCommunication/ScienceCommunication"));
 const ProteinLibrary = lazyWithPreload(() => import("./pages/ProteinLibrary/ProteinLibrary"));
+const ProjectDescription = lazyWithPreload(() => import("./pages/ProjectDescription/ProjectDescription"));
 const WetLabDesign = lazyWithPreload(() => import("./pages/WetLabDesign/WetLabDesign"));
 const Protocols = lazyWithPreload(() => import("./pages/Protocols/Protocols"));
 const HumanIntegratedPractices = lazyWithPreload(() =>
@@ -52,6 +53,10 @@ const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
 const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
+// Optional `description` on a page: the search-result / link-preview
+// snippet App.jsx sets for that route (falls back to index.html's site-wide
+// one). Keep it to text already on the page — it's a summary, not new copy.
+//
 // Single source of truth for routing + nav: App.jsx turns this into <Routes>,
 // Menu.jsx turns it into the nav bar. Add a page here and both update — this
 // is what replaces the old App.jsx/Menu.jsx duplicate route lists (the thing
@@ -66,17 +71,33 @@ const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/Exam
 // pages.md's actual subpages are added alongside as their own pages, most
 // still `Stub` until content is written.
 const Pages = [
-  { name: "Home", title: "Home", path: "/", component: Home },
+  {
+    name: "Home",
+    title: "Home",
+    path: "/",
+    component: Home,
+    description:
+      "SHIHAB (شهاب, Arabic for 'shooting star') is the KAUST-KSA iGEM 2026 project: resilient microbial chassis for on-demand biomanufacturing of therapeutic proteins in space.",
+  },
   {
     name: "Project",
     folder: [
-      // The protein payload library used to be Wet Lab → Design; it reads
-      // as the project's own description of what SHIHAB makes, so it moved
-      // here and /design now carries the chassis/vector design write-up
-      // (WetLabDesign). src/content/en/project.md is left in the repo but
-      // is no longer rendered by any route — it was placeholder text plus
-      // an unfinished Pectin Hydrogel section.
-      { name: "Description", title: "Description", path: "/project", component: ProteinLibrary },
+      // The protein payload library used to be Wet Lab → Design, then sat
+      // at /project as the stand-in Description. Now that the real project
+      // description exists (ProjectDescription, from
+      // src/content/en/project-description.md), the library is its own page
+      // right after it, linked from the description's payload-library card.
+      // src/content/en/project.md is left in the repo but is no longer
+      // rendered by any route — it was placeholder text plus an unfinished
+      // Pectin Hydrogel section.
+      {
+        name: "Description",
+        title: "Description",
+        path: "/project",
+        component: ProjectDescription,
+        description: "How SHIHAB engineers medical autonomy for deep-space missions — the full scientific rationale.",
+      },
+      { name: "Protein Library", title: "Protein Library", path: "/protein-library", component: ProteinLibrary },
       { name: "Safety", title: "Safety", path: "/safety", component: Safety },
       { name: "Contribution", title: "Contribution", path: "/contribution", component: Stub },
     ],
@@ -84,7 +105,13 @@ const Pages = [
   {
     name: "Wet Lab",
     folder: [
-      { name: "Design", title: "Design", path: "/design", component: WetLabDesign },
+      {
+        name: "Design",
+        title: "Design",
+        path: "/design",
+        component: WetLabDesign,
+        description: "SHIHAB wet lab: strain engineering, assays, and protein expression.",
+      },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
       { name: "Results", title: "Results", path: "/results", component: Stub },
@@ -97,7 +124,13 @@ const Pages = [
     folder: [
       { name: "Engineering Success", title: "Engineering Success", path: "/engineering-success", component: Stub },
       { name: "Parts", title: "Parts", path: "/parts", component: Parts },
-      { name: "Hardware", title: "Hardware", path: "/hardware", component: Hardware },
+      {
+        name: "Hardware",
+        title: "Hardware",
+        path: "/hardware",
+        component: Hardware,
+        description: "SHIHAB hardware: the bioreactor stand, electronics, and physical build.",
+      },
     ],
   },
   {
@@ -108,7 +141,13 @@ const Pages = [
       // data-heavy candidate-mining page) moved to instead. /bioreactor-modeling
       // itself is kept working (hidden route at the bottom of this file) so
       // any existing links to it don't break.
-      { name: "Overview", title: "Dry Lab Overview", path: "/dry-lab-overview", component: DryLabOverview },
+      {
+        name: "Overview",
+        title: "Dry Lab Overview",
+        path: "/dry-lab-overview",
+        component: DryLabOverview,
+        description: "SHIHAB dry lab: modelling, bioinformatics, and circuit design.",
+      },
       { name: "Modeling", title: "Bioreactor Modeling", path: "/modeling", component: BioreactorModeling },
       // Same page/component/path as Awards → Software below — Model's
       // candidate-mining content is genuinely Dry Lab work, so it's linked
@@ -133,7 +172,13 @@ const Pages = [
   {
     name: "Team",
     folder: [
-      { name: "Members", title: "Members", path: "/roster", component: Roster },
+      {
+        name: "Members",
+        title: "Members",
+        path: "/roster",
+        component: Roster,
+        description: "Meet the KAUST-KSA iGEM 2026 team behind SHIHAB.",
+      },
       { name: "Attributions", title: "Attributions", path: "/attributions", component: Attributions },
       { name: "Sponsors", title: "Sponsors", path: "/sponsors", component: Sponsors },
       { name: "Inclusivity", title: "Inclusivity", path: "/inclusivity", component: Stub },
@@ -179,3 +224,7 @@ const Pages = [
 ];
 
 export default Pages;
+
+// For plugins/sitemap.js, which leaves "coming soon" Stub routes out of the
+// sitemap (Stub itself marks them noindex at runtime).
+export { Stub };
