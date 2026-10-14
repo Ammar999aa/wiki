@@ -662,7 +662,7 @@ Our conversations with stakeholders helped us translate our four guiding values 
 
 <div data-slot="design-values"></div>
 
-Most importantly, these values made us recognize areas requiring further development. While some considerations inform our current design approach, others remain priorities for future validation and implementation. By knowing this distinction, **we aim to ensure that SHIHAB's development remains transparent, responsive to stakeholder feedback and grounded in the needs of its intended users.**
+Most importantly, these values made us recognize areas requiring further development. While some considerations inform our current design approach, others remain priorities for future validation and implementation. By knowing this distinction, <span class="hl">we aim to ensure that SHIHAB's development remains transparent, responsive to stakeholder feedback and grounded in the needs of its intended users.</span>
 
 ### Opportunities, risks, and responsibilities
 
