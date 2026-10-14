@@ -66,6 +66,7 @@ be none — see `.flow` below).
 | A few real headline numbers (team size, counts, a year) | `.stat-grid` | Bordered strip of big numbers over small-caps labels |
 | Content a careful reader wants but most readers should be able to skip                                         | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
 | A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
+| Two groups of people a project serves (end users), each with a photo and a short description                  | `.end-users` + `.end-user`                                      | Two tinted cards (blue `space`, brown `earth`), photo on top              |
 | A photo/render whose own background is opaque light/white                                                      | `.photo-frame`                                                  | Dark matted card around the image                                         |
 | The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
 | A row of figures, each with its own caption                                                                    | `.figure-grid`                                                  | Even columns of matted photos with captions, optional equal heights       |
@@ -403,6 +404,27 @@ Leave both out if there's no longer write-up yet.
 <h4 class="person-name">Full Name</h4>
 <p class="person-role">Their role and organisation</p>
 <blockquote><p>What they said, verbatim.</p></blockquote>
+</div>
+```
+
+### `.end-users` + `.end-user` — two end-user cards side by side
+
+For the people a project is built for, shown as a pair (see
+human-integrated-practices.md's "Identifying our end users"): a photo on
+top, then a title, a muted subtitle, a divider line, and a paragraph.
+`space` tints a card blue and `earth` brown, both at low opacity. Plain
+HTML, so no blank lines needed. Stacks to one column on phones.
+
+```md
+<div class="end-users">
+<div class="end-user space">
+<img src="https://static.igem.wiki/..." alt="...">
+<div class="end-user-body">
+<p class="end-user-title">Space Missions</p>
+<p class="end-user-sub">Astronauts and Mission Crews</p>
+<p>Description...</p>
+</div>
+</div>
 </div>
 ```
 

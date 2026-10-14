@@ -204,9 +204,11 @@
 
 // Our Values: 2x2 grid of flip cards. Both faces share one grid cell so the
 // card is as tall as its longer face and the back text is never clipped.
+// Every row is as tall as the tallest card, so all cards match.
 .valuesGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
     gap: 16px;
     margin-block: 24px;
 
@@ -218,14 +220,16 @@
 .valueCard {
     all: unset;
     box-sizing: border-box;
-    display: block;
+    // grid (not block) so the flipping inner layer stretches to the full row height.
+    display: grid;
     cursor: pointer;
     perspective: 1000px;
     border-radius: var(--radius-md);
     --tone: var(--primary);
 
     &[data-tone="blue"] {
-        --tone: var(--tertiary);
+        // One step lighter than --tertiary, which reads dull as a thin accent.
+        --tone: var(--tertiary-400);
     }
 
     &[data-tone="amber"] {
@@ -256,48 +260,85 @@
     }
 }
 
+// Dark glass like the roadmap and Home cards; each value's colour only shows
+// as a top accent bar, a soft corner glow and the value name, so amber and
+// green don't turn muddy over the navy page.
 .valueFace {
     grid-area: 1 / 1;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 240px;
-    padding: 24px;
+    padding: 28px;
     border-radius: var(--radius-md);
-    border: 1px solid color-mix(in oklab, var(--tone) 55%, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+        radial-gradient(120% 90% at 100% 0%, color-mix(in oklab, var(--tone) 22%, transparent), transparent 60%),
+        rgba(255, 255, 255, 0.045);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    transition: border-color 0.3s ease;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 3px;
+        background: linear-gradient(90deg, var(--tone), color-mix(in oklab, var(--tone) 20%, transparent));
+    }
+
+    .valueCard:hover & {
+        border-color: color-mix(in oklab, var(--tone) 50%, transparent);
+    }
 }
 
 .valueFront {
     align-items: center;
     text-align: center;
     gap: 10px;
-    background: linear-gradient(
-        160deg,
-        color-mix(in oklab, var(--tone) 38%, transparent),
-        color-mix(in oklab, var(--tone) 12%, transparent)
-    );
+}
+
+.valueNum {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .valueName {
     font-size: 1.5rem;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #fff;
+    color: color-mix(in oklab, var(--tone) 75%, white);
+}
+
+.valueSubtitle {
+    max-width: 22em;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .valueHint {
+    margin-top: 6px;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .valueBack {
     transform: rotateY(180deg);
-    gap: 10px;
+    gap: 12px;
     text-align: start;
-    background: color-mix(in oklab, var(--tone) 16%, #0a0a27);
+    background:
+        radial-gradient(120% 90% at 0% 0%, color-mix(in oklab, var(--tone) 16%, transparent), transparent 60%),
+        #100e2c;
 }
 
 .valueBackTitle {
@@ -305,13 +346,30 @@
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--tone);
+    color: color-mix(in oklab, var(--tone) 75%, white);
 }
 
 .valueText {
     font-size: 0.95rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.9);
+}
+
+// "From values to design" backs: what stakeholders said, then the effect on
+// SHIHAB set apart in a tinted block with the value's colour on its edge.
+.valueHeard {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.valueInfluence {
+    padding: 12px 14px;
+    border-left: 3px solid var(--tone);
+    border-radius: 4px 10px 10px 4px;
+    background: color-mix(in oklab, var(--tone) 12%, transparent);
+
+    strong {
+        color: color-mix(in oklab, var(--tone) 70%, white);
+    }
 }
 
 // Our IHP Journey at a Glance: 3x3 tiles in the Home page's "Explore" card style

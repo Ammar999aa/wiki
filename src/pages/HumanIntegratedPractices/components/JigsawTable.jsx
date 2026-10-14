@@ -63,14 +63,11 @@ function buildSeam(A, B, normal, scale = SEAM_SCALE) {
 // Walking a seam backwards needs reversed segments AND swapped control points.
 function seg(segments, forward) {
   if (forward) {
-    return segments
-      .map((s) => (s.type === "L" ? `L ${s.to[0]} ${s.to[1]}` : `C ${s.c1[0]} ${s.c1[1]} ${s.c2[0]} ${s.c2[1]} ${s.to[0]} ${s.to[1]}`))
-      .join(" ");
+    return segments.map((s) => (s.type === "L" ? { type: "L", to: s.to } : { type: "C", c1: s.c1, c2: s.c2, to: s.to }));
   }
   return [...segments]
     .reverse()
-    .map((s) => (s.type === "L" ? `L ${s.from[0]} ${s.from[1]}` : `C ${s.c2[0]} ${s.c2[1]} ${s.c1[0]} ${s.c1[1]} ${s.from[0]} ${s.from[1]}`))
-    .join(" ");
+    .map((s) => (s.type === "L" ? { type: "L", to: s.from } : { type: "C", c1: s.c2, c2: s.c1, to: s.from }));
 }
 
 const S12 = buildSeam([X1, 0], [X1, YM], [1, 0]);
@@ -79,13 +76,54 @@ const S14 = buildSeam([0, YM], [X1, YM], [0, -1]);
 const S35 = buildSeam([X2, YM], [W, YM], [0, 1]);
 const S45 = buildSeam([XB, YM], [XB, H], [-1, 0]);
 
-const PIECE_D = [
-  `M 0,0 L ${X1},0 ${seg(S12, true)} ${seg(S14, false)} Z`,
-  `M ${X1},0 L ${X2},0 ${seg(S23, true)} L ${X1},${YM} ${seg(S12, false)} Z`,
-  `M ${X2},0 L ${W},0 L ${W},${YM} ${seg(S35, false)} ${seg(S23, false)} Z`,
-  `M 0,${YM} ${seg(S14, true)} L ${XB},${YM} ${seg(S45, true)} L 0,${H} Z`,
-  `M ${XB},${YM} L ${X2},${YM} ${seg(S35, true)} L ${W},${H} L ${XB},${H} ${seg(S45, false)} Z`,
+const L = (x, y) => ({ type: "L", to: [x, y] });
+
+// Each piece's outline as a start point plus straight (L) and curved (C) steps.
+const PIECE_OUTLINES = [
+  { start: [0, 0], ops: [L(X1, 0), ...seg(S12, true), ...seg(S14, false)] },
+  { start: [X1, 0], ops: [L(X2, 0), ...seg(S23, true), L(X1, YM), ...seg(S12, false)] },
+  { start: [X2, 0], ops: [L(W, 0), L(W, YM), ...seg(S35, false), ...seg(S23, false)] },
+  { start: [0, YM], ops: [...seg(S14, true), L(XB, YM), ...seg(S45, true), L(0, H)] },
+  { start: [XB, YM], ops: [L(X2, YM), ...seg(S35, true), L(W, H), L(XB, H), ...seg(S45, false)] },
 ];
+
+// Corner radius, in board units. Every corner sits where two straight edges
+// meet (the knobs are already curves), so each one becomes a short quadratic
+// curve that starts and ends CORNER_R away from the original vertex.
+const CORNER_R = 26;
+
+const samePoint = (a, b) => Math.abs(a[0] - b[0]) < 0.01 && Math.abs(a[1] - b[1]) < 0.01;
+
+function roundedPath({ start, ops }, r) {
+  // Close the loop with an explicit straight step back to the start.
+  const steps = samePoint(ops[ops.length - 1].to, start) ? ops : [...ops, L(...start)];
+  const n = steps.length;
+  const from = (i) => steps[(i - 1 + n) % n].to;
+  // Rounds the corner at the end of straight step i, if the next step is straight too.
+  const corner = (i) => {
+    const next = steps[(i + 1) % n];
+    if (steps[i].type !== "L" || next.type !== "L") return null;
+    const v = steps[i].to;
+    const inDir = unit(sub(v, from(i)));
+    const outDir = unit(sub(next.to, v));
+    // Straight-through joints need no rounding.
+    if (Math.abs(inDir[0] * outDir[1] - inDir[1] * outDir[0]) < 1e-6) return null;
+    return { before: [v[0] - inDir[0] * r, v[1] - inDir[1] * r], v, after: [v[0] + outDir[0] * r, v[1] + outDir[1] * r] };
+  };
+  const corners = steps.map((_, i) => corner(i));
+  const last = corners[n - 1];
+  const begin = last ? last.after : start;
+  let d = `M ${begin[0]} ${begin[1]}`;
+  steps.forEach((step, i) => {
+    const c = corners[i];
+    if (c) d += ` L ${c.before[0]} ${c.before[1]} Q ${c.v[0]} ${c.v[1]} ${c.after[0]} ${c.after[1]}`;
+    else if (step.type === "L") d += ` L ${step.to[0]} ${step.to[1]}`;
+    else d += ` C ${step.c1[0]} ${step.c1[1]} ${step.c2[0]} ${step.c2[1]} ${step.to[0]} ${step.to[1]}`;
+  });
+  return `${d} Z`;
+}
+
+const PIECE_D = PIECE_OUTLINES.map((outline) => roundedPath(outline, CORNER_R));
 
 const PIECE_RECT = [
   { left: 0, top: 0, right: X1, bottom: YM },
@@ -96,6 +134,8 @@ const PIECE_RECT = [
 ];
 
 const NUM_POS = PIECE_RECT.map((r) => [r.left + 40, r.top + 110]);
+// Small "flip me" icon in each piece's top-right corner.
+const ICON_POS = PIECE_RECT.map((r) => [r.right - 70, r.top + 70]);
 // Piece 2's title looks off-center next to piece 1's knob without this.
 const TITLE_X_NUDGE = [0, 40, 0, 0, 0];
 const CENTER = PIECE_RECT.map((r, i) => [(r.left + r.right) / 2 + TITLE_X_NUDGE[i], (r.top + r.bottom) / 2]);
@@ -106,8 +146,11 @@ const TITLE_LINE_HEIGHT = 44;
 const BACK_MAX_CHARS = [32, 28, 28, 46, 46];
 // Visual horizontal shift of back-face text (negative = left), in board units.
 const BACK_X_SHIFT = [0, 0, -40, 0, 0];
+// Vertical shift (negative = up): keeps piece 1's text clear of the notch in its bottom edge.
+const BACK_Y_SHIFT = [-35, 0, 0, 0, 0];
 const BACK_LINE_HEIGHT = 27;
 const BACK_SECTION_GAP = 16;
+const BACK_QUESTION_GAP = 8;
 
 // Each piece scales/flips around its bounding-box center: half a knob away from
 // its rectangle's center, on the side its outward knob sticks out. The pivot is
@@ -150,13 +193,17 @@ function wrapText(text, maxChars) {
 }
 
 function backLines(item, maxChars) {
+  // Each question starts on its own line, a little apart from the one before.
+  const questions = item.learn.flatMap((question, qi) =>
+    wrapText(question, maxChars).map((text, li) => ({ text, gap: qi > 0 && li === 0 ? BACK_QUESTION_GAP : 0 })),
+  );
   const lines = [
     { text: "Learn", label: true },
-    ...wrapText(item.learn.join(" "), maxChars).map((text) => ({ text })),
-    { text: "Influence", label: true, gap: true },
+    ...questions,
+    { text: "Influence", label: true, gap: BACK_SECTION_GAP },
     ...wrapText(item.influence.join(" · "), maxChars).map((text) => ({ text })),
   ];
-  return lines.map((line, li) => ({ ...line, dy: li === 0 ? 0 : BACK_LINE_HEIGHT + (line.gap ? BACK_SECTION_GAP : 0) }));
+  return lines.map((line, li) => ({ ...line, dy: li === 0 ? 0 : BACK_LINE_HEIGHT + (line.gap ?? 0) }));
 }
 
 // The seam/path geometry above (PIECE_D, PIECE_RECT, NUM_POS, CENTER,
@@ -287,7 +334,7 @@ export default function JigsawTable({ items }) {
                 <path d={PIECE_D[i]} fill={`var(--piece-${i + 1})`} stroke="var(--surface)" strokeWidth="8" strokeLinejoin="round" />
                 {isActive && showBack ? (
                   // The piece is mirrored, so a visual shift maps to the opposite local x.
-                  <BackFace item={item} cx={cx - BACK_X_SHIFT[i]} cy={cy} maxChars={BACK_MAX_CHARS[i]} />
+                  <BackFace item={item} cx={cx - BACK_X_SHIFT[i]} cy={cy + BACK_Y_SHIFT[i]} maxChars={BACK_MAX_CHARS[i]} />
                 ) : (
                   <FrontFace item={item} index={i} nx={nx} ny={ny} cx={cx} cy={cy} />
                 )}
@@ -296,6 +343,7 @@ export default function JigsawTable({ items }) {
           })}
         </svg>
       )}
+      {supported && <PhoneCards items={items} />}
       <ul className={supported ? styles.srOnly : styles.plainList}>
         {items.map((item) => (
           <li key={item.title}>
@@ -307,11 +355,29 @@ export default function JigsawTable({ items }) {
   );
 }
 
+// Two curved arrows chasing each other: "this flips over".
+function FlipIcon({ x, y, size = 48, className }) {
+  return (
+    <svg x={x - size / 2} y={y - size / 2} width={size} height={size} viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M20 11a8 8 0 0 0-14.3-4.9M4 13a8 8 0 0 0 14.3 4.9M5.5 2.5v3.8h3.8M18.5 21.5v-3.8h-3.8"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function FrontFace({ item, index, nx, ny, cx, cy }) {
   const lines = wrapText(item.title, TITLE_MAX_CHARS[index]);
   const firstDy = -((lines.length - 1) * TITLE_LINE_HEIGHT) / 2;
+  const [ix, iy] = ICON_POS[index];
   return (
     <>
+      <FlipIcon x={ix} y={iy} className={styles.flipIcon} />
       <text x={nx} y={ny} className={styles.pieceNum} fill="var(--text-light)">
         {String(index + 1).padStart(2, "0")}
       </text>
@@ -340,5 +406,57 @@ function BackFace({ item, cx, cy, maxChars }) {
         ))}
       </text>
     </g>
+  );
+}
+
+// On phones the board's text would shrink below a readable size, so the same
+// groups show as stacked cards instead (CSS swaps the two at 640px).
+function PhoneCards({ items }) {
+  const [open, setOpen] = useState(null);
+  return (
+    <div className={styles.cards}>
+      {items.map((item, i) => {
+        const isOpen = open === i;
+        return (
+          <div key={item.title} className={styles.card} style={{ "--piece": `var(--piece-${i + 1})` }}>
+            <button
+              type="button"
+              className={styles.cardHead}
+              aria-expanded={isOpen}
+              onClick={() => setOpen(isOpen ? null : i)}
+            >
+              <span className={styles.cardNum}>{String(i + 1).padStart(2, "0")}</span>
+              <span className={styles.cardTitle}>{item.title}</span>
+              <svg className={styles.cardIcon} width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M20 11a8 8 0 0 0-14.3-4.9M4 13a8 8 0 0 0 14.3 4.9M5.5 2.5v3.8h3.8M18.5 21.5v-3.8h-3.8"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            {isOpen && (
+              <div className={styles.cardBody}>
+                <p className={styles.cardLabel}>Learn</p>
+                <ul className={styles.cardQuestions}>
+                  {item.learn.map((q) => (
+                    <li key={q}>{q}</li>
+                  ))}
+                </ul>
+                <p className={styles.cardLabel}>Influence</p>
+                <div className={styles.cardChips}>
+                  {item.influence.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 }

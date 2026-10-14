@@ -25,14 +25,18 @@ const PERSON_ANGLES = {
   starr: 24,
   "vergos-chandrashekhar": 48,
   barnawi: 72,
+  alahmadi: 96,
   rosado: 120,
   mason: 144,
   zea: 168,
+  washington: 192,
   glowe: 216,
   alharbi: 240,
   hse: 264,
+  mian: 288,
   macleod: 312,
   kessler: 336,
+  grant: 360,
 };
 // Turns the whole layout so the groups run clockwise from the top-left in
 // page order: astronauts, microbes, mission, then back on Earth.
@@ -75,6 +79,8 @@ const personById = Object.fromEntries(shapedPeople.map((p) => [p.id, p]));
 const peopleForPart = (partId) => shapedPeople.filter((p) => p.parts.includes(partId));
 
 const links = shapedPeople.flatMap((person) => person.parts.map((part) => ({ person, part })));
+// People not tied to one part of the project beam straight to SHIHAB at the centre.
+const centreLinks = shapedPeople.filter((person) => person.parts.length === 0);
 
 // A beam bows toward SHIHAB at the centre rather than running straight.
 function beamPath(a, b) {
@@ -93,18 +99,6 @@ function findCard(person) {
 // Clicking the card's own "See more" button lets Article.jsx open its popup as usual.
 function openConversation(person) {
   findCard(person)?.querySelector(".person-more-btn")?.click();
-}
-
-function showOnPage(person) {
-  const card = findCard(person);
-  if (!card) return;
-  card.style.scrollMarginTop = "120px";
-  card.scrollIntoView({ behavior: "smooth", block: "start" });
-  card.animate([{ boxShadow: "0 0 0 2px var(--amber)" }, { boxShadow: "0 0 0 2px transparent" }], {
-    duration: 2200,
-    delay: 500,
-    easing: "ease-out",
-  });
 }
 
 function Photo({ ph }) {
@@ -171,14 +165,15 @@ function PersonReadout({ person }) {
         <p className={styles.changed} dangerouslySetInnerHTML={{ __html: person.changed }} />
       </div>
       <div className={styles.readSide}>
-        <p className={styles.label}>Shaped</p>
-        <PartLinks person={person} />
+        {person.parts.length > 0 && (
+          <>
+            <p className={styles.label}>Shaped</p>
+            <PartLinks person={person} />
+          </>
+        )}
         <div className={styles.actions}>
           <button type="button" className={styles.primaryBtn} onClick={() => openConversation(person)}>
             Read the full conversation
-          </button>
-          <button type="button" className={styles.ghostBtn} onClick={() => showOnPage(person)}>
-            Find on page ↓
           </button>
         </div>
       </div>
@@ -294,6 +289,15 @@ export default function ShapedByMap() {
               />
             );
           })}
+          {centreLinks.map((person) => (
+            <path
+              key={`${person.id}-centre`}
+              d={beamPath(personPos[person.id], { x: CX, y: CY })}
+              className={styles.beam}
+              data-tone={groupById[person.group].tone}
+              data-state={state(active?.type === "person" && active.id === person.id)}
+            />
+          ))}
           <circle cx={CX} cy={CY} r={70} className={styles.coreHalo} />
           <circle cx={CX} cy={CY} r={46} className={styles.core} />
           <text x={CX} y={CY + 6} className={styles.coreText}>
