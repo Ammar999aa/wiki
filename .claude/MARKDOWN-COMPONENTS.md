@@ -268,6 +268,18 @@ wrapper needed since `<span>` is inline HTML.
 
 Default tone is violet/primary; `chip amber` gives the amber tint.
 
+**More than two chips in a row → wrap them in `.chip-row`.** Loose chips
+sit in a justified paragraph, which stretches the gaps between them across
+the whole column; `.chip-row` gives even gaps and wraps (see
+contribution.md):
+
+```md
+<div class="chip-row">
+<span class="chip">Wet Lab · Protocols</span>
+<span class="chip amber"><i>B. subtilis</i></span>
+</div>
+```
+
 ### `.panel` + `.dash` — a labelled readout or grouped figure
 
 For a figure, diagram, or live-value readout that's more than a bare

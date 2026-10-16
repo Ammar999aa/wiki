@@ -1,7 +1,7 @@
 import LiquidGlass from "../../LiquidGlass/LiquidGlass";
 import styles from "../SectionedPage.module.scss";
 
-export default function Content({ section }) {
+export default function Content({ section, footer }) {
   return (
     <div className={styles.content}>
       <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
@@ -29,6 +29,7 @@ export default function Content({ section }) {
           )}
         </div>
       </LiquidGlass>
+      {footer}
     </div>
   );
 }

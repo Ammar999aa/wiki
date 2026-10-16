@@ -15,7 +15,10 @@ function getDefaultCollapsed() {
   return typeof window !== "undefined" && window.matchMedia("(max-width: 1024px)").matches;
 }
 
-export default function SectionedPage({ sections, defaultSelected }) {
+// `footer` (optional) renders under the content card, e.g. a background
+// photo credit — the full-height panel covers the usual bottom-right
+// corner spot on this layout.
+export default function SectionedPage({ sections, defaultSelected, footer }) {
   const [collapsed, setCollapsed] = useState(getDefaultCollapsed);
   const firstSelectable = sections.find((s) => !s.heading);
   const [selected, setSelected] = useState(defaultSelected || firstSelectable?.title);
@@ -31,7 +34,10 @@ export default function SectionedPage({ sections, defaultSelected }) {
         onToggle={() => setCollapsed((v) => !v)}
         onSelect={(title) => setSelected(title)}
       />
-      <Content section={activeSection} />
+      {/* Keyed so the card remounts per member — its inner scroll (see
+          SectionedPage.module.scss) starts at the top, not where the last
+          member's profile was left. */}
+      <Content key={activeSection?.title} section={activeSection} footer={footer} />
     </div>
   );
 }

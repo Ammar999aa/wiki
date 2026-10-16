@@ -1242,6 +1242,21 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     background: rgba(255, 216, 77, 0.08);
   }
 
+  // A run of chips on one line. Loose chips sit in a justified <p>, which
+  // stretches the gaps between them across the column once there are more
+  // than two; this lays them out with even gaps and wraps instead.
+  //   <div class="chip-row"><span class="chip">…</span>…</div>
+  :global(.chip-row) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+
+    :global(.chip) {
+      margin-bottom: 0;
+    }
+  }
+
   // A bordered glass panel for grouping a figure/readout that's more than
   // a plain image or table — a labelled instrument readout, a diagram
   // with its own caption row. `.panel-title` is a small-caps mono header

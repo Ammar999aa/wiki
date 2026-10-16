@@ -1,0 +1,19 @@
+/* Credit for the fixed background photo — same look as
+   ProteinLibrary.module.scss's photoCredit, but placed under the member
+   card (SectionedPage's `footer`) instead of pinned to the bottom-right
+   corner, which the full-height member panel covers on this page. */
+.photoCredit {
+  display: block;
+  margin-top: 12px;
+  text-align: right;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  /* beats SectionedPage's `.content a` link colour/underline offset */
+  color: rgba(255, 255, 255, 0.35) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px !important;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.65) !important;
+  }
+}

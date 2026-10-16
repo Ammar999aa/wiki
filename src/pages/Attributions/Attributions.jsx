@@ -2,8 +2,12 @@ import { useSearchParams } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import SectionedPage from "../../components/SectionedPage/SectionedPage";
 import { useLanguage } from "../../i18n/LanguageContext";
+import styles from "./Attributions.module.scss";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
+// ISS long exposure over eastern China, sky cut out and graded to sit on the
+// #0A0A27 page.
+const issPhoto = "https://static.igem.wiki/teams/6341/wiki/images/iss-long-exposure-yellow-graded.webp";
 
 // Hosted on iGEM's asset server rather than bundled locally — see
 // https://static.igem.wiki/teams/6341/wiki/roster/.
@@ -142,8 +146,35 @@ export default function Attributions() {
   );
 
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <SectionedPage sections={sections} defaultSelected={defaultMember} />
+    // navClearance off: on desktop the card scrolls inside itself (see
+    // SectionedPage.module.scss), so the extra bottom room would only add
+    // an empty page scroll.
+    <PageWrapper
+      navClearance={false}
+      background={{
+        color: "#0A0A27",
+        image: bg,
+        size: "1280px 1080px",
+        photo: issPhoto,
+        photoPosition: "center bottom",
+        photoOpacity: 0.5,
+        gradient,
+      }}
+    >
+      <SectionedPage
+        sections={sections}
+        defaultSelected={defaultMember}
+        footer={
+          <a
+            href="https://www.nasa.gov/image-detail/amf-iss075e0103388/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.photoCredit}
+          >
+            City lights of eastern China: NASA/Anil Menon
+          </a>
+        }
+      />
     </PageWrapper>
   );
 }
