@@ -138,9 +138,9 @@ const Pages = [
   {
     name: "Dry Lab",
     folder: [
-      // Bioreactor Modeling now lives at the nav's "Modeling" slot — see the
-      // Awards section below for where the previous occupant (Model, the
-      // data-heavy candidate-mining page) moved to instead. /bioreactor-modeling
+      // Bioreactor Modeling now lives at the nav's "Modeling" slot; the
+      // previous occupant (Model, the data-heavy candidate-mining page) moved
+      // to /software, the Software entry below. /bioreactor-modeling
       // itself is kept working (hidden route at the bottom of this file) so
       // any existing links to it don't break.
       {
@@ -151,10 +151,8 @@ const Pages = [
         description: "SHIHAB dry lab: modelling, bioinformatics, and circuit design.",
       },
       { name: "Modeling", title: "Bioreactor Modeling", path: "/modeling", component: BioreactorModeling },
-      // Same page/component/path as Awards → Software below — Model's
-      // candidate-mining content is genuinely Dry Lab work, so it's linked
-      // from both nav locations. getPathMapping() keys by path, so this
-      // doesn't create a duplicate route, just a second nav entry to it.
+      // Model's candidate-mining content is a software deliverable, so it
+      // lives at iGEM's standard /software URL.
       { name: "Software", title: "Software", path: "/software", component: Model },
     ],
   },
@@ -187,31 +185,20 @@ const Pages = [
       { name: "Collaborations", title: "Collaborations", path: "/collaborations", component: Stub },
     ],
   },
-  {
-    // Standard award/medal URLs required by requirements.md §4, not covered
-    // by pages.md's categories above. Most render the shared "coming soon"
-    // Stub until real content exists — the paths themselves are what's
-    // required to resolve, not the content yet. Software is the exception:
-    // it's what used to be at /modeling (see the Dry Lab section above) —
-    // that page's actual substance (candidate mining/scoring pipeline,
-    // Explorer tool, etc.) is a software deliverable, so it now lives at
-    // this standard URL instead of behind a nav path nobody judging the
-    // Software award would think to check.
-    name: "Awards",
-    folder: [
-      // Medal criteria checklist for judges (Bronze/Silver/Gold), from the
-      // team's judging page draft — src/pages/Judging/Judging.jsx.
-      { name: "Judging", title: "Judging", path: "/judging", component: Judging },
-      { name: "Engineering", title: "Engineering", path: "/engineering", component: Stub },
-      { name: "Entrepreneurship", title: "Entrepreneurship", path: "/entrepreneurship", component: Stub },
-      { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
-      { name: "Model", title: "Model", path: "/model", component: Stub },
-      { name: "Plant Synthetic Biology", title: "Plant Synthetic Biology", path: "/plant", component: Stub },
-      { name: "Safety & Security", title: "Safety & Security", path: "/safety-and-security", component: Stub },
-      { name: "Software", title: "Software", path: "/software", component: Model },
-      { name: "Sustainable Development", title: "Sustainable Development", path: "/sustainability", component: Stub },
-    ],
-  },
+  // Medal criteria checklist for judges (Bronze/Silver/Gold), from the
+  // team's judging page draft — src/pages/Judging/Judging.jsx. Formerly the
+  // "Awards" dropdown; Judging was its only remaining entry.
+  { name: "Judging", title: "Judging", path: "/judging", component: Judging },
+  // Standard iGEM award URLs, taken out of the nav but kept routable
+  // (shared "coming soon" Stub) so the standard paths still resolve.
+  // /software stays in the nav under Dry Lab.
+  { name: "Engineering", title: "Engineering", path: "/engineering", component: Stub, hidden: true },
+  { name: "Entrepreneurship", title: "Entrepreneurship", path: "/entrepreneurship", component: Stub, hidden: true },
+  { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub, hidden: true },
+  { name: "Model", title: "Model", path: "/model", component: Stub, hidden: true },
+  { name: "Plant Synthetic Biology", title: "Plant Synthetic Biology", path: "/plant", component: Stub, hidden: true },
+  { name: "Safety & Security", title: "Safety & Security", path: "/safety-and-security", component: Stub, hidden: true },
+  { name: "Sustainable Development", title: "Sustainable Development", path: "/sustainability", component: Stub, hidden: true },
   // Pre-existing sectioned pages, superseded in the nav by the categories
   // above but left routable at their old URLs — see file header comment.
   { name: "Wet Lab (overview)", title: "Wet Lab", path: "/wetlab", component: WetLab, hidden: true },

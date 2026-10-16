@@ -5,6 +5,8 @@ import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import styles from "./Judging.module.scss";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
+// ISS long exposure, sky cut out and graded to sit on the #0A0A27 page.
+const issPhoto = "https://static.igem.wiki/teams/6341/wiki/images/iss-long-exposure-graded.webp";
 const medalImg = (tone) => `https://static.igem.wiki/teams/6341/wiki/content/judging/medal-${tone}.avif`;
 
 // Medal criteria, from the team's judging page draft. Each criterion is a
@@ -78,7 +80,7 @@ const MEDALS = [
 function Criterion({ n, criterion, tint }) {
   const { title, text, groups, links } = criterion;
   return (
-    <LiquidGlass radius={28} color={tint} opacity={0.06}>
+    <LiquidGlass radius={28} color={tint} opacity={0.06} glowMask="linear-gradient(to bottom, white, transparent 60%)">
       <div className={`${styles.criterion} ${groups ? styles.stacked : ""}`}>
         <span className={styles.num}>{String(n).padStart(2, "0")}</span>
         <div className={styles.body}>
@@ -126,13 +128,32 @@ const sections = MEDALS.map((medal) => ({
   ),
 }));
 
-// Eyebrow echoes the nav trail ("Awards" dropdown → "Judging").
-const pageIntro = <Masthead eyebrow={["Awards", "Judging"]} />;
+// Eyebrow echoes the nav label ("Judging", a top-level nav link).
+const pageIntro = <Masthead eyebrow={["Judging"]} />;
 
 export default function Judging() {
   return (
-    <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
+    <PageWrapper
+      background={{
+        color: "#0A0A27",
+        image: bg,
+        size: "1280px 1080px",
+        photo: issPhoto,
+        // Portrait image under `cover`: on wide screens only a band of it
+        // shows, so aim that band at the horizon rather than the bottom.
+        photoPosition: "center 62%",
+        photoOpacity: 0.5,
+        gradient,
+      }}
+    >
       <SectionedArticle title="Judging" intro={pageIntro} sections={sections} defaultSelected={sections[0].title} />
+      <p className={styles.photoCredit}>
+        Background:{" "}
+        <a href="https://www.nasa.gov/image-detail/amf-iss075e0144232/" target="_blank" rel="noopener noreferrer">
+          star trails above the Banda Sea from the ISS (iss075e0144232)
+        </a>
+        , NASA/Anil Menon; sky removed and color-graded
+      </p>
     </PageWrapper>
   );
 }

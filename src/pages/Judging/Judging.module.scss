@@ -182,3 +182,25 @@
   letter-spacing: 0.1em;
   color: var(--medal);
 }
+
+/* Background photo credit — same muted treatment as the Earth credits on
+   Home/Sponsors, but in the page flow (under the article) rather than
+   pinned to a viewport corner, so it never sits on the fixed nav dock. */
+.photoCredit {
+  margin: 0 auto;
+  padding: 0 24px 16px;
+  max-width: 1200px;
+  text-align: right;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.35);
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover { color: rgba(255, 255, 255, 0.65); }
+  }
+}
