@@ -147,13 +147,14 @@ export default function Judging() {
       }}
     >
       <SectionedArticle title="Judging" intro={pageIntro} sections={sections} defaultSelected={sections[0].title} />
-      <p className={styles.photoCredit}>
-        Background:{" "}
-        <a href="https://www.nasa.gov/image-detail/amf-iss075e0144232/" target="_blank" rel="noopener noreferrer">
-          star trails above the Banda Sea from the ISS (iss075e0144232)
-        </a>
-        , NASA/Anil Menon; sky removed and color-graded
-      </p>
+      <a
+        href="https://www.nasa.gov/image-detail/amf-iss075e0144232/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.photoCredit}
+      >
+        Star trails above Earth: NASA/Anil Menon
+      </a>
     </PageWrapper>
   );
 }
