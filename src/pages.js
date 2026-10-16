@@ -50,6 +50,7 @@ const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
 const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
+const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribution"));
 const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
@@ -99,7 +100,7 @@ const Pages = [
       },
       { name: "Protein Library", title: "Protein Library", path: "/protein-library", component: ProteinLibrary },
       { name: "Safety", title: "Safety", path: "/safety", component: Safety },
-      { name: "Contribution", title: "Contribution", path: "/contribution", component: Stub },
+      { name: "Contribution", title: "Contribution", path: "/contribution", component: Contribution },
     ],
   },
   {
