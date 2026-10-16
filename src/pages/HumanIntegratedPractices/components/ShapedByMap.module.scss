@@ -414,8 +414,7 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
   margin-top: 20px;
 }
 
-.map .primaryBtn,
-.map .ghostBtn {
+.map .primaryBtn {
   all: unset;
   padding: 8px 16px;
   border-radius: 999px;
@@ -431,13 +430,6 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
   color: var(--bg);
 
   &:hover { filter: brightness(1.08); }
-}
-
-.map .ghostBtn {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
-
-  &:hover { border-color: #fff; }
 }
 
 // ── Narrow-screen list ────────────────────────────────────────────────────

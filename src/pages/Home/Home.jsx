@@ -47,9 +47,9 @@ const EXIT_ROLL_MAX_RAD = (55 * Math.PI) / 180;  // max axis tilt by the top of 
 // literally replaces the word "iGEM" (rather than being just one of ten
 // logos scrolling past, which it also still is further down the page).
 const kaustIgem = SPONSORS.find((s) => s.id === "kaustigem");
-const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-launch.webp";
+const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/shuttle.avif";
 const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
-const astronautMmu = "https://static.igem.wiki/teams/6341/wiki/images/astronaut-large.avif";
+const astronautMmu = "https://static.igem.wiki/teams/6341/wiki/images/astronaut.avif";
 
 // Circular-cropped, colour-graded to a shared palette so the three read as
 // one set rather than three raw NASA textures — see ProblemSection below.
@@ -628,12 +628,9 @@ function PlanetDecor() {
   );
 }
 
-// Bruce McCandless II's untethered MMU spacewalk (STS-41-B) — floats beside
-// slide 4's statement with a slow, continuous tilt/wobble (CSS-driven, not
-// scroll-tied, unlike the rest of this file's motion) so it reads as
-// drifting in zero-g rather than as a static cutout photo.
-// Purely decorative now — its attribution lives in the fixed SlideAttributions
-// bar above the nav (see Home()), not anchored to the image itself.
+// Astronaut illustration — floats beside slide 4's statement with a slow,
+// continuous tilt/wobble (CSS-driven, not scroll-tied, unlike the rest of this
+// file's motion) so it reads as drifting in zero-g rather than as a static cutout.
 function AstronautDecor() {
   return (
     <div className={styles.astronautDecor} aria-hidden="true">
@@ -663,7 +660,8 @@ function RocketLayer({ groupRef }) {
     // slide 2's text is on screen, then launches shortly after that text has
     // fully faded out (which happens at unit 1.2, when the pin ends) rather
     // than waiting almost a full extra viewport-height of idle scroll.
-    const REST_TOP = 56;
+    // On phones it rests near the top, above the centred statement, not beside it.
+    const REST_TOP = window.innerWidth <= 700 ? 24 : 56;
     const entryP = between(units, 0, 0.35);
     const exitP = between(units, 1.3, 1.9);
     const exitEase = exitP * exitP; // ease-in — starts slow, accelerates away
@@ -689,66 +687,6 @@ function RocketLayer({ groupRef }) {
       style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
       aria-hidden="true"
     />
-  );
-}
-
-// Photo attributions for slides 2 and 4 (rocket, astronaut) — fixed to the
-// viewport just above the nav dock rather than anchored to each asset, so
-// the credit reads in one stable spot instead of drifting/rotating with the
-// graphic it's crediting. Each link fades in/out on exactly the same
-// schedule as its own slide's statement text (see StatementSection's
-// identical p-based formula), so it's only present while that slide — and
-// the asset it credits — is actually on screen. Earth's own credit is
-// intentionally exempt (see .earthCredit in EarthLayer): it's anchored to
-// the globe itself, which (unlike the rocket/astronaut) is on/near-screen
-// across several slides rather than one, so a single fixed "current slide"
-// credit doesn't fit it.
-function SlideAttributions({ rocketRef, astronautRef }) {
-  const rocketLinkRef = useRef(null);
-  const astronautLinkRef = useRef(null);
-
-  // Static: the rocket itself is gone (see RocketLayer), so its credit is
-  // too; the astronaut stays put in its slide, so its credit shows whenever
-  // that slide is on screen.
-  useScene(rocketRef, 1.2, (p) => {
-    const el = rocketLinkRef.current;
-    if (!el) return;
-    const o = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
-    el.style.opacity = o;
-    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
-  });
-
-  useScene(astronautRef, 1.2, (p, inView) => {
-    const el = astronautLinkRef.current;
-    if (!el) return;
-    const o = inView !== undefined ? +inView : Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
-    el.style.opacity = o;
-    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
-  });
-
-  return (
-    <div className={styles.slideAttribution}>
-      <a
-        ref={rocketLinkRef}
-        href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.slideAttributionLink}
-        style={{ opacity: 0 }}
-      >
-        Atlantis, STS-129: NASA/Kenny Allen
-      </a>
-      <a
-        ref={astronautLinkRef}
-        href="https://images.nasa.gov/details/s84-27017"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.slideAttributionLink}
-        style={{ opacity: 0 }}
-      >
-        Bruce McCandless II, STS-41-B: NASA
-      </a>
-    </div>
   );
 }
 
@@ -933,16 +871,16 @@ const PROBLEMS = [
   },
   {
     planet: neptunePlanet,
-    Ico: IcoBroken,
-    title: "Crews cannot carry everything they might need",
-    text: "Spacecraft have limited mass and storage capacity, making it difficult to stock every medicine for every possible medical emergency.",
+    Ico: IcoDecay,
+    title: "Medicines do not last forever",
+    text: "During long-term storage, some medicines can degrade and lose stability or effectiveness.",
     credit: { url: "https://images.nasa.gov/details/PIA02210", label: "Neptune: NASA/JPL", title: "Neptune, imaged by Voyager 2 — NASA ID PIA02210 — NASA/JPL" },
   },
   {
     planet: jupiterPlanet,
-    Ico: IcoDecay,
-    title: "Medicines do not last forever",
-    text: "During long-term storage, some medicines can degrade and lose stability or effectiveness.",
+    Ico: IcoBroken,
+    title: "Crews cannot carry everything they might need",
+    text: "Spacecraft have limited mass and storage capacity, making it difficult to stock every medicine for every possible medical emergency.",
     credit: { url: "https://images.nasa.gov/details/PIA00343", label: "Jupiter: NASA/JPL/USGS", title: "Jupiter, from Voyager imagery — NASA ID PIA00343 — NASA/JPL/USGS" },
   },
 ];
@@ -982,12 +920,8 @@ function ProblemSection() {
     if (kickerRef.current) kickerRef.current.style.opacity = between(p, 0.0, 0.12);
     if (introRef.current) introRef.current.style.opacity = between(p, 0.04, 0.2);
     // Fixed above the nav dock, visible only while this slide's planets are
-    // actually on screen — same fade-in/out formula and anchor spot as
-    // SlideAttributions uses for the rocket/astronaut slides, just driven by
-    // this section's own p instead of a second useScene subscription, and
-    // showing all three credits at once (rocket/astronaut are on separate
-    // slides so only ever show one at a time; these three discs are all
-    // visible together).
+    // actually on screen, driven by this section's own p, and showing all
+    // three credits at once (these three discs are all visible together).
     if (attributionRef.current) {
       const o = inView !== undefined ? +inView : Math.min(between(p, 0.2, 0.4), 1 - between(p, 0.9, 1));
       attributionRef.current.style.opacity = `${o}`;
@@ -1220,10 +1154,13 @@ function RevealSection() {
   );
 }
 
+const solDsup = "https://static.igem.wiki/teams/6341/wiki/images/dsup.avif";
+const solOrganisms = "https://static.igem.wiki/teams/6341/wiki/images/organisms.avif";
+const solVial = "https://static.igem.wiki/teams/6341/wiki/images/vial.avif";
+
 // ── Solution (slide 7) ────────────────────────────────────────────────────────
 // One slide: the "Our Solution" title and the three-step explanation
-// (recombineering → resilient chassis → protein production). Text only for now;
-// artwork for each step comes later.
+// (recombineering → resilient chassis → protein production), each with its own picture.
 
 const SOLUTION_STRESSORS = ["Radiation", "Microgravity", "Temperature fluctuations"];
 const SOLUTION_CHASSIS = ["B. subtilis", "S. cerevisiae", "P. pastoris"];
@@ -1268,7 +1205,7 @@ function SolutionSection() {
         <div className={styles.solSteps}>
           <div className={styles.solStep} ref={(el) => (stepRefs.current[0] = el)} style={{ opacity: 0 }}>
             <h3><span className={styles.solNum}>1</span>Recombineering</h3>
-            <span className={styles.solPill}>Dsup integration</span>
+            <img className={`${styles.solImg} ${styles.solImgMid}`} src={solDsup} alt="DNA with a Dsup gene cassette integrated" />
             <p>Stably integrate protective genes such as Dsup (Damage suppressor) into our chassis.</p>
           </div>
 
@@ -1276,6 +1213,7 @@ function SolutionSection() {
 
           <div className={styles.solStep} ref={(el) => (stepRefs.current[1] = el)} style={{ opacity: 0 }}>
             <h3><span className={styles.solNum}>2</span>Resilient chassis</h3>
+            <img className={styles.solImg} src={solOrganisms} alt="B. subtilis, S. cerevisiae and P. pastoris" />
             <div className={styles.solNames}>
               {SOLUTION_CHASSIS.map((n) => <span key={n}>{n}</span>)}
             </div>
@@ -1289,6 +1227,7 @@ function SolutionSection() {
 
           <div className={styles.solStep} ref={(el) => (stepRefs.current[2] = el)} style={{ opacity: 0 }}>
             <h3><span className={styles.solNum}>3</span>Protein production</h3>
+            <img className={`${styles.solImg} ${styles.solImgTall} ${styles.solImgMid}`} src={solVial} alt="A vial of purified protein" />
             <p>Enables production of high-value proteins for space applications.</p>
           </div>
         </div>
@@ -1297,7 +1236,93 @@ function SolutionSection() {
   );
 }
 
-// ── Capabilities (slide 8) ─────────────────────────────────────────────────────
+// ── System (slide 8) ──────────────────────────────────────────────────────────
+// Second part of "Our Solution": what the platform is and how it runs, as four
+// blocks around a central picture, then a bar of four design principles.
+
+const solSuitcase = "https://static.igem.wiki/teams/6341/wiki/images/suitcase.avif";
+
+const SYSTEM_STEPS = [
+  { title: "Grow", text: "The bioreactor maintains predefined culture conditions using integrated sensors and programmed feedback controls." },
+  { title: "Monitor", text: "Key parameters, including temperature, optical density (OD), and pH, are monitored in real time." },
+  { title: "Induce", text: "Once the culture reaches the target optical density, protein production is triggered automatically." },
+  { title: "Purify", text: "The culture broth containing the secreted protein is transferred to the downstream purification system, where the target biomolecule is recovered and purified." },
+];
+
+const SYSTEM_PRINCIPLES = ["Low-power operation", "Minimal crew intervention", "Closed system", "Compact and modular"];
+
+function SystemSection() {
+  const ref = useRef(null);
+  const headRef = useRef(null);
+  const imgRef = useRef(null);
+  const stepRefs = useRef([]);
+  const barRef = useRef(null);
+
+  useScene(ref, 1.8, (p) => {
+    if (headRef.current) {
+      const o = between(p, 0.0, 0.14);
+      headRef.current.style.opacity = o;
+      headRef.current.style.transform = `translateY(${lerp(22, 0, o)}px)`;
+    }
+    if (imgRef.current) {
+      const o = between(p, 0.14, 0.3);
+      imgRef.current.style.opacity = o;
+      imgRef.current.style.transform = `scale(${lerp(0.92, 1, o)})`;
+    }
+    stepRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const o = clamp01((p - (0.3 + i * 0.1)) / 0.14);
+      el.style.opacity = o;
+      el.style.transform = `translateY(${lerp(24, 0, o)}px)`;
+    });
+    if (barRef.current) barRef.current.style.opacity = between(p, 0.72, 0.9);
+  });
+
+  const step = (i) => (
+    <div className={styles.sysStep} ref={(el) => (stepRefs.current[i] = el)} style={{ opacity: 0 }}>
+      <h3><span className={styles.solNum}>{i + 1}</span>{SYSTEM_STEPS[i].title}</h3>
+      <p>{SYSTEM_STEPS[i].text}</p>
+    </div>
+  );
+
+  return (
+    <section className={styles.systemSection} ref={ref}>
+      <div className={styles.systemSticky}>
+        <div className={styles.solHead} ref={headRef} style={{ opacity: 0 }}>
+          <span className={styles.tag}>
+            <span className={styles.tagDot} />
+            Our Solution
+          </span>
+          <h2 className={styles.solTitle}>
+            SHIHAB is an <em>autonomous biomanufacturing</em> platform
+          </h2>
+          <p className={styles.solLead}>
+            We combine engineered microbial chassis with a compact bioreactor and automated downstream processing,
+            designed around the constraints of spaceflight.
+          </p>
+        </div>
+
+        <div className={styles.sysBody}>
+          <div className={styles.sysCol}>{step(0)}{step(1)}</div>
+          <img
+            className={styles.sysImg}
+            ref={imgRef}
+            src={solSuitcase}
+            alt="SHIHAB's compact, suitcase-sized bioreactor and purification module"
+            style={{ opacity: 0 }}
+          />
+          <div className={styles.sysCol}>{step(2)}{step(3)}</div>
+        </div>
+
+        <ul className={styles.sysBar} ref={barRef} style={{ opacity: 0 }}>
+          {SYSTEM_PRINCIPLES.map((x) => <li key={x}>{x}</li>)}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+// ── Capabilities (slide 9) ─────────────────────────────────────────────────────
 
 function IcoArrow({ className }) {
   return (
@@ -1503,7 +1528,6 @@ function ExploreSection() {
 export default function Home() {
   const heroOrbitRef = useRef(null);
   const rocketGroupRef = useRef(null);
-  const astronautGroupRef = useRef(null);
 
   return (
     // ambientMeteors off — <Starfield/> below already renders Home's own,
@@ -1525,25 +1549,24 @@ export default function Home() {
         <OrbitSection groupRef={heroOrbitRef} />
       </div>
       <RocketLayer groupRef={rocketGroupRef} />
-      <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />
-      <div ref={rocketGroupRef}>
-        <StatementSection decor={<PlanetDecor />}>
-          Future missions may last for <em>months or even years</em>. Every medicine must{" "}
-          <em>survive the journey</em>, remain effective, and be available when needed.
-        </StatementSection>
-      </div>
-      <ProblemSection />
-      <StatementSection>
-        The <em>farther</em> we travel, the <em>less</em> we can depend on Earth.
+      <StatementSection decor={<PlanetDecor />}>
+        Future missions may last for <em>months or even years</em>.
+        <br />
+        Every medicine must <em>survive the journey</em>, remain effective, and be available when needed.
       </StatementSection>
-      <div ref={astronautGroupRef}>
-        <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
-          What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
-          <em>ability to make them</em>?
+      <ProblemSection />
+      <div ref={rocketGroupRef}>
+        <StatementSection>
+          The <em>farther</em> we travel, the <em>less</em> we can depend on Earth.
         </StatementSection>
       </div>
+      <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
+        What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
+        <em>ability to make them</em>?
+      </StatementSection>
       <RevealSection />
       <SolutionSection />
+      <SystemSection />
       <CapabilitiesSection />
       <OutroSection />
       <ExploreSection />

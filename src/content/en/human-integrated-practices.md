@@ -1,8 +1,4 @@
-## Who Shaped SHIHAB
-
-Each expert conversation on this page changed something in our project. Pick a person to see what changed and which parts of SHIHAB they shaped.
-
-## Overview: Building Research for the Future
+## Overview: Building research for the future
 
 <div class="callout accent">
 
@@ -26,17 +22,17 @@ These conversations also pushed us to look beyond space. <span class="hl">The ne
 
 Our Human Practices journey was not separate from SHIHAB, it became part of how we built it. By continuously connecting stakeholder needs, scientific evidence, societal perspectives, and our own experimental work, we aimed to transform an ambitious idea into a more responsible, relevant, and realistic solution.
 
-## Understanding Our Impact and Responsibility
+## Understanding our impact and responsibility
 
 For most of our team, applying research to space exploration was entirely new territory. As we began developing SHIHAB, we quickly realized that working in an unfamiliar and rapidly evolving field also came with a significant responsibility. This meant that before moving into design decisions, we first had to ground ourselves in the realities of space healthcare and the constraints of the environment we were working toward. We needed to understand the context in which our ideas could operate, recognize the limitations of our own expertise, and consider the risks and consequences our decisions could have.
 
 Our first questions soon led to many others.
 
-## Our Values
+## Our values
 
 For SHIHAB, scientific progress is meaningful only when it responds to real needs and is developed with careful consideration of the people, environments, and systems it may affect. A technically successful platform could still have limited value if it requires resources that are unavailable, cannot adapt to its deployment environment, introduces unacceptable risks, or remains inaccessible to the people expected to use it. For us, designing responsibly therefore meant asking not only whether SHIHAB could work, but what it should prioritize and under which conditions its use could create meaningful benefit. Four values became central to our approach.
 
-## Exploring The Unknown
+## Exploring the unknown
 
 ### What do we think the problem is?
 
@@ -137,7 +133,7 @@ These limitations have motivated research into alternatives to carrying every ph
 
 </details>
 
-### Finding Our Direction
+### Finding our direction
 
 As we explored these different challenges, oxygen initially caught our attention. Its importance for sustaining human life, together with emerging approaches for producing it locally, made us curious about how biology could contribute to greater autonomy during space exploration. However, conversations within our team and with our PIs encouraged us to look beyond a single resource and think more broadly about <span class="hl">where synthetic biology could make a distinctive contribution</span>.
 
@@ -175,7 +171,7 @@ From the intersection of these two ideas, SHIHAB began to take shape:
 
 </div>
 
-## Our ORBIT Framework
+## Our ORBIT framework
 
 To guide our process, we developed the ORBIT framework, a continuous cycle connecting stakeholder engagement with project development:
 
@@ -183,9 +179,34 @@ To guide our process, we developed the ORBIT framework, a continuous cycle conne
 
 Rather than following these steps only once, ORBIT became an iterative process. New insights generated new questions, new questions connected us with new stakeholders, and those interactions continuously shaped the direction of SHIHAB.
 
-## Defining Our Stakeholders
+## Mapping our end users and stakeholders
 
-As SHIHAB evolved, we identified the people and communities who could inform, challenge, evaluate, regulate, use, or be affected by our solution. We grouped our stakeholders according to the perspective they brought to the project and asked two questions for each group. Click the pieces below to explore.
+As SHIHAB evolved, we sought to understand who could use our technology, who would benefit from it, and whose perspectives should guide its development. We identified people and communities who could inform, challenge, evaluate, regulate, or be affected by our solution.
+
+### Identifying our end users
+
+<div class="end-users">
+<div class="end-user space">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/astronaut.avif" alt="An astronaut seen through a spacecraft window">
+<div class="end-user-body">
+<p class="end-user-title">Space Missions</p>
+<p class="end-user-sub">Astronauts and Mission Crews</p>
+<p>Astronauts would be the primary beneficiaries of SHIHAB in space, with crew members potentially operating or supervising the system. Limited resupply, storage capacity, and crew time make autonomy, reliable monitoring, and safety essential design considerations.</p>
+</div>
+</div>
+<div class="end-user earth">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/remote-area.avif" alt="A healthcare worker with patients in a remote community">
+<div class="end-user-body">
+<p class="end-user-title">Earth Applications</p>
+<p class="end-user-sub">Remote and Resource-Limited Communities</p>
+<p>In remote or disaster-affected settings, trained healthcare personnel or local operators could manage SHIHAB, while patients and communities would benefit from its therapeutic outputs. These applications would require adaptability to local healthcare needs, available infrastructure, and maintenance capacity.</p>
+</div>
+</div>
+</div>
+
+### Defining our stakeholders
+
+We grouped our stakeholders according to the perspective they brought to the project and asked two questions for each group. Click the pieces below to explore the five groups and their contributions to our project.
 
 <div class="card-grid compact">
 
@@ -205,7 +226,7 @@ How could their perspective influence SHIHAB?
 
 </div>
 
-## Listening to Astronauts & Space Medicine Experts
+## Listening to astronauts and space medicine experts
 
 ### What does healthcare really require beyond Earth?
 
@@ -213,7 +234,7 @@ Our initial research identified access to medicines as a potential challenge for
 
 To better understand these questions, we spoke with professionals whose experiences covered different aspects of human health and research in space: astronaut operations, space medicine, astronaut healthcare, and aerospace medicine. Through these conversations, we explored the medical needs of astronauts, the resources currently available to them, the practical limitations of conducting biological experiments in space, and the conditions our microorganisms would eventually need to withstand.
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/starr.avif" alt="Starr Corbin" style="--photo-x: 55%; --photo-y: 26%; --photo-zoom: 2.6;">
 <h4 class="person-name">Starr Corbin</h4>
 <p>Our discussion with Starr Corbin, a registered nurse with experience in human factors and aerospace research, helped us move from understanding medicine as a general challenge to examining the actual healthcare needs and resources available to astronauts. Her clinical perspective allowed us to explore what medical care looks like when crews operate in a remote and resource-limited environment.</p>
@@ -236,7 +257,7 @@ To better understand these questions, we spoke with professionals whose experien
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <div class="person-photos">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/konstantinos.avif" alt="Konstantinos Vergos" style="--photo-x: 45%; --photo-zoom: 1.4;">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/akshay.avif" alt="Dr. Akshay Chandrashekhar" style="--photo-zoom: 1.3;">
@@ -263,7 +284,7 @@ To better understand these questions, we spoke with professionals whose experien
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rayannah.avif" alt="Rayyanah Barnawi" style="--photo-x: 37%; --photo-zoom-y: 2%; --photo-zoom: 1.6;">
 <h4 class="person-name">Rayyanah Barnawi</h4>
 <p>Our conversation with Rayyanah Barnawi, Saudi Arabia's first female astronaut and a biomedical researcher, provided an operational perspective on how a biological production system would need to function beyond the laboratory. Her experience conducting scientific research aboard the ISS helped us consider constraints that were not immediately apparent from literature alone.</p>
@@ -290,7 +311,7 @@ To better understand these questions, we spoke with professionals whose experien
 
 These conversations changed our understanding of the problem. Access to medicines was relevant, but producing a therapeutic was only one part of the challenge. We also needed to consider what astronauts may actually require, how the system would operate within the limitations of a spacecraft, and whether our microorganisms could remain functional and reliable under space-relevant conditions.
 
-## Engineering Microorganisms for Space
+## Engineering microorganisms for space
 
 ### Which microorganisms should we use?
 
@@ -300,7 +321,7 @@ However, natural resilience alone would not necessarily make an organism suitabl
 
 In parallel, we explored extremotolerant organisms as potential sources of protective mechanisms that could be introduced into our chassis. Tardigrades were particularly interesting because of their ability to enter cryptobiotic states and tolerate stresses such as severe dehydration and high levels of radiation. Some tardigrade species have even survived direct exposure to the space environment while in a desiccated state. Reports of tardigrade species along the Arabian Gulf coast of Saudi Arabia also made them particularly interesting within our regional context <a class="cite" href="#ref-21">21</a>.
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rosado.avif" alt="Prof. Alexandre Rosado">
 <h4 class="person-name">Prof. Alexandre Rosado</h4>
 <p>To guide our chassis selection, we met with Professor Alexandre Rosado, a microbial ecologist at KAUST whose research focuses on extremophiles, microbial biotechnology, and astrobiology. Professor Rosado helped us evaluate our initial candidates from both a biological and practical perspective. Our discussion covered the advantages of working with established model organisms, the challenges associated with less-characterized extremophiles, and how his laboratory's collection of stress-resistant isolates and planetary simulation facilities could support the experimental development of SHIHAB.</p>
@@ -324,7 +345,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/mason.avif" alt="Dr. Christopher E. Mason">
 <h4 class="person-name">Dr. Christopher E. Mason</h4>
 <p>After selecting our initial chassis, our next question was how we could make them more resilient to space-related stresses. To explore this, we met with Dr. Christopher E. Mason from Weill Cornell Medicine, whose research combines genomics, computational biology, synthetic biology, and human spaceflight research. Of particular interest to us was his group's research on Dsup (Damage suppressor), a protein originally identified in tardigrades. Previous work involving Dr. Mason demonstrated the potential of Dsup to reduce radiation-associated damage when expressed in human cells, while subsequent studies have shown that Dsup expression can also reduce oxidative DNA damage in <em>Saccharomyces cerevisiae</em>.</p>
@@ -351,7 +372,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/luis.avif" alt="Dr. Luis Zea">
 <h4 class="person-name">Dr. Luis Zea</h4>
 <p>As our chassis engineering strategy developed, we spoke with Dr. Luis Zea from the University of Colorado Boulder, whose research focuses on how microorganisms behave during spaceflight and how biological systems can support future space exploration. His experience includes multiple spaceflight experiments and the NASA Deep Space Radiation Genomics experiment aboard Artemis I.</p>
@@ -377,13 +398,24 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
+<div class="person-card" style="display:none">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/kimberly.avif" alt="Kimberly Washington">
+<h4 class="person-name">Deep Space Biology — Kimberly Washington</h4>
+<p>We consulted Kimberly Washington to strengthen SHIHAB's scientific approach and assess its feasibility for real space missions. She encouraged us to draw on existing NASA research and address practical considerations such as hardware integration, system cleaning, production time, cost, and component availability. She also highlighted the importance of automation, real-time monitoring, biosafety, power efficiency, and understanding microbial responses to space-related stresses.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<p>We consulted Kimberly Washington to strengthen SHIHAB's scientific approach and assess its feasibility for real space missions. She encouraged us to draw on existing NASA research and address practical considerations such as hardware integration, system cleaning, production time, cost, and component availability. She also highlighted the importance of automation, real-time monitoring, biosafety, power efficiency, and understanding microbial responses to space-related stresses.</p>
+<p>Her insights guided us toward a more integrated biological and engineering approach, with greater attention to operational requirements and measurable performance. She also introduced us to potential collaborators across the space-biotechnology sector, helping us identify additional stakeholders in space hardware, pharmaceutical manufacturing, and mission implementation.</p>
+</div>
+</div>
+
 ### What did we learn?
 
 Throughout these conversations, our understanding of microbial resilience became more complete. This shaped how we approached the engineering and characterization of *B. subtilis* and *S. cerevisiae*, including the use of protective mechanisms such as Dsup and complementary methods to evaluate cellular damage. We also began to see that biological resilience alone would not make SHIHAB autonomous. Even a robust microorganism would remain dependent on Earth if its growth and production required a continuous supply of media and reagents. This introduced nutrient sourcing and resource reuse as additional considerations for reducing SHIHAB's dependence on Earth-based supplies.
 
 With our biological strategy taking shape, our attention turned to another essential question: what safety, containment, and regulatory requirements would SHIHAB need to meet before an engineered microbial system could eventually be used in space?
 
-## From Concept to Implementation
+## From concept to implementation
 
 ### What would it take to bring SHIHAB to space?
 
@@ -399,7 +431,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/savi.avif" alt="Savi Glowe">
 <h4 class="person-name">BIOASTRA — Savi Glowe</h4>
 <p>Savi Glowe, CEO of BIOASTRA, helped us look beyond our current experiments and consider the evidence SHIHAB would need before progressing toward a spaceflight demonstration. Our discussion covered the long-term stability of engineered microorganisms, therapeutic validation, regulatory considerations, and how biological technologies can move progressively from ground testing toward space.</p>
@@ -422,7 +454,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/incognito.svg" alt="Sarah Al Harbi">
 <h4 class="person-name">Sarah Al Harbi</h4>
 <p>We met with Sarah Al Harbi, whose experience managing projects at the Saudi Space Agency gave us a mission-level perspective on SHIHAB. While our work had focused primarily on biological performance and validation, Sarah introduced another layer of requirements: integration into an actual space mission.</p>
@@ -449,7 +481,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rodion.avif" alt="KAUST Health, Safety &amp; Environment representative">
 <h4 class="person-name">Health, Safety &amp; Environment (HSE) at KAUST</h4>
 <p>Engineering microorganisms for SHIHAB also meant taking responsibility for what could happen if something went wrong. Accidental exposure, containment failure, improper disposal, or unintended release all had to be considered alongside the intended function of our system.</p>
@@ -473,9 +505,34 @@ Although we could not complete every step ourselves, documenting this pathway al
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
 <p>Moving toward therapeutic production and spaceflight would involve other authorities, standards, and approval processes. This led us to investigate the next part of our roadmap: How does an engineered biological system progress from institutional approval to regulatory clearance and, eventually, authorization for spaceflight?</p>
 </div>
+
 </div>
 
-### Navigating the Regulatory Landscape
+<div class="person-card" style="display:none">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/wijdan.avif" alt="Dr. Wijdan Al-Ahmadi">
+<h4 class="person-name">Dr. Wijdan Al-Ahmadi</h4>
+<p>During the early stages of our project, we consulted Dr. Wijdan Al-Ahmadi to assess the feasibility of our initial concept, which included oxygen production for space applications. She raised important questions about bioreactor size, production capacity, oxygen quality, and the practical challenges of operating such a system on Mars. She also emphasized the importance of automation to minimize astronaut intervention and recommended prototype testing under Mars-analog conditions.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<p>During the early stages of our project, we consulted Dr. Wijdan Al-Ahmadi to assess the feasibility of our initial concept, which included oxygen production for space applications. She raised important questions about bioreactor size, production capacity, oxygen quality, and the practical challenges of operating such a system on Mars. She also emphasized the importance of automation to minimize astronaut intervention and recommended prototype testing under Mars-analog conditions.</p>
+<p>Her feedback helped us recognize the operational limitations of our initial approach. Although we eventually moved away from oxygen production to focus on therapeutic biomanufacturing, her recommendations continued to influence SHIHAB's development, particularly our emphasis on automation, monitoring, product quality, and space-relevant validation.</p>
+<p><a class="person-link-btn" href="/kaust-ksa/hardware">Hardware design →</a></p>
+</div>
+</div>
+
+<div class="person-card" style="display:none">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/junaid.avif" alt="Junaid Mian">
+<h4 class="person-name">Junaid Mian</h4>
+<p>We consulted Junaid Mian to understand the regulatory and product-development requirements for bringing SHIHAB closer to real-world implementation. For Earth-based applications, he highlighted the importance of production yield, scalability, and the regulatory responsibilities associated with manufacturing therapeutics.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<p>We consulted Junaid Mian to understand the regulatory and product-development requirements for bringing SHIHAB closer to real-world implementation. For Earth-based applications, he highlighted the importance of production yield, scalability, and the regulatory responsibilities associated with manufacturing therapeutics.</p>
+<p>For space applications, he emphasized the need to consider FDA and NASA requirements, including biosafety, containment, and Chemistry, Manufacturing, and Controls (CMC). He also encouraged us to prioritize therapeutics based on the medical conditions astronauts are likely to face during specific missions, rather than selecting products solely for their ease of production.</p>
+<p><a class="person-link-btn" href="/kaust-ksa/proposed-implementation">See long-term roadmap →</a></p>
+</div>
+</div>
+
+### Navigating the regulatory landscape
 
 Across our conversations with experts in space medicine, spaceflight, biosafety, and biotechnology, one message repeatedly emerged: demonstrating that SHIHAB works in the laboratory is only the first step. Moving toward real-world use would require progressive validation, safety assessment, manufacturing control, and regulatory approval as the platform advances from research to biological production and, eventually, spaceflight.
 
@@ -496,11 +553,15 @@ We also looked beyond today's requirements to examine how this regulatory enviro
 
 </details>
 
-### Building a Path to Space
+### Building a path to space
 
-Each conversation revealed a different part of what it would take to bring SHIHAB closer to space. Astronauts and space medicine experts helped us understand the healthcare needs and validation required for a system intended for spaceflight. Scientists and technical experts shaped our approach to microbial resilience, chassis selection, space-relevant testing, and microgravity. Later conversations introduced the requirements of system integration, mission operations, biosafety, containment, and progressive validation, while our regulatory analysis helped us understand how oversight and approval would evolve alongside the technology. We brought these perspectives together with our experimental work to build a long-term roadmap for SHIHAB, outlining the steps from our current proof of concept toward increasingly representative testing and, eventually, biomanufacturing in space.
+Each conversation revealed a different part of what it would take to bring SHIHAB closer to space. Astronauts and space medicine experts helped us understand the healthcare needs and operational constraints of spaceflight. Scientists and technical experts informed our approach to microbial resilience, chassis selection, and space-relevant testing, while other stakeholders introduced considerations around system integration, mission operations, biosafety, and containment.
 
-![SHIHAB long-term roadmap workflow](https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/roadmap-workflow.avif)
+These discussions, together with our regulatory analysis, also made clear that demonstrating biological production would not be sufficient for clinical application. SHIHAB would require validated production protocols, reliable monitoring, product-specific quality-control testing, appropriate human oversight, and regulatory authorization to ensure that any therapeutic produced could eventually be used safely.
+
+We combined these insights with our experimental work to develop a **long-term roadmap** for SHIHAB, outlining the steps from our current proof of concept through progressively more representative biological, technical, and safety validation toward eventual biomanufacturing in space. Click on each card to explore more.
+
+<div data-slot="roadmap"></div>
 
 ### What did we learn?
 
@@ -508,7 +569,7 @@ Our conversations showed us that moving SHIHAB beyond the laboratory will requir
 
 Our current work represents only the beginning of SHIHAB's development. By bringing together perspectives from medicine, biology, engineering, safety, regulation, and spaceflight, we gained a clearer understanding of what we could address during this iGEM season and what will still be required for SHIHAB to progress responsibly toward future space applications.
 
-## Looking Back at Earth
+## Looking back at Earth
 
 ### Could a system designed for space be useful on Earth?
 
@@ -516,7 +577,7 @@ SHIHAB was designed around the constraints of spaceflight: limited resupply, res
 
 We did not want to assume that a system developed for space would automatically be appropriate for these settings. To understand the realities of healthcare delivery during humanitarian emergencies, we spoke with Andrew Macleod and Rachel Kessler, whose experiences in emergency response gave us two complementary perspectives on what implementation on Earth could require.
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/andrew.avif" alt="Andrew Macleod">
 <h4 class="person-name">Andrew Macleod</h4>
 <p>To explore whether SHIHAB's principles could be relevant beyond space, we spoke with Andrew Macleod, whose experience in humanitarian and emergency response gave us insight into healthcare delivery when infrastructure and supply chains are disrupted. His experience during the 2005 Pakistan earthquake and other emergencies helped us examine what producing therapeutics closer to the point of need would actually require.</p>
@@ -540,7 +601,7 @@ We did not want to assume that a system developed for space would automatically 
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card" style="display:none">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/kessler.avif" alt="Rachel Kessler">
 <h4 class="person-name">Rachel Kessler</h4>
 <p>After identifying disaster response and remote healthcare as potential applications, we spoke with Rachel Kessler to examine what deploying a technology like SHIHAB in humanitarian settings would actually require. Her experience challenged us to look beyond the general category of a “disaster zone” and consider the conditions of each individual setting.</p>
@@ -568,13 +629,24 @@ We did not want to assume that a system developed for space would automatically 
 </div>
 </div>
 
+<div class="person-card" style="display:none">
+<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/grant.avif" alt="Jonathan Grant">
+<h4 class="person-name">Jonathan Grant</h4>
+<p>We consulted Jonathan Grant to explore SHIHAB's potential applications in remote and humanitarian settings on Earth. He emphasized the importance of distinguishing between isolated communities and disaster-response scenarios, as each presents different healthcare needs and operational constraints. He also suggested considering environments such as ships, Antarctica, and submarines, while raising questions about affordability, accessibility, and how users would determine which therapeutics to produce.</p>
+<button type="button" class="person-more-btn">See more</button>
+<div class="person-more">
+<p>We consulted Jonathan Grant to explore SHIHAB's potential applications in remote and humanitarian settings on Earth. He emphasized the importance of distinguishing between isolated communities and disaster-response scenarios, as each presents different healthcare needs and operational constraints. He also suggested considering environments such as ships, Antarctica, and submarines, while raising questions about affordability, accessibility, and how users would determine which therapeutics to produce.</p>
+<p>He recommended conducting a PESTLE analysis to assess political, economic, social, technological, and environmental factors, including regulation, public trust, and potential misuse. His feedback helped us move away from treating remote healthcare as a single application and toward more context-specific deployment scenarios, where local needs, resources, and societal considerations would guide future development.</p>
+</div>
+</div>
+
 ### What did we learn?
 
 The same principles that are important in space (autonomy, resource efficiency, portability, and reduced dependence on external supply chains) could also be valuable in remote and disaster-affected settings. However, our conversations with Andrew and Rachel showed us that applying these principles on Earth requires consideration of the therapeutics needed, available infrastructure, local healthcare priorities, maintenance capacity, and community perspectives.
 
 Importantly, an Earth application would not remove the regulatory considerations we had already explored. Because SHIHAB would still involve engineered microorganisms and therapeutic production, relevant biosafety, pharmaceutical quality, manufacturing, and approval requirements would continue to apply, although the specific pathway would depend on the product and where the system is deployed.
 
-## Engaging Society
+## Engaging with society
 
 <div class="callout warn">
 
@@ -582,9 +654,19 @@ How does society understand and perceive this technology?
 
 </div>
 
-## Anticipating Our Impact
+## Anticipating our impact
 
-SHIHAB was developed with the goal of increasing access to therapeutic production in environments where conventional pharmaceutical supply chains may be difficult to rely on. However, a technology intended to operate in challenging environments can also introduce new risks, dependencies, and uncertainties. Throughout our Human Practices journey, we tried to identify these limitations alongside SHIHAB's potential benefits. We did not address every question, nor do we consider every risk resolved. Some concerns influenced decisions we could make during this iGEM season, while others revealed gaps that will require further research, testing, or engagement before SHIHAB could move toward real-world implementation.
+### From values to design
+
+Our conversations with stakeholders helped us translate our four guiding values into practical design priorities.
+
+<div data-slot="design-values"></div>
+
+Most importantly, these values made us recognize areas requiring further development. While some considerations inform our current design approach, others remain priorities for future validation and implementation. By knowing this distinction, <span class="hl">we aim to ensure that SHIHAB's development remains transparent, responsive to stakeholder feedback and grounded in the needs of its intended users.</span>
+
+### Opportunities, risks, and responsibilities
+
+SHIHAB was developed with the goal of increasing access to therapeutic production in environments where conventional pharmaceutical supply chains may be difficult to rely on. However, a technology intended to operate in challenging environments can also introduce new risks, dependencies, and uncertainties. Understanding these potential impacts is essential to guiding SHIHAB's future deployment, particularly in terms of biological and therapeutic validation, safety, resource requirements, and accessibility. By examining both the opportunities and risks, we identified what our current work has addressed and where additional research, testing, and engagement will be needed.
 
 <div class="table-wrap">
 
@@ -599,8 +681,6 @@ SHIHAB was developed with the goal of increasing access to therapeutic productio
 | Enable decentralized therapeutic production | Access could remain unequal if systems depend on specialized expertise or proprietary infrastructure. | We considered accessibility and maintainability, but we have not conducted the economic, access, or equity analyses required to understand this fully. |
 
 </div>
-
-Considering these potential impacts helped us define what responsible development of SHIHAB would require. Its potential benefits depend on continued biological and therapeutic validation alongside careful consideration of safety, quality, resource requirements, accessibility, and the needs of the people and environments where it could eventually operate. Recognizing what we have not yet addressed also provides a clearer direction for future work.
 
 ## Closing the ORBIT
 

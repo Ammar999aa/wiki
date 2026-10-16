@@ -116,50 +116,50 @@ export const values = [
 // the tile falls back to its gradient.
 export const glanceTiles = [
   {
-    title: "Exploring the Unknown",
-    target: "Exploring The Unknown",
+    title: "Exploring the unknown",
+    target: "Exploring the unknown",
     photo: "meetingall",
     body: "We started by asking our community about the challenges of living in space and investigating where biotechnology could make a meaningful contribution.",
   },
   {
-    title: "Finding Our Direction",
-    target: "Finding Our Direction",
+    title: "Finding our direction",
+    target: "Finding our direction",
     photo: "sarah-meeting",
     body: "We moved from the idea of resilient microorganisms to SHIHAB: a platform combining microbial resilience with on-demand therapeutic production.",
   },
   {
-    title: "Listening to Astronauts & Space Medicine",
-    target: "Listening to Astronauts & Space Medicine Experts",
+    title: "Listening to astronauts and space medicine",
+    target: "Listening to astronauts and space medicine experts",
     photo: "rayannah-meet",
     body: "Astronauts and healthcare experts helped us understand therapeutic needs, crew constraints, automation, product quality, and the importance of space-relevant validation.",
   },
   {
-    title: "Engineering Microorganisms for Space",
-    target: "Engineering Microorganisms for Space",
+    title: "Engineering microorganisms for space",
+    target: "Engineering microorganisms for space",
     photo: "luis-meeting",
     body: "Scientific experts informed our selection of B. subtilis and S. cerevisiae, resilience strategy, stress testing, and evaluation of molecular damage.",
   },
   {
-    title: "From Concept to Implementation",
-    target: "From Concept to Implementation",
+    title: "From concept to implementation",
+    target: "From concept to implementation",
     photo: "hardware",
     body: "We explored automation, monitoring, mission integration, biosafety, regulation, and progressive validation to understand what would be required to move SHIHAB beyond a laboratory proof of concept.",
   },
   {
-    title: "Looking Back at Earth",
-    target: "Looking Back at Earth",
+    title: "Looking back at Earth",
+    target: "Looking back at Earth",
     photo: "andrew-meeting",
     body: "Humanitarian perspectives helped us explore how SHIHAB's principles could translate to remote or disrupted settings while highlighting the importance of context, infrastructure, maintainability, and local needs.",
   },
   {
-    title: "Engaging Society",
-    target: "Engaging Society",
+    title: "Engaging with society",
+    target: "Engaging with society",
     photo: "pe-activity",
     body: "Our interactions with the public reinforced the importance of making synthetic biology and space biotechnology understandable and creating opportunities for people to question and discuss emerging technologies.",
   },
   {
-    title: "Anticipating Our Impact",
-    target: "Anticipating Our Impact",
+    title: "Anticipating our impact",
+    target: "Anticipating our impact",
     photo: "impact",
     body: "We considered SHIHAB's potential benefits alongside its risks, dependencies, limitations, and unresolved questions to identify what responsible future development would require.",
   },
@@ -267,6 +267,18 @@ export const shapedPeople = [
       "We also began investigating alternative nutrient sources and media-recycling strategies that could reduce dependence on supplies transported from Earth.",
   },
   {
+    id: "washington",
+    group: "microbes",
+    lines: ["Kimberly Washington", "Deep Space Biology"],
+    card: "Deep Space Biology — Kimberly Washington",
+    topic: "Feasibility for space missions",
+    photos: [{ file: "kimberly.avif" }],
+    // Not tied to one part of the project: beams to SHIHAB at the centre.
+    parts: [],
+    changed:
+      "Her insights guided us toward a more integrated biological and engineering approach, with greater attention to operational requirements and measurable performance.",
+  },
+  {
     id: "glowe",
     group: "mission",
     lines: ["Savi Glowe", "BIOASTRA"],
@@ -299,6 +311,28 @@ export const shapedPeople = [
       "Their feedback directly informed our Safety Handbook, including hazard identification, risk assessment, containment failure, accidental exposure, environmental release, and emergency response. It also shaped our Hardware manual …",
   },
   {
+    id: "mian",
+    group: "mission",
+    lines: ["Junaid Mian"],
+    card: "Junaid Mian",
+    topic: "Regulation & product development",
+    photos: [{ file: "junaid.avif" }],
+    parts: ["roadmap"],
+    changed:
+      "He also encouraged us to prioritize therapeutics based on the medical conditions astronauts are likely to face during specific missions, rather than selecting products solely for their ease of production.",
+  },
+  {
+    id: "alahmadi",
+    group: "astronauts",
+    lines: ["Wijdan Al-Ahmadi"],
+    card: "Dr. Wijdan Al-Ahmadi",
+    topic: "Feasibility & automation",
+    photos: [{ file: "wijdan.avif" }],
+    parts: ["hardware"],
+    changed:
+      "Although we eventually moved away from oxygen production to focus on therapeutic biomanufacturing, her recommendations continued to influence SHIHAB's development, particularly our emphasis on automation, monitoring, product quality, and space-relevant validation.",
+  },
+  {
     id: "macleod",
     group: "earth",
     lines: ["Andrew Macleod"],
@@ -319,5 +353,140 @@ export const shapedPeople = [
     parts: ["hardware"],
     changed:
       "Rachel's feedback led us to define a new principle for SHIHAB's humanitarian application: design for a specific context, not for an abstract “disaster zone.”",
+  },
+  {
+    id: "grant",
+    group: "earth",
+    lines: ["Jonathan Grant"],
+    card: "Jonathan Grant",
+    topic: "Remote & humanitarian settings",
+    photos: [{ file: "grant.avif" }],
+    // Not tied to one part of the project: beams to SHIHAB at the centre.
+    parts: [],
+    changed:
+      "His feedback helped us move away from treating remote healthcare as a single application and toward more context-specific deployment scenarios, where local needs, resources, and societal considerations would guide future development.",
+  },
+];
+
+// "Building a path to space" roadmap cards (RoadmapCards). Text from the team's
+// "Wiki modifications" doc; `photo` is a file in
+// static.igem.wiki/.../content/human-integrated-practices/.
+export const roadmapSteps = [
+  {
+    title: "Ground validation",
+    subtitle: "Build and characterize the chassis",
+    photo: "lab.avif",
+    points: [
+      "Engineer and characterize microbial chassis.",
+      "Validate therapeutic expression and purification.",
+      "Assess protein identity, activity and stability.",
+      "Evaluate biocontainment strategies.",
+      "Develop and optimize bioreactor and monitoring systems.",
+    ],
+  },
+  {
+    title: "Space-relevant validation",
+    subtitle: "Ensure robustness in space conditions",
+    photo: "validation.avif",
+    points: [
+      "Test resistance to radiation and oxidative stress.",
+      "Evaluate microbial performance using microgravity analogs.",
+      "Conduct experiments in planetary simulation chambers.",
+      "Assess long-term culture stability and productivity.",
+      "Explore parabolic flight testing.",
+    ],
+  },
+  {
+    title: "Integrated system validation",
+    subtitle: "Demonstrate end-to-end production and quality control",
+    photo: "bioreactor.avif",
+    points: [
+      "Identify therapeutic needs and establish validated production protocols.",
+      "Integrate microbial growth, induction, production, and purification.",
+      "Validate automated monitoring, process control, and human oversight.",
+      "Assess containment, system failures, and operational safety.",
+      "Verify therapeutic identity, purity, potency, and safety through appropriate quality-control testing.",
+      "Evaluate reproducibility, power consumption, maintenance, and operator training.",
+    ],
+  },
+  {
+    title: "Pre-flight qualification",
+    subtitle: "Validate safety, reliability and regulatory compliance",
+    photo: "people.avif",
+    points: [
+      "Finalize flight-compatible hardware and containment systems.",
+      "Conduct payload hazard and safety assessments.",
+      "Verify launch and spacecraft compatibility.",
+      "Establish operating, maintenance, and emergency procedures.",
+      "Address pharmaceutical quality requirements and applicable regulatory approvals.",
+      "Coordinate qualification with relevant spaceflight authorities and partners.",
+    ],
+  },
+  {
+    title: "LEO demonstration",
+    subtitle: "Test autonomous operation in space",
+    photo: "leo.avif",
+    points: [
+      "Demonstrate small-scale biomanufacturing in Low Earth Orbit (LEO).",
+      "Monitor microbial growth, stability, and productivity.",
+      "Evaluate production under microgravity and space radiation.",
+      "Assess the identity, quality, and function of space-produced proteins.",
+      "Compare space-produced and Earth-produced products.",
+      "Evaluate autonomous operation and required crew intervention.",
+    ],
+  },
+  {
+    title: "Space missions",
+    subtitle: "Enable sustained biomanufacturing",
+    photo: "system.avif",
+    points: [
+      "Validate extended autonomous operation and system reliability.",
+      "Demonstrate consistent production of selected therapeutics.",
+      "Increase resource independence and recycling.",
+      "Adapt the platform to mission-specific constraints.",
+      "Assess long-term chassis stability and containment.",
+      "Address planetary protection and mission-specific regulatory requirements.",
+    ],
+  },
+];
+
+// "From values to design" flip cards (Anticipating our impact). Same values and
+// tones as `values` above; text from the team's "Wiki modifications" doc.
+export const designValues = [
+  {
+    name: "Autonomy",
+    tone: "violet",
+    subtitle: "Reducing external dependence",
+    heard:
+      "Spaceflight experts emphasized minimizing astronaut intervention, while humanitarian perspectives highlighted the importance of operating without continuous technical support.",
+    influence:
+      "We prioritized bioreactor automation, real-time monitoring, and considerations for simplified maintenance.",
+  },
+  {
+    name: "Adaptability",
+    tone: "blue",
+    subtitle: "Responding to different needs",
+    heard:
+      "Scientific experts stressed the importance of balancing microbial resilience with engineering feasibility, while humanitarian specialists helped us identify the different requirements of potential deployment environments.",
+    influence:
+      "We selected engineerable microbial chassis and considered modularity and flexibility across biological components and applications.",
+  },
+  {
+    name: "Responsibility",
+    tone: "amber",
+    subtitle: "Designing with safety in mind",
+    heard:
+      "Stakeholders raised concerns about biological containment, monitoring, product quality, and regulatory requirements.",
+    influence:
+      "We incorporated layered biosafety considerations, risk assessment, and progressive validation into our development strategy.",
+  },
+  {
+    name: "Accessibility",
+    tone: "green",
+    subtitle: "Making biotechnology usable and understandable",
+    heard:
+      "Humanitarian experts pointed to local infrastructure and maintenance limitations, while our community engagement revealed the importance of accessible scientific communication.",
+    influence:
+      "We considered usability and maintainability in future applications and created opportunities for communities to learn about and discuss synthetic biology.",
   },
 ];
