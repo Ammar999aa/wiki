@@ -57,6 +57,37 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  // Opening a page at a #hash (a link from another page, e.g. Science
+  // Communication → /education#tawasol-hackathon): the browser's own jump
+  // runs before this lazily-loaded article exists, and App resets scroll to
+  // the top on every route, so do the jump here. Photos above the target
+  // keep loading and pushing it down, so it's re-aligned on resizes for a
+  // few seconds — until the reader scrolls themselves. Runs before the
+  // reveal effect below, so sections already on screen after the jump are
+  // never pre-hidden.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const target = id && document.getElementById(id);
+    if (!target) return undefined;
+
+    const align = () => target.scrollIntoView({ block: "start" });
+    align();
+    const observer = new ResizeObserver(align);
+    observer.observe(document.body);
+    const stop = () => {
+      observer.disconnect();
+      clearTimeout(timer);
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchstart", stop);
+      window.removeEventListener("keydown", stop);
+    };
+    const timer = setTimeout(stop, 4000);
+    window.addEventListener("wheel", stop, { passive: true });
+    window.addEventListener("touchstart", stop, { passive: true });
+    window.addEventListener("keydown", stop);
+    return stop;
+  }, []);
+
   // Reveal-on-scroll: each section fades/rises in once, the first time it
   // enters the viewport. The "pre-reveal" (hidden) class is added here, in
   // JS, right before the observer that clears it — never in plain CSS —

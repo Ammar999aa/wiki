@@ -1,5 +1,5 @@
 // Page-scoped styles for Education's interactive components
-// (CloneStepper, ModuleTabs, MultiplierScale). Kept in the same
+// (CloneStepper, Tabs, LmoCheck, MultiplierScale). Kept in the same
 // bordered/tinted-panel visual language as SectionedArticle.module.scss's
 // shared `.panel`/`.card-grid` markdown classes (same rgba(255,255,255,…)
 // borders/backgrounds, var(--radius-*) scale) so these custom React bits
@@ -182,11 +182,11 @@
   hyphens: auto;
 }
 
-// --- LmoCheck (option buttons reuse RolePlay's .voice/.voiceOn) ---------
+// --- LmoCheck ----------------------------------------------------------
 
 .lmoOptions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   margin-bottom: 18px;
 
@@ -243,20 +243,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-// --- RolePlay -----------------------------------------------------------
-
-.voiceList {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 20px;
-
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-// Same look as .tab, but squarer tiles so four roles fill the row evenly.
+// Option buttons for LmoCheck: same look as .tab, but squarer tiles.
 .voice {
   font-family: ui-monospace, Menlo, Consolas, monospace;
   font-size: 0.78rem;
@@ -284,39 +271,6 @@
 
   &:hover {
     border-color: var(--primary);
-  }
-}
-
-.voiceQuote {
-  position: relative;
-  padding: 4px 0 0 44px;
-
-  // Large opening quote mark as the visual anchor, in the panel's accent.
-  &::before {
-    content: "\201C";
-    position: absolute;
-    left: 0;
-    top: -10px;
-    font-size: 3.6rem;
-    line-height: 1;
-    font-weight: 700;
-    color: var(--accent);
-  }
-
-  p {
-    margin: 0 0 10px;
-    color: white;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  span {
-    font-family: ui-monospace, Menlo, Consolas, monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--primary-400);
   }
 }
 
@@ -413,4 +367,240 @@
   font-size: 0.78rem;
   font-style: italic;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.multNoteReported {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.multUnit {
+  margin-left: 10px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// Shown only while the sliders sit on the reported result.
+.multComms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.multCommsLabel {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-right: 4px;
+}
+
+.multComm {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent);
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+
+.multFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.multReset {
+  margin-top: 10px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  padding: 8px 14px;
+  border-radius: var(--radius-xs);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--primary);
+    color: white;
+  }
+}
+
+// --- DecisionScale ------------------------------------------------------
+
+.scaleSvg {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 4px auto 18px;
+  overflow: visible;
+}
+
+.scaleStand {
+  fill: rgba(255, 255, 255, 0.08);
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.scaleBeam {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform-origin: 160px 30px;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.scalePivot {
+  fill: var(--bg);
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 2;
+}
+
+.scalePan {
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.35);
+    stroke-width: 1.2;
+  }
+
+  path:last-of-type {
+    fill: rgba(255, 255, 255, 0.05);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+}
+
+.scalePanHeavy {
+  path:last-of-type {
+    fill: color-mix(in oklab, var(--accent) 18%, transparent);
+    stroke: var(--accent);
+  }
+}
+
+.scaleLegend {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: rgba(255, 255, 255, 0.55);
+
+  tspan {
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--accent);
+  }
+}
+
+// Element-qualified so it beats the article's own `ul` padding.
+ul.scaleClaims {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xs);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  li > span:first-child {
+    flex: 1 1 220px;
+  }
+}
+
+.scaleButtons {
+  display: flex;
+  gap: 6px;
+
+  .voice {
+    padding: 8px 12px;
+  }
+}
+
+// --- ScoreTrack ----------------------------------------------------------
+
+.scoreRows {
+  position: relative;
+  display: grid;
+  gap: 26px;
+  padding-bottom: 26px;
+}
+
+.scoreLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+
+  b {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
+
+// A static bar (filled from 0 to the score), not a slider knob.
+.scoreTrack {
+  position: relative;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.scoreTick {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  background: rgba(10, 10, 39, 0.55);
+}
+
+.scoreFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: color-mix(in oklab, var(--accent) 80%, transparent);
+}
+
+.scoreAxis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;
+
+  span {
+    position: absolute;
+    transform: translateX(-50%);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.45);
+    font-variant-numeric: tabular-nums;
+  }
 }

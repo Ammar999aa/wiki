@@ -190,8 +190,8 @@ export function Tabs({ items, ariaLabel }) {
   );
 }
 
-// "Is it an LMO?" check for the Kallpa section's Context: pick how a plant
-// was modified, see how Peru classifies it — the same rule the Context prose
+// "Is it an LMO?" check for the Kallpa section's Context (also the Session 4
+// challenge): pick how a plant was modified, see how Peru classifies it — the same rule the Context prose
 // and the Mateo/Rosa dialogue state (Law No. 31.111 vs. the 2026 resolution).
 const LMO_OPTIONS = [
   {
@@ -207,6 +207,15 @@ const LMO_OPTIONS = [
     lmo: false,
     verdict: "Not classified as an LMO",
     reason: "Its own gene is modified or silenced with no exogenous DNA, so it is exempt under the 2026 resolution.",
+  },
+  // Third case from the Kallpa Session 4 challenge ("Is it an LMO under
+  // the new rule?" — a native potato improved by traditional crossing).
+  {
+    key: "crossing",
+    label: "Traditional crossing",
+    lmo: false,
+    verdict: "Not an LMO",
+    reason: "A native variety improved by traditional crossing between varieties is conventional breeding, not an LMO.",
   },
 ];
 
@@ -244,39 +253,126 @@ export function LmoCheck() {
   );
 }
 
-// "Pick a voice" selector for the Week 4 role-play: one button per role,
-// the chosen role's question shown as a pull quote below. Items:
-// [{ key, role, question }].
-export function RolePlay({ items }) {
-  const [active, setActive] = useState(items[0]?.key);
-  const current = items.find((it) => it.key === active) || items[0];
+// Kallpa Session 3's "decision scale": the reader sorts each statement
+// about a GM crop into benefit or risk and watches the beam tip. The
+// statements are the session's own discussion prompts, not claims the page
+// makes about any real crop.
+const SCALE_CLAIMS = [
+  "Yields 30% more using the same amount of water.",
+  "It could cross with native varieties in the area.",
+  "It might need fewer pesticides.",
+  "Seeds could have an owner: what about the farmer's own seed?",
+];
+
+const BEAM = 110;
+
+export function DecisionScale() {
+  const [picks, setPicks] = useState({});
+  const benefits = Object.values(picks).filter((v) => v === "benefit").length;
+  const risks = Object.values(picks).filter((v) => v === "risk").length;
+  // Positive tilt drops the right (Risk) pan. The pans hang from the beam
+  // ends but are translated, not rotated, so they stay level.
+  const tilt = Math.max(-14, Math.min(14, (risks - benefits) * 5));
+  const cos = Math.cos((tilt * Math.PI) / 180);
+  const sin = Math.sin((tilt * Math.PI) / 180);
+  const pick = (i, v) => setPicks((p) => ({ ...p, [i]: p[i] === v ? undefined : v }));
 
   return (
     <div className={styles.try}>
-      <p className={styles.tryLabel}>Role-play: pick a voice</p>
-      <div className={styles.voiceList} role="tablist" aria-label="Role-play voices">
-        {items.map((it) => (
-          <button
-            key={it.key}
-            type="button"
-            role="tab"
-            aria-selected={it.key === active}
-            className={`${styles.voice} ${it.key === active ? styles.voiceOn : ""}`}
-            onClick={() => setActive(it.key)}
+      <p className={styles.tryLabel}>Session 3 activity: the decision scale</p>
+      <svg className={styles.scaleSvg} viewBox="0 -8 320 140" aria-hidden="true">
+        <path className={styles.scaleStand} d="M160 30 L144 112 H176 Z" />
+        <line className={styles.scaleStand} x1="124" y1="114" x2="196" y2="114" />
+        <line
+          className={styles.scaleBeam}
+          x1={160 - BEAM}
+          y1="30"
+          x2={160 + BEAM}
+          y2="30"
+          style={{ transform: `rotate(${tilt}deg)` }}
+        />
+        <circle className={styles.scalePivot} cx="160" cy="30" r="4" />
+        {[
+          { side: -1, heavy: benefits > risks },
+          { side: 1, heavy: risks > benefits },
+        ].map(({ side, heavy }) => (
+          <g
+            key={side}
+            className={`${styles.scalePan} ${heavy ? styles.scalePanHeavy : ""}`}
+            style={{ transform: `translate(${160 + side * BEAM * cos}px, ${30 + side * BEAM * sin}px)` }}
           >
-            {it.role}
-          </button>
+            <path d="M0 0 L-26 34 M0 0 L26 34" />
+            <path d="M-32 34 H32 Q0 56 -32 34 Z" />
+          </g>
         ))}
+        <text className={styles.scaleLegend} x={160 - BEAM} y="126">
+          Benefit <tspan>{benefits}</tspan>
+        </text>
+        <text className={styles.scaleLegend} x={160 + BEAM} y="126">
+          Risk <tspan>{risks}</tspan>
+        </text>
+      </svg>
+      <ul className={styles.scaleClaims}>
+        {SCALE_CLAIMS.map((c, i) => (
+          <li key={c}>
+            <span>{c}</span>
+            <span className={styles.scaleButtons} role="group" aria-label="Benefit or risk?">
+              {["benefit", "risk"].map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  aria-pressed={picks[i] === v}
+                  className={`${styles.voice} ${picks[i] === v ? styles.voiceOn : ""}`}
+                  onClick={() => pick(i, v)}
+                >
+                  {v === "benefit" ? "Benefit" : "Risk"}
+                </button>
+              ))}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p className={styles.lmoHint} aria-live="polite">
+        {benefits + risks === 0
+          ? "Benefit or risk? Choose for each statement and see where your scale tips."
+          : `Your scale: ${benefits} benefit${benefits === 1 ? "" : "s"}, ${risks} risk${risks === 1 ? "" : "s"}.`}
+      </p>
+    </div>
+  );
+}
+
+// One marker per item on a 0–max track (Kallpa evidence-of-impact scores).
+// Reported survey results, so each value is printed beside its label too.
+// Items: [{ label, value }].
+export function ScoreTrack({ title, items, max = 5 }) {
+  return (
+    <div className={styles.try}>
+      {title && <p className={styles.tryLabel}>{title}</p>}
+      <div className={styles.scoreRows}>
+        {items.map((it) => (
+          <div key={it.label} className={styles.scoreRow}>
+            <div className={styles.scoreLabel}>
+              <span>{it.label}</span>
+              <b>
+                {it.value} / {max}
+              </b>
+            </div>
+            <div className={styles.scoreTrack}>
+              {Array.from({ length: max + 1 }, (_, i) => (
+                <i key={i} className={styles.scoreTick} style={{ left: `${(i / max) * 100}%` }} />
+              ))}
+              <span className={styles.scoreFill} style={{ width: `${(it.value / max) * 100}%` }} />
+            </div>
+          </div>
+        ))}
+        <div className={styles.scoreAxis} aria-hidden="true">
+          {Array.from({ length: max + 1 }, (_, i) => (
+            <span key={i} style={{ left: `${(i / max) * 100}%` }}>
+              {i}
+            </span>
+          ))}
+        </div>
       </div>
-      <AnimatedSwap
-        swapKey={active}
-        className={styles.voiceQuote}
-        role="tabpanel"
-        aria-live="polite"
-      >
-        <p>{current.question}</p>
-        <span>{current.role}</span>
-      </AnimatedSwap>
     </div>
   );
 }
@@ -332,19 +428,36 @@ export function ModuleIcon({ name }) {
   );
 }
 
-// Illustrative only — not a reported result. Shows how training a handful
-// of Kallpa volunteers multiplies into farmers reached, exactly the logic
-// the "multiplier model" paragraph above it describes, but it computes
-// volunteers × farmers-per-volunteer live rather than asserting one fixed
-// number (see the .multNote caveat, required per
-// .claude/MARKDOWN-COMPONENTS.md's "pending states are honest" guardrail —
-// this isn't a pending state, but the same honesty principle applies to
-// any number that isn't a reported result).
+// Kallpa's reported reach (education.md, "Our reach"): 8 trained volunteers
+// reached 180 farmers in 3 communities. The sliders open on those numbers
+// and only switch to the "illustration" caveat once the reader moves away
+// from them, so the reported result and the what-if never get confused
+// (per .claude/MARKDOWN-COMPONENTS.md's "pending states are honest"
+// guardrail, applied to any number that isn't a reported result).
+const KALLPA_REACH = {
+  volunteers: 8,
+  farmers: 180,
+  communities: ["Central Amazon", "Valle del Nilo community", "Caraz"],
+};
+// Whole farmers per volunteer, rounded (180 / 8 = 22.5 → 23), so the
+// sliders can land exactly on the reported state.
+const KALLPA_PER_VOLUNTEER = Math.round(KALLPA_REACH.farmers / KALLPA_REACH.volunteers);
+// Above this, one dot stands for several farmers.
+const MAX_DOTS = 400;
+
 export function MultiplierScale() {
-  const [volunteers, setVolunteers] = useState(10);
-  const [perVolunteer, setPerVolunteer] = useState(8);
-  const total = volunteers * perVolunteer;
-  const dotCount = Math.min(total, 400);
+  const [volunteers, setVolunteers] = useState(KALLPA_REACH.volunteers);
+  const [perVolunteer, setPerVolunteer] = useState(KALLPA_PER_VOLUNTEER);
+  const reported = volunteers === KALLPA_REACH.volunteers && perVolunteer === KALLPA_PER_VOLUNTEER;
+  // The reported total is the real count, not volunteers × the rounded average.
+  const total = reported ? KALLPA_REACH.farmers : volunteers * perVolunteer;
+  const unit = Math.max(1, Math.ceil(total / MAX_DOTS));
+  const dotCount = Math.round(total / unit);
+
+  const reset = () => {
+    setVolunteers(KALLPA_REACH.volunteers);
+    setPerVolunteer(KALLPA_PER_VOLUNTEER);
+  };
 
   return (
     <div className={styles.try}>
@@ -357,7 +470,7 @@ export function MultiplierScale() {
             id="mult-volunteers"
             type="range"
             min="1"
-            max="40"
+            max="30"
             value={volunteers}
             onChange={(e) => setVolunteers(Number(e.target.value))}
           />
@@ -369,7 +482,7 @@ export function MultiplierScale() {
             id="mult-reach"
             type="range"
             min="1"
-            max="20"
+            max="30"
             value={perVolunteer}
             onChange={(e) => setPerVolunteer(Number(e.target.value))}
           />
@@ -390,10 +503,30 @@ export function MultiplierScale() {
       </div>
       <p className={styles.multTotal} aria-live="polite">
         <strong>{total}</strong> farmers reached, from one course
+        {unit > 1 && <span className={styles.multUnit}>● = {unit} farmers</span>}
       </p>
-      <p className={styles.multNote}>
-        An illustration of how the model scales, not our reported results.
-      </p>
+      {reported && (
+        <div className={styles.multComms}>
+          <span className={styles.multCommsLabel}>Communities reached</span>
+          {KALLPA_REACH.communities.map((c) => (
+            <span key={c} className={styles.multComm}>
+              {c}
+            </span>
+          ))}
+        </div>
+      )}
+      <div className={styles.multFoot}>
+        <p className={`${styles.multNote} ${reported ? styles.multNoteReported : ""}`}>
+          {reported
+            ? `Our reported results: ${KALLPA_REACH.volunteers} volunteers reached ${KALLPA_REACH.farmers} farmers in ${KALLPA_REACH.communities.length} communities (about ${KALLPA_PER_VOLUNTEER} farmers each, on average). Move the sliders to explore how the model could scale.`
+            : "An illustration of how the model scales, not our reported results."}
+        </p>
+        {!reported && (
+          <button type="button" className={styles.multReset} onClick={reset}>
+            &#8634; Back to our results
+          </button>
+        )}
+      </div>
     </div>
   );
 }

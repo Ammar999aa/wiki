@@ -1,0 +1,285 @@
+// Thuwal Science Pioneers intro card — see ThuwalHero.jsx. Values follow
+// Genesis's mockup ("summer outreach.html"), sized down for the article
+// column and switched to the site's tokens (--primary, --accent).
+
+$mono: ui-monospace, Menlo, Consolas, monospace;
+
+// Khatam (eight-pointed star) tile, revealed in a circle around the cursor.
+$khatam: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23FFD84D' stroke-width='1.1' opacity='.5'%3E%3Crect x='12' y='12' width='36' height='36'/%3E%3Crect x='12' y='12' width='36' height='36' transform='rotate(45 30 30)'/%3E%3Ccircle cx='30' cy='30' r='6'/%3E%3C/g%3E%3C/svg%3E");
+
+.hero {
+  position: relative;
+  container-type: inline-size;
+  display: grid;
+  align-items: center;
+  min-height: 520px;
+  margin: 8px 0 28px;
+  padding: 48px clamp(22px, 4vw, 44px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(160deg, rgba(167, 139, 250, 0.16), rgba(255, 255, 255, 0.02));
+  isolation: isolate;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  background: $khatam;
+  mask: radial-gradient(circle 240px at var(--mx, 70%) var(--my, 45%), #000, transparent);
+}
+
+.globe {
+  position: absolute;
+  left: 20%;
+  right: -35%;
+  top: calc(100% - 140px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 0, #27408f 0, #0d1745 12%, #050816 45%), #050816;
+  box-shadow:
+    0 0 0 2px rgba(167, 139, 250, 0.35),
+    0 -8px 70px rgba(120, 150, 255, 0.5);
+
+  i {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: twinkle 3s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes twinkle {
+  to {
+    opacity: 0.3;
+  }
+}
+
+.shore {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.palm {
+  position: absolute;
+  bottom: -4px;
+  height: var(--h);
+  width: calc(var(--h) * 0.706);
+  color: #33236b;
+  transform-origin: 50% 100%;
+  animation: sway 6s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s);
+  transition:
+    color 0.5s,
+    filter 0.5s;
+}
+
+.palmLit {
+  color: var(--accent);
+  filter: drop-shadow(0 0 14px rgba(255, 216, 77, 0.75));
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-2.2deg);
+  }
+  to {
+    transform: rotate(2.2deg);
+  }
+}
+
+.beacon {
+  position: absolute;
+  right: 6%;
+  bottom: 26px;
+  z-index: 1;
+  height: min(64vh, 440px);
+  aspect-ratio: 260 / 600;
+}
+
+.tower {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible .halo {
+    stroke: #fff;
+    stroke-width: 2;
+  }
+}
+
+.beam {
+  position: absolute;
+  left: 50%;
+  top: 2.4%;
+  width: 2400px;
+  height: 2400px;
+  margin: -1200px 0 0 -1200px;
+  background: conic-gradient(rgba(255, 226, 140, 0.55), rgba(255, 226, 140, 0) 14deg, transparent 14deg);
+  mask: radial-gradient(circle, #000 22%, transparent 62%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.tip {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+.halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: halo 3s ease-in-out infinite;
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+.ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.signal {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  z-index: 2;
+  transform: translate(-50%, -100%) scale(0.9);
+  white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--accent);
+  background: rgba(30, 20, 60, 0.7);
+  backdrop-filter: blur(10px);
+  font: 700 12px $mono;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0;
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
+  pointer-events: none;
+}
+
+.signalOn {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+}
+
+.text {
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
+}
+
+.eyebrow {
+  font: 700 12px $mono;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+// Two classes so it beats the article's own `h3` rule.
+.hero .title {
+  margin: 18px 0 14px;
+  font-size: clamp(2.1rem, 6cqi, 3.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-align: start;
+  text-shadow: 0 6px 50px #000;
+}
+
+.arabic {
+  font-family: "Aref Ruqaa", serif;
+  font-size: clamp(1.5rem, 4cqi, 2.2rem);
+  line-height: 1.4;
+  color: var(--accent);
+  // Left-aligned under the English title, as in the mockup (start would
+  // be the right edge for dir="rtl").
+  text-align: left;
+}
+
+.audience {
+  margin: 22px 0 10px;
+  font: 500 12px $mono;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+
+  b {
+    color: var(--accent);
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  span {
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 216, 77, 0.55);
+    background: rgba(255, 216, 77, 0.08);
+    font: 500 12px $mono;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+}
+
+
+// Narrow card: text takes the full width and the Beacon fades behind it.
+@container (max-width: 640px) {
+  .text {
+    max-width: 100%;
+  }
+
+  .beacon {
+    right: 2%;
+    opacity: 0.32;
+  }
+
+  .palmSmall {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero *,
+  .hero *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}

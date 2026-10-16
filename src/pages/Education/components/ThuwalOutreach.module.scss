@@ -1,0 +1,1083 @@
+// School Outreach widgets — see ThuwalOutreach.jsx. Ported from Genesis's
+// mockup ("summer outreach.html"), with its violet/gold swapped for the
+// site's --primary/--accent tokens and sizes fitted to the article column.
+
+$mono: ui-monospace, Menlo, Consolas, monospace;
+$violet: #a78bfa; // the mockup's lighter violet, kept for SVG strokes
+$line: rgba(255, 255, 255, 0.12);
+$muted: rgba(255, 255, 255, 0.6);
+$ease-spring: cubic-bezier(0.3, 1.5, 0.5, 1);
+
+.mono {
+  font: 700 12px $mono;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.monoCap {
+  margin-top: 12px;
+  text-align: center;
+  font: 600 11px $mono;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.chip,
+.chipY {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font: 500 12px $mono;
+  letter-spacing: 0.04em;
+  border: 1px solid color-mix(in oklab, var(--primary) 60%, transparent);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  color: var(--primary-300);
+}
+
+.chipY {
+  border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  color: var(--accent);
+}
+
+.seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+
+  button {
+    padding: 8px 18px;
+    border-radius: 99px;
+    border: 1px solid var(--primary);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+
+    &:hover {
+      background: color-mix(in oklab, var(--primary) 32%, transparent);
+    }
+  }
+}
+
+.segOn,
+.seg button.segOn,
+.starButtons button.segOn {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #160b33;
+  font-weight: 600;
+
+  &:hover {
+    background: var(--primary);
+  }
+}
+
+@keyframes band {
+  0% {
+    left: -60%;
+  }
+  30%,
+  100% {
+    left: 140%;
+  }
+}
+
+// --- Four days ---------------------------------------------------------
+
+.fourDays {
+  margin: 40px 0 34px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 26px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 40px;
+  }
+}
+
+.day {
+  --lamp: #1a1230;
+  position: relative;
+  padding: 10px 0 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.5s $ease-spring;
+
+  svg {
+    width: 80px;
+    height: 124px;
+    transition: filter 0.8s;
+  }
+
+  b {
+    display: block;
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  small {
+    display: block;
+    font: 500 11px $mono;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $muted;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.dayLit {
+  --lamp: #ffd978;
+}
+
+.dayOpen {
+  transform: translateY(-6px);
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  svg {
+    filter: drop-shadow(0 0 16px rgba(255, 217, 120, 0.45));
+  }
+
+  small {
+    color: var(--accent);
+  }
+}
+
+.pane {
+  fill: var(--lamp);
+  transition: fill 0.6s;
+}
+
+
+
+.dayPanel {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 28px;
+  align-items: center;
+  margin-top: 34px;
+  padding: 26px;
+  border-radius: var(--radius-md);
+  border: 1px solid $line;
+  background: rgba(255, 255, 255, 0.05);
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dayNum {
+  b {
+    display: block;
+    font-size: clamp(3rem, 7vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+  }
+
+  small {
+    color: $muted;
+  }
+}
+
+.stepper {
+  --q: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 34px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 38px;
+    height: 2px;
+    background: $line;
+  }
+}
+
+.stepProgress {
+  position: absolute;
+  left: 12.5%;
+  top: 38px;
+  width: calc(var(--q) * 25%);
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  box-shadow: 0 0 10px var(--accent);
+  transition: width 0.6s;
+}
+
+.stepNode {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+
+  b {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin: 12px auto 8px;
+    border-radius: 50%;
+    border: 1px solid $line;
+    background: #1a1038;
+    font: 700 16px $mono;
+    color: $muted;
+    transition: 0.4s;
+  }
+
+  span {
+    font-size: 14px;
+    color: $muted;
+  }
+}
+
+.stepDone b {
+  border-color: var(--primary);
+}
+
+.stepOn {
+  b {
+    border-color: var(--accent);
+    background: #2a1b55;
+    color: var(--accent);
+  }
+
+  span {
+    color: #fff;
+  }
+}
+
+.fourDays .stepDesc {
+  min-height: 48px;
+  margin: 14px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: $muted;
+}
+
+// --- Garland -----------------------------------------------------------
+
+.garland {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 40px 0 30px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    .rope {
+      display: none;
+    }
+  }
+}
+
+.rope {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70px;
+
+  path {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.drop {
+  opacity: 0;
+  transform: translateY(-140px) rotate(6deg);
+  transition:
+    transform 1.6s cubic-bezier(0.3, 1.2, 0.5, 1) calc(0.5s + var(--i) * 0.3s),
+    opacity 0.8s calc(0.5s + var(--i) * 0.3s);
+
+  .seen & {
+    opacity: 1;
+    transform: none;
+  }
+
+  // Drop each pin onto the rope: the curve (M0 6 C250 76 750 76 1000 6
+  // in a 70px-tall box) sits ~38px down at the outer column centres and
+  // ~58px in the middle; the 12px pin is centred on it. (The mockup offset
+  // only the third photo, so the first two floated above the rope.)
+  margin-top: 32px;
+
+  &:nth-of-type(2) {
+    margin-top: 52px;
+  }
+
+  @media (max-width: 600px) {
+    &,
+    &:nth-of-type(2) {
+      margin-top: 0;
+    }
+  }
+}
+
+.hang {
+  position: relative;
+  margin: 0;
+  padding-top: 50px;
+  transform-origin: 50% 0;
+  animation: swingSlow 12s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -4s);
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    width: 2px;
+    height: 46px;
+    background: linear-gradient(var(--accent), rgba(255, 216, 77, 0.15));
+  }
+}
+
+@keyframes swingSlow {
+  from {
+    transform: rotate(-1.6deg);
+  }
+  to {
+    transform: rotate(1.6deg);
+  }
+}
+
+.pin {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hangSlot {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  border: 7px solid #f1e6cc;
+  box-shadow: 0 22px 40px -14px #000;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    object-fit: cover;
+    cursor: zoom-in;
+  }
+}
+
+.divider {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 26px 0;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.astro {
+  width: min(260px, 78%);
+  animation: spin 90s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.star {
+  fill: #fff6c8;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 0.4s,
+    fill 0.4s;
+}
+
+.starOn {
+  fill: var(--accent);
+  transform: scale(1.9);
+}
+
+.starButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+
+  button {
+    padding: 8px 18px;
+    border-radius: 99px;
+    border: 1px solid var(--primary);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+
+    &:hover {
+      background: color-mix(in oklab, var(--primary) 32%, transparent);
+    }
+  }
+}
+
+.divider .starCap {
+  min-height: 56px;
+  margin: 12px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: $muted;
+
+  b {
+    font-family: "Aref Ruqaa", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+}
+
+// --- Name tags -------------------------------------------------------
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  margin: 10px 0 30px;
+}
+
+.tagWrap {
+  display: grid;
+  justify-items: center;
+}
+
+.lanyard {
+  width: 3px;
+  height: 48px;
+  background: var(--accent);
+}
+
+.badge {
+  width: 180px;
+  padding: 24px 18px 20px;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--bd, #1d4f9a);
+  box-shadow: 0 20px 40px #0008;
+  transform-origin: 50% 0;
+  animation: swingSlow 9s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -4.5s);
+
+  i {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: var(--pl);
+  }
+
+  b {
+    font-size: 1.7rem;
+    font-weight: 800;
+  }
+
+  small {
+    display: block;
+    font-size: 13px;
+    color: #ffffffb0;
+  }
+}
+
+// --- Jeddah route ------------------------------------------------------
+
+.routeWrap {
+  margin: 26px 0;
+}
+
+.route {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  overflow: hidden; // keeps the Beacon's turning light inside the drawing
+}
+
+.wave {
+  fill: none;
+  stroke: rgba(167, 139, 250, 0.35);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  animation: waves 6s ease-in-out infinite alternate;
+}
+
+.waveB {
+  animation-delay: -3s;
+}
+
+@keyframes waves {
+  to {
+    transform: translateX(26px);
+  }
+}
+
+.routeDash {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-dasharray: 3 12;
+  stroke-linecap: round;
+  animation: dash 1.2s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -30;
+  }
+}
+
+.marker {
+  cursor: pointer;
+  outline: none;
+
+  text {
+    font-family: Inter, sans-serif;
+  }
+
+  &:focus-visible .markerHit {
+    stroke: #fff;
+    stroke-width: 2;
+  }
+}
+
+.ping {
+  fill: none;
+  stroke: $violet;
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping 2.6s ease-out infinite;
+}
+
+@keyframes ping {
+  from {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+.beaconBeam {
+  transform-origin: 300px 34px;
+  animation: spin 6s linear infinite;
+}
+
+.bus {
+  animation: bump 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes bump {
+  to {
+    transform: translateY(-1.2px);
+  }
+}
+
+.routeWrap .routeInfo {
+  min-height: 52px;
+  margin: 10px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: $muted;
+
+  b {
+    color: var(--accent);
+  }
+}
+
+// --- Mission console ---------------------------------------------------
+
+.mission {
+  margin: 20px 0 30px;
+
+  > .seg {
+    margin-top: 0;
+  }
+}
+
+.console {
+  position: relative;
+  overflow: hidden;
+  margin-top: 16px;
+  padding: 26px;
+  border-radius: 22px;
+  border: 1px solid $line;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.console .missionText {
+  margin: 0 0 6px;
+  text-align: start;
+  color: #d8d2f0;
+}
+
+.helix {
+  display: block;
+  width: min(360px, 90%);
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.helixA,
+.helixB,
+.helixRung {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--i) * -0.7s);
+}
+
+.helixA {
+  animation-name: strandA;
+}
+
+.helixB {
+  animation-name: strandB;
+}
+
+.helixRung {
+  animation-name: rung;
+}
+
+@keyframes strandA {
+  0%,
+  100% {
+    transform: translateY(-44px) scale(1.1);
+  }
+  50% {
+    transform: translateY(44px) scale(0.85);
+  }
+}
+
+@keyframes strandB {
+  0%,
+  100% {
+    transform: translateY(44px) scale(0.85);
+  }
+  50% {
+    transform: translateY(-44px) scale(1.1);
+  }
+}
+
+@keyframes rung {
+  0%,
+  50%,
+  100% {
+    transform: scaleY(1);
+  }
+  25%,
+  75% {
+    transform: scaleY(0.04);
+  }
+}
+
+.bases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  font: 500 12px $mono;
+  text-align: center;
+  color: $muted;
+
+  b {
+    display: block;
+    font-size: 20px;
+  }
+}
+
+.seqRow {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 44px 0 10px;
+}
+
+.codon {
+  position: relative;
+  padding: 12px 14px 8px;
+  border-radius: 14px;
+  border: 1px solid $line;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font: 700 clamp(1rem, 2.4vw, 1.35rem) $mono;
+  letter-spacing: 0.12em;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  small {
+    display: block;
+    min-height: 14px;
+    margin-top: 4px;
+    font: 500 10px $mono;
+    letter-spacing: 0.1em;
+    color: $muted;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.codonDim {
+  opacity: 0.45;
+}
+
+.codonStart {
+  color: #7cfc8a;
+  border-color: #7cfc8a99;
+}
+
+.codonStop {
+  color: #ff6b78;
+  border-color: #ff6b7899;
+}
+
+.codonEdit:hover {
+  transform: translateY(-4px);
+  background: color-mix(in oklab, var(--primary) 28%, transparent);
+}
+
+.codonOn {
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 26px rgba(255, 216, 77, 0.55);
+  transform: translateY(-4px);
+}
+
+.codonNo {
+  animation: no 0.4s;
+}
+
+@keyframes no {
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.ribo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 90px;
+  font: 700 11px $mono;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    left 0.5s cubic-bezier(0.5, 0, 0.2, 1),
+    top 0.5s,
+    opacity 0.3s;
+}
+
+.riboOn {
+  opacity: 1;
+}
+
+.chain {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 112px;
+  padding-top: 20px;
+  background: linear-gradient(var(--accent), var(--accent)) 6% 27px / 88% 2px no-repeat;
+}
+
+.chainEmpty {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34px;
+  font-size: 14px;
+  text-align: center;
+  color: $muted;
+}
+
+.bead {
+  text-align: center;
+  animation: beadIn 0.8s cubic-bezier(0.3, 1.6, 0.5, 1);
+
+  svg {
+    display: block;
+    width: 34px;
+    height: 51px;
+    margin: 0 auto;
+  }
+
+  b {
+    font: 700 12px $mono;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+}
+
+.aminoAcid {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 4px auto 6px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--primary) calc(60% + var(--k) * 40%), var(--accent));
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.beadStop b {
+  color: #ff8d98;
+}
+
+@keyframes beadIn {
+  from {
+    transform: translateY(-90px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.console .geneMsg {
+  min-height: 48px;
+  margin: 10px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: #d8d2f0;
+}
+
+.geneBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 99px;
+  border: 0;
+  background: var(--accent);
+  color: #1a1405;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -6px rgba(255, 216, 77, 0.67);
+  }
+}
+
+.btnGhost {
+  border: 1px solid var(--primary);
+  background: color-mix(in oklab, var(--primary) 14%, transparent);
+  color: #fff;
+  font-weight: 500;
+}
+
+// --- Photo deck --------------------------------------------------------
+
+.deckWrap {
+  max-width: 520px;
+  margin: 40px auto 20px;
+  padding-right: 48px;
+
+  @media (max-width: 600px) {
+    padding-right: 30px;
+  }
+}
+
+.deck {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  touch-action: pan-y;
+  outline: none;
+
+  &:focus-visible .cardTop {
+    box-shadow: 0 0 0 3px var(--accent);
+  }
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 8px solid #f1e6cc;
+  background: #1a1038;
+  box-shadow: 0 26px 50px -18px #000;
+  transform: translate(calc(var(--p) * 16px), calc(var(--p) * -12px)) rotate(calc(var(--p) * 2.2deg - 1deg))
+    scale(calc(1 - var(--p) * 0.035));
+  transition:
+    transform 0.8s cubic-bezier(0.3, 1.1, 0.4, 1),
+    opacity 0.5s;
+
+  // The deck advances on click, so these don't open the lightbox.
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    object-fit: cover;
+    pointer-events: none;
+  }
+}
+
+.cardTop::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: -60%;
+  z-index: 1;
+  width: 34%;
+  background: linear-gradient(100deg, transparent, rgba(255, 236, 170, 0.34), transparent);
+  transform: skewX(-14deg);
+  animation: band 6s ease-in-out infinite 1s;
+}
+
+.cardFly {
+  transform: translate(120%, -8%) rotate(16deg);
+  opacity: 0;
+}
+
+.deckControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+
+  button {
+    flex: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+
+    &:hover {
+      background: color-mix(in oklab, var(--primary) 35%, transparent);
+    }
+  }
+}
+
+.deckCap {
+  flex: 1;
+  min-height: 52px;
+  font-size: 15px;
+  text-align: center;
+
+  b {
+    display: block;
+    font-size: 16px;
+    color: var(--accent);
+  }
+
+  span {
+    font-size: 14px;
+    color: $muted;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fourDays *,
+  .garland *,
+  .divider *,
+  .tags *,
+  .routeWrap *,
+  .mission *,
+  .deckWrap * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .drop {
+    opacity: 1;
+    transform: none;
+  }
+}

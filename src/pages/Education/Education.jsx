@@ -4,59 +4,130 @@ import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import education from "../../content/en/education.md";
 import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import { CloneStepper, Tabs, MultiplierScale, ModuleIcon, RolePlay, LmoCheck } from "./components/Interactive";
+import {
+  CloneStepper,
+  Tabs,
+  MultiplierScale,
+  ModuleIcon,
+  LmoCheck,
+  DecisionScale,
+  ScoreTrack,
+} from "./components/Interactive";
 import { Principles, ProgramsGlance } from "./components/Overview";
 import MoratoriumDialogue from "./components/MoratoriumDialogue";
+import ThuwalHero from "./components/ThuwalHero";
+import {
+  FourDays,
+  PhotoGarland,
+  NameTag,
+  Astrolabe,
+  JeddahRoute,
+  MicrobeMission,
+  PhotoDeck,
+} from "./components/ThuwalOutreach";
 import styles from "./Education.module.scss";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// Kallpa's four course modules, pulled out of the markdown (education.md)
-// and into data here so they can be presented as switchable tabs (see
+// Kallpa's four course modules, presented as switchable tabs (see
 // components/Interactive.jsx's <Tabs>) instead of four stacked ####
-// subsections — the content itself is unchanged from what education.md
-// used to contain inline. One module per week, so the tabs are labelled by
-// week with the module name shown as the panel's heading.
+// subsections. Text is the Kallpa lead's final module write-up
+// (kallpa-mentorship HTML, Oct 2026). One module per week, so the tabs are
+// labelled by week with the module name shown as the panel's heading.
 const KALLPA_MODULES = [
   {
     key: "m1",
     label: "Week 1",
     icon: <ModuleIcon name="dna" />,
     title: "GMO fundamentals",
-    body: "We built a foundation in molecular biology, genetic modification and conventional breeding, covering DNA, the central dogma, genes, traits, gene expression and how genetic material is modified. Through examples, exercises and visual aids, we explained how genetic modification can produce specific changes and why different modifications give different results. This session gave everyone a shared scientific language.",
+    body: "In the first week, we began with the fundamentals of GMOs, establishing a foundation in molecular biology, genetic modification and conventional breeding. Volunteers learned concepts related to DNA, the central dogma of molecular biology, genes, traits, gene expression and the modification of genetic material. Through examples, exercises and visual aids, we explained how genetic modification can produce specific changes and why different modifications can yield different results. This initial session allowed us to establish a common scientific language and communication channel.",
   },
   {
     key: "m2",
     label: "Week 2",
     icon: <ModuleIcon name="apple" />,
-    title: "Agriculture and food",
-    body: "We applied those fundamentals to agriculture, exploring crop modification techniques and traits such as pest resistance and tolerance to extreme conditions. We focused on a crop that matters to local farming communities, the tomato. Volunteers analyzed the microorganisms that cause tomato diseases, how they spread, their symptoms and why they are hard to control. We then introduced greenhouses, which Kallpa Greenz builds across Peru. Together, volunteers worked through one question: how can we use biological knowledge to solve a problem a farmer actually faces?",
+    title: "Biotechnology on the farm",
+    body: "In the second week, we took those scientific fundamentals and applied them to the agricultural and food sectors. We explored various crop modification techniques and the traits that can be altered, such as pest resistance, tolerance to extreme environmental conditions and other characteristics of agricultural interest. To provide context, we focused on a crop of particular importance to local farming communities: the tomato. Volunteers analyzed the microorganisms that cause disease, transmission methods, symptoms, and the reasons why certain diseases are difficult to control. Building on this, we introduced the role of greenhouses, a key tool that Kallpa Greenz constructs in various regions across Peru. This session enabled us to address the question: how can we use biological knowledge to solve a problem faced by a farmer? The volunteers identified the problem, understood its cause, analyzed strategies and evaluated biotechnological solutions.",
   },
   {
     key: "m3",
     label: "Week 3",
     icon: <ModuleIcon name="rocket" />,
     title: "Emerging technologies",
-    body: "We expanded into gene editing and CRISPR, controlled-environment agriculture and food production in space, linking them to space biomanufacturing and the biological systems space missions depend on. This connected Kallpa's hydroponics work to our own project, SHIHAB.",
+    body: "In a subsequent session, the scope was expanded to include emerging technologies and new application contexts. Concepts such as gene editing and CRISPR were introduced. We also explored topics related to controlled-environment agriculture and food production in space. We linked these concepts to space biomanufacturing, examining biological systems and other products essential for space missions.",
   },
   {
     key: "m4",
     label: "Week 4",
     icon: <ModuleIcon name="justice" />,
-    title: "Law, ethics and society",
-    body: "We examined the Peruvian laws and organizations involved in GMO decision-making. In role-playing activities, volunteers represented consumers, farmers, indigenous communities, scientists and other groups. We discussed farmers' rights, regulation, and ethical and social concerns, so participants could weigh these perspectives and form their own informed opinions.",
+    title: "Law, voices and ethics",
+    body: "Finally, we examined the various Peruvian laws and organizations involved in decision-making regarding GMOs. We explored different perspectives through role-playing activities representing consumers, farmers, indigenous communities, scientists and other relevant groups. We also addressed farmers' rights, GMO regulation, and ethical and social concerns. Ultimately, we provided the participants with the information and tools needed to evaluate these diverse perspectives and form their own informed opinions.",
   },
 ];
 
-// The role-play from Week 4 (Law, ethics and society): the question each
-// role brings to the GMO debate. Shown after the module tabs.
-const ROLE_PLAY_VOICES = [
-  { key: "consumers", role: "Consumers", question: "Is it safe to eat? Will labels tell me what I am buying?" },
-  { key: "farmers", role: "Farmers", question: "Will it protect my crops, cut costs, and keep my rights over seeds?" },
-  { key: "indigenous", role: "Indigenous", question: "How does it affect our lands, seeds and traditional knowledge?" },
-  { key: "scientists", role: "Scientists", question: "What does the evidence say, and how do we communicate the limits?" },
+// Kallpa post-mentorship survey (8 volunteers), reported 0–5 scores — one
+// value per item, as the Kallpa lead specified (not ranges).
+const KALLPA_SCIENCE_SCORES = [
+  { label: "Clarity of CRISPR, CRISPRi, RNAi and GMO concepts", value: 4 },
+  { label: "Ability to explain concepts to non-scientific audiences", value: 4 },
+  { label: "Appropriateness of technical level", value: 4.5 },
+  { label: "Relevance of real-world examples", value: 4 },
 ];
+
+const KALLPA_FIELD_SCORES = [
+  { label: "Explaining GMO benefits and risks in a balanced way", value: 4.25 },
+  { label: "Answering questions about food safety", value: 3.75 },
+  { label: "Discussing GMO regulation in Peru", value: 3.5 },
+  { label: "Facilitating informed decision-making", value: 4 },
+  { label: "Responding to concerns or distrust", value: 4 },
+];
+
+// Interactive blocks dropped into the Kallpa section at
+// `<!-- kallpa:<name> -->` markers in education.md, so the markdown keeps
+// control of where each one sits in the reading order.
+const KALLPA_BLOCKS = {
+  dialogue: (
+    <>
+      <MoratoriumDialogue />
+      <LmoCheck />
+    </>
+  ),
+  modules: (
+    <>
+      <h3>The four modules</h3>
+      <Tabs items={KALLPA_MODULES} ariaLabel="Course modules" />
+    </>
+  ),
+  scale: <DecisionScale />,
+  science: <ScoreTrack title="Dimension 01 · Scientific understanding" items={KALLPA_SCIENCE_SCORES} />,
+  field: <ScoreTrack title="Dimension 02 · Preparation for field communication" items={KALLPA_FIELD_SCORES} />,
+  reach: <MultiplierScale />,
+};
+
+const SCHOOL_BLOCKS = {
+  "thuwal-hero": <ThuwalHero />,
+  days: <FourDays />,
+  garland: <PhotoGarland />,
+  nametag: <NameTag />,
+  astrolabe: <Astrolabe />,
+  route: <JeddahRoute />,
+  mission: <MicrobeMission />,
+  deck: <PhotoDeck />,
+};
+
+// Splits rendered markdown at `<!-- <prefix>:<name> -->` markers and
+// interleaves the matching blocks entry at each one.
+function interleaveBlocks(html, blocks, prefix) {
+  const parts = html.split(new RegExp(`<!--\\s*${prefix}:([\\w-]+)\\s*-->`));
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <div key={i}>{blocks[part]}</div>
+    ) : (
+      <div key={i} dangerouslySetInnerHTML={{ __html: part }} />
+    ),
+  );
+}
 
 // Attaches rich per-section JSX (SectionedArticle/Article.jsx's `content`
 // prop) to specific education.md sections by title, alongside their
@@ -72,27 +143,18 @@ function withInteractiveContent(sections) {
     if (section.title === "Copy Paste Plants") {
       return { ...section, content: <CloneStepper /> };
     }
-    if (section.title === "Kallpa Multiplier Mentorship (Peru)") {
-      // The dialogue belongs right after the "Context" subsection, so the
-      // rendered markdown is split at the next <h3> ("What We Identified")
-      // and the rest is re-rendered after it.
-      const firstH3 = section.html.indexOf("<h3");
-      const splitAt = section.html.indexOf("<h3", firstH3 + 1);
-      const cut = splitAt === -1 ? section.html.length : splitAt;
+    if (section.title === "School Outreach") {
       return {
         ...section,
-        html: section.html.slice(0, cut),
-        content: (
-          <>
-            <MoratoriumDialogue />
-            <LmoCheck />
-            <div dangerouslySetInnerHTML={{ __html: section.html.slice(cut) }} />
-            <MultiplierScale />
-            <h3>The four modules</h3>
-            <Tabs items={KALLPA_MODULES} ariaLabel="Course modules" />
-            <RolePlay items={ROLE_PLAY_VOICES} />
-          </>
-        ),
+        html: "",
+        content: <>{interleaveBlocks(section.html, SCHOOL_BLOCKS, "school")}</>,
+      };
+    }
+    if (section.title === "Kallpa Multiplier Mentorship (Peru)") {
+      return {
+        ...section,
+        html: "",
+        content: <>{interleaveBlocks(section.html, KALLPA_BLOCKS, "kallpa")}</>,
       };
     }
     return section;

@@ -300,7 +300,7 @@ const PROGRAMS = [
   {
     id: "school-outreach",
     title: "School Outreach",
-    audience: "Secondary school students",
+    audience: "Middle and high school students",
     icon: (
       <>
         {[0, 1, 2].map((k) => (

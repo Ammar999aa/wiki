@@ -1402,8 +1402,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   //
   //   </details>
   // Inline PDF reader (browser's built-in viewer), meant to sit inside a
-  // .details-body. Height stays well under .details[open]'s 800px max-height
-  // cap so the frame plus its fallback "Open PDF" button never get clipped.
+  // .details-body.
   :global(.pdf-viewer) {
     display: block;
     width: 100%;
@@ -1476,11 +1475,10 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   }
 
   :global(.details[open]) :global(.details-body) {
-    // A generous fixed cap rather than the real content height —
-    // Article.jsx animates toward the real scrollHeight directly, so
-    // this only needs to comfortably exceed it as the resting state
-    // once the animation hands back off to plain CSS.
-    max-height: 800px;
+    // No cap: Article.jsx animates toward the real scrollHeight, then
+    // hands back to this resting state. A fixed cap (it was 800px) clipped
+    // anything taller, e.g. science-communication.md's Instagram tables.
+    max-height: none;
     opacity: 1;
     padding-bottom: 14px;
   }
