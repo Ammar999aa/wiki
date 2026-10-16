@@ -395,31 +395,112 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
-  // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
-  //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
-  //
-  //   ![alt text](src)
-  //
+  // A photo carousel: photoCarousel.js turns this row of 4:3 photos into an
+  // endless, auto-advancing carousel with prev/next arrows and
+  // trackpad-swipe/drag support (autoplay off for reduced motion). Without JS it stays a plain
+  // scroll-and-snap row. The current photo sits centered with the edges of its
+  // neighbours showing. Clicking a photo opens it in the Lightbox.
+  //   <div class="photo-slider">
+  //   <img src="..." alt="..." loading="lazy">
   //   </div>
-  :global(.crop-frame) {
-    aspect-ratio: var(--crop-ratio, 4 / 3);
-    overflow: hidden;
-    border-radius: var(--radius-sm);
-    margin-block: 20px;
+  :global(.photo-slider) {
+    // Slide width; the current slide snaps to the center with the edges of
+    // the previous and next ones showing either side. The inline padding
+    // (half the leftover width) lets the first and last slides center too.
+    --slide: min(300px, 64vw);
 
-    // `marked` wraps images in <p>; the img's height: 100% needs it sized too.
-    p {
-      height: 100%;
+    display: flex;
+    gap: 12px;
+    margin-block: 20px;
+    padding: 0 calc(50% - var(--slide) / 2) 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+
+    img {
+      flex: 0 0 var(--slide);
       margin: 0;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      scroll-snap-align: center;
+    }
+  }
+
+  // Carousel mode, set by photoCarousel.js: the photos sit in a track that
+  // slides sideways (transform), so the row itself no longer scrolls.
+  :global(.photo-slider.is-carousel) {
+    position: relative;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
     }
 
     img {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      object-fit: cover;
-      object-position: var(--crop-pos, center);
+      width: var(--slide);
+      height: auto;
+      cursor: inherit;
     }
+  }
+
+  :global(.photo-slider-track) {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: max-content;
+    will-change: transform;
+  }
+
+  // Prev/next arrows on the carousel's edges, over the peeking neighbours.
+  :global(.photo-slider-btn) {
+    all: unset;
+    position: absolute;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: white;
+    background: rgba(10, 10, 39, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    translate: 0 -50%;
+    transition:
+      background 150ms ease,
+      border-color 150ms ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in oklab, var(--primary) 45%, rgba(10, 10, 39, 0.8));
+      border-color: color-mix(in oklab, var(--primary) 70%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-300);
+      outline-offset: 2px;
+    }
+  }
+
+  :global(.photo-slider-btn.prev) {
+    left: 8px;
+  }
+
+  :global(.photo-slider-btn.next) {
+    right: 8px;
   }
 
   // Mats a photo/render whose own background is opaque light/white
@@ -1784,6 +1865,26 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     max-width: 290px;
     height: auto;
     margin: 4px 0 2px;
+  }
+
+  // An <img> illustration (transparent PNG/AVIF) in place of an inline SVG:
+  // a fixed height keeps the art, and so the hints below it, level across a
+  // row of cards whatever each image's own aspect ratio. Clicks open the
+  // card's popup (Article.jsx checks .popup-open before the Lightbox).
+  img:global(.popup-art) {
+    height: 130px;
+    object-fit: contain;
+    border-radius: 0;
+    cursor: inherit;
+  }
+
+  // Beside a .popup-num, widen the image box back over the number column
+  // (30px number + 14px gap) so object-fit centers the art on the whole
+  // card rather than on the text column.
+  :global(.popup-num) + :global(.popup-face) > img:global(.popup-art) {
+    width: calc(100% + 44px);
+    max-width: none;
+    margin-left: -44px;
   }
 
   :global(.popup-hint) {

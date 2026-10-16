@@ -12,9 +12,28 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // used to sit at this URL is now its own page, Project → Protein Library
 // (/protein-library), linked from the "A library of protein payloads" card.
 //
-// Eyebrow only, no deck: the deck would be new copy, and the page's own
-// opening paragraph already does that job.
-const intro = <Masthead eyebrow={["Project", "Description"]} />;
+// Deck is copied verbatim from the draft's opening paragraph; stats are the
+// draft's headline-number strip, with labels from the team's comment on it.
+const intro = (
+  <Masthead
+    eyebrow={["Project", "Description"]}
+    deck={
+      <>
+        <strong>SHIHAB</strong> (Synthetic Hosts for In-situ Healthcare and Autonomous Biomanufacturing) explores a new
+        approach to space healthcare by combining resilient microbial hosts with a compact, autonomous platform for
+        biological production and purification. Our goal is to enable the on-demand production of selected biologics
+        during long-duration space missions, supporting greater medical autonomy beyond Earth.
+      </>
+    }
+    stats={[
+      { value: "3", label: "Engineered microbial chassis" },
+      { value: "19", label: "Stress-response gene candidates" },
+      { value: "8", label: "Protein payloads" },
+      { value: "1", label: "Bioreactor prototype" },
+      { value: "30+", label: "IHP & Public Engagement" },
+    ]}
+  />
+);
 
 export default function ProjectDescription() {
   return (

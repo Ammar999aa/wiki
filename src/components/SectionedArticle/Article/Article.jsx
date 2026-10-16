@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Lightbox from "../Lightbox/Lightbox";
 import PersonModal from "../PersonModal/PersonModal";
+import photoCarousel from "./photoCarousel";
 
 // Where a person popup was when one of its links was followed, so Back can
 // bring the reader to the same spot with the popup open again.
@@ -74,6 +75,15 @@ function toggleDetails(details, body, anims) {
     if (!opening) details.open = false; // deferred so the glyph stays "–" until the collapse actually finishes
   };
 }
+
+// A section's markdown HTML. Memoized so it only re-renders when the HTML
+// itself changes: React 19 re-applies `innerHTML` whenever this element
+// re-renders with a fresh `dangerouslySetInnerHTML` object, which happened
+// on every scroll-driven panel update and wiped any DOM the effects below
+// had built inside it (photoCarousel's carousel, opened <details>).
+const SectionHtml = memo(function SectionHtml({ html }) {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+});
 
 export default function ArticleBody({ title, intro, sections, sectionRefs }) {
   const [zoomed, setZoomed] = useState(null); // { src, alt } | null
@@ -224,6 +234,15 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
     return () => root.removeEventListener("click", onCiteClick);
   }, []);
 
+  // `.photo-slider` rows become endless, auto-advancing carousels (see
+  // photoCarousel.js). Rerun when the sections' HTML changes.
+  useEffect(() => {
+    const root = articleRef.current;
+    if (!root) return undefined;
+    const cleanups = [...root.querySelectorAll(".photo-slider")].map(photoCarousel);
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, [sections]);
+
   return (
     <div ref={articleRef} className={styles.article} onClick={onClick}>
       {title && <h1 className={styles.pageTitle}>{title}</h1>}
@@ -236,9 +255,7 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
           data-title={section.title}
         >
           <h2>{section.title}</h2>
-          {section.html && (
-            <div dangerouslySetInnerHTML={{ __html: section.html }} />
-          )}
+          {section.html && <SectionHtml html={section.html} />}
           {section.content}
         </div>
       ))}

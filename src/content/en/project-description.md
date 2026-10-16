@@ -1,55 +1,10 @@
-## Project overview
+## The problem: Medicine beyond Earth
 
-As humanity prepares for longer and more ambitious space missions, ensuring astronauts' health and well-being becomes increasingly important. Missions such as NASA's Expedition 75 and future exploration initiatives around the Moon highlight the growing role of astronauts in conducting scientific research beyond Earth <a class="cite" href="#ref-1">1</a>,<a class="cite" href="#ref-2">2</a>. However, as missions extend farther from our planet, crews will face new challenges, including limited access to medical supplies and increasingly difficult resupply operations.
+As humanity prepares for longer and more ambitious space missions, ensuring that astronauts' health and well-being are supported throughout these journeys becomes even more important. Missions such as NASA's Expedition 75 and future Lunar exploration initiatives highlight the growing role of astronauts in conducting scientific research beyond Earth <a class="cite" href="#ref-1">1</a>,<a class="cite" href="#ref-2">2</a>. Today, astronauts aboard the International Space Station (ISS) have access to medical supplies containing medications for various anticipated health conditions. These can be replenished through cargo missions, and evacuation to Earth in case of a serious medical emergency remains possible. However, greater distances and longer mission durations will make these support systems difficult to rely on as exploration extends toward the Moon, Mars, and beyond <a class="cite" href="#ref-3">3</a>,<a class="cite" href="#ref-4">4</a>.
 
-<div class="callout accent question">
-
-How can synthetic biology help support astronauts during long-duration space missions?
-
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/astronaut-medkits.webp" alt="An astronaut aboard the ISS with medical kits floating around him" loading="lazy"><figcaption class="caption">Image credit: <a href="https://www.nasa.gov/ochmo/" target="_blank" rel="noopener noreferrer">NASA</a> (public domain)</figcaption></figure>
 </div>
-
-<div class="popup-grid three sequence">
-
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">Engineering microorganisms for space</span><span class="popup-hint">Tap to read more</span></span></button>
-<div class="popup-more">
-
-Our initial approach focused on engineering microorganisms capable of functioning under space-associated environmental stressors. We selected *Bacillus subtilis*, *Saccharomyces cerevisiae*, and *Pichia pastoris* as promising microbial chassis due to their established applications in biotechnology.
-
-To explore strategies for improving resilience, we integrated Dsup in our chassis, a DNA-associated protein found in tardigrades that can protect against radiation-induced damage. Inspired by Saudi Arabia's Rub' al Khali desert, our dry-lab team also developed a gene-mining pipeline that identified 19 candidate genes associated with stress responses, including DNA repair, cold-shock adaptation, and desiccation tolerance.
-
-Our objective was to develop microbial hosts with the potential to support reliable biological production under challenging environmental conditions.
-
-</div>
-</div>
-
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">2</span><span class="popup-face"><span class="popup-title">A library of protein payloads</span><span class="popup-hint">Tap to read more</span></span></button>
-<div class="popup-more">
-
-<p><span class="hl">Astronauts rely on medications transported from Earth, which may become increasingly difficult to replenish during longer missions.</span></p>
-
-We explored whether our engineered microorganisms could function as biological factories, producing therapeutic proteins and other biologics directly in space. We designed a library of protein payloads with potential applications in astronaut health and biotechnology. Our selection included therapeutic candidates such as nanobodies targeting infectious diseases and pathways associated with bone loss and muscle wasting.
-
-<p><a class="person-link-btn" href="/kaust-ksa/protein-library">Our Protein Library →</a></p>
-
-</div>
-</div>
-
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">3</span><span class="popup-face"><span class="popup-title">From biological production to automation</span><span class="popup-hint">Tap to read more</span></span></button>
-<div class="popup-more">
-
-Producing biologics requires more than a resilient microbial host. Microorganisms must grow under controlled conditions, their production must be monitored and induced, and the resulting biomolecules must be recovered and purified. Performing these steps manually would place additional demands on astronauts, whose time and resources are already limited. To address this, we envisioned a compact, autonomous biomanufacturing platform integrating engineered microorganisms with a bioreactor and automated downstream purification. Designed with spaceflight constraints in mind, the system aims to minimize crew intervention through sensor-based monitoring, automated control of cultivation conditions, induction of protein production, and purification of the resulting biologics.
-
-</div>
-</div>
-
-</div>
-
-## Medicine beyond Earth
-
-On the International Space Station (ISS), astronauts have access to medical kits containing medications for a range of anticipated health conditions. These supplies can be replenished through cargo missions, and emergency evacuation to Earth remains possible. However, future missions to the Moon, Mars, and beyond will operate under very different conditions. Greater distances, longer mission durations, and limited opportunities for resupply will make it increasingly difficult to ensure that astronauts have access to safe and effective medications throughout their journey <a class="cite" href="#ref-3">3</a>,<a class="cite" href="#ref-4">4</a>.
 
 <div class="popup-grid three">
 
@@ -82,27 +37,81 @@ Every kilogram and cubic centimeter aboard a spacecraft matters. Medical supplie
 
 </div>
 
-The farther astronauts travel from Earth, the more difficult it becomes to depend exclusively on medicines manufactured, stored, and transported from our planet. Ensuring access to healthcare during future exploration missions may therefore require new approaches that complement conventional pharmaceutical supplies and give astronauts greater independence from Earth-based infrastructure.
+## Our approach: In-situ biomanufacturing
 
-## Rethinking space healthcare
+We developed SHIHAB to explore a new approach to space healthcare, where astronauts could produce selected biologics on demand rather than relying completely on conventional pharmaceutical supplies. In this regard, we aim to give astronauts greater independence from Earth-based infrastructure during long-duration missions.
 
-<span class="hl">In-situ biomanufacturing offers a different approach.</span> Rather than depending exclusively on a fixed inventory of finished pharmaceuticals, biological production systems could enable the manufacture of selected therapeutic molecules during a mission.
+Click on the tree cards below to explore SHIHAB’s key components.
 
-<!-- "How SHIHAB works / Our solution" goes here. In the draft it is still
-     only the iGEM template prompts (green placeholders), so it isn't
-     rendered yet — see ProjectdescriptionDraft.html. -->
+<div class="popup-grid three sequence">
+
+<div class="popup-card">
+<button type="button" class="popup-open"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">Engineering microorganisms for space</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/organisms.avif" alt="Illustration of microorganisms" loading="lazy"><span class="popup-hint">Tap to read more</span></span></button>
+<div class="popup-more">
+
+Our approach focuses on engineering microbial hosts capable of functioning under space-associated environmental stressors, including ionizing radiation, oxidative stress, and temperature fluctuations. We selected *Bacillus subtilis*, *Saccharomyces cerevisiae*, and *Pichia pastoris* as promising chassis due to their established applications in biotechnology. To improve their resilience, we genomically integrated Dsup, a DNA-associated protein found in tardigrades that has demonstrated protective effects against radiation-induced DNA damage and oxidative stress. We also propose preserving the microorganisms in compact formats, such as lyophilized preparations or spores where biologically appropriate, until needed for protein production.
+
+<figure class="person-figure" style="max-width: 220px; margin-inline: auto;"><img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/tardigrades.avif" alt="Illustration of a tardigrade" loading="lazy"></figure>
+
+Additionally, inspired by the extreme conditions of Saudi Arabia's Rub' al Khali desert, our dry-lab team developed a gene-mining pipeline that identified 19 candidate stress-response genes associated with DNA repair, cold-shock adaptation, and desiccation tolerance.
+
+<figure class="person-figure"><img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/rub-al-khali-sunset-nov-2007.avif" alt="Sand dunes of the Rub' al Khali desert at sunset" loading="lazy"><figcaption class="caption">Photo: <a href="https://commons.wikimedia.org/wiki/File:Rub_al_khali_sunset_Nov_2007.jpg" target="_blank" rel="noopener noreferrer">Javierblas / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></figcaption></figure>
+
+<p><span class="hl">We aimed to develop robust and resilient microbial hosts capable of supporting reliable biomanufacturing under challenging environmental conditions.</span></p>
+
+<p><a class="person-link-btn" href="/kaust-ksa/design">Our Wet Lab Design →</a></p>
+
+</div>
+</div>
+
+<div class="popup-card">
+<button type="button" class="popup-open"><span class="popup-num">2</span><span class="popup-face"><span class="popup-title">A library of protein payloads</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/proteins.avif" alt="Illustration of protein structures" loading="lazy"><span class="popup-hint">Tap to read more</span></span></button>
+<div class="popup-more">
+
+<p><span class="hl">Astronauts rely on medications transported from Earth, which may become increasingly difficult to replenish during farther missions.</span></p>
+
+Our engineered microorganisms are intended to function as biological factories capable of producing therapeutic proteins and other valuable biomolecules for space applications. To explore this potential, we developed a library of protein payloads with applications in astronaut health, scientific research, and biotechnology.
+
+Our library includes therapeutic nanobodies, such as anti-PD-L1 and Nb1_gbHSV, targeting immune checkpoint pathways and herpes simplex virus, respectively; antifreeze proteins from the Antarctic bacterium *Flavobacterium frigoris* and Arctic yeast *Leucosporidium* sp. AY30, with potential applications in cryopreservation; and fluorescent reporters, including GFP and mCherry, to evaluate our expression systems. The system is not limited to these payloads, future works will include expressing other therapeutic candidates, such as proteins related to treatment of muscle atrophy and bone loss.
+
+<p><a class="person-link-btn" href="/kaust-ksa/protein-library">Our Protein Library →</a></p>
+
+</div>
+</div>
+
+<div class="popup-card">
+<button type="button" class="popup-open"><span class="popup-num">3</span><span class="popup-face"><span class="popup-title">From biological production to automation</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/suitcase.avif" alt="Illustration of a compact biomanufacturing platform in a case" loading="lazy"><span class="popup-hint">Tap to read more</span></span></button>
+<div class="popup-more">
+
+Efficient expression and purification of proteins require much more than engineering of the chassis. Microorganisms must grow under controlled favourable conditions, payload production must be monitored and induced, and the resulting molecules must be recovered and purified. Performing these steps manually would place additional demands on astronauts, whose time and resources are already limited. Moreover, it is highly costly and challenging to establish a whole laboratory with centrifuges, purification machines, and other equipment in a spacecraft.
+
+<span class="hl">To address this, we designed a compact, autonomous biomanufacturing platform that integrates a bioreactor and automated downstream purification system.</span> Designed with spaceflight constraints in mind, the system aims to minimize crew intervention through sensor-based monitoring, automated control of cultivation conditions, induction of protein production, and purification of the resulting biologics.
+
+<p><a class="person-link-btn" href="/kaust-ksa/hardware">Our Hardware →</a></p>
+
+</div>
+</div>
+
+</div>
 
 ## Beyond the lab: Shaping SHIHAB together
+
+<div class="photo-slider">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/meetingall.avif" alt="Integrated Human Practices: Exploring the Unknown" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/sarah-meeting.avif" alt="Integrated Human Practices: Finding Our Direction" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/rayannah-meet.avif" alt="Integrated Human Practices: Listening to Astronauts &amp; Space Medicine" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/luis-meeting.avif" alt="Integrated Human Practices: Engineering Microorganisms for Space" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/andrew-meeting.avif" alt="Integrated Human Practices: Looking Back at Earth" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/pe-activity.avif" alt="Integrated Human Practices: Engaging Society" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/pe-activity-1.avif" alt="Public engagement event audience in front of a stage screen" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/impact.avif" alt="Integrated Human Practices: Anticipating Our Impact" loading="lazy">
+</div>
 
 Developing SHIHAB required us to look beyond the laboratory and understand the people, environments, and communities our technology could eventually serve. Through our <a href="/kaust-ksa/human-integrated-practices">Integrated Human Practices</a>, we engaged with astronauts, space medicine professionals, scientists, industry representatives, and regulatory experts, whose perspectives helped us reconsider our priorities, identify limitations, and guide decisions throughout the project's development.
 
 But responsible innovation also requires involving society in discussions about emerging biotechnologies. Through the Tawasol Hackathon, 186 students explored biosafety, public trust, ethics, and accountability. The Tawasol Summit brought together iGEM teams from four countries to discuss regional perceptions of synthetic biology, while our collaboration with Kallpa Greenz in Peru explored community concerns surrounding genetic engineering and supported educational initiatives for rural communities. Alongside these initiatives, our Space Academy and mentorship activities aimed to make space science and biotechnology more accessible, encouraging the next generation to explore, question, and contribute to scientific innovation.
 
-<div class="callout accent">
-
 Our efforts gave us an important lesson, responsible innovation requires more than technological progress. It also relies on education, open dialogue, and the active participation of the communities that emerging technologies may one day impact.
-
-</div>
 
 ## Our vision
 

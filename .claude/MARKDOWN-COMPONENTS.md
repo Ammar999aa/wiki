@@ -77,6 +77,7 @@ be none — see `.flow` below).
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
 | A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
 | A set of event photos shown together as a gallery                                                              | `.gallery`                                                      | Even grid of 4:3-cropped thumbnails, each opens full-size in the lightbox |
+| A run of photos that should take one row's height, not a whole grid                                             | `.photo-slider`                                                 | Auto-advancing carousel, centered photo with its neighbours peeking in   |
 | A short ranked/staged list where each item also jumps to its own section                                       | `.ladder` (+ `.ladder-axis`)                                    | Row of clickable cards, graduated height                                  |
 | An event with a headline number worth leading with, linking to its own heading                                 | `.tickets` (+ `.ticket`/`.ticket-main`/`.ticket-stub`)          | Card split into info + a dashed "stub" showing the number                 |
 | One featured piece of media (a podcast, a video) that deserves more than a plain paragraph                     | `.pod`                                                          | Icon beside a name and one-line description                               |
@@ -755,7 +756,7 @@ the same bar `.ladder` and `.tickets` hold their own numbers to.
 
 ## Layout utilities
 
-Four more classes exist in the same stylesheet. They're layout
+Five more classes exist in the same stylesheet. They're layout
 primitives rather than typed content components — no tone, no label, just
 column arrangement — so they're grouped separately here, but they're just
 as available.
@@ -782,6 +783,24 @@ uncropped image in the lightbox. See the end of `education.md`.
 
 ```md
 <div class="gallery">
+<img src="https://static.igem.wiki/..." alt="..." loading="lazy">
+<img src="https://static.igem.wiki/..." alt="..." loading="lazy">
+</div>
+```
+
+**`.photo-slider`** — the same plain `<img>` tags as `.gallery`, turned
+into an endless carousel by `Article/photoCarousel.js`: the current photo
+centered (300px wide) with the edges of the previous and next ones showing,
+advancing every 3.5 s and wrapping from the last photo straight to the
+first. Readers move it with prev/next arrows, a trackpad swipe, or a
+touch/mouse drag; autoplay waits 6 s after the reader moves it, stops in a
+background tab, and is off for readers with reduced motion turned on. Without JS it falls back
+to a plain scroll-and-snap row. Use it when a set of photos should sit
+above or beside prose without pushing it far down the page (see
+project-description.md's "Beyond the lab").
+
+```md
+<div class="photo-slider">
 <img src="https://static.igem.wiki/..." alt="..." loading="lazy">
 <img src="https://static.igem.wiki/..." alt="..." loading="lazy">
 </div>
