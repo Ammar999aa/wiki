@@ -51,6 +51,7 @@ const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModel
 const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
 const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribution"));
+const Judging = lazyWithPreload(() => import("./pages/Judging/Judging"));
 const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
@@ -198,6 +199,9 @@ const Pages = [
     // Software award would think to check.
     name: "Awards",
     folder: [
+      // Medal criteria checklist for judges (Bronze/Silver/Gold), from the
+      // team's judging page draft — src/pages/Judging/Judging.jsx.
+      { name: "Judging", title: "Judging", path: "/judging", component: Judging },
       { name: "Engineering", title: "Engineering", path: "/engineering", component: Stub },
       { name: "Entrepreneurship", title: "Entrepreneurship", path: "/entrepreneurship", component: Stub },
       { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
