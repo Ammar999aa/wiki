@@ -234,7 +234,7 @@ Our initial research identified access to medicines as a potential challenge for
 
 To better understand these questions, we spoke with professionals whose experiences covered different aspects of human health and research in space: astronaut operations, space medicine, astronaut healthcare, and aerospace medicine. Through these conversations, we explored the medical needs of astronauts, the resources currently available to them, the practical limitations of conducting biological experiments in space, and the conditions our microorganisms would eventually need to withstand.
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/starr.avif" alt="Starr Corbin" style="--photo-x: 55%; --photo-y: 26%; --photo-zoom: 2.6;">
 <h4 class="person-name">Starr Corbin</h4>
 <p>Our discussion with Starr Corbin, a registered nurse with experience in human factors and aerospace research, helped us move from understanding medicine as a general challenge to examining the actual healthcare needs and resources available to astronauts. Her clinical perspective allowed us to explore what medical care looks like when crews operate in a remote and resource-limited environment.</p>
@@ -257,7 +257,7 @@ To better understand these questions, we spoke with professionals whose experien
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <div class="person-photos">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/konstantinos.avif" alt="Konstantinos Vergos" style="--photo-x: 45%; --photo-zoom: 1.4;">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/akshay.avif" alt="Dr. Akshay Chandrashekhar" style="--photo-zoom: 1.3;">
@@ -284,7 +284,7 @@ To better understand these questions, we spoke with professionals whose experien
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rayannah.avif" alt="Rayyanah Barnawi" style="--photo-x: 37%; --photo-zoom-y: 2%; --photo-zoom: 1.6;">
 <h4 class="person-name">Rayyanah Barnawi</h4>
 <p>Our conversation with Rayyanah Barnawi, Saudi Arabia's first female astronaut and a biomedical researcher, provided an operational perspective on how a biological production system would need to function beyond the laboratory. Her experience conducting scientific research aboard the ISS helped us consider constraints that were not immediately apparent from literature alone.</p>
@@ -321,7 +321,7 @@ However, natural resilience alone would not necessarily make an organism suitabl
 
 In parallel, we explored extremotolerant organisms as potential sources of protective mechanisms that could be introduced into our chassis. Tardigrades were particularly interesting because of their ability to enter cryptobiotic states and tolerate stresses such as severe dehydration and high levels of radiation. Some tardigrade species have even survived direct exposure to the space environment while in a desiccated state. Reports of tardigrade species along the Arabian Gulf coast of Saudi Arabia also made them particularly interesting within our regional context <a class="cite" href="#ref-21">21</a>.
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rosado.avif" alt="Prof. Alexandre Rosado">
 <h4 class="person-name">Prof. Alexandre Rosado</h4>
 <p>To guide our chassis selection, we met with Professor Alexandre Rosado, a microbial ecologist at KAUST whose research focuses on extremophiles, microbial biotechnology, and astrobiology. Professor Rosado helped us evaluate our initial candidates from both a biological and practical perspective. Our discussion covered the advantages of working with established model organisms, the challenges associated with less-characterized extremophiles, and how his laboratory's collection of stress-resistant isolates and planetary simulation facilities could support the experimental development of SHIHAB.</p>
@@ -345,7 +345,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/mason.avif" alt="Dr. Christopher E. Mason">
 <h4 class="person-name">Dr. Christopher E. Mason</h4>
 <p>After selecting our initial chassis, our next question was how we could make them more resilient to space-related stresses. To explore this, we met with Dr. Christopher E. Mason from Weill Cornell Medicine, whose research combines genomics, computational biology, synthetic biology, and human spaceflight research. Of particular interest to us was his group's research on Dsup (Damage suppressor), a protein originally identified in tardigrades. Previous work involving Dr. Mason demonstrated the potential of Dsup to reduce radiation-associated damage when expressed in human cells, while subsequent studies have shown that Dsup expression can also reduce oxidative DNA damage in <em>Saccharomyces cerevisiae</em>.</p>
@@ -372,7 +372,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/luis.avif" alt="Dr. Luis Zea">
 <h4 class="person-name">Dr. Luis Zea</h4>
 <p>As our chassis engineering strategy developed, we spoke with Dr. Luis Zea from the University of Colorado Boulder, whose research focuses on how microorganisms behave during spaceflight and how biological systems can support future space exploration. His experience includes multiple spaceflight experiments and the NASA Deep Space Radiation Genomics experiment aboard Artemis I.</p>
@@ -398,7 +398,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/kimberly.avif" alt="Kimberly Washington">
 <h4 class="person-name">Deep Space Biology — Kimberly Washington</h4>
 <p>We consulted Kimberly Washington to strengthen SHIHAB's scientific approach and assess its feasibility for real space missions. She encouraged us to draw on existing NASA research and address practical considerations such as hardware integration, system cleaning, production time, cost, and component availability. She also highlighted the importance of automation, real-time monitoring, biosafety, power efficiency, and understanding microbial responses to space-related stresses.</p>
@@ -431,7 +431,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/savi.avif" alt="Savi Glowe">
 <h4 class="person-name">BIOASTRA — Savi Glowe</h4>
 <p>Savi Glowe, CEO of BIOASTRA, helped us look beyond our current experiments and consider the evidence SHIHAB would need before progressing toward a spaceflight demonstration. Our discussion covered the long-term stability of engineered microorganisms, therapeutic validation, regulatory considerations, and how biological technologies can move progressively from ground testing toward space.</p>
@@ -454,7 +454,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/incognito.svg" alt="Sarah Al Harbi">
 <h4 class="person-name">Sarah Al Harbi</h4>
 <p>We met with Sarah Al Harbi, whose experience managing projects at the Saudi Space Agency gave us a mission-level perspective on SHIHAB. While our work had focused primarily on biological performance and validation, Sarah introduced another layer of requirements: integration into an actual space mission.</p>
@@ -481,7 +481,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/rodion.avif" alt="KAUST Health, Safety &amp; Environment representative">
 <h4 class="person-name">Health, Safety &amp; Environment (HSE) at KAUST</h4>
 <p>Engineering microorganisms for SHIHAB also meant taking responsibility for what could happen if something went wrong. Accidental exposure, containment failure, improper disposal, or unintended release all had to be considered alongside the intended function of our system.</p>
@@ -508,7 +508,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/wijdan.avif" alt="Dr. Wijdan Al-Ahmadi">
 <h4 class="person-name">Dr. Wijdan Al-Ahmadi</h4>
 <p>During the early stages of our project, we consulted Dr. Wijdan Al-Ahmadi to assess the feasibility of our initial concept, which included oxygen production for space applications. She raised important questions about bioreactor size, production capacity, oxygen quality, and the practical challenges of operating such a system on Mars. She also emphasized the importance of automation to minimize astronaut intervention and recommended prototype testing under Mars-analog conditions.</p>
@@ -520,7 +520,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/junaid.avif" alt="Junaid Mian">
 <h4 class="person-name">Junaid Mian</h4>
 <p>We consulted Junaid Mian to understand the regulatory and product-development requirements for bringing SHIHAB closer to real-world implementation. For Earth-based applications, he highlighted the importance of production yield, scalability, and the regulatory responsibilities associated with manufacturing therapeutics.</p>
@@ -577,7 +577,7 @@ SHIHAB was designed around the constraints of spaceflight: limited resupply, res
 
 We did not want to assume that a system developed for space would automatically be appropriate for these settings. To understand the realities of healthcare delivery during humanitarian emergencies, we spoke with Andrew Macleod and Rachel Kessler, whose experiences in emergency response gave us two complementary perspectives on what implementation on Earth could require.
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/andrew.avif" alt="Andrew Macleod">
 <h4 class="person-name">Andrew Macleod</h4>
 <p>To explore whether SHIHAB's principles could be relevant beyond space, we spoke with Andrew Macleod, whose experience in humanitarian and emergency response gave us insight into healthcare delivery when infrastructure and supply chains are disrupted. His experience during the 2005 Pakistan earthquake and other emergencies helped us examine what producing therapeutics closer to the point of need would actually require.</p>
@@ -601,7 +601,7 @@ We did not want to assume that a system developed for space would automatically 
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/kessler.avif" alt="Rachel Kessler">
 <h4 class="person-name">Rachel Kessler</h4>
 <p>After identifying disaster response and remote healthcare as potential applications, we spoke with Rachel Kessler to examine what deploying a technology like SHIHAB in humanitarian settings would actually require. Her experience challenged us to look beyond the general category of a “disaster zone” and consider the conditions of each individual setting.</p>
@@ -629,7 +629,7 @@ We did not want to assume that a system developed for space would automatically 
 </div>
 </div>
 
-<div class="person-card" style="display:none">
+<div class="person-card">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/grant.avif" alt="Jonathan Grant">
 <h4 class="person-name">Jonathan Grant</h4>
 <p>We consulted Jonathan Grant to explore SHIHAB's potential applications in remote and humanitarian settings on Earth. He emphasized the importance of distinguishing between isolated communities and disaster-response scenarios, as each presents different healthcare needs and operational constraints. He also suggested considering environments such as ships, Antarctica, and submarines, while raising questions about affordability, accessibility, and how users would determine which therapeutics to produce.</p>
