@@ -7,7 +7,10 @@
 // flag-icons (MIT) — github.com/lipis/flag-icons
 const FLAGS_BASE = "https://static.igem.wiki/teams/6341/wiki/svg-assets/flags";
 const FLAGS = Object.fromEntries(
-  ["cn", "co", "eg", "in", "kz", "pe", "sa", "sg", "tr", "us"].map((code) => [code, `${FLAGS_BASE}/${code}.svg`])
+  ["au", "cn", "co", "de", "eg", "es", "in", "it", "kz", "pe", "sa", "sg", "tr", "us"].map((code) => [
+    code,
+    `${FLAGS_BASE}/${code}.svg`,
+  ])
 );
 
 // Shared by Roster.jsx (bubble grid needs no flag) and RosterDetail.jsx (the

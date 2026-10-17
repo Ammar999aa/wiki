@@ -32,6 +32,12 @@ const raheema   = `${ROSTER_CDN}/raheema.avif`;
 const mafer     = `${ROSTER_CDN}/mafer.avif`;
 const shahada   = `${ROSTER_CDN}/shahada.avif`;
 const noureldin = `${ROSTER_CDN}/noureldin.avif`;
+const wayne     = `${ROSTER_CDN}/wayne.avif`;
+const fabian    = `${ROSTER_CDN}/fabian.avif`;
+const selena    = `${ROSTER_CDN}/selena.avif`;
+const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
+const alejandra = `${ROSTER_CDN}/alejandra.avif`;
+const jordi     = `${ROSTER_CDN}/jordi.avif`;
 
 function memberContent(t, key) {
   return (
@@ -80,21 +86,21 @@ const students = [
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
 ];
 
-// Same two PIs as on Roster — no photo asset for either there either.
+// Same two PIs as on Roster, same photos. Raik hasn't sent one yet.
 const principalInvestigators = [
-  { key: "raik", title: "Raik Grünberg" },
-  { key: "wayne", title: "Wayne Yang" },
+  { key: "raik", title: "Raik Grünberg", photo: null },
+  { key: "wayne", title: "Wayne Yang", photo: wayne },
 ];
 
-// Same six advisors as on Roster, same order — no photo asset for any of
-// them there either.
+// Same six advisors as on Roster, same order, same photos and preferred
+// display names (src/assets/email-responses). Samah hasn't sent one yet.
 const advisors = [
-  { key: "fabian", title: "Fabian Schmidt" },
-  { key: "samah", title: "Samah Gadhoum" },
-  { key: "selena", title: "Selena Franchini" },
-  { key: "muhammadTehseen", title: "Muhammad Tehseen" },
-  { key: "alejandra", title: "Alejandra Rodríguez Llerena" },
-  { key: "jordi", title: "Jordi Plau" },
+  { key: "fabian", title: "Fabian Schmidt", photo: fabian },
+  { key: "samah", title: "Samah Gadhoum", photo: null },
+  { key: "selena", title: "Selena Franchini", photo: selena },
+  { key: "muhammadTehseen", title: "Muhammad Tehseen", photo: tehseen },
+  { key: "alejandra", title: "Alejandra Rodríguez Llerena", photo: alejandra },
+  { key: "jordi", title: "Jordi Pla-Mauri", photo: jordi },
 ];
 
 // Same two volunteers as on Roster, same order, after Advisors.
@@ -125,14 +131,14 @@ export default function Attributions() {
     { heading: t("attributions.headings.principalInvestigators") },
     ...principalInvestigators.map((pi) => ({
       title: pi.title,
-      photo: null,
+      photo: pi.photo,
       role: t(`attributions.${pi.key}.role`),
       content: memberContent(t, pi.key),
     })),
     { heading: t("attributions.headings.advisors") },
     ...advisors.map((advisor) => ({
       title: advisor.title,
-      photo: null,
+      photo: advisor.photo,
       role: t(`attributions.${advisor.key}.role`),
       content: memberContent(t, advisor.key),
     })),

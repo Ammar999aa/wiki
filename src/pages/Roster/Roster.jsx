@@ -36,6 +36,12 @@ const mafer     = `${ROSTER_CDN}/mafer.avif`;
 const kiran     = `${ROSTER_CDN}/kiran.avif`;
 const shahada   = `${ROSTER_CDN}/shahada.avif`;
 const noureldin = `${ROSTER_CDN}/noureldin.avif`;
+const wayne     = `${ROSTER_CDN}/wayne.avif`;
+const fabian    = `${ROSTER_CDN}/fabian.avif`;
+const selena    = `${ROSTER_CDN}/selena.avif`;
+const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
+const alejandra = `${ROSTER_CDN}/alejandra.avif`;
+const jordi     = `${ROSTER_CDN}/jordi.avif`;
 
 // Order within each department controls display order in both the
 // honeycomb and the fallback grid (departmentGroups below filters this
@@ -69,10 +75,11 @@ const members = [
 ];
 
 // The two PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
-// — same names/role, no photo asset for either there either.
+// — same names/role. Raik has sent neither a photo nor a flag yet, so his
+// entry stays photo-less (the bubble falls back to initials).
 const principalInvestigators = [
   { name: "Raik Grünberg", roleKey: "pi", memberKey: "raik", photo: null, countryCode: null },
-  { name: "Wayne Yang", roleKey: "pi", memberKey: "wayne", photo: null, countryCode: null },
+  { name: "Wayne Yang", roleKey: "pi", memberKey: "wayne", photo: wayne, countryCode: "sg" },
 ];
 
 // A separate advisory group, below PI — same idea (outside any department,
@@ -80,13 +87,16 @@ const principalInvestigators = [
 // src/i18n/en.json, not invented copy) but its own category, its own line
 // in the honeycomb (see satelliteGroups below) and its own section on
 // Attributions.
+// Names, flags and photos are each person's own choice, from the replies in
+// src/assets/email-responses — Jordi publishes as "Jordi Pla-Mauri", and
+// Muhammad Tehseen asked for the Australian flag. Samah hasn't replied yet.
 const advisors = [
-  { name: "Fabian Schmidt", roleKey: "advisor", memberKey: "fabian", photo: null, countryCode: null },
+  { name: "Fabian Schmidt", roleKey: "advisor", memberKey: "fabian", photo: fabian, countryCode: "de" },
   { name: "Samah Gadhoum", roleKey: "advisor", memberKey: "samah", photo: null, countryCode: null },
-  { name: "Selena Franchini", roleKey: "advisor", memberKey: "selena", photo: null, countryCode: null },
-  { name: "Muhammad Tehseen", roleKey: "advisor", memberKey: "muhammadTehseen", photo: null, countryCode: null },
-  { name: "Alejandra Rodríguez Llerena", roleKey: "advisor", memberKey: "alejandra", photo: null, countryCode: null },
-  { name: "Jordi Plau", roleKey: "advisor", memberKey: "jordi", photo: null, countryCode: null },
+  { name: "Selena Franchini", roleKey: "advisor", memberKey: "selena", photo: selena, countryCode: "it" },
+  { name: "Muhammad Tehseen", roleKey: "advisor", memberKey: "muhammadTehseen", photo: tehseen, countryCode: "au" },
+  { name: "Alejandra Rodríguez Llerena", roleKey: "advisor", memberKey: "alejandra", photo: alejandra, countryCode: "es" },
+  { name: "Jordi Pla-Mauri", roleKey: "advisor", memberKey: "jordi", photo: jordi, countryCode: "es" },
 ];
 
 // A third satellite group, below Advisors — same idea again (outside any
