@@ -562,6 +562,22 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // The inverse case, and the one a transparent diagram needs: artwork drawn
+  // in black ink on nothing (SnapGene vector maps, SignalP plots, sequence
+  // figures) is invisible against the dark page, and the default frame's
+  // translucent dark card doesn't help. `photo-frame light` puts the white
+  // those figures were drawn for behind them. The padding is the mat, so
+  // ink never runs into the border.
+  :global(.photo-frame.light) {
+    background: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+    padding: 20px;
+
+    img {
+      border-radius: 0;
+    }
+  }
+
   // Generalizes the Model page's Caption: the one sentence that
   // interprets a figure or table — what to notice, not just what it
   // shows — instead of leaving a bare image or table-wrap to speak for
@@ -2336,6 +2352,209 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
       &:hover {
         color: var(--link-hover);
       }
+    }
+  }
+
+  // A row of small buttons, one per variant of the same thing (the
+  // expression vectors of one chassis), each revealing its own block of
+  // content in place — asked for by the wet lab as "each vector is a
+  // small button and when clicking on it, the info and photo appears".
+  // Cheaper for the reader than `.popup-grid` when the panels are long
+  // and meant to be compared: the content stays on the page instead of
+  // moving into a modal. Article.jsx matches a clicked `.vector-tab` to
+  // the `.vector-panel` at the same index inside the same `.vector-tabs`
+  // (no data attributes to keep in sync), so the buttons and the panels
+  // must stay in the same order. Mark the first of each `is-active` in
+  // the markdown so the page renders correctly before any JS runs:
+  //   <div class="vector-tabs">
+  //   <div class="vector-tabs-bar">
+  //   <button type="button" class="vector-tab is-active">pBS4S</button>
+  //   <button type="button" class="vector-tab">pHT-ads</button>
+  //   </div>
+  //
+  //   <div class="vector-panel is-active">
+  //
+  //   Panel markdown...
+  //
+  //   </div>
+  //
+  //   <div class="vector-panel">
+  //
+  //   Panel markdown...
+  //
+  //   </div>
+  //   </div>
+  :global(.vector-tabs) {
+    margin-block: 20px;
+  }
+
+  :global(.vector-tabs-bar) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  :global(.vector-tab) {
+    all: unset;
+    box-sizing: border-box;
+    padding: 9px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      color 180ms ease;
+
+    &:hover {
+      border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+      color: white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-300);
+      outline-offset: 3px;
+    }
+  }
+
+  :global(.vector-tab.is-active) {
+    background: var(--primary);
+    border-color: transparent;
+    color: white;
+  }
+
+  :global(.vector-panel) {
+    display: none;
+
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  :global(.vector-panel.is-active) {
+    display: block;
+  }
+
+  // A figure small enough to sit beside its text rather than under it —
+  // asked for on this page's two Wikimedia photos ("make this image
+  // small please, it can be beside the text, not under it") and used for
+  // a photo that should simply float alongside the prose. Matted like
+  // `.photo-frame` so a light-background photo still reads as placed on
+  // purpose. Put the <figure> immediately before the text it sits beside;
+  // it stacks full-width on narrow screens.
+  :global(.img-aside) {
+    float: inline-end;
+    width: min(240px, 42%);
+    margin: 4px 0 14px 22px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+
+    img {
+      display: block;
+      width: 100%;
+      margin: 0;
+      border-radius: var(--radius-sm);
+    }
+
+    :global(.caption) {
+      margin: 10px 0 0;
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 640px) {
+      float: none;
+      width: 100%;
+      margin: 16px 0;
+    }
+  }
+
+  // An image with its own transparent background doesn't need matting —
+  // a frame around it reads as a box drawn for no reason. `img-aside plain`
+  // drops the card and lets the cut-out float on the page itself.
+  :global(.img-aside.plain) {
+    padding: 0;
+    background: none;
+    border: none;
+  }
+
+  // A float escaping its section would overlap the next one's heading,
+  // so only the sections that actually carry one become float containers.
+  & > div:has(:global(.img-aside)) {
+    display: flow-root;
+  }
+
+  // A protein's amino acid sequence: data, so monospace and free to break
+  // anywhere, with the leading signal peptide marked the way the source
+  // document marks it (green). `.seq-key` is the one line explaining the
+  // colour underneath it.
+  :global(.seq) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.76rem;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    word-break: break-all;
+    text-align: start;
+    hyphens: none;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-block: 16px 8px;
+  }
+
+  :global(.seq-signal) {
+    color: #62d26f;
+    font-weight: 700;
+  }
+
+  :global(.seq-key) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: start;
+    margin: 0 4px 20px;
+  }
+
+  // The figure ArticleStructure renders into a `.structure-3d` placeholder
+  // (see that component for the markdown). Bordered like `.photo-frame`,
+  // since it stands in the same places a figure would, but taller: a model
+  // needs room to be rotated, not just looked at.
+  .structureFigure {
+    margin-block: 20px;
+  }
+
+  .structureBox {
+    height: 360px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+
+    @media (max-width: 640px) {
+      height: 280px;
+    }
+  }
+
+  // Matches `.caption`: this is the line that says what the figure is.
+  .structureNote {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 8px 4px 0;
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
   }
 

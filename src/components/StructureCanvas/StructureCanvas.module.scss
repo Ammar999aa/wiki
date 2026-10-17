@@ -1,0 +1,31 @@
+// No background/border of its own on purpose — the canvas renders with a
+// transparent WebGL context (see StructureCanvas.jsx's backgroundAlpha), so
+// the model sits directly on whatever surface it's placed over. The parent
+// supplies the box: this fills it.
+.viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+
+  // 3Dmol renders its own <canvas> inside this div — let it fill it.
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}

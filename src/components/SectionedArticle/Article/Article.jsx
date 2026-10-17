@@ -1,5 +1,7 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
+import ArticleStructure from "./ArticleStructure";
 import Lightbox from "../Lightbox/Lightbox";
 import PersonModal from "../PersonModal/PersonModal";
 import photoCarousel from "./photoCarousel";
@@ -188,6 +190,22 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
       return;
     }
 
+    // A `.vector-tabs` button row (see SectionedArticle.module.scss):
+    // show the `.vector-panel` sitting at the clicked button's own index
+    // within the same `.vector-tabs`, hide its siblings. Index-matched
+    // rather than keyed by a data attribute so the markdown can't drift
+    // out of sync with itself.
+    const tab = e.target.closest(".vector-tab");
+    const tabs = tab?.closest(".vector-tabs");
+    if (tab && tabs) {
+      const buttons = [...tabs.querySelectorAll(":scope > .vector-tabs-bar > .vector-tab")];
+      const panels = [...tabs.querySelectorAll(":scope > .vector-panel")];
+      const index = buttons.indexOf(tab);
+      buttons.forEach((b, i) => b.classList.toggle("is-active", i === index));
+      panels.forEach((p, i) => p.classList.toggle("is-active", i === index));
+      return;
+    }
+
     if (e.target.tagName === "IMG") {
       setZoomed({ src: e.target.currentSrc || e.target.src, alt: e.target.alt });
       return;
@@ -234,6 +252,18 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
     return () => root.removeEventListener("click", onCiteClick);
   }, []);
 
+  // A markdown page asks for an interactive 3D structure by leaving an
+  // empty `<div class="structure-3d" data-structure="…">` placeholder;
+  // each one gets an ArticleStructure portaled into it. Collected in an
+  // effect (not during render) because the placeholders only exist once
+  // the section HTML is in the DOM.
+  const [structureHosts, setStructureHosts] = useState([]);
+  useEffect(() => {
+    const root = articleRef.current;
+    if (!root) return;
+    setStructureHosts([...root.querySelectorAll(".structure-3d")]);
+  }, [sections]);
+
   // `.photo-slider` rows become endless, auto-advancing carousels (see
   // photoCarousel.js). Rerun when the sections' HTML changes.
   useEffect(() => {
@@ -259,6 +289,20 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
           {section.content}
         </div>
       ))}
+      {structureHosts.map((host, i) =>
+        createPortal(
+          <ArticleStructure
+            structure={host.dataset.structure}
+            pdb={host.dataset.pdb}
+            label={host.dataset.label}
+            color={host.dataset.color}
+            highlight={host.dataset.highlight}
+            highlightColor={host.dataset.highlightColor}
+          />,
+          host,
+          `structure-${i}`,
+        ),
+      )}
       <Lightbox src={zoomed?.src} alt={zoomed?.alt} onClose={() => setZoomed(null)} />
       <PersonModal
         person={person}

@@ -72,6 +72,10 @@ be none — see `.flow` below).
 | The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
 | A row of figures, each with its own caption                                                                    | `.figure-grid`                                                  | Even columns of matted photos with captions, optional equal heights       |
 | Parallel items whose full text is too long to show inline (features, subsystems)                               | `.popup-grid` + `.popup-card`                                   | Clickable tiles; each opens its hidden content in a popup                 |
+| Variants of one thing, each with a long block of content to compare in place (a chassis' expression vectors)  | `.vector-tabs` + `.vector-tab` / `.vector-panel`                | A row of small pill buttons; the matching panel appears below             |
+| A small figure that should sit beside its text, not under it                                                  | `.img-aside`                                                    | Matted figure floated to the side, stacking on phones                     |
+| A protein's amino acid sequence, with its signal peptide marked                                               | `.seq` (+ `.seq-signal`, `.seq-key`)                            | Monospace block that breaks anywhere; the signal peptide in green         |
+| A protein structure worth showing as a figure                                                                 | `.structure-3d`                                                 | The real published structure, rotatable, over the page background         |
 | A design iteration told as Design → Build → Test → Learn                                                       | `.iter-list` + `.iter`                                          | Numbered card, one row per stage with a colored label pill                |
 | A short key/value table (summary statistics), no header row                                                    | `table.kv-table` in a `.table-wrap`                             | Row headers on the left, values on the right                              |
 | A grid of X-by-Y values (components x chassis, payload x chassis)                                              | `table.matrix-table` in a `.table-wrap`                         | Column header row *and* a labelled first column                           |
@@ -496,6 +500,15 @@ Combine with `.two-col-images` by wrapping each image in its own
 `.photo-frame` inside the pair (see hardware.md's opener), or use
 standalone for a single full-width image.
 
+**Modifier — `.photo-frame.light`**: the inverse case. A figure drawn as
+black ink on a *transparent* background (a SnapGene vector map, a SignalP
+plot, a sequence diagram) is close to invisible against the dark page, and
+the default frame's translucent dark card doesn't help. `class="photo-frame
+light"` puts the white those figures were drawn for behind them, with
+enough padding that the ink never runs into the border. Check the actual
+file before reaching for either one: an opaque light photo wants the plain
+`.photo-frame`, a transparent one with dark ink wants `light`.
+
 ### `.caption` — the sentence that interprets a figure or table
 
 The one gap the original eight classes left: Model's `Caption` component
@@ -716,6 +729,109 @@ a real, acknowledged gap (a citekey carried over from a source document
 with no bibliography to resolve it, say) should say so with a `.callout
 warn` rather than leave an unresolved marker unexplained or, worse, filled
 in with a guessed reference.
+
+### `.vector-tabs` — variants of one thing, switched in place
+
+For several variants of the same kind of thing, each carrying a long
+block of content a reader will want to compare against its siblings — the
+two expression vectors of one chassis on wetlab-design.md, which is where
+this came from ("each vector is a small button and when clicking on it,
+the info and photo appears"). Prefer it over `.popup-grid` when the
+content belongs in the flow of the page rather than in a modal.
+
+`Article.jsx` matches a clicked `.vector-tab` to the `.vector-panel` at
+the **same index** inside the same `.vector-tabs`, so buttons and panels
+must stay in the same order. Mark the first of each `is-active` in the
+source so the page is correct before any JS runs. Keep each `<button>` on
+one line; blank lines around the markdown inside each panel as usual:
+
+```md
+<div class="vector-tabs">
+<div class="vector-tabs-bar">
+<button type="button" class="vector-tab is-active">pBS4S</button>
+<button type="button" class="vector-tab">pHT-ads</button>
+</div>
+
+<div class="vector-panel is-active">
+
+Panel markdown — photo frame, caption, bullets, `#### Subheadings`...
+
+</div>
+
+<div class="vector-panel">
+
+Panel markdown...
+
+</div>
+</div>
+```
+
+**Don't** use it for content a reader needs to read straight through —
+anything hidden behind a tab is content most readers won't see.
+
+### `.img-aside` — a small figure beside the text
+
+For a photo that illustrates a paragraph without deserving a full-width
+`.photo-frame` — a stock/Wikimedia photo next to a short bullet, say.
+Matted like `.photo-frame`, floated to the side, stacking full-width
+under 640px. Put the `<figure>` immediately **before** the text it sits
+beside; an optional `<figcaption class="caption">` carries the credit:
+
+```md
+<figure class="img-aside">
+<img src="https://static.igem.wiki/..." alt="...">
+<figcaption class="caption">Image credit: ... <a href="...">Wikimedia Commons</a></figcaption>
+</figure>
+```
+
+**Modifier — `.img-aside.plain`**: for a cut-out — an illustration whose
+own background is already transparent. The matting is what makes a
+rectangular photo read as placed on purpose; around a cut-out it's just a
+box drawn for no reason, so `class="img-aside plain"` drops it and lets the
+image float on the page itself.
+
+### `.seq` — an amino acid sequence
+
+For a real protein sequence shown as data: monospace, free to break at any
+residue, left-aligned (never justified like body prose). `.seq-signal`
+marks the leading signal peptide green, and `.seq-key` is the one line
+underneath explaining the colour. Plain HTML, no blank lines needed:
+
+```md
+<p class="seq"><span class="seq-signal">MKILKRIPVLAVLLVGLMTNCSND</span>SDSSSLSVANST…</p>
+
+<p class="seq-key"><span class="seq-signal">Green</span> — signaling peptide for secretion</p>
+```
+
+### `.structure-3d` — a real protein structure, not a picture of one
+
+For a figure whose subject is a protein's structure. An empty placeholder
+div; `Article.jsx` portals an `ArticleStructure` into each one, which
+renders the published PDB entry with 3Dmol — the same viewer the protein
+library page uses — so the reader can rotate and zoom it. Prefer it over
+an exported render or animation: a rendered GIF of a model is both much
+heavier and less useful than the model.
+
+```md
+<div class="structure-3d" data-structure="ffibp-4nu2" data-pdb="4NU2" data-label="FfIBP (Flavobacterium frigoris PS1)"></div>
+```
+
+- `data-structure` is a file under the structures base (see
+  `src/components/StructureCanvas/structures.js`); the existing ones are
+  listed in `src/pages/ProteinLibrary/proteins.js`. Upload a new structure
+  through the Uploads tool wrapped as `{"format":"pdb","data":"…"}` — that
+  file's comments explain why.
+- `data-pdb` is the RCSB id, which the caption links to; `data-label`
+  names what the structure actually is. `data-color` is optional (passed
+  to 3Dmol, `spectrum` by default).
+
+The component writes its own caption, and it says in as many words that
+this is a **published reference structure, not data from this team** — per
+`RESPONSIBLE_AI_USE.md`. Don't replace that with a caption that implies
+the team solved it, and **don't** point one of these at a structure the
+protein isn't: `data-label` is where a reference structure that only
+stands in for the real molecule (a mouse homolog, a complex) has to say
+so.
 
 ### `.ladder` — a ranked/staged list that also navigates
 
