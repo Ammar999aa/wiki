@@ -817,8 +817,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(22px, 4vh, 44px);
-  padding: 80px clamp(16px, 4vw, 48px) 110px;
+  gap: clamp(16px, 3.5vh, 44px);
+  /* Bottom padding keeps the cards clear of the nav dock. */
+  padding: 80px clamp(16px, 4vw, 48px) var(--nav-clearance);
   overflow: hidden;
 }
 
@@ -933,7 +934,10 @@
 }
 
 .solImg {
-  width: min(100%, 300px);
+  width: auto;
+  max-width: min(100%, 300px);
+  /* Scales with screen height so the slide fits above the nav dock. */
+  max-height: 24vh;
   height: auto;
   display: block;
 }
@@ -945,7 +949,7 @@
 .solImgTall {
   width: auto;
   max-width: 100%;
-  max-height: 230px;
+  max-height: min(230px, 26vh);
 }
 
 .solNames {
@@ -956,6 +960,31 @@
   font-size: 0.8rem;
   font-style: italic;
   color: rgba(255, 255, 255, 0.72);
+}
+
+/* Short laptop screens: tighter type and spacing so the cards clear the nav dock. */
+@media (min-width: 761px) and (max-height: 820px) {
+  .solutionSticky { gap: 14px; padding-top: 56px; }
+  .solHead { gap: 10px; }
+  .solTitle { font-size: clamp(1.4rem, 4.6vh, 2.4rem); }
+  .solLead { font-size: 0.8rem; line-height: 1.5; }
+  .solStep { padding: 14px 16px; gap: 10px; }
+  .solStep p { font-size: 0.78rem; line-height: 1.4; }
+  .solImg { max-height: 18vh; }
+  .solImgTall { max-height: 20vh; }
+}
+
+/* Very short screens: shrink once more rather than run under the nav. */
+@media (min-width: 761px) and (max-height: 660px) {
+  .solutionSticky { gap: 10px; padding-top: 40px; }
+  .solTitle { font-size: clamp(1.2rem, 4.2vh, 1.9rem); }
+  .solLead { font-size: 0.74rem; line-height: 1.4; }
+  .solStep { padding: 10px 14px; gap: 6px; }
+  .solStep h3 { font-size: 0.95rem; }
+  .solStep p { font-size: 0.72rem; }
+  .solImg { max-height: 14vh; }
+  .solImgTall { max-height: 15vh; }
+  .stressor { font-size: 0.55rem; padding: 3px 8px; }
 }
 
 @media (max-width: 760px) {
@@ -971,14 +1000,21 @@
 
   .solSteps { flex-direction: column; gap: 8px; }
   .solArrow { display: none; }
-  .solStep { padding: 12px; gap: 8px; }
+  .solStep { padding: 10px 12px; gap: 6px; }
   .solStep h3 { font-size: 0.95rem; }
   .solStep p { font-size: 0.72rem; line-height: 1.4; }
-  .solImg { width: auto; max-width: 70%; max-height: 64px; }
-  .solImgTall { max-height: 64px; }
+  /* No room for the step pictures on a phone; the text carries each step. */
+  .solImg { display: none; }
   .solNames { font-size: 0.74rem; }
   .stressors { gap: 6px; }
   .stressor { font-size: 0.52rem; padding: 3px 8px; letter-spacing: 0.06em; }
+}
+
+/* Short phones (e.g. 375×667): pull everything a little closer together. */
+@media (max-width: 760px) and (max-height: 700px) {
+  .solutionSticky { gap: 8px; padding-top: 40px; padding-bottom: 100px; }
+  .solHead { gap: 6px; }
+  .solSteps { gap: 6px; }
 }
 
 /* Our Solution, second part: four blocks around a central picture + a bar of
@@ -1059,6 +1095,32 @@
   will-change: opacity, transform;
 }
 
+/* The spinning bioreactor (BioreactorSpin). model-viewer needs a real height,
+   not just a max-height; a soft violet glow sits behind the model. */
+.sysModel {
+  position: relative;
+  height: min(56vh, 540px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 12% 8%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(177, 109, 255, 0.28), rgba(177, 109, 255, 0.08) 60%, transparent);
+    filter: blur(24px);
+    pointer-events: none;
+  }
+
+  model-viewer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    --poster-color: transparent;
+  }
+}
+
 .sysBar {
   display: flex;
   flex-wrap: wrap;
@@ -1103,6 +1165,7 @@
   .sysStep h3 { font-size: 1.1rem; }
   .sysStep p { font-size: 0.84rem; line-height: 1.42; }
   .sysImg { max-height: 44vh; }
+  .sysModel { height: 44vh; }
   .sysBar { padding: 10px 24px; }
   .sysBar li { font-size: 0.88rem; }
 }
@@ -1117,6 +1180,7 @@
   /* Picture first, then the four blocks stacked (no scatter on a phone). */
   .sysBody { display: flex; flex-direction: column; gap: 8px; }
   .sysImg { order: -1; max-height: 90px; }
+  .sysModel { height: 90px; flex: none; }
   .sysCol { display: contents; }
   .sysStep { padding: 9px 12px; gap: 4px; }
   /* Must out-rank the desktop scatter rules above (.sysCol:first-child .sysStep:nth-child(1) etc.). */
@@ -1125,6 +1189,21 @@
   .sysStep p { font-size: 0.7rem; line-height: 1.35; }
   .sysBar { padding: 9px 12px; gap: 4px 14px; }
   .sysBar li { font-size: 0.72rem; }
+}
+
+/* Phones: drop the 3D model so the four steps fit the screen. Hidden, it never
+   comes into view, so BioreactorSpin never downloads model-viewer or the model. */
+@media (max-width: 760px) {
+  .sysModel { display: none; }
+}
+
+/* Short phones (e.g. 375×667): pull everything a little closer together. */
+@media (max-width: 760px) and (max-height: 760px) {
+  .systemSticky { gap: 6px; padding-top: 28px; padding-bottom: 96px; }
+  .systemSticky .solHead { gap: 6px; }
+  .sysBody { gap: 6px; }
+  .sysStep { padding: 8px 12px; gap: 3px; }
+  .sysStep p { font-size: 0.68rem; line-height: 1.32; }
 }
 
 .scenarioSection { height: 320svh; }

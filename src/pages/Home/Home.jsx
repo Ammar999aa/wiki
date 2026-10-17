@@ -47,9 +47,9 @@ const EXIT_ROLL_MAX_RAD = (55 * Math.PI) / 180;  // max axis tilt by the top of 
 // literally replaces the word "iGEM" (rather than being just one of ten
 // logos scrolling past, which it also still is further down the page).
 const kaustIgem = SPONSORS.find((s) => s.id === "kaustigem");
-const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/shuttle.avif";
+const rocketLaunch = "https://static.igem.wiki/teams/6341/wiki/images/rocket-launch.webp";
 const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
-const astronautMmu = "https://static.igem.wiki/teams/6341/wiki/images/astronaut.avif";
+const astronautMmu = "https://static.igem.wiki/teams/6341/wiki/images/astronaut-large.avif";
 
 // Circular-cropped, colour-graded to a shared palette so the three read as
 // one set rather than three raw NASA textures — see ProblemSection below.
@@ -628,7 +628,7 @@ function PlanetDecor() {
   );
 }
 
-// Astronaut illustration — floats beside slide 4's statement with a slow,
+// Bruce McCandless II's untethered MMU spacewalk (STS-41-B) — floats beside slide 4's statement with a slow,
 // continuous tilt/wobble (CSS-driven, not scroll-tied, unlike the rest of this
 // file's motion) so it reads as drifting in zero-g rather than as a static cutout.
 function AstronautDecor() {
@@ -687,6 +687,66 @@ function RocketLayer({ groupRef }) {
       style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
       aria-hidden="true"
     />
+  );
+}
+
+// Photo attributions for slides 2 and 4 (rocket, astronaut) — fixed to the
+// viewport just above the nav dock rather than anchored to each asset, so
+// the credit reads in one stable spot instead of drifting/rotating with the
+// graphic it's crediting. Each link fades in/out on exactly the same
+// schedule as its own slide's statement text (see StatementSection's
+// identical p-based formula), so it's only present while that slide — and
+// the asset it credits — is actually on screen. Earth's own credit is
+// intentionally exempt (see .earthCredit in EarthLayer): it's anchored to
+// the globe itself, which (unlike the rocket/astronaut) is on/near-screen
+// across several slides rather than one, so a single fixed "current slide"
+// credit doesn't fit it.
+function SlideAttributions({ rocketRef, astronautRef }) {
+  const rocketLinkRef = useRef(null);
+  const astronautLinkRef = useRef(null);
+
+  // Static: the rocket itself is gone (see RocketLayer), so its credit is
+  // too; the astronaut stays put in its slide, so its credit shows whenever
+  // that slide is on screen.
+  useScene(rocketRef, 1.2, (p) => {
+    const el = rocketLinkRef.current;
+    if (!el) return;
+    const o = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
+    el.style.opacity = o;
+    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
+  });
+
+  useScene(astronautRef, 1.2, (p, inView) => {
+    const el = astronautLinkRef.current;
+    if (!el) return;
+    const o = inView !== undefined ? +inView : Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
+    el.style.opacity = o;
+    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
+  });
+
+  return (
+    <div className={styles.slideAttribution}>
+      <a
+        ref={rocketLinkRef}
+        href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.slideAttributionLink}
+        style={{ opacity: 0 }}
+      >
+        Atlantis, STS-129: NASA/Kenny Allen
+      </a>
+      <a
+        ref={astronautLinkRef}
+        href="https://images.nasa.gov/details/s84-27017"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.slideAttributionLink}
+        style={{ opacity: 0 }}
+      >
+        Bruce McCandless II, STS-41-B: NASA
+      </a>
+    </div>
   );
 }
 
@@ -1240,7 +1300,122 @@ function SolutionSection() {
 // Second part of "Our Solution": what the platform is and how it runs, as four
 // blocks around a central picture, then a bar of four design principles.
 
-const solSuitcase = "https://static.igem.wiki/teams/6341/wiki/images/suitcase.avif";
+// Same CAD model as the Hardware page's BioreactorModel (see that file for how
+// the .glb was generated).
+const bioreactorGlb = "https://static.igem.wiki/teams/6341/wiki/3d-models/bioreactor.glb";
+
+// Colour grade for the CAD materials, keyed by the material name's prefix
+// (names look like "XID_PlasticMatteRed_<hash>"). The red feet and bolts and
+// the blue cap become the violet accents, the yellow heater film a deep violet;
+// the beige and white plastics move to
+// the site's cool indigo neutrals so the model sits in the page's palette.
+// Colours are the tokens from src/styles/index.scss.
+const BIOREACTOR_GRADE = {
+  PlasticMatteRed: { color: "#B16DFF", emissive: "#3E2754", rough: 0.5 },
+  PaintEnamelGlossyRed: { color: "#C07FFF", emissive: "#3E2754" },
+  Opaque100100255: { color: "#9A58E6", emissive: "#5A3973" },
+  PolymideKapton: { color: "#724A92", emissive: "#3E2754", rough: 0.35 },
+  PaekBeige: { color: "#3F4162", rough: 0.4 },
+  ABSWhite: { color: "#B5B6C8", rough: 0.35 },
+  PlasticGlossyWhite: { color: "#B5B6C8", rough: 0.3 },
+  AcetalResinWhite: { color: "#B5B6C8", rough: 0.35 },
+  Opaque236236236: { color: "#8E90A8" },
+  Opaque203203203: { color: "#8E90A8" },
+  Opaque333333: { color: "#12142F" },
+  SteelSatin: { color: "#B5B6C8", rough: 0.3 },
+  GlassClear: { color: "#E4CCFF", alpha: 0.3 },
+};
+
+// glTF colour factors are linear, the tokens are sRGB.
+function linearRgb(hex) {
+  return [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+}
+
+function gradeBioreactor(viewer) {
+  for (const material of viewer.model?.materials ?? []) {
+    const grade = BIOREACTOR_GRADE[material.name.split("_")[1]];
+    if (!grade) continue;
+    const pbr = material.pbrMetallicRoughness;
+    const alpha = grade.alpha ?? pbr.baseColorFactor[3];
+    pbr.setBaseColorFactor([...linearRgb(grade.color), alpha]);
+    if (grade.rough !== undefined) pbr.setRoughnessFactor(grade.rough);
+    if (grade.emissive) material.setEmissiveFactor(linearRgb(grade.emissive));
+  }
+}
+
+// The bioreactor, spinning slowly in place of a flat picture. model-viewer is a
+// large dependency (plus a 1.5 MB model), so it's imported about three screens
+// early, while the previous slide is still pinned, to be ready on arrival.
+// Not interactive (no camera controls), so it never catches the page's scroll.
+function BioreactorSpin({ innerRef }) {
+  const wrapRef = useRef(null);
+  const viewerRef = useRef(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    let cancelled = false;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        import("@google/model-viewer")
+          .then(() => !cancelled && setReady(true))
+          .catch((err) => console.error("BioreactorSpin: failed to load model-viewer", err));
+      },
+      { rootMargin: "300% 0px" },
+    );
+    io.observe(el);
+    return () => {
+      cancelled = true;
+      io.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!ready || !viewer) return;
+    const onLoad = () => gradeBioreactor(viewer);
+    viewer.addEventListener("load", onLoad);
+    return () => viewer.removeEventListener("load", onLoad);
+  }, [ready]);
+
+  const reducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  return (
+    <div
+      className={`${styles.sysImg} ${styles.sysModel}`}
+      ref={(el) => {
+        wrapRef.current = el;
+        innerRef.current = el;
+      }}
+      style={{ opacity: 0 }}
+    >
+      {ready && (
+        // model-viewer's own kebab-case attributes, not React props.
+        <model-viewer
+          ref={viewerRef}
+          src={bioreactorGlb}
+          alt="3D model of SHIHAB's bioreactor: a glass culture bottle with stirrer and sensors, held under the motor and electronics housing"
+          auto-rotate={reducedMotion ? undefined : ""}
+          auto-rotate-delay="0"
+          rotation-per-second="20deg"
+          interaction-prompt="none"
+          disable-zoom=""
+          environment-image="neutral"
+          tone-mapping="neutral"
+          exposure="1.05"
+          shadow-intensity="0"
+          camera-orbit="35deg 75deg 95%"
+        />
+      )}
+    </div>
+  );
+}
 
 const SYSTEM_STEPS = [
   { title: "Grow", text: "The bioreactor maintains predefined culture conditions using integrated sensors and programmed feedback controls." },
@@ -1304,13 +1479,7 @@ function SystemSection() {
 
         <div className={styles.sysBody}>
           <div className={styles.sysCol}>{step(0)}{step(1)}</div>
-          <img
-            className={styles.sysImg}
-            ref={imgRef}
-            src={solSuitcase}
-            alt="SHIHAB's compact, suitcase-sized bioreactor and purification module"
-            style={{ opacity: 0 }}
-          />
+          <BioreactorSpin innerRef={imgRef} />
           <div className={styles.sysCol}>{step(2)}{step(3)}</div>
         </div>
 
@@ -1528,6 +1697,7 @@ function ExploreSection() {
 export default function Home() {
   const heroOrbitRef = useRef(null);
   const rocketGroupRef = useRef(null);
+  const astronautGroupRef = useRef(null);
 
   return (
     // ambientMeteors off — <Starfield/> below already renders Home's own,
@@ -1549,6 +1719,7 @@ export default function Home() {
         <OrbitSection groupRef={heroOrbitRef} />
       </div>
       <RocketLayer groupRef={rocketGroupRef} />
+      <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />
       <StatementSection decor={<PlanetDecor />}>
         Future missions may last for <em>months or even years</em>.
         <br />
@@ -1560,10 +1731,12 @@ export default function Home() {
           The <em>farther</em> we travel, the <em>less</em> we can depend on Earth.
         </StatementSection>
       </div>
-      <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
-        What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
-        <em>ability to make them</em>?
-      </StatementSection>
+      <div ref={astronautGroupRef}>
+        <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
+          What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
+          <em>ability to make them</em>?
+        </StatementSection>
+      </div>
       <RevealSection />
       <SolutionSection />
       <SystemSection />
