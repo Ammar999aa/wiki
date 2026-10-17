@@ -1,0 +1,220 @@
+// Inclusivity page figures. Surfaces and borders match the markdown card
+// vocabulary (SectionedArticle.module.scss: .panel/.card-grid); colours are
+// the site tokens from src/styles/index.scss.
+
+$mono: ui-monospace, Menlo, Consolas, monospace;
+
+// ── Background team photo (passed to PageWrapper as photoClassName) ──────
+
+// Desktop: the jump-nav rail stays open on the left (SectionedArticle,
+// >1024px), so the photo starts at the rail's right edge instead of behind
+// it (same geometry as the rail: SectionedArticle.module.scss's
+// $side-gutter + $rail-width). It's sized to that area's full width, so the
+// whole row of members stays visible at any window shape (a cover-crop cut
+// the outermost members off on wide screens); where the area is taller
+// than the photo, its bottom edge fades into the page. The left edge fades
+// too, so there's no hard seam beside the rail. !important: beats
+// PageWrapper's inline photoPosition, which phones still use.
+@media (min-width: 1025px) {
+  .teamPhoto {
+    // Width of the area beside the rail; the photo's height is 0.715 of it
+    // (team.avif is 3480×2487).
+    --photo-w: calc(100dvw - (max(40px, (100dvw - var(--maxw)) / 2) + 280px));
+    left: calc(max(40px, (100dvw - var(--maxw)) / 2) + 280px);
+    // Raised by ~13% of the photo's height (mostly ceiling) so the team sits
+    // higher, with the standing row clear above the page title.
+    top: calc(var(--photo-w) * -0.095);
+    background-size: 100% auto !important;
+    background-position: center top !important;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 5%),
+      linear-gradient(to top, transparent 8%, #000 30%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent, #000 5%),
+      linear-gradient(to top, transparent 8%, #000 30%);
+    mask-composite: intersect;
+  }
+}
+
+// ── World map (WorldMap.jsx) ──────────────────────────────────────────────
+
+.worldMap {
+  margin: 24px 0 8px;
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.worldSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.land circle { fill: rgba(255, 255, 255, 0.2); }
+
+.arcs path {
+  fill: none;
+  stroke: var(--primary-400);
+  stroke-width: 0.45;
+  stroke-linecap: round;
+  stroke-dasharray: 1.4 1.6;
+  opacity: 0.45;
+  transition: opacity 0.2s, stroke-width 0.2s;
+
+  &[data-active] { opacity: 1; stroke-width: 0.7; }
+}
+
+.marker {
+  cursor: default;
+
+  .markerHalo {
+    fill: rgba(177, 109, 255, 0.18);
+    transition: r 0.2s;
+  }
+
+  .markerDot {
+    fill: var(--primary-300);
+    stroke: var(--bg);
+    stroke-width: 0.5;
+  }
+
+  &[data-home] .markerHalo { fill: rgba(255, 216, 77, 0.22); }
+  &[data-home] .markerDot { fill: var(--amber); }
+
+  &[data-active] .markerHalo { r: 5.6px; }
+}
+
+.countryList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    padding: 4px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    font-family: $mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.78);
+    transition: border-color 0.2s, color 0.2s;
+
+    // A dot in the marker's colour ties each name to its place on the map.
+    &::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary-300);
+    }
+
+    &[data-home]::before { background: var(--amber); }
+
+    &[data-active] { border-color: var(--primary-400); color: #fff; }
+  }
+}
+
+// ── Team voices (Voices.jsx) ──────────────────────────────────────────────
+
+.voices {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 26px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.voice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+}
+
+// Doubled class: out-ranks the article's own `img` rounding (radius-sm).
+.voicePhoto.voicePhoto {
+  width: 84px;
+  height: 84px;
+  margin: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--primary-400);
+}
+
+// Speech bubble, its tail pointing up at the portrait. Grows to the row's
+// tallest bubble so the names below line up. Doubled class: out-ranks the
+// article's own blockquote rules (thick left border, padding).
+.voiceQuote.voiceQuote {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  margin: 14px 0 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  background: #1c1744; // solid, so the tail below can match it exactly
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: #1c1744;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  p.voiceText {
+    margin: 0;
+    font-size: 0.9rem;
+    font-style: normal;
+    line-height: 1.4;
+    text-align: center;
+    hyphens: manual; // the article's auto-hyphenation splits words here
+    color: #fff;
+  }
+}
+
+.voiceName {
+  margin: 0;
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 760px) {
+  .voices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .worldMap { padding: 12px 10px; }
+  // The map shrinks to phone width; keep the markers big enough to see.
+  .marker .markerDot { r: 3px; }
+  .marker .markerHalo { r: 6.5px; }
+  .marker[data-active] .markerHalo { r: 8px; }
+  .arcs path { stroke-width: 0.7; }
+  .countryList li { font-size: 0.66rem; padding: 3px 9px; }
+}

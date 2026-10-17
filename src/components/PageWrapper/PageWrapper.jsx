@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import AmbientMeteors from "../AmbientMeteors/AmbientMeteors";
 import styles from "./PageWrapper.module.scss";
@@ -21,7 +22,36 @@ export default function PageWrapper({
   // gap of blank background under it.
   navClearance = true,
 }) {
-  const { color, image, size, gradient, photo, photoPosition, photoOpacity } = background;
+  // `photoFade` (optional, a share of the screen height, e.g. 0.3): once the
+  // reader has scrolled that far, the photo fades out in one short CSS
+  // transition (and back in near the top). Deliberately not tied to every
+  // scroll frame: frosted-glass panels blur what's behind them, so a
+  // continuously changing photo forces that blur to be redrawn on every
+  // frame, which made scrolling lag.
+  // `photoClassName` (optional): a page's own class on the photo layer, for
+  // placement CSS can't express inline (e.g. media queries).
+  const { color, image, size, gradient, photo, photoPosition, photoOpacity, photoFade, photoClassName } = background;
+  const photoRef = useRef(null);
+
+  useEffect(() => {
+    const el = photoRef.current;
+    if (!photo || !photoFade || !el) return undefined;
+    const start = String(photoOpacity ?? 1);
+    let hidden = null;
+    const update = () => {
+      const past = window.scrollY > window.innerHeight * photoFade;
+      if (past === hidden) return; // only touch the style when it flips
+      hidden = past;
+      el.style.opacity = past ? "0" : start;
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [photo, photoFade, photoOpacity]);
 
   const bgStyle = {
     ...(color && { backgroundColor: color }),
@@ -38,7 +68,8 @@ export default function PageWrapper({
         <div className={`${styles.bg} ${fixed ? styles.fixed : styles.absolute}`} style={bgStyle}>
           {photo && (
             <div
-              className={`${styles.photo} ${fixed ? styles.fixed : styles.absolute}`}
+              ref={photoRef}
+              className={`${styles.photo} ${photoFade ? styles.photoFades : ""} ${fixed ? styles.fixed : styles.absolute} ${photoClassName || ""}`}
               style={{
                 backgroundImage: `url("${photo}")`,
                 backgroundPosition: photoPosition || "center",

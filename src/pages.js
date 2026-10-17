@@ -45,6 +45,7 @@ const HumanIntegratedPractices = lazyWithPreload(() =>
 );
 const Hardware = lazyWithPreload(() => import("./pages/Hardware/Hardware"));
 const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
+const Inclusivity = lazyWithPreload(() => import("./pages/Inclusivity/Inclusivity"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
 const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
@@ -181,7 +182,7 @@ const Pages = [
       },
       { name: "Attributions", title: "Attributions", path: "/attributions", component: Attributions },
       { name: "Sponsors", title: "Sponsors", path: "/sponsors", component: Sponsors },
-      { name: "Inclusivity", title: "Inclusivity", path: "/inclusivity", component: Stub },
+      { name: "Inclusivity", title: "Inclusivity", path: "/inclusivity", component: Inclusivity },
       { name: "Collaborations", title: "Collaborations", path: "/collaborations", component: Stub },
     ],
   },

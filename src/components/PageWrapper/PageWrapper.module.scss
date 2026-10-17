@@ -18,6 +18,13 @@
     background: no-repeat center / cover;
 }
 
+/* `photoFade` pages: fade in one short transition, on its own compositor
+   layer so the opacity change doesn't repaint the photo. */
+.photoFades {
+    transition: opacity 0.6s ease;
+    will-change: opacity;
+}
+
 .overlay {
     background: no-repeat center / cover;
 }
