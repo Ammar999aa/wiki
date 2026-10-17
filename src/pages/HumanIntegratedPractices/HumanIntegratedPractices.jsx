@@ -8,6 +8,7 @@ import JigsawTable from "./components/JigsawTable";
 import ValuesCards from "./components/ValuesCards";
 import ShapedByMap from "./components/ShapedByMap";
 import RoadmapCards from "./components/RoadmapCards";
+import EngagementTabs from "./components/EngagementTabs";
 import { stakeholderGroups, designValues } from "./data.js";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
@@ -28,22 +29,32 @@ const HIDDEN_TITLES = [];
 
 // Components placed mid-section, where the markdown has
 // <div data-slot="name"></div>. The section's HTML is split at the marker.
+// A function slot is handed the HTML after the marker and renders it itself
+// (EngagementTabs turns the .engage-panel blocks there into tabs).
 const SLOTS = {
   roadmap: <RoadmapCards />,
   "design-values": <ValuesCards items={designValues} />,
+  engagement: (after) => <EngagementTabs html={after} />,
 };
 
 function fillSlots(section) {
   const match = section.html?.match(/<div data-slot="([\w-]+)"><\/div>/);
   if (!match || !SLOTS[match[1]]) return section;
   const [before, after] = [section.html.slice(0, match.index), section.html.slice(match.index + match[0].length)];
+  const slot = SLOTS[match[1]];
   return {
     ...section,
     html: before,
     content: (
       <>
-        {SLOTS[match[1]]}
-        <div dangerouslySetInnerHTML={{ __html: after }} />
+        {typeof slot === "function" ? (
+          slot(after)
+        ) : (
+          <>
+            {slot}
+            <div dangerouslySetInnerHTML={{ __html: after }} />
+          </>
+        )}
         {section.content}
       </>
     ),

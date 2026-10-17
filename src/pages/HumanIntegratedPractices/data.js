@@ -194,6 +194,7 @@ export const shapedGroups = [
   { id: "microbes", label: "Microbiology", tone: "blue" },
   { id: "mission", label: "Mission & safety", tone: "green" },
   { id: "earth", label: "Humanitarian", tone: "amber" },
+  { id: "society", label: "Engaging society", tone: "rose" },
 ];
 
 export const shapedPeople = [
@@ -365,6 +366,49 @@ export const shapedPeople = [
     parts: [],
     changed:
       "His feedback helped us move away from treating remote healthcare as a single application and toward more context-specific deployment scenarios, where local needs, resources, and societal considerations would guide future development.",
+  },
+  // The three "Engaging with society" activities. Not people, so they get an
+  // icon instead of a photo (`icon` names a glyph in ShapedByMap.jsx), and
+  // `tab` is the EngagementTabs tab their readout button opens. `changed`
+  // quotes each activity's "How this informed SHIHAB" text.
+  {
+    id: "mentorship",
+    kind: "activity",
+    group: "society",
+    lines: ["Mentorship Program"],
+    card: "KAUST iGEM Summer Mentorship Program",
+    topic: "Understanding the next generation of scientists",
+    icon: "mentorship",
+    tab: "mentorship",
+    parts: [],
+    changed:
+      "The responses helped us recognize the importance of explaining not only what our technology aims to achieve, but also the biological principles that make it possible.",
+  },
+  {
+    id: "tawasol",
+    kind: "activity",
+    group: "society",
+    lines: ["Tawasol Hackathon"],
+    card: "Tawasol Hackathon & Policy Showcase",
+    topic: "Who should govern SHIHAB?",
+    icon: "tawasol",
+    tab: "tawasol",
+    parts: [],
+    changed:
+      "The hackathon highlighted three priorities for SHIHAB's future development: remote quality assurance, operational accountability, and healthcare integration.",
+  },
+  {
+    id: "academy",
+    kind: "activity",
+    group: "society",
+    lines: ["Space Academy"],
+    card: "Space Academy",
+    topic: "What does the public know about space biology?",
+    icon: "academy",
+    tab: "academy",
+    parts: ["hardware"],
+    changed:
+      "Based on this and our stakeholders’ interviews, we decided to account for power consumption, payload mass, and available resources when designing SHIHAB's bioreactor.",
   },
 ];
 

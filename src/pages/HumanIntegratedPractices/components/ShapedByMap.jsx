@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { shapedParts, shapedGroups, shapedPeople } from "../data.js";
 import styles from "./ShapedByMap.module.scss";
+import ActivityIcon from "./ActivityIcons";
 
 // "Who shaped SHIHAB": the people we spoke with orbit SHIHAB, and a beam runs
 // from each person to the parts of the project their conversation changed.
@@ -11,79 +12,122 @@ import styles from "./ShapedByMap.module.scss";
 const PHOTO_BASE = "https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices";
 
 // Stage geometry, in viewBox units. Avatars and part pills are HTML laid over
-// the SVG at the same percentages, so they stay clickable buttons.
-const W = 1000;
-const H = 540;
-const CX = W / 2;
-const CY = H / 2;
-const OUTER = { rx: 400, ry: 200 };
-const INNER = { rx: 215, ry: 100 };
-
-// Degrees clockwise from the top. People sit in 24° slots, with one empty slot
-// before each group so the groups read as separate arcs.
-const PERSON_ANGLES = {
-  starr: 24,
-  "vergos-chandrashekhar": 48,
-  barnawi: 72,
-  alahmadi: 96,
-  rosado: 120,
-  mason: 144,
-  zea: 168,
-  washington: 192,
-  glowe: 216,
-  alharbi: 240,
-  hse: 264,
-  mian: 288,
-  macleod: 312,
-  kessler: 336,
-  grant: 360,
+// the SVG at the same percentages, so they stay clickable buttons. Phones get
+// a tall layout of the same orbit (see usePortrait), since the wide one is too
+// small to read at phone width.
+const LANDSCAPE = {
+  W: 1000,
+  H: 600,
+  OUTER: { rx: 410, ry: 235 },
+  INNER: { rx: 220, ry: 115 },
+  // Turns the layout so the groups run clockwise from the top-left in page
+  // order: astronauts, microbes, mission, back on Earth, then society.
+  ROTATE: -96,
 };
-// Turns the whole layout so the groups run clockwise from the top-left in
-// page order: astronauts, microbes, mission, then back on Earth.
-const ROTATE = -96;
+const PORTRAIT = {
+  W: 600,
+  H: 1000,
+  OUTER: { rx: 255, ry: 440 },
+  INNER: { rx: 125, ry: 300 },
+  ROTATE: -10,
+  // The tall inner orbit is narrow at top and bottom, so pills placed by
+  // equal angles would collide there; space them by arc length instead, and
+  // turn them a little so none sits level with the core, where a wide pill
+  // would touch it.
+  partsAlongArc: true,
+  PART_TURN: 22,
+};
+
+// People sit in equal slots around the outer orbit, grouped in shapedGroups
+// order so each group (and its colour) reads as one arc. Degrees clockwise
+// from the top.
+const PERSON_ANGLES = (() => {
+  const ordered = shapedGroups.flatMap((g) => shapedPeople.filter((p) => p.group === g.id));
+  return Object.fromEntries(ordered.map((p, i) => [p.id, ((i + 0.5) * 360) / ordered.length]));
+})();
 // Each part sits roughly in line with the people linked to it, so beams cross less.
 const PART_ANGLES = {
   payload: 40,
-  experiments: 105,
-  drylab: 155,
-  roadmap: 200,
-  safety: 250,
-  hardware: 300,
-  modeling: 350,
+  experiments: 88,
+  drylab: 132,
+  roadmap: 176,
+  safety: 216,
+  hardware: 266,
+  modeling: 322,
 };
 
-const onEllipse = ({ rx, ry }, deg) => {
-  const t = ((deg + ROTATE) * Math.PI) / 180;
-  return { x: CX + rx * Math.sin(t), y: CY - ry * Math.cos(t) };
-};
-// On a flat ellipse, equal angles bunch up at the left and right ends. This
-// places a point a given share of the way around the ellipse's *length*
-// instead, so evenly spaced slots stay evenly spaced on screen.
-function alongEllipse(e, deg) {
-  const steps = 720;
-  const pts = Array.from({ length: steps + 1 }, (_, i) => onEllipse(e, (i / steps) * 360));
-  const cum = [0];
-  for (let i = 1; i <= steps; i++) cum.push(cum[i - 1] + Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
-  const target = ((((deg % 360) + 360) % 360) / 360) * cum[steps];
-  const i = cum.findIndex((c) => c >= target);
-  return pts[Math.max(i, 0)];
+function layout({ W, H, OUTER, INNER, ROTATE, partsAlongArc, PART_TURN = 0 }) {
+  const CX = W / 2;
+  const CY = H / 2;
+  const onEllipse = ({ rx, ry }, deg) => {
+    const t = ((deg + ROTATE) * Math.PI) / 180;
+    return { x: CX + rx * Math.sin(t), y: CY - ry * Math.cos(t) };
+  };
+  // On a flat ellipse, equal angles bunch up at the narrow ends. This places a
+  // point a given share of the way around the ellipse's *length* instead, so
+  // evenly spaced slots stay evenly spaced on screen.
+  const along = (ellipse) => {
+    const steps = 720;
+    const pts = Array.from({ length: steps + 1 }, (_, i) => onEllipse(ellipse, (i / steps) * 360));
+    const cum = [0];
+    for (let i = 1; i <= steps; i++) cum.push(cum[i - 1] + Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+    return (deg) => {
+      const target = ((((deg % 360) + 360) % 360) / 360) * cum[steps];
+      return pts[Math.max(cum.findIndex((c) => c >= target), 0)];
+    };
+  };
+  const alongOuter = along(OUTER);
+  const placePart = partsAlongArc ? along(INNER) : (deg) => onEllipse(INNER, deg);
+  return {
+    W,
+    H,
+    CX,
+    CY,
+    OUTER,
+    INNER,
+    pct: ({ x, y }) => ({ "--x": `${(x / W) * 100}%`, "--y": `${(y / H) * 100}%` }),
+    personPos: Object.fromEntries(shapedPeople.map((p) => [p.id, alongOuter(PERSON_ANGLES[p.id])])),
+    partPos: Object.fromEntries(shapedParts.map((p) => [p.id, placePart(PART_ANGLES[p.id] + PART_TURN)])),
+  };
 }
 
-const pct = ({ x, y }) => ({ "--x": `${(x / W) * 100}%`, "--y": `${(y / H) * 100}%` });
+const LAYOUTS = { landscape: layout(LANDSCAPE), portrait: layout(PORTRAIT) };
 
-const personPos = Object.fromEntries(shapedPeople.map((p) => [p.id, alongEllipse(OUTER, PERSON_ANGLES[p.id])]));
-const partPos = Object.fromEntries(shapedParts.map((p) => [p.id, onEllipse(INNER, PART_ANGLES[p.id])]));
+const PORTRAIT_QUERY = "(max-width: 640px)";
+function usePortrait() {
+  const [portrait, setPortrait] = useState(() => typeof window !== "undefined" && window.matchMedia(PORTRAIT_QUERY).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(PORTRAIT_QUERY);
+    const onChange = () => setPortrait(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return portrait;
+}
+
 const partById = Object.fromEntries(shapedParts.map((p) => [p.id, p]));
 const groupById = Object.fromEntries(shapedGroups.map((g) => [g.id, g]));
 const personById = Object.fromEntries(shapedPeople.map((p) => [p.id, p]));
 const peopleForPart = (partId) => shapedPeople.filter((p) => p.parts.includes(partId));
+const activityCount = shapedPeople.filter((p) => p.kind === "activity").length;
+const conversationCount = shapedPeople.length - activityCount;
+
+const plural = (n, word, words) => `${n} ${n === 1 ? word : words}`;
+// "3 conversations", or "6 conversations and 1 activity" once activities are in.
+function shapedByLabel(people) {
+  const acts = people.filter((p) => p.kind === "activity").length;
+  const convs = people.length - acts;
+  return [convs && plural(convs, "conversation", "conversations"), acts && plural(acts, "activity", "activities")]
+    .filter(Boolean)
+    .join(" and ");
+}
 
 const links = shapedPeople.flatMap((person) => person.parts.map((part) => ({ person, part })));
 // People not tied to one part of the project beam straight to SHIHAB at the centre.
 const centreLinks = shapedPeople.filter((person) => person.parts.length === 0);
 
 // A beam bows toward SHIHAB at the centre rather than running straight.
-function beamPath(a, b) {
+function beamPath(a, b, { CX, CY }) {
   const mx = CX + ((a.x + b.x) / 2 - CX) * 0.4;
   const my = CY + ((a.y + b.y) / 2 - CY) * 0.4;
   return `M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}`;
@@ -99,6 +143,12 @@ function findCard(person) {
 // Clicking the card's own "See more" button lets Article.jsx open its popup as usual.
 function openConversation(person) {
   findCard(person)?.querySelector(".person-more-btn")?.click();
+}
+
+// Activities live in the Engaging with society tabs: ask EngagementTabs to
+// switch to this one and scroll it into view.
+function openActivity(person) {
+  window.dispatchEvent(new CustomEvent("hip:open-engagement", { detail: person.tab }));
 }
 
 function Photo({ ph }) {
@@ -120,14 +170,17 @@ function Photo({ ph }) {
 // Two people in one conversation share one circle, split down the middle, so
 // the pair takes the same space as everyone else.
 function Avatar({ person, className }) {
-  const pair = person.photos.length > 1;
+  const pair = person.photos?.length > 1;
   return (
     <span
       className={`${styles.avatar} ${className || ""}`}
       data-tone={groupById[person.group].tone}
       data-pair={pair || undefined}
+      data-icon={person.icon ? "" : undefined}
     >
-      {pair
+      {person.icon ? (
+        <ActivityIcon name={person.icon} className={styles.icon} />
+      ) : pair
         ? person.photos.map((ph) => (
             <span key={ph.file} className={styles.half} style={{ backgroundImage: `url(${PHOTO_BASE}/${ph.file})` }} />
           ))
@@ -172,9 +225,15 @@ function PersonReadout({ person }) {
           </>
         )}
         <div className={styles.actions}>
-          <button type="button" className={styles.primaryBtn} onClick={() => openConversation(person)}>
-            Read the full conversation
-          </button>
+          {person.kind === "activity" ? (
+            <button type="button" className={styles.primaryBtn} onClick={() => openActivity(person)}>
+              Explore this activity ↓
+            </button>
+          ) : (
+            <button type="button" className={styles.primaryBtn} onClick={() => openConversation(person)}>
+              Read the full conversation
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -188,7 +247,7 @@ function PartReadout({ part, onPick }) {
       <p className={styles.kicker}>Part of SHIHAB</p>
       <h4 className={styles.readName}>{part.label}</h4>
       <p className={styles.label}>
-        Shaped by {people.length} conversation{people.length > 1 ? "s" : ""}
+        Shaped by {shapedByLabel(people)}
       </p>
       <div className={styles.chips}>
         {people.map((p) => (
@@ -211,7 +270,9 @@ export default function ShapedByMap() {
   // `pinned` is the clicked item; `hover` previews another one on top of it.
   const [pinned, setPinned] = useState(null);
   const [hover, setHover] = useState(null);
-  const [openRow, setOpenRow] = useState(null);
+  const portrait = usePortrait();
+  const geo = LAYOUTS[portrait ? "portrait" : "landscape"];
+  const { W, H, CX, CY, OUTER, INNER, pct, personPos, partPos } = geo;
   const readoutRef = useRef(null);
   const readoutInnerRef = useRef(null);
   const active = hover || pinned;
@@ -255,14 +316,14 @@ export default function ShapedByMap() {
 
   return (
     <div className={styles.map} onKeyDown={(e) => e.key === "Escape" && setPinned(null)}>
+      <ul className={styles.legend}>
+        {shapedGroups.map((g) => (
+          <li key={g.id} data-tone={g.tone}>
+            {g.label}
+          </li>
+        ))}
+      </ul>
       <div className={styles.stage} onMouseLeave={() => setHover(null)}>
-        <ul className={styles.legend}>
-          {shapedGroups.map((g) => (
-            <li key={g.id} data-tone={g.tone}>
-              {g.label}
-            </li>
-          ))}
-        </ul>
         <svg viewBox={`0 0 ${W} ${H}`} className={styles.svg} aria-hidden="true">
           <ellipse cx={CX} cy={CY} rx={OUTER.rx} ry={OUTER.ry} className={styles.orbit} />
           <ellipse cx={CX} cy={CY} rx={INNER.rx} ry={INNER.ry} className={styles.orbit} />
@@ -282,7 +343,7 @@ export default function ShapedByMap() {
             return (
               <path
                 key={`${person.id}-${part}`}
-                d={beamPath(personPos[person.id], partPos[part])}
+                d={beamPath(personPos[person.id], partPos[part], geo)}
                 className={styles.beam}
                 data-tone={groupById[person.group].tone}
                 data-state={state(lit)}
@@ -292,7 +353,7 @@ export default function ShapedByMap() {
           {centreLinks.map((person) => (
             <path
               key={`${person.id}-centre`}
-              d={beamPath(personPos[person.id], { x: CX, y: CY })}
+              d={beamPath(personPos[person.id], { x: CX, y: CY }, geo)}
               className={styles.beam}
               data-tone={groupById[person.group].tone}
               data-state={state(active?.type === "person" && active.id === person.id)}
@@ -352,12 +413,13 @@ export default function ShapedByMap() {
             ) : (
               <div className={styles.idle}>
                 <p className={styles.idleStats}>
-                  <strong>{shapedPeople.length}</strong> conversations · <strong>{shapedParts.length}</strong> parts of
-                  SHIHAB changed
+                  <strong>{conversationCount}</strong> conversations · <strong>{activityCount}</strong> activities ·{" "}
+                  <strong>{shapedParts.length}</strong> parts of SHIHAB changed
                 </p>
                 <p>
-                  Pick a person to see what their conversation changed, or a part of SHIHAB to see everyone who shaped
-                  it.
+                  {portrait
+                    ? "Tap a person or activity to see what it changed, or a part of SHIHAB to see everyone who shaped it."
+                    : "Pick a person or activity to see what it changed, or a part of SHIHAB to see everyone who shaped it."}
                 </p>
               </div>
             )}
@@ -365,37 +427,6 @@ export default function ShapedByMap() {
         </div>
       </div>
 
-      {/* Narrow screens: the orbit gets too small to read, so the same data
-          becomes a list, each row opening the same readout. */}
-      <ul className={styles.list}>
-        {shapedPeople.map((person) => {
-          const open = openRow === person.id;
-          return (
-            <li key={person.id} data-open={open}>
-              <button
-                type="button"
-                className={styles.row}
-                aria-expanded={open}
-                onClick={() => setOpenRow(open ? null : person.id)}
-              >
-                <Avatar person={person} className={styles.rowAvatar} />
-                <span className={styles.rowText}>
-                  <b>{person.lines.join(" ")}</b>
-                  <span>{person.parts.map((id) => partById[id].label).join(" · ")}</span>
-                </span>
-                <span className={styles.rowMark} aria-hidden="true">
-                  {open ? "–" : "+"}
-                </span>
-              </button>
-              {open && (
-                <div className={styles.rowBody}>
-                  <PersonReadout person={person} />
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }

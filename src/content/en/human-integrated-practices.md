@@ -650,7 +650,329 @@ Importantly, an Earth application would not remove the regulatory considerations
 
 <div class="callout warn">
 
-How does society understand and perceive this technology?
+How does society perceive our technology?
+
+</div>
+
+SHIHAB proposes a different approach to healthcare. But how would people respond to this technology? Would they trust the medicines it produces? What concerns might arise about biosafety, accountability, or its use beyond space missions?
+
+We engage with communities from various countries and backgrounds through three initiatives, inviting them to question technology, share their concerns, and explore its potential repercussions. Their perspectives helped us identify key considerations for the responsible development of SHIHAB, particularly regarding public trust, safety, and accessibility, while also shaping how we communicate our project and approach its future implementation.
+
+<div data-slot="engagement"></div>
+
+<div class="engage-panel" data-tab="mentorship" data-title="Mentorship Program" data-sub="Understanding future scientists">
+
+### Understanding the next generation of scientists
+
+For SHIHAB to have an impact beyond the laboratory, people must first understand the science behind it. But how familiar are younger generations with synthetic biology, and what challenges do they face when exploring its applications?
+
+To investigate these questions, we launched the KAUST iGEM Summer Mentorship Program, connecting students with researchers through an accessible, nine-week learning experience.
+
+### Where students started
+
+Before the program began, we invited mentees to complete an entry questionnaire exploring their familiarity with synthetic biology, research interests, learning goals, and challenges. We received 48 responses, providing a baseline for understanding participants' experiences. According to our program evaluation, 52% of mentees had no prior exposure to synthetic biology, highlighting the importance of introducing the field to students who may not otherwise encounter it. Students also mentioned having difficulties understanding scientific literature, developing research ideas, connecting theoretical knowledge with practical applications, and communicating scientific concepts.
+
+<div class="callout accent">
+
+These findings were important to SHIHAB. Our project combines microbial engineering, therapeutic production, and space biotechnology, topics that can be difficult to understand without a foundation in biology. The responses helped us recognize the importance of explaining not only what our technology aims to achieve, but also the biological principles that make it possible.
+
+</div>
+
+### The mentorship experience
+
+Participants explored the fundamentals of biology, synthetic biology, and the applications of microorganisms in healthcare and other fields. As the program progressed, we introduced space biology and the potential for using modified microorganisms to address challenges in extreme environments, linking these concepts to the scientific motivation that underpins SHIHAB.
+
+In addition to scientific training, participants received guidance on conducting research, navigating academic paths, and engaging in science outreach. They were encouraged to identify real-world problems, develop their own project proposals, and discuss their ideas with their mentors.
+
+We did not want to present presenting synthetic biology as a collection of unfamiliar techniques, our goal was for students to understand how biological engineering can contribute to solving problems of societal relevance.
+
+Check our program: <a href="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/kaust-igem-mentorship-fellowship-program-summer-schedule-2026.pdf" target="_blank" rel="noopener noreferrer">KAUST iGEM Mentorship Fellowship Program: Summer Schedule 2026</a>
+
+### Measuring our impact
+
+Our mentorship program brought together 53 accepted mentees and 25 mentors, with 48 mentees remaining engaged, achieving a 91% retention rate. By operating entirely online, we aimed to make scientific mentorship more accessible, regardless of students' geographic location.
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/5d08608b-88e4-4076-9d30-b6f205f994c3.avif" alt="KAUST iGEM Summer Mentorship Program" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/img-5384.avif" alt="KAUST iGEM Summer Mentorship Program" loading="lazy">
+</div>
+
+By the end of our program, 78% reported gaining new knowledge about synthetic biology, demonstrating the value of making this field more accessible to students from different backgrounds. The experience gave participants opportunities to interact with researchers, explore potential academic paths, and become more confident in their abilities. This was reflected in the feedback we received during mentorship sessions and through our program evaluation. As one mentee shared:
+
+> “It built my self-confidence, and I met remarkable people and learned amazing new scientific things.”
+
+The program concluded with the Future Bioengineers Showcase, where participants presented their own problem-and-solution concepts, moving from learning scientific principles to exploring how biotechnology could address real-world challenges.
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/img-5442.avif" alt="Future Bioengineers Showcase" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/img-5439.avif" alt="Future Bioengineers Showcase" loading="lazy">
+</div>
+
+<div class="panel">
+<div class="panel-title"><span>How this informed SHIHAB</span></div>
+
+The mentees' initial knowledge gaps brought attention to two considerations for SHIHAB's future development and societal implementation:
+
+<div class="card-grid row">
+
+<div>
+
+#### Public understanding and acceptance
+
+The need to make microbial therapeutic production understandable to potential users, including how engineered microorganisms are used and what safeguards would be necessary.
+
+</div>
+
+<div>
+
+#### Accessibility and implementation
+
+The importance of considering communities with limited exposure to biotechnology when developing educational resources and future user-facing guidance.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="engage-panel" data-tab="tawasol" data-title="Tawasol Hackathon" data-sub="Exploring responsible governance">
+
+### Why we organized it
+
+Our regulatory analysis helped us identify the requirements SHIHAB would need to meet before real-world deployment. Yet, we recognized that meeting regulatory requirements would not be enough to ensure its safe and responsible implementation. We also needed to consider public trust, accountability, and how the technology could be integrated into healthcare systems operating in remote environments. For this, we co-organized the Tawasol Hackathon & Policy Showcase with NYU Abu Dhabi iGEM from August 28-30, 2026. The event brought together 186 high school and undergraduate students across 50 teams, challenging them to examine the societal, ethical, and regulatory implications of emerging synthetic biology technologies. We invited them to identify SHIHAB’s weaknesses and propose solutions.
+
+### Who should govern SHIHAB?
+
+Participants selected one of two research projects: SHIHAB, focused on on-demand biomanufacturing in isolated environments, or DUNELOCK, focused on engineered microorganisms for desert sand stabilization.
+
+For SHIHAB, we presented a future deployment scenario in a Zero-Reach environment, such as a lunar research station or a remote community cut off from medical supply chains. Teams were asked to develop a policy and operational framework addressing four challenges:
+
+<div class="card-grid">
+
+<div>
+
+#### Safety & Biocontainment
+
+How could the safety and quality of medicines produced on-site be verified when conventional laboratory oversight is unavailable?
+
+</div>
+
+<div>
+
+#### Public Trust & Health Impact
+
+What would make people trust medicines produced by engineered microorganisms, and how should informed consent be addressed?
+
+</div>
+
+<div>
+
+#### Integration & Liability
+
+Who should be responsible for production failures or incorrect doses, and how could SHIHAB integrate with existing healthcare systems?
+
+</div>
+
+<div>
+
+#### Sustainability & Long-Term Impact
+
+How could SHIHAB contribute to healthcare accessibility in isolated communities, and what limitations might affect its long-term implementation?
+
+</div>
+
+</div>
+
+### New perspectives from student proposals
+
+During the first day, teams examined their assigned technology and submitted a problem statement. On the second day, they worked with mentors from KAUST and NYU Abu Dhabi to develop a policy whitepaper of up to five pages, covering safety, public trust, liability, and long-term impact. Selected teams then presented five-minute pitches and defended their proposals during questions from an independent judging panel.
+
+The SHIHAB submissions revealed specific challenges that could affect future deployment. Several teams questioned how therapeutic identity, potency, dosage accuracy, and contamination could be verified without access to a conventional laboratory. Others examined whether remote monitoring and digital production records could support regulatory oversight, particularly when communication with Earth is limited.
+
+Accountability was another recurring concern. Participants considered how responsibility should be divided among platform developers, operators, healthcare professionals, and mission organizations if a production failure or incorrect dose harmed a patient. Some teams also raised questions about microbial genetic stability during prolonged operation, while others explored informed consent and public confidence in medicines manufactured by engineered organisms.
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/7d1baf7d-91ec-408a-8337-a4b9f9bfd53d.avif" alt="Tawasol Hackathon & Policy Showcase" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/img-4775.avif" alt="Tawasol Hackathon & Policy Showcase" loading="lazy">
+</div>
+
+<div class="panel">
+<div class="panel-title"><span>How this informed SHIHAB</span></div>
+
+The hackathon highlighted three priorities for SHIHAB's future development:
+
+<div class="card-grid stack">
+
+<div>
+
+#### Remote quality assurance
+
+Establish procedures for verifying therapeutic identity, potency, purity, and dose accuracy, supported by traceable production records and remote monitoring.
+
+</div>
+
+<div>
+
+#### Operational accountability
+
+Define responsibilities for system operation, therapeutic authorization, quality-control decisions, and emergency responses when production fails.
+
+</div>
+
+<div>
+
+#### Healthcare integration
+
+Consider how SHIHAB could operate within existing medical and regulatory structures, including informed consent, professional oversight, and deployment in isolated communities on Earth.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="engage-panel" data-tab="academy" data-title="Space Academy" data-sub="Making space biology accessible">
+
+### What does the public know about space biology?
+
+We conducted the Mission Beyond Earth: Space Biology Survey, collecting 92 responses from high school students, university students, educators, and other participants. Although most respondents were aware that spaceflight could affect astronaut health, their familiarity with synthetic biology and its applications varied considerably.
+
+Our findings revealed several insights:
+
+- 57% had either never heard of synthetic biology or had heard the term without understanding it well.
+- 51% had not previously heard about producing medicines using engineered microorganisms or were unsure whether it was possible.
+- 55% believed astronauts would need to carry all their medicines from Earth before a mission, highlighting an opportunity to introduce on-demand biomanufacturing.
+
+<!-- Charts generated from "Mission Beyond Earth: Space Biology Survey (Responses).xlsx" (92 responses); shares are of all respondents. -->
+<div class="chart-grid">
+<figure class="bar-chart">
+<figcaption><span class="bar-chart-q">If astronauts needed medicine during a mission to the Moon or Mars, how do you think they would obtain it?</span><span class="bar-chart-n">92 responses</span></figcaption>
+<table role="table">
+<thead><tr role="row"><th role="columnheader" scope="col">Answer</th><th role="columnheader" scope="col">Responses</th><th role="columnheader" scope="col">Share of respondents</th></tr></thead>
+<tbody>
+<tr role="row" style="--pct: 55.4"><th role="rowheader" scope="row">Bring all medicines from Earth before the mission.</th><td role="cell">51</td><td role="cell">55.4%</td></tr>
+<tr role="row" style="--pct: 30.4"><th role="rowheader" scope="row">Produce medicines during the mission.</th><td role="cell">28</td><td role="cell">30.4%</td></tr>
+<tr role="row" style="--pct: 13.0"><th role="rowheader" scope="row">Receive additional supplies from Earth.</th><td role="cell">12</td><td role="cell">13.0%</td></tr>
+<tr role="row" style="--pct: 1.1"><th role="rowheader" scope="row">I don&#x27;t know.</th><td role="cell">1</td><td role="cell">1.1%</td></tr>
+</tbody>
+</table>
+</figure>
+<figure class="bar-chart">
+<figcaption><span class="bar-chart-q">Before today, had you heard about producing medicines using engineered microorganisms?</span><span class="bar-chart-n">92 responses</span></figcaption>
+<table role="table">
+<thead><tr role="row"><th role="columnheader" scope="col">Answer</th><th role="columnheader" scope="col">Responses</th><th role="columnheader" scope="col">Share of respondents</th></tr></thead>
+<tbody>
+<tr role="row" style="--pct: 48.9"><th role="rowheader" scope="row">Yes</th><td role="cell">45</td><td role="cell">48.9%</td></tr>
+<tr role="row" style="--pct: 45.7"><th role="rowheader" scope="row">No</th><td role="cell">42</td><td role="cell">45.7%</td></tr>
+<tr role="row" style="--pct: 5.4"><th role="rowheader" scope="row">Not sure</th><td role="cell">5</td><td role="cell">5.4%</td></tr>
+</tbody>
+</table>
+</figure>
+<figure class="bar-chart">
+<figcaption><span class="bar-chart-q">How important do you think biotechnology will be for future space exploration? (1 being &quot;Not important at all&quot; and 5 &quot;Extremely important&quot;)</span><span class="bar-chart-n">92 responses</span></figcaption>
+<table role="table">
+<thead><tr role="row"><th role="columnheader" scope="col">Answer</th><th role="columnheader" scope="col">Responses</th><th role="columnheader" scope="col">Share of respondents</th></tr></thead>
+<tbody>
+<tr role="row" style="--pct: 1.1"><th role="rowheader" scope="row">1 (Not important at all)</th><td role="cell">1</td><td role="cell">1.1%</td></tr>
+<tr role="row" style="--pct: 3.3"><th role="rowheader" scope="row">2</th><td role="cell">3</td><td role="cell">3.3%</td></tr>
+<tr role="row" style="--pct: 3.3"><th role="rowheader" scope="row">3</th><td role="cell">3</td><td role="cell">3.3%</td></tr>
+<tr role="row" style="--pct: 28.3"><th role="rowheader" scope="row">4</th><td role="cell">26</td><td role="cell">28.3%</td></tr>
+<tr role="row" style="--pct: 64.1"><th role="rowheader" scope="row">5 (Extremely important)</th><td role="cell">59</td><td role="cell">64.1%</td></tr>
+</tbody>
+</table>
+</figure>
+<figure class="bar-chart">
+<figcaption><span class="bar-chart-q">Which of the following topics would you be most interested in learning about? (Select up to 2)</span><span class="bar-chart-n">92 responses</span></figcaption>
+<table role="table">
+<thead><tr role="row"><th role="columnheader" scope="col">Answer</th><th role="columnheader" scope="col">Responses</th><th role="columnheader" scope="col">Share of respondents</th></tr></thead>
+<tbody>
+<tr role="row" style="--pct: 43.5"><th role="rowheader" scope="row">Space exploration</th><td role="cell">40</td><td role="cell">43.5%</td></tr>
+<tr role="row" style="--pct: 33.7"><th role="rowheader" scope="row">Human health in space</th><td role="cell">31</td><td role="cell">33.7%</td></tr>
+<tr role="row" style="--pct: 30.4"><th role="rowheader" scope="row">Synthetic biology</th><td role="cell">28</td><td role="cell">30.4%</td></tr>
+<tr role="row" style="--pct: 30.4"><th role="rowheader" scope="row">Genetic engineering</th><td role="cell">28</td><td role="cell">30.4%</td></tr>
+<tr role="row" style="--pct: 19.6"><th role="rowheader" scope="row">Producing medicines in space</th><td role="cell">18</td><td role="cell">19.6%</td></tr>
+<tr role="row" style="--pct: 19.6"><th role="rowheader" scope="row">Microorganisms and biotechnology</th><td role="cell">18</td><td role="cell">19.6%</td></tr>
+<tr role="row" style="--pct: 10.9"><th role="rowheader" scope="row">Careers in space biotechnology</th><td role="cell">10</td><td role="cell">10.9%</td></tr>
+</tbody>
+</table>
+</figure>
+</div>
+
+Participants expressed strong interest in space exploration, human health, and biotechnology. With this, we design Space Academy, a free online educational series connecting space exploration with biology, technology, and society. We wanted participants to understand the broader scientific challenges that make technologies like ours relevant.
+
+### Exploring space through different perspectives
+
+We designed Space Academy as an interdisciplinary journey, bringing together researchers, entrepreneurs, and students to explore six complementary perspectives:
+
+<div class="table-wrap">
+
+| Session | Speaker | Focus |
+| --- | --- | --- |
+| Understanding space missions | Lielka N. Caballa | Space exploration and mission challenges |
+| Human health in spaceflight | Gwendolyn Starr Corbin | Astronaut health, safety, and human performance |
+| Can we engineer life? | KAUST x KFUPM iGEM | Synthetic biology and genetic engineering |
+| Starting your space journey | Kimberly Washington | Careers, entrepreneurship, and opportunities in the space sector |
+| The off-world pharmacy | Junaid Mian | Biotechnology and pharmaceutical innovation in space |
+| From Earth extremes to space agriculture | Davi Souza | Food production, automation, and agriculture in extreme environments |
+
+</div>
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/noelia2.avif" alt="Space Academy session" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/talk2.avif" alt="Space Academy session" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/talk4.avif" alt="Space Academy session" loading="lazy">
+</div>
+
+### The Final Mission: Putting knowledge into action
+
+We concluded Space Academy with The Final Mission, an interactive competition that challenged participants to apply their knowledge to a realistic space exploration scenario.
+
+In Mission: Lunar Horizon, six astronauts were conducting a six-month research mission at a lunar base in 2040 when unexpected challenges threatened their safety and operations. The participating teams focused on three problems: infectious diseases, water-system crisis, and food-system failure.
+
+Each team developed a scientifically grounded solution and presented a five-minute pitch explaining how it would work under spaceflight constraints, including limited power, resources, crew time, and resupply opportunities.
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/final-mission.avif" alt="The Final Mission: Mission Lunar Horizon" loading="lazy">
+</div>
+
+<div class="panel">
+<div class="panel-title"><span>How this informed SHIHAB</span></div>
+
+Our initial survey revealed limited awareness of space biology, motivating us to introduce its importance through Space Academy. The talks helped us identified three considerations for our project:
+
+<div class="card-grid stack">
+
+<div>
+
+#### Mission-driven design
+
+Throughout the talks, speakers emphasized the importance of considering spacecraft limitations when developing technologies for space. Based on this and our stakeholders’ interviews, we decided to account for power consumption, payload mass, and available resources when designing SHIHAB's bioreactor.
+
+</div>
+
+<div>
+
+#### Healthcare integration
+
+Discussions on astronaut health and space pharmaceuticals made us realize that producing medicines is only one part of healthcare. SHIHAB could also consider diagnosis, prevention, medicine storage, and how treatments would be used by astronauts.
+
+</div>
+
+<div>
+
+#### Making space biotechnology accessible
+
+Participants' enthusiasm showed us that many people are interested in space research but may see it as a field beyond their reach. We want to make SHIHAB understandable to people from different backgrounds and encouraging their participation in discussions about its future applications.
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 

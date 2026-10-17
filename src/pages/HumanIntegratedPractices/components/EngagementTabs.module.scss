@@ -1,0 +1,130 @@
+// EngagementTabs: three activity cards over one shared content area. Card
+// surfaces match the markdown .card-grid tiles (SectionedArticle.module.scss);
+// the selected card takes the violet primary, like the site's other active states.
+
+$mono: ui-monospace, Menlo, Consolas, monospace;
+
+.engage {
+  --engage-sticky-top: 12px;
+  margin-block: 28px 8px;
+  scroll-margin-top: 24px;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  // Stays pinned to the top while the reader is anywhere in the panel below,
+  // and scrolls away with it at the end (sticky within .engage). The dark,
+  // blurred backing keeps the panel text from showing through the cards.
+  position: sticky;
+  top: var(--engage-sticky-top);
+  z-index: 5;
+  margin: -8px;
+  padding: 8px;
+  border-radius: calc(var(--radius-sm) + 8px);
+  background: rgba(10, 10, 39, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.tab {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover { border-color: rgba(255, 255, 255, 0.25); }
+
+  &:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+  &[aria-selected="true"] {
+    border-color: var(--primary-400);
+    background: rgba(177, 109, 255, 0.1);
+    box-shadow: 0 0 0 1px var(--primary-400) inset;
+  }
+}
+
+.tabIcon {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  .tab[aria-selected="true"] & { stroke: var(--primary-300); }
+}
+
+.tabTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.tabSub {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.body {
+  position: relative;
+  margin-top: 12px;
+  // When a tab switch scrolls back to the panel's start, land it just below
+  // the pinned tab row rather than under it.
+  scroll-margin-top: 150px;
+  padding: 8px 26px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.count {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  margin: 0;
+  font-family: $mono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// Fade the new panel in when the tab changes.
+.panel {
+  animation: panelIn 0.35s ease-out;
+
+  // The first heading sits level with the counter in the corner.
+  > :first-child { margin-top: 14px; padding-right: 64px; }
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel { animation: none; }
+}
+
+@media (max-width: 640px) {
+  .tabs { gap: 8px; }
+  .body { scroll-margin-top: 100px; }
+  .tab { padding: 12px 6px; gap: 4px; }
+  .tabIcon { width: 22px; height: 22px; }
+  .tabTitle { font-size: 0.8rem; }
+  .tabSub { display: none; }
+  .body { padding: 4px 16px 16px; }
+  .count { top: 14px; right: 14px; }
+}

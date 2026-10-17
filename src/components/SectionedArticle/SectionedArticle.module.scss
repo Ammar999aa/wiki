@@ -395,6 +395,33 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
+  //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
+  //
+  //   ![alt text](src)
+  //
+  //   </div>
+  :global(.crop-frame) {
+    aspect-ratio: var(--crop-ratio, 4 / 3);
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    margin-block: 20px;
+
+    // `marked` wraps images in <p>; the img's height: 100% needs it sized too.
+    p {
+      height: 100%;
+      margin: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+      object-position: var(--crop-pos, center);
+    }
+  }
+
   // A photo carousel: photoCarousel.js turns this row of 4:3 photos into an
   // endless, auto-advancing carousel with prev/next arrows and
   // trackpad-swipe/drag support (autoplay off for reduced motion). Without JS it stays a plain
@@ -1358,6 +1385,136 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  // Horizontal bar chart built from a real table, so the numbers stay
+  // readable as data (screen readers, copy-paste, no image to upload). One
+  // series, one colour (--primary-600, checked against the panel surface for
+  // contrast and lightness); the question is the title, so no legend. Each
+  // row: answer on its own line, then its bar on a 0-100% track with the
+  // count and share beside it. `--pct` on each row sets the bar length.
+  // `.chart-grid` lays several charts out in columns. Author with raw HTML:
+  //   <figure class="bar-chart">
+  //   <figcaption><span class="bar-chart-q">Question?</span><span class="bar-chart-n">92 responses</span></figcaption>
+  //   <table role="table"><thead><tr role="row"><th role="columnheader">Answer</th>…</tr></thead>
+  //   <tbody><tr role="row" style="--pct: 55.4"><th role="rowheader">Answer text</th><td role="cell">51</td><td role="cell">55.4%</td></tr></tbody></table>
+  //   </figure>
+  // (Explicit roles keep the table semantics that some browsers drop once
+  // rows are laid out as grids.)
+  :global(.chart-grid) {
+    display: grid;
+    // min() so a single column never outgrows a narrow (phone) article.
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 16px;
+    margin-block: 20px;
+
+    :global(.bar-chart) { margin: 0; }
+  }
+
+  :global(.bar-chart) {
+    margin-block: 20px;
+    padding: 18px 20px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.045);
+
+    figcaption {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+
+    :global(.bar-chart-q) {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #fff;
+    }
+
+    :global(.bar-chart-n) {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    table {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+
+    // Column headers exist for assistive tech only.
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    tbody { display: block; }
+
+    tr {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      grid-template-areas: "label label label" "bar count pct";
+      align-items: center;
+      column-gap: 10px;
+      row-gap: 5px;
+      padding-block: 6px;
+
+      // Track, then the bar on top of it, in the same cell.
+      &::before,
+      &::after {
+        content: "";
+        grid-area: bar;
+        height: 10px;
+        border-radius: 4px;
+      }
+
+      &::before { background: rgba(255, 255, 255, 0.07); }
+
+      &::after {
+        justify-self: start;
+        width: calc(var(--pct, 0) * 1%);
+        min-width: 3px;
+        background: var(--primary-600);
+      }
+    }
+
+    th,
+    td {
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    th {
+      grid-area: label;
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    td {
+      font-variant-numeric: tabular-nums;
+      font-size: 0.8rem;
+      text-align: end;
+    }
+
+    // Count (muted), then the share (brighter, the number to read).
+    td:nth-of-type(1) { grid-area: count; color: rgba(255, 255, 255, 0.5); }
+    td:nth-of-type(2) { grid-area: pct; min-width: 3.4em; font-weight: 600; color: #fff; }
+
+    @media (hover: hover) {
+      tbody tr:hover td { background: none; }
+      tbody tr:hover::after { background: var(--primary-500); }
+    }
   }
 
   // Headline-number row — the markdown-tier version of the masthead stat

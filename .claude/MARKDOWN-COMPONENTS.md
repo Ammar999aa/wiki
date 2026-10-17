@@ -64,6 +64,7 @@ be none — see `.flow` below).
 | A one- or two-word tag standing in for a subheading                                                            | `.chip`                                                         | Small mono pill                                                           |
 | A labelled readout, diagram, or grouped figure that's more than a bare image                                   | `.panel` (+ `.dash` for a live-value grid inside it)            | Bordered glass card with a title row                                      |
 | A few real headline numbers (team size, counts, a year) | `.stat-grid` | Bordered strip of big numbers over small-caps labels |
+| Survey or count results to compare (a question's answers, with counts and shares) | `.bar-chart` (+ `.chart-grid` for several) | Bordered card, question as title, one bar per answer on a 0–100% track |
 | Content a careful reader wants but most readers should be able to skip                                         | `.details` (+ `.details-body` wrapping the collapsible content) | Native `<details>`, styled as a bordered card, smoothly expands/collapses |
 | A person you spoke with (interviewee, expert) with a photo and a short summary                                 | `.person-card`                                                  | Round photo + name on top, summary below, in a bordered card              |
 | Two groups of people a project serves (end users), each with a photo and a short description                  | `.end-users` + `.end-user`                                      | Two tinted cards (blue `space`, brown `earth`), photo on top              |
@@ -335,6 +336,39 @@ to a cell to tint its number amber. Works on its own or inside a `.panel`
 
 **Don't** put anything here but real, reported numbers — same rule as
 `.ticket-stub`.
+
+### `.bar-chart` — a horizontal bar chart from a real table
+
+For survey or count results (see the Space Academy tab in
+human-integrated-practices.md). The chart *is* a table, so the numbers stay
+readable as data — screen readers, copy-paste, nothing to upload — and it
+stays sharp at any size. One series, one colour (`--primary-600`, checked
+for contrast and lightness against the card surface), so no legend: the
+question is the title. Each row shows the answer on its own line, then its
+bar on a 0–100% track with the count and share beside it. `--pct` on each
+row sets the bar length; keep it equal to the share shown. Wrap several in
+`.chart-grid` for columns (one column on phones). Plain HTML, no blank
+lines needed:
+
+```md
+<div class="chart-grid">
+<figure class="bar-chart">
+<figcaption><span class="bar-chart-q">Before today, had you heard about producing medicines using engineered microorganisms?</span><span class="bar-chart-n">92 responses</span></figcaption>
+<table role="table">
+<thead><tr role="row"><th role="columnheader" scope="col">Answer</th><th role="columnheader" scope="col">Responses</th><th role="columnheader" scope="col">Share of respondents</th></tr></thead>
+<tbody>
+<tr role="row" style="--pct: 48.9"><th role="rowheader" scope="row">Yes</th><td role="cell">45</td><td role="cell">48.9%</td></tr>
+<tr role="row" style="--pct: 45.7"><th role="rowheader" scope="row">No</th><td role="cell">42</td><td role="cell">45.7%</td></tr>
+</tbody>
+</table>
+</figure>
+</div>
+```
+
+The explicit `role`s keep the table semantics that some browsers drop once
+rows are laid out as grids. Generate the rows from the source data (a
+spreadsheet export) rather than retyping numbers, and **don't** chart
+anything that isn't real collected data.
 
 ### `.details` — content most readers can skip
 

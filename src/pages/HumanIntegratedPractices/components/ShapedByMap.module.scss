@@ -4,12 +4,14 @@
 $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
 
 .map {
+  position: relative; // anchors the legend in the stage's top-left corner
   margin-block: 20px 8px;
 
   [data-tone="violet"] { --tone: var(--primary-400); }
   [data-tone="blue"] { --tone: var(--tertiary-300); }
   [data-tone="green"] { --tone: #3ddc97; }
   [data-tone="amber"] { --tone: var(--amber); }
+  [data-tone="rose"] { --tone: #ff8fb8; }
 }
 
 // ── Legend ────────────────────────────────────────────────────────────────
@@ -54,7 +56,7 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
 
 .stage {
   position: relative;
-  aspect-ratio: 1000 / 540;
+  aspect-ratio: 1000 / 600;
   container-type: inline-size;
 }
 
@@ -177,8 +179,8 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
   flex-direction: column;
   align-items: center;
   gap: 0.5cqw;
-  transform: translate(-50%, -3.2cqw);
-  width: 16cqw;
+  transform: translate(-50%, -2.9cqw);
+  width: 11.5cqw;
 
   &:hover .avatar,
   &[data-state="lit"] .avatar {
@@ -209,8 +211,8 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
   position: relative;
   display: flex;
   flex: none;
-  width: 6.4cqw;
-  height: 6.4cqw;
+  width: 5.8cqw;
+  height: 5.8cqw;
   border-radius: 50%;
   background: #1e203f;
   box-shadow: 0 0 0 2px var(--tone);
@@ -234,6 +236,23 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
       calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1))
       calc(var(--photo-zoom-y, 50%) + (50% - var(--photo-zoom-y, 50%)) / var(--photo-zoom, 1))
   );
+}
+
+// Activities: a line glyph in the group's tone instead of a photo.
+.map .avatar[data-icon] {
+  align-items: center;
+  justify-content: center;
+  background: #1a1640;
+}
+
+.icon {
+  width: 56%;
+  height: 56%;
+  fill: none;
+  stroke: var(--tone);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 // Two people in one conversation: one circle, each person in one half. Each
@@ -432,92 +451,43 @@ $mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
   &:hover { filter: brightness(1.08); }
 }
 
-// ── Narrow-screen list ────────────────────────────────────────────────────
-
-.map .list {
-  display: none;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    margin: 0 0 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.04);
-  }
-}
-
-.row {
-  all: unset;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px 14px;
-  cursor: pointer;
-
-  &:focus-visible { outline: 2px solid var(--amber); outline-offset: -2px; border-radius: var(--radius-sm); }
-}
-
-.map .rowAvatar {
-  width: 44px;
-  height: 44px;
-}
-
-.rowText {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-
-  b { color: #fff; font-size: 15px; }
-  span { color: rgba(255, 255, 255, 0.6); font-size: 12.5px; }
-}
-
-.rowMark {
-  font-family: $mono;
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.rowBody {
-  padding: 4px 14px 16px;
-
-  .readCols { grid-template-columns: 1fr; gap: 16px; }
-  .changed { margin-top: 0; }
-
-  // Person details in two columns (what changed | links and actions), so the
-// map and its details fit on one screen together.
-.readCols {
-  display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 24px;
-}
-
-.readSide .chips {
-  margin-top: 6px;
-}
-
-.readSide .actions {
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 14px;
-}
-
-.readHead { display: none; } // the row above already shows photo and name
-}
-
+// Phones: the same orbit, stood upright (PORTRAIT in ShapedByMap.jsx). Names
+// are left off the orbit, where they would collide; tapping shows the name in
+// the readout below. The legend moves above the stage.
 @media (max-width: 640px) {
-  .map .legend,
-  .stage,
-  .readout {
-    display: none;
+  .stage { aspect-ratio: 600 / 1000; }
+
+  .map .legend {
+    position: static;
+    flex-flow: row wrap;
+    gap: 6px 14px;
+    margin-bottom: 10px;
+
+    li { font-size: 9.5px; }
   }
 
-  .map .list {
-    display: block;
+  .person {
+    width: auto;
+    transform: translate(-50%, -50%);
   }
+
+  .personName { display: none; }
+
+  .avatar {
+    width: 11.5cqw;
+    height: 11.5cqw;
+  }
+
+  .part {
+    max-width: 25cqw;
+    padding: 0.8cqw 2cqw;
+    font-size: 9.5px;
+  }
+
+  .readCols {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .map .idleStats { font-size: 10px; }
 }
