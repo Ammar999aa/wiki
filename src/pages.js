@@ -54,6 +54,7 @@ const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
 const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribution"));
 const Judging = lazyWithPreload(() => import("./pages/Judging/Judging"));
 const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
+const Results = lazyWithPreload(() => import("./pages/Results/Results"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
 // Optional `description` on a page: the search-result / link-preview
@@ -117,7 +118,14 @@ const Pages = [
       },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
-      { name: "Results", title: "Results", path: "/results", component: Stub },
+      {
+        name: "Results",
+        title: "Results",
+        path: "/results",
+        component: Results,
+        description:
+          "SHIHAB wet lab results: Dsup integration across three chassis, radiation resistance, and payload protein expression and purification.",
+      },
       { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub },
       { name: "Proof of Concept", title: "Proof of Concept", path: "/proof-of-concept", component: Stub },
     ],
