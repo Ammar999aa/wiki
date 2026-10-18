@@ -179,7 +179,7 @@ pPICZ A vector map (via SnapGene)
 
 <div class="photo-frame light">
 
-![pPICZα A vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/image5.avif)
+![pPICZα A vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/ppicz-a-a-map.avif)
 
 </div>
 
