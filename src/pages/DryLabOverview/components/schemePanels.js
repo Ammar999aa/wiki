@@ -78,7 +78,7 @@ const PANELS = [
     "key": "k-export",
     "org": "<em>S. elongatus</em> &#183; sucrose export",
     "target": "export",
-    "title": "Can we direct more carbon towards sucrose export?",
+    "title": "Can we direct more carbon toward sucrose export?",
     "take": "The model predicted a clear trade-off: supporting more supplier growth left less carbon available for sucrose export. At the reported maximum-growth operating point, sucrose export reached 0.23 mmol gDW<sup>&minus;1</sup> h<sup>&minus;1</sup>. Reducing the supplier growth rate to 0.013 h<sup>&minus;1</sup> increased export to 0.81 mmol gDW<sup>&minus;1</sup> h<sup>&minus;1</sup>, approximately 3.5 times higher."
   },
   {
@@ -86,7 +86,7 @@ const PANELS = [
     "org": "<em>S. elongatus</em> &#183; gene deletions",
     "target": "knockouts",
     "title": "Would gene deletions increase sucrose production?",
-    "take": "We tested whether deleting glgC, involved in glycogen storage, and invA, involved in sucrose breakdown, could redirect resources towards sucrose production. Neither deletion, alone or in combination, increased predicted production even when carbon and light restrictions were removed."
+    "take": "We tested whether deleting glgC, involved in glycogen storage, and invA, involved in sucrose breakdown, could redirect resources toward sucrose production. Neither deletion, alone or in combination, increased predicted production even when carbon and light restrictions were removed."
   }
 ];
 

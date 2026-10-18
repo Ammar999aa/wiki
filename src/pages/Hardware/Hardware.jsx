@@ -61,6 +61,7 @@ export default function Hardware() {
         intro={<BulbHero />}
         sections={sections}
         defaultSelected={sections[0]?.title}
+        numbered
       />
     </PageWrapper>
   );

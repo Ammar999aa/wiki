@@ -1,4 +1,4 @@
-## Design Overview
+## Design overview
 
 In our project, we were working with **three different chassis**: _B. subtilis_, _P. pastoris_, and _S. cerevisiae_. We engineered these organisms using a combination of **genomic recombineering and episomal plasmids**, which allowed us to explore different strategies for stable and inducible heterologous gene expression.
 
@@ -16,7 +16,7 @@ All three chassis were engineered to contain **Dsup** protein stably integrated 
 
 Below, we describe each chassis, the genetic systems used for its engineering, and the proteins selected for recombinant expression.
 
-## I. Chassis, Vectors, and Regulatory Parts
+## I. Chassis, vectors, and regulatory parts
 
 <div class="caption">
 
@@ -45,7 +45,7 @@ Below, we describe each chassis, the genetic systems used for its engineering, a
 
 <p class="callout-label">Chassis overview</p>
 
-Bacillus subtilis is a Gram-positive, rod-shaped bacterium widely used as a model organism in molecular biology and synbio. Similarly to _E. coli_, _B. subtilis_ is relatively easy to cultivate. It grows rapidly under standard laboratory conditions, and there is a wide range of well-characterized genetic engineering tools available for this organism. However, unlike _E. coli_, it lacks an outer membrane, which facilitates the secretion of recombinant proteins. As a result, it is highly efficient and much easier to conduct downstream purification of the recombinant proteins. Heterologous proteins can be directed through the cytoplasmic membrane using N-terminal signal peptides (mostly via Sec-dependent secretion pathway). After translocation, signal peptides get cleaved off from the main protein.
+*Bacillus subtilis* is a Gram-positive, rod-shaped bacterium widely used as a model organism in molecular biology and synbio. Similarly to _E. coli_, _B. subtilis_ is relatively easy to cultivate. It grows rapidly under standard laboratory conditions, and there is a wide range of well-characterized genetic engineering tools available for this organism. However, unlike _E. coli_, it lacks an outer membrane, which facilitates the secretion of recombinant proteins. As a result, it is highly efficient and much easier to conduct downstream purification of the recombinant proteins. Heterologous proteins can be directed through the cytoplasmic membrane using N-terminal signal peptides (mostly via Sec-dependent secretion pathway). After translocation, signal peptides get cleaved off from the main protein.
 
 _B. subtilis_ also offers flexibility for genetic engineering. It is a naturally competent bacteria, which means that it can take up extracellular DNA under appropriate physiological conditions much more readily compared to other cells. Moreover, homologous recombination is also highly efficient in this organism. Inducible promoters, such as IPTG inducible Pgrac, allow controlled expression of heterologous genes.
 
@@ -104,7 +104,7 @@ pHT-ads vector map (via SnapGene)
 
 - _E. coli_ – _B. subtilis_ shuttle expression vector derived from pHT01
 - Maintained extrachromosomally (episomal plasmid)
-- We utilized this vector for episomal expression of all of our payload proteins in Bacillus. This choice was made so that the payload proteins are expressed without permanent integration into the host chromosome, allowing greater flexibility in modifying or replacing expression constructs.
+- We utilized this vector for episomal expression of all of our payload proteins in *Bacillus*. This choice was made so that the payload proteins are expressed without permanent integration into the host chromosome, allowing greater flexibility in modifying or replacing expression constructs.
 - Contains a strong IPTG-inducible Pgrac promoter
 - LacI-mediated repression, which gets relieved after IPTG induction
 - The payload genes were placed under a Pgrac promoter to enable controlled protein production, allowing cells to first accumulate sufficient biomass before initiating recombinant protein expression. This approach helps minimize the metabolic burden associated with premature protein production and allows us to acquire maximum amounts of the target protein.
@@ -118,7 +118,7 @@ pHT-ads vector map (via SnapGene)
 
 <p class="callout-label">Chassis overview</p>
 
-Pichia pastoris (Komagataella phaffii) is a methylotrophic yeast (eukaryotic) that can be easily cultivated similarly to _E. coli_, which makes it very useful as it combines relatively simple cultivation with a capacity for complex protein folding, disulfide bond formation, post-translational modification, and secretion. Hence, it can be a great alternative to traditional _E. coli_ based production for more complex proteins.
+*Pichia pastoris* (*Komagataella phaffii*) is a methylotrophic yeast (eukaryotic) that can be easily cultivated similarly to _E. coli_, which makes it very useful as it combines relatively simple cultivation with a capacity for complex protein folding, disulfide bond formation, post-translational modification, and secretion. Hence, it can be a great alternative to traditional _E. coli_ based production for more complex proteins.
 
 _P. pastoris_ also supports stable genomic integration of heterologous expression cassettes through homologous recombination. Integrative vectors, such as the ones we used in this project, are particularly easy to work with as they generate stable recombinant strains without relying on continuous maintenance of an episomal expression plasmid.
 
@@ -151,8 +151,8 @@ pPICZ A vector map (via SnapGene)
 </div>
 
 - This vector is classified as a Shuttle vector, meaning that it contains pUC ori for propagation in _E. coli_
-- Selection marker: Zeocin (25 ug/ml for _E. coli_, 100 ug/ml for _P. pastoris_)
-- No ori for Pichia pastoris is present in this vector, as it is supposed to be integrated directly into the genome of the cell. The expression cassette contains the AOX1 promoter/5′ AOX1 sequence upstream of the MCS and the AOX1 transcription-termination region downstream. These sequences originate from the native AOX1 locus present in the genome of Pichia. Hence, the cassette provides homology between the introduced plasmid and the chromosome. For homologous recombination to occur, the DNA must be linearized, preferably in the AOX1 promoter.
+- Selection marker: Zeocin (25 µg/mL for _E. coli_, 100 µg/mL for _P. pastoris_)
+- No ori for *Pichia pastoris* is present in this vector, as it is supposed to be integrated directly into the genome of the cell. The expression cassette contains the AOX1 promoter/5′ AOX1 sequence upstream of the MCS and the AOX1 transcription-termination region downstream. These sequences originate from the native AOX1 locus present in the genome of *Pichia*. Hence, the cassette provides homology between the introduced plasmid and the chromosome. For homologous recombination to occur, the DNA must be linearized, preferably in the AOX1 promoter.
 
 </div>
 
@@ -192,7 +192,7 @@ Protein expression under pAOX1 consists of a glycerol growth phase, followed by 
 
 <p class="callout-label">Chassis overview</p>
 
-Saccharomyces cerevisiae is commonly known as baker's yeast. It is also a unicellular eukaryotic microorganism and one of the most extensively characterized model organisms in molecular biology and metabolic engineering. _S. cerevisiae_ was actively used for recombinant protein production and recombineering for decades as it combines rapid growth, a well-established synbio toolbox, and many other useful properties.
+*Saccharomyces cerevisiae* is commonly known as baker's yeast. It is also a unicellular eukaryotic microorganism and one of the most extensively characterized model organisms in molecular biology and metabolic engineering. _S. cerevisiae_ was actively used for recombinant protein production and recombineering for decades as it combines rapid growth, a well-established synbio toolbox, and many other useful properties.
 
 As a eukaryotic expression host, _S. cerevisiae_ exhibits an ability for complex protein folding, disulfide bond formation, post-translational modification, and secretion, enabling the production of proteins that can't be expressed correctly in bacterial cells.
 
@@ -227,8 +227,8 @@ HO-poly-KanMX4-HO vector map (via SnapGene)
 </div>
 
 - HO-poly-KanMX4-HO was designed for targeted insertion of heterologous DNA at the HO locus. The construct contains sequences homologous to the genomic HO region flanking a cloning region and the antibiotics resistance cassette, enabling stable chromosomal integration through homologous recombination.
-- The HO locus encodes the HO endonuclease, which initiates mating-type switching by generating a site-specific double-strand break at the MAT locus. Since the majority of laboratory _S. cerevisiae_ strains are already defective in mating-type switching, and the HO locus is frequently used as a genomic integration site because disruption of HO is generally compatible with normal vegetative growth under standard laboratory conditions. Hence, this locus is characterised as a "safe harbor" region.
-- It is a shuttle vector that can be replicated in _E. coli_ for plasmid amplification and selected using ampicillin (100 ug/ml).
+- The HO locus encodes the HO endonuclease, which initiates mating-type switching by generating a site-specific double-strand break at the MAT locus. Since the majority of laboratory _S. cerevisiae_ strains are already defective in mating-type switching, and the HO locus is frequently used as a genomic integration site because disruption of HO is generally compatible with normal vegetative growth under standard laboratory conditions. Hence, this locus is characterized as a "safe harbor" region.
+- It is a shuttle vector that can be replicated in _E. coli_ for plasmid amplification and selected using ampicillin (100 µg/mL).
 - KanMX4 encodes an aminoglycoside phosphotransferase that confers resistance to G418 (geneticin) in _S. cerevisiae_. This enables selection of successful transformants without requiring particular auxotrophic agar plates.
 - Architecture overview:
 
@@ -372,8 +372,8 @@ Through this modification, we aimed to evaluate whether enhanced nuclear localiz
 - FfIBP is naturally produced by the psychrophilic, gram-negative bacterium _Flavobacterium frigoris_ PS1, isolated from Antarctic sea ice
 - FfIBP is a hyperactive ice-binding protein (IBP) and an antifreeze protein (AFP), involved in protecting organisms against freezing-associated damage
 - This protein binds directly to ice crystals through a specialized ice-binding surface containing regularly arranged residues, including a T-A/G-X-T/N motif. The interaction inhibits ice crystal growth <a class="cite" href="#ref-13">13</a><a class="cite" href="#ref-14">14</a>
-- FfIBP is particularly beneficial since it exhibits very high antifreeze activity at relatively low concentrations. For example, it showed approximately 2.5°C thermal hysteresis at 50 µM, which is around ten times higher than what was reported for LeIBP <a class="cite" href="#ref-15">15</a>
-- We chose FfIBP as one of our payloads because of its potential applications for cryopreservation of cells and biological materials acquired during space missions, protection of various samples during repeated freeze-thaw cycles, preservation of temperature-sensitive products, and frozen-food processing. On-demand production of FfIBP could help reducing dependence on supplies transported from Earth and allow astronauts to safely collect variety of samples during their missions
+- FfIBP is particularly beneficial since it exhibits very high antifreeze activity at relatively low concentrations. For example, it showed approximately 2.5 °C thermal hysteresis at 50 µM, which is around ten times higher than what was reported for LeIBP <a class="cite" href="#ref-15">15</a>
+- We chose FfIBP as one of our payloads because of its potential applications for cryopreservation of cells and biological materials acquired during space missions, protection of various samples during repeated freeze-thaw cycles, preservation of temperature-sensitive products, and frozen-food processing. On-demand production of FfIBP could help reduce dependence on supplies transported from Earth and allow astronauts to safely collect a variety of samples during their missions
 - Since FfIBP is naturally secreted from _F. frigoris_, it contains a lipoprotein signal sequence (Sec/SPII):
 
 <div class="photo-frame light">
@@ -394,7 +394,7 @@ Amino acid sequence:
 
 <p class="seq-key"><span class="seq-signal">Green</span> — signaling peptide for secretion</p>
 
-In each of our constructs, we replaced this secretion signal with secretion signals native to our chassis (amyQ for Bacillus and a-factor secretion signal for two yeasts)
+In each of our constructs, we replaced this secretion signal with secretion signals native to our chassis (*amyQ* for *Bacillus* and the α-factor secretion signal for the two yeasts)
 
 #### LeIBP
 
@@ -423,7 +423,7 @@ Amino acid sequence:
 
 <p class="seq-key"><span class="seq-signal">Green</span> — signaling peptide for secretion</p>
 
-In each of our constructs, we replaced this secretion signal with secretion signals native to our chassis (amyQ for Bacillus and a-factor secretion signal for two yeasts)
+In each of our constructs, we replaced this secretion signal with secretion signals native to our chassis (*amyQ* for *Bacillus* and the α-factor secretion signal for the two yeasts)
 
 #### mCherry
 

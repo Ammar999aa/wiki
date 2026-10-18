@@ -17,14 +17,14 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 const pageIntro = (
   <>
     <Masthead
-      eyebrow={["Dry Lab", "Model", "Flux balance analysis", "Dynamic modelling"]}
+      eyebrow={["Dry Lab", "Model", "Flux balance analysis", "Dynamic modeling"]}
       // Deck and stats are the team's own wording/numbers from the revised
       // Model page (src/assets/model-page-drylab2.html); every stat is
       // restated, sourced, in the page body (the Bacillus and yeast nanobody
       // tables, the partner-supply table and the gap-filling section).
       deck={
         <>
-          We modelled three organisms to decide where SHIHAB should build its nanobody and what to feed it. We
+          We modeled three organisms to decide where SHIHAB should build its nanobody and what to feed it. We
           found surprising results: under the oxygen restriction that defines a closed habitat,{" "}
           <b>
             <i>Bacillus subtilis</i> out produces yeast roughly threefold

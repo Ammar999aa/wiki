@@ -4,9 +4,22 @@ import Article from "./Article/Article";
 import { TooltipProvider } from "../Tooltip/Tooltip";
 import styles from "./SectionedArticle.module.scss";
 
-export default function SectionedArticle({ sections, defaultSelected, title, panelHeader, intro }) {
+// `numbered`: show a section number ("01", "02", …) beside each heading and
+// jump-nav entry. Worth it only on a page long enough that a reader loses
+// their place, and where other parts of the page refer back to a section by
+// number (see Model/`/software`, whose SecRef marks read "§05"). On a short
+// page the numbers are noise, so this stays opt-in.
+//
+// The numbers come from each section's position, never from a hand-written
+// field: a manual number silently goes stale the moment a section is moved
+// or inserted, which is also why the authoring conventions ban writing one
+// into the heading text itself.
+export default function SectionedArticle({ sections, defaultSelected, title, panelHeader, intro, numbered }) {
   const [collapsed, setCollapsed] = useState(true);
   const [selected, setSelected] = useState(defaultSelected || sections[0]?.title);
+  // Index-aligned with `sections`; undefined entries render nothing, so an
+  // unnumbered page costs nothing here.
+  const nums = numbered ? sections.map((_, i) => String(i + 1).padStart(2, "0")) : undefined;
   const sectionRefs = useRef({});
   const progressFillRef = useRef(null);
   // Set while a panel click's smooth scroll is still animating there — the
@@ -171,6 +184,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
         </div>
         <Panel
             items={sections.map((s) => s.title)}
+            nums={nums}
             selected={selected}
             collapsed={collapsed}
             onToggle={() => setCollapsed((v) => !v)}
@@ -186,6 +200,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
               title={title}
               intro={intro}
               sections={sections}
+              nums={nums}
               sectionRefs={sectionRefs}
           />
         </TooltipProvider>

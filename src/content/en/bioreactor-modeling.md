@@ -21,7 +21,7 @@ A CFD model resolves concentration in space, so it can show us an oxygen-starved
 
 This first model is our reference case. Before comparing geometries, we needed one configuration we trust and understand end to end. Concretely, we wanted it to answer three things:
 
-1. Does a single paddle impeller at 100 rpm homogenise the medium on a timescale much shorter than the growth timescale? (If yes, later designs only have to _not be worse_.)
+1. Does a single paddle impeller at 100 rpm homogenize the medium on a timescale much shorter than the growth timescale? (If yes, later designs only have to _not be worse_.)
 2. Is oxygen transfer across the flat headspace interface fast enough to keep up with respiration for a full 24-hour batch?
 3. Where, spatially, does the culture first become limited — and by what?
 
@@ -42,7 +42,7 @@ A few deliberate simplifications are worth stating up front, because they define
 |Simplification|What it buys us|What it costs us|
 |---|---|---|
 |Flat, rigid gas–liquid interface|No free-surface tracking; a steady flow solution exists|No vortex, no sloshing, no surface deformation — and in microgravity, surface tension would in reality dominate the shape|
-|Single lumped biomass species|Five transport equations instead of dozens|No population structure, no plasmid loss, no segregated behaviour|
+|Single lumped biomass species|Five transport equations instead of dozens|No population structure, no plasmid loss, no segregated behavior|
 |Headspace aeration only (no sparging)|No two-phase flow model needed|Almost certainly underestimates achievable oxygen transfer|
 |Solutes do not alter density or viscosity|One-way coupling: flow → transport, never the reverse|Invalid at high biomass, where broth viscosity rises|
 
@@ -315,7 +315,7 @@ Five things we already know are weak, listed honestly because a model page that 
 
 <p class="callout-label">1. The Reynolds number says this may not be laminar</p>
 
-With ρ = 1010 kg/m³, N = 100 rpm ≈ 1.67 s⁻¹, D = 65.6 mm and μ = 1.1 mPa·s, Re ≈ 6.6 × 10³. For a stirred tank, Re > ~10⁴ is fully turbulent and Re < ~10 is laminar; 6.6 × 10³ sits squarely in the transitional regime. A Laminar Flow interface will still converge and still produce a smooth, plausible-looking velocity field — it will simply be wrong, and it will underestimate mixing. **Action:** run the same case with the k–ε turbulence model and compare mixing time. If they disagree, report the turbulent result.
+With ρ = 1,010 kg/m³, N = 100 rpm ≈ 1.67 s⁻¹, D = 65.6 mm and μ = 1.1 mPa·s, Re ≈ 6.6 × 10³. For a stirred tank, Re > ~10⁴ is fully turbulent and Re < ~10 is laminar; 6.6 × 10³ sits squarely in the transitional regime. A Laminar Flow interface will still converge and still produce a smooth, plausible-looking velocity field — it will simply be wrong, and it will underestimate mixing. **Action:** run the same case with the k–ε turbulence model and compare mixing time. If they disagree, report the turbulent result.
 
 </div>
 
@@ -400,7 +400,7 @@ A single comparison table across designs, same columns for every design, is wort
 
 </div>
 
-## What the modelling changed
+## What the modeling changed
 
 <div class="callout warn">
 
@@ -410,7 +410,7 @@ Two short subsections, in the Munich style:
 
 **Dry lab impact.** Which design decision did the model actually make? Name it. "We ran three impeller geometries and chose X because Y" is a result; "the model informed our design" is not.
 
-**Wet lab impact.** What did the model predict, and what did the experiment show? Include the case where they disagreed — a model that was wrong in an interesting way and then corrected is stronger evidence of real modelling work than a model that was right about everything.
+**Wet lab impact.** What did the model predict, and what did the experiment show? Include the case where they disagreed — a model that was wrong in an interesting way and then corrected is stronger evidence of real modeling work than a model that was right about everything.
 
 </div>
 
@@ -422,7 +422,7 @@ Two short subsections, in the Munich style:
 
 Cite at minimum:
 
-- the source of every kinetic parameter (μ_max, K_S, K_O2, Y_X/S, Y_X/O2, m_O2) — for each row of the parameter table, a reader should be able to find where the number came from;
+- the source of every kinetic parameter (μ_max, K_S, K_O₂, Y_X/S, Y_X/O₂, m_O₂) — for each row of the parameter table, a reader should be able to find where the number came from;
 - diffusivity and Henry-constant sources at 37 °C;
 - the two-film theory and Luedeking–Piret original papers;
 - COMSOL Multiphysics 5.5, with version and module list.

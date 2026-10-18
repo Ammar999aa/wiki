@@ -1,7 +1,10 @@
 import LiquidGlass from "../../LiquidGlass/LiquidGlass";
 import styles from "../SectionedArticle.module.scss";
 
-export default function Panel({ items, selected, collapsed, onToggle, onSelect, header }) {
+// `nums` is optional and index-aligned with `items`: section numbers for a
+// numbered reference-style page, shown as their own mark so the title text
+// itself stays a clean table-of-contents entry.
+export default function Panel({ items, nums, selected, collapsed, onToggle, onSelect, header }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
       {/* cornerGlow defaults on and, with no cursor over the panel, falls
@@ -36,6 +39,7 @@ export default function Panel({ items, selected, collapsed, onToggle, onSelect, 
               className={`${styles.panelItem} ${item === selected ? styles.selected : ""}`}
               onClick={() => onSelect(i)}
             >
+              {nums?.[i] && <span className={styles.panelItemNum}>{nums[i]}</span>}
               {item}
             </h2>
           ))}

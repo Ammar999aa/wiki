@@ -352,7 +352,7 @@ function HeroSection() {
             <div><strong className={styles.heroSubHighlight}>On-demand medicine, engineered for anywhere.</strong></div>
           </p>
           <div className={styles.heroTelemetry}>
-            <span>PLATFORM <b>S. cerevisiae · B. subtilis · P. pastoris</b></span>
+            <span>PLATFORM <b><i>S. cerevisiae</i> · <i>B. subtilis</i> · <i>P. pastoris</i></b></span>
             <span>OUTPUT <b>Therapeutic proteins</b></span>
           </div>
         </div>

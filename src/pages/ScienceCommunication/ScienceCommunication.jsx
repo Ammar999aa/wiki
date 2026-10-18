@@ -43,7 +43,7 @@ const ARABIC_TERMS = [
 // pattern (also used by Education.jsx).
 function withInteractiveContent(baseSections) {
   return baseSections.map((section) => {
-    if (section.title === "Movie Nights: Science Through Cinema") {
+    if (section.title === "Movie nights: science through cinema") {
       return {
         ...section,
         content: (
@@ -61,7 +61,7 @@ function withInteractiveContent(baseSections) {
         ),
       };
     }
-    if (section.title === "Tawasol: Uniting MENA iGEM Teams") {
+    if (section.title === "Tawasol: uniting MENA iGEM teams") {
       return {
         ...section,
         content: (

@@ -97,6 +97,7 @@ export default function HumanIntegratedPractices() {
         intro={pageIntro}
         sections={sections}
         defaultSelected={sections[0]?.title}
+        numbered
       />
     </PageWrapper>
   );

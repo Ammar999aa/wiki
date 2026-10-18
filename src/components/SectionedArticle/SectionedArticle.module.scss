@@ -195,6 +195,19 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin: 0 0 20px;
   }
 
+  // Companion to `.panelItemNum`: the in-article mark for a numbered
+  // section. Violet + monospace so it reads as the section's label rather
+  // than the first word of the heading, matching the `SecRef` marks ("§05")
+  // that cross-reference it from the body text.
+  .secNum {
+    margin-inline-end: 0.55em;
+    font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.78em;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
   img {
     margin: 12px;
     max-width: 100%;
@@ -2667,6 +2680,26 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   font-weight: 700;
   border-inline-start-color: var(--primary);
   background: color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+// Section number for a numbered reference-style page (Model/`/software`),
+// kept out of the title text so the jump-nav reads as a table of contents.
+// Monospace + tabular-nums so the numbers form a straight column beside
+// titles of different lengths — the same "mono is for metadata" rule the
+// article's captions and table headers follow.
+.panelItemNum {
+  display: inline-block;
+  min-width: 2.2em;
+  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.82em;
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.62;
+}
+
+.selected .panelItemNum {
+  opacity: 1;
 }
 
 // The desktop rail is always open, so the collapse toggle only exists for

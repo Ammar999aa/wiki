@@ -2,11 +2,11 @@
 
 Content coming soon. This section will cover our human practices work.
 
-## Stakeholder Engagement
+## Stakeholder engagement
 
 Details of interviews, surveys, and outreach will be described here.
 
-## Integrated Practices
+## Integrated practices
 
 How stakeholder feedback shaped our project will be described here.
 

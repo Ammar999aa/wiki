@@ -1,8 +1,8 @@
-## Composite Parts
+## Composite parts
 
 <div class="table-wrap">
 
-| Vector | GOI | Insert | Chassis | Plasmid ID |
+| Vector | Gene of interest (GOI) | Insert | Chassis | Plasmid ID |
 | --- | --- | --- | --- | --- |
 | HO-poly-KanMX4-HO | Dsup | Dsup | *S. cerevisiae* | ISD1 |
 | HO-poly-KanMX4-HO | Dsup | SV40NLSx2_Dsup | *S. cerevisiae* | ISD2 |

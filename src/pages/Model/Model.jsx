@@ -89,7 +89,7 @@ const pageIntro = (
 
 const sections = [
   {
-    title: "§01 Overview of the Pipeline",
+    title: "Overview of the pipeline",
     id: "s1",
     content: (
       <>
@@ -101,7 +101,7 @@ const sections = [
               parameters.
             </p>
             <p>
-              On the other hand, for the filtering we use statistical modelling tools, these are: the{" "}
+              On the other hand, for the filtering we use statistical modeling tools, these are: the{" "}
               <b>depth-matched resampling null</b>, and the <b>Dirichlet weight-sensitivity analysis</b>. Both
               are there to make our pipeline and filters reliable.
             </p>
@@ -126,7 +126,7 @@ const sections = [
             Bakta gene calls cross-checked against independent eggNOG orthology. Disagreement is treated as
             disqualifying.
           </Card>
-          <Card tag="Step 2 · Behaviour" title="Physicochemistry">
+          <Card tag="Step 2 · Behavior" title="Physicochemistry">
             Instability index, molecular weight, isoelectric point, GRAVY and aliphatic index: the properties
             that decide whether purification is cheap or impossible.
           </Card>
@@ -149,7 +149,7 @@ const sections = [
   },
 
   {
-    title: "§02 Pipeline: 1,221 samples to 45 molecules",
+    title: "Pipeline: 1,221 samples to 45 molecules",
     id: "s2",
     content: (
       <>
@@ -191,7 +191,7 @@ const sections = [
   },
 
   {
-    title: "§03 Physicochemical step",
+    title: "Physicochemical step",
     id: "s3",
     content: (
       <>
@@ -242,7 +242,7 @@ const sections = [
   },
 
   {
-    title: "§04 Conservation Step",
+    title: "Conservation step",
     id: "s4",
     content: (
       <>
@@ -304,7 +304,7 @@ const sections = [
   },
 
   {
-    title: "§05 Structure layer: calibrating what pLDDT means here",
+    title: "Structure layer: calibrating what pLDDT means here",
     id: "s5",
     content: (
       <>
@@ -414,7 +414,7 @@ const sections = [
   },
 
   {
-    title: "§06 The scoring rule: how we chose it, and what we locked",
+    title: "The scoring rule: how we chose it, and what we locked",
     id: "s6",
     content: (
       <>
@@ -515,7 +515,7 @@ const sections = [
   },
 
   {
-    title: "§07 Auditing our own code",
+    title: "Auditing our own code",
     id: "s7",
     content: (
       <>
@@ -551,7 +551,7 @@ const sections = [
 
         <ChartPanel
           title="P(Top-1 candidate survives weight perturbation)"
-          sub="1,000 Dirichlet draws over the weight simplex. Bars are colour coded by verdict and each also carries its verdict in text, so the colour is not the only signal."
+          sub="1,000 Dirichlet draws over the weight simplex. Bars are color coded by verdict and each also carries its verdict in text, so the color is not the only signal."
           legend={
             <Legend
               items={[
@@ -739,7 +739,7 @@ const sections = [
   },
 
   {
-    title: "§08 Candidate explorer",
+    title: "Candidate explorer",
     id: "s8",
     content: (
       <>
@@ -756,7 +756,7 @@ const sections = [
   },
 
   {
-    title: "§09 Limitations of our Screening",
+    title: "Limitations of our screening",
     id: "s9",
     content: (
       <>
@@ -777,7 +777,7 @@ const sections = [
             trust it.
           </Card>
           <Card tag="Gap 4 · Function" title="Nothing here has been expressed">
-            Every number on this page is a prediction. Stability, fold and purifiability are modelled and not
+            Every number on this page is a prediction. Stability, fold and purifiability are modeled and not
             measured, which is what separates a resource from a result.
           </Card>
         </CardGrid>
@@ -811,7 +811,7 @@ const sections = [
   },
 
   {
-    title: "§10 Contribution, and where the samples came from",
+    title: "Contribution, and where the samples came from",
     id: "s10",
     content: (
       <>
@@ -910,7 +910,7 @@ const sections = [
   },
 
   {
-    title: "§11 References",
+    title: "References",
     id: "s11",
     content: (
       <>
@@ -936,7 +936,13 @@ export default function Model() {
           which covers both this page's charts and Cref's hover preview
           below, since both render inside a section's `content`. */}
       <div className={styles.doc}>
-        <SectionedArticle title={pageTitle} intro={pageIntro} sections={sections} defaultSelected={sections[0]?.title} />
+        <SectionedArticle
+          title={pageTitle}
+          intro={pageIntro}
+          sections={sections}
+          defaultSelected={sections[0]?.title}
+          numbered
+        />
       </div>
     </PageWrapper>
   );

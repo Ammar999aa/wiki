@@ -131,7 +131,7 @@ We grew MG1655 in Luria–Bertani (LB) broth <a class="cite" href="#ref-3">3</a>
 
 <h3 id="two-cycles-to-a-usable-plate">Two cycles to a usable plate</h3>
 
-Getting a plate we could trust took two engineering cycles. The first gave a fast-looking result at 37 °C that turned out to be an artefact. The second fixed the cause, and its plate is the one every result on this page comes from.
+Getting a plate we could trust took two engineering cycles. The first gave a fast-looking result at 37 °C that turned out to be an artifact. The second fixed the cause, and its plate is the one every result on this page comes from.
 
 <aside class="author-note"><b>Engineering steps.</b> Each cycle follows the engineering order (Design → Build → Test → Learn), and Cycle 1's Learn step is what Cycle 2 is designed from. The cycle names are chips, not headings, because <code>####</code> is reserved for card titles.</aside>
 
@@ -217,7 +217,7 @@ The fix came from a conversation with the lab's technician, and it cut evaporati
 
 </div>
 
-<aside class="author-note"><b>Two images side by side.</b> A before/after pair goes in two columns, each in its own photo frame, under one shared caption. Both panels use the same colour scale so they can be compared directly.</aside>
+<aside class="author-note"><b>Two images side by side.</b> A before/after pair goes in two columns, each in its own photo frame, under one shared caption. Both panels use the same color scale so they can be compared directly.</aside>
 
 ## Results
 
@@ -233,7 +233,7 @@ The fix came from a conversation with the lab's technician, and it cut evaporati
 
 </div>
 
-<aside class="author-note"><b>Chart, not a screenshot.</b> The author supplied the data and the finding; the developer built the chart from a placeholder in the markdown. Axes have units, error bars say what they are, and one colour per temperature is used on the whole page.</aside>
+<aside class="author-note"><b>Chart, not a screenshot.</b> The author supplied the data and the finding; the developer built the chart from a placeholder in the markdown. Axes have units, error bars say what they are, and one color per temperature is used on the whole page.</aside>
 
 <div class="table-wrap">
 
@@ -277,7 +277,7 @@ Blank wells stayed below an OD600 of 0.005 for all 8 h in every run. End-of-run 
 
 </div>
 
-<aside class="author-note"><b>Multi-panel figures.</b> Panels of one figure share one row and one caption, labelled (a), (b), (c). A passed control gets a "good" callout so a judge sees the check without reading the methods.</aside>
+<aside class="author-note"><b>Multi-panel figures.</b> Panels of one figure share one row and one caption, labeled (a), (b), (c). A passed control gets a "good" callout so a judge sees the check without reading the methods.</aside>
 
 ## Interpretation
 
@@ -307,17 +307,17 @@ That means the model can make a prediction we can test. We chose 33 °C because 
 </div>
 </div>
 
-<aside class="author-note"><b>Simulated is labelled.</b> A number that comes from a model rather than a measurement says "Simulated" in its title, so it can't be mistaken for a result.</aside>
+<aside class="author-note"><b>Simulated is labeled.</b> A number that comes from a model rather than a measurement says "Simulated" in its title, so it can't be mistaken for a result.</aside>
 
 <div class="callout">
 
 <p class="callout-label">How far this model can be trusted</p>
 
-The rates in Table 2 are measured, the 33 °C values are modelled, and the straight-line shape is assumed from <a class="cite" href="#ref-1">1</a>. Three temperatures are the minimum that can show a straight line, so a good fit here is weak evidence. The model also only holds below the optimum temperature <a class="cite" href="#ref-1">1</a>, so it says nothing about 42 °C.
+The rates in Table 2 are measured, the 33 °C values are modeled, and the straight-line shape is assumed from <a class="cite" href="#ref-1">1</a>. Three temperatures are the minimum that can show a straight line, so a good fit here is weak evidence. The model also only holds below the optimum temperature <a class="cite" href="#ref-1">1</a>, so it says nothing about 42 °C.
 
 </div>
 
-<aside class="author-note"><b>Neutral callout for a caveat.</b> A limit of the method, not a warning about missing work, so it uses the neutral tone. It separates what was measured, modelled and assumed, and says how strong the evidence is.</aside>
+<aside class="author-note"><b>Neutral callout for a caveat.</b> A limit of the method, not a warning about missing work, so it uses the neutral tone. It separates what was measured, modeled and assumed, and says how strong the evidence is.</aside>
 
 ## Limitations and next steps
 
@@ -366,7 +366,7 @@ The plate-reader protocol format used here matches our other wet-lab protocols o
 <ol class="ref-list">
 
 <li id="ref-1">Ratkowsky DA, Olley J, McMeekin TA, et al. Relationship between temperature and growth rate of bacterial cultures. <i>Journal of Bacteriology</i>, 149(1):1–5, 1982. <a href="https://doi.org/10.1128/jb.149.1.1-5.1982" target="_blank" rel="noopener noreferrer">doi:10.1128/jb.149.1.1-5.1982</a></li>
-<li id="ref-2">NCBI Taxonomy — <i>Escherichia coli</i> K-12. Accessed 5 October 2026. <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=83333" target="_blank" rel="noopener noreferrer">NCBI Taxonomy entry for E. coli K-12</a></li>
+<li id="ref-2">NCBI Taxonomy — <i>Escherichia coli</i> K-12. Accessed 5 October 2026. <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=83333" target="_blank" rel="noopener noreferrer">NCBI Taxonomy entry for *E. coli* K-12</a></li>
 <li id="ref-3">Bertani G. Studies on lysogenesis I. <i>Journal of Bacteriology</i>, 62(3):293–300, 1951. <a href="https://doi.org/10.1128/jb.62.3.293-300.1951" target="_blank" rel="noopener noreferrer">doi:10.1128/jb.62.3.293-300.1951</a></li>
 <li id="ref-4">Zwietering MH, Jongenburger I, Rombouts FM, et al. Modeling of the bacterial growth curve. <i>Applied and Environmental Microbiology</i>, 56(6):1875–1881, 1990. <a href="https://doi.org/10.1128/aem.56.6.1875-1881.1990" target="_blank" rel="noopener noreferrer">doi:10.1128/aem.56.6.1875-1881.1990</a></li>
 <li id="ref-5">Monod J. The growth of bacterial cultures. <i>Annual Review of Microbiology</i>, 3:371–394, 1949. <a href="https://doi.org/10.1146/annurev.mi.03.100149.002103" target="_blank" rel="noopener noreferrer">doi:10.1146/annurev.mi.03.100149.002103</a></li>

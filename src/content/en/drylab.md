@@ -1,6 +1,6 @@
 ## Overview
 
-Content coming soon. This section will cover computational and modelling work.
+Content coming soon. This section will cover computational and modeling work.
 
 ## Models
 
@@ -8,7 +8,7 @@ Computational models and simulations will be described here.
 
 ## Results
 
-Modelling results and analyses will be presented here.
+Modeling results and analyses will be presented here.
 
 ## Discussion
 

@@ -8,7 +8,7 @@ Our education work is built on four principles:
 
 <!-- The four principle cards are rendered by <Principles /> in src/pages/Education/components/Overview.jsx -->
 
-## Our Programs at a Glance
+## Our programs at a glance
 
 <!-- Rendered by <ProgramsGlance /> in src/pages/Education/components/Overview.jsx -->
 
@@ -18,7 +18,7 @@ Our education work is built on four principles:
 
 On Tuesday, April 7, 2026, KAUST iGEM ran Copy Paste Plants as part of the Sustainability Family Food Night at The KAUST School (TKS), organized by the Center of Excellence for Sustainable Food Security and TKS. The evening brought together students, families, community members and experts to explore plants, sustainable food, innovative technology and environmental science.
 
-### The Activity
+### The activity
 
 Our booth ran **Copy Paste Plants**, a hands-on plant cloning activity that introduced children to the idea of genetic identity. Children learned to propagate a pothos plant from a cutting in three steps: get your plant, make the cut, and watch it grow. Because the new plant grows from the parent's own tissue, it is an exact genetic copy, which gave us a simple, tangible way to explain genetic identity and similarity to elementary-aged learners.
 
@@ -67,7 +67,7 @@ Our booth ran **Copy Paste Plants**, a hands-on plant cloning activity that intr
 
 </div>
 
-## School Outreach
+## School outreach
 
 ### Overview
 
@@ -131,7 +131,7 @@ Middle schoolers demonstrated knowledge by designing their own microbes to help 
 
 <div>
 
-#### Lab Tours
+#### Lab tours
 
 Students were split into two groups to accommodate the lab spaces, and toured the Nanofabrication Core Lab and the Robotics Lab with tour guides.
 
@@ -174,7 +174,7 @@ We hope the Thuwal Science Pioneers Program continues to bridge the gap between 
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-kaust-nyuad.avif" alt="KAUST iGEM and NYU Abu Dhabi iGEM members on stage in front of the Tawasol screen"></div><figcaption class="caption"><strong>Figure 7.</strong> Tawasol · KAUST iGEM × NYU Abu Dhabi iGEM.</figcaption></figure>
 </div>
 
-*Acknowledgements: We thank KAUST Community & Culture, Prof. Sami Alghamdi, and Urban Labs for making this program possible.*
+*Acknowledgments: We thank KAUST Community & Culture, Prof. Sami Alghamdi, and Urban Labs for making this program possible.*
 
 ### Bringing KAUST to Jeddah
 
@@ -221,7 +221,7 @@ We are still analyzing the Jeddah pre- and post-lecture surveys. Results will be
 
 Synthetic biology is still not widely recognized as a career path in Saudi Arabia, and many interested students have no one to ask. From June 21 to August 30, 2026, we ran the KAUST iGEM Summer Mentorship Program for high school and undergraduate students from across the region.
 
-### Program Structure
+### Program structure
 
 Mentees were paired with graduate students, professors, research scientists and industry experts, and chose one of two tracks:
 
@@ -246,7 +246,7 @@ In April 2026, Peru approved Ministerial Resolution No. D000068-2026-MINAM-DM. I
 
 <!-- kallpa:dialogue -->
 
-### What We Identified
+### What we identified
 
 Despite this significant change, farmers, students and the public reacted with concern, fear and confusion, often shaped by misinformation about the safety, environmental impact and consequences of GMOs and gene editing. To understand the situation, we partnered with Kallpa Greenz.
 
@@ -268,7 +268,7 @@ After several interviews with the project leader, we identified three gaps:
 
 <div>
 
-#### Knowledge Gap
+#### Knowledge gap
 
 Many farmers in rural areas lack access to the scientific concepts behind the technologies being debated.
 
@@ -276,7 +276,7 @@ Many farmers in rural areas lack access to the scientific concepts behind the te
 
 <div>
 
-#### Access Gap
+#### Access gap
 
 Reliable scientific information is unequally available, because few educational resources are tailored to rural farming contexts.
 
@@ -284,7 +284,7 @@ Reliable scientific information is unequally available, because few educational 
 
 <div>
 
-#### Model Gap
+#### Model gap
 
 There is no sustainable, replicable educational model that can be rolled out to new communities and new generations of mentors.
 
@@ -292,7 +292,7 @@ There is no sustainable, replicable educational model that can be rolled out to 
 
 </div>
 
-### Our Educational Strategy: A Multiplier Model
+### Our educational strategy: a multiplier model
 
 We chose a train-the-trainer, or multiplier, model: KAUST iGEM trains Kallpa's youth volunteers, who then run weekly in-person sessions with rural farmers. Our goal was not to push volunteers toward a particular stance on GMOs, but to give them the knowledge and tools to understand what GMOs are, how they work, how they are used, and how they are regulated. We organized the course into four connected modules.
 
@@ -364,7 +364,7 @@ Peru protects its agrobiodiversity with the moratorium under Law No. 31.111. Usi
 
 <!-- kallpa:scale -->
 
-### Evidence of Impact
+### Evidence of impact
 
 The program evaluation focused not only on determining whether the mentors had grasped the concepts but also on analyzing whether they felt prepared to convey them to rural communities. To this end, upon completion of the mentorship program, we administered a survey combining open-ended questions with others focused on preparedness. Eight volunteers participated, hailing from diverse fields of study:
 

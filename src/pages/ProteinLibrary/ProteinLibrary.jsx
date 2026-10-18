@@ -13,9 +13,9 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 const INFO_BAR = [
-  { title: "Produced in Engineered Microbes", detail: "S. cerevisiae, P. pastoris, B. subtilis" },
-  { title: "Designed for Modularity & Safety", detail: "Kill switches, Auxotrophy" },
-  { title: "Applications in Health, Space, & Beyond", detail: null },
+  { title: "Produced in engineered microbes", detail: "S. cerevisiae, P. pastoris, B. subtilis" },
+  { title: "Designed for modularity & safety", detail: "Kill switches, Auxotrophy" },
+  { title: "Applications in health, space & beyond", detail: null },
 ];
 
 const WORKFLOW_STEPS = ["Design", "Clone", "Express", "Purify", "Deliver", "Make an Impact"];
@@ -101,7 +101,7 @@ export default function ProteinLibrary() {
         <footer className={styles.workflow}>
           <LiquidGlass radius={40} color={[0, 0, 0]} opacity={0.07} grain drift>
             <div className={styles.workflowInner}>
-              <h2 className={styles.workflowTitle}>From Design to Delivery</h2>
+              <h2 className={styles.workflowTitle}>From design to delivery</h2>
               <div className={styles.workflowSteps}>
                 {WORKFLOW_STEPS.map((step, i) => (
                   <Fragment key={step}>

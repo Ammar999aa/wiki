@@ -1,16 +1,16 @@
-## S. cerevisiae Strain Maintenance
+## S. cerevisiae strain maintenance
 
 - Store strains at 4 °C for 2–3 months on YPD or SC plates sealed with Parafilm.
 - For long-term storage, scrape a large inoculum from a freshly grown plate and resuspend in 1 mL of sterile 15–25% glycerol. Store at –80 °C.
 - To revive frozen stocks, scrape frozen stock with a sterile toothpick or bacteriological needle, and streak on the appropriate plate (YPD or SC). Avoid thawing the stock — if it has thawed, vortex well before refreezing.
 
-## B. subtilis Culturing and Maintenance
+## B. subtilis culturing and maintenance
 
 - For revival from a glycerol stock, scrape a small amount and inoculate directly into 3–5 mL LB broth.
 - Alternatively, pick a single colony from a plate and inoculate into 3–5 mL LB broth.
 - For an overnight culture, incubate at 30–37 °C, shaking at 180–220 rpm, for 12–16 hours.
 
-## B. subtilis Sporulation
+## B. subtilis sporulation
 
 **Part 1: Media preparation**
 
@@ -30,13 +30,13 @@
 
 **Part 4: Sporulation**
 
-1. Centrifuge 10 mL of the cells at 13,000 x g for 1 minute.
+1. Centrifuge 10 mL of the cells at 13,000 × g for 1 minute.
 2. Wash the pellet with 1x PBS.
 3. Resuspend the pellet in 5 mL DSM nutrient medium at 37 °C, 200 rpm for 48–72 hours to achieve >95% sporulation.
 
    **Note:** Alternatively, add 25 mL of overnight bacterial culture into a 2 L flask containing 250 mL of DSM and incubate at 37 °C, 200 rpm for 48–72 hours to achieve >95% sporulation.
 
-4. Centrifuge the culture at 10,000 x g for 10 min.
+4. Centrifuge the culture at 10,000 × g for 10 min.
 5. Wash the pellet 3 times with cold, sterile Milli-Q H₂O to remove vegetative cell debris.
 6. Heat shock the suspension (80 °C for 10–20 min) to kill any remaining vegetative cells.
 7. Store purified spores in sterile ddH₂O at 4 °C.
@@ -47,7 +47,7 @@
 
 ![B. subtilis sporulation cycle: vegetative cycle → germination, and the forward path Initiation → Septation → Engulfment → Cortex & Coat → Maturation & Release](https://static.igem.wiki/teams/6341/wiki/content/protocols/bsubtilis-sporulation-cycle.avif)
 
-## Agarose Gel Electrophoresis
+## Agarose gel electrophoresis
 
 **Preparing the gel:**
 
@@ -89,7 +89,7 @@
 4. Connect the chamber to the power supply and run the gel at 200 V for 40 min.
 5. After the run ends, open the gel cassette to extract the gel for downstream application.
 
-## Coomassie Staining
+## Coomassie staining
 
 1. For Fairbanks staining buffer, mix Coomassie brilliant blue R-250 (final 0.05%), isopropanol (final 25%), and acetic acid (final 10%) in a total volume of 1–2 L.
 2. Pour the Fairbanks buffer into a staining rack and submerge the gel — there should be enough buffer to cover it.
@@ -99,7 +99,7 @@
 6. Heat again for 5–10 min or until almost boiling and shake for 20 min.
 7. Image the gel using an imager or a simple background light.
 
-## Western Blot
+## Western blot
 
 ### Sample preparation
 
@@ -109,7 +109,7 @@
 4. Vortex for 10 sec and incubate on ice for 15 min.
 5. Sonication may be necessary to completely lyse yeast cultures.
 6. For sonication: 35% amplitude, 5 sec pulse on / 10 sec pulse off, for 1–3 min, keeping the sample on ice throughout.
-7. Spin down the lysate at 17,000 x g for 10 min at 4 °C, then collect the supernatant for downstream application.
+7. Spin down the lysate at 17,000 × g for 10 min at 4 °C, then collect the supernatant for downstream application.
 
 ### Running the SDS-PAGE gel
 
@@ -145,20 +145,20 @@
 6. Detect proteins using a detection system of choice (e.g. chemiluminescence).
 7. View the bands under UV light.
 
-## Lyophilized Plasmid Revival
+## Lyophilized plasmid revival
 
 1. Keep the vial sealed until ready to use.
-2. Centrifuge at 6,000 x g for 1 minute at 4 °C.
+2. Centrifuge at 6,000 × g for 1 minute at 4 °C.
 3. Open the vial and add 20 µL of sterilized water to dissolve the DNA.
 4. Close the lid and vortex the vial for 1 minute.
 5. If necessary, heat the solution at 50 °C for 15 minutes to dissolve the DNA.
 6. Transform the plasmid DNA directly after completing the steps above. Verify the plasmid sequence after each subcloning and transformation step.
 
-## S. cerevisiae Transformation / Recombineering (LiAc/PEG Method)
+## S. cerevisiae transformation / recombineering (LiAc/PEG method)
 
 ### Part 1: Competent cell preparation
 
-1. Inoculate 10 mL of YPD with a single colony from an S. cerevisiae starter plate.
+1. Inoculate 10 mL of YPD with a single colony from an *S. cerevisiae* starter plate.
 2. Grow overnight at 28–30 °C in a shaking incubator (200–300 rpm).
 3. Determine the OD₆₀₀.
 4. Dilute cells from the overnight culture to an OD₆₀₀ of 0.3 in a total volume of 10 mL of YPD.
@@ -209,13 +209,13 @@
 9. Remove the supernatant.
 10. Add 1 mL of YPD (or YPAD if using the L40 yeast strain) to each tube.
 11. Incubate in a 30 °C shaker for 1 hour to allow expression of antibiotic resistance.
-12. After the 1-hour recovery, pellet the cells by centrifugation at 3000 x g for 5 minutes at room temperature.
+12. After the 1-hour recovery, pellet the cells by centrifugation at 3000 × g for 5 minutes at room temperature.
 13. Discard the supernatant.
 14. Resuspend the cell pellet in 1 mL of YPD broth.
 15. Using a sterile spreader, plate the entire transformation on plates containing the appropriate selection marker.
 16. Incubate the plates for 2–4 days at 30 °C. Each transformation should yield roughly 100 colonies, depending on the strain.
 
-## P. pastoris Recombineering (Electroporation)
+## P. pastoris recombineering (electroporation)
 
 ### Part 1: Revival
 
@@ -252,12 +252,12 @@
 
 1. Mix 80 µL of freshly prepared cells with 5 µg of linearized plasmid and transfer to an ice-cold electroporation cuvette.
 2. Incubate 5 min on ice.
-3. Pulse the cells in an electroporator (this protocol used the E. coli option 3 on a BioRad electroporator).
+3. Pulse the cells in an electroporator (this protocol used the *E. coli* option 3 on a BioRad electroporator).
 4. Immediately after pulsing, add 1 mL of ice-cold YPDS media to the cuvette and mix by pipetting up and down.
 5. Incubate the cells for at least 2–4 h at 30 °C without shaking, directly in the cuvette.
 6. Spread the cells on selection plates and incubate at 30 °C for 3 days.
 
-## Electroporation Cuvette Cleaning Procedure
+## Electroporation cuvette cleaning procedure
 
 1. Immediately after electroporation:
    - Aspirate the cell suspension.
@@ -282,7 +282,7 @@
 
 Source: [How many times can I use an electroporation cuvette? — ResearchGate](https://www.researchgate.net/post/How_many_times_can_I_use_an_electroporation_cuvette_image_inside)
 
-## B. subtilis Recombineering
+## B. subtilis recombineering
 
 ### Media components
 
@@ -331,13 +331,13 @@ Source: [How many times can I use an electroporation cuvette? — ResearchGate](
 
 **Note:** For increased transformation efficiency, add an equal volume of 50% glycerol to competent cells and store at –80 °C for future use.
 
-## UV-B / UV-C Irradiation
+## UV-B / UV-C irradiation
 
 ### UV-B exposure
 
 Equipment: UV-B transilluminator/crosslinker.
 
-Methods (S. cerevisiae):
+Methods (*S. cerevisiae*):
 
 1. Grow yeast overnight in YPD at 30 °C.
 2. Dilute to mid-log phase: OD₆₀₀ ≈ 0.6–0.8.
@@ -360,7 +360,7 @@ Equipment: UV crosslinker (available at KAUST, e.g. Christian R. Voolstra), Stra
 
 Same method as UV-B exposure above. UV-C radiation setting: 254 nm.
 
-## X-Ray Irradiation
+## X-ray irradiation
 
 Equipment: CIx1 Strahl operation machine.
 
@@ -396,7 +396,7 @@ Radiation dose range: 0–327.67 Gy. Sample preparation is the same as for UV-B 
 15. Close the door, turn the key to the ray icon, press the green button, and wait (higher doses take longer).
 16. Repeat, turning the power to "N" every time the door is opened.
 
-## Comet Assay (Single-Cell Gel Electrophoresis)
+## Comet assay (single-cell gel electrophoresis)
 
 ![Comet assay workflow: exposure of cells to DNA-damaging agents → embedding of cells into agarose → cell lysis → electrophoresis → DNA staining and visualization](https://static.igem.wiki/teams/6341/wiki/content/protocols/comet-assay-workflow.avif)
 
@@ -422,9 +422,9 @@ Radiation dose range: 0–327.67 Gy. Sample preparation is the same as for UV-B 
 3. Stain with a fluorescent DNA dye (e.g. ethidium bromide, SYBR Green, or DAPI).
 4. Visualize using fluorescent microscopy. Use software to analyze comet parameters: Head DNA, Tail DNA, Tail Length, and Tail Moment (the product of tail length and intensity).
 
-## B. subtilis Freezing/Thawing
+## B. subtilis freezing/thawing
 
-1. Inoculate B. subtilis in LB broth and grow 16–18 h at 37 °C (overnight) to mid-log phase (OD₆₀₀ ≈ 0.5–0.8).
+1. Inoculate *B. subtilis* in LB broth and grow 16–18 h at 37 °C (overnight) to mid-log phase (OD₆₀₀ ≈ 0.5–0.8).
 2. Prepare the glycerol mix by combining the liquid culture with glycerol stock to a final glycerol concentration of 20%.
 3. Mix gently.
 4. Transfer to labeled cryovials.
@@ -433,7 +433,7 @@ Radiation dose range: 0–327.67 Gy. Sample preparation is the same as for UV-B 
 7. Use a sterile loop/pipette tip to scrape a small amount of sample onto LB agar.
 8. After overnight incubation, pick a single colony → inoculate LB.
 
-## S. cerevisiae Freezing/Thawing
+## S. cerevisiae freezing/thawing
 
 1. Inoculate yeast sample in YPD and grow overnight at 30 °C (16–18 h) to mid-log phase (OD₆₀₀ ≈ 0.5–0.8).
 2. Prepare the mixture by combining glycerol and the sample to a 15–25% glycerol concentration.
@@ -444,14 +444,14 @@ Radiation dose range: 0–327.67 Gy. Sample preparation is the same as for UV-B 
 7. Use a sterile loop/pipette tip to scrape a small amount of sample onto YPD agar.
 8. After overnight incubation, pick a single colony → inoculate LB.
 
-## Colony Forming Unit (CFU) Assay (S. cerevisiae / Bacillus)
+## Colony forming unit (CFU) assay (S. cerevisiae / Bacillus)
 
 1. Serially dilute the yeast/Bacillus sample (control and test group).
 2. Plate on YPD/LB agar.
 3. Incubate (12–72 h).
 4. Count colonies → calculate CFU/mL.
 
-## FUN-1 Viability Assay (S. cerevisiae, P. pastoris)
+## FUN-1 viability assay (S. cerevisiae, P. pastoris)
 
 Live cells convert FUN-1 into red/orange cylindrical intravacuolar structures (CIVS); dead cells remain a diffuse yellow-green.
 
@@ -480,7 +480,7 @@ Live cells convert FUN-1 into red/orange cylindrical intravacuolar structures (C
 
 *(Reproduced from the [Thermo Fisher FUN-1 product manual](https://www.thermofisher.com/order/catalog/product/F7030).)*
 
-## Resazurin Viability Assay (Bacillus)
+## Resazurin viability assay (Bacillus)
 
 1. Culture Bacillus in liquid broth overnight at 37 °C.
 2. Dilute the culture in fresh LB broth to a standardized concentration.
@@ -494,45 +494,45 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 ![Resazurin (blue, low fluorescence) reduced by a viable cell's NADH/H⁺ metabolism to resorufin (pink, high fluorescence)](https://static.igem.wiki/teams/6341/wiki/content/protocols/resazurin-resorufin-mechanism.avif)
 
-## RNA Extraction with TRIzol
+## RNA extraction with TRIzol
 
 **Note:** Throughout this protocol make sure to always wipe everything using RNAzap to avoid RNA degradation.
 
 ### Cell lysis
 
 1. Spin down suspension cell culture and discard the supernatant.
-2. Add 1 ml of Trizol reagent per 5-10 x10⁶ of cells of animal or yeast culture or 1x10⁷ of cells of bacterial culture.
+2. Add 1 mL of Trizol reagent per 5-10 x10⁶ of cells of animal or yeast culture or 1x10⁷ of cells of bacterial culture.
 3. pipet up and down to homogenize, then incubate for 5 min at room temperature.
 
 ### RNA precipitation
 
-1. add 0.2 ml of chloroform per 1 ml of TRIzol, vortex for 20 sec, then incubate for 2-3 min
-2. centrifuge for 15 min @ 12,000 xg at 4°C.
-3. Transfer the top aqueous layer to a new 1.5ml tube. (Make sure to avoid transferring any of the middle white interface or the bottom pink organic phase).
-4. Add 0.5 ml of isopropanol per 1 ml of Trizol and incubate at room temperature for 10 min.
-5. Centrifuge for 15 min @ 12,000 xg at 4°C.
+1. add 0.2 mL of chloroform per 1 mL of TRIzol, vortex for 20 sec, then incubate for 2–3 min
+2. centrifuge for 15 min @ 12,000 × g at 4 °C.
+3. Transfer the top aqueous layer to a new 1.5 mL tube. (Make sure to avoid transferring any of the middle white interface or the bottom pink organic phase).
+4. Add 0.5 mL of isopropanol per 1 mL of Trizol and incubate at room temperature for 10 min.
+5. Centrifuge for 15 min @ 12,000 × g at 4 °C.
 6. You should see a white pellet. Discard the supernatant with a micro pipettor without touching the pellet.
 
 ### Wash
 
-1. Resuspend the pellet in 1ml of 75% of Ethanol per 1 ml of Trizol.
-2. Wash the sample by flipping the tube up and down then spin down @ 7500x g at 4°C for 5 min. (At this step, prepare an ice bucket)
-3. Discard the ethanol and let the pellet dry for 5-10 min.
+1. Resuspend the pellet in 1 mL of 75% of Ethanol per 1 mL of Trizol.
+2. Wash the sample by flipping the tube up and down then spin down @ 7500 × g at 4 °C for 5 min. (At this step, prepare an ice bucket)
+3. Discard the ethanol and let the pellet dry for 5–10 min.
 
 ### Solubilize RNA
 
 1. Resuspend in 20-50 µl of RNase-free water or 0.1 mM EDTA. Mix by pipetting up and down.
 
-(Alternatively, to avoid potential RNA degradation during drying, after discarding the ethanol, you could spin the sample again @ 7500x g at 4°C for 5 min and discard it. Then, resuspend in 20-50 µl of RNase-free water or 0.1 mM EDTA.
+(Alternatively, to avoid potential RNA degradation during drying, after discarding the ethanol, you could spin the sample again @ 7500 × g at 4 °C for 5 min and discard it. Then, resuspend in 20-50 µl of RNase-free water or 0.1 mM EDTA.
 
-2. incubate at 55-60°C for 10-15 minutes, then place the tube on ice for downstream application or store at -80 °C.
+2. incubate at 55–60 °C for 10–15 minutes, then place the tube on ice for downstream application or store at -80 °C.
 3. Determine the RNA concentration using an OD machine at absorbance 260 nm. (a ratio of A260/A280 > 1.8 is considered pure).
 4. You could run your RNA sample on an agarose gel to check if the RNA sample is degraded.
 
 ### RNA Agarose gel run
 
 1. Mix equal amounts of your RNA sample and RNA gel loading buffer.
-2. Heat the sample at 70°C for 10 min, then chill immediately on ice.
+2. Heat the sample at 70 °C for 10 min, then chill immediately on ice.
 3. Load your sample on 1% agarose gel, then image using UV light.
 
 ## RT-PCR / qPCR
@@ -543,12 +543,12 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 | Component | Per 1x Rx (µl) |
 |---|---|
-| Oligo-dt Primer ( 1-5 µM) | variable |
+| Oligo-dt Primer ( 1–5 µM) | variable |
 | 1 ng to 5 µg total RNA | variable |
 | Sterile, distilled water to 12 µl | Up to total Vol |
 | Total Vol | 13 |
 
-2. Add the PCR tubes to the thermocycler and set a program to heat your sample to 65°C for 3 min, then let it cool to 4°C for 10 min.
+2. Add the PCR tubes to the thermocycler and set a program to heat your sample to 65 °C for 3 min, then let it cool to 4 °C for 10 min.
 3. While the sample cools down, prepare the rest of your RT-PCR buffer according to the following table.
 
 | Component | Per 1x Rx (µl) |
@@ -562,7 +562,7 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 | Total RT-PCR buffer | 8 |
 | Total Rx | 21 |
 
-4. After adding the rest of the reagent mix by pipetting or quick spin, set up a program to heat the sample at 37°C for 50 min, then heat between 80°C and 94°C for heat inactivation of the RT-PCR enzyme. Afterward your sDNA is ready.
+4. After adding the rest of the reagent mix by pipetting or quick spin, set up a program to heat the sample at 37 °C for 50 min, then heat between 80 °C and 94 °C for heat inactivation of the RT-PCR enzyme. Afterward your sDNA is ready.
 
 ### qPCR
 
@@ -587,7 +587,7 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 4. After the Run is finished, extract your data, then calculate your ddCT to analyze your results.
 
-## P. pastoris Payload Expression
+## P. pastoris payload expression
 
 ### Part 1: BMGY starter culture
 
@@ -607,7 +607,7 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 **Note:** Total induction time should be around 2–5 days. Feed the cells exactly 0.5–1% methanol every 12–24 h.
 
-## Harvesting Cells
+## Harvesting cells
 
 ### Option 1: Pellet collection (intracellular proteins)
 
@@ -642,7 +642,7 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 **Note:** Keep everything on ice at every step of this protocol.
 
-## AKTA His-Trap Purification
+## ÄKTA HisTrap purification
 
 ### Part 1: Pellet lysis
 
@@ -652,7 +652,7 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
    **Note:** Add DTT/TCEP right before using the buffer.
 
-   If desired, do a low-speed centrifugation first to pellet cell debris (6,000 x g for 10 min; can be done in falcon tubes).
+   If desired, do a low-speed centrifugation first to pellet cell debris (6,000 × g for 10 min; can be done in falcon tubes).
 
 2. Turn on the cell disruptor's chiller, cool the ultracentrifuge, and thaw the pellet on ice.
 3. Wash the cell disruptor once with ethanol, then three times with MilliQ water.
@@ -664,7 +664,7 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 7. Pour the mixture into the cell disruptor, adjust pressure to 15 kPa, and run.
 
-   **Note:** For S. cerevisiae and P. pastoris, use 30 kPa.
+   **Note:** For *S. cerevisiae* and *P. pastoris*, use 30 kPa.
 
 8. Pour the lysate into ultracentrifuge bottles (balanced, with lids).
 9. Run the ultracentrifuge at 4 °C, 50,000 g, for 45 minutes.
@@ -672,22 +672,22 @@ Viable cells reduce resazurin (blue, low fluorescence) to resorufin (pink, high 
 
 *(The source document's purification protocol ends here, at the clarified lysate — the IMAC column binding, wash, and elution steps aren't included yet.)*
 
-## B. subtilis Nanobody Expression
+## B. subtilis nanobody expression
 
 1. Pick a single transformant colony and inoculate 5 mL LB + antibiotic. Grow overnight at 37 °C, 200 rpm.
 2. Inoculate the expression culture: dilute the overnight culture 1:100 into fresh medium with antibiotics (0.5 mL overnight culture + 50 mL LB + antibiotic). Grow at 37 °C with shaking until OD₆₀₀ ≈ 0.6.
 3. Induce nanobody expression, depending on the promoter: Pxyl → xylose 0.5–1%, or Pgrac → IPTG 0.1–1 mM. Continue incubation at 30 °C for 4–24 hours. Lower temperatures often improve folding and secretion.
 4. Harvest secreted nanobody: centrifuge the culture (5000 g, 10 min) and collect the supernatant, which contains the nanobody.
 
-Source: [Nature Research Intelligence — B. subtilis protein expression and secretion](https://www.nature.com/research-intelligence/nri-topic-summaries/bacillus-subtilis-protein-expression-and-secretion-micro-5636), [iGEM Technion-Israel secretory-system protocol](https://static.igem.org/mediawiki/2019/e/e6/T--Technion-Israel--proto-bacisecretorysystem.pdf)
+Source: [Nature Research Intelligence — *B. subtilis* protein expression and secretion](https://www.nature.com/research-intelligence/nri-topic-summaries/bacillus-subtilis-protein-expression-and-secretion-micro-5636), [iGEM Technion-Israel secretory-system protocol](https://static.igem.org/mediawiki/2019/e/e6/T--Technion-Israel--proto-bacisecretorysystem.pdf)
 
-## S. cerevisiae Galactose Induction
+## S. cerevisiae galactose induction
 
-1. Prepare an overnight preculture by inoculating a single colony into 2-5 mL of appropriate selective media. Incubate overnight at 30 C with shaking. If the protein to be produced is encoded in a plasmid, use knockout mix (minimal media supplemented with amino acids, except for the one you have as an auxotrophic selection marker on your plasmid). Supplement sugar to the media if it doesn't contain it already; either 2 % glucose or 2 % raffinose. Glucose media achieves higher ODs.
+1. Prepare an overnight preculture by inoculating a single colony into 2–5 mL of appropriate selective media. Incubate overnight at 30 C with shaking. If the protein to be produced is encoded in a plasmid, use knockout mix (minimal media supplemented with amino acids, except for the one you have as an auxotrophic selection marker on your plasmid). Supplement sugar to the media if it doesn't contain it already; either 2% glucose or 2% raffinose. Glucose media achieves higher ODs.
 2. The next morning, measure OD of your preculture; dilute as necessary to get an accurate measurement and calculate back to get the original OD.
-3. Refresh the cell culture; spin cells down (around 3824g, 5 minutes). Remove supernatant. Resuspend cells in selective media containing 2 % raffinose; based on the ODs calculated, add media so that an OD of 0.2 will be achieved.
-4. Grow for 4-6 hours at 30 C with shaking. Optimally, an OD of 1 will be achieved.
-5. To induce the cultures, add 40 % galactose solution to the culture to achieve a final galactose concentration of 2 % (or alternatively, you can vary between 0.4-4 % as needed).
+3. Refresh the cell culture; spin cells down (around 3824 × g, 5 minutes). Remove supernatant. Resuspend cells in selective media containing 2% raffinose; based on the ODs calculated, add media so that an OD of 0.2 will be achieved.
+4. Grow for 4–6 hours at 30 C with shaking. Optimally, an OD of 1 will be achieved.
+5. To induce the cultures, add 40% galactose solution to the culture to achieve a final galactose concentration of 2% (or alternatively, you can vary between 0.4–4% as needed).
 6. Grow in 30 C with shaking for 20 hours, then harvest cultures.
 
 **Media recipe:**
@@ -700,7 +700,7 @@ Source: [Nature Research Intelligence — B. subtilis protein expression and sec
 | G418 | your validated selection concentration |
 | Sterile water | to 100 mL |
 
-## Media & Stock Solution Recipes
+## Media & stock solution recipes
 
 Reagents and stock solutions referenced by name throughout the protocols above.
 
@@ -716,7 +716,7 @@ For 1 L YPD:
 
 ### 10X Lithium Acetate (LiAc)
 
-**Application:** S. cerevisiae transformation.
+**Application:** *S. cerevisiae* transformation.
 
 1 M lithium acetate — for 100 mL:
 1. Dissolve 10.2 g of lithium acetate in 90 mL of deionized water.
@@ -725,7 +725,7 @@ For 1 L YPD:
 
 ### 10X Tris-HCl/EDTA (TE) Buffer
 
-**Application:** S. cerevisiae transformation.
+**Application:** *S. cerevisiae* transformation.
 
 100 mM Tris, 10 mM EDTA — for 100 mL:
 1. Dissolve 1.21 g of Tris-HCl and 0.37 g of EDTA in 90 mL of deionized water.
@@ -734,7 +734,7 @@ For 1 L YPD:
 
 ### 50% (w/v) PEG 3350
 
-**Application:** S. cerevisiae transformation.
+**Application:** *S. cerevisiae* transformation.
 
 1. Dissolve 50 g of PEG 3350 in ~30 mL of ddH₂O using heat and a stir bar until fully dissolved.
 2. Adjust volume to 100 mL.
@@ -742,7 +742,7 @@ For 1 L YPD:
 
 ### Single-Stranded Carrier DNA (2.0 mg/mL)
 
-**Application:** S. cerevisiae transformation.
+**Application:** *S. cerevisiae* transformation.
 
 1. Dissolve 200 mg of salmon sperm DNA in 100 mL of TE buffer (10 mM Tris-HCl, 1 mM Na₂EDTA, pH 8.0) by stirring at 4 °C for 1–2 hr.
 2. Store 1.0 mL samples at –20 °C.
@@ -763,7 +763,7 @@ For 1 L media:
 
 ### Sorbitol Solution (1 M)
 
-**Application:** P. pastoris electroporation.
+**Application:** *P. pastoris* electroporation.
 
 1. Weigh 18.2 g of sorbitol.
 2. Add 100 mL of MilliQ H₂O.
@@ -780,7 +780,7 @@ For 1 L media:
 
 ### Difco Sporulation Medium (DSM)
 
-**Application:** Sporulation of B. subtilis.
+**Application:** Sporulation of *B. subtilis*.
 
 1. 8 g Nutrient Broth
 2. 1 g KCl

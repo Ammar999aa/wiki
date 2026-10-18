@@ -46,7 +46,7 @@ integrated using `scipy.integrate.solve_ivp` with the RK45 method.
 ## Yeast: Saccharomyces cerevisiae
 
 *S. cerevisiae* is an established host for recombinant protein production. Its genetic
-accessibility, secretory machinery, and oxidising endoplasmic reticulum make it a promising
+accessibility, secretory machinery, and oxidizing endoplasmic reticulum make it a promising
 candidate for producing antibody fragments that require disulfide bonds <a class="cite" href="#ref-4">4</a>. However, using it
 in a closed habitat raises a question: how can we supply the carbon and oxygen needed to sustain
 it?
@@ -63,7 +63,7 @@ growth.
 
 The resources available to yeast depend on how the cyanobacterium allocates its metabolism
 between its own growth and sucrose export. We therefore compared a supplier growing at its maximum
-predicted rate with one whose growth was capped to favour sucrose production. We then tested how
+predicted rate with one whose growth was capped to favor sucrose production. We then tested how
 including its oxygen output affected yeast growth.
 
 <div class="table-wrap">
@@ -243,7 +243,7 @@ forward into construct-specific or induction-timing simulations.
 
 </div>
 
-The comparison favoured *S. cerevisiae* over *P. pastoris* for further modelling under the tested
+The comparison favored *S. cerevisiae* over *P. pastoris* for further modeling under the tested
 low-oxygen conditions. Experimental validation is needed to determine whether this ranking holds in
 cultivation.
 
@@ -294,7 +294,7 @@ required synthesis steps to proceed using molecules other than oxygen as electro
 
 For NAD<sup>+</sup> synthesis, our first candidate was an aspartate dehydrogenase reaction. We
 rejected it after finding insufficient evidence for that enzyme in *B. subtilis*. Instead, we used
-the experimentally characterised ability of NadB to use fumarate <a class="cite" href="#ref-12">12</a>. For pyrimidine
+the experimentally characterized ability of NadB to use fumarate <a class="cite" href="#ref-12">12</a>. For pyrimidine
 synthesis, the correction represents the native Class 1B dihydroorotate dehydrogenase, which uses
 NAD<sup>+</sup> as its physiological electron acceptor <a class="cite" href="#ref-11">11</a>.
 
@@ -306,7 +306,7 @@ capabilities rather than an assumed switch activated by oxygen removal.
 <p class="callout-label">Our contribution</p>
 
 The corrections enabled us to investigate anaerobic metabolism without the two identified
-synthesis bottlenecks. We included them in our anaerobic modelling function so that the changes can
+synthesis bottlenecks. We included them in our anaerobic modeling function so that the changes can
 be inspected and reused.
 
 This process also illustrates how we refined the model: identify a failed prediction, locate the
@@ -326,7 +326,7 @@ h<sup>−1</sup> anaerobically, a reduction of approximately 57%, compared with 
 Under these anaerobic conditions, *B. subtilis* doubled in approximately five hours, compared with
 approximately six hours for yeast.
 
-This comparison favoured *B. subtilis* without oxygen, provided nitrate was available. The aerobic
+This comparison favored *B. subtilis* without oxygen, provided nitrate was available. The aerobic
 result also depended on the oxygen uptake limit: growth reached 0.32 h<sup>−1</sup> at the imposed limit of
 10 mmol gDW<sup>−1</sup> h<sup>−1</sup>, but increased to approximately 0.40 h<sup>−1</sup> when that restriction was removed.
 
@@ -364,14 +364,14 @@ approximately equal growth per unit of carbon. Under aerobic conditions, glucose
 growth per unit of carbon than sucrose.
 
 For SHIHAB, this suggests that switching to sucrose may preserve carbon efficiency under the
-modelled anaerobic conditions. This prediction still requires experimental validation and does not
+modeled anaerobic conditions. This prediction still requires experimental validation and does not
 establish whether the cyanobacterium can supply enough sucrose.
 
 <div data-chart="bacillus-glucose-vs-sucrose"></div>
 
 <div class="caption">
 
-**Figure 6. Predicted growth on glucose and sucrose before and after normalising for carbon supply.** Left: sucrose supports higher growth at equal molecular uptake rates, supplying twice as much carbon as glucose. Right: growth per unit of carbon is approximately equal anaerobically, while glucose supports higher growth per unit of carbon aerobically.
+**Figure 6. Predicted growth on glucose and sucrose before and after normalizing for carbon supply.** Left: sucrose supports higher growth at equal molecular uptake rates, supplying twice as much carbon as glucose. Right: growth per unit of carbon is approximately equal anaerobically, while glucose supports higher growth per unit of carbon aerobically.
 
 </div>
 
@@ -396,7 +396,7 @@ increased to approximately 3.4 times the yeast prediction.
 Removing oxygen reduced predicted production by 46% in *B. subtilis*, compared with 82% in yeast.
 However, the bacterial advantage depended on nitrate availability: its predicted anaerobic
 production was approximately 1.8 times the yeast value without nitrate, increasing to approximately
-4.5 times with unrestricted nitrate supply. These results favour *B. subtilis* for further
+4.5 times with unrestricted nitrate supply. These results favor *B. subtilis* for further
 investigation under oxygen-limited conditions, while identifying nitrate supply as an important
 design consideration. They describe metabolic production capacity, without assessing protein
 folding, secretion efficiency, or biological activity.
@@ -424,14 +424,14 @@ protein loss interact over a 72-hour cultivation.
 
 The simulations showed why peak concentration and final concentration must be distinguished.
 When induction began at 12 hours, nanobody concentration peaked near 140 mg L<sup>−1</sup> at
-approximately 28 hours, then declined as modelled degradation exceeded production. In contrast, the
+approximately 28 hours, then declined as modeled degradation exceeded production. In contrast, the
 6.5-hour induction run continued accumulating product through the end of cultivation.
 
 <div data-chart="bacillus-fig9-multi-induction"></div>
 
 <div class="caption">
 
-**Figure 8. Induction timing affects biomass accumulation and nanobody concentration.** Left: predicted biomass under five induction strategies. Right: corresponding nanobody concentrations. Induction at 6.5 hours gives the highest final concentration among the strategies shown, while the 12-hour run peaks earlier and then declines. Colours identify the same induction times in both panels.
+**Figure 8. Induction timing affects biomass accumulation and nanobody concentration.** Left: predicted biomass under five induction strategies. Right: corresponding nanobody concentrations. Induction at 6.5 hours gives the highest final concentration among the strategies shown, while the 12-hour run peaks earlier and then declines. Colors identify the same induction times in both panels.
 
 </div>
 
@@ -579,7 +579,7 @@ and tests of nutrient combinations to confirm which changes improved growth.
 
 These results suggest testing nitrogen and sulfate separately and together, then reassessing
 carbon supply as growth increases. Experiments should measure both growth and sucrose export, since
-conditions that favour biomass accumulation may differ from those that maximise feedstock
+conditions that favor biomass accumulation may differ from those that maximize feedstock
 delivery.
 
 Recovered nitrogen from processed urine could be explored as a future input, subject to testing
@@ -630,8 +630,8 @@ oxygen. Experiments should therefore measure oxygen availability alongside sucro
 
 <h3 id="export-limits">Do growth and sucrose export have the same nutrient requirements?</h3>
 
-The earlier nutrient analysis focused on maximising cyanobacterial growth. We next changed the
-objective to maximising sucrose export at a supplier growth rate of 0.013 h<sup>−1</sup>. Under these
+The earlier nutrient analysis focused on maximizing cyanobacterial growth. We next changed the
+objective to maximizing sucrose export at a supplier growth rate of 0.013 h<sup>−1</sup>. Under these
 conditions, carbon availability constrained predicted export. Nitrogen, phosphate, and sulfate did
 not show the same limiting effect at the tested operating point. This distinction matters for
 experimental design. Increasing nitrogen and sulfate may support more supplier biomass, but it does
@@ -675,7 +675,7 @@ effect.
 The model therefore provides no support for these deletions under the simulated conditions, but
 does not rule out their experimental benefit.
 
-## What the Model Changed
+## What the model changed
 
 <div class="callout accent">
 
@@ -683,17 +683,17 @@ does not rule out their experimental benefit.
 
 No prediction on this page has been tested against our own experimental
 data yet, and no wet-lab measurement went into any model. What follows is
-what the modelling decided, and what it is waiting on.
+what the modeling decided, and what it is waiting on.
 
 </div>
 
-### Decisions the modelling made
+### Decisions the modeling made
 
 **The chassis.** We started expecting yeast, which is the default for a
 secreted eukaryotic-style product, and the models argued against it:
 *B. subtilis* keeps 73% of its growth without oxygen where yeast keeps
 20%, and carries roughly 5.5× the nanobody flux aerobically.
-This is the clearest case in our work of modelling changing a decision
+This is the clearest case in our work of modeling changing a decision
 rather than confirming one.
 
 **The feedstock.** Sucrose from a growth-capped cyanobacterial partner,
@@ -719,13 +719,13 @@ why FBA cannot evaluate.
 - **CscB feasibility.** The export strategy rests on the experimentally
   validated incorporation of CscB into PCC
   7942<a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a>.
-  We are modelling a strain that has been built, not a hypothetical
+  We are modeling a strain that has been built, not a hypothetical
   one.
 - **Gap-fill reaction identity.** Both reactions added to iBsu1147 were
   accepted only after literature confirmation: dihydroorotate
   dehydrogenase as a constitutively NAD-dependent Class 1B
   enzyme<a class="cite" href="#ref-11">11</a>, and NadB's
-  fumarate-linked mode by direct enzymatic characterisation of the
+  fumarate-linked mode by direct enzymatic characterization of the
   purified *B. subtilis*
   protein<a class="cite" href="#ref-12">12</a>. A candidate that
   lacked such evidence (ASPDH) was rejected.
@@ -734,13 +734,13 @@ why FBA cannot evaluate.
 - **Knockout expectations.** The 15–300% sucrose increases reported
   under salt
   stress<a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-18">18</a><a class="cite" href="#ref-19">19</a>
-  are what allowed us to recognise our null in-silico result as a
+  are what allowed us to recognize our null in-silico result as a
   method limitation rather than as evidence against the knockouts.
 
 ### What the Wet Lab is being asked to test
 
 Each item is something the Wet Lab could act on directly. The first
-three are the ones we would prioritise.
+three are the ones we would prioritize.
 
 <div class="card-grid">
 
@@ -788,7 +788,7 @@ consistently and systematically easier to produce in both hosts.
 A supply on the order of 0.05 mmol·h<sup>−1</sup> keeps all three
 tested chassis well above their 5% viability thresholds. Worth testing
 directly, since the identical value across three organisms may be a
-grid artefact (see [the yeast oxygen section](#yeast-oxygen)).
+grid artifact (see [the yeast oxygen section](#yeast-oxygen)).
 
 </div>
 
@@ -853,7 +853,7 @@ internal. We record them rather than claim more.
   weak but real evidence that the gap is in the model rather than in a
   particular analysis script.
 
-## Limitations and Next Steps
+## Limitations and next steps
 
 ### What these models cannot see
 
@@ -892,7 +892,7 @@ Optimal induction times ($t_{\mathrm{i}}^* = 32.7$ h for the analytical
 yeast model, ≈6.5 h for *Bacillus*) are therefore *model-dependent
 illustrations of a trade-off*, not process set-points.
 
-#### The co-culture arithmetic is idealised.
+#### The co-culture arithmetic is idealized.
 
 Steady state, perfect sucrose transfer, no spatial gradients, no
 competition, no pH coupling.
@@ -906,7 +906,7 @@ induction kinetics, leakiness and a lag.
 #### Protease loss is a lumped term.
 
 $k_{\mathrm{prot}}XP$ stands in for the entire *Bacillus* extracellular
-protease system without modelling any protease explicitly.
+protease system without modeling any protease explicitly.
 
 #### Habitat conditions are represented only through bounds.
 
@@ -945,7 +945,7 @@ currently weak GEM-to-ODE coupling with a real one.
 
 <div>
 
-#### Re-parameterise the dynamic models from the GEMs
+#### Re-parameterize the dynamic models from the GEMs
 Replacing $\mu_B = 0.40$ h<sup>−1</sup> with the FBA-derived
 0.3186 h<sup>−1</sup>/0.22 h<sup>−1</sup>, and deriving yields from the
 corresponding flux distributions, would make the two model classes
@@ -956,7 +956,7 @@ quantitatively consistent.
 <div>
 
 #### Model the full closed loop
-We modelled cyanobacteria feeding sugar and oxygen to the host, but not
+We modeled cyanobacteria feeding sugar and oxygen to the host, but not
 the host feeding back, even though we computed that CO₂ output
 (7.75–9.23 mmol·h<sup>−1</sup>) and separately showed that increasing
 CO₂ is the one thing that raises sucrose output. Both halves are in

@@ -8,7 +8,7 @@ We engineered three microbial chassis for enhanced stress resilience and produce
 
 #### Dsup integration · three chassis
 
-Successful genomic integration and expression of wild-type Dsup (WT Dsup) in *B. subtilis*, *P. pastoris*, and *S. cerevisiae*, confirmed by Western Blot detection of the myc-tagged version of the gene.
+Successful genomic integration and expression of wild-type Dsup (WT Dsup) in *Bacillus subtilis*, *Pichia pastoris*, and *Saccharomyces cerevisiae*, confirmed by Western blot detection of the myc-tagged version of the gene.
 
 </div>
 
@@ -64,7 +64,7 @@ Achieved recombinant expression and purification of the secreted antifreeze prot
 
 #### Dsup does not cost yield
 
-Confirmed that genomic integration of Dsup under a constructively active promoter does not significantly impact payload proteins production in *B. subtilis*.
+Confirmed that genomic integration of Dsup under a constitutively active promoter does not significantly impact payload protein production in *B. subtilis*.
 
 </div>
 
@@ -109,7 +109,7 @@ Each chassis needed its own route for getting recombinant DNA into the genome. T
 
 <div class="details-body">
 
-Electroporation technique was utilized to introduce linearized recombinant DNA into *P. pastoris*. Electrocompetent cells were prepared through sequential washes with ice-cold water and sorbitol, followed by the application of an electrical pulse to initiate the DNA uptake. Cells were subsequently recovered in sorbitol-containing medium (YPDS) and plated on YPD agar + 100 µg/ml Zeocin plates to select transformants.
+Electroporation was used to introduce linearized recombinant DNA into *P. pastoris*. Electrocompetent cells were prepared through sequential washes with ice-cold water and sorbitol, followed by an electrical pulse to initiate DNA uptake. Cells were subsequently recovered in sorbitol-containing medium (YPDS) and plated on YPD agar + 100 µg/mL Zeocin plates to select transformants.
 
 <div class="photo-frame">
 
@@ -119,7 +119,7 @@ Electroporation technique was utilized to introduce linearized recombinant DNA i
 
 <div class="caption">
 
-**Figure 1.** pPICZ A restriction digestion results for the IPD1 plasmid: Lane 1 — 1 kb plus ladder, Lane 2 — plasmid cut with SacI, Lane 3 — control uncut plasmid. The linearized band runs below the uncut control, confirming the plasmid was cut before transformation. The same process was used for all of our constructs.
+**Figure 1. The linearized band runs below the uncut control, confirming the plasmid was cut before transformation.** pPICZ A restriction digestion results for the IPD1 plasmid: lane 1 — 1 kb plus ladder, lane 2 — plasmid cut with SacI, lane 3 — control uncut plasmid. The same process was used for all of our constructs.
 
 </div>
 
@@ -137,11 +137,11 @@ Electroporation technique was utilized to introduce linearized recombinant DNA i
 
 <div class="caption">
 
-**Figure 2.** *P. pastoris* transformants on YPD + 100 µg/ml zeocin plates. Every one of the nine constructs produced colonies under selection, so integration into the AOX locus succeeded across the whole set rather than for a subset of them.
+**Figure 2. Every one of the nine constructs produced colonies under selection, so integration into the AOX locus succeeded across the whole set rather than for a subset of them.** *P. pastoris* transformants on YPD + 100 µg/mL Zeocin plates.
 
 </div>
 
-As can be observed above, successful transformation of *P. pastoris* with integration of all of our genes of interest into AOX locus was achieved.
+As shown above, *P. pastoris* was successfully transformed, with all of our genes of interest integrated into the AOX locus.
 
 <div class="caption">
 
@@ -151,10 +151,10 @@ As can be observed above, successful transformation of *P. pastoris* with integr
 
 <div class="table-wrap">
 
-| Plasmid ID | GOI                                               |
+| Plasmid ID | Gene of interest (GOI)                            |
 | ---------- | ------------------------------------------------- |
 | IPD1       | WT Dsup                                           |
-| IPD2       | 2x SV40 NLS Dsup                                  |
+| IPD2       | 2× SV40 NLS Dsup                                  |
 | IPD3       | Myc-tagged Dsup                                   |
 | IPC1       | mCherry                                           |
 | IPC2       | Secreted mCherry (via α-factor secretion signal)  |
@@ -174,7 +174,7 @@ As can be observed above, successful transformation of *P. pastoris* with integr
 
 <div class="details-body">
 
-Lithium acetate (LiAc)-mediated heat-shock transformation was used to introduce recombinant DNA into *S. cerevisiae*. After preparing competent cells, yeast samples were treated with LiAc, TE buffer, polyethylene glycol (PEG), and salmon sperm carrier DNA to facilitate DNA uptake. Since we utilized a genomically integrative plasmid for Dsup-related proteins, before transformation, DNA was linearized using NdeI. Following heat shock, cells were allowed to recover and subsequently plated on YPD agar + 200 µg/ml G418 to isolate transformants.
+Lithium acetate (LiAc)-mediated heat-shock transformation was used to introduce recombinant DNA into *S. cerevisiae*. After preparing competent cells, yeast samples were treated with LiAc, TE buffer, polyethylene glycol (PEG), and salmon sperm carrier DNA to facilitate DNA uptake. Since we used a genomically integrative plasmid for Dsup-related proteins, before transformation, DNA was linearized using NdeI. Following heat shock, cells were allowed to recover and subsequently plated on YPD agar + 200 µg/mL G418 to isolate transformants.
 
 <div class="photo-frame">
 
@@ -184,7 +184,7 @@ Lithium acetate (LiAc)-mediated heat-shock transformation was used to introduce 
 
 <div class="caption">
 
-**Figure 3.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 — 1 kb plus ladder, Lane 2 — ISD1 cut with NdeI, Lane 3 — control uncut ISD1, Lane 4 — ISD2 cut with NdeI, Lane 5 — control uncut ISD2. Both digests shifted relative to their uncut controls, so both plasmids were linearized before transformation.
+**Figure 3. Both digests shifted relative to their uncut controls, so both plasmids were linearized before transformation.** HO-Poly-KanMX4-HO restriction digestion results: lane 1 — 1 kb plus ladder, lane 2 — ISD1 cut with NdeI, lane 3 — control uncut ISD1, lane 4 — ISD2 cut with NdeI, lane 5 — control uncut ISD2.
 
 </div>
 
@@ -196,11 +196,11 @@ Lithium acetate (LiAc)-mediated heat-shock transformation was used to introduce 
 
 <div class="caption">
 
-**Figure 4.** Dsup-related *S. cerevisiae* recombineering results. All three Dsup constructs yielded colonies on G418 selection.
+**Figure 4. All three Dsup constructs yielded colonies on G418 selection.** Dsup-related *S. cerevisiae* recombineering results.
 
 </div>
 
-As can be observed on Figure 4, Dsup-related plasmids were successfully genomically integrated into the safe-harbor region (HO locus). HO locus encodes the HO endonuclease, which is involved in mating-type switching. However, it is not required for vegetative growth. Hence, integration at this site results in stable maintenance of recombinant genes without the need for continuous selective pressure, while also not leading to disruptions of any essential cellular functions.
+As shown in Figure 4, Dsup-related plasmids were successfully genomically integrated into the safe-harbor region (HO locus). The HO locus encodes the HO endonuclease, which is involved in mating-type switching. However, it is not required for vegetative growth. Hence, integration at this site results in stable maintenance of recombinant genes without the need for continuous selective pressure, while also not leading to disruptions of any essential cellular functions.
 
 <div class="caption">
 
@@ -210,10 +210,10 @@ As can be observed on Figure 4, Dsup-related plasmids were successfully genomica
 
 <div class="table-wrap">
 
-| Plasmid ID | GOI              |
+| Plasmid ID | Gene of interest (GOI) |
 | ---------- | ---------------- |
 | ISD1       | WT Dsup          |
-| ISD2       | 2x SV40 NLS Dsup |
+| ISD2       | 2× SV40 NLS Dsup |
 | ISD3       | Myc-tagged Dsup  |
 
 </div>
@@ -239,7 +239,7 @@ The *B. subtilis* transformation write-up has not been drafted yet. The Western 
 
 </details>
 
-## Western Blots
+## Western blots
 
 Myc- and His-tagged constructs were detected by antibody staining to confirm that the integrated genes are actually expressed as protein.
 
@@ -251,7 +251,7 @@ Myc- and His-tagged constructs were detected by antibody staining to confirm tha
 
 <div class="caption">
 
-**Figure 5.** Antibody detection of Myc-tagged Dsup in wild type and mutant *B. subtilis* and *S. cerevisiae*. A band at the expected DSUP-MYC size (~43 kDa) is present in the *S. cerevisiae* lanes.
+**Figure 5. A band at the expected Dsup-Myc size (~43 kDa) is present in the *S. cerevisiae* lanes.** Antibody detection of Myc-tagged Dsup in wild-type and mutant *B. subtilis* and *S. cerevisiae*.
 
 </div>
 
@@ -279,7 +279,7 @@ Myc- and His-tagged constructs were detected by antibody staining to confirm tha
 
 </div>
 
-## Radiation Resistance Tests
+## Radiation resistance tests
 
 <div class="callout warn">
 
@@ -289,13 +289,13 @@ The irradiation experiments are summarized in the Summary section above — WT D
 
 </div>
 
-## Protein Expression and Purification in Pichia
+## Protein expression and purification in Pichia
 
 We performed recombinant protein expression for several payloads in *P. pastoris* and *B. subtilis*.
 
-For *P. pastoris*, cultures were initially grown in Buffered Glycerol-complex Medium (BMGY) for biomass accumulation (Day 0). Cells were subsequently harvested by centrifugation and transferred to Buffered Methanol-complex Medium (BMMY), where protein expression was induced with 0.5% (v/v) methanol for three days in 500 ml – 1 L culture flasks at 25 ℃.
+For *P. pastoris*, cultures were initially grown in Buffered Glycerol-complex Medium (BMGY) for biomass accumulation (Day 0). Cells were subsequently harvested by centrifugation and transferred to Buffered Methanol-complex Medium (BMMY), where protein expression was induced with 0.5% (v/v) methanol for three days in 500 mL – 1 L culture flasks at 25 °C.
 
-For *B. subtilis*, recombinant protein expression was induced using 2 mM isopropyl β-D-1-thiogalactopyranoside (IPTG) for 6 hours at 30–37 ℃. Following induction, the samples were collected and processed for purification.
+For *B. subtilis*, recombinant protein expression was induced using 2 mM isopropyl β-D-1-thiogalactopyranoside (IPTG) for six hours at 30–37 °C. Following induction, the samples were collected and processed for purification.
 
 Since all the payload proteins contain a His tag, they were purified using an ÄKTA pure chromatography system equipped with a 5 mL HisTrap affinity column (immobilized metal affinity chromatography (IMAC) technique).
 
@@ -384,7 +384,7 @@ Since all the payload proteins contain a His tag, they were purified using an Ä
 
 </div>
 
-Initially, FfIBP secreted by *P. pastoris* (IPAF) was successfully purified, as illustrated above. The obtained SDS-PAGE gel shows a very clean band corresponding to our target protein (confirmed later by Western Blot). No further purification, such as Size Exclusion Chromatography (Gel Filtration), was needed due to sufficient purity of the obtained fractions.
+Initially, FfIBP secreted by *P. pastoris* (IPAF) was successfully purified, as illustrated above. The obtained SDS-PAGE gel shows a very clean band corresponding to our target protein (confirmed later by Western blot). No further purification, such as size-exclusion chromatography (gel filtration), was needed, due to the sufficient purity of the obtained fractions.
 
 ### Secreted LeIBP
 
@@ -434,7 +434,7 @@ Initially, FfIBP secreted by *P. pastoris* (IPAF) was successfully purified, as 
 
 <div class="caption">
 
-**Figure 17.** His-trap affinity purification of secreted Nb1_gbHSV from *Pichia*.
+**Figure 17.** HisTrap affinity purification of secreted Nb1_gbHSV from *P. pastoris*.
 
 </div>
 
@@ -446,11 +446,11 @@ Initially, FfIBP secreted by *P. pastoris* (IPAF) was successfully purified, as 
 
 <div class="caption">
 
-**Figure 18.** Coomassie staining of His-trap purified secreted Nb1_gbHSV from *Pichia*.
+**Figure 18.** Coomassie staining of HisTrap-purified secreted Nb1_gbHSV from *P. pastoris*.
 
 </div>
 
-## Fluorescent Proteins Visualization
+## Fluorescent protein visualization
 
 <div class="callout warn">
 

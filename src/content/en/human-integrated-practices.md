@@ -1041,7 +1041,7 @@ Our Human Practices journey helped us recognize the boundaries of our current wo
 <li id="ref-17"><a href="https://www.nasa.gov/ames/space-biosciences/laboratory-of-countermeasures-development/" target="_blank" rel="noopener noreferrer">NASA Ames — Laboratory of Countermeasures Development</a></li>
 <li id="ref-18"><a href="https://pubmed.ncbi.nlm.nih.gov/21479701/" target="_blank" rel="noopener noreferrer">PubMed — 21479701</a></li>
 <li id="ref-19"><a href="https://www.nasa.gov/ames/space-biosciences/bioengineering-branch/bionutrients/" target="_blank" rel="noopener noreferrer">NASA — Bionutrients</a></li>
-<li id="ref-20"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6501615/" target="_blank" rel="noopener noreferrer">Frontiers in Microbiology — Proteomic and Metabolomic Profiling of Deinococcus radiodurans Recovering After Exposure to Simulated Low Earth Orbit Vacuum Conditions</a></li>
+<li id="ref-20"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6501615/" target="_blank" rel="noopener noreferrer">Frontiers in Microbiology — Proteomic and Metabolomic Profiling of *Deinococcus radiodurans* Recovering After Exposure to Simulated Low Earth Orbit Vacuum Conditions</a></li>
 <li id="ref-21"><a href="https://link.springer.com/article/10.1007/s10750-005-1409-5" target="_blank" rel="noopener noreferrer">Hydrobiologia — The ‘Hyena Female’ of Tardigrades and Descriptions of Two New Species of Megastygarctides from Saudi Arabia</a></li>
 <li id="ref-22"><a href="https://www.nature.com/articles/s41467-025-63652-3" target="_blank" rel="noopener noreferrer">Nature Communications — Multivalent binding of the tardigrade Dsup protein to chromatin promotes yeast survival and longevity upon exposure to oxidative damage</a></li>
 

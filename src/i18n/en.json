@@ -36,7 +36,7 @@
       "mariana": { "bio": "MSc in Bioscience. Experience in molecular biology, RNA biology, and mammalian cell culture techniques. Currently pursuing a PhD focused on posttranscriptional regulation and RNA-binding proteins in the context of cell differentiation." },
       "kexin": { "bio": "Background in bioengineering with experience in data analysis and ML, molecular biology techniques." },
       "sriharsha": { "bio": "Background in biotechnology. I try to answer biological questions in microbes to mammalian cells to corals using molecular biology. My BSc was in life sciences and my current MSc is in Marine sciences." },
-      "kevser": { "bio": "Background in Molecular Biology and Genetics with focus on bioinformatics and protein structure modelling." },
+      "kevser": { "bio": "Background in Molecular Biology and Genetics with focus on bioinformatics and protein structure modeling." },
       "shahad": { "bio": "Background in biology with clinical and infectious disease research experience as well as teaching and project coordination experience." },
       "francesca": { "bio": "Background in bioengineering with experience in biochemistry (protein expression in bacteria, insect and mammalian cells, and purification), biophysical (MST), and bioimaging assays (fluorescence and confocal microscopy)." },
       "zeyad": { "bio": "Background in Biochemistry and Molecular Biology with experience in RNA Biology, Drug screening, Protein expression and purification, RNA-Protein interaction, Protein-Protein interaction." },
@@ -50,13 +50,13 @@
       "shahadAl": { "bio": "Background in molecular and cell biology with experience in neuroscience and molecular genetics." },
       "noureldin": { "bio": "Medical graduate and intern, Faculty of Medicine, October 6th University, Egypt. I work at the intersection of computational biology, synthetic biology, and clinical medicine, with experience in oligo design, protein engineering, metabolic modeling and Clinical Genomics." },
       "raik": { "bio": "Bio coming soon." },
-      "wayne": { "bio": "Assistant Professor in the Bioengineering program within the Biomedical Sciences Division at KAUST. His research lies at the interface of biology and physics, with a focus on developing single-molecule sensing technologies for diagnostic applications and for probing the nanoscopic processes that govern cellular compartmentalisation, organization and biochemical reactions." },
+      "wayne": { "bio": "Assistant Professor in the Bioengineering program within the Biomedical Sciences Division at KAUST. His research lies at the interface of biology and physics, with a focus on developing single-molecule sensing technologies for diagnostic applications and for probing the nanoscopic processes that govern cellular compartmentalization, organization and biochemical reactions." },
       "fabian": { "bio": "Scientific advisor to the iGEM team. Background in engineering biology and protein engineering and production in eukaryotic cells." },
       "samah": { "bio": "Bio coming soon." },
       "selena": { "bio": "Background in modern languages and literary studies, bringing a humanities perspective to the scientific community at KAUST. Graduate Program Coordinator for the BioMed Division, and official mentor and coordinator of the KAUST iGEM team. Passionate about education and student development, and committed to fostering interdisciplinary collaboration." },
       "muhammadTehseen": { "bio": "Senior Research Scientist at KAUST, with a PhD in Molecular Genetics from the University of Melbourne and postdoctoral research at CSIRO. His expertise spans recombinant protein production, DNA replication and repair, and molecular diagnostics, including CRISPR-based detection platforms and locally produced qPCR and RT-qPCR diagnostic kits." },
       "alejandra": { "bio": "Pharmaceutical, digital and biotechnology professional with degrees in Pharmacy and Biotechnology Engineering, an Eng.MSc in Digital Bioproduction, and training in AI and machine learning from MIT and in Clinical Trials Management from the University of Chicago. Currently Strategy Operations Lead at Synergya, after working at Novartis, Merck and Sanofi on Digital CMC, data governance, GxP system validation and regulatory alignment." },
-      "jordi": { "bio": "Background in biomedical engineering and mathematics, with a strong focus on synthetic biology and complex systems. Currently pursuing a PhD at the ICREA–Complex Systems Lab, Universitat Pompeu Fabra, combining wet-lab experiments and mathematical modelling to explore synthetic cognition, distributed computation using engineered cell consortia, and self-organised criticality in living systems." }
+      "jordi": { "bio": "Background in biomedical engineering and mathematics, with a strong focus on synthetic biology and complex systems. Currently pursuing a PhD at the ICREA–Complex Systems Lab, Universitat Pompeu Fabra, combining wet-lab experiments and mathematical modelling to explore synthetic cognition, distributed computation using engineered cell consortia, and self-organized criticality in living systems." }
     }
   },
   "attributions": {
@@ -217,7 +217,7 @@
     "alejandra": {
       "role": "Advisor",
       "department": "",
-      "tasks": "Mentored the team on international innovation strategy and global regulations, and on digitalisation.",
+      "tasks": "Mentored the team on international innovation strategy and global regulations, and on digitalization.",
       "specificTasks": "Helped us map the regulatory landscape for producing biologics in space: how a nanobody manufactured in orbit would be classified and reviewed under FDA and SFDA frameworks, which quality and biosafety requirements would apply, and how to separate confirmed guidance from open questions. Also guided us on international innovation pathways, from protecting our IP to identifying the right institutional and industry partners to move the project beyond the competition."
     },
     "jordi": {

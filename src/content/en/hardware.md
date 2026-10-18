@@ -33,9 +33,9 @@ Measuring only 20 x 24 x 31 cm (LWH) and weighing a mere 2.2 kg, the SHIHAB bior
 | --- | --- | --- |
 | Footprint (W x D x H) | 20 x 24 x 31 cm | 22 x 40 x 38 cm |
 | Weight | 2.2 kg | 7.5 kg |
-| Power draw | 30 W | 560 W (universal 100–245V AC) |
+| Power draw | 30 W | 560 W (universal 100–245 V AC) |
 | Complete platform incl. purification | Packs into a 50 x 35 x 15 cm case | Not included – vessel/control unit only |
-| Vessel volume | Interchangeable vessels of various geometries | Interchangeable glass vessels, 0.3 - 7 L |
+| Vessel volume | Interchangeable vessels of various geometries | Interchangeable glass vessels, 0.3–7 L |
 | Typical use case | Portable, space- and power-constrained biomanufacturing | Benchtop fermentation in a lab with mains power |
 
 </div>
@@ -64,7 +64,7 @@ The bioreactor runs on a 30 W power supply, equivalent to the amount of power it
 <button type="button" class="popup-open"><span class="popup-num">3</span><span class="popup-face"><span class="popup-title">Optimized design, built for lower gravity</span><svg class="popup-art" viewBox="0 0 220 74" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" aria-hidden="true"><path d="M14 8v50m0 0l-4-6m4 6l4-6" stroke="rgba(255,255,255,0.45)"/><path d="M44 26v28m0 0l-3-5m3 5l3-5" stroke="#FFD84D"/><text x="14" y="70" font-size="6" fill="rgba(255,255,255,0.45)" stroke="none" text-anchor="middle" font-family="ui-monospace,monospace">EARTH</text><text x="44" y="70" font-size="6" fill="#FFD84D" stroke="none" text-anchor="middle" font-family="ui-monospace,monospace">LOW g</text><rect x="68" y="16" width="48" height="46" rx="8" stroke="#D1A8FF"/><rect x="64" y="11" width="56" height="7" rx="2.5" stroke="#D1A8FF"/><path d="M69 36q5.5-4 11 0t11 0 11 0 11 0v18q0 6-6 6H75q-6 0-6-6z" stroke="#B16DFF" fill="#B16DFF" fill-opacity="0.28"/><line x1="92" y1="4" x2="92" y2="48" stroke="#FFD84D"/><rect x="81" y="46" width="22" height="3.5" rx="1.7" stroke="#FFD84D" fill="#FFD84D" fill-opacity="0.5"/><path d="M76 54q16 7 32 0" stroke="#D1A8FF"/><path d="M108 54l-5-1.2m5 1.2l-1.3 5" stroke="#D1A8FF"/><path d="M76 42q-3 4 0 8" stroke="#D1A8FF" stroke-opacity="0.6"/><circle cx="172" cy="38" r="26" stroke="rgba(255,255,255,0.45)" fill="rgba(255,255,255,0.05)"/><circle cx="162" cy="28" r="5.5" stroke="rgba(255,255,255,0.45)" stroke-opacity="0.7"/><circle cx="181" cy="47" r="7" stroke="rgba(255,255,255,0.45)" stroke-opacity="0.7"/><circle cx="180" cy="26" r="3" stroke="rgba(255,255,255,0.45)" stroke-opacity="0.7"/><circle cx="160" cy="51" r="3.2" stroke="rgba(255,255,255,0.45)" stroke-opacity="0.7"/><path d="M144 8v4m-2-2h4M208 66v4m-2-2h4" stroke="#FFD84D"/><circle cx="206" cy="12" r="1.3" fill="#FFD84D" stroke="none"/><circle cx="136" cy="62" r="1.1" fill="#FFD84D" stroke="none"/></svg><span class="popup-hint">Tap to read more</span></span></button>
 <div class="popup-more">
 
-On Mars, gravity is only about 38% of Earth’s (about 0.38g), so fluid behaves differently than it does in a terrestrial lab. Rather than relying on gravity to move liquid through the system, every fluid path in the SHIHAB Bioreactor runs through closed tubing and pumps, keeping fluid handling consistent regardless of the gravity environment it’s operating in. <a class="cite" href="#ref-4">4</a>
+On Mars, gravity is only about 38% of Earth’s (about 0.38 g), so fluid behaves differently than it does in a terrestrial lab. Rather than relying on gravity to move liquid through the system, every fluid path in the SHIHAB Bioreactor runs through closed tubing and pumps, keeping fluid handling consistent regardless of the gravity environment it’s operating in. <a class="cite" href="#ref-4">4</a>
 
 A particular challenge of developing bioreactors suitable for use in microgravity conditions is reduced convection that would otherwise aid in mixing. We performed computational fluid dynamics simulations to evaluate our rotor design under these conditions; the results are reported in [Experimental validation](#experimental-validation). <a class="cite" href="#ref-5">5</a>
 
@@ -100,7 +100,7 @@ A compact inventory of lyophilized bacteria genetically engineered to produce sp
 
 ### Part I: Bioreactor
 
-Once the pill has been added, the user enters the culture conditions and quantities of reagents on the interactive touchscreen dashboard. The bioreactor automatically maintains the conditions at the set values via installed sensors and feedback controls that have been programmed into the system. This negates the need for the user to periodically check on the culture conditions. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/user-manual.pdf" target="_blank" rel="noopener noreferrer">Click here</a> for the complete user manual for the operation of the bioreactor.
+Once the pill has been added, the user enters the culture conditions and quantities of reagents on the interactive touchscreen dashboard. The bioreactor automatically maintains the conditions at the set values via installed sensors and feedback controls that have been programmed into the system. This negates the need for the user to periodically check on the culture conditions. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/user-manual.pdf" target="_blank" rel="noopener noreferrer">Read the complete user manual</a> for the operation of the bioreactor.
 
 <div class="callout accent">
 
@@ -329,7 +329,7 @@ We tried to heat the water from a starting ambient temperature of ~20 ºC to 34 
 </div></div>
 <div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
 
-It was at this stage that we realized we had chosen a heating element of an unsuitable rating. Since it was rated at 100 W and 12V, it required a current of ~8.3 A (which is pretty high) for optimal performance. However, this **hugely increased power demand** for our setup, and supplying the heating element with a much lower current of 1.5 A barely caused a temperature change. The heater was also a little too large for our culture vessel, causing air gaps in between the vessel and heater which reduced heating efficiency. We figured out that we would have to obtain a new heating element with lower power specifications, and proceeded to use a smaller 30 W heating element for the next iteration instead.
+It was at this stage that we realized we had chosen a heating element of an unsuitable rating. Since it was rated at 100 W and 12 V, it required a current of ~8.3 A (which is pretty high) for optimal performance. However, this **hugely increased power demand** for our setup, and supplying the heating element with a much lower current of 1.5 A barely caused a temperature change. The heater was also a little too large for our culture vessel, causing air gaps in between the vessel and heater which reduced heating efficiency. We figured out that we would have to obtain a new heating element with lower power specifications, and proceeded to use a smaller 30 W heating element for the next iteration instead.
 
 </div></div>
 </div>
@@ -827,7 +827,7 @@ Testing with water first let us find electrical hazards before any culture was i
 <button type="button" class="popup-open"><span class="popup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="popup-face"><span class="popup-title">Sterilization</span><span class="popup-desc">Keeping the culture and purification path free of contamination throughout the run.</span><span class="popup-hint">Tap to read more</span></span></button>
 <div class="popup-more">
 
-**Glass culture vessel:** The glass vessel was first soaked in bleach for 30 min with the culture, then emptied and thoroughly washed to remove residual culture material. It was then rinsed with deionized water, filled with LB medium and steam-sterilized in an autoclave at 121°C and approximately 15 psi for two hours (covered in aluminum foil), using the appropriate cycle for glassware and in accordance with the laboratory’s validated autoclave SOP. Culture-contacting tubing and connectors are also autoclaved. After completion of the cycle and return of the chamber to safe pressure and temperature, the vessel was allowed to cool and dry before being handled. Steam sterilization at 121°C is an established method for sterilizing laboratory glassware.
+**Glass culture vessel:** The glass vessel was first soaked in bleach for 30 min with the culture, then emptied and thoroughly washed to remove residual culture material. It was then rinsed with deionized water, filled with LB medium and steam-sterilized in an autoclave at 121 °C and approximately 15 psi for two hours (covered in aluminum foil), using the appropriate cycle for glassware and in accordance with the laboratory’s validated autoclave SOP. Culture-contacting tubing and connectors are also autoclaved. After completion of the cycle and return of the chamber to safe pressure and temperature, the vessel was allowed to cool and dry before being handled. Steam sterilization at 121 °C is an established method for sterilizing laboratory glassware.
 
 **Non-autoclavable and disposable components:** Currently, the 3D-printed rotor and vessel lid in the prototype are disposed of after experiments as they are made of non-autoclavable PLA. In future iterations of the prototype, they will be replaced with stainless steel to be compatible with autoclaving.
 
@@ -896,17 +896,17 @@ The design documentation for the SHIHAB bioreactor and protein purification syst
      uploaded to content/hardware/ yet, and user-manual.pdf /
      wiring-schematic.pdf are still placeholder documents. -->
 
-**CAD drawings:** The combined CAD drawings of the platform are available as a PDF. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/cad-drawings.pdf" target="_blank" rel="noopener noreferrer">Click here to open the CAD drawings.</a>
+**CAD drawings:** The combined CAD drawings of the platform are available as a PDF. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/cad-drawings.pdf" target="_blank" rel="noopener noreferrer">Open the CAD drawings (PDF)</a>.
 
 **Key dimensions:** The bioreactor measures 20 x 24 x 31 cm (LWH) and weighs 2.2 kg. Together with the protein purification system, the entire platform fits in a 50 x 35 x 15 cm case, and the bioreactor runs on a 30 W power supply.
 
 **Main components:** Glass culture vessel; 3D-printed rotor and vessel lid (PLA in the prototype); stirring motor; two flexible heating elements; temperature, pH and turbidity sensors; Arduino Mega controller; touchscreen dashboard; and a protein purification system with a filtration unit and syringe pumps driven by custom linear actuators.
 
-**Bill of materials:** The list of parts, quantities and materials used to build the platform. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/bill-of-materials.pdf" target="_blank" rel="noopener noreferrer">Click here to open the bill of materials.</a>
+**Bill of materials:** The list of parts, quantities and materials used to build the platform. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/bill-of-materials.pdf" target="_blank" rel="noopener noreferrer">Open the bill of materials (PDF)</a>.
 
-**Wiring / electronics schematic:** The circuit diagram connecting the Arduino Mega, sensors, motor, heaters, pumps and touchscreen. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/wiring-schematic.pdf" target="_blank" rel="noopener noreferrer">Click here to open the wiring schematic.</a>
+**Wiring / electronics schematic:** The circuit diagram connecting the Arduino Mega, sensors, motor, heaters, pumps and touchscreen. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/wiring-schematic.pdf" target="_blank" rel="noopener noreferrer">Open the wiring schematic (PDF)</a>.
 
-**Arduino code:** The control software that runs the bioreactor. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/arduino-code.ino" target="_blank" rel="noopener noreferrer">Click here to download the Arduino code.</a>
+**Arduino code:** The control software that runs the bioreactor. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/arduino-code.ino" target="_blank" rel="noopener noreferrer">Download the Arduino code (.ino)</a>.
 
 </div>
 </div>

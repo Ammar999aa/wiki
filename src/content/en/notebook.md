@@ -22,13 +22,13 @@
 
 ### Methods
 
-1.  LB broth: 500 ml MilliQ + 12.5 gram
+1.  LB broth: 500 mL MilliQ + 12.5 gram
 
-2.  LB agar: 500 ml MilliQ + 18.5 gram
+2.  LB agar: 500 mL MilliQ + 18.5 gram
 
-3.  YPD broth: 500 ml MilliQ + 25 gram
+3.  YPD broth: 500 mL MilliQ + 25 gram
 
-4.  YPD agar: 500 ml MilliQ + 25 gram + 10 gram agar
+4.  YPD agar: 500 mL MilliQ + 25 gram + 10 gram agar
 
 5.  Pored 12 LB agar and 14 YPD agar plates
 
@@ -38,25 +38,25 @@
 
 1)  X ray irradiation
 
-- S.cerevisiae, P. pastoris, B.subtilis
+- *S. cerevisiae*, *P. pastoris*, *B. subtilis*
 
 - Liquid culture → PBS → Animal core facilities lab
 
 2)  UV irradiation
 
-- S.cerevisiae, P. pastoris, B.subtilis
+- *S. cerevisiae*, *P. pastoris*, *B. subtilis*
 
 - Liquid culture → PBS → Prof Mo Li’s lab
 
 3)  Live/Dead Assay - Yeasts
 
-- S.cerevisiae, P. pastoris
+- *S. cerevisiae*, *P. pastoris*
 
 - Liquid culture → FUN-1 dye → Fluorescent Microscopy
 
 4)  Live/Dead Assay - Bacteria
 
-- B.subtilis
+- *B. subtilis*
 
 - Liquid culture → resazurin dye → Plate reader/Fluorescent Microscopy
 
@@ -118,7 +118,7 @@ Colony-forming units (CFUs) were counted for each plate and normalized to the un
 
 <div class="caption">
 
-**Figure 1.** B. subtilis colonies on LB agar. From left to right: mock diluted, 10 Gy undiluted, 20 Gy undiluted, 30 Gy undiluted, 40 Gy undiluted. A slight progressive reduction in colony density is visible at higher nominal doses.
+**Figure 1.** *B. subtilis* colonies on LB agar. From left to right: mock diluted, 10 Gy undiluted, 20 Gy undiluted, 30 Gy undiluted, 40 Gy undiluted. A slight progressive reduction in colony density is visible at higher nominal doses.
 
 </div>
 
@@ -126,7 +126,7 @@ Colony-forming units (CFUs) were counted for each plate and normalized to the un
 
 <div class="caption">
 
-**Figure 2.** P. pastoris colonies on YPD agar. From left to right: mock undiluted, mock 1:1000 dilution, 10 Gy, 20 Gy, 30 Gy, 40 Gy. The diluted mock control shows well-isolated colonies for reference counting. Colony density decreases modestly with increasing dose.
+**Figure 2.** *P. pastoris* colonies on YPD agar. From left to right: mock undiluted, mock 1:1000 dilution, 10 Gy, 20 Gy, 30 Gy, 40 Gy. The diluted mock control shows well-isolated colonies for reference counting. Colony density decreases modestly with increasing dose.
 
 </div>
 
@@ -159,23 +159,23 @@ The observed mild reduction in colony-forming units across all three organisms a
 <td>Reference</td>
 </tr>
 <tr>
-<td>B. subtilis</td>
+<td>*B. subtilis*</td>
 <td>~200–400 Gy (X-ray)</td>
 <td>&gt;1,000 Gy (vegetative); spore D10 = 1.5–3.8 kGy</td>
 <td>Vegetative / spore</td>
 <td>Thayer 2004; Dunn et al. 2018</td>
 </tr>
 <tr>
-<td>S. cerevisiae</td>
+<td>*S. cerevisiae*</td>
 <td>~50–80 Gy (X-ray)</td>
 <td>&gt;400 Gy (repair-proficient strains)</td>
 <td>Vegetative (diploid)</td>
 <td>Kiefer 1986; Mi et al. 2018</td>
 </tr>
 <tr>
-<td>P. pastoris</td>
+<td>*P. pastoris*</td>
 <td>~50–100 Gy (estimated)</td>
-<td>Not established; similar to S. cerevisiae</td>
+<td>Not established; similar to *S. cerevisiae*</td>
 <td>Vegetative</td>
 <td>Estimated from Kiefer 1986; Gladyshev 2017</td>
 </tr>
@@ -213,11 +213,11 @@ In contrast, *B. subtilis* vegetative cells are considerably more resistant, wit
 
 1- Culture Preparation
 
-B.subtilis, S.cerevisiae, and P.pastoris cultures were stored overnight in 4C, and were used for the UV irradiation experiment
+*B. subtilis*, *S. cerevisiae*, and *P. pastoris* cultures were stored overnight in 4 °C, and were used for the UV irradiation experiment
 
 2- UV-C Irradiation
 
-Culture was diluted to an OD below 0.6 and allowed to grow in a shaking incubator at 30C with 220 Rpm shaking back to an OD within 0.6 to 1, then culture was diluted 10 times in fresh medium before transferring 300 ul to 3 agar plates for 3 different time point (0, 1, 2 min). Immediately after drying, the plates for time point 1 and 2 min were irradiated with 5 kj/cm2 for their respective time the control 0 min plate was left under normal light, finally, all plates were incubated at 30C overnight to allow colonies to grow.
+Culture was diluted to an OD below 0.6 and allowed to grow in a shaking incubator at 30 °C with 220 rpm shaking back to an OD within 0.6 to 1, then culture was diluted 10 times in fresh medium before transferring 300 µL to 3 agar plates for 3 different time point (0, 1, 2 min). Immediately after drying, the plates for time point 1 and 2 min were irradiated with 5 kj/cm² for their respective time the control 0 min plate was left under normal light, finally, all plates were incubated at 30 °C overnight to allow colonies to grow.
 
 ### Results
 
@@ -225,7 +225,7 @@ Culture was diluted to an OD below 0.6 and allowed to grow in a shaking incubato
 
 <div class="caption">
 
-**Figure 1.** UVC irradiation results for B.subtilis A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
+**Figure 1.** UVC irradiation results for *B. subtilis* A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
 
 </div>
 
@@ -233,7 +233,7 @@ Culture was diluted to an OD below 0.6 and allowed to grow in a shaking incubato
 
 <div class="caption">
 
-**Figure 2.** UVC irradiation results for S.cerevisiae A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
+**Figure 2.** UVC irradiation results for *S. cerevisiae* A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
 
 </div>
 
@@ -241,7 +241,7 @@ Culture was diluted to an OD below 0.6 and allowed to grow in a shaking incubato
 
 <div class="caption">
 
-**Figure 3.** UVC irradiation results for P.pastoris A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
+**Figure 3.** UVC irradiation results for *P. pastoris* A) Mock B) Dose 1 (1 min) C) Dose 2 (2 min)
 
 </div>
 
@@ -260,7 +260,7 @@ Culture media were prepared fresh using LB Agar or YPD broth + Agar powder, then
 
 #### UV-C Irradiation
 
-Six agar plates were prepared for each of the six doses: 0, 6, 12, 18, 24, 30 mJ/cm∧-2. Each culture was diluted to an OD600 of 1 then serially diluted by a factor of 5 for 6 variable: 5X, 25X, 125X, 625X, 3,125X, 15,625. Then 4 µl of each dilution was added to an agar plate in order of dilution from highest to lowest so that each of the six plates would contain the serial dilution of each replicate culture. The aliquot was allowed to dry completely under an electric burner then irradiated for its corresponding dose and incubated overnight at 30C.
+Six agar plates were prepared for each of the six doses: 0, 6, 12, 18, 24, 30 mJ/cm⁻². Each culture was diluted to an OD600 of 1 then serially diluted by a factor of 5 for 6 variable: 5X, 25X, 125X, 625X, 3,125X, 15,625. Then 4 µl of each dilution was added to an agar plate in order of dilution from highest to lowest so that each of the six plates would contain the serial dilution of each replicate culture. The aliquot was allowed to dry completely under an electric burner then irradiated for its corresponding dose and incubated overnight at 30 °C.
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp03-protocol1.avif" alt="Optimized UV-C protocol: dilution series plates, set 1" style="width:100.0%" loading="lazy" />
 
@@ -279,7 +279,7 @@ Live cells: convert FUN-1 → red/orange cylindrical intravacuolar structures (C
 
 Dead cells: remain diffuse yellow-green fluorescence
 
-1.  Grow yeast to late log phase (usually 10^7-10^8 cells/mL) at 30 °C in YPD broth
+1.  Grow yeast to late log phase (usually 10⁷–10⁸ cells/mL) at 30 °C in YPD broth
 
 2.  Add 50 µL of the yeast culture to 1 mL of sterile, 0.2 µm–filtered water containing 2% D-(+)-glucose and PBS in a microfuge tube
 
@@ -287,21 +287,21 @@ Dead cells: remain diffuse yellow-green fluorescence
 
 4.  Remove the supernatant and resuspend the pellet in 1 mL of sterile, 0.2 µm–filtered water containing 2% D-(+)-glucose and PBS
 
-5.  Combine a yeast cell suspension (10^6 cell/mL) with FUN 1 cell stain (Final concentration - 10 µM)
+5.  Combine a yeast cell suspension (10⁶ cell/mL) with FUN 1 cell stain (Final concentration - 10 µM)
 
 6.  Mix gently
 
-7.  Incubate at 30°C in the dark for 30 minutes, preferably with shaking
+7.  Incubate at 30 °C in the dark for 30 minutes, preferably with shaking
 
 8.  Trap 5 µL of the stained yeast suspension between a slide and 18 mm × 18 mm coverslip
 
 9.  Observe in a fluorescence microscope
 
-S.cerevisiae cell count - 1.61 * 10^6/mL (98% live)
+*S. cerevisiae* cell count - 1.61 × 10⁶/mL (98% live)
 
-P. pastoris cell count - 1.05 * 10^4/mL (33% live)
+*P. pastoris* cell count - 1.05 × 10⁴/mL (33% live)
 
-→ 1 ml each one
+→ 1 mL each one
 
 1 µL of 10 mM FUN-1 stock
 
@@ -333,7 +333,7 @@ P. pastoris cell count - 1.05 * 10^4/mL (33% live)
 
 ### Future Improvements
 
-- Increase cell density to 10^7
+- Increase cell density to 10⁷
 
 - Use mounting media
 
@@ -342,17 +342,17 @@ P. pastoris cell count - 1.05 * 10^4/mL (33% live)
 ## Experiment #5
 
 **Dates:** #070626
-**Title of Experiment:** Plasmid vector transformation in E.coli
+**Title of Experiment:** Plasmid vector transformation in *E. coli*
 
 ### Methods
 
-#### E.coli Transformation
+#### E. coli Transformation
 
-Mach1 competent cells were used for the transformation. Frozen cell stock was thawed on ice then 1 ul of each plasmid was added to six different E.coli tubes. Cells were heat shocked for exactly 30 seconds then were put immediately on ice for 5 min. Then 900 ul of lb were added to each tube and the cells were allowed to grow in an incubator for 1 hr at 37C. Lastly, cells were diluted 100 times before adding to an LB agar with Ampicillin (AMP) (0.1 mg/ml), spread with glass beads and incubated at 37C overnight.
+Mach1 competent cells were used for the transformation. Frozen cell stock was thawed on ice then 1 µL of each plasmid was added to six different *E. coli* tubes. Cells were heat shocked for exactly 30 seconds then were put immediately on ice for 5 min. Then 900 µL of lb were added to each tube and the cells were allowed to grow in an incubator for 1 hr at 37 °C. Lastly, cells were diluted 100 times before adding to an LB agar with Ampicillin (AMP) (0.1 mg/mL), spread with glass beads and incubated at 37 °C overnight.
 
 #### Plasmid Mini-Prep Using QIAprep Miniprep
 
-Cell colonies were picked from each agar plate and inoculated in 4 ml LB with AMP, the LB cultures were allowed to grow overnight at 37C. Next day plasmid purification was done using the QIAprep Miniprep kit. The plasmid purification was conducted based on the protocol provided in the kit (“Plasmid DNA Purification Using the QIAprep Spin Miniprep Kit and a Microcentrifuge”[https://kirschner.med.harvard.edu/files/protocols/QIAGEN_QIAprepMiniprepKit_EN.pdf](https://kirschner.med.harvard.edu/files/protocols/QIAGEN_QIAprepMiniprepKit_EN.pdf))
+Cell colonies were picked from each agar plate and inoculated in 4 mL LB with AMP, the LB cultures were allowed to grow overnight at 37 °C. Next day plasmid purification was done using the QIAprep Miniprep kit. The plasmid purification was conducted based on the protocol provided in the kit (“Plasmid DNA Purification Using the QIAprep Spin Miniprep Kit and a Microcentrifuge”[https://kirschner.med.harvard.edu/files/protocols/QIAGEN_QIAprepMiniprepKit_EN.pdf](https://kirschner.med.harvard.edu/files/protocols/QIAGEN_QIAprepMiniprepKit_EN.pdf))
 
 ### Results
 
@@ -381,13 +381,13 @@ Cell colonies were picked from each agar plate and inoculated in 4 ml LB with AM
 
 2)  Make sure Pichia is pink
 
-3)  Create B.subtilis cells
+3)  Create *B. subtilis* cells
 
-4)  Mock transformation of B.subtilis (Chl)
+4)  Mock transformation of *B. subtilis* (Chl)
 
-5)  Mock transformation of P.pastoris
+5)  Mock transformation of *P. pastoris*
 
-6)  Mock transformation of S.cerevisiae
+6)  Mock transformation of *S. cerevisiae*
 
 7)  UVC radiation protocol optimization (ISS radiation - max)
 
@@ -411,7 +411,7 @@ Cell colonies were picked from each agar plate and inoculated in 4 ml LB with AM
 
 Day 1
 
-1.  Prepare LB broth: 500 ml MilliQ + 12.5 gram
+1.  Prepare LB broth: 500 mL MilliQ + 12.5 gram
 
 2.  Prepare 50% glycerol stock: 50 mL glycerol + 50 mL water
 
@@ -419,23 +419,23 @@ Day 1
 
 Day 2
 
-1.  Dilute 100 mg/ml ampicillin stock to 100 ug/ml by pipetting 200 ul from the stock to 200 ml LB media
+1.  Dilute 100 mg/mL ampicillin stock to 100 µg/mL by pipetting 200 µL from the stock to 200 mL LB media
 
-2.  Prepare 4 ml of LB (100 ug/ml ampicillin) and inoculate a single colony from the E.coli plates
+2.  Prepare 4 mL of LB (100 µg/mL ampicillin) and inoculate a single colony from the *E. coli* plates
 
-3.  Grow overnight (12-16 h) in a shaking incubator set to 220 rpm, 37 C
+3.  Grow overnight (12–16 h) in a shaking incubator set to 220 rpm, 37 °C
 
-4.  Measure OD600nm:
+4.  Measure OD600 nm:
 
 <div class="caption">
 
-**Table 1.** Results of spectrophotometric measurements for overnight E.coli cultures
+**Table 1.** Results of spectrophotometric measurements for overnight *E. coli* cultures
 
 </div>
 
 <div class="table-wrap">
 
-| Sample | Plasmid           | OD600nm |
+| Sample | Plasmid           | OD600 nm |
 |:-------|-------------------|---------|
 | #1    | HO-Poly-KanMX4-HO | 1.176   |
 | #2    | pYES2-HTH         | 1.269   |
@@ -446,9 +446,9 @@ Day 2
 
 </div>
 
-5.  Dilute cells to about OD600nm = 0.1 (50-80 minutes)
+5.  Dilute cells to about OD600 nm = 0.1 (50–80 minutes)
 
-6.  Grow cells to OD600nm = 0.6
+6.  Grow cells to OD600 nm = 0.6
 
 7.  Mix 500 µL overnight culture with 500 µL sterile 50% glycerol (Final glycerol concentration: 25%) in a new cryovial
 
@@ -456,25 +456,25 @@ Day 2
 
 9.  Snap freeze using liquid nitrogen
 
-10. Store at -80C
+10. Store at -80 °C
 
 
 ## Experiment #7
 
 **Dates:** 30.06-07.07
-**Title of Experiment:** S.cerevisiae MOCK transformation
+**Title of Experiment:** *S. cerevisiae* MOCK transformation
 
 ### Part 1: Competent Cells Preparation
 
-1.  Inoculated 10 ml of YPD with a single colony of from S. cerevisiae starter plate
+1.  Inoculated 10 mL of YPD with a single colony of from *S. cerevisiae* starter plate
 
-2.  Grew the sample overnight at 28-30°C in a shaking incubator (200-300 rpm)
+2.  Grew the sample overnight at 28–30 °C in a shaking incubator (200–300 rpm)
 
 3.  Determined the OD600 (~4.0)
 
-4.  Diluted cells from the overnight culture to an OD600 of 0.3 in a total volume of 10 ml of YPD
+4.  Diluted cells from the overnight culture to an OD600 of 0.3 in a total volume of 10 mL of YPD
 
-5.  Grew the cells for 1.5-2 h at 28-30°C in a shaking incubator until the OD600 reached 0.7.
+5.  Grew the cells for 1.5–2 h at 28–30 °C in a shaking incubator until the OD600 reached 0.7.
 
 6.  Pelleted the cells by centrifugation at 1500 rpm for 8 minutes at RT
 
@@ -486,7 +486,7 @@ Day 2
 
 10. Discarded the supernatant
 
-11. Resuspended the cell pellet in 3 ml of sterile 1x TE/LiAc solution (10 mM Tris-HCl, 1 mM EDTA + 100 mM LiAc):
+11. Resuspended the cell pellet in 3 mL of sterile 1x TE/LiAc solution (10 mM Tris-HCl, 1 mM EDTA + 100 mM LiAc):
 
 <div class="table-wrap">
 
@@ -501,8 +501,8 @@ Day 2
 <tr>
 <td><p>100 mM Tris, 10 mM EDTA</p>
 <ol type="1">
-<li><p>For 100 ml, dissolve 1.21 g of Tris-HCl and 0.37 g of EDTA in 90 ml of deionized water</p></li>
-<li><p>Adjust the pH to 8.0 with Na-OH and bring the volume up to 100 ml</p></li>
+<li><p>For 100 mL, dissolve 1.21 g of Tris-HCl and 0.37 g of EDTA in 90 mL of deionized water</p></li>
+<li><p>Adjust the pH to 8.0 with Na-OH and bring the volume up to 100 mL</p></li>
 <li><p>Filter-sterilize and store at room temperature</p></li>
 </ol></td>
 </tr>
@@ -525,8 +525,8 @@ Day 2
 <tr>
 <td><p>1 M Lithium Acetate</p>
 <ol type="1">
-<li><p>For 100 ml, dissolve 10.2 g of lithium acetate in 90 ml of deionized water</p></li>
-<li><p>Adjust pH to 7.5 with dilute HCl and bring up the volume to 100 ml</p></li>
+<li><p>For 100 mL, dissolve 10.2 g of lithium acetate in 90 mL of deionized water</p></li>
+<li><p>Adjust pH to 7.5 with dilute HCl and bring up the volume to 100 mL</p></li>
 <li><p>Filter-sterilize and store at room temperature.</p></li>
 </ol></td>
 </tr>
@@ -535,9 +535,9 @@ Day 2
 
 </div>
 
-12. Divided the sample into 15 cryovials, filling each vial with 200 ul of competent cells
+12. Divided the sample into 15 cryovials, filling each vial with 200 µL of competent cells
 
-13. Put the cryovials into a styrofoam rack and slowly froze in an -80C freezer
+13. Put the cryovials into a styrofoam rack and slowly froze in an -80 °C freezer
 
 ### Part 2: Restriction Digestion with NdeI
 
@@ -551,7 +551,7 @@ Day 2
 
 | **Component**       | **Volume**      |
 |:--------------------|-----------------|
-| DNA                 | 6.0 µL (1.6 ug) |
+| DNA                 | 6.0 µL (1.6 µg) |
 | 10× CutSmart Buffer | 5.0 µL          |
 | NdeI                | 1.1 µL          |
 | Nuclease-free water | 38.0 µL         |
@@ -559,11 +559,11 @@ Day 2
 
 </div>
 
-1.  Set up restriction digestion at 37 C for 1.5 h
+1.  Set up restriction digestion at 37 °C for 1.5 h
 
-2.  In the meantime, prepare 0.8% agarose gel (50 ml, 0.4 g of agarose, 2.5 ul of 10 mg/ml EtBr)
+2.  In the meantime, prepare 0.8% agarose gel (50 mL, 0.4 g of agarose, 2.5 µL of 10 mg/mL EtBr)
 
-3.  Heat inactivate the reaction by incubating for 20 min at 65 C
+3.  Heat inactivate the reaction by incubating for 20 min at 65 °C
 
 4.  On the agarose gel, load:
 
@@ -573,9 +573,9 @@ Day 2
 >
 > **Lane 3:** NdeI-digested plasmid - 3.4 µL (~110 ng) + 2.0 µL 6× loading dye + 6.6 µL nuclease free water
 
-5.  Run the gel at 120 V for 40 min (should be extended to 50-60 min next time)
+5.  Run the gel at 120 V for 40 min (should be extended to 50–60 min next time)
 
-6.  Prepared and filter sterilized 10 ml 50% PEG 3350
+6.  Prepared and filter sterilized 10 mL 50% PEG 3350
 
 ### Part 3: G418 Selection Plates Preparation
 
@@ -585,13 +585,13 @@ Day 2
 
 3.  Prepared the following selection plates:
 
-3 plates with 200 ug/ml G418 (75 ml)
+3 plates with 200 µg/mL G418 (75 mL)
 
-3 plates with 300 ug/ml G418 (75 ml)
+3 plates with 300 µg/mL G418 (75 mL)
 
-3 plates with 400 ug/ml G418 (75 ml)
+3 plates with 400 µg/mL G418 (75 mL)
 
-> = 225 ml YPD
+> = 225 mL YPD
 
 ### Part 4: Heat Shock Transformation
 
@@ -605,7 +605,7 @@ Day 2
 
 - 36 µl LiAc (1.0 M, 10x stock)
 
-- 50 µl salmon sperm single-stranded DNA (10.0 mg/ml) boiled for 10 min at 95 C
+- 50 µl salmon sperm single-stranded DNA (10.0 mg/mL) boiled for 10 min at 95 °C
 
 - 46.6 µl plasmid DNA
 
@@ -634,11 +634,11 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 </div>
 
-4.  Incubate the transformation reactions for 30 min at 30°C, 200 rpm
+4.  Incubate the transformation reactions for 30 min at 30 °C, 200 rpm
 
 5.  Add molecular biology-grade DMSO to a final concentration of 10% (42 µl), mix by gentle inversion
 
-6.  Heat shock for 15-30 min at 42 °C (30 min was used this time)
+6.  Heat shock for 15–30 min at 42 °C (30 min was used this time)
 
 7.  Chill on ice for 2 min
 
@@ -646,19 +646,19 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 9.  Remove the supernatant
 
-10. Add 1 ml of YPD (or YPAD if using the yeast strain L40) to each tube.
+10. Add 1 mL of YPD (or YPAD if using the yeast strain L40) to each tube.
 
-11. Incubate the cells in a 30°C shaker for 1 hour to allow expression of antibiotic resistance.
+11. Incubate the cells in a 30 °C shaker for 1 hour to allow expression of antibiotic resistance.
 
-12. After the 1 hour recovery time, pellet the cells by centrifugation at 3000 x g for 5 minutes at room temperature.
+12. After the 1 hour recovery time, pellet the cells by centrifugation at 3000 × g for 5 minutes at room temperature.
 
 13. Discard the supernatant
 
-14. Resuspend the cell pellet in 1 ml of YPD broth
+14. Resuspend the cell pellet in 1 mL of YPD broth
 
-15. Using a sterile spreader, plate the entire transformation on appropriate plates containing antibiotics (250 ul - 3 plates [200 ug/ml G418 #1, 300 ug/ml G418 #1, 400 ug/ml G418 #1], 120 ul - 2 plates [200 ug/ml G418 #2, 300 ug/ml G418 #2])
+15. Using a sterile spreader, plate the entire transformation on appropriate plates containing antibiotics (250 µL - 3 plates [200 µg/mL G418 #1, 300 µg/mL G418 #1, 400 µg/mL G418 #1], 120 µL - 2 plates [200 µg/mL G418 #2, 300 µg/mL G418 #2])
 
-16. Incubate the plates for 2 to 4 days at 30°C. Each transformation should yield approximately 100 colonies depending on the strain you are using.
+16. Incubate the plates for 2 to 4 days at 30 °C. Each transformation should yield approximately 100 colonies depending on the strain you are using.
 
 ### Results
 
@@ -666,19 +666,19 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 <div class="caption">
 
-**Figure 1.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 - 1kb plus ladder, Lane 2 - control uncut plasmid, Lane 3 - plasmid cut with NdeI
+**Figure 1.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 - 1 kb plus ladder, Lane 2 - control uncut plasmid, Lane 3 - plasmid cut with NdeI
 
 </div>
 
-<div class="notebook-img-row">1)  <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2a.avif" alt="Figure 2A. 200 ug/mL G418 plate, 250 uL cells" style="width:37.7%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2b.avif" alt="Figure 2B. 200 ug/mL G418 plate, 120 uL cells" style="width:38.1%" loading="lazy" /></div>
+<div class="notebook-img-row">1)  <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2a.avif" alt="Figure 2A. 200 µg/mL G418 plate, 250 µL cells" style="width:37.7%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2b.avif" alt="Figure 2B. 200 µg/mL G418 plate, 120 µL cells" style="width:38.1%" loading="lazy" /></div>
 
-<div class="notebook-img-row">C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2c.avif" alt="Figure 2C. 300 ug/mL G418 plate, 250 uL cells" style="width:39.4%" loading="lazy" /> D) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2d.avif" alt="Figure 2D. 300 ug/mL G418 plate, 120 uL cells" style="width:37.8%" loading="lazy" /></div>
+<div class="notebook-img-row">C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2c.avif" alt="Figure 2C. 300 µg/mL G418 plate, 250 µL cells" style="width:39.4%" loading="lazy" /> D) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2d.avif" alt="Figure 2D. 300 µg/mL G418 plate, 120 µL cells" style="width:37.8%" loading="lazy" /></div>
 
-E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif" alt="Figure 2E. 400 ug/mL G418 plate, 250 uL cells" style="width:38.3%" loading="lazy" />
+E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif" alt="Figure 2E. 400 µg/mL G418 plate, 250 µL cells" style="width:38.3%" loading="lazy" />
 
 <div class="caption">
 
-**Figure 2.** HO-Poly-KanMX4-HO S.cerevisiae recombineering results: A) 200 ug/ml G418 plate after 2 days of incubation (250 ul cells), B) 200 ug/ml G418 plate after 2 days of incubation (120 ul cells), C) 300 ug/ml G418 plate after 2 days of incubation (250 ul cells), D) 300 ug/ml G418 plate after 2 days of incubation (120 ul cells), E) 400 ug/ml G418 plate after 2 days of incubation (250 ul cells)
+**Figure 2.** HO-Poly-KanMX4-HO *S. cerevisiae* recombineering results: A) 200 µg/mL G418 plate after 2 days of incubation (250 µL cells), B) 200 µg/mL G418 plate after 2 days of incubation (120 µL cells), C) 300 µg/mL G418 plate after 2 days of incubation (250 µL cells), D) 300 µg/mL G418 plate after 2 days of incubation (120 µL cells), E) 400 µg/mL G418 plate after 2 days of incubation (250 µL cells)
 
 </div>
 
@@ -687,31 +687,31 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 ## Experiment #8
 
 **Dates:** 04.07-13.07
-**Title of Experiment:** E.coli transformation → minipreps → P.pastoris electroporation
+**Title of Experiment:** *E. coli* transformation → minipreps → *P. pastoris* electroporation
 
 ### Methods
 
 ### Part I: Media Preparation
 
-1.  Prepare 500 ml of fresh YPD agar and YPD broth
+1.  Prepare 500 mL of fresh YPD agar and YPD broth
 
-2.  Divide YPD agar into 2 bottles: 150 ml and 350 ml
+2.  Divide YPD agar into 2 bottles: 150 mL and 350 mL
 
 3.  Pour plates:
 
-- YPD agar plates - ~25 ml media into 10 plates (250 ml)
+- YPD agar plates - ~25 mL media into 10 plates (250 mL)
 
 - YPD agar + Zeocin plates
 
-1.  After warming up the media, cool it to 50-60°C before adding Zeocin.
+1.  After warming up the media, cool it to 50–60 °C before adding Zeocin.
 
-2.  Stock concentration - 100 mg/ml, working concentration - 100 µg/mL
+2.  Stock concentration - 100 mg/mL, working concentration - 100 µg/mL
 
-3.  Pour 5 plates (25 ml * 5 = 125 ml ~ 130 ml)
+3.  Pour 5 plates (25 mL × 5 = 125 mL ~ 130 mL)
 
 **Note:** Zeocin is sensitive to pH; ensure your medium is adjusted between 6.5 and 8.0, as acidic conditions inactivate the drug.
 
-4.  Prepare 1M sorbitol
+4.  Prepare 1 M sorbitol
 
 <div class="table-wrap">
 
@@ -726,8 +726,8 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 <tr>
 <td><ol type="1">
 <li><p>Weigh 18.2 g of Sorbitol</p></li>
-<li><p>Add 100 ml of MilliQ H2O</p></li>
-<li><p>Autoclave-sterilize and store at room temperature. Stock solutions are stable for up to 6 months at 20°C</p></li>
+<li><p>Add 100 mL of MilliQ H₂O</p></li>
+<li><p>Autoclave-sterilize and store at room temperature. Stock solutions are stable for up to 6 months at 20 °C</p></li>
 </ol></td>
 </tr>
 </tbody>
@@ -737,33 +737,33 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 ### Part II: Plasmid Amplification
 
-#### Step 1: E.coli Transformation
+#### Step 1: E. coli Transformation
 
-1.  Thaw competent E.coli cells on ice for 10-15 mins
+1.  Thaw competent *E. coli* cells on ice for 10–15 mins
 
-2.  Add 1-10 ng of plasmid DNA to 100 ul cells
+2.  Add 1–10 ng of plasmid DNA to 100 µL cells
 
 3.  Incubate for 30 min on ice
 
-4.  Heat shock at 42 C for 30-45 seconds
+4.  Heat shock at 42 °C for 30–45 seconds
 
 5.  Immediately place the tube on ice for 2 - 5 min
 
-6.  Add 900 ul S.O.C media
+6.  Add 900 µL S.O.C media
 
-7.  Recover for 1h at 37 C @ 225 rpm
+7.  Recover for 1 h at 37 °C @ 225 rpm
 
-8.  Dilute cells in the following manner: 100 uL of S.O.C/cells + 900 uL S.O.C.
+8.  Dilute cells in the following manner: 100 µL of S.O.C/cells + 900 µL S.O.C.
 
-9.  Plate 100 uL of dilution on to LB Agar with appropriate antibiotics (25 ug/ml Zeocin)
+9.  Plate 100 µL of dilution on to LB Agar with appropriate antibiotics (25 µg/mL Zeocin)
 
 **Note:** NaCl concentration in the media should not exceed 5 g/L for Zeocin plates
 
-10. Incubate at 37°C overnight (12-16 hours)
+10. Incubate at 37 °C overnight (12–16 hours)
 
 #### Step 2: Qiagen Miniprep
 
-1.  Centrifuge 5 ml of overnight culture at 13,000 × g for 5 min
+1.  Centrifuge 5 mL of overnight culture at 13,000 × g for 5 min
 
 2.  Discard the supernatant completely
 
@@ -777,13 +777,13 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 7.  Transfer 800 µL of the supernatant to a QIAprep spin column.
 
-8.  Centrifuge for 30-60 seconds at 13,000 × g
+8.  Centrifuge for 30–60 seconds at 13,000 × g
 
 9.  Discard the flow-through
 
-10. Wash with 500 µL Buffer PB, centrifuge for 30-60 seconds at 13,000 × g, and discard the flow-through
+10. Wash with 500 µL Buffer PB, centrifuge for 30–60 seconds at 13,000 × g, and discard the flow-through
 
-11. Wash with 750 µL Buffer PE, centrifuge for 30-60 seconds at 13,000 × g, and discard the flow-through
+11. Wash with 750 µL Buffer PE, centrifuge for 30–60 seconds at 13,000 × g, and discard the flow-through
 
 12. Centrifuge for additional 1 min to remove all the buffers
 
@@ -801,7 +801,7 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 #### Step 3: Agarose Gel Electrophoresis
 
-1.  Prepare 0.8% agarose gel (50 ml, 0.4 g of agarose, 2.5 ul of 10 mg/ml EtBr)
+1.  Prepare 0.8% agarose gel (50 mL, 0.4 g of agarose, 2.5 µL of 10 mg/mL EtBr)
 
 2.  On the agarose gel, load:
 
@@ -813,21 +813,21 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 #### Step 4: Glycerol Stock Preparation
 
-1.  Prepare 5 ml of LB containing 25 ug/ml zeocin and inoculate a single colony from the transformed E.coli plates
+1.  Prepare 5 mL of LB containing 25 µg/mL zeocin and inoculate a single colony from the transformed *E. coli* plates
 
-2.  Grow overnight (12-16 h) in a shaking incubator set to 220 rpm, 37 C
+2.  Grow overnight (12–16 h) in a shaking incubator set to 220 rpm, 37 °C
 
-3.  Measure OD600nm:
+3.  Measure OD600 nm:
 
 <div class="caption">
 
-**Table 1.** Results of spectrophotometric measurements for overnight E.coli cultures
+**Table 1.** Results of spectrophotometric measurements for overnight *E. coli* cultures
 
 </div>
 
 <div class="table-wrap">
 
-| Sample             | Plasmid | OD600nm |
+| Sample             | Plasmid | OD600 nm |
 |--------------------|---------|---------|
 | #1                | IPD1    | 0.824   |
 | #2 (for miniprep) | IPD1    | 0.670   |
@@ -838,7 +838,7 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 </div>
 
-4.  Dilute cells to about OD600nm = 0.1
+4.  Dilute cells to about OD600 nm = 0.1
 
 <div class="caption">
 
@@ -856,7 +856,7 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 </div>
 
-5.  Grow cells to OD600nm = 0.6 (Took 1.5 hr)
+5.  Grow cells to OD600 nm = 0.6 (Took 1.5 hr)
 
 6.  Mix 500 µL overnight culture with 500 µL sterile 50% glycerol (Final glycerol concentration: 25%) in a new cryovial
 
@@ -864,7 +864,7 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 8.  Snap freeze via liquid nitrogen
 
-9.  Store at -80 C freezer
+9.  Store at -80 °C freezer
 
 ### Part III: Restriction Digestion
 
@@ -880,7 +880,7 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 | **Component**       | **Volume**      |
 |---------------------|-----------------|
-| DNA                 | 6.0 µL (1.6 ug) |
+| DNA                 | 6.0 µL (1.6 µg) |
 | 10× CutSmart Buffer | 5.0 µL          |
 | SacI                | 1.1 µL          |
 | Nuclease-free water | 38.0 µL         |
@@ -888,13 +888,13 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 </div>
 
-2.  Set up restriction digestion at 37 C for 30 min
+2.  Set up restriction digestion at 37 °C for 30 min
 
 **Note:** SacI-HF is a restriction enzyme that cuts DNA. It is a Time-Saver qualified enzyme from New England Biolabs. It digests substrate DNA in 5 to 15 minutes. You can also leave it to digest overnight without damaging the DNA
 
-**Note:** SacI-HF® (high-fidelity restriction enzyme) requires an incubation temperature of 37°C for optimal DNA digestion and should be heat-inactivated at 65°C for 20 minutes
+**Note:** SacI-HF® (high-fidelity restriction enzyme) requires an incubation temperature of 37 °C for optimal DNA digestion and should be heat-inactivated at 65 °C for 20 minutes
 
-7.  Heat inactivate the reaction by incubating for 20 min at 65 C
+7.  Heat inactivate the reaction by incubating for 20 min at 65 °C
 
 8.  Run 0.8% agarose gel at 120 V for 50 min
 
@@ -902,17 +902,17 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 #### Step 1
 
-1.  Inoculate 1 colony in 125 ml sterile flask (10 ml of YPD media). You can make 2-3 colonies for quicker growth. Incubating 190 rpm 30C for 1-2 days. This is starter culture
+1.  Inoculate 1 colony in 125 mL sterile flask (10 mL of YPD media). You can make 2-3 colonies for quicker growth. Incubating 190 rpm 30 °C for 1–2 days. This is starter culture
 
 #### Step 2
 
-1.  Inoculate 1 ml of starter culture in 1 L flask with 100 ml YPD media. Grow the culture for 1-2 days.
+1.  Inoculate 1 mL of starter culture in 1 L flask with 100 mL YPD media. Grow the culture for 1–2 days.
 
-2.  Next day transfer cells in 2 - 50 ml sterile centrifuge tubes. Centrifuge 4C 1500 g for 5 minutes (2 min enough). Resuspend pellets in each tube with ice cold water (fill the tube and mix gently – washing the pellets) – then centrifuge the cells, remove water and wash the 2d time – centrifuge and remove the water.
+2.  Next day transfer cells in 2 - 50 mL sterile centrifuge tubes. Centrifuge 4 °C 1500 g for 5 minutes (2 min enough). Resuspend pellets in each tube with ice cold water (fill the tube and mix gently – washing the pellets) – then centrifuge the cells, remove water and wash the 2d time – centrifuge and remove the water.
 
-3.  Resuspend pellets in 10 ml of sterile ice cold sorbitol (1M). Centrifuge and remove supernatant
+3.  Resuspend pellets in 10 mL of sterile ice cold sorbitol (1 M). Centrifuge and remove supernatant
 
-4.  Resuspend the pellets in ~3 ml of sorbitol
+4.  Resuspend the pellets in ~3 mL of sorbitol
 
 **Note:** the cell pellet was very very dense
 
@@ -922,7 +922,7 @@ E\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp07-fig2e.avif
 
 Transformation by electroporation
 
-> \- 3 ug of linearized plasmid (IPD1 #1)
+> \- 3 µg of linearized plasmid (IPD1 #1)
 >
 > \- YPDS media (for recovery)
 >
@@ -930,17 +930,17 @@ Transformation by electroporation
 >
 > \- Electroporation cuvettes and device
 
-1.  Mix 80 ul freshly prepared cells with 5 ug of linearized plasmid and transfer to ice -cold electroporation cuvette
+1.  Mix 80 µL freshly prepared cells with 5 µg of linearized plasmid and transfer to ice -cold electroporation cuvette
 
 2.  Incubate 5 min on ice
 
-3.  Pulse the cells in an electroporator. We used E.coli option 3 on BioRad electroporator
+3.  Pulse the cells in an electroporator. We used *E. coli* option 3 on BioRad electroporator
 
-4.  Immediately after pulsing the cells add 1 ml of ice-cold YPDS media to the cuvette and mix by pipetting up and down
+4.  Immediately after pulsing the cells add 1 mL of ice-cold YPDS media to the cuvette and mix by pipetting up and down
 
-5.  Incubate the cells for at least for 3.4 h at 30 C without shaking (directly in the cuvette). You can incubate up to 12h
+5.  Incubate the cells for at least for 3.4 h at 30 °C without shaking (directly in the cuvette). You can incubate up to 12 h
 
-6.  Spread the cells on selection plates and incubate 30C for 3 days
+6.  Spread the cells on selection plates and incubate 30 °C for 3 days
 
 ### Results
 
@@ -996,25 +996,25 @@ Transformation by electroporation
 
 </div>
 
-<div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4a.avif" alt="Figure 4A. P. pastoris IPD1 transformants, 100 uL" style="width:47.7%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4b.avif" alt="Figure 4B. P. pastoris IPD1 transformants, 200 uL" style="width:45.8%" loading="lazy" /></div>
+<div class="notebook-img-row">A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4a.avif" alt="Figure 4A. P. pastoris IPD1 transformants, 100 µL" style="width:47.7%" loading="lazy" />B)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4b.avif" alt="Figure 4B. P. pastoris IPD1 transformants, 200 µL" style="width:45.8%" loading="lazy" /></div>
 
-C)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4c.avif" alt="Figure 4C. P. pastoris IPD1 transformants, 250 uL" style="width:45.1%" loading="lazy" />
+C)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp08-fig4c.avif" alt="Figure 4C. P. pastoris IPD1 transformants, 250 µL" style="width:45.1%" loading="lazy" />
 
 <div class="caption">
 
-**Figure 4.** P.pastoris transformants (IPD1) on YPD + 100 ug/ml zeocin plates: A) 100 ul B) 200 ul C) 250 ul
+**Figure 4.** *P. pastoris* transformants (IPD1) on YPD + 100 µg/mL zeocin plates: A) 100 µL B) 200 µL C) 250 µL
 
 </div>
 
 
 ### Conclusion
 
-Successful transformation of P.pastoris with IPD1, with integration of our gene of interest (wt Dsup) into AOX locus.
+Successful transformation of *P. pastoris* with IPD1, with integration of our gene of interest (wt Dsup) into AOX locus.
 
 ## Experiment #9
 
-**Dates:** 02.07-04.07 (Sacharomicces serevisae); 12.07-14.07 (Pichia Pastoris); 23.07-25.07 (Repetition Pichia Patoris); 24.07-26.07 (Bacillus subtilis)
-**Title of Experiment:** X-ray radiation resistance up to 2000 Gy for Sacharomicces serevisae, Pichia Pastoris and Bacillus subtilis.
+**Dates:** 02.07-04.07 (Sacharomicces serevisae); 12.07-14.07 (*Pichia pastoris*); 23.07-25.07 (Repetition Pichia Patoris); 24.07-26.07 (*Bacillus subtilis*)
+**Title of Experiment:** X-ray radiation resistance up to 2000 Gy for Sacharomicces serevisae, *Pichia pastoris* and *Bacillus subtilis*.
 
 **Assay and readout.** Survival was assessed by spot-dilution rather than absolute colony counts. Each strain was serially diluted 10-fold and spotted across the plate, so growth runs from concentrated on the left to highly diluted on the right. The informative metric is how far along the dilution series growth persists: if irradiation reduces the surviving population, growth drops out one spot earlier than in the mock control, and because each spot represents a 10-fold dilution, the loss of one spot corresponds to roughly a 1-log₁₀ reduction in viable cells.<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp09-spots-scerevisiae-1.avif" alt="S. cerevisiae spot-dilution series" style="width:39.1%" loading="lazy" />
 
@@ -1024,7 +1024,7 @@ The main limitation is the dose ceiling. Because 1000 Gy produces only a mild ef
 
 <div class="notebook-img-row"><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp09-spots-scerevisiae-2.avif" alt="S. cerevisiae spot-dilution series, continued" style="width:49.2%" loading="lazy" /><img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp09-spots-ppastoris.avif" alt="P. pastoris spot-dilution series" style="width:41.9%" loading="lazy" /></div>
 
-**Pichia Pastoris and the replicate experiment to obtain the full range of doses:** Both the initial run and the repetition show the same overall behaviour, and the repetition (with the full dose series) defines the transition more clearly. Mock and 200 Gy give confluent growth at the concentrated spots, indicating high viable density. From 400 to 800 Gy there is a consistent shift from confluent to granular and then discrete colonies, visible even at the more concentrated spots, so the surviving fraction is declining steadily across this range rather than only at the dilute end.
+**_Pichia pastoris_ and the replicate experiment to obtain the full range of doses:** Both the initial run and the repetition show the same overall behavior, and the repetition (with the full dose series) defines the transition more clearly. Mock and 200 Gy give confluent growth at the concentrated spots, indicating high viable density. From 400 to 800 Gy there is a consistent shift from confluent to granular and then discrete colonies, visible even at the more concentrated spots, so the surviving fraction is declining steadily across this range rather than only at the dilute end.
 
 The repetition places the sharpest change around 1200 Gy, where growth collapses to essentially a single confluent spot followed by granular material. From 1400 to 2000 Gy the decline continues: by 1800–2000 Gy only sparse growth remains at the lowest dilution, with no growth at the higher dilutions. Survivors are still detectable at 2000 Gy, but at a heavily reduced fraction. The two runs are consistent in shape, which supports the reproducibility of this dose-response.
 
@@ -1034,18 +1034,18 @@ This places *P. pastoris* at an intermediate position, clearly more sensitive th
 
 ## Experiment #10
 
-**Dates:** 12.08 (Bacillus subtilis)
-**Title of Experiment:** Testing Resazurin Viability Assay in Bacillus subtilis after UV irradiation.
+**Dates:** 12.08 (*Bacillus subtilis*)
+**Title of Experiment:** Testing Resazurin Viability Assay in *Bacillus subtilis* after UV irradiation.
 
 ### Part 1: Optimization of Cell Density and Kinetic Window for Resazurin Assay
 
 #### Objective
 
-Determine the optimal cell density and establish kinetics of untreated Bacillus subtilis reducing resazurin, to define the time window for measuring post-radiation treatment effects in Part 2.
+Determine the optimal cell density and establish kinetics of untreated *Bacillus subtilis* reducing resazurin, to define the time window for measuring post-radiation treatment effects in Part 2.
 
 #### Materials
 
-- *Bacillus subtilis* culture (overnight, 37°C)
+- *Bacillus subtilis* culture (overnight, 37 °C)
 
 - Luria-Bertani (LB) broth
 
@@ -1061,7 +1061,7 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
   - Absorbance: OD 600
 
-  - Temperature control (37°C)
+  - Temperature control (37 °C)
 
   - Kinetic reads at timed intervals
 
@@ -1103,7 +1103,7 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
 3.  **Sterilization:**
 
-    - **Autoclave:** 121°C, 15 psi, 20 minutes (preferred method)
+    - **Autoclave:** 121 °C, 15 psi, 20 minutes (preferred method)
 
     - **OR Filter sterilize:** Pass through 0.22 µm filter into sterile container
 
@@ -1111,7 +1111,7 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
 4.  **Storage:**
 
-    - Store at **room temperature (20–25°C)** in sealed, sterile container
+    - Store at **room temperature (20–25 °C)** in sealed, sterile container
 
     - Stable for **several months** when properly sealed
 
@@ -1147,13 +1147,13 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
 5.  **Storage:**
 
-    - Store at **4°C in the dark** (resazurin is light-sensitive)
+    - Store at **4 °C in the dark** (resazurin is light-sensitive)
 
     - Stable for **4–8 weeks** when protected from light
 
     - Do NOT freeze
 
-##### Step 0C: Working Resazurin Solution (Fresh per Experiment)
+##### Step 0 °C: Working Resazurin Solution (Fresh per Experiment)
 
 **Prepare immediately before each experiment:**
 
@@ -1161,9 +1161,9 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
     - Final concentration: **0.015% w/v** (diluted 1:10)
 
-> I only need 1mL so,
+> I only need 1 mL so,
 >
-> 100uL of concentrated resazurin stock (from Step 0B) + 900uL of PBS
+> 100 µL of concentrated resazurin stock (from Step 0B) + 900 µL of PBS
 >
 > Final concentration: **0.015% w/v** (diluted 1:10)
 
@@ -1179,7 +1179,7 @@ Determine the optimal cell density and establish kinetics of untreated Bacillus 
 
 1.  Dilute overnight *Bacillus subtilis* culture to OD₆₀₀ = 0.1 in fresh LB broth
 
-2.  Grow at 37°C with shaking (200 rpm) until OD₆₀₀ = 1.0
+2.  Grow at 37 °C with shaking (200 rpm) until OD₆₀₀ = 1.0
 
 3.  Measure final OD₆₀₀ to confirm exponential phase
 
@@ -1219,7 +1219,7 @@ Measure OD₆₀₀ of each dilution to confirm actual densities.
 
 ##### Step 5: Kinetic Measurements
 
-Set plate reader to measure every **15 minutes for 6 hours** (24 cycles). Maintain plate at **37°C** throughout.
+Set plate reader to measure every **15 minutes for 6 hours** (24 cycles). Maintain plate at **37 °C** throughout.
 
 **Read 1: Fluorescence**
 
@@ -1295,7 +1295,7 @@ The images embedded at this point in the source document do not appear to match 
 
 ## Experiment #11
 
-**Dates:** 22-24.08 (Bacillus subtilis)
+**Dates:** 22-24.08 (*Bacillus subtilis*)
 **Title of Experiment:** Dry lab experiments - growing curves of bacillus in different concentrations of glucose and sucrose.
 
 ### Protocol to Prepare the Medium for Bacillus and Yeast
@@ -1427,8 +1427,8 @@ Store at 4 °C and use within ~2 months. A single 134 g/L stock serves both yeas
 
 | **Organism**  | **Final YNB** | **Dilution from 134 g/L** |
 |---------------|---------------|---------------------------|
-| S. cerevisiae | 6.7 g/L       | 1:20                      |
-| P. pastoris   | 13.4 g/L      | 1:10                      |
+| *S. cerevisiae* | 6.7 g/L       | 1:20                      |
+| *P. pastoris*   | 13.4 g/L      | 1:10                      |
 
 </div>
 
@@ -1533,7 +1533,7 @@ To save time on the day of the experiment, it's worth making a complete 1.5× ba
 
 The point of washing the pre-culture is to get rid of the carbon it drags along from the rich medium, both leftover sugar and peptides, and then to set it to a known OD so every well starts around OD₆₀₀ 0.05. Washing in sugar-free base is really what keeps the glucose concentration in the wells honest.
 
-> 1\. Grow the pre-culture (LB for B. subtilis, YPD for the yeast) and pull a known volume into a tube.
+> 1\. Grow the pre-culture (LB for *B. subtilis*, YPD for the yeast) and pull a known volume into a tube.
 >
 > 2\. Spin it down at 4000 × g for 6 min (that's the max our centrifuge does) and pour off the supernatant, which is the old rich medium and everything it carried over.
 >
@@ -1579,7 +1579,7 @@ This follows Rogers et al. (Bio-protocol 4410), which is the reference to cite. 
 
 <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11-growth-curves.avif" alt="Well-level OD600 growth curves, glucose/sucrose, 24-well and 96-well formats" style="width:100.0%" loading="lazy" />
 
-## Experiment #10 (P.pastoris electroporation)
+## Experiment #10 (P. pastoris electroporation)
 
 <div class="callout">
 
@@ -1590,17 +1590,17 @@ This experiment is again numbered "10" in the source notebook — an earlier, un
 </div>
 
 **Dates:** _(not recorded)_
-**Title of Experiment:** P.pastoris electroporation (IPC1, IPC2, IPD2, IPD3, IPAL1, IPAF2)
+**Title of Experiment:** *P. pastoris* electroporation (IPC1, IPC2, IPD2, IPD3, IPAL1, IPAF2)
 
-#### Step 1: Competent P.pastoris Preparation
+#### Step 1: Competent P. pastoris Preparation
 
-1.  Inoculate 1 ml of starter culture in 1 L flask with 100 ml YPD media. Grow the culture overnight
+1.  Inoculate 1 mL of starter culture in 1 L flask with 100 mL YPD media. Grow the culture overnight
 
-2.  Next day transfer cells in 2 - 50 ml sterile centrifuge tubes. Centrifuge 4C 1500 g for 5 minutes (2 min enough). Resuspend pellets in each tube with ice cold water (fill the tube and mix gently – washing the pellets) – then centrifuge the cells, remove water and wash the 2d time – centrifuge and remove the water.
+2.  Next day transfer cells in 2 - 50 mL sterile centrifuge tubes. Centrifuge 4 °C 1500 g for 5 minutes (2 min enough). Resuspend pellets in each tube with ice cold water (fill the tube and mix gently – washing the pellets) – then centrifuge the cells, remove water and wash the 2d time – centrifuge and remove the water.
 
-3.  Resuspend pellets in 10 ml of sterile ice cold sorbitol (1M). Centrifuge and remove supernatant
+3.  Resuspend pellets in 10 mL of sterile ice cold sorbitol (1 M). Centrifuge and remove supernatant
 
-4.  Resuspend the pellets in ~1 ml of sorbitol
+4.  Resuspend the pellets in ~1 mL of sorbitol
 
 5.  Keep the cells on ice and use the same day for the transformation
 
@@ -1616,25 +1616,25 @@ This experiment is again numbered "10" in the source notebook — an earlier, un
 
 Transformation by electroporation
 
-> \- 1-2 ug of linearized plasmid
+> \- 1–2 µg of linearized plasmid
 >
 > \- YPDS media (for recovery)
 >
-> \- Selection plates (100 ug/ml Zeocin)
+> \- Selection plates (100 µg/mL Zeocin)
 >
 > \- Electroporation cuvettes and device
 
-1.  Mix 80 ul freshly prepared cells with 1-2 ug of linearized plasmid and transfer to ice -cold electroporation cuvette
+1.  Mix 80 µL freshly prepared cells with 1–2 µg of linearized plasmid and transfer to ice -cold electroporation cuvette
 
 2.  Incubate 5 min on ice
 
-3.  Pulse the cells in an electroporator. We used E.coli option 3 on BioRad electroporator
+3.  Pulse the cells in an electroporator. We used *E. coli* option 3 on BioRad electroporator
 
-7.  Immediately after pulsing the cells add 1 ml of ice-cold YPDS media to the cuvette and mix by pipetting up and down
+7.  Immediately after pulsing the cells add 1 mL of ice-cold YPDS media to the cuvette and mix by pipetting up and down
 
-8.  Incubate the cells for at least for 3.4 h at 30 C without shaking (directly in the cuvette). You can incubate up to 12h
+8.  Incubate the cells for at least for 3.4 h at 30 °C without shaking (directly in the cuvette). You can incubate up to 12 h
 
-9.  Spread the cells on selection plates and incubate 30C for 3 days
+9.  Spread the cells on selection plates and incubate 30 °C for 3 days
 
 ### Results
 
@@ -1646,11 +1646,11 @@ Initially, electroporation failed as a spark appeared MOJHUIGO
 
 <div class="caption">
 
-**Figure 2.** P.pastoris recombineering results: A) IPC2 B) IPD3 C) IPAL1 D) IPAF1
+**Figure 2.** *P. pastoris* recombineering results: A) IPC2 B) IPD3 C) IPAL1 D) IPAF1
 
 </div>
 
-## Experiment #11 (S.cerevisiae recombineering)
+## Experiment #11 (S. cerevisiae recombineering)
 
 <div class="callout">
 
@@ -1661,7 +1661,7 @@ This experiment is again numbered "11" in the source notebook — an earlier, un
 </div>
 
 **Dates:** 07.08 - 08.08
-**Title of Experiment:** S.cerevisiae recombineering transformation (ISD1, ISD2, ISD3)
+**Title of Experiment:** *S. cerevisiae* recombineering transformation (ISD1, ISD2, ISD3)
 
 ### Part 1: Restriction Digestion with NdeI
 
@@ -1675,7 +1675,7 @@ This experiment is again numbered "11" in the source notebook — an earlier, un
 
 | **Component** | **Volume** |
 |----|----|
-| DNA | 6.0 µL (1.6 ug) |
+| DNA | 6.0 µL (1.6 µg) |
 | 10× CutSmart Buffer | 5.0 µL |
 | NdeI | 1.1 µL |
 | Nuclease-free water | 38.0 µL |
@@ -1683,11 +1683,11 @@ This experiment is again numbered "11" in the source notebook — an earlier, un
 
 </div>
 
-1.  Set up restriction digestion at 37 C for 1.5 h
+1.  Set up restriction digestion at 37 °C for 1.5 h
 
-2.  In the meantime, prepare 0.8% agarose gel (50 ml, 0.4 g of agarose, 2.5 ul of 10 mg/ml EtBr)
+2.  In the meantime, prepare 0.8% agarose gel (50 mL, 0.4 g of agarose, 2.5 µL of 10 mg/mL EtBr)
 
-3.  Heat inactivate the reaction by incubating for 20 min at 65 C
+3.  Heat inactivate the reaction by incubating for 20 min at 65 °C
 
 4.  On the agarose gel, load:
 
@@ -1711,17 +1711,17 @@ This experiment is again numbered "11" in the source notebook — an earlier, un
 
 - 36 µl LiAc (1.0 M, 10x stock)
 
-- 50 µl salmon sperm single-stranded DNA (10.0 mg/ml) boiled for 10 min at 95 C
+- 50 µl salmon sperm single-stranded DNA (10.0 mg/mL) boiled for 10 min at 95 °C
 
 - 46.6 µl plasmid DNA
 
 Mix DNA and salmon sperm ssDNA first → add the competent cells → add the rest of the components
 
-4.  Incubate the transformation reactions for 30 min at 30°C, 200 rpm
+4.  Incubate the transformation reactions for 30 min at 30 °C, 200 rpm
 
 5.  Add molecular biology-grade DMSO to a final concentration of 10% (42 µl), mix by gentle inversion
 
-6.  Heat shock for 15-30 min at 42 °C (30 min was used this time)
+6.  Heat shock for 15–30 min at 42 °C (30 min was used this time)
 
 7.  Chill on ice for 2 min
 
@@ -1729,26 +1729,26 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 9.  Remove the supernatant
 
-10. Add 1 ml of YPD (or YPAD if using the yeast strain L40) to each tube.
+10. Add 1 mL of YPD (or YPAD if using the yeast strain L40) to each tube.
 
-11. Incubate the cells in a 30°C shaker for 1 hour to allow expression of antibiotic resistance
+11. Incubate the cells in a 30 °C shaker for 1 hour to allow expression of antibiotic resistance
 
-12. After the 1 hour recovery time, pellet the cells by centrifugation at 3000 x g for 5 minutes at room temperature.
+12. After the 1 hour recovery time, pellet the cells by centrifugation at 3000 × g for 5 minutes at room temperature.
 
 13. Discard the supernatant
 
-14. Resuspend the cell pellet in 1 ml of YPD broth
+14. Resuspend the cell pellet in 1 mL of YPD broth
 
-15. Using a sterile spreader, plate the entire transformation on appropriate plates containing antibiotics (200 ug/ml G418)
+15. Using a sterile spreader, plate the entire transformation on appropriate plates containing antibiotics (200 µg/mL G418)
 
-16. Incubate the plates for 2 to 4 days at 30°C
+16. Incubate the plates for 2 to 4 days at 30 °C
 
 
 ### Results
 
 <div class="caption">
 
-**Figure 1.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 - 1kb plus ladder, Lane 2 - control uncut plasmid, Lane 3 - plasmid cut with NdeI
+**Figure 1.** HO-Poly-KanMX4-HO restriction digestion results: Lane 1 - 1 kb plus ladder, Lane 2 - control uncut plasmid, Lane 3 - plasmid cut with NdeI
 
 </div>
 
@@ -1758,7 +1758,7 @@ C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11dup-fig2c.a
 
 <div class="caption">
 
-**Figure 2.** Dsup-related S.cerevisiae recombineering results: A) ISD1 B) ISD2 C) ISD3
+**Figure 2.** Dsup-related *S. cerevisiae* recombineering results: A) ISD1 B) ISD2 C) ISD3
 
 </div>
 
@@ -1766,7 +1766,7 @@ C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11dup-fig2c.a
 ## Experiment #12
 
 **Dates:** 26.08-28.08
-**Title of Experiment:** S.cerevisiae episomal transformation (SC1, SC2, SC3, SAF2, SAL2)
+**Title of Experiment:** *S. cerevisiae* episomal transformation (SC1, SC2, SC3, SAF2, SAL2)
 
 ### Part 1: Heat Shock Transformation
 
@@ -1782,17 +1782,17 @@ C\) <img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp11dup-fig2c.a
 
 - 36 µl LiAc (1.0 M, 10x stock)
 
-- 50 µl salmon sperm single-stranded DNA (10.0 mg/ml) boiled for 10 min at 95 C
+- 50 µl salmon sperm single-stranded DNA (10.0 mg/mL) boiled for 10 min at 95 °C
 
 - 46.6 µl plasmid DNA
 
 Mix DNA and salmon sperm ssDNA first → add the competent cells → add the rest of the components
 
-4.  Incubate the transformation reactions for 30 min at 30°C, 200 rpm
+4.  Incubate the transformation reactions for 30 min at 30 °C, 200 rpm
 
 5.  Add molecular biology-grade DMSO to a final concentration of 10% (42 µl), mix by gentle inversion
 
-6.  Heat shock for 15-30 min at 42 °C (30 min was used this time)
+6.  Heat shock for 15–30 min at 42 °C (30 min was used this time)
 
 7.  Chill on ice for 2 min
 
@@ -1800,9 +1800,9 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 9.  Remove the supernatant
 
-10. Add 1 ml of YPD (or YPAD if using the yeast strain L40) to each tube.
+10. Add 1 mL of YPD (or YPAD if using the yeast strain L40) to each tube.
 
-11. Incubate the cells in a 30°C shaker for 30 min
+11. Incubate the cells in a 30 °C shaker for 30 min
 
 12. Using a sterile spreader, plate the entire transformation on Sc-Ura agar plates
 
@@ -1822,8 +1822,8 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 <li><p>Add 6.7 g of YNB w/ Ammonium Sulfate (w/o amino acids)</p></li>
 <li><p>Add 1.92 g of -Ura Mix</p></li>
 <li><p>Add 20 g bacto agar (2% w/v) for solid plate support</p></li>
-<li><p>Add 900 ml MilliQ water and autoclave the mixture</p></li>
-<li><p>Once the mixture cools down, add 2% (w/v) D-glucose from a filter-sterilized solution (Ex: If stock is 20%, add 100 ml)</p></li>
+<li><p>Add 900 mL MilliQ water and autoclave the mixture</p></li>
+<li><p>Once the mixture cools down, add 2% (w/v) D-glucose from a filter-sterilized solution (Ex: If stock is 20%, add 100 mL)</p></li>
 <li><p>Pour the plates</p></li>
 </ol></td>
 </tr>
@@ -1832,14 +1832,14 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 
 </div>
 
-13. Incubate the plates for 3-4 days at 30°C
+13. Incubate the plates for 3–4 days at 30 °C
 
 
 ### Results
 
 <div class="caption">
 
-**Figure 1.** S.cerevisiae payloads episomal transformation results after 3 days of incubation: A) 250 ul of ISC1, B) 100 ul of ISC1, C) 250 ul of ISC2, D) 100 ul of ISC2, E) 250 ul of ISC3, F) 100 ul of ISC3, G) 250 ul of SAF2, H) 100 ul of SAF2, I) 250 ul of SAL2, J) 100 ul of SAL2
+**Figure 1.** *S. cerevisiae* payloads episomal transformation results after 3 days of incubation: A) 250 µL of ISC1, B) 100 µL of ISC1, C) 250 µL of ISC2, D) 100 µL of ISC2, E) 250 µL of ISC3, F) 100 µL of ISC3, G) 250 µL of SAF2, H) 100 µL of SAF2, I) 250 µL of SAL2, J) 100 µL of SAL2
 
 </div>
 
@@ -1848,17 +1848,17 @@ Mix DNA and salmon sperm ssDNA first → add the competent cells → add the res
 ## Experiment #13
 
 **Dates:** _(not recorded)_
-**Title of Experiment:** P.pastoris methanol induction of IPD1 and IPD2
+**Title of Experiment:** *P. pastoris* methanol induction of IPD1 and IPD2
 
 ### Part 1: 0.5% Methanol Induction
 
-1.  Using a single colony inoculate from the plate in 20 ml of BMGY and grow at 30C overnight - for 1 day
+1.  Using a single colony inoculate from the plate in 20 mL of BMGY and grow at 30 °C overnight - for 1 day
 
 2.  Centrifuge the cells at 1500 rpm for 5 min
 
-3.  Resuspend the pellet with 20-50 ml BMMY and transfer in sterile flasks
+3.  Resuspend the pellet with 20–50 mL BMMY and transfer in sterile flasks
 
-4.  Feed cells with 0.5% methanol every day for 1-4 days
+4.  Feed cells with 0.5% methanol every day for 1–4 days
 
 ### Part 2: 1% Methanol Induction
 
@@ -1866,19 +1866,19 @@ Same as above, but feed cells with 1% methanol instead
 
 ### Part 2: Sample Collection
 
-1.  Take 1 ml of cell culture from the following samples: wt, uninduced, and every day of induction
+1.  Take 1 mL of cell culture from the following samples: wt, uninduced, and every day of induction
 
-2.  Centrifuge at max speed, 4C, 10 min
+2.  Centrifuge at max speed, 4 °C, 10 min
 
 3.  Discard the supernatant
 
-4.  Store pellets at -80C
+4.  Store pellets at -80 °C
 
 ### Part 3: SDS-PAGE
 
-1.  Use 10 ul of the cell pellet sample and dilute it with 100 ul of milliQ water
+1.  Use 10 µL of the cell pellet sample and dilute it with 100 µL of milliQ water
 
-2.  Add SDS sample dye to dilute it to 1x (Ex: for 4x dye, add 33.5 ul to the gel sample)
+2.  Add SDS sample dye to dilute it to 1x (Ex: for 4x dye, add 33.5 µL to the gel sample)
 
 ### Results
 
@@ -1892,7 +1892,7 @@ Same as above, but feed cells with 1% methanol instead
 ## Experiment #14
 
 **Dates:** _(not recorded)_
-**Title of Experiment:** P.pastoris methanol induction of IPC1 and IPBSA
+**Title of Experiment:** *P. pastoris* methanol induction of IPC1 and IPBSA
 
 ### Part 1: 0.5% Methanol Induction
 
@@ -1914,7 +1914,7 @@ A)<img src="https://static.igem.wiki/teams/6341/wiki/notebook/exp14-fig1a.avif" 
 
 Fluorescence microscopy confirmed that induction with 0.5% (v/v) methanol yielded noticeably higher fluorescence intensity in the transformed mutants compared to induction with 1.0% (v/v) methanol. Hence, for the further experiments, 0.5% concentration was used for induction of other constructs.
 
-The detection of intracellular mCherry fluorescence confirms successful expression of the target fusion protein. The expression cassette was driven by the standard methanol-inducible AOX1 promoter ( pAOX1 ) and terminated by the AOX1 transcription terminator. These regulatory elements are widely utilized for industrial protein production in Pichia pastoris . The construct encodes a codon-optimized mCherry variant, which contains a C-terminal 3C protease recognition site followed by a 6x His tag. Because expression was directly verified via fluorescence imaging, western blot was considered unnecessary for this plasmid.
+The detection of intracellular mCherry fluorescence confirms successful expression of the target fusion protein. The expression cassette was driven by the standard methanol-inducible AOX1 promoter ( pAOX1 ) and terminated by the AOX1 transcription terminator. These regulatory elements are widely utilized for industrial protein production in *Pichia pastoris* . The construct encodes a codon-optimized mCherry variant, which contains a C-terminal 3 °C protease recognition site followed by a 6x His tag. Because expression was directly verified via fluorescence imaging, western blot was considered unnecessary for this plasmid.
 
 Furthermore, the cells retained their characteristic overall morphology with no apparent signs of cellular stress or lysis. This indicates that the observed color alteration of the culture medium following induction did not compromise cell viability, as was hypothesized initially.
 
@@ -1929,7 +1929,7 @@ Following a five-day methanol induction (0.5%–1.0% v/v), a distinct phenotypic
 
 ### Experiment Overview
 
-This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3) to late log phase, expose cells to ionizing radiation (Mock, 500Gy, 1000Gy, 1500Gy, 2000Gy), and assess cell viability using FUN-1 dye staining in a 96-well plate reader. Cells will also be harvested for RNA extraction, protein extraction, and dilution plating.
+This protocol describes how to grow *S. cerevisiae* (4 cell types: WT, M1, M2, M3) to late log phase, expose cells to ionizing radiation (Mock, 500 Gy, 1000 Gy, 1500 Gy, 2000 Gy), and assess cell viability using FUN-1 dye staining in a 96-well plate reader. Cells will also be harvested for RNA extraction, protein extraction, and dilution plating.
 
 ### Key Parameters
 
@@ -1940,10 +1940,10 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 | **Overnight cultures dilution** | 1:10 into fresh YPD |
 | **Target late log density** | OD600 ≈ 0.8-1.0 |
 | **Tube type for irradiation** | 2 mL sterile Eppendorf tubes |
-| **Volume per irradiation tube** | 1.2 mL (leaves 0.8 mL headspace for 6h irradiation) |
-| **Total cells per tube** | ~9.6 × 10^6 cells |
+| **Volume per irradiation tube** | 1.2 mL (leaves 0.8 mL headspace for 6 h irradiation) |
+| **Total cells per tube** | ~9.6 × 10⁶ cells |
 | **Irradiation duration** | 6 hours |
-| **Post-irradiation recovery** | 15 minutes at 30°C |
+| **Post-irradiation recovery** | 15 minutes at 30 °C |
 | **Number of irradiation tubes** | 20 total (4 cell types × 5 treatments) |
 | **FUN-1 readout** | 96-well plate reader (100 µL per well, triplicates = 300 µL per sample) |
 
@@ -1953,7 +1953,7 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 #### Step 1.1: Prepare Overnight Culture
 
-1.  **Timeline:** 16-18 hours before dilution (Evening Day 1)
+1.  **Timeline:** 16–18 hours before dilution (Evening Day 1)
 
 > **Materials needed:** 4 cell type starter cultures (WT, M1, M2, M3), YPD broth, 4 × 50 mL Erlenmeyer flasks or culture tubes
 
@@ -1965,7 +1965,7 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 5.  Cap loosely (allow gas exchange)
 
-6.  Incubate overnight at 30°C with shaking at 200 rpm for 16-18 hours
+6.  Incubate overnight at 30 °C with shaking at 200 rpm for 16–18 hours
 
 7.  Check cultures the next morning (should reach OD600 ≈ 0.8)
 
@@ -1973,7 +1973,7 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 #### Step 2.1: Prepare Day Cultures with 1:10 Dilution
 
-1.  Timeline: 12-14 hours before irradiation (typically 8:00 AM)
+1.  Timeline: 12–14 hours before irradiation (typically 8:00 AM)
 
 > **Materials needed:** Overnight cultures (OD600 ≈ 0.8), sterile YPD broth, 4 × 100 mL Erlenmeyer flasks, spectrophotometer for OD measurement
 
@@ -2028,17 +2028,17 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 7.  Gently swirl to mix
 
-8.  Cap loosely and incubate at 30°C with shaking at 200 rpm
+8.  Cap loosely and incubate at 30 °C with shaking at 200 rpm
 
-9.  Set timer for ~10-12 hours growth
+9.  Set timer for ~10–12 hours growth
 
-#### Step 2.2: Monitor Growth (Every 2-3 Hours Starting at 6h)
+#### Step 2.2: Monitor Growth (Every 2-3 Hours Starting at 6 h)
 
-1.  Every 2-3 hours starting at 6h, measure OD600 of all 4 cultures
+1.  Every 2–3 hours starting at 6 h, measure OD600 of all 4 cultures
 
 2.  Record measurements (track WT, M1, M2, M3 separately)
 
-3.  Expected progression: 0h = OD ~0.08 → 6h = ~0.2-0.3 → 10h = ~0.6-0.8
+3.  Expected progression: 0 h = OD ~0.08 → 6 h = ~0.2-0.3 → 10 h = ~0.6-0.8
 
 4.  STOP shaking when all cultures reach OD 0.8-1.0 (late log phase)
 
@@ -2046,11 +2046,11 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 ### Phase 3: Cell Harvesting & Irradiation Tube Preparation
 
-1.  Label 20 sterile 2 mL Eppendorf tubes and add 1200uL of cell suspension in each of themL
+1.  Label 20 sterile 2 mL Eppendorf tubes and add 1200 µL of cell suspension in each of themL
 
 > For 4 cell types (WT, M1, M2, M3): 5 treatments × 4 strains = 20 tubes total
 >
-> Each tube receives 1.2 mL cells (9.6 × 10^6 cells), leaving 0.8 mL headspace
+> Each tube receives 1.2 mL cells (9.6 × 10⁶ cells), leaving 0.8 mL headspace
 
 2.  Irradiate Cells
 
@@ -2066,7 +2066,7 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 3.  Recovery Incubation: 15 minutes after irradiation
 
-4.  Transfer all 20 tubes to a 30°C water bath or incubator
+4.  Transfer all 20 tubes to a 30 °C water bath or incubator
 
 5.  Divide Cells for Downstream Analysis. IMPORTANT: Perform all sampling within 20 minutes to maintain consistency
 
@@ -2074,10 +2074,10 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 | **Analysis Type** | **Volume (µL)** | **Cells (approx.)** | **Storage/Use** |
 |----|----|----|----|
-| **Plating (dilution series)** | 20 | 1.6 × 10^5 | Use immediately |
-| **FUN-1 Viability (96-well plate)** | 100 | 2.4 × 10^6 | Use immediately |
-| **RNA Extraction** | 500 | 4.0 × 10^6 | Freeze at -80°C in RNA lysis buffer |
-| **Protein Extraction** | 500 | 2.8 × 10^6 | Freeze at -80°C or use immediately |
+| **Plating (dilution series)** | 20 | 1.6 × 10⁵ | Use immediately |
+| **FUN-1 Viability (96-well plate)** | 100 | 2.4 × 10⁶ | Use immediately |
+| **RNA Extraction** | 500 | 4.0 × 10⁶ | Freeze at -80 °C in RNA lysis buffer |
+| **Protein Extraction** | 500 | 2.8 × 10⁶ | Freeze at -80 °C or use immediately |
 
 </div>
 
@@ -2091,11 +2091,11 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 | **Dilution**  | **Cells added (µL)** | **Media (µL)** | **Final dilution factor** |
 |---------------|----------------------|----------------|---------------------------|
-| **Undiluted** |                      | 0              | **10^0**                  |
-| **10^-1**     | 100 from undiluted   |                | **10^-1**                 |
-| **10^-2**     | 100 from 10^-1       |                | **10^-2**                 |
-| **10^-3**     | 100 from 10^-2       |                | **10^-3**                 |
-| **10^-4**     | 100 from 10^-3       |                | **10^-4**                 |
+| **Undiluted** |                      | 0              | **10⁰**                  |
+| **10⁻¹**     | 100 from undiluted   |                | **10⁻¹**                 |
+| **10⁻²**     | 100 from 10⁻¹       |                | **10⁻²**                 |
+| **10⁻³**     | 100 from 10⁻²       |                | **10⁻³**                 |
+| **10⁻⁴**     | 100 from 10⁻³       |                | **10⁻⁴**                 |
 
 </div>
 
@@ -2103,7 +2103,7 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 10. Label plates with cell type, treatment, dilution, and date
 
-11. Incubate agar plates at 30°C for 24-48 hours
+11. Incubate agar plates at 30 °C for 24–48 hours
 
 ### Phase 7: FUN-1 Viability Staining for 96-Well Plate Reader
 
@@ -2141,13 +2141,13 @@ This protocol describes how to grow S. cerevisiae (4 cell types: WT, M1, M2, M3)
 
 ### Storage
 
-- Temperature: Room temperature OR 4°C
+- Temperature: Room temperature OR 4 °C
 
 - Container: Sterile, sealed tube
 
 - Light: Protect from direct light
 
-- Stability: 6-12 months at room temperature, longer at 4°C
+- Stability: 6-12 months at room temperature, longer at 4 °C
 
 - Check pH before use
 
@@ -2169,7 +2169,7 @@ For **25 mL staining buffer:**
 
 3.  Allow to equilibrate to room temperature
 
-4.  Can store at 4°C for 1 week if not used immediately
+4.  Can store at 4 °C for 1 week if not used immediately
 
 5.  Prepare FUN-1 Master Mix (for all 20 samples + 5 extra). Master Mix Calculation:
 
@@ -2206,7 +2206,7 @@ For **25 mL staining buffer:**
 
 </div>
 
-6.  Remove FUN-1 stock from -20°C, warm to room temperature (~5 min)
+6.  Remove FUN-1 stock from -20 °C, warm to room temperature (~5 min)
 
 7.  Centrifuge FUN-1 vial briefly (3 min, 10,000 × g)
 
@@ -2230,15 +2230,15 @@ For **25 mL staining buffer:**
 
 6.  Gently resuspend each by pipetting up/down 4-5 times (do NOT vortex)
 
-7.  Aliquot 200uL in each well Black 96-well plate (clear bottom), multichannel pipette
+7.  Aliquot 200 µL in each well Black 96-well plate (clear bottom), multichannel pipette
 
-Stain samples at 30 min in dark at 30°C with agitation. Mixing every 5-10 minutes, gently invert all tubes 4-5 times (keep cells in suspension)
+Stain samples at 30 min in dark at 30 °C with agitation. Mixing every 5–10 minutes, gently invert all tubes 4-5 times (keep cells in suspension)
 
 9.  Cover plate with adhesive seal
 
 10. 33\. WAIT 30 MINUTES at room temperature in dark before reading
 
-11. Subsequently incubate the plates at 30°C on a rotating shaker (300 rpm) and read every 10 minutes for 1 hour.
+11. Subsequently incubate the plates at 30 °C on a rotating shaker (300 rpm) and read every 10 minutes for 1 hour.
 
 12. 12\. Calculate the red/green fluorescence ratio for each well by first subtracting the fluorescence of the wells containing dye and inhibitor (average of rows F and G) at each time point.
 
@@ -2257,13 +2257,13 @@ Settings:
 
 > 34\. Set to fluorescence mode (dual-wavelength)
 >
-> 35\. Read height: 80-85% well depth (bottom)
+> 35\. Read height: 80–85% well depth (bottom)
 >
-> 36\. Gain/PMT voltage: 60-70% (optimize per background)
+> 36\. Gain/PMT voltage: 60–70% (optimize per background)
 >
 > 37\. Averaging: minimum 10 flashes per well
 >
-> 38\. Temperature: 30°C if reader has temperature control
+> 38\. Temperature: 30 °C if reader has temperature control
 
 #### Step 6.7: Run Plate Reader & Analyze
 
@@ -2279,21 +2279,21 @@ Settings:
 >
 > 44\. Average 3 replicates for each treatment
 >
-> 45\. Plot % viability for each cell type across 5 doses (Mock, 500Gy, 1000Gy, 1500Gy, 2000Gy)
+> 45\. Plot % viability for each cell type across 5 doses (Mock, 500 Gy, 1000 Gy, 1500 Gy, 2000 Gy)
 
 ### Summary: Cell Allocation per Tube
 
-**For each of 20 irradiation tubes (1.2 mL at OD 0.8 ≈ 9.6 × 10^6 cells):**
+**For each of 20 irradiation tubes (1.2 mL at OD 0.8 ≈ 9.6 × 10⁶ cells):**
 
 <div class="table-wrap">
 
 | **Experiment** | **Volume (µL)** | **Cells** | **Step reference** |
 |----|----|----|----|
-| **Plating (dilution series)** | **20** | **1.6 × 10^5** | **Phase 6** |
-| **FUN-1 (96-well, 100 µL/well × 3 replicates)** | **300** | **2.4 × 10^6** | **Phase 7-8** |
-| **RNA extraction** | **500** | **4.0 × 10^6** | **Phase 9.1** |
-| **Protein extraction** | **350** | **2.8 × 10^6** | **Phase 9.2** |
-| **TOTAL USED** | **1170** | **9.6 × 10^6** | **—** |
+| **Plating (dilution series)** | **20** | **1.6 × 10⁵** | **Phase 6** |
+| **FUN-1 (96-well, 100 µL/well × 3 replicates)** | **300** | **2.4 × 10⁶** | **Phase 7-8** |
+| **RNA extraction** | **500** | **4.0 × 10⁶** | **Phase 9.1** |
+| **Protein extraction** | **350** | **2.8 × 10⁶** | **Phase 9.2** |
+| **TOTAL USED** | **1170** | **9.6 × 10⁶** | **—** |
 |  |  |  |  |
 
 </div>

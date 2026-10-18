@@ -1,4 +1,4 @@
-## The problem: Medicine beyond Earth
+## The problem: medicine beyond Earth
 
 As humanity prepares for longer and more ambitious space missions, ensuring that astronauts' health and well-being are supported throughout these journeys becomes even more important. Missions such as NASA's Expedition 75 and future Lunar exploration initiatives highlight the growing role of astronauts in conducting scientific research beyond Earth <a class="cite" href="#ref-1">1</a>,<a class="cite" href="#ref-2">2</a>. Today, astronauts aboard the International Space Station (ISS) have access to medical supplies containing medications for various anticipated health conditions. These can be replenished through cargo missions, and evacuation to Earth in case of a serious medical emergency remains possible. However, greater distances and longer mission durations will make these support systems difficult to rely on as exploration extends toward the Moon, Mars, and beyond <a class="cite" href="#ref-3">3</a>,<a class="cite" href="#ref-4">4</a>.
 
@@ -37,7 +37,7 @@ Every kilogram and cubic centimeter aboard a spacecraft matters. Medical supplie
 
 </div>
 
-## Our approach: In-situ biomanufacturing
+## Our approach: in-situ biomanufacturing
 
 We developed SHIHAB to explore a new approach to space healthcare, where astronauts could produce selected biologics on demand rather than relying completely on conventional pharmaceutical supplies. In this regard, we aim to give astronauts greater independence from Earth-based infrastructure during long-duration missions.
 
@@ -72,7 +72,7 @@ Additionally, inspired by the extreme conditions of Saudi Arabia's Rub' al Khali
 
 Our engineered microorganisms are intended to function as biological factories capable of producing therapeutic proteins and other valuable biomolecules for space applications. To explore this potential, we developed a library of protein payloads with applications in astronaut health, scientific research, and biotechnology.
 
-Our library includes therapeutic nanobodies, such as anti-PD-L1 and Nb1_gbHSV, targeting immune checkpoint pathways and herpes simplex virus, respectively; antifreeze proteins from the Antarctic bacterium *Flavobacterium frigoris* and Arctic yeast *Leucosporidium* sp. AY30, with potential applications in cryopreservation; and fluorescent reporters, including GFP and mCherry, to evaluate our expression systems. The system is not limited to these payloads, future works will include expressing other therapeutic candidates, such as proteins related to treatment of muscle atrophy and bone loss.
+Our library includes therapeutic nanobodies, such as anti-PD-L1 and Nb1_gbHSV, targeting immune checkpoint pathways and herpes simplex virus, respectively; antifreeze proteins from the Antarctic bacterium *Flavobacterium frigoris* and Arctic yeast *Leucosporidium* sp. AY30, with potential applications in cryopreservation; and fluorescent reporters, including GFP and mCherry, to evaluate our expression systems. The system is not limited to these payloads; future work will include expressing other therapeutic candidates, such as proteins related to treatment of muscle atrophy and bone loss.
 
 <p><a class="person-link-btn" href="/kaust-ksa/protein-library">Our Protein Library →</a></p>
 
@@ -83,7 +83,7 @@ Our library includes therapeutic nanobodies, such as anti-PD-L1 and Nb1_gbHSV, t
 <button type="button" class="popup-open"><span class="popup-num">3</span><span class="popup-face"><span class="popup-title">From biological production to automation</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/suitcase.avif" alt="Illustration of a compact biomanufacturing platform in a case" loading="lazy"><span class="popup-hint">Tap to read more</span></span></button>
 <div class="popup-more">
 
-Efficient expression and purification of proteins require much more than engineering of the chassis. Microorganisms must grow under controlled favourable conditions, payload production must be monitored and induced, and the resulting molecules must be recovered and purified. Performing these steps manually would place additional demands on astronauts, whose time and resources are already limited. Moreover, it is highly costly and challenging to establish a whole laboratory with centrifuges, purification machines, and other equipment in a spacecraft.
+Efficient expression and purification of proteins require much more than engineering of the chassis. Microorganisms must grow under controlled, favorable conditions, payload production must be monitored and induced, and the resulting molecules must be recovered and purified. Performing these steps manually would place additional demands on astronauts, whose time and resources are already limited. Moreover, it is highly costly and challenging to establish a whole laboratory with centrifuges, purification machines, and other equipment in a spacecraft.
 
 <span class="hl">To address this, we designed a compact, autonomous biomanufacturing platform that integrates a bioreactor and automated downstream purification system.</span> Designed with spaceflight constraints in mind, the system aims to minimize crew intervention through sensor-based monitoring, automated control of cultivation conditions, induction of protein production, and purification of the resulting biologics.
 
@@ -94,7 +94,7 @@ Efficient expression and purification of proteins require much more than enginee
 
 </div>
 
-## Beyond the lab: Shaping SHIHAB together
+## Beyond the lab: shaping SHIHAB together
 
 <div class="photo-slider">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/meetingall.avif" alt="Integrated Human Practices: Exploring the Unknown" loading="lazy">

@@ -87,7 +87,7 @@ const SectionHtml = memo(function SectionHtml({ html }) {
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 });
 
-export default function ArticleBody({ title, intro, sections, sectionRefs }) {
+export default function ArticleBody({ title, intro, sections, nums, sectionRefs }) {
   const [zoomed, setZoomed] = useState(null); // { src, alt } | null
   const [person, setPerson] = useState(null); // personFromCard() + initialScroll | null
   const closePerson = useCallback(() => setPerson(null), []);
@@ -284,7 +284,14 @@ export default function ArticleBody({ title, intro, sections, sectionRefs }) {
           ref={(el) => (sectionRefs.current[i] = el)}
           data-title={section.title}
         >
-          <h2>{section.title}</h2>
+          {/* `nums` is optional and index-aligned (see SectionedArticle's
+              `numbered` prop): the section number stays out of the title text so
+              the jump-nav reads as a plain table of contents, and renders as its
+              own mark here. */}
+          <h2>
+            {nums?.[i] && <span className={styles.secNum}>{nums[i]}</span>}
+            {section.title}
+          </h2>
           {section.html && <SectionHtml html={section.html} />}
           {section.content}
         </div>

@@ -137,13 +137,13 @@ function withInteractiveContent(sections) {
     if (section.title === "Overview") {
       return { ...section, content: <Principles /> };
     }
-    if (section.title === "Our Programs at a Glance") {
+    if (section.title === "Our programs at a glance") {
       return { ...section, content: <ProgramsGlance /> };
     }
     if (section.title === "Copy Paste Plants") {
       return { ...section, content: <CloneStepper /> };
     }
-    if (section.title === "School Outreach") {
+    if (section.title === "School outreach") {
       return {
         ...section,
         html: "",
@@ -242,6 +242,9 @@ export default function Education() {
         sections={article.sections}
         defaultSelected={article.sections[0]?.title}
         panelHeader={picker}
+        // Both tabs render through this one call, so number only the long
+        // article: the Tawasol tab is short enough to read without them.
+        numbered={article.sections.length >= 9}
       />
     </PageWrapper>
   );
