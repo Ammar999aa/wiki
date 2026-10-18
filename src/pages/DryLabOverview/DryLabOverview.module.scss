@@ -461,3 +461,279 @@
     }
   }
 }
+
+// ---- "Try me" result scheme (ResultScheme.jsx) -------------------------
+// Ported from the hero diagram styles of the team's revised Model page
+// (src/assets/model-page-drylab2.html). The drawing is an SVG string whose
+// own classes (.hs, .cellbody, ...) are plain globals, hence :global below.
+.scheme {
+  --teal: #7fe3f4;
+  --txt-2: rgba(255, 255, 255, 0.7);
+  --txt-3: rgba(255, 255, 255, 0.45);
+  --line: rgba(255, 255, 255, 0.12);
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+  margin: 28px 0 10px;
+
+  :global {
+    // The source uses min-width 1080px for a wider layout; 760px fits this
+    // article column on desktop and still scrolls sideways on phones.
+    svg.scheme { display: block; width: 100%; height: auto; min-width: 760px; }
+    .cellbody { fill: rgba(255, 255, 255, 0.045); }
+    .cellwall { fill: none; stroke-width: 2; }
+    .organelle { stroke-width: 1.4; fill: none; }
+    .cellname { font-size: 19px; font-weight: 700; font-style: italic; fill: #fff; }
+    .cellrole { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--txt-3); }
+    .partlabel { font-family: var(--mono); font-size: 11.5px; fill: rgba(255, 255, 255, 0.5); }
+    .flowlabel { font-family: var(--mono); font-size: 12.5px; fill: var(--teal); }
+    .flowlabel.dim { fill: var(--txt-3); }
+    .hs { cursor: pointer; }
+    .hs-box { fill: rgba(10, 10, 39, 0.92); stroke: rgba(255, 216, 77, 0.45); stroke-width: 1.2; }
+    .hs-t { font-family: var(--mono); font-size: 12.5px; fill: var(--amber); dominant-baseline: middle; }
+    .hs-lead { stroke: rgba(255, 216, 77, 0.5); stroke-width: 1.3; fill: none; }
+    .hs-dot { fill: var(--amber); }
+    .hs:hover .hs-box, .hs:focus-visible .hs-box { fill: rgba(255, 216, 77, 0.16); stroke: var(--amber); }
+    .hs:hover .hs-lead, .hs:focus-visible .hs-lead { stroke: var(--amber); stroke-width: 2; }
+    .hs:focus-visible { outline: none; }
+    .hs:focus-visible .hs-box { stroke-width: 2.4; }
+    .hs.active .hs-box { fill: var(--amber); stroke: var(--amber); }
+    .hs.active .hs-t { fill: #1a1500; font-weight: 700; }
+    .hs.active .hs-lead { stroke: var(--amber); stroke-width: 2; }
+  }
+}
+
+.schemeHint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 14px;
+  padding: 9px 18px;
+  border: 1px solid rgba(255, 216, 77, 0.4);
+  background: rgba(255, 216, 77, 0.08);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+
+  @media (max-width: 860px) {
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+.schemeTryTag {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--bg, #0a0a27);
+  background: var(--amber);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.schemeFrame {
+  border: 1px solid rgba(177, 109, 255, 0.3);
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 30% 0%, rgba(177, 109, 255, 0.14), rgba(10, 10, 39, 0) 65%),
+    rgba(255, 255, 255, 0.025);
+  padding: 10px 10px 0;
+  overflow: hidden;
+}
+
+.schemeScroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.schemePanel {
+  position: relative;
+  border: 1px solid rgba(255, 216, 77, 0.35);
+  background: rgba(255, 216, 77, 0.05);
+  border-radius: 22px;
+  padding: 22px 24px;
+  margin: 14px 0 0;
+}
+
+.schemePanelGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.schemeOrg {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--txt-3);
+  margin-bottom: 8px;
+}
+
+.schemeTitle {
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+// Doubled class so it beats the article column's own paragraph styles.
+.schemeTake.schemeTake {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 14px;
+  text-align: left;
+  hyphens: manual;
+}
+
+// Doubled class so it beats the article column's own link styles.
+.schemeMore.schemeMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--amber);
+  background: rgba(255, 216, 77, 0.1);
+  border: 1px solid rgba(255, 216, 77, 0.4);
+  border-radius: 999px;
+  padding: 9px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 216, 77, 0.4);
+
+  &:hover {
+    background: rgba(255, 216, 77, 0.2);
+    color: var(--amber);
+  }
+}
+
+.schemeClose {
+  float: right;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  margin: -4px -4px 0 12px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.schemeChart {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 12px 14px;
+}
+
+.schemeChartCaption {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--txt-3);
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+.schemeStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.schemeStat {
+  flex: 1 1 150px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 14px 16px;
+}
+
+.schemeStatValue {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.3rem;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+
+  small {
+    font-size: 0.72rem;
+    color: var(--txt-2);
+    margin-left: 4px;
+    font-weight: 400;
+  }
+}
+
+.schemeStatLabel {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--txt-2);
+  margin-top: 8px;
+  line-height: 1.45;
+}
+
+.schemeIndex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+
+  button {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--txt-2);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 12px;
+    cursor: pointer;
+    // The source's index buttons show each title cut at 46 characters.
+    max-width: 46ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      border-color: rgba(255, 216, 77, 0.5);
+      color: #fff;
+    }
+  }
+}
+
+button.schemeIndexActive {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #1a1500;
+  font-weight: 700;
+}
+
+.schemeIndexLabel {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--txt-3);
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.schemeNote {
+  font-size: 0.88rem;
+  color: var(--txt-3);
+  margin: 16px 0 0;
+  max-width: 80ch;
+}

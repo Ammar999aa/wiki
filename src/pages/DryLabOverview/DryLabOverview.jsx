@@ -6,36 +6,42 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import ChartSlots from "./components/ChartSlots";
 import { TooltipProvider } from "../../components/Tooltip/Tooltip";
 import CHARTS from "./components/charts";
+import ResultScheme from "./components/ResultScheme";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// Eyebrow echoes the nav trail ("Dry Lab" dropdown → "Overview") the
-// reader clicked — see the UI/UX audit finding on titles not confirming
-// the nav label.
+// Eyebrow is the revised Model page's own ("Dry Lab · Model · …"). It no
+// longer echoes the nav label ("Overview") — see the UI/UX audit finding
+// on titles not confirming the nav label. The "Try me" scheme sits under
+// the masthead, as it does in that page.
 const pageIntro = (
-  <Masthead
-    eyebrow={["Dry Lab", "Overview", "Flux balance analysis", "Dynamic modelling"]}
-    // Deck and stats are the team's own wording/numbers from the Dry Lab
-    // write-up (src/assets/main.html); every stat is restated, sourced, in
-    // the page body (Tables 2, 3, 5 and the gap-filling section).
-    deck={
-      <>
-        We modelled three organisms to decide where SHIHAB should build its nanobody and what to feed it.{" "}
-        <b>
-          The conventional choice is the wrong one: under the oxygen restriction that defines a closed habitat,{" "}
-          <i>Bacillus subtilis</i> out-produces yeast roughly fivefold and loses only a quarter of its capacity,
-          where yeast loses four fifths.
-        </b>{" "}
-        A cyanobacterial partner supplies both the sugar and the oxygen that make either host viable.
-      </>
-    }
-    stats={[
-      { value: "5.5×", label: "Bacillus nanobody flux over yeast, aerobic", hi: true },
-      { value: "−27% vs −80%", label: "Capacity lost without oxygen, Bacillus vs yeast", hi: true },
-      { value: "13×", label: "Yeast growth with a cyanobacterial partner" },
-      { value: "2", label: "Reactions added to repair iBsu1147" },
-    ]}
-  />
+  <>
+    <Masthead
+      eyebrow={["Dry Lab", "Model", "Flux balance analysis", "Dynamic modelling"]}
+      // Deck and stats are the team's own wording/numbers from the revised
+      // Model page (src/assets/model-page-drylab2.html); every stat is
+      // restated, sourced, in the page body (the Bacillus and yeast nanobody
+      // tables, the partner-supply table and the gap-filling section).
+      deck={
+        <>
+          We modelled three organisms to decide where SHIHAB should build its nanobody and what to feed it. We
+          found surprising results: under the oxygen restriction that defines a closed habitat,{" "}
+          <b>
+            <i>Bacillus subtilis</i> out produces yeast roughly threefold
+          </b>{" "}
+          provided nitrate is supplied. Also, we included a possible cyanobacterial partner to test if it can
+          supply both the sugar and the oxygen as co-culture.
+        </>
+      }
+      stats={[
+        { value: "3.4×", label: "Bacillus nanobody flux over yeast, anaerobic (nitrate supplied)", hi: true },
+        { value: "−46% vs −82%", label: "capacity lost without oxygen, Bacillus vs yeast", hi: true },
+        { value: "13×", label: "yeast growth with a cyanobacterial partner" },
+        { value: "2", label: "reactions added to repair iBsu1147" },
+      ]}
+    />
+    <ResultScheme />
+  </>
 );
 
 export default function DryLabOverview() {

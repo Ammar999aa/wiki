@@ -419,6 +419,21 @@ function YeastAerobicAnaerobic() {
   );
 }
 
+// Yeast growth on each supply condition from the photosynthetic partner
+// (the four rows of the supply-condition table, as bars).
+function YeastPartnerSupply() {
+  const d = data["yeast-partner-supply"];
+  return (
+    <ChartPanel title="Yeast — growth on each partner supply condition">
+      <BarChart
+        bars={d.conditions.map((c) => ({ label: `${c.label} (sucrose ${c.sucrose})`, value: c.growth, color: VIOLET }))}
+        unit=" h⁻¹"
+        formatValue={fmt(3)}
+      />
+    </ChartPanel>
+  );
+}
+
 function BacillusAerobicAnaerobic() {
   const d = data["bacillus-aerobic-anaerobic"];
   return (
@@ -518,7 +533,7 @@ function CyanoLimitingFactors() {
   return (
     <ChartPanel title="Sequential nutrient co-limitation cascade" sub="Mars-analog photon bound held at 145 mmol/gDW/h throughout.">
       <BarChart
-        bars={d.stages.map((s, i) => ({ label: s, value: d.values[i], color: [BLUE, AMBER, GREEN][i] }))}
+        bars={d.stages.map((s, i) => ({ label: s, value: d.values[i], color: [BLUE, AMBER, GREEN, VIOLET][i] }))}
         unit=" h⁻¹"
       />
     </ChartPanel>
@@ -599,6 +614,7 @@ const CHARTS = {
   "bacillus-fig8-heatmap": <BacillusFig8 />,
   "bacillus-fig9-multi-induction": <BacillusFig9 />,
   "yeast-aerobic-anaerobic": <YeastAerobicAnaerobic />,
+  "yeast-partner-supply": <YeastPartnerSupply />,
   "bacillus-aerobic-anaerobic": <BacillusAerobicAnaerobic />,
   "bacillus-glucose-vs-sucrose": <BacillusGlucoseVsSucrose />,
   "yeast-o2-sweep": <YeastO2Sweep />,
