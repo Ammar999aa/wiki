@@ -1873,6 +1873,39 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     display: none;
   }
 
+  // The pill link that closes a card's or a section's content by pointing
+  // at the page that carries the detail ("Our Hardware →"). It started
+  // inside the popup (PersonModal.module.scss styles the same class there);
+  // these rules are that same pill for a link written straight into an
+  // article section, so one class looks the same in both places. Several in
+  // a row sit in one <p>, which justifies its text — hence the explicit
+  // margin instead of relying on the word space between them.
+  :global(.person-link-btn) {
+    display: inline-flex;
+    align-items: center;
+    margin: 4px 10px 4px 0;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+    border: 1px solid color-mix(in oklab, var(--primary) 60%, transparent);
+    transition: background 150ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in oklab, var(--primary) 50%, transparent);
+    }
+  }
+
+  // A paragraph holding only link pills: justified body text would stretch
+  // the gaps between them across the column.
+  p:has(> :global(.person-link-btn)) {
+    text-align: start;
+  }
+
   :global(.person-photo) {
     width: 88px;
     height: 88px;
