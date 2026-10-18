@@ -26,7 +26,7 @@ const DETAIL_SCALE = { lem: 1.35 };
 // src/components/Sponsors/sponsorsData.js and RESPONSIBLE_AI_USE.md.
 //
 // Doesn't render the floating-logo <SponsorsSection /> (still used on Home)
-// below the grid — it's the same 10 logos as the cards above, just animated
+// below the grid — it's the same logos as the cards above, just animated
 // and unlabelled, so it was pure redundancy here rather than adding anything.
 //
 // `photo` (gemini4-eva.webp — an Ed White Gemini 4 EVA shot, black space void

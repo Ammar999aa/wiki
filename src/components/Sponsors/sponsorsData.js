@@ -11,6 +11,8 @@ const gs        = `${SPONSOR_CDN}/gs.avif`;
 const sg        = `${SPONSOR_CDN}/sg.avif`;
 const idt       = `${SPONSOR_CDN}/idt.avif`;
 const kaustigem = `${SPONSOR_CDN}/kaustigem.avif`;
+const twist     = `${SPONSOR_CDN}/twist.avif`;
+const urbanlab  = `${SPONSOR_CDN}/urban-lab.avif`;
 
 // Single source of truth for sponsor logos/metadata, shared by the floating
 // "Supported by" strip (./Sponsors.jsx, embedded on Home), the top-of-page
@@ -41,6 +43,8 @@ export const SPONSORS = [
   { id: "gs",        src: gs,        name: "GenScript",       nudge:  -4 },
   { id: "idt",       src: idt,       name: "IDT",             nudge: -18 },
   { id: "sg",        src: sg,        name: "SnapGene",        nudge:  24 },
+  { id: "twist",     src: twist,     name: "Twist Bioscience", nudge:  10, visualScale: 1.3 },
+  { id: "urbanlab",  src: urbanlab,  name: "Urban Lab",       nudge: -10 },
   { id: "bk",        src: bk,        name: "Burger King",     nudge: -14, smallInFooter: true },
   { id: "br",        src: br,        name: "Baskin-Robbins",  nudge:  16, smallInFooter: true },
 ];

@@ -20,7 +20,7 @@ const ANIM = ["floatA", "floatB", "floatC", "floatD"];
 // loop instead. BK and Baskin-Robbins (the two `smallInFooter` sponsors)
 // are grouped at the end here so the wrap lands them next to each other in
 // the bottom row; SnapGene moves up out of the last slot to make room.
-const FOOTER_ORDER = ["nti", "bese", "lem", "kaustigem", "sg", "biomed", "gs", "idt", "bk", "br"];
+const FOOTER_ORDER = ["nti", "bese", "lem", "kaustigem", "sg", "biomed", "gs", "idt", "twist", "urbanlab", "bk", "br"];
 const FOOTER_SPONSORS = FOOTER_ORDER.map((id) => SPONSORS.find((s) => s.id === id));
 
 export default function Sponsors() {
