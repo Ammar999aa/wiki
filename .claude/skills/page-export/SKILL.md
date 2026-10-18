@@ -14,7 +14,9 @@ node .claude/skills/page-export/export.mjs /hardware [/safety ...]
 
 Takes routes from `src/pages.js`. It renders the page's own JSX (via Vite
 SSR), so markdown pages and custom pages (Software, Dry Lab Overview, …)
-work the same way. It writes:
+work the same way. Pages that aren't articles (`/` Home, Sponsors, …) come
+out as one block of text and structure, without animations or page
+styling. That's rough, but every word is there to edit. It writes:
 
 ```
 outputs/exports/<slug>/<slug>-export.html   offline, read-only, no scripts
@@ -43,9 +45,8 @@ them as an Artifact.
 ## Only if the script can't do it
 
 Read `REFERENCE.md` in this folder only when the script fails, prints a WARN
-you have to fix, or the person asks for something it doesn't cover (pages
-without `SectionedArticle` such as Experiments or Protein Library,
-sub-article pickers, chart data tables). Don't open the HTML in a browser
+you have to fix, or the person asks for something it doesn't cover (sub-article
+pickers, chart data tables, a whole-page export that's missing text). Don't open the HTML in a browser
 unless the person asks for a visual check.
 
 ## Guardrails
