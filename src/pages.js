@@ -44,6 +44,7 @@ const HumanIntegratedPractices = lazyWithPreload(() =>
   import("./pages/HumanIntegratedPractices/HumanIntegratedPractices")
 );
 const Hardware = lazyWithPreload(() => import("./pages/Hardware/Hardware"));
+const EngineeringSuccess = lazyWithPreload(() => import("./pages/EngineeringSuccess/EngineeringSuccess"));
 const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
 const Inclusivity = lazyWithPreload(() => import("./pages/Inclusivity/Inclusivity"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
@@ -133,7 +134,14 @@ const Pages = [
   {
     name: "Engineering",
     folder: [
-      { name: "Engineering Success", title: "Engineering Success", path: "/engineering-success", component: Stub },
+      {
+        name: "Engineering Success",
+        title: "Engineering Success",
+        path: "/engineering-success",
+        component: EngineeringSuccess,
+        description:
+          "SHIHAB engineering cycles: Design–Build–Test–Learn across the bioreactor, purification hardware, wet lab constructs and metabolic models.",
+      },
       { name: "Parts", title: "Parts", path: "/parts", component: Parts },
       {
         name: "Hardware",
