@@ -1752,6 +1752,12 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   //   <h4 class="person-name">Name</h4>
   //   <p>Summary...</p>
   //   </div>
+  // `.person-card.map-only`: kept in the DOM (the Human Practices "shaped by"
+  // map opens its popup through the card) but not shown in the article.
+  :global(.person-card):global(.map-only) {
+    display: none;
+  }
+
   :global(.person-card) {
     display: grid;
     grid-template-columns: auto 1fr;

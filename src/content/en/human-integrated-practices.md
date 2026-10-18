@@ -398,7 +398,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card map-only">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/kimberly.avif" alt="Kimberly Washington">
 <h4 class="person-name">Deep Space Biology — Kimberly Washington</h4>
 <p>We consulted Kimberly Washington to strengthen SHIHAB's scientific approach and assess its feasibility for real space missions. She encouraged us to draw on existing NASA research and address practical considerations such as hardware integration, system cleaning, production time, cost, and component availability. She also highlighted the importance of automation, real-time monitoring, biosafety, power efficiency, and understanding microbial responses to space-related stresses.</p>
@@ -508,7 +508,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 
 </div>
 
-<div class="person-card">
+<div class="person-card map-only">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/wijdan.avif" alt="Dr. Wijdan Al-Ahmadi">
 <h4 class="person-name">Dr. Wijdan Al-Ahmadi</h4>
 <p>During the early stages of our project, we consulted Dr. Wijdan Al-Ahmadi to assess the feasibility of our initial concept, which included oxygen production for space applications. She raised important questions about bioreactor size, production capacity, oxygen quality, and the practical challenges of operating such a system on Mars. She also emphasized the importance of automation to minimize astronaut intervention and recommended prototype testing under Mars-analog conditions.</p>
@@ -520,7 +520,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card map-only">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/junaid.avif" alt="Junaid Mian">
 <h4 class="person-name">Junaid Mian</h4>
 <p>We consulted Junaid Mian to understand the regulatory and product-development requirements for bringing SHIHAB closer to real-world implementation. For Earth-based applications, he highlighted the importance of production yield, scalability, and the regulatory responsibilities associated with manufacturing therapeutics.</p>
@@ -629,7 +629,7 @@ We did not want to assume that a system developed for space would automatically 
 </div>
 </div>
 
-<div class="person-card">
+<div class="person-card map-only">
 <img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/grant.avif" alt="Jonathan Grant">
 <h4 class="person-name">Jonathan Grant</h4>
 <p>We consulted Jonathan Grant to explore SHIHAB's potential applications in remote and humanitarian settings on Earth. He emphasized the importance of distinguishing between isolated communities and disaster-response scenarios, as each presents different healthcare needs and operational constraints. He also suggested considering environments such as ships, Antarctica, and submarines, while raising questions about affordability, accessibility, and how users would determine which therapeutics to produce.</p>
