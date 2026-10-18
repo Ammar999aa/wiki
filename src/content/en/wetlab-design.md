@@ -11,7 +11,7 @@ In our project, we were working with **three different chassis**: _B. subtilis_,
 All three chassis were engineered to contain **Dsup** protein stably integrated into their genome for enhanced radiation resistance. Subsequently, the host cells were transformed to express a range of **protein payloads** that can be useful for astronauts during their space missions.
 
 <div class="figure-grid single">
-<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab/design-overview-2.avif" alt="Protein payload production: a payload gene on a plasmid transformed into a cell carrying genomically integrated Dsup, producing antifreeze proteins, therapeutic nanobodies and fluorescent proteins"></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab/wet-lab-diagrams-2-cropped.avif" alt="Protein payload production: a payload gene on a plasmid transformed into a cell carrying genomically integrated Dsup, producing antifreeze proteins, therapeutic nanobodies and fluorescent proteins"></figure>
 </div>
 
 Below, we describe each chassis, the genetic systems used for its engineering, and the proteins selected for recombinant expression.
