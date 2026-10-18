@@ -84,16 +84,6 @@ $ease-spring: cubic-bezier(0.3, 1.5, 0.5, 1);
   }
 }
 
-@keyframes band {
-  0% {
-    left: -60%;
-  }
-  30%,
-  100% {
-    left: 140%;
-  }
-}
-
 // --- Four days ---------------------------------------------------------
 
 .fourDays {
@@ -954,114 +944,11 @@ $ease-spring: cubic-bezier(0.3, 1.5, 0.5, 1);
 
 // --- Photo deck --------------------------------------------------------
 
+// The deck itself lives in src/components/PhotoDeck; this is just its
+// size and place on this page.
 .deckWrap {
   max-width: 520px;
   margin: 40px auto 20px;
-  padding-right: 48px;
-
-  @media (max-width: 600px) {
-    padding-right: 30px;
-  }
-}
-
-.deck {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  cursor: pointer;
-  touch-action: pan-y;
-  outline: none;
-
-  &:focus-visible .cardTop {
-    box-shadow: 0 0 0 3px var(--accent);
-  }
-}
-
-.card {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 18px;
-  border: 8px solid #f1e6cc;
-  background: #1a1038;
-  box-shadow: 0 26px 50px -18px #000;
-  transform: translate(calc(var(--p) * 16px), calc(var(--p) * -12px)) rotate(calc(var(--p) * 2.2deg - 1deg))
-    scale(calc(1 - var(--p) * 0.035));
-  transition:
-    transform 0.8s cubic-bezier(0.3, 1.1, 0.4, 1),
-    opacity 0.5s;
-
-  // The deck advances on click, so these don't open the lightbox.
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-radius: 0;
-    object-fit: cover;
-    pointer-events: none;
-  }
-}
-
-.cardTop::before {
-  content: "";
-  position: absolute;
-  top: -10%;
-  bottom: -10%;
-  left: -60%;
-  z-index: 1;
-  width: 34%;
-  background: linear-gradient(100deg, transparent, rgba(255, 236, 170, 0.34), transparent);
-  transform: skewX(-14deg);
-  animation: band 6s ease-in-out infinite 1s;
-}
-
-.cardFly {
-  transform: translate(120%, -8%) rotate(16deg);
-  opacity: 0;
-}
-
-.deckControls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 22px;
-
-  button {
-    flex: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid var(--primary);
-    background: color-mix(in oklab, var(--primary) 12%, transparent);
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.25s;
-
-    &:hover {
-      background: color-mix(in oklab, var(--primary) 35%, transparent);
-    }
-  }
-}
-
-.deckCap {
-  flex: 1;
-  min-height: 52px;
-  font-size: 15px;
-  text-align: center;
-
-  b {
-    display: block;
-    font-size: 16px;
-    color: var(--accent);
-  }
-
-  span {
-    font-size: 14px;
-    color: $muted;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1070,8 +957,7 @@ $ease-spring: cubic-bezier(0.3, 1.5, 0.5, 1);
   .divider *,
   .tags *,
   .routeWrap *,
-  .mission *,
-  .deckWrap * {
+  .mission * {
     animation: none !important;
     transition: none !important;
   }

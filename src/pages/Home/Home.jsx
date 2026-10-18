@@ -6,6 +6,8 @@ import Sponsors from "../../components/Sponsors/Sponsors";
 import SponsorBanner from "../../components/SponsorBanner/SponsorBanner";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import EarthGlobe, { LAT0, LON0, DISK_FILL, projectGlobe } from "../../components/EarthGlobe/EarthGlobe";
+import PhotoDeck from "../../components/PhotoDeck/PhotoDeck";
+import HardwareAnimation from "./HardwareAnimation/HardwareAnimation";
 import { SPONSORS } from "../../components/Sponsors/sponsorsData";
 const shihabLogo = "https://static.igem.wiki/teams/6341/wiki/svg-assets/shihab-logo.svg";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
@@ -34,14 +36,27 @@ const SCROLL_SPIN_MAX_RAD = (26 * Math.PI) / 180;
 // Leaving Hero/Orbit (see EarthLayer's "grow" phase below): instead of
 // shrinking away, the globe grows to fill the screen while accelerating
 // into a multi-turn spin and an axis tilt (roll), then a full-bleed wipe in
-// this same purple (--bg) takes over before the rocket slide appears —
+// this same purple (--bg) takes over before the next slide appears —
 // a cinematic transition rather than a cut. Tuned together; see the phase
 // comments in EarthLayer for how they overlap in scroll-unit terms.
+// The globe rests big and centred right (the pre-Sept 2026 look), then lifts
+// and shrinks while the hero's process strip is up, to clear it, and eases
+// back onto its usual path as the hero scrolls away (EarthLayer).
+const EARTH_LIFT_DY = 20; // vh
+const EARTH_LIFT_SCALE = 0.76; // factor
+// Hero scroll progress over which the strip rises in (HeroSection), and the
+// same span in EarthLayer's units (hero useScene range 1.7).
+const HERO_STRIP_P = [0.06, 0.4];
+const HERO_STRIP_UNITS = HERO_STRIP_P.map((p) => p * 1.7);
 const EXIT_SPIN_TURNS = 3;                      // full extra rotations by the top of the grow phase
 const EXIT_ROLL_MAX_RAD = (55 * Math.PI) / 180;  // max axis tilt by the top of the grow phase
 
 // Pulled from the shared sponsor data (not re-imported as a raw asset) so
 // there's still one source of truth for the logo file and its
+// `visualScale` padding correction — see sponsorsData.js. KAUST iGEM is
+// *us*, not a third-party sponsor, so in the Hero eyebrow line below it
+// literally replaces the word "iGEM" (rather than being just one of ten
+// logos scrolling past, which it also still is further down the page).
 // `visualScale` padding correction — see sponsorsData.js. KAUST iGEM is
 // *us*, not a third-party sponsor, so in the Hero eyebrow line below it
 // literally replaces the word "iGEM" (rather than being just one of ten
@@ -58,7 +73,9 @@ const jupiterPlanet = "https://static.igem.wiki/teams/6341/wiki/images/jupiter.w
 const neptunePlanet = "https://static.igem.wiki/teams/6341/wiki/images/neptune.webp";
 
 // Section-by-section narrative below follows src/content/landing_page_content.md
-// (slides 1–9). Two pre-existing sections that weren't part of that brief —
+// (slides 1–9), with the September 2026 landing brief's changes on top (hero,
+// Our Solution's two parts sliding sideways, the hardware media, the outro's
+// promotion video). Two pre-existing sections that weren't part of that brief —
 // a standalone "On-demand medicine. Anywhere." tagline and a nanobody
 // production beat — were dropped rather than kept as unlisted extras.
 
@@ -293,21 +310,102 @@ function Starfield() {
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
+// Sept 2026 landing brief: tagline, one-line lead and two buttons under the
+// wordmark, then the five-step process strip across the bottom of the screen.
+// The hero opens on the wordmark and copy alone; the first scroll raises the
+// strip into view while the copy shrinks up out of its way.
+
+// Two-tone step icons, coloured through the .pi* classes (Home.module.scss).
+function IcoPreserve({ className }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <g transform="rotate(-40 24 24)">
+        <path d="M16 24v-6a8 8 0 0 1 16 0v6z" className={styles.piLight} />
+        <path d="M16 24v6a8 8 0 0 0 16 0v-6z" className={styles.piMain} />
+        <circle cx="21" cy="29" r="1.7" className={styles.piLight} />
+        <circle cx="26.5" cy="32" r="1.7" className={styles.piLight} />
+      </g>
+    </svg>
+  );
+}
+
+function IcoSelect({ className }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <rect x="8" y="8" width="32" height="32" rx="7" className={styles.piFrame} />
+      <rect x="13" y="13" width="22" height="7.5" rx="2.5" className={styles.piLight} />
+      <rect x="13" y="24" width="9.5" height="11" rx="2.5" className={styles.piAmber} />
+      <rect x="25.5" y="24" width="9.5" height="11" rx="2.5" className={styles.piMain} />
+    </svg>
+  );
+}
+
+function IcoGrow({ className }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <path d="M9 8h30M12 8v32M36 8v32M8 40h32M24 4v22" className={styles.piLine} />
+      <rect x="16" y="14" width="16" height="22" rx="5" className={styles.piLine} />
+      <path d="M16 26h16v5a5 5 0 0 1-5 5h-6a5 5 0 0 1-5-5z" className={styles.piMain} />
+      <circle cx="24" cy="26.5" r="2.4" className={styles.piLight} />
+    </svg>
+  );
+}
+
+function IcoProduce({ className }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <circle cx="16" cy="18" r="7" className={styles.piBlue} />
+      <circle cx="29" cy="16" r="6.5" className={styles.piMain} />
+      <circle cx="35" cy="28" r="6.5" className={styles.piMain} />
+      <circle cx="14" cy="31" r="6" className={styles.piBlue} />
+      <circle cx="24.5" cy="28" r="7.5" className={styles.piLight} />
+    </svg>
+  );
+}
+
+function IcoPurify({ className }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <rect x="18.5" y="4" width="11" height="5.5" rx="1.8" className={styles.piLight} />
+      <path d="M18 9.5h12v4.5l3.5 4.5V38a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4V18.5l3.5-4.5z" className={styles.piLine} />
+      <path d="M17.5 24h13v13.5a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5z" className={styles.piMain} />
+      <path d="M24 27.5c2 2.6 3 4.2 3 5.4a3 3 0 0 1-6 0c0-1.2 1-2.8 3-5.4z" className={styles.piLight} />
+    </svg>
+  );
+}
+
+const PROCESS_STEPS = [
+  { label: "Preserve", desc: "Freeze-dried microbes or spores", Ico: IcoPreserve },
+  { label: "Select", desc: "Choose the strain for your protein", Ico: IcoSelect },
+  { label: "Grow", desc: "Activate and grow in the bioreactor", Ico: IcoGrow },
+  { label: "Produce", desc: "Secrete therapeutic proteins", Ico: IcoProduce },
+  { label: "Purify", desc: "Recover and purify the product", Ico: IcoPurify },
+];
 
 function HeroSection() {
   const ref = useRef(null);
+  const stickyRef = useRef(null);
   const latinRef = useRef(null);
   const arabicRef = useRef(null);
   const copyRef = useRef(null);
+  const processRef = useRef(null);
+  // How far the copy moves up and how much it shrinks to sit above the
+  // strip, and how far below the screen the strip starts. Measured from
+  // layout (transforms don't affect offsetTop/offsetHeight).
+  const fitRef = useRef({ lift: 0, scale: 1, drop: 0 });
+  const lastP = useRef(0);
 
-  useScene(ref, 1.7, (p) => {
+  const apply = (p) => {
+    lastP.current = p;
+    const { lift, scale, drop } = fitRef.current;
+    const e = smoothstep(between(p, ...HERO_STRIP_P));
+    const out = 1 - between(p, 0.84, 1);
+    // A slow upward drift, only once the strip is in, so the lifted copy
+    // keeps its top margin while the hero is pinned.
+    const drift = Math.max(0, p - HERO_STRIP_P[1]) * 40;
     // Logo -> Arabic wordmark crossfade starts almost as soon as scrolling
-    // begins (old 0.30-0.72 range read as "too late"), but stays stretched
-    // out to about two-thirds of the pinned hero scene rather than finishing
-    // by p=0.35 — an earlier attempt compressed it into the first third,
-    // which left a long dead stretch (p≈0.35→0.84) with no visible motion
-    // before the copy fade-out kicks in, reading as scrolling suddenly
-    // doing nothing rather than as an earlier transition.
+    // begins, stretched over about two-thirds of the pinned hero scene so
+    // there's no dead stretch before the copy fades out.
     if (latinRef.current) latinRef.current.style.opacity = 1 - between(p, 0.05, 0.55);
     if (arabicRef.current) {
       const fo = between(p, 0.15, 0.65);
@@ -315,14 +413,49 @@ function HeroSection() {
       arabicRef.current.style.transform = `scale(${lerp(0.82, 1, fo)})`;
     }
     if (copyRef.current) {
-      copyRef.current.style.transform = `translateY(${-p * 50}px)`;
-      copyRef.current.style.opacity = 1 - between(p, 0.84, 1);
+      copyRef.current.style.transform = `translateY(${lift * e - drift}px) scale(${lerp(1, scale, e)})`;
+      copyRef.current.style.opacity = out;
     }
-  }, 0.7); // static pose: Arabic wordmark in, copy still visible
+    if (processRef.current) {
+      processRef.current.style.transform = `translateY(${drop * (1 - e) - drift}px)`;
+      // Fades a little ahead of the copy, as the hero scrolls it up over the
+      // globe.
+      processRef.current.style.opacity = e * (1 - between(p, 0.72, 0.9));
+    }
+  };
+
+  useEffect(() => {
+    const sticky = stickyRef.current;
+    const copy = copyRef.current;
+    const strip = processRef.current;
+    if (!sticky || !copy || !strip) return undefined;
+    const measure = () => {
+      const h = sticky.clientHeight;
+      const top = Math.min(56, Math.max(28, h * 0.06)); // the sponsor banner has scrolled off by now
+      const gap = Math.max(16, Math.min(40, h * 0.035));
+      const avail = strip.offsetTop - gap - top;
+      const fits = copy.offsetTop + copy.offsetHeight + gap <= strip.offsetTop;
+      const scale = fits ? 1 : Math.max(0.55, Math.min(1, avail / copy.offsetHeight));
+      const lift = fits ? 0 : top + Math.max(0, (avail - copy.offsetHeight * scale) / 2) - copy.offsetTop;
+      fitRef.current = { lift, scale, drop: h - strip.offsetTop + 24 };
+      apply(lastP.current);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(sticky);
+    ro.observe(copy);
+    ro.observe(strip);
+    return () => ro.disconnect();
+  }, []);
+
+  // Unlike the other slides, the hero isn't play-once: it always follows the
+  // scroll, so scrolling back to the top restores the opening view (logo,
+  // no strip) instead of a frozen end pose that the globe doesn't match.
+  useScrollUnits(ref, (units) => apply(clamp01(units / 1.7)));
 
   return (
     <section className={styles.hero} ref={ref}>
-      <div className={styles.heroSticky}>
+      <div className={styles.heroSticky} ref={stickyRef}>
 
         {/* Signature streaks */}
         <div className={styles.heroStreaks} aria-hidden="true">
@@ -348,13 +481,46 @@ function HeroSection() {
             <h1 className={styles.wordmarkArabic} ref={arabicRef} dir="rtl" lang="ar" style={{ opacity: 0 }}>شهاب</h1>
           </div>
           <p className={styles.heroSub}>
-            <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo;{" "}
-            <div><strong className={styles.heroSubHighlight}>On-demand medicine, engineered for anywhere.</strong></div>
+            <span className={styles.subGloss}>شهاب</span> &mdash; Arabic for &lsquo;shooting star.&rsquo;
           </p>
+          <h2 className={styles.heroTagline}>
+            Biologics on demand, <em>engineered for space.</em>
+          </h2>
+          <p className={styles.heroLead}>
+            We engineered three different protein production chassis for extraterrestrial biologics in a compact
+            bioreactor.
+          </p>
+          {/* One line that rolls between the two readouts every few seconds;
+              the third row repeats the first so the roll loops seamlessly. */}
           <div className={styles.heroTelemetry}>
-            <span>PLATFORM <b><i>S. cerevisiae</i> · <i>B. subtilis</i> · <i>P. pastoris</i></b></span>
-            <span>OUTPUT <b>Therapeutic proteins</b></span>
+            <div className={styles.telemetryRoll}>
+              <span>PLATFORM <b><i>S. cerevisiae</i> · <i>B. subtilis</i> · <i>P. pastoris</i></b></span>
+              <span>OUTPUT <b>Therapeutic proteins</b></span>
+              <span aria-hidden="true">PLATFORM <b><i>S. cerevisiae</i> · <i>B. subtilis</i> · <i>P. pastoris</i></b></span>
+            </div>
           </div>
+          <div className={styles.heroCtas}>
+            <a className={styles.ctaPrimary} href="#our-solution" onClick={goToSolution}>
+              Learn more <span aria-hidden="true">&rarr;</span>
+            </a>
+            <Link className={styles.ctaGhost} to="/project">Project Description</Link>
+          </div>
+        </div>
+
+        <div className={styles.heroProcess} ref={processRef}>
+          <p className={styles.heroPlatform}>A platform built for space to produce biologics on demand.</p>
+          <ol className={styles.processStrip}>
+            {PROCESS_STEPS.map((step, i) => (
+              <li key={step.label} className={styles.processStep}>
+                <step.Ico className={styles.processIco} />
+                <span className={styles.processLabel}>
+                  <span className={styles.processNum}>{i + 1}</span>
+                  {step.label}
+                </span>
+                <span className={styles.processDesc}>{step.desc}</span>
+              </li>
+            ))}
+          </ol>
         </div>
 
       </div>
@@ -429,7 +595,7 @@ function EarthLayer({ groupRef }) {
     // beat: the globe grows to dominate the screen while accelerating into
     // a multi-turn spin and an axis tilt, then a full-bleed wipe in the
     // page's own background color covers it and fades away, so the handoff
-    // to the rocket slide reads as a cut on a wipe rather than Earth just
+    // to the next slide reads as a cut on a wipe rather than Earth just
     // shrinking off the corner. `growEase` (smooth both ends) drives
     // position/scale/opacity; the spin and roll below reuse the same
     // 3.15→3.8 span but with their own ease-IN curves (slow→fast), so
@@ -439,18 +605,21 @@ function EarthLayer({ groupRef }) {
     //
     // The whole sequence (grow through purple-out below) is deliberately
     // kept inside heroOrbitRef's own height (Hero 200svh + Orbit 275svh =
-    // 4.75 units) and finishes by ~4.45 — the rocket slide's own StatementSection
+    // 4.75 units) and finishes by ~4.45 — the next slide (ProblemSection)
     // starts fading in almost as soon as its section is reached (~4.75, right
     // after this group ends), so any part of this animation still running
-    // past that point would mean the rocket slide visibly arriving while
+    // past that point would mean that slide visibly arriving while
     // Earth is still mid-wipe instead of after it's done. The ~0.3-unit gap
     // between 4.45 and 4.75 is a deliberate short settle, not dead scroll —
     // Orbit's own section height was sized to match (see .orbitSection).
     const growT = between(units, 3.15, 4.2);
     const growEase = smoothstep(growT);
     const left = lerp(79, 85, q) + growEase * (40 - 85);
-    const top = lerp(50, 78, q) + growEase * (48 - 78) - scrollAway;
-    const scale = lerp(1, 1.35, q) + growEase * (4.5 - 1.35);
+    // Lifts and shrinks while the hero's process strip is up (Sept 2026
+    // hero), so it clears the strip; back on the usual path by units 2.
+    const lift = smoothstep(between(units, ...HERO_STRIP_UNITS)) * (1 - smoothstep(between(units, 1, 2)));
+    const top = lerp(50, 78, q) - lift * EARTH_LIFT_DY + growEase * (48 - 78) - scrollAway;
+    const scale = lerp(1, 1.35, q) * lerp(1, EARTH_LIFT_SCALE, lift) + growEase * (4.5 - 1.35);
     // `left`/`top` stay untouched (see .earthWrap) — this callback runs
     // every animation frame regardless of whether the value actually
     // changed, and writing to layout properties (even to an unchanged
@@ -582,171 +751,6 @@ function EarthLayer({ groupRef }) {
           purpleIn/purpleOut above. */}
       <div className={styles.earthWipe} ref={wipeRef} />
     </>
-  );
-}
-
-// ── Generic single-statement beat (slides 2, 4, 6) ────────────────────────────
-
-function StatementSection({ range = 1.2, tag, decor, className = "", children }) {
-  const ref = useRef(null);
-  const innerRef = useRef(null);
-
-  useScene(ref, range, (p) => {
-    if (innerRef.current) {
-      innerRef.current.style.opacity = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
-      innerRef.current.style.transform = `translateY(${lerp(30, -30, p)}px)`;
-    }
-  }, 0.5); // static pose: fully in, centered
-
-  return (
-    <section className={styles.tagline} ref={ref}>
-      <div className={`${styles.taglineSticky} ${className}`}>
-        {decor}
-        <div className={styles.statementInner} ref={innerRef} style={{ opacity: 0 }}>
-          {tag && (
-            <span className={styles.tag}>
-              <span className={styles.tagDot} />
-              {tag}
-            </span>
-          )}
-          <p className={styles.bigLine}>{children}</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const PLANET_KEYS = ["p1", "p2", "p3", "p4", "p5"];
-
-function PlanetDecor() {
-  return (
-    <div className={styles.planetDecor} aria-hidden="true">
-      {PLANET_KEYS.map((k) => (
-        <div key={k} className={`${styles.planet} ${styles[k]}`} />
-      ))}
-    </div>
-  );
-}
-
-// Bruce McCandless II's untethered MMU spacewalk (STS-41-B) — floats beside slide 4's statement with a slow,
-// continuous tilt/wobble (CSS-driven, not scroll-tied, unlike the rest of this
-// file's motion) so it reads as drifting in zero-g rather than as a static cutout.
-function AstronautDecor() {
-  return (
-    <div className={styles.astronautDecor} aria-hidden="true">
-      <img
-        src={astronautMmu}
-        alt=""
-        className={styles.astronautImg}
-      />
-    </div>
-  );
-}
-
-// Shuttle Atlantis departing Earth — the launch reads as the mission itself
-// leaving. Fixed to the viewport (like EarthLayer) rather than nested inside
-// slide 2's sticky box, so it isn't cropped by that box's `overflow: hidden`.
-// Slides in as slide 2 opens and shoots away as slide 2 hands off to slide 3.
-// `groupRef` points at slide 2's own wrapper.
-function RocketLayer({ groupRef }) {
-  const rocketRef = useRef(null);
-
-  useScrollUnits(groupRef, (units, isStatic) => {
-    const el = rocketRef.current;
-    if (!el) return;
-    // Static (after the first pass): the launch already happened — stays gone.
-    if (isStatic) { el.style.opacity = 0; return; }
-    // Slides up from below as slide 2 opens; holds at a fixed spot while
-    // slide 2's text is on screen, then launches shortly after that text has
-    // fully faded out (which happens at unit 1.2, when the pin ends) rather
-    // than waiting almost a full extra viewport-height of idle scroll.
-    // On phones it rests near the top, above the centred statement, not beside it.
-    const REST_TOP = window.innerWidth <= 700 ? 24 : 56;
-    const entryP = between(units, 0, 0.35);
-    const exitP = between(units, 1.3, 1.9);
-    const exitEase = exitP * exitP; // ease-in — starts slow, accelerates away
-    const entryDrop = (1 - entryP) * 75; // starts well below the viewport
-    const exitShoot = exitEase * 140; // rockets up past the top edge
-    const top = REST_TOP + entryDrop - exitShoot;
-    const scale = lerp(1, 0.7, exitP);
-    // Opacity settles in fast (well before the slide-up finishes) rather
-    // than tracking entryP 1:1, so it doesn't look like a dim ghost easing
-    // in — it's solid well before it reaches its resting position.
-    el.style.opacity = Math.min(1, entryP * 3) * (1 - exitP);
-    // `left` is static in CSS and never touched here — like .earthWrap,
-    // this runs every animation frame, so keeping it to `transform`/
-    // `opacity` only avoids a per-frame layout+repaint on a large,
-    // drop-shadowed element (see EarthLayer for the same fix).
-    el.style.transform = `translate3d(0, calc(${top}vh - 50%), 0) scale(${scale})`;
-  });
-
-  return (
-    <div
-      className={styles.rocketLayer}
-      ref={rocketRef}
-      style={{ backgroundImage: `url("${rocketLaunch}")`, opacity: 0 }}
-      aria-hidden="true"
-    />
-  );
-}
-
-// Photo attributions for slides 2 and 4 (rocket, astronaut) — fixed to the
-// viewport just above the nav dock rather than anchored to each asset, so
-// the credit reads in one stable spot instead of drifting/rotating with the
-// graphic it's crediting. Each link fades in/out on exactly the same
-// schedule as its own slide's statement text (see StatementSection's
-// identical p-based formula), so it's only present while that slide — and
-// the asset it credits — is actually on screen. Earth's own credit is
-// intentionally exempt (see .earthCredit in EarthLayer): it's anchored to
-// the globe itself, which (unlike the rocket/astronaut) is on/near-screen
-// across several slides rather than one, so a single fixed "current slide"
-// credit doesn't fit it.
-function SlideAttributions({ rocketRef, astronautRef }) {
-  const rocketLinkRef = useRef(null);
-  const astronautLinkRef = useRef(null);
-
-  // Static: the rocket itself is gone (see RocketLayer), so its credit is
-  // too; the astronaut stays put in its slide, so its credit shows whenever
-  // that slide is on screen.
-  useScene(rocketRef, 1.2, (p) => {
-    const el = rocketLinkRef.current;
-    if (!el) return;
-    const o = Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
-    el.style.opacity = o;
-    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
-  });
-
-  useScene(astronautRef, 1.2, (p, inView) => {
-    const el = astronautLinkRef.current;
-    if (!el) return;
-    const o = inView !== undefined ? +inView : Math.min(between(p, 0.05, 0.35), 1 - between(p, 0.7, 1));
-    el.style.opacity = o;
-    el.style.pointerEvents = o > 0.05 ? "auto" : "none";
-  });
-
-  return (
-    <div className={styles.slideAttribution}>
-      <a
-        ref={rocketLinkRef}
-        href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.slideAttributionLink}
-        style={{ opacity: 0 }}
-      >
-        Atlantis, STS-129: NASA/Kenny Allen
-      </a>
-      <a
-        ref={astronautLinkRef}
-        href="https://images.nasa.gov/details/s84-27017"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.slideAttributionLink}
-        style={{ opacity: 0 }}
-      >
-        Bruce McCandless II, STS-41-B: NASA
-      </a>
-    </div>
   );
 }
 
@@ -926,7 +930,7 @@ const PROBLEMS = [
     planet: marsPlanet,
     Ico: IcoCargo,
     title: "Resupply is limited",
-    text: "On long-duration missions, replacement medicines may take months to arrive — or may be impossible to deliver.",
+    text: "On long-duration missions, replacement medicines may take months to arrive or may be impossible to deliver.",
     credit: { url: "https://images.nasa.gov/details/PIA03276", label: "Mars: NASA/JPL/MSSS", title: "Mars at Ls 357°: Tharsis — NASA ID PIA03276 — NASA/JPL/Malin Space Science Systems" },
   },
   {
@@ -1065,7 +1069,7 @@ function ProblemSection() {
   return (
     <section className={styles.problemSection} ref={ref}>
       <div className={styles.problemSticky}>
-        {/* Same pill as the "Our Solution" tag (StatementSection). */}
+        {/* Same pill as the "Our Solution" tag. */}
         <span className={styles.tag} ref={kickerRef} style={{ opacity: 0 }}>
           <span className={styles.tagDot} />
           The challenge
@@ -1218,274 +1222,219 @@ const solDsup = "https://static.igem.wiki/teams/6341/wiki/images/dsup.avif";
 const solOrganisms = "https://static.igem.wiki/teams/6341/wiki/images/organisms.avif";
 const solVial = "https://static.igem.wiki/teams/6341/wiki/images/vial.avif";
 
-// ── Solution (slide 7) ────────────────────────────────────────────────────────
-// One slide: the "Our Solution" title and the three-step explanation
-// (recombineering → resilient chassis → protein production), each with its own picture.
+const homeImg = "https://static.igem.wiki/teams/6341/wiki/content/home/";
+const HARDWARE_PHOTOS = [
+  { src: `${homeImg}hardware-desert-setup.avif`, alt: "Setting up the SHIHAB prototype on a folding table in the desert" },
+  { src: `${homeImg}bioreactor-prototype.avif`, alt: "The SHIHAB bioreactor prototype on a lab bench, its screen reading “Welcome, SHIHAB Bioreactor”" },
+  { src: `${homeImg}hardware-desert-team.avif`, alt: "A group standing behind the SHIHAB prototype in the desert" },
+];
+
+// Stands in for a video that isn't on iGEM's video server yet. Swap it for
+// the video.igem.org embed once it is (wiki videos must come from there).
+function VideoPlaceholder({ title, className = "" }) {
+  return (
+    <figure className={`${styles.videoSlot} ${className}`}>
+      <div className={styles.videoBox}>
+        <span className={styles.videoPlay} aria-hidden="true">
+          <svg viewBox="0 0 20 20"><path d="M7 5l8 5-8 5z" fill="currentColor" /></svg>
+        </span>
+        <span className={styles.videoSoon}>Video coming soon</span>
+      </div>
+      <figcaption className={styles.videoCap}>{title}</figcaption>
+    </figure>
+  );
+}
+
+// ── Our Solution (slides 7–8) ─────────────────────────────────────────────────
+// One pinned slide in two parts. Scrolling slides part 1 out to the left and
+// part 2 in from the right while the "Our Solution" tag stays where it is,
+// instead of scrolling down to a second slide (Sept 2026 brief). Part 1: the
+// three-step chassis story. Part 2: the platform, shown through the hardware
+// video, photos and Nadia's animation, then four short steps and a bar of
+// design principles. Up to 900px wide the two parts simply stack and scroll
+// (see .solutionSection in Home.module.scss).
+
+const SOL_RANGE = 3.6; // viewport-heights of pin; .solutionSection is 460svh
+const SOL_SLIDE = [0.34, 0.5]; // progress over which the parts swap
+const SOL_PART_P = [0.3, 0.9]; // where each part is fully on screen
 
 const SOLUTION_STRESSORS = ["Radiation", "Microgravity", "Temperature fluctuations"];
 const SOLUTION_CHASSIS = ["B. subtilis", "S. cerevisiae", "P. pastoris"];
 
-function SolutionSection() {
-  const ref = useRef(null);
-  const headRef = useRef(null);
-  const stepRefs = useRef([]);
-
-  useScene(ref, 1.8, (p) => {
-    if (headRef.current) {
-      const o = between(p, 0.0, 0.16);
-      headRef.current.style.opacity = o;
-      headRef.current.style.transform = `translateY(${lerp(22, 0, o)}px)`;
-    }
-    stepRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const o = clamp01((p - (0.2 + i * 0.15)) / 0.16);
-      el.style.opacity = o;
-      el.style.transform = `translateY(${lerp(26, 0, o)}px)`;
-    });
-  });
-
-  return (
-    <section className={styles.solutionSection} ref={ref}>
-      <div className={styles.solutionSticky}>
-        <div className={styles.solHead} ref={headRef} style={{ opacity: 0 }}>
-          <span className={styles.tag}>
-            <span className={styles.tagDot} />
-            Our Solution
-          </span>
-          <h2 className={styles.solTitle}>
-            <span className={styles.vio}>Resilient microbial chassis</span> for on-demand{" "}
-            <em>biomanufacturing in space</em>
-          </h2>
-          <p className={styles.solLead}>
-            We use recombineering to stably integrate protective genes such as Dsup, strengthening our chassis against
-            space-related stressors and enabling reliable protein production.
-          </p>
-        </div>
-
-        <div className={styles.solSteps}>
-          <div className={styles.solStep} ref={(el) => (stepRefs.current[0] = el)} style={{ opacity: 0 }}>
-            <h3><span className={styles.solNum}>1</span>Recombineering</h3>
-            <img className={`${styles.solImg} ${styles.solImgMid}`} src={solDsup} alt="DNA with a Dsup gene cassette integrated" />
-            <p>Stably integrate protective genes such as Dsup (Damage suppressor) into our chassis.</p>
-          </div>
-
-          <span className={styles.solArrow} aria-hidden="true">→</span>
-
-          <div className={styles.solStep} ref={(el) => (stepRefs.current[1] = el)} style={{ opacity: 0 }}>
-            <h3><span className={styles.solNum}>2</span>Resilient chassis</h3>
-            <img className={styles.solImg} src={solOrganisms} alt="B. subtilis, S. cerevisiae and P. pastoris" />
-            <div className={styles.solNames}>
-              {SOLUTION_CHASSIS.map((n) => <span key={n}>{n}</span>)}
-            </div>
-            <div className={styles.stressors}>
-              {SOLUTION_STRESSORS.map((x) => <span key={x} className={styles.stressor}>{x}</span>)}
-            </div>
-            <p>Engineered chassis with enhanced tolerance to space conditions.</p>
-          </div>
-
-          <span className={styles.solArrow} aria-hidden="true">→</span>
-
-          <div className={styles.solStep} ref={(el) => (stepRefs.current[2] = el)} style={{ opacity: 0 }}>
-            <h3><span className={styles.solNum}>3</span>Protein production</h3>
-            <img className={`${styles.solImg} ${styles.solImgTall} ${styles.solImgMid}`} src={solVial} alt="A vial of purified protein" />
-            <p>Enables production of high-value proteins for space applications.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── System (slide 8) ──────────────────────────────────────────────────────────
-// Second part of "Our Solution": what the platform is and how it runs, as four
-// blocks around a central picture, then a bar of four design principles.
-
-// Same CAD model as the Hardware page's BioreactorModel (see that file for how
-// the .glb was generated).
-const bioreactorGlb = "https://static.igem.wiki/teams/6341/wiki/3d-models/bioreactor.glb";
-
-// Colour grade for the CAD materials, keyed by the material name's prefix
-// (names look like "XID_PlasticMatteRed_<hash>"). The red feet and bolts and
-// the blue cap become the violet accents, the yellow heater film a deep violet;
-// the beige and white plastics move to
-// the site's cool indigo neutrals so the model sits in the page's palette.
-// Colours are the tokens from src/styles/index.scss.
-const BIOREACTOR_GRADE = {
-  PlasticMatteRed: { color: "#B16DFF", emissive: "#3E2754", rough: 0.5 },
-  PaintEnamelGlossyRed: { color: "#C07FFF", emissive: "#3E2754" },
-  Opaque100100255: { color: "#9A58E6", emissive: "#5A3973" },
-  PolymideKapton: { color: "#724A92", emissive: "#3E2754", rough: 0.35 },
-  PaekBeige: { color: "#3F4162", rough: 0.4 },
-  ABSWhite: { color: "#B5B6C8", rough: 0.35 },
-  PlasticGlossyWhite: { color: "#B5B6C8", rough: 0.3 },
-  AcetalResinWhite: { color: "#B5B6C8", rough: 0.35 },
-  Opaque236236236: { color: "#8E90A8" },
-  Opaque203203203: { color: "#8E90A8" },
-  Opaque333333: { color: "#12142F" },
-  SteelSatin: { color: "#B5B6C8", rough: 0.3 },
-  GlassClear: { color: "#E4CCFF", alpha: 0.3 },
-};
-
-// glTF colour factors are linear, the tokens are sRGB.
-function linearRgb(hex) {
-  return [1, 3, 5].map((i) => {
-    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
-    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-  });
-}
-
-function gradeBioreactor(viewer) {
-  for (const material of viewer.model?.materials ?? []) {
-    const grade = BIOREACTOR_GRADE[material.name.split("_")[1]];
-    if (!grade) continue;
-    const pbr = material.pbrMetallicRoughness;
-    const alpha = grade.alpha ?? pbr.baseColorFactor[3];
-    pbr.setBaseColorFactor([...linearRgb(grade.color), alpha]);
-    if (grade.rough !== undefined) pbr.setRoughnessFactor(grade.rough);
-    if (grade.emissive) material.setEmissiveFactor(linearRgb(grade.emissive));
-  }
-}
-
-// The bioreactor, spinning slowly in place of a flat picture. model-viewer is a
-// large dependency (plus a 1.5 MB model), so it's imported about three screens
-// early, while the previous slide is still pinned, to be ready on arrival.
-// Not interactive (no camera controls), so it never catches the page's scroll.
-function BioreactorSpin({ innerRef }) {
-  const wrapRef = useRef(null);
-  const viewerRef = useRef(null);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    let cancelled = false;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        io.disconnect();
-        import("@google/model-viewer")
-          .then(() => !cancelled && setReady(true))
-          .catch((err) => console.error("BioreactorSpin: failed to load model-viewer", err));
-      },
-      { rootMargin: "300% 0px" },
-    );
-    io.observe(el);
-    return () => {
-      cancelled = true;
-      io.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const viewer = viewerRef.current;
-    if (!ready || !viewer) return;
-    const onLoad = () => gradeBioreactor(viewer);
-    viewer.addEventListener("load", onLoad);
-    return () => viewer.removeEventListener("load", onLoad);
-  }, [ready]);
-
-  const reducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  return (
-    <div
-      className={`${styles.sysImg} ${styles.sysModel}`}
-      ref={(el) => {
-        wrapRef.current = el;
-        innerRef.current = el;
-      }}
-      style={{ opacity: 0 }}
-    >
-      {ready && (
-        // model-viewer's own kebab-case attributes, not React props.
-        <model-viewer
-          ref={viewerRef}
-          src={bioreactorGlb}
-          alt="3D model of SHIHAB's bioreactor: a glass culture bottle with stirrer and sensors, held under the motor and electronics housing"
-          auto-rotate={reducedMotion ? undefined : ""}
-          auto-rotate-delay="0"
-          rotation-per-second="20deg"
-          interaction-prompt="none"
-          disable-zoom=""
-          environment-image="neutral"
-          tone-mapping="neutral"
-          exposure="1.05"
-          shadow-intensity="0"
-          camera-orbit="35deg 75deg 95%"
-        />
-      )}
-    </div>
-  );
-}
-
 const SYSTEM_STEPS = [
-  { title: "Grow", text: "The bioreactor maintains predefined culture conditions using integrated sensors and programmed feedback controls." },
-  { title: "Monitor", text: "Key parameters, including temperature, optical density (OD), and pH, are monitored in real time." },
-  { title: "Induce", text: "Once the culture reaches the target optical density, protein production is triggered automatically." },
-  { title: "Purify", text: "The culture broth containing the secreted protein is transferred to the downstream purification system, where the target biomolecule is recovered and purified." },
+  { title: "Grow", text: "Automatically maintain optimal culture conditions." },
+  { title: "Monitor", text: "Track temperature, OD, and pH in real time." },
+  { title: "Induce", text: "Trigger protein production at the target OD." },
+  { title: "Purify", text: "Automatically recover and purify the secreted protein." },
 ];
 
-const SYSTEM_PRINCIPLES = ["Low-power operation", "Minimal crew intervention", "Closed system", "Compact and modular"];
+const SYSTEM_PRINCIPLES = ["Low power", "Minimal crew time", "Closed system", "Compact and modular"];
 
-function SystemSection() {
+// Jumps to a part of the slide (hero "Learn more", the part dots). Lands
+// where that part is fully revealed rather than at the section's top edge,
+// where nothing has faded in yet.
+function scrollToSolutionPart(part) {
+  const el = document.getElementById("our-solution");
+  if (!el) return;
+  // Stacked (narrow screens), the section isn't pinned and is only as tall as its content.
+  const pinned = el.offsetHeight > viewportH() * SOL_RANGE;
+  const top = el.offsetTop + (pinned ? viewportH() * SOL_RANGE * SOL_PART_P[part] : 0);
+  const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top, behavior: smooth ? "smooth" : "auto" });
+}
+
+function goToSolution(e) {
+  e.preventDefault();
+  scrollToSolutionPart(0);
+}
+
+function SolutionSection() {
   const ref = useRef(null);
-  const headRef = useRef(null);
-  const imgRef = useRef(null);
-  const stepRefs = useRef([]);
-  const barRef = useRef(null);
+  const trackRef = useRef(null);
+  const p1Refs = useRef([]);
+  const p2Refs = useRef([]);
+  const [part, setPart] = useState(0);
+  const partRef = useRef(0);
 
-  useScene(ref, 1.8, (p) => {
-    if (headRef.current) {
-      const o = between(p, 0.0, 0.14);
-      headRef.current.style.opacity = o;
-      headRef.current.style.transform = `translateY(${lerp(22, 0, o)}px)`;
-    }
-    if (imgRef.current) {
-      const o = between(p, 0.14, 0.3);
-      imgRef.current.style.opacity = o;
-      imgRef.current.style.transform = `scale(${lerp(0.92, 1, o)})`;
-    }
-    stepRefs.current.forEach((el, i) => {
+  // Reveals play once (see useScene); part 1's finish before the swap,
+  // part 2's after it.
+  useScene(ref, SOL_RANGE, (p) => {
+    p1Refs.current.forEach((el, i) => {
       if (!el) return;
-      const o = clamp01((p - (0.3 + i * 0.1)) / 0.14);
+      const o = clamp01((p - (i === 0 ? 0 : 0.06 + i * 0.05)) / 0.08);
       el.style.opacity = o;
-      el.style.transform = `translateY(${lerp(24, 0, o)}px)`;
+      el.style.transform = `translateY(${lerp(22, 0, o)}px)`;
     });
-    if (barRef.current) barRef.current.style.opacity = between(p, 0.72, 0.9);
+    p2Refs.current.forEach((el, i) => {
+      if (!el) return;
+      const o = clamp01((p - (0.5 + i * 0.035)) / 0.07);
+      el.style.opacity = o;
+      el.style.transform = `translateY(${lerp(22, 0, o)}px)`;
+    });
   });
 
-  const step = (i) => (
-    <div className={styles.sysStep} ref={(el) => (stepRefs.current[i] = el)} style={{ opacity: 0 }}>
-      <h3><span className={styles.solNum}>{i + 1}</span>{SYSTEM_STEPS[i].title}</h3>
-      <p>{SYSTEM_STEPS[i].text}</p>
-    </div>
-  );
+  // The swap itself is navigation, not a reveal, so it never latches: it
+  // follows the scroll position both ways, every time.
+  useScrollUnits(ref, (units) => {
+    const s = smoothstep(between(units / SOL_RANGE, SOL_SLIDE[0], SOL_SLIDE[1]));
+    if (trackRef.current) trackRef.current.style.transform = `translate3d(${-50 * s}%, 0, 0)`;
+    const now = s > 0.5 ? 1 : 0;
+    if (now !== partRef.current) {
+      partRef.current = now;
+      setPart(now);
+    }
+  });
+
+  const p1 = (i) => (el) => (p1Refs.current[i] = el);
+  const p2 = (i) => (el) => (p2Refs.current[i] = el);
+  const hidden = { opacity: 0 };
 
   return (
-    <section className={styles.systemSection} ref={ref}>
-      <div className={styles.systemSticky}>
-        <div className={styles.solHead} ref={headRef} style={{ opacity: 0 }}>
+    <section className={styles.solutionSection} ref={ref} id="our-solution">
+      <div className={styles.solutionSticky}>
+        <div className={styles.solTagRow}>
           <span className={styles.tag}>
             <span className={styles.tagDot} />
             Our Solution
           </span>
-          <h2 className={styles.solTitle}>
-            SHIHAB is an <em>autonomous biomanufacturing</em> platform
-          </h2>
-          <p className={styles.solLead}>
-            We combine engineered microbial chassis with a compact bioreactor and automated downstream processing,
-            designed around the constraints of spaceflight.
-          </p>
+          <div className={styles.solDots}>
+            {["Resilient chassis", "Autonomous platform"].map((label, i) => (
+              <button
+                key={label}
+                type="button"
+                className={part === i ? styles.solDotOn : ""}
+                aria-label={`Part ${i + 1}: ${label}`}
+                aria-current={part === i ? "true" : undefined}
+                onClick={() => scrollToSolutionPart(i)}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className={styles.sysBody}>
-          <div className={styles.sysCol}>{step(0)}{step(1)}</div>
-          <BioreactorSpin innerRef={imgRef} />
-          <div className={styles.sysCol}>{step(2)}{step(3)}</div>
-        </div>
+        <div className={styles.solViewport}>
+          <div className={styles.solTrack} ref={trackRef}>
 
-        <ul className={styles.sysBar} ref={barRef} style={{ opacity: 0 }}>
-          {SYSTEM_PRINCIPLES.map((x) => <li key={x}>{x}</li>)}
-        </ul>
+            <div className={styles.solPart}>
+              <div className={`${styles.solHead} ${styles.solReveal}`} ref={p1(0)} style={hidden}>
+                <h2 className={styles.solTitle}>
+                  <span className={styles.vio}>SHIHAB</span> enables <em>on-demand biologics</em> production in space
+                </h2>
+                <p className={styles.solLead}>
+                  We use recombineering to stably integrate protective genes such as Dsup, strengthening our chassis
+                  against space-related stressors and enabling reliable protein production.
+                </p>
+              </div>
+
+              <div className={styles.solSteps}>
+                <div className={`${styles.solStep} ${styles.solReveal}`} ref={p1(1)} style={hidden}>
+                  <h3><span className={styles.solNum}>1</span>Recombineering</h3>
+                  <img className={`${styles.solImg} ${styles.solImgMid}`} src={solDsup} alt="DNA with a Dsup gene cassette integrated" />
+                  <p>Stably integrate protective genes such as Dsup (Damage suppressor) into our chassis.</p>
+                </div>
+
+                <span className={styles.solArrow} aria-hidden="true">→</span>
+
+                <div className={`${styles.solStep} ${styles.solReveal}`} ref={p1(2)} style={hidden}>
+                  <h3><span className={styles.solNum}>2</span>Resilient chassis</h3>
+                  <img className={styles.solImg} src={solOrganisms} alt="B. subtilis, S. cerevisiae and P. pastoris" />
+                  <div className={styles.solNames}>
+                    {SOLUTION_CHASSIS.map((n) => <span key={n}>{n}</span>)}
+                  </div>
+                  <div className={styles.stressors}>
+                    {SOLUTION_STRESSORS.map((x) => <span key={x} className={styles.stressor}>{x}</span>)}
+                  </div>
+                  <p>Engineered chassis with enhanced tolerance to space conditions.</p>
+                </div>
+
+                <span className={styles.solArrow} aria-hidden="true">→</span>
+
+                <div className={`${styles.solStep} ${styles.solReveal}`} ref={p1(3)} style={hidden}>
+                  <h3><span className={styles.solNum}>3</span>Protein production</h3>
+                  <img className={`${styles.solImg} ${styles.solImgTall} ${styles.solImgMid}`} src={solVial} alt="A vial of purified protein" />
+                  <p>Enables production of high-value proteins for space applications.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.solPart}>
+              <div className={`${styles.solHead} ${styles.solReveal}`} ref={p2(0)} style={hidden}>
+                <h2 className={styles.solTitle}>
+                  SHIHAB is an <em>autonomous biomanufacturing</em> platform
+                </h2>
+                <p className={styles.solLead}>
+                  We integrate engineered microorganisms, a modular bioreactor, and automated purification to produce
+                  high-value proteins when and where they are needed.
+                </p>
+              </div>
+
+              <div className={styles.sysMedia}>
+                <div className={`${styles.sysVideo} ${styles.solReveal}`} ref={p2(1)} style={hidden}>
+                  <VideoPlaceholder title="Hardware demo" />
+                </div>
+                <div className={`${styles.sysPhotos} ${styles.solReveal}`} ref={p2(2)} style={hidden}>
+                  <PhotoDeck photos={HARDWARE_PHOTOS} className={styles.sysDeck} compact />
+                </div>
+                <div className={`${styles.sysAnim} ${styles.solReveal}`} ref={p2(3)} style={hidden}>
+                  <HardwareAnimation />
+                </div>
+              </div>
+
+              <ol className={styles.sysBlocks}>
+                {SYSTEM_STEPS.map(({ title, text }, i) => (
+                  <li key={title} className={`${styles.sysBlock} ${styles.solReveal}`} ref={p2(4 + i)} style={hidden}>
+                    <h3><span className={styles.solNum}>{i + 1}</span>{title}</h3>
+                    <p>{text}</p>
+                  </li>
+                ))}
+              </ol>
+
+              <ul className={`${styles.sysBar} ${styles.solReveal}`} ref={p2(8)} style={hidden}>
+                {SYSTEM_PRINCIPLES.map((x) => <li key={x}>{x}</li>)}
+              </ul>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1525,7 +1474,7 @@ function IcoAdaptable({ className }) {
 }
 
 const CAPABILITIES = [
-  { Ico: IcoScalable,     label: "Scalable",     desc: "Production scales to whatever the mission demands — from a single dose to a full crew supply." },
+  { Ico: IcoScalable,     label: "Scalable",     desc: "Production scales to whatever the mission demands, from a single dose to a full crew supply." },
   { Ico: IcoProgrammable, label: "Programmable", desc: "Genetic circuits are retargeted to express new therapeutics without rebuilding the platform." },
   { Ico: IcoAdaptable,    label: "Adaptable",    desc: "Engineered to keep operating across the environmental extremes of long-duration spaceflight." },
 ];
@@ -1534,8 +1483,10 @@ function CapabilitiesSection() {
   const ref = useRef(null);
   const textRef = useRef(null);
   const tileRefs = useRef([]);
+  const rocketRef = useRef(null);
+  const creditRef = useRef(null);
 
-  useScene(ref, 1.8, (p) => {
+  useScene(ref, 1.8, (p, inView) => {
     if (textRef.current) textRef.current.style.opacity = between(p, 0.0, 0.18);
     CAPABILITIES.forEach((_, i) => {
       const o = clamp01((p - (0.22 + i * 0.13)) / 0.16);
@@ -1545,59 +1496,124 @@ function CapabilitiesSection() {
         el.style.transform = `translateY(${lerp(28, 0, o)}px)`;
       }
     });
-  });
+    // Shuttle Atlantis rises in beside the statement, holds while the tiles
+    // come in, then launches off the top (ease-in) as the slide ends.
+    const rise = smoothstep(between(p, 0, 0.3));
+    const launch = between(p, 0.8, 1);
+    if (rocketRef.current) {
+      rocketRef.current.style.opacity = between(p, 0, 0.1) * (1 - launch);
+      rocketRef.current.style.transform =
+        `translateY(${(1 - rise) * 60 - launch * launch * 120}vh) scale(${lerp(1, 0.7, launch)})`;
+    }
+    if (creditRef.current) {
+      const o = inView !== undefined ? +inView : Math.min(between(p, 0.05, 0.3), 1 - between(p, 0.8, 0.95));
+      creditRef.current.style.opacity = o;
+      creditRef.current.style.pointerEvents = o > 0.05 ? "auto" : "none";
+    }
+  }, 0.75); // static pose: tiles in, rocket resting
 
   return (
     <section className={styles.capSection} ref={ref}>
       <div className={styles.capSticky}>
-        <p
-          className={`${styles.bigLine} ${styles.capStatement}`}
-          ref={textRef}
-          style={{ opacity: 0, maxWidth: "min(680px, 92vw)" }}
-        >
-          SHIHAB is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
-        </p>
-        <div className={styles.capTiles}>
-          {CAPABILITIES.map(({ Ico, label, desc }, i) => (
-            <div
-              key={label}
-              className={styles.capTile}
-              ref={(el) => (tileRefs.current[i] = el)}
-              style={{ opacity: 0 }}
-            >
-              <span className={styles.capIdx}>0{i + 1}</span>
-              <Ico className={styles.capIco} />
-              <strong>{label}</strong>
-              <p>{desc}</p>
-            </div>
-          ))}
+        <div className={styles.capRocket} ref={rocketRef} style={{ opacity: 0 }} aria-hidden="true">
+          <img src={rocketLaunch} alt="" />
         </div>
+        <div className={styles.capBody}>
+          <p
+            className={`${styles.bigLine} ${styles.capStatement}`}
+            ref={textRef}
+            style={{ opacity: 0, maxWidth: "min(680px, 92vw)" }}
+          >
+            SHIHAB is <em>scalable</em>, <em>programmable</em>, and <em>adaptable</em> to mission needs.
+          </p>
+          <div className={styles.capTiles}>
+            {CAPABILITIES.map(({ Ico, label, desc }, i) => (
+              <div
+                key={label}
+                className={styles.capTile}
+                ref={(el) => (tileRefs.current[i] = el)}
+                style={{ opacity: 0 }}
+              >
+                <span className={styles.capIdx}>0{i + 1}</span>
+                <Ico className={styles.capIco} />
+                <strong>{label}</strong>
+                <p>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className={styles.slideAttribution}>
+        <a
+          ref={creditRef}
+          href="https://www.nasa.gov/image-detail/amf-sts129-s-092/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.slideAttributionLink}
+          style={{ opacity: 0 }}
+        >
+          Atlantis, STS-129: NASA/Kenny Allen
+        </a>
       </div>
     </section>
   );
 }
 
 // ── Outro (slide 9) ────────────────────────────────────────────────────────────
+// The promotion video, in place of the SHIHAB logo that used to close the
+// story (Sept 2026 brief). Placeholder until it's embedded from video.igem.org.
 
 function OutroSection() {
   const ref = useRef(null);
   const glowRef = useRef(null);
-  const logoRef = useRef(null);
+  const videoRef = useRef(null);
+  const astronautRef = useRef(null);
+  const creditRef = useRef(null);
 
-  useScene(ref, 1.4, (p) => {
+  useScene(ref, 1.4, (p, inView) => {
     const o = between(p, 0.18, 0.55);
-    if (logoRef.current) {
-      logoRef.current.style.opacity = o;
-      logoRef.current.style.transform = `scale(${lerp(0.68, 1, between(p, 0.18, 0.7))})`;
+    if (videoRef.current) {
+      videoRef.current.style.opacity = o;
+      videoRef.current.style.transform = `scale(${lerp(0.86, 1, between(p, 0.18, 0.7))})`;
+    }
+    // Drifts in from the left a beat before the video settles.
+    const a = smoothstep(between(p, 0.1, 0.5));
+    if (astronautRef.current) {
+      astronautRef.current.style.opacity = a;
+      astronautRef.current.style.transform = `translateX(${lerp(-60, 0, a)}px)`;
     }
     if (glowRef.current) glowRef.current.style.opacity = between(p, 0.3, 0.7) * 0.9;
+    if (creditRef.current) {
+      const c = inView !== undefined ? +inView : between(p, 0.15, 0.45);
+      creditRef.current.style.opacity = c;
+      creditRef.current.style.pointerEvents = c > 0.05 ? "auto" : "none";
+    }
   });
 
   return (
     <section className={styles.outroSection} ref={ref}>
       <div className={styles.outroSticky}>
         <div className={styles.outroGlow} ref={glowRef} style={{ opacity: 0 }} aria-hidden="true" />
-        <img src={shihabLogo} alt="SHIHAB" className={styles.outroLogo} ref={logoRef} style={{ opacity: 0 }} />
+        {/* Bruce McCandless II's untethered MMU spacewalk (STS-41-B), with a
+            slow idle tilt (CSS, not scroll-tied) so it reads as drifting. */}
+        <div className={styles.outroAstronaut} ref={astronautRef} style={{ opacity: 0 }} aria-hidden="true">
+          <img src={astronautMmu} alt="" className={styles.astronautImg} />
+        </div>
+        <div className={styles.outroVideo} ref={videoRef} style={{ opacity: 0 }}>
+          <VideoPlaceholder title="SHIHAB promotion video" />
+        </div>
+      </div>
+      <div className={styles.slideAttribution}>
+        <a
+          ref={creditRef}
+          href="https://images.nasa.gov/details/s84-27017"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.slideAttributionLink}
+          style={{ opacity: 0 }}
+        >
+          Bruce McCandless II, STS-41-B: NASA
+        </a>
       </div>
     </section>
   );
@@ -1696,8 +1712,6 @@ function ExploreSection() {
 
 export default function Home() {
   const heroOrbitRef = useRef(null);
-  const rocketGroupRef = useRef(null);
-  const astronautGroupRef = useRef(null);
 
   return (
     // ambientMeteors off — <Starfield/> below already renders Home's own,
@@ -1718,28 +1732,9 @@ export default function Home() {
         <HeroSection />
         <OrbitSection groupRef={heroOrbitRef} />
       </div>
-      <RocketLayer groupRef={rocketGroupRef} />
-      <SlideAttributions rocketRef={rocketGroupRef} astronautRef={astronautGroupRef} />
-      <StatementSection decor={<PlanetDecor />}>
-        Future missions may last for <em>months or even years</em>.
-        <br />
-        Every medicine must <em>survive the journey</em>, remain effective, and be available when needed.
-      </StatementSection>
       <ProblemSection />
-      <div ref={rocketGroupRef}>
-        <StatementSection>
-          The <em>farther</em> we travel, the <em>less</em> we can depend on Earth.
-        </StatementSection>
-      </div>
-      <div ref={astronautGroupRef}>
-        <StatementSection decor={<AstronautDecor />} className={styles.statementRight}>
-          What if, instead of <em>carrying</em> every medicine, astronauts carried the{" "}
-          <em>ability to make them</em>?
-        </StatementSection>
-      </div>
       <RevealSection />
       <SolutionSection />
-      <SystemSection />
       <CapabilitiesSection />
       <OutroSection />
       <ExploreSection />

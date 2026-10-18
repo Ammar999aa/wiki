@@ -1,0 +1,159 @@
+// The box is sized by its parent (width); the stage keeps the animation's
+// 4:3 frame. Full screen, the stage fills the screen instead.
+
+.anim {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg);
+  container-type: inline-size;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  // Vertical swipes still scroll the page; horizontal drags orbit the camera.
+  touch-action: pan-y;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 16px;
+  text-align: center;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+// Step title only in a small box; the sentence under it once there's room.
+.cap {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(10, 10, 39, 0.66);
+  pointer-events: none;
+  text-shadow: 0 2px 12px #000;
+
+  b {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  span {
+    display: none;
+    font-size: 0.74rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  @container (min-width: 440px) {
+    left: 16px;
+    right: auto;
+    bottom: 18px;
+    max-width: 440px;
+    padding: 12px 16px;
+
+    b { font-size: 1rem; }
+    span { display: block; font-size: 0.86rem; }
+  }
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+
+  i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--primary);
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+
+  button {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+
+    svg { width: 15px; height: 15px; }
+
+    &:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: color-mix(in oklab, var(--primary) 18%, transparent);
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+}
+
+.note {
+  flex: 1;
+  min-width: 0;
+  margin-left: 4px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.6rem;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.full {
+  justify-content: center;
+  padding: 16px;
+  background: var(--bg);
+
+  .stage {
+    flex: 1;
+    aspect-ratio: auto;
+  }
+}

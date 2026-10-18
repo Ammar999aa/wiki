@@ -20,16 +20,23 @@
   height: 200svh;
 }
 
+/* Copy on the left (Earth fills the right), the process strip across the
+   bottom, clear of the nav dock. */
 .heroSticky {
   position: sticky;
   top: 0;
   z-index: 2;
   height: 100dvh;
+  box-sizing: border-box;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 0;
+  --hero-x: clamp(24px, 8vw, 140px);
+  --hero-bottom: var(--nav-clearance);
+  /* Top: clear of the sponsor banner (SponsorBanner, ~70px, overlays the page top).
+     The process strip is absolutely placed, so the copy centres on its own. */
+  padding: clamp(84px, 12vh, 112px) var(--hero-x) var(--hero-bottom);
 }
 
 /* Earth layers — position: fixed (not nested/sticky in Hero) so it can stay
@@ -189,9 +196,9 @@
 
 /* Full-bleed wipe for EarthLayer's exit cinematic (see Home.jsx) — covers
    the giant globe in the page's own background color, then fades away to
-   reveal the rocket slide underneath instead of a hard cut. A sibling of
+   reveal the next slide underneath instead of a hard cut. A sibling of
    .earthWrap, not a child, so it's unaffected by that element's transform;
-   above earthWrap/rocketLayer (z-index 1) and .slideAttribution (5) so it
+   above earthWrap (z-index 1) and .slideAttribution (5) so it
    fully masks both during the handoff, below Menu (11+) so nav stays usable
    throughout. Opacity is driven entirely from EarthLayer's scroll handler. */
 .earthWipe {
@@ -269,11 +276,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
-  will-change: transform, opacity;
-  margin-right: auto;
-  margin-left: clamp(24px, 8vw, 140px);
-  max-width: 620px;
+  gap: clamp(10px, 5vh - 18px, 26px);
+  max-width: 640px;
+  --logo-h: clamp(4rem, min(16.5vw, 70vh - 340px), 14.5rem);
+  /* Shrinks toward its top-left corner as the strip rises in (HeroSection).
+     No will-change: a pre-rastered layer would blur the scaled text. */
+  transform-origin: 0 0;
 }
 
 /* Eyebrow line — the literal word "iGEM" is replaced by the KAUST iGEM
@@ -283,7 +291,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 0.8rem;
+  font-size: clamp(0.66rem, 1.5vh, 0.8rem);
   letter-spacing: 0.42em;
   text-transform: uppercase;
   font-weight: 600;
@@ -293,7 +301,7 @@
 }
 
 .eyebrowLogo {
-  height: 34px;
+  height: clamp(26px, 4vh, 34px);
   width: auto;
   display: block;
   margin-top: -9px;
@@ -303,10 +311,13 @@
   opacity: 0.6;
 }
 
+/* The logo file has empty space above and below the lettering; the negative
+   margins trim it so the eyebrow and the gloss line sit close to the mark. */
 .wordmark {
   position: relative;
   display: grid;
-  place-items: center;
+  place-items: center start;
+  margin-block: calc(var(--logo-h) * -0.17);
 }
 
 .wordmarkLatin {
@@ -317,8 +328,10 @@
   justify-content: center;
 }
 
+/* The original wordmark size, capped by height too so the whole hero fits
+   on one screen. */
 .wordmarkLogo {
-  height: clamp(4rem, 16.5vw, 14.5rem);
+  height: var(--logo-h);
   width: auto;
   filter: drop-shadow(0 0 22px rgba(123, 158, 255, 0.28));
 }
@@ -327,17 +340,22 @@
   grid-area: 1/1;
   margin: 0;
   font-family: "Aref Ruqaa", serif;
-  font-size: clamp(3.8rem, 14vw, 12rem);
+  font-size: calc(var(--logo-h) * 0.74);
   font-weight: 700;
   letter-spacing: 0;
-  line-height: 1.2;
+  /* 1, not 1.2: its box shouldn't be taller than the logo it replaces, or
+     it pushes the gloss line below away from the wordmark. */
+  line-height: 1;
+  /* Its tail hangs low; lift it clear of the gloss line under the wordmark. */
+  position: relative;
+  top: -0.22em;
   color: #fff;
   text-shadow: 0 0 34px rgba(255, 216, 77, 0.38);
   direction: rtl;
 }
 
 .heroSub {
-  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 300;
   color: rgba(255, 255, 255, 0.78);
   letter-spacing: 0.01em;
@@ -350,30 +368,241 @@
   font-weight: 700;
 }
 
-/* The etymology clause stays whisper-quiet (.heroSub's own thin/muted
-   styling); this is the actual tagline, so it gets full brightness + weight
-   to read as the payoff rather than more explanatory text. */
-.heroSubHighlight {
+.heroTagline {
+  margin: 0;
+  font-size: clamp(1.6rem, min(3.6vw, 5.2vh), 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
   color: #fff;
-  font-weight: 600;
+
+  em {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
 }
 
+.heroLead {
+  margin: 0;
+  max-width: 54ch;
+  font-size: clamp(0.88rem, min(1.15vw, 2vh), 1.06rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+/* A one-row window; .telemetryRoll slides up a row at a time inside it. */
 .heroTelemetry {
-  display: flex;
-  gap: 26px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  --row: 1.8em;
+  height: var(--row);
+  overflow: hidden;
   font-family: ui-monospace, Menlo, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
 
+  span {
+    display: block;
+    height: var(--row);
+    line-height: var(--row);
+    white-space: nowrap;
+  }
+
   span b {
     color: var(--accent);
     font-weight: 600;
   }
+}
+
+.telemetryRoll {
+  animation: telemetryRoll 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes telemetryRoll {
+  0%, 44% { transform: translateY(0); }
+  50%, 94% { transform: translateY(calc(var(--row) * -1)); }
+  100% { transform: translateY(calc(var(--row) * -2)); }
+}
+
+/* No rolling under reduced motion: both readouts, stacked. */
+@media (prefers-reduced-motion: reduce) {
+  .heroTelemetry { height: auto; }
+  .telemetryRoll { animation: none; }
+  .telemetryRoll span[aria-hidden] { display: none; }
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(2px, 0.8vh, 8px);
+}
+
+.ctaPrimary,
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.ctaPrimary {
+  background: var(--accent);
+  color: #1a1500;
+  box-shadow: 0 0 26px rgba(255, 216, 77, 0.28);
+
+  &:hover { transform: translateY(-1px); }
+}
+
+.ctaGhost {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  backdrop-filter: blur(6px);
+
+  &:hover { border-color: var(--primary-300); }
+}
+
+/* Five-step process strip along the bottom of the hero. */
+/* Pinned to the bottom of the hero and hidden below it until the first
+   scroll raises it in (HeroSection sets transform/opacity from then on). */
+.heroProcess {
+  position: absolute;
+  z-index: 3;
+  left: var(--hero-x);
+  right: var(--hero-x);
+  bottom: var(--hero-bottom);
+  max-width: 1180px;
+  margin: 0 auto;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.heroPlatform {
+  margin: 0 0 clamp(10px, 2vh, 20px);
+  text-align: center;
+  font-size: clamp(0.85rem, 1.2vw, 1.02rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.processStrip {
+  --step-gap: clamp(12px, 3vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--step-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// --ico: icon size; the chevron between steps sits at half of it.
+.processStep {
+  --ico: clamp(34px, 5.6vh, 58px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+
+  & + &::before {
+    content: "›";
+    position: absolute;
+    left: calc(var(--step-gap) / -2);
+    top: calc(var(--ico) / 2);
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--primary-400);
+  }
+}
+
+.processIco {
+  width: var(--ico);
+  height: var(--ico);
+  filter: drop-shadow(0 0 14px rgba(177, 109, 255, 0.45));
+}
+
+.processLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.processNum {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(177, 140, 255, 0.7);
+  font-size: 0.66rem;
+  letter-spacing: 0;
+  color: var(--primary-300);
+}
+
+.processDesc {
+  max-width: 19ch;
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* Step icon tones (SVG fills can't take a var() as an attribute, so they're classes). */
+.piLight { fill: var(--primary-200); }
+.piMain { fill: var(--primary); }
+.piAmber { fill: var(--accent); }
+.piBlue { fill: var(--tertiary-400); opacity: 0.95; }
+.piFrame { fill: color-mix(in oklab, var(--primary-700) 70%, transparent); }
+.piLine {
+  fill: none;
+  stroke: var(--primary-200);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Short laptop screens: the descriptions go before anything gets cramped. */
+@media (min-width: 701px) and (max-height: 760px) {
+  .processDesc { display: none; }
+}
+
+@media (max-width: 700px) {
+  .heroSticky {
+    --hero-x: 20px;
+    --hero-bottom: 112px;
+    padding-top: 72px;
+  }
+
+  .heroCopy { gap: 10px; }
+  .heroEyebrow { letter-spacing: 0.2em; gap: 8px; }
+  .heroTelemetry { font-size: 0.62rem; letter-spacing: 0.06em; }
+  .heroCtas .ctaPrimary,
+  .heroCtas .ctaGhost { padding: 10px 18px; font-size: 0.88rem; }
+
+  .processStrip { --step-gap: 6px; }
+  .processStep + .processStep::before { display: none; }
+  .processStep { --ico: 34px; gap: 4px; }
+  .processLabel { font-size: 0.56rem; letter-spacing: 0.06em; }
+  .processNum,
+  .processDesc { display: none; }
 }
 
 /* ── Shared narrative primitives ── */
@@ -437,88 +666,11 @@
   }
 }
 
-/* ── Statement beats (slides 2, 4, 6) ── */
-.tagline {
-  position: relative;
-  height: 220svh;
-}
-
-.taglineSticky {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-inline: 40px;
-  overflow: hidden;
-}
-
-.statementInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-  will-change: opacity, transform;
-  max-width: 780px;
-}
-
-.planetDecor {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
 .accentText { color: var(--accent); }
 
-/* ── Drifting astronaut decoration (used beside slide-4 statement) ──
-   Sits in the same absolute-inset layer as .planetDecor, just further
-   forward (z-index 0 still, but painted after the planets in DOM order —
-   see AstronautDecor in Home.jsx), floating beside the centered statement
-   text rather than covering it. */
-/* Modifier for the astronaut slide's .taglineSticky — nudges the statement
-   text right just enough to clear the astronaut, which floats on the left
-   (see .astronautDecor below), by biasing the centering padding rather than
-   pinning it to the far edge (flex-end read as shoved into the corner).
-   Comes after .taglineSticky in this file so it wins at equal (single-class)
-   specificity. Reset on narrow screens, where the astronaut is downscaled
-   (see .astronautImg's own media query) and there's no width to spare. */
-.statementRight {
-  justify-content: center;
-  padding-inline: clamp(160px, 24vw, 340px) 40px;
-}
-
-@media (max-width: 760px) {
-  .statementRight {
-    justify-content: center;
-    padding-inline: 40px;
-  }
-}
-
-@media (max-width: 700px) {
-  /* Text starts just under the astronaut: the picture's top offset (17svh) plus
-     its height (width x 1.33), so the gap is the same on every phone size. */
-  .statementRight {
-    align-items: flex-start;
-    padding-top: calc(17svh + clamp(130px, 36vw, 190px) * 1.34 + 14px);
-  }
-}
-
-.astronautDecor {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-inline: clamp(16px, 6vw, 90px);
-  pointer-events: none;
-}
-
+/* McCandless's MMU spacewalk beside the promotion video (OutroSection). */
 .astronautImg {
-  width: clamp(200px, 24vw, 340px);
+  width: clamp(150px, 17vw, 270px);
   height: auto;
   display: block;
   filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.55));
@@ -527,9 +679,8 @@
   will-change: transform;
 }
 
-/* Slow, smooth tilt + drift — an idle loop, not tied to scroll position
-   (unlike .planet's drift keyframes, which share the same spirit but this
-   one also rotates, reading as the astronaut tumbling gently in zero-g). */
+/* Slow, smooth tilt + drift — an idle loop, not tied to scroll position,
+   reading as the astronaut tumbling gently in zero-g. */
 @keyframes astronautWobble {
   0% { transform: rotate(6deg) translateY(0); }
   25% { transform: rotate(11deg) translateY(-8px); }
@@ -538,24 +689,13 @@
   100% { transform: rotate(6deg) translateY(0); }
 }
 
-@media (max-width: 700px) {
-  /* Picture above the text, not behind it. */
-  .astronautDecor {
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 17svh;
-  }
-
-  .astronautImg { width: clamp(130px, 36vw, 190px); }
-}
-
 /* ── Essentials row (slide 1) ── */
 .orbitSection {
   position: relative;
   // Sized to match EarthLayer's exit cinematic (see Home.jsx) — the globe's
   // grow/spin/wipe sequence runs from scroll unit 3.15 to ~4.45, and this
   // section's height needs to extend a bit past that (4.75 total, Hero's
-  // 200svh + this) so the rocket slide doesn't start appearing mid-wipe,
+  // 200svh + this) so the next slide doesn't start appearing mid-wipe,
   // without leaving an excessively long dead scroll after it either.
   height: 275svh;
 }
@@ -631,58 +771,12 @@
   font-weight: 700;
 }
 
-/* ── Drifting planet decoration (used behind slide-2 statement) ── */
-.planet {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.p1 { width: 190px; height: 190px; top: 6%; left: -3%; background: radial-gradient(circle at 38% 32%, #9A58E6, #5A3973, #1A0A27); box-shadow: 0 0 44px rgba(177, 109, 255, 0.12); opacity: 0.62; animation: drift1 22s ease-in-out infinite; }
-.p2 { width: 120px; height: 120px; top: 9%; right: 5%; background: radial-gradient(circle at 36% 32%, #FFD84D, #C47D0E, #3A2000); box-shadow: 0 0 32px rgba(255, 216, 77, 0.12); opacity: 0.55; animation: drift2 18s ease-in-out infinite; }
-.p3 { width: 210px; height: 210px; bottom: -6%; right: -4%; background: radial-gradient(circle at 34% 30%, #3F4162, #1E203F, #090927); opacity: 0.55; animation: drift3 26s ease-in-out infinite; }
-.p4 { width: 86px; height: 86px; bottom: 18%; left: 6%; background: radial-gradient(circle at 38% 33%, #D1A8FF, #9A58E6, #3E2754); box-shadow: 0 0 22px rgba(177, 109, 255, 0.18); opacity: 0.52; animation: drift4 20s ease-in-out infinite; }
-.p5 { width: 58px; height: 58px; top: 44%; left: 3%; background: radial-gradient(circle at 38% 33%, #FFB347, #B85C00, #2E1200); box-shadow: 0 0 18px rgba(255, 179, 71, 0.12); opacity: 0.5; animation: drift5 15s ease-in-out infinite; }
-
-@keyframes drift1 { 0%{transform:translate(0,0)} 25%{transform:translate(28px,-35px)} 50%{transform:translate(-10px,-55px)} 75%{transform:translate(-30px,-22px)} 100%{transform:translate(0,0)} }
-@keyframes drift2 { 0%{transform:translate(0,0)} 33%{transform:translate(-25px,32px)} 66%{transform:translate(18px,45px)} 100%{transform:translate(0,0)} }
-@keyframes drift3 { 0%{transform:translate(0,0)} 30%{transform:translate(-40px,-20px)} 60%{transform:translate(-20px,-48px)} 100%{transform:translate(0,0)} }
-@keyframes drift4 { 0%{transform:translate(0,0)} 40%{transform:translate(20px,-28px)} 80%{transform:translate(35px,12px)} 100%{transform:translate(0,0)} }
-@keyframes drift5 { 0%{transform:translate(0,0)} 50%{transform:translate(18px,-22px)} 100%{transform:translate(0,0)} }
-
-/* Atlantis launch — fixed to the viewport (see RocketLayer in Home.jsx) so
-   it isn't cropped by any one section's `overflow: hidden` and persists
-   across slide 2 and slide 3 instead of disappearing when slide 2 unpins. */
-.rocketLayer {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  /* RocketLayer (Home.jsx) never moves this horizontally, so it's static
-     here rather than written every frame. */
-  left: 6%;
-  height: clamp(470px, 74vh, 900px);
-  aspect-ratio: 941 / 1672;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(0 0 14px rgba(255, 210, 140, 0.22))
-    drop-shadow(0 0 50px rgba(255, 200, 120, 0.16));
-  pointer-events: none;
-  /* Positioned purely through `transform` (see EarthLayer's .earthWrap for
-     the same reasoning) — only translateY + scale are touched per frame. */
-  transform: translate3d(0, calc(56vh - 50%), 0);
-  will-change: transform, opacity;
-}
-
-/* Fixed photo-credit strip for slides 2 and 4 (rocket, astronaut) — see
-   SlideAttributions in Home.jsx. Sits just above the nav dock, at the exact
+/* Fixed photo credit for the rocket (CapabilitiesSection) and the astronaut
+   (OutroSection), faded with its own slide. Sits just above the nav dock, at the exact
    gap Menu.module.scss's own .mobilePanelContainer already uses above the
    same dock (38px/68px tall desktop dock, 24px once Menu's own <=768px
    breakpoint shrinks its bottom offset), so this lines up with that rhythm
-   at every width instead of picking an independent offset. Both credit
-   links stack in the same spot (each is independently opacity-toggled by
-   SlideAttributions, so only one is ever visible) rather than each owning
-   separate layout space. */
+   at every width instead of picking an independent offset. */
 .slideAttribution {
   position: fixed;
   left: 50%;
@@ -719,20 +813,6 @@
     bottom: calc(24px + 68px + 12px);
   }
 }
-
-/* Atlantis launch, scaled down for phones — full size otherwise overlaps
-   the centered statement text it slides in beside (see .taglineSticky's
-   z-index, which keeps text readable in front of it regardless). */
-@media (max-width: 700px) {
-  /* Centred horizontally and parked above the statement (see REST_TOP in
-     RocketLayer). `translate` composes with the per-frame `transform`. */
-  .rocketLayer {
-    height: clamp(200px, 32vh, 330px);
-    left: 50%;
-    translate: -50% 0;
-  }
-}
-
 
 /* ── Reveal (slide 5) ── */
 // 280svh = 100svh sticky viewport + 180svh (1.8 viewport-heights) of pin
@@ -804,9 +884,11 @@
   text-shadow: 0 0 30px rgba(255, 216, 77, 0.4);
 }
 
-/* ── Scenarios ── */
-/* Our Solution: title + three-step explanation on one pinned slide. */
-.solutionSection { height: 300svh; }
+/* ── Our Solution (slides 7–8) ── */
+/* One pinned slide in two parts. .solTrack holds both side by side and
+   SolutionSection's scroll handler slides it left, while the tag row above
+   stays put. 460svh = 100svh sticky viewport + SOL_RANGE (3.6) of pin. */
+.solutionSection { height: 460svh; }
 
 .solutionSticky {
   position: sticky;
@@ -816,12 +898,81 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(16px, 3.5vh, 44px);
+  gap: clamp(10px, 2.4vh, 26px);
   /* Bottom padding keeps the cards clear of the nav dock. */
-  padding: 80px clamp(16px, 4vw, 48px) var(--nav-clearance);
+  padding: clamp(36px, 8vh, 80px) 0 var(--nav-clearance);
   overflow: hidden;
 }
+
+.solTagRow {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Which part is showing; each dot jumps to its part. */
+.solDots {
+  display: flex;
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.28);
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    &:hover::after { background: rgba(255, 255, 255, 0.55); }
+  }
+
+  .solDotOn::after {
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+    transform: scale(1.3);
+  }
+}
+
+.solViewport {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.solTrack {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+}
+
+.solPart {
+  flex: 0 0 50%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 clamp(16px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* "safe": if a part is ever taller than the space, it runs off the
+     bottom rather than losing its title off the top. */
+  justify-content: safe center;
+  gap: clamp(14px, 3.2vh, 40px);
+}
+
+.solReveal { will-change: opacity, transform; }
 
 .solHead {
   display: flex;
@@ -830,7 +981,6 @@
   gap: 16px;
   text-align: center;
   max-width: 820px;
-  will-change: opacity, transform;
 }
 
 .solTitle {
@@ -879,7 +1029,6 @@
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
-  will-change: opacity, transform;
 
   h3 {
     display: flex;
@@ -904,6 +1053,7 @@
 .solNum {
   display: grid;
   place-items: center;
+  flex: none;
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -918,19 +1068,6 @@
   flex: none;
   font-size: 1.4rem;
   color: rgba(177, 140, 255, 0.7);
-}
-
-.solPill {
-  font-family: ui-monospace, Menlo, monospace;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #FFD84D;
-  background: rgba(255, 216, 77, 0.07);
-  border: 1px solid rgba(255, 216, 77, 0.35);
-  border-radius: 100px;
-  padding: 4px 12px;
 }
 
 .solImg {
@@ -962,162 +1099,56 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-/* Short laptop screens: tighter type and spacing so the cards clear the nav dock. */
-@media (min-width: 761px) and (max-height: 820px) {
-  .solutionSticky { gap: 14px; padding-top: 56px; }
-  .solHead { gap: 10px; }
-  .solTitle { font-size: clamp(1.4rem, 4.6vh, 2.4rem); }
-  .solLead { font-size: 0.8rem; line-height: 1.5; }
-  .solStep { padding: 14px 16px; gap: 10px; }
-  .solStep p { font-size: 0.78rem; line-height: 1.4; }
-  .solImg { max-height: 18vh; }
-  .solImgTall { max-height: 20vh; }
-}
-
-/* Very short screens: shrink once more rather than run under the nav. */
-@media (min-width: 761px) and (max-height: 660px) {
-  .solutionSticky { gap: 10px; padding-top: 40px; }
-  .solTitle { font-size: clamp(1.2rem, 4.2vh, 1.9rem); }
-  .solLead { font-size: 0.74rem; line-height: 1.4; }
-  .solStep { padding: 10px 14px; gap: 6px; }
-  .solStep h3 { font-size: 0.95rem; }
-  .solStep p { font-size: 0.72rem; }
-  .solImg { max-height: 14vh; }
-  .solImgTall { max-height: 15vh; }
-  .stressor { font-size: 0.55rem; padding: 3px 8px; }
-}
-
-@media (max-width: 760px) {
-  /* Everything has to fit one pinned phone screen, so this is a compact layout. */
-  .solutionSticky {
-    gap: 12px;
-    padding: 56px 14px 92px;
-  }
-
-  .solHead { gap: 10px; }
-  .solTitle { font-size: 1.4rem; }
-  .solLead { font-size: 0.74rem; line-height: 1.45; }
-
-  .solSteps { flex-direction: column; gap: 8px; }
-  .solArrow { display: none; }
-  .solStep { padding: 10px 12px; gap: 6px; }
-  .solStep h3 { font-size: 0.95rem; }
-  .solStep p { font-size: 0.72rem; line-height: 1.4; }
-  /* No room for the step pictures on a phone; the text carries each step. */
-  .solImg { display: none; }
-  .solNames { font-size: 0.74rem; }
-  .stressors { gap: 6px; }
-  .stressor { font-size: 0.52rem; padding: 3px 8px; letter-spacing: 0.06em; }
-}
-
-/* Short phones (e.g. 375×667): pull everything a little closer together. */
-@media (max-width: 760px) and (max-height: 700px) {
-  .solutionSticky { gap: 8px; padding-top: 40px; padding-bottom: 100px; }
-  .solHead { gap: 6px; }
-  .solSteps { gap: 6px; }
-}
-
-/* Our Solution, second part: four blocks around a central picture + a bar of
-   principles on one pinned slide. Reuses .solHead/.solTitle/.solLead/.solNum. */
-.systemSection { height: 320svh; }
-
-.systemSticky {
-  position: sticky;
-  top: 0;
-  height: 100dvh;
-  box-sizing: border-box;
+/* Part 2: video, photo deck and animation in one row. --mh is the media
+   height they share; each cell's width follows from its own aspect ratio
+   (16:9, 4:3 plus the deck's offset room, 4:3), so the three line up. */
+.sysMedia {
+  --gap: clamp(14px, 1.8vw, 28px);
+  --mh: min(30dvh, 290px, calc((100vw - 8vw - 2 * var(--gap) - 26px) / 4.45));
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: clamp(12px, 2.2vh, 24px);
-  padding: 44px clamp(16px, 3vw, 40px) 100px;
-  overflow: hidden;
+  gap: var(--gap);
+  width: 100%;
 }
 
-.sysBody {
+.sysVideo { flex: none; width: calc(var(--mh) * 16 / 9); }
+.sysPhotos { flex: none; width: calc(var(--mh) * 4 / 3 + 26px); }
+.sysAnim { flex: none; width: calc(var(--mh) * 4 / 3); }
+
+.sysBlocks {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(8px, 1.4vw, 20px);
-  width: min(1320px, 100%);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 16px);
+  width: min(1180px, 100%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.sysCol {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 3vh, 34px);
-}
-
-/* The four cards are deliberately uneven — different widths, shifted in and
-   out and up and down around the picture — so they read as scattered, not as
-   a tidy table. `translate` (not `transform`) so it doesn't fight the
-   scroll animation, which writes `transform`. */
-.sysStep {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px 24px;
-  border-radius: var(--radius-md);
+.sysBlock {
+  padding: 14px 18px;
+  border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
-  will-change: opacity, transform;
 
   h3 {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin: 0;
-    font-size: 1.3rem;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
   }
 
   p {
     margin: 0;
-    font-size: 0.98rem;
+    font-size: 0.82rem;
     font-weight: 300;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.7);
-  }
-}
-
-.sysCol:first-child .sysStep:nth-child(1) { width: 92%; translate: -4% -3%; }
-.sysCol:first-child .sysStep:nth-child(2) { width: 84%; align-self: flex-end; translate: 12% 4%; }
-.sysCol:last-child .sysStep:nth-child(1) { width: 86%; translate: -14% -6%; }
-.sysCol:last-child .sysStep:nth-child(2) { width: 94%; align-self: flex-end; translate: 4% 5%; }
-
-.sysImg {
-  width: 100%;
-  max-height: min(56vh, 540px);
-  object-fit: contain;
-  will-change: opacity, transform;
-}
-
-/* The spinning bioreactor (BioreactorSpin). model-viewer needs a real height,
-   not just a max-height; a soft violet glow sits behind the model. */
-.sysModel {
-  position: relative;
-  height: min(56vh, 540px);
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 12% 8%;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(177, 109, 255, 0.28), rgba(177, 109, 255, 0.08) 60%, transparent);
-    filter: blur(24px);
-    pointer-events: none;
-  }
-
-  model-viewer {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    --poster-color: transparent;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.66);
   }
 }
 
@@ -1127,20 +1158,20 @@
   justify-content: center;
   gap: 10px clamp(18px, 3vw, 44px);
   width: min(1180px, 100%);
+  box-sizing: border-box;
   margin: 0;
-  padding: 16px 28px;
+  padding: 12px 28px;
   list-style: none;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
-  will-change: opacity;
 
   li {
     display: flex;
     align-items: center;
     gap: 9px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.88);
   }
@@ -1156,54 +1187,151 @@
   }
 }
 
-/* Short laptop screens: shrink type and picture so the bar clears the nav dock. */
-@media (min-width: 901px) and (max-height: 800px) {
-  .systemSticky { gap: 10px; padding-top: 30px; padding-bottom: 96px; justify-content: flex-start; }
-  .systemSticky .solTitle { font-size: clamp(1.6rem, 5vh, 2.4rem); }
-  .systemSticky .solLead { font-size: 0.8rem; }
-  .sysStep { padding: 14px 18px; gap: 6px; }
-  .sysStep h3 { font-size: 1.1rem; }
-  .sysStep p { font-size: 0.84rem; line-height: 1.42; }
-  .sysImg { max-height: 44vh; }
-  .sysModel { height: 44vh; }
-  .sysBar { padding: 10px 24px; }
-  .sysBar li { font-size: 0.88rem; }
+/* Laptop screens: tighter type and spacing so both parts clear the nav dock. */
+@media (min-width: 901px) and (max-height: 900px) {
+  .solutionSticky { gap: 10px; padding-top: 36px; }
+  .solPart { gap: 14px; }
+  .solHead { gap: 10px; }
+  .solTitle { font-size: clamp(1.4rem, 4.6vh, 2.4rem); }
+  .solLead { font-size: 0.8rem; line-height: 1.5; }
+  .solStep { padding: 14px 16px; gap: 10px; }
+  .solStep p { font-size: 0.78rem; line-height: 1.4; }
+  .solImg { max-height: 18vh; }
+  .solImgTall { max-height: 20vh; }
+  .sysMedia { --mh: min(25dvh, 290px, calc((100vw - 8vw - 2 * var(--gap) - 26px) / 4.45)); }
+  .sysBlock { padding: 10px 14px; }
+  .sysBlock h3 { font-size: 0.92rem; margin-bottom: 4px; }
+  .sysBlock p { font-size: 0.74rem; line-height: 1.38; }
+  .sysBar { padding: 8px 20px; }
+  .sysBar li { font-size: 0.82rem; }
 }
 
+/* Very short screens: shrink once more rather than run under the nav. */
+@media (min-width: 901px) and (max-height: 660px) {
+  .solutionSticky { padding-top: 24px; }
+  .solPart { gap: 10px; }
+  .solTitle { font-size: clamp(1.2rem, 4.2vh, 1.9rem); }
+  .solLead { font-size: 0.74rem; line-height: 1.4; }
+  .solStep { padding: 10px 14px; gap: 6px; }
+  .solStep h3 { font-size: 0.95rem; }
+  .solStep p { font-size: 0.72rem; }
+  .solImg { max-height: 14vh; }
+  .solImgTall { max-height: 15vh; }
+  .stressor { font-size: 0.55rem; padding: 3px 8px; }
+  .sysMedia { --mh: min(22dvh, 290px, calc((100vw - 8vw - 2 * var(--gap) - 26px) / 4.45)); }
+}
+
+/* Up to 900px wide there isn't room for either part on one pinned screen,
+   so the two parts stack and scroll like a normal page, everything shown
+   (the !important rules beat the scroll handler's inline styles). */
 @media (max-width: 900px) {
-  .systemSticky {
-    gap: 10px;
-    padding: 56px 14px 92px;
-    overflow-y: auto;
+  .solutionSection { height: auto; }
+
+  .solutionSticky {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: 96px 16px 56px;
+    gap: 22px;
   }
 
-  /* Picture first, then the four blocks stacked (no scatter on a phone). */
-  .sysBody { display: flex; flex-direction: column; gap: 8px; }
-  .sysImg { order: -1; max-height: 90px; }
-  .sysModel { height: 90px; flex: none; }
-  .sysCol { display: contents; }
-  .sysStep { padding: 9px 12px; gap: 4px; }
-  /* Must out-rank the desktop scatter rules above (.sysCol:first-child .sysStep:nth-child(1) etc.). */
-  .sysBody .sysCol:nth-child(n) .sysStep:nth-child(n) { width: auto; align-self: stretch; translate: none; }
-  .sysStep h3 { font-size: 0.92rem; }
-  .sysStep p { font-size: 0.7rem; line-height: 1.35; }
-  .sysBar { padding: 9px 12px; gap: 4px 14px; }
-  .sysBar li { font-size: 0.72rem; }
+  .solDots { display: none; }
+  .solViewport { overflow: visible; }
+
+  .solTrack {
+    flex-direction: column;
+    width: 100%;
+    gap: 72px;
+    transform: none !important;
+  }
+
+  .solPart {
+    flex: none;
+    width: 100%;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .solReveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .solSteps { flex-direction: column; gap: 12px; }
+  .solArrow { display: none; }
+  .solImg { max-height: 160px; }
+  .solImgTall { max-height: 180px; }
+
+  .sysMedia { flex-direction: column; align-items: center; gap: 28px; }
+  .sysVideo,
+  .sysPhotos,
+  .sysAnim { width: min(100%, 520px); }
+
+  .sysBlocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* Phones: drop the 3D model so the four steps fit the screen. Hidden, it never
-   comes into view, so BioreactorSpin never downloads model-viewer or the model. */
 @media (max-width: 760px) {
-  .sysModel { display: none; }
+  .solHead { gap: 10px; }
+  .solTitle { font-size: 1.5rem; }
+  .solLead { font-size: 0.86rem; line-height: 1.5; }
+  .solStep { padding: 16px 14px; gap: 10px; }
+  .solNames { font-size: 0.78rem; }
+  .stressors { gap: 6px; }
+  .stressor { font-size: 0.55rem; padding: 3px 8px; letter-spacing: 0.06em; }
+  .sysBlock { padding: 12px 14px; }
+  .sysBlock p { font-size: 0.78rem; }
+  .sysBar { padding: 10px 14px; gap: 6px 16px; }
+  .sysBar li { font-size: 0.8rem; }
 }
 
-/* Short phones (e.g. 375×667): pull everything a little closer together. */
-@media (max-width: 760px) and (max-height: 760px) {
-  .systemSticky { gap: 6px; padding-top: 28px; padding-bottom: 96px; }
-  .systemSticky .solHead { gap: 6px; }
-  .sysBody { gap: 6px; }
-  .sysStep { padding: 8px 12px; gap: 3px; }
-  .sysStep p { font-size: 0.68rem; line-height: 1.32; }
+/* Placeholder for a video that isn't on video.igem.org yet (VideoPlaceholder). */
+.videoSlot {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.videoBox {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(255, 255, 255, 0.24);
+  background:
+    radial-gradient(120% 120% at 50% 0%, rgba(177, 109, 255, 0.16), transparent 60%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.videoPlay {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+
+  svg { width: 20px; height: 20px; margin-left: 2px; }
+}
+
+.videoSoon {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.videoCap {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .scenarioSection { height: 320svh; }
@@ -1665,10 +1793,8 @@
 }
 
 /* NASA image credit for the three planets — fixed above the nav dock, same
-   anchor spot and fade formula as .slideAttribution below (rocket/astronaut),
-   just showing all three links at once instead of toggling one at a time:
-   those two are on separate slides so only one is ever on screen, but all
-   three planets are visible together. Desktop-only — mobile shows the icon
+   anchor spot as .slideAttribution (rocket/astronaut), just showing all
+   three links at once, since all three planets are visible together. Desktop-only — mobile shows the icon
    cards, not these photos (see the max-width: 760px media query further
    down, same one that hides .planetGrid). */
 .planetAttribution {
@@ -1753,23 +1879,45 @@
 /* ── Capabilities ── */
 .capSection { height: 280svh; }
 
+/* The rocket stands left of the statement + tiles; above them on narrow
+   screens (see the max-width: 980px query below). */
 .capSticky {
   position: sticky;
   top: 0;
   height: 100dvh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 54px;
+  gap: clamp(24px, 4vw, 72px);
   padding-inline: 40px;
+}
+
+.capBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(28px, 6vh, 54px);
+  min-width: 0;
+}
+
+.capRocket {
+  flex: none;
+  will-change: transform, opacity;
+
+  img {
+    display: block;
+    height: clamp(300px, 62vh, 700px);
+    width: auto;
+    filter: drop-shadow(0 0 14px rgba(255, 210, 140, 0.22))
+      drop-shadow(0 0 50px rgba(255, 200, 120, 0.16));
+  }
 }
 
 .capTiles {
   display: flex;
   gap: 22px;
-  flex-wrap: wrap;
   justify-content: center;
+  min-width: 0;
 }
 
 .capTile {
@@ -1779,7 +1927,8 @@
   gap: 14px;
   padding: 30px 30px 34px;
   border-radius: var(--radius-md);
-  width: 248px;
+  flex: 0 1 248px;
+  min-width: 0;
   text-align: left;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1823,11 +1972,21 @@
    horizontal-scroll row (easy to miss, odd to swipe through in a scroll-
    pinned section), collapse each tile into a compact icon+title+description
    list row so all three stack to roughly the height of one card. */
+@media (max-width: 1180px) {
+  .capTile { padding: 24px 22px 26px; }
+}
+
+@media (max-width: 980px) {
+  .capSticky { flex-direction: column; gap: 20px; }
+  .capRocket img { height: clamp(110px, 20svh, 240px); }
+}
+
 @media (max-width: 760px) {
   .capSticky {
-    gap: 22px;
     padding-inline: 24px;
   }
+
+  .capBody { gap: 22px; width: 100%; }
 
   .capStatement {
     font-size: 1.3rem;
@@ -1843,6 +2002,7 @@
   }
 
   .capTile {
+    flex: none;
     display: grid;
     grid-template-columns: 30px minmax(0, 1fr);
     column-gap: 14px;
@@ -1962,7 +2122,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: clamp(12px, 3vw, 48px);
+  padding-inline: 40px;
   overflow: hidden;
+}
+
+.outroAstronaut {
+  position: relative;
+  flex: none;
+  will-change: transform, opacity;
 }
 
 .outroGlow {
@@ -1977,11 +2145,22 @@
   will-change: opacity;
 }
 
-.outroLogo {
+.outroVideo {
   position: relative;
-  width: min(60vw, 640px);
-  filter: drop-shadow(0 0 60px rgba(123, 158, 255, 0.55));
+  flex: 0 1 880px;
+  min-width: 0;
   will-change: opacity, transform;
+}
+
+/* Phones: the astronaut floats above the video. */
+@media (max-width: 700px) {
+  .outroSticky {
+    flex-direction: column;
+    padding-inline: 20px;
+  }
+
+  .outroVideo { flex: none; width: 100%; }
+  .astronautImg { width: clamp(110px, 30vw, 160px); }
 }
 
 /* ── Explore ── */

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./ThuwalOutreach.module.scss";
+import SharedPhotoDeck from "../../../components/PhotoDeck/PhotoDeck";
 
 // The interactive pieces of Genesis's School Outreach mockup ("summer
 // outreach.html"), ported to React. Each is placed at a
@@ -731,95 +732,10 @@ const DECK = [
 ];
 
 export function PhotoDeck() {
-  const [order, setOrder] = useState(DECK.map((_, i) => i));
-  const [flying, setFlying] = useState(null);
-  const busy = useRef(false);
-  const hovered = useRef(false);
-  const deckRef = useRef(null);
-  const startX = useRef(null);
-
-  const next = () => {
-    if (busy.current) return;
-    busy.current = true;
-    setFlying(order[0]);
-    setTimeout(() => {
-      setOrder((o) => [...o.slice(1), o[0]]);
-      setFlying(null);
-      setTimeout(() => (busy.current = false), 500);
-    }, 380);
-  };
-  const prev = () => {
-    if (busy.current) return;
-    setOrder((o) => [o[o.length - 1], ...o.slice(0, -1)]);
-  };
-
-  // Auto-advance while on screen and not hovered.
-  const nextRef = useRef(next);
-  nextRef.current = next;
-  useEffect(() => {
-    if (reducedMotion()) return undefined;
-    const id = setInterval(() => {
-      const el = deckRef.current;
-      if (!el || hovered.current || document.hidden) return;
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) nextRef.current();
-    }, 6500);
-    return () => clearInterval(id);
-  }, []);
-
-  const top = DECK[order[0]];
   return (
-    <div className={styles.deckWrap}>
-      <div
-        ref={deckRef}
-        className={styles.deck}
-        role="button"
-        tabIndex={0}
-        aria-label="Next photo"
-        onClick={next}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            next();
-          }
-        }}
-        onMouseEnter={() => (hovered.current = true)}
-        onMouseLeave={() => (hovered.current = false)}
-        onPointerDown={(e) => (startX.current = e.clientX)}
-        onPointerUp={(e) => {
-          if (startX.current !== null && Math.abs(e.clientX - startX.current) > 50) {
-            e.stopPropagation();
-            if (e.clientX < startX.current) next();
-            else prev();
-          }
-          startX.current = null;
-        }}
-      >
-        {DECK.map(([file, title], i) => {
-          const p = order.indexOf(i);
-          return (
-            <div
-              key={file}
-              className={cx(styles.card, p === 0 && styles.cardTop, flying === i && styles.cardFly)}
-              style={{ "--p": p, zIndex: 10 - p }}
-            >
-              <img src={IMG + file} alt={title} loading="lazy" />
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.deckControls}>
-        <button type="button" aria-label="Previous photo" onClick={prev}>
-          ‹
-        </button>
-        <div className={styles.deckCap} aria-live="polite">
-          <b>{top[1]}</b>
-          <span>{top[2]}</span>
-        </div>
-        <button type="button" aria-label="Next photo" onClick={next}>
-          ›
-        </button>
-      </div>
-    </div>
+    <SharedPhotoDeck
+      className={styles.deckWrap}
+      photos={DECK.map(([file, title, sub]) => ({ src: IMG + file, title, sub }))}
+    />
   );
 }
