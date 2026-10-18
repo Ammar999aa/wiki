@@ -1757,6 +1757,36 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     padding-bottom: 14px;
   }
 
+  // A stack of `.details` cards, one per row. Each card's
+  // summary can carry a muted one-line description under its title —
+  // `<summary class="details-summary"><span><span class="details-title">…</span><span class="details-desc">…</span></span></summary>`
+  // — so a closed card still says what it holds. Cards size to their own
+  // content.
+  :global(.details-stack) {
+    margin-block: 20px;
+
+    :global(.details) {
+      margin-block: 9px;
+    }
+
+    // Glyph sits beside the title rather than centred on a two-line summary.
+    :global(.details-summary) {
+      align-items: flex-start;
+    }
+  }
+
+  :global(.details-title) {
+    display: block;
+  }
+
+  :global(.details-desc) {
+    display: block;
+    margin-top: 4px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
   // A compact person card: round photo top-left, name beside it, summary
   // below. --photo-x/--photo-y pick the crop point (higher = picture moves
   // left/up) and --photo-zoom zooms in. Plain HTML, so no blank lines needed:
