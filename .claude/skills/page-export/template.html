@@ -63,6 +63,14 @@
   main.article { flex: 1 1 auto; max-width: 760px; min-width: 0; }
   h1.pageTitle { font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 700; margin: 0 0 12px; }
   .eyebrow { margin: 0 0 10px; }
+  /* Shared Masthead component (export.mjs renders its CSS-module class names as-is) */
+  .mastheadEyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin: 0 0 10px; }
+  .mastheadDeck { font-size: 1.12rem; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0 0 24px; max-width: 70ch; }
+  .mastheadStats { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin: 20px 0; }
+  .mastheadStat { flex: 1 1 140px; padding: 16px 18px; border-right: 1px solid var(--border); }
+  .mastheadStatValue { display: block; font-size: 1.8rem; font-variant-numeric: tabular-nums; }
+  .mastheadStatHi .mastheadStatValue { color: var(--amber); }
+  .mastheadStatLabel { display: block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
   .deck { font-size: 1.12rem; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0 0 24px; max-width: 70ch; }
   header.masthead { margin-bottom: 48px; }
 
