@@ -71,172 +71,172 @@
       "specificTasks": "Specific Tasks"
     },
     "ansal": {
-      "role": "Student",
+      "role": "Student Leader",
       "department": "Wet Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Analysis, Investigation, Conceptualization, Background Research, Data Curation, Notebook/record keeping, Project Administration, Public Engagement, Visualization, Safety, Writing, Other",
+      "specificTasks": "Project conceptualization, Team coordination, Background research, iGEM Lab establishment, design of parts for *P. pastoris* and *S. cerevisiae*; plasmid propagation and stock maintenance in *E. coli*, minipreps; Yeast transformations; Protein expression and purification in all 3 chassis (AKTA); mCherry assays, antifreeze protein functional assays; Parts Registry; Experimental design and documentation; Public Engagement: lectures, materials; stakeholder interviews; Wiki writing"
     },
     "ammar": {
       "role": "Student",
       "department": "Wiki",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Wiki Coding, Visualization",
+      "specificTasks": "Lead wiki designer and developer; wiki design system and reusable page components; interactive landing page; page layouts for Project, Wet Lab, Engineering, Dry Lab, Beyond the Lab and Team; integrating and formatting teammates' content; accessibility, mobile layouts, performance and SEO; wiki compliance checks and moving media to iGEM servers"
     },
     "francesca": {
-      "role": "Student",
+      "role": "Student Leader",
       "department": "Wet Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Conceptualization, Analysis, Background Research, Project Administration, Notebook/record keeping, Fundraising, Public Engagement, Visualization, Writing, Safety, Other",
+      "specificTasks": "Team formation and project conceptualization; Team coordination and institutional relations; iGEM lab establishment; Integrated Human Practices: stakeholder interviews, documentation; Public Engagement: branding of the team, event organization and speaker in some activities; Budget and logistics management; Competition videos: scripting, filming, editing; Wiki writing for HIP, Description, and correction of Wet Lab and Dry Lab pages; Lab notebook organization; Wet Lab: minipreps, preparation of figures and handbooks."
     },
     "genesis": {
       "role": "Student",
       "department": "Public Engagement",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Conceptualization, Background Research, Public Engagement, Visualization, Writing",
+      "specificTasks": "Podcast production and writing; Jeddah School visit organizer; project presentation at KAUST Expo 2026; Kallpa mentorship program: organizer and coordinator; movie and discussion: organizer, MENA iGEM Teams collabs outreach; created slide decks, posters and social media content; wiki writing"
     },
     "jeremy": {
       "role": "Student",
       "department": "Dry Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Analysis, Conceptualization, Background Research, Investigation, Project Administration, Software, Visualization, Writing",
+      "specificTasks": "Project development: brainstorming, literature research, stakeholder interviews, and conceptualization; Dry Lab: team leadership and coordination of data analysis, gene mining, and computational modeling; Bioreactor modeling: fluid dynamics simulations and design optimization using COMSOL; Dry Lab Wiki: writing and content supervision."
     },
     "taiba": {
       "role": "Student",
       "department": "Dry Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Analysis, Background Research, Visualization, Writing",
+      "specificTasks": "Dynamic (ODE) modelling of induction timing in *S. cerevisiae* and *B. subtilis*; induction sweeps, yield landscapes and figures; code release on GitHub; Dry Lab wiki assembly and writing."
     },
     "mariaCamila": {
       "role": "Student",
       "department": "Wet Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Investigation, Analysis, Conceptualization, Background Research, Data Curation, Notebook/record keeping, Public Engagement",
+      "specificTasks": "Wet Lab: experimental design and literature research for the radiation tolerance assays; X-ray and UV irradiation assays, viability assays; growth experiments; data analysis. Record keeping and image curation for own experimental work. Feedback session with the Kazakhstan iGEM team, Wiki writing. Handbook preparation."
     },
     "mariana": {
       "role": "Student",
       "department": "Wet Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Investigation, Analysis, Conceptualization, Background Research, Data Curation, Notebook/record keeping, Other",
+      "specificTasks": "Wet Lab: experimental design and literature research for the radiation tolerance assays; X-ray and UV irradiation assays, viability assays; growth experiments; data analysis. Record keeping and image curation for own experimental work. Handbook preparation. Participated in HIP and PE activities."
     },
     "kexin": {
       "role": "Student",
       "department": "Dry Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Background Research, Investigation, Software",
+      "specificTasks": "Empty Quarter Gene Mining; Literature review to define protein selection filters; development of the gene-mining workflow and software."
     },
     "sriharsha": {
       "role": "Student",
       "department": "Wet Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Analysis, Investigation, Conceptualization, Background Research, Data Curation, Notebook/record keeping, Public Engagement, Visualization, Writing",
+      "specificTasks": "Wet Lab: Project conceptualization, gene identification and literature research; design and ordering of parts; minipreps; PCR; optimization and troubleshooting of *B. subtilis* transformation protocols; protein expression and purification; Western blot; antifreeze protein functional assays; GFP reporter assays; Comet assays; documentation of parts in the iGEM Parts Registry; lab notebook maintenance, and protocol writing"
     },
     "kevser": {
       "role": "Student",
       "department": "Dry Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Background Research, Analysis, Writing, Public Engagement",
+      "specificTasks": "FBA GEM, alternative carbon sources, closed loop nutrient supply, and co-culture models curation, iBsu1147 model fixing, constraint design, wiki writing, PE help"
     },
     "shahad": {
       "role": "Student",
       "department": "Public Engagement",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Public Engagement, Visualization, Social Media Outreach, Writing",
+      "specificTasks": "Podcast production and writing; Thuwal students’ visit & Jeddah School visit: organizer; project presentation at KAUST Expo 2026; mentorship Program: recruitment & closing ceremony; movie Nights: organizer, MENA iGEM Teams collabs outreach; KAUST entities outreach; created slide decks, posters and social media content; wiki writing"
+    },
+    "kiran": {
+      "role": "Student",
+      "department": "Public Engagement",
+      "tasks": "Public Engagement, Visualization, Writing",
+      "specificTasks": "Social media management; podcast editing and production; iGEM Mentorship Program co-coordination; mentorship and guest speaking; Jeddah school outreach visits; content design; Tawasol Hackathon and Showcase visual identity; wiki writing"
     },
     "zeyad": {
       "role": "Student",
       "department": "Wet Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
-    },
-    "nauryzbay": {
-      "role": "Student",
-      "department": "Dry Lab",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Background Research, Conceptualization, Investigation, Notebook/record keeping, Public Engagement",
+      "specificTasks": "UV irradiation protocol optimization, TAWASOL: presenter, Western Blots, recorded Arabic intro to synbio videos, protein purification, wiki writing, literature review, wet lab experiment troubleshooting, lab establishment, campus survey collection."
     },
     "nadia": {
       "role": "Student",
       "department": "Hardware",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Analysis, Conceptualization, Background Research, Investigation, Data Curation, Hardware, Software, Writing",
+      "specificTasks": "Analyzing sensors data; Designing and fabricating hardware prototype; literature review on bioreactors and protein purification systems; Testing sensors and actuators; Noting down design iterations; Writing code for the hardware; Writing the hardware and engineering cycles wiki pages; Creating CAD drawings for reference by future iGEM teams"
     },
     "hassan": {
       "role": "Student",
       "department": "Hardware",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Hardware, Writing",
+      "specificTasks": "Design the purification system, make CAD files, and create engineering drawings. 3D print the prototype and assemble it. Code the system and optimize it for easy control. Assembly and troubleshooting for the purification system."
     },
     "raheema": {
       "role": "Student",
       "department": "Public Engagement",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Public Engagement, Visualization, Writing",
+      "specificTasks": "Thuwal students’ visits & Jeddah School visit: organizer; project presentation at KAUST Expo 2026; Mentorship Program and Hackathon: recruitment & closing ceremony; Movie Nights: organizer, MENA iGEM Teams collabs outreach; created slide decks, posters and social media posts"
     },
     "mariaFernanda": {
       "role": "Student",
       "department": "Human Integrated Practices",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Writing, Other",
+      "specificTasks": "Identified and contacted stakeholders, organized interviews with them."
     },
     "raik": {
       "role": "Principal Investigator",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Conceptualization, Analysis",
+      "specificTasks": "Provided invaluable guidance and support throughout the year, offering feedback and recommendations on our ideas and helping shape our experimental design, analyze the obtained results, etc."
     },
     "wayne": {
       "role": "Principal Investigator",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
-    },
-    "fabian": {
-      "role": "Advisor",
-      "department": "",
-      "tasks": "Scientific advisor to the iGEM team.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Conceptualization, Fundraising",
+      "specificTasks": "Provided invaluable guidance and support throughout the year, offering feedback and recommendations on our ideas and helping with administrative works, fundraising, etc."
     },
     "samah": {
       "role": "Advisor",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Safety, Other",
+      "specificTasks": "Generously provided a wide range of reagents, equipment, and consumables for our laboratory (the main provider of equipment and consumables). Advised us on safety-related aspects of our project"
     },
     "selena": {
       "role": "Advisor",
       "department": "",
-      "tasks": "Official mentor and coordinator of the KAUST iGEM team, supporting students throughout their iGEM journey.",
-      "specificTasks": "Facilitated team organization, institutional coordination, access to resources, and collaboration with faculty and researchers."
+      "tasks": "Other",
+      "specificTasks": "Advised on public engagement event arrangements (ordering catering), connecting with faculty for mentorship and gate passes to KAUST."
     },
     "muhammadTehseen": {
       "role": "Advisor",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Conceptualization, Other",
+      "specificTasks": "Introduced us to *Pichia pastoris* chassis, providing us with the cells stock sample of both *P. pastoris* and *S. cerevisiae*, advised us on experiments related to both yeasts, provided several reagents for yeasts transformations, provided feedback on yeasts’ constructs design"
     },
     "alejandra": {
       "role": "Advisor",
       "department": "",
-      "tasks": "Mentored the team on international innovation strategy and global regulations, and on digitalization.",
-      "specificTasks": "Helped us map the regulatory landscape for producing biologics in space: how a nanobody manufactured in orbit would be classified and reviewed under FDA and SFDA frameworks, which quality and biosafety requirements would apply, and how to separate confirmed guidance from open questions. Also guided us on international innovation pathways, from protecting our IP to identifying the right institutional and industry partners to move the project beyond the competition."
+      "tasks": "Analysis, Writing",
+      "specificTasks": "Compiled, analyzed and written the Regulatory aspect of the project"
     },
     "jordi": {
       "role": "Advisor",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Background Research, Software",
+      "specificTasks": "Guidance on the ODE modeling of the different chassis"
     },
     "shahadAl": {
       "role": "Volunteer",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Public Engagement, Visualization, Writing",
+      "specificTasks": "Thuwal students’ visits & Jeddah School visit: organizer; movie and discussion: organizer; Tawasol Hackathon and Mentorship Program co-coordination; Jeddah school outreach visits."
+    },
+    "yerlen": {
+      "role": "Volunteer",
+      "department": "",
+      "tasks": "Wiki Coding, Visualization",
+      "specificTasks": "Assisted in designing and developing the wiki: Integrated Human Practices and Home pages"
     },
     "noureldin": {
       "role": "Volunteer",
       "department": "",
-      "tasks": "Tasks description here.",
-      "specificTasks": "Specific tasks description here."
+      "tasks": "Analysis, Background Research, Software, Visualization, Writing",
+      "specificTasks": "GEM FBA modeling: *S. cerevisiae* aerobic/anaerobic growth and oxygen sweep; GFP/anti-GFP and nanobody production; *B. subtilis* anaerobic gap-filling; figures; wiki writing"
     }
   }
 }

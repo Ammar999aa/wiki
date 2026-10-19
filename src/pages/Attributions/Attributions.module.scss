@@ -17,3 +17,13 @@
     color: rgba(255, 255, 255, 0.65) !important;
   }
 }
+
+/* The org tables are wide (five columns); scroll sideways inside the card on
+   narrow screens instead of stretching the page. */
+.tableScroll {
+  overflow-x: auto;
+
+  table {
+    min-width: 640px;
+  }
+}

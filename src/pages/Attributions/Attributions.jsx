@@ -3,6 +3,7 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import SectionedPage from "../../components/SectionedPage/SectionedPage";
 import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Attributions.module.scss";
+import { sponsors, collaborators, supporters, aiTools } from "./data";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // ISS long exposure over eastern China, sky cut out and graded to sit on the
@@ -25,7 +26,6 @@ const shahad    = `${ROSTER_CDN}/shahad.avif`;
 const francesca = `${ROSTER_CDN}/francesca.avif`;
 const zeyad     = `${ROSTER_CDN}/zeyad.avif`;
 const ansal     = `${ROSTER_CDN}/ansal.avif`;
-const nauryzbay = `${ROSTER_CDN}/nauryzbay.avif`;
 const nadia     = `${ROSTER_CDN}/nadia.avif`;
 const hassan    = `${ROSTER_CDN}/hassan.avif`;
 const raheema   = `${ROSTER_CDN}/raheema.avif`;
@@ -33,22 +33,80 @@ const mafer     = `${ROSTER_CDN}/mafer.avif`;
 const shahada   = `${ROSTER_CDN}/shahada.avif`;
 const noureldin = `${ROSTER_CDN}/noureldin.avif`;
 const wayne     = `${ROSTER_CDN}/wayne.avif`;
-const fabian    = `${ROSTER_CDN}/fabian.avif`;
 const selena    = `${ROSTER_CDN}/selena.avif`;
 const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
 const alejandra = `${ROSTER_CDN}/alejandra.avif`;
 const jordi     = `${ROSTER_CDN}/jordi.avif`;
+const kiran     = `${ROSTER_CDN}/kiran.avif`;
+
+// The attribution form marks species names as *italic*; render those spans.
+function inline(text) {
+  return text.split(/\*([^*]+)\*/).map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part));
+}
 
 function memberContent(t, key) {
   return (
     <>
       <h3>{t("attributions.labels.tasks")}</h3>
-      <p>{t(`attributions.${key}.tasks`)}</p>
+      <p>{inline(t(`attributions.${key}.tasks`))}</p>
       <h3>{t("attributions.labels.specificTasks")}</h3>
-      <p>{t(`attributions.${key}.specificTasks`)}</p>
+      <p>{inline(t(`attributions.${key}.specificTasks`))}</p>
     </>
   );
 }
+
+function OrgTable({ rows }) {
+  return (
+    <div className={styles.tableScroll}>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Relationship</th>
+            <th>Tasks</th>
+            <th>Specific tasks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([name, type, relationship, tasks, specific]) => (
+            <tr key={name}>
+              <td>{name}</td>
+              <td>{type}</td>
+              <td>{relationship}</td>
+              <td>{tasks}</td>
+              <td>{specific}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const orgSections = [
+  { title: "Sponsors", content: <OrgTable rows={sponsors} /> },
+  { title: "Collaborators & Advisors", content: <OrgTable rows={collaborators} /> },
+  { title: "Supporters & Lab Staff", content: <OrgTable rows={supporters} /> },
+  {
+    title: "AI Usage",
+    content: (
+      <>
+        {aiTools.map((tool) => (
+          <div key={tool.name}>
+            <h3>{tool.name}</h3>
+            <h4>Tasks</h4>
+            <p>{tool.tasks}</p>
+            <h4>Specific tasks</h4>
+            {tool.specific.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
+        ))}
+      </>
+    ),
+  },
+];
 
 // Same department grouping/order as the Roster page (src/pages/Roster/Roster.jsx's
 // DEPARTMENT_LABELS/DEPARTMENT_ORDER) — kept in sync by hand since the two
@@ -75,12 +133,12 @@ const students = [
   { key: "jeremy",        title: "Jeremy Rodrigo Guerrero Alejos", photo: jeremy,    deptKey: "dryLab" },
   { key: "taiba",         title: "Taiba Zeya",                     photo: taiba,     deptKey: "dryLab" },
   { key: "kexin",         title: "Kexin Niu",                      photo: kexin,     deptKey: "dryLab" },
-  { key: "kevser",        title: "Kevser Ciek",                    photo: kevser,    deptKey: "dryLab" },
-  { key: "nauryzbay",     title: "Nauryzbay Menlen",                photo: nauryzbay, deptKey: "dryLab" },
+  { key: "kevser",        title: "Kevser Civek",                    photo: kevser,    deptKey: "dryLab" },
   { key: "nadia",         title: "Nadia Houti",                    photo: nadia,     deptKey: "hardware" },
   { key: "hassan",        title: "Hassan Abuali",                  photo: hassan,    deptKey: "hardware" },
   { key: "shahad",        title: "Shahad Hersi",                   photo: shahad,    deptKey: "publicEngagement" },
   { key: "genesis",       title: "Génesis Arroyo",                 photo: genesis,   deptKey: "publicEngagement" },
+  { key: "kiran",         title: "Kiran Ahmad",                    photo: kiran,     deptKey: "publicEngagement" },
   { key: "raheema",       title: "Raheema Javid",                  photo: raheema,   deptKey: "publicEngagement" },
   { key: "mariaFernanda", title: "Maria Fernanda Gutierrez",       photo: mafer,     deptKey: "humanPractices" },
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
@@ -95,7 +153,6 @@ const principalInvestigators = [
 // Same six advisors as on Roster, same order, same photos and preferred
 // display names (src/assets/email-responses). Samah hasn't sent one yet.
 const advisors = [
-  { key: "fabian", title: "Fabian Schmidt", photo: fabian },
   { key: "samah", title: "Samah Gadhoum", photo: null },
   { key: "selena", title: "Selena Franchini", photo: selena },
   { key: "muhammadTehseen", title: "Muhammad Tehseen", photo: tehseen },
@@ -107,6 +164,7 @@ const advisors = [
 const volunteers = [
   { key: "shahadAl", title: "Shahad Al Abdulomhssen", photo: shahada },
   { key: "noureldin", title: "Noureldin Rihan", photo: noureldin },
+  { key: "yerlen", title: "Yerlen Menglen", photo: null },
 ];
 
 export default function Attributions() {
@@ -148,7 +206,9 @@ export default function Attributions() {
       photo: volunteer.photo,
       role: t(`attributions.${volunteer.key}.role`),
       content: memberContent(t, volunteer.key),
-    }))
+    })),
+    { heading: "Sponsors, Collaborators & AI" },
+    ...orgSections
   );
 
   return (
