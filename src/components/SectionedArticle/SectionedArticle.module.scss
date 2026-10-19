@@ -250,6 +250,36 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     font-weight: 700;
   }
 
+  // Opt-in (SectionedArticle's `accentBold` prop): bold lead-ins inside
+  // body paragraphs ("Why filtration?", "Step 1: ...") in the amber the
+  // Hardware page's export uses, instead of plain white. Captions keep
+  // their own brighter-white lead-in.
+  &.accentBold p strong {
+    color: #ffbf00;
+  }
+
+  &.accentBold :global(.caption) p strong {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  // A display equation (`$$ ... $$` in markdown, rendered by KaTeX) as its
+  // own bordered box, centred, scrolling sideways instead of overflowing
+  // on phones.
+  :global(.katex-display) {
+    margin: 18px 0;
+    padding: 14px 18px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+    background: rgba(177, 109, 255, 0.08);
+    border: 1px solid rgba(177, 109, 255, 0.25);
+    border-radius: var(--radius-sm);
+
+    & > :global(.katex) {
+      font-size: 1.1em;
+    }
+  }
+
   em {
     font-style: italic;
   }
@@ -669,6 +699,17 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
     p:last-child {
       margin-bottom: 0;
+    }
+
+    // A photo at the top of a card (the three filtration stages on the
+    // Hardware page): same frame in every card, cropped to fit.
+    :global(.stage-img) {
+      display: block;
+      width: 100%;
+      aspect-ratio: 900 / 694;
+      object-fit: cover;
+      border-radius: var(--radius-xs);
+      margin: 0 0 12px;
     }
   }
 
