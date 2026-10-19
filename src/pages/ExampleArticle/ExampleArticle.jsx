@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import ArticleBody from "../../components/SectionedArticle/Article/Article";
 import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import ChartSlots from "../DryLabOverview/components/ChartSlots";
+import ChartSlots from "../DryLabModeling/components/ChartSlots";
 import sections from "../../content/en/example-article.md";
 import GrowthChart from "./components/GrowthChart";
 import styles from "./ExampleArticle.module.scss";

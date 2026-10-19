@@ -26,7 +26,7 @@
 # Dry Lab
 
     Modeling
-    Bioreactor Modeling
+    Software
 
 # Beyond the Lab
 

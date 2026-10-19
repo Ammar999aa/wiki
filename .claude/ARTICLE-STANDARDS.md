@@ -3,7 +3,7 @@
 This is a companion to **[DESIGN.md](DESIGN.md)**, one level down: DESIGN.md
 covers the whole site's visual system and page archetypes; this file zooms
 into archetype 2 ("prose/article content") and records *why* `Model`
-(`/modeling`, `src/pages/Model/`) reads as dramatically more polished and
+(`/software`, `src/pages/Model/`) reads as dramatically more polished and
 credible than every other article page, so future long-form pages can be
 built to the same standard on purpose rather than by accident.
 

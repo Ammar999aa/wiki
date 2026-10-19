@@ -391,7 +391,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
 <p>The oxidative-stress feedback initially made us question our selection of Dsup. However, when we returned to the literature, we found evidence that Dsup can also protect against oxidative stress: its expression in <em>S. cerevisiae</em> has been shown to reduce oxidative DNA damage and improve survival under chronic oxidative conditions <a class="cite" href="#ref-22">22</a>.</p>
 <p>We also began investigating alternative nutrient sources and media-recycling strategies that could reduce dependence on supplies transported from Earth. This expanded SHIHAB beyond the question of how to make microorganisms resilient toward how they could be sustained during repeated production cycles.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/dry-lab-overview">Dry Lab overview →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/modeling">Dry Lab overview →</a></p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
 <p>This conversation pushed us to think about resource independence: Could SHIHAB use resources already available during a mission instead of carrying everything required for biomanufacturing from Earth?</p>
 <p>This opened a new direction for the project focused on alternative carbon and nutrient sources, resource recycling, and eventually closing parts of the biomanufacturing loop.</p>

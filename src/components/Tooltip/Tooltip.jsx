@@ -4,7 +4,7 @@ import styles from "./Tooltip.module.scss";
 // Shared fixed-position hover tooltip — one context/provider instead of
 // every consumer (a chart, an in-text citation mark) managing its own
 // floating box. Originally written for Model's scatter/strip charts and
-// duplicated near-verbatim for Dry Lab Overview's charts; extracted here so
+// duplicated near-verbatim for Dry Lab Modeling's charts; extracted here so
 // both of those and SectionedArticle's citation marks (see Article.jsx)
 // share one implementation and one visual language instead of a third copy.
 const TooltipContext = createContext(null);

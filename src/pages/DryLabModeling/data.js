@@ -1,4 +1,4 @@
-// Real chart data for the Dry Lab Overview page, extracted and verified against
+// Real chart data for the Dry Lab Modeling page, extracted and verified against
 // the team's own source repositories:
 //   - ODE kinetic models (yeast-*, bacillus-fig*, bacillus-*-induction/nanobody):
 //     github.com/taibazeyak/drylab-ode_igem (bacillus/, yeast/) -- run verbatim

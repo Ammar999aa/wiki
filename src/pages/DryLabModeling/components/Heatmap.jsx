@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import styles from "../DryLabOverview.module.scss";
+import styles from "../DryLabModeling.module.scss";
 import { useTooltip } from "../../../components/Tooltip/Tooltip";
 
 const W = 560;

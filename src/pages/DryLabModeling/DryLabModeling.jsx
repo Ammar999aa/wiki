@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
-import sections from "../../content/en/dry-lab-overview.md";
+import sections from "../../content/en/dry-lab-modeling.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import ChartSlots from "./components/ChartSlots";
 import { TooltipProvider } from "../../components/Tooltip/Tooltip";
@@ -44,7 +44,7 @@ const pageIntro = (
   </>
 );
 
-export default function DryLabOverview() {
+export default function DryLabModeling() {
   const containerRef = useRef(null);
 
   return (
@@ -56,7 +56,7 @@ export default function DryLabOverview() {
       <TooltipProvider>
         <div ref={containerRef}>
           <SectionedArticle
-            title="Dry Lab Overview"
+            title="Modeling"
             intro={pageIntro}
             sections={sections}
             defaultSelected={sections[0]?.title}

@@ -17,8 +17,7 @@ needed, and remove this note once done. Each spot is marked in-code with a
 above the `deck={...}` prop:
 
 - [ ] `src/pages/Safety/Safety.jsx`
-- [ ] `src/pages/BioreactorModeling/BioreactorModeling.jsx`
-- [x] `src/pages/DryLabOverview/DryLabOverview.jsx` (replaced with the team's own deck from the Dry Lab write-up)
+- [x] `src/pages/DryLabModeling/DryLabModeling.jsx` (replaced with the team's own deck from the Dry Lab write-up)
 - [ ] `src/pages/HumanIntegratedPractices/HumanIntegratedPractices.jsx`
 - [ ] `src/pages/Education/Education.jsx` (`educationIntro`)
 - [ ] `src/pages/ScienceCommunication/ScienceCommunication.jsx`

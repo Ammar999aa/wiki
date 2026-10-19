@@ -49,8 +49,7 @@ const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
 const Inclusivity = lazyWithPreload(() => import("./pages/Inclusivity/Inclusivity"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
 const Model = lazyWithPreload(() => import("./pages/Model/Model"));
-const BioreactorModeling = lazyWithPreload(() => import("./pages/BioreactorModeling/BioreactorModeling"));
-const DryLabOverview = lazyWithPreload(() => import("./pages/DryLabOverview/DryLabOverview"));
+const DryLabModeling = lazyWithPreload(() => import("./pages/DryLabModeling/DryLabModeling"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
 const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribution"));
 const Judging = lazyWithPreload(() => import("./pages/Judging/Judging"));
@@ -155,19 +154,13 @@ const Pages = [
   {
     name: "Dry Lab",
     folder: [
-      // Bioreactor Modeling now lives at the nav's "Modeling" slot; the
-      // previous occupant (Model, the data-heavy candidate-mining page) moved
-      // to /software, the Software entry below. /bioreactor-modeling
-      // itself is kept working (hidden route at the bottom of this file) so
-      // any existing links to it don't break.
       {
-        name: "Overview",
-        title: "Dry Lab Overview",
-        path: "/dry-lab-overview",
-        component: DryLabOverview,
-        description: "SHIHAB dry lab: modelling, bioinformatics, and circuit design.",
+        name: "Modeling",
+        title: "Modeling",
+        path: "/modeling",
+        component: DryLabModeling,
+        description: "SHIHAB dry lab modeling: flux balance analysis of three chassis and a cyanobacterial partner.",
       },
-      { name: "Modeling", title: "Bioreactor Modeling", path: "/modeling", component: BioreactorModeling },
       // Model's candidate-mining content is a software deliverable, so it
       // lives at iGEM's standard /software URL.
       { name: "Software", title: "Software", path: "/software", component: Model },
@@ -222,10 +215,8 @@ const Pages = [
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
   { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },
   { name: "Engagement", title: "Engagement", path: "/engagement", component: Engagement, hidden: true },
-  // Bioreactor Modeling's old URL, from before it took over the "Modeling"
-  // nav slot at /modeling — kept resolving to the same component so any
-  // existing links to it don't break.
-  { name: "Bioreactor Modeling (old URL)", title: "Bioreactor Modeling", path: "/bioreactor-modeling", component: BioreactorModeling, hidden: true },
+  // Dry Lab Overview's old URL, from before it became the Modeling page.
+  { name: "Dry Lab Overview (old URL)", title: "Modeling", path: "/dry-lab-overview", component: DryLabModeling, hidden: true },
   // Authoring reference for the team: a fictional article applying every
   // wiki authoring convention, annotated. Not wiki content — remove
   // before the wiki freeze.

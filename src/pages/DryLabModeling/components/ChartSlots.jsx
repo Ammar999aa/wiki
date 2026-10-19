@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 // Embeds interactive charts inline inside markdown-rendered prose without
-// forking SectionedArticle/Article.jsx: the markdown (dry-lab-overview.md)
+// forking SectionedArticle/Article.jsx: the markdown (dry-lab-modeling.md)
 // marks each spot with an empty `<div data-chart="some-id"></div>` in place
 // of the old `<img>`, and this portals the matching React chart into that
 // exact node — so the chart lands mid-section, next to the same caption the

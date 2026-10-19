@@ -13,7 +13,7 @@ node .claude/skills/page-export/export.mjs /hardware [/safety ...]
 ```
 
 Takes routes from `src/pages.js`. It renders the page's own JSX (via Vite
-SSR), so markdown pages and custom pages (Software, Dry Lab Overview, …)
+SSR), so markdown pages and custom pages (Software, Dry Lab Modeling, …)
 work the same way. Pages that aren't articles (`/` Home, Sponsors, …) come
 out as one block of text and structure, without animations or page
 styling. That's rough, but every word is there to edit. It writes:

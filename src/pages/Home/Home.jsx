@@ -1635,7 +1635,7 @@ const EXPLORE_CARDS = [
   },
   {
     n: "03", t: "Dry Lab", d: "Modelling, bioinformatics, and circuit design.",
-    to: "/dry-lab-overview",
+    to: "/modeling",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/drylab.avif",
   },
   {

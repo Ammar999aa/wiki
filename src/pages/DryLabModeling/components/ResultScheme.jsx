@@ -4,7 +4,7 @@ import { Legend } from "./ChartPanel";
 import SCHEME_SVG from "./schemeSvg";
 import PANELS from "./schemePanels";
 import data from "../data";
-import styles from "../DryLabOverview.module.scss";
+import styles from "../DryLabModeling.module.scss";
 
 // "Try me" scheme from the team's revised Model page: a drawing of the four
 // modelled organisms with labelled results; selecting a label (or one of

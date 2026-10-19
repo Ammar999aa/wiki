@@ -50,7 +50,7 @@ export default function App() {
       meta.content = pathMapping[pathname]?.description ?? meta.dataset.fallback;
     }
 
-    // Canonical URL, so Google folds duplicate routes (e.g. /bioreactor-modeling
+    // Canonical URL, so Google folds duplicate routes (e.g. /dry-lab-overview
     // → /modeling) into one result: the first path in pages.js that renders
     // the same component. Stub is shared by every unwritten page, so those
     // each stay their own canonical. Unknown paths (NotFound) get none.

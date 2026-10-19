@@ -1,4 +1,4 @@
-import styles from "../DryLabOverview.module.scss";
+import styles from "../DryLabModeling.module.scss";
 
 // A small categorical bar chart (aerobic vs anaerobic growth rate, the
 // nutrient-cascade stages) — plain HTML/CSS rather than SVG since it's just

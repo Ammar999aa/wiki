@@ -1,4 +1,4 @@
-import styles from "../DryLabOverview.module.scss";
+import styles from "../DryLabModeling.module.scss";
 
 // Bordered glass card for one chart, reusing the markdown system's own
 // `.panel`/`.panel-title` classes (see MARKDOWN-COMPONENTS.md) so a chart

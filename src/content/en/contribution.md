@@ -147,7 +147,7 @@ We traced the gap to two oxygen-dependent steps and gave them electron acceptors
 
 </div>
 
-The two reactions and how we found them are described in <a href="/kaust-ksa/dry-lab-overview#gapfill">the gap-filling section</a> of our Dry Lab Overview.
+The two reactions and how we found them are described in <a href="/kaust-ksa/modeling#gapfill">the gap-filling section</a> of our Modeling page.
 
 ## Replicable mentorship framework
 

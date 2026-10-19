@@ -4,7 +4,7 @@
 //   node .claude/skills/page-export/export.mjs /hardware [/safety ...]
 //
 // Renders the page's own component with Vite SSR, so markdown pages and
-// custom JSX pages (Model, DryLabOverview, ...) go through the same path:
+// custom JSX pages (Model, DryLabModeling, ...) go through the same path:
 //   - SectionedArticle is swapped for a stub that captures its props
 //     (title, intro, sections); PageWrapper just renders its children;
 //   - CSS module imports resolve to a Proxy, so `styles.foo` renders as

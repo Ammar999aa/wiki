@@ -11,8 +11,8 @@ import markedKatex from "marked-katex-extension";
 // line (a "$" as the first character after a line break) silently fails to
 // tokenize and falls through to literal text. No content in this repo uses
 // "$" for anything but LaTeX math (checked: only *.md files under
-// content/en/ that contain "$" are dry-lab-overview.md and
-// bioreactor-modeling.md, both math-only), so relaxing this is safe.
+// content/en/ that contain "$" are dry-lab-modeling.md and
+// a stale math-only page, both math-only), so relaxing this is safe.
 marked.use(markedKatex({ throwOnError: false, nonStandard: true }));
 
 // Kebab-case anchor id for a "## Heading" title, e.g. "Tawasol: Uniting MENA

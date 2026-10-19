@@ -1,6 +1,6 @@
-import styles from "../DryLabOverview.module.scss";
+import styles from "../DryLabModeling.module.scss";
 
-// Figure 1 of the Dry Lab Overview: how the three chassis models relate.
+// Figure 1 of the Dry Lab Modeling: how the three chassis models relate.
 // Laid out as HTML (a 5-column grid: host · link · supplier · gap · host)
 // rather than one scaled SVG so the box text stays readable on phones,
 // where it collapses into a single column instead of shrinking.
