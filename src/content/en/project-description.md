@@ -174,17 +174,13 @@ To address this, we designed a compact, **autonomous biomanufacturing platform**
 
 <div class="panel">
 <div class="panel-title"><span>Production workflow · five stages</span><span>Proposed</span></div>
-<div class="flow">
-<span class="flow-node amber">Choose · A preserved microbial preparation</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node">Grow · Activate and cultivate the host</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node">Produce · Express the selected protein</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node">Purify · Recover the target protein</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node amber">Assess · Quality checks before potential use</span>
-</div>
+<ol class="process-strip">
+<li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><g transform="rotate(-40 24 24)"><path d="M16 24v-6a8 8 0 0 1 16 0v6z" class="pi-light"/><path d="M16 24v6a8 8 0 0 0 16 0v-6z" class="pi-main"/><circle cx="21" cy="29" r="1.7" class="pi-light"/><circle cx="26.5" cy="32" r="1.7" class="pi-light"/></g></svg><span class="process-label"><span class="process-num">1</span>Preserve</span><span class="process-desc">Freeze-dried microbes or spores</span></li>
+<li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="7" class="pi-frame"/><rect x="13" y="13" width="22" height="7.5" rx="2.5" class="pi-light"/><rect x="13" y="24" width="9.5" height="11" rx="2.5" class="pi-amber"/><rect x="25.5" y="24" width="9.5" height="11" rx="2.5" class="pi-main"/></svg><span class="process-label"><span class="process-num">2</span>Select</span><span class="process-desc">Choose the strain for your protein</span></li>
+<li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><path d="M9 8h30M12 8v32M36 8v32M8 40h32M24 4v22" class="pi-line"/><rect x="16" y="14" width="16" height="22" rx="5" class="pi-line"/><path d="M16 26h16v5a5 5 0 0 1-5 5h-6a5 5 0 0 1-5-5z" class="pi-main"/><circle cx="24" cy="26.5" r="2.4" class="pi-light"/></svg><span class="process-label"><span class="process-num">3</span>Grow</span><span class="process-desc">Activate and grow in the bioreactor</span></li>
+<li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><circle cx="16" cy="18" r="7" class="pi-blue"/><circle cx="29" cy="16" r="6.5" class="pi-main"/><circle cx="35" cy="28" r="6.5" class="pi-main"/><circle cx="14" cy="31" r="6" class="pi-blue"/><circle cx="24.5" cy="28" r="7.5" class="pi-light"/></svg><span class="process-label"><span class="process-num">4</span>Produce</span><span class="process-desc">Secrete therapeutic proteins</span></li>
+<li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><rect x="18.5" y="4" width="11" height="5.5" rx="1.8" class="pi-light"/><path d="M18 9.5h12v4.5l3.5 4.5V38a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4V18.5l3.5-4.5z" class="pi-line"/><path d="M17.5 24h13v13.5a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5z" class="pi-main"/><path d="M24 27.5c2 2.6 3 4.2 3 5.4a3 3 0 0 1-6 0c0-1.2 1-2.8 3-5.4z" class="pi-light"/></svg><span class="process-label"><span class="process-num">5</span>Purify</span><span class="process-desc">Recover and purify the product</span></li>
+</ol>
 </div>
 
 <div class="callout">

@@ -990,6 +990,137 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // The landing page's five-step process strip (Home.module.scss
+  // `.processStrip`), for markdown: two-tone icon, numbered mono label,
+  // one-line description, chevrons between steps. Icons are inline SVG
+  // using `.pi-*` tone classes (SVG fills can't take a var() attribute).
+  //   <ol class="process-strip"><li><svg class="process-ico">…</svg>
+  //   <span class="process-label"><span class="process-num">1</span>Preserve</span>
+  //   <span class="process-desc">…</span></li>…</ol>
+  :global(.process-strip) {
+    --step-gap: clamp(12px, 3vw, 40px);
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--step-gap);
+    margin: 20px 0 8px;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      --ico: 52px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+
+      &::before {
+        content: none;
+      }
+
+      & + li::before {
+        content: "›";
+        position: absolute;
+        left: calc(var(--step-gap) / -2);
+        top: calc(var(--ico) / 2);
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        line-height: 1;
+        color: var(--primary-400);
+      }
+    }
+
+    :global(.process-ico) {
+      width: var(--ico);
+      height: var(--ico);
+      filter: drop-shadow(0 0 14px rgba(177, 109, 255, 0.45));
+    }
+
+    :global(.process-label) {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    :global(.process-num) {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(177, 140, 255, 0.7);
+      font-size: 0.66rem;
+      letter-spacing: 0;
+      color: var(--primary-300);
+    }
+
+    :global(.process-desc) {
+      max-width: 19ch;
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    :global(.pi-light) { fill: var(--primary-200); }
+    :global(.pi-main) { fill: var(--primary); }
+    :global(.pi-amber) { fill: var(--accent); }
+    :global(.pi-blue) { fill: var(--tertiary-400); opacity: 0.95; }
+    :global(.pi-frame) { fill: color-mix(in oklab, var(--primary-700) 70%, transparent); }
+    :global(.pi-line) {
+      fill: none;
+      stroke: var(--primary-200);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    // Five columns don't fit a phone: stack them as icon-left rows.
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 14px;
+
+      > li {
+        --ico: 40px;
+        display: grid;
+        grid-template-columns: var(--ico) 1fr;
+        align-items: center;
+        justify-items: start;
+        text-align: left;
+        column-gap: 14px;
+        row-gap: 2px;
+
+        & + li::before {
+          display: none;
+        }
+      }
+
+      :global(.process-ico) {
+        grid-row: span 2;
+      }
+
+      :global(.process-label) {
+        margin-top: 0;
+        align-self: end;
+      }
+
+      :global(.process-desc) {
+        max-width: none;
+        align-self: start;
+      }
+    }
+  }
+
   // A row of clickable, graduated-height cards — for a short ranked or
   // staged list (by scope, depth, seniority, …) where the reader also
   // wants to jump straight to the item's own section. Each `<a>` needs a
