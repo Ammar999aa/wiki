@@ -1,8 +1,7 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import education from "../../content/en/education.md";
-import tawasolHackathon from "../../content/en/tawasol-hackathon.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import {
   CloneStepper,
@@ -25,7 +24,6 @@ import {
   MicrobeMission,
   PhotoDeck,
 } from "./components/ThuwalOutreach";
-import styles from "./Education.module.scss";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
@@ -162,9 +160,7 @@ function withInteractiveContent(sections) {
 }
 
 // Eyebrow echoes the nav trail ("Beyond the Lab" dropdown → "Education")
-// the reader clicked. Only the main Education sub-article gets one —
-// Tawasol Hackathon is reached from inside this page's own picker, not
-// from the nav, so there's no nav label for it to confirm.
+// the reader clicked.
 const educationIntro = (
   <Masthead
     eyebrow={["Beyond the Lab", "Education"]}
@@ -185,46 +181,8 @@ const educationIntro = (
   />
 );
 
-// Education is a picker over several sub-articles, each its own full
-// sectioned article (own ## table of contents). The main Education article
-// is first, so it's the default tab; Tawasol Hackathon is kept as a second,
-// non-default tab for its own deeper dive (Education's own "## Tawasol
-// Hackathon" section already summarizes it and points here). Add new
-// entries here as more sub-articles are written.
 export default function Education() {
-  const ARTICLES = useMemo(
-    () => [
-      {
-        key: "education",
-        title: "Education",
-        intro: educationIntro,
-        sections: withInteractiveContent(education),
-      },
-      {
-        key: "tawasol-hackathon",
-        title: "Tawasol Hackathon",
-        sections: tawasolHackathon,
-      },
-    ],
-    [],
-  );
-  const [selectedKey, setSelectedKey] = useState(ARTICLES[0].key);
-  const article = ARTICLES.find((a) => a.key === selectedKey) || ARTICLES[0];
-
-  const picker = (
-    <div className={styles.picker}>
-      <p className={styles.pickerLabel}>Education</p>
-      {ARTICLES.map((a) => (
-        <h3
-          key={a.key}
-          className={`${styles.pickerItem} ${a.key === selectedKey ? styles.selected : ""}`}
-          onClick={() => setSelectedKey(a.key)}
-        >
-          {a.title}
-        </h3>
-      ))}
-    </div>
-  );
+  const sections = useMemo(() => withInteractiveContent(education), []);
 
   return (
     <PageWrapper
@@ -236,15 +194,11 @@ export default function Education() {
       }}
     >
       <SectionedArticle
-        key={article.key}
-        title={article.title}
-        intro={article.intro}
-        sections={article.sections}
-        defaultSelected={article.sections[0]?.title}
-        panelHeader={picker}
-        // Both tabs render through this one call, so number only the long
-        // article: the Tawasol tab is short enough to read without them.
-        numbered={article.sections.length >= 9}
+        title="Education"
+        intro={educationIntro}
+        sections={sections}
+        defaultSelected={sections[0]?.title}
+        numbered
       />
     </PageWrapper>
   );
