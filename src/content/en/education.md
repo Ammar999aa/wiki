@@ -240,9 +240,9 @@ Alongside mentoring, we hosted a lecture series introducing students to interdis
 
 ### Context
 
-The use of genetically modified organisms (GMOs) has been debated for decades. Latin America is home to a significant share of the world's transgenic crops, with Brazil and Paraguay standing out. Peru, however, has taken a stance of strong opposition to protect its agrobiodiversity and organic gastronomy. A moratorium under Law No. 31.111 legally restricts the entry, cultivation and production of Living Modified Organisms (LMOs) <a class="cite" href="#ref-kallpa-1">1</a> <a class="cite" href="#ref-kallpa-2">2</a> <a class="cite" href="#ref-kallpa-3">3</a>.
+The use of genetically modified organisms (GMOs) has been a subject of controversy for several decades. Latin America is home to a significant portion of the world's genetically modified crops, with countries such as Brazil, Argentina and Paraguay standing out <a class="cite" href="#ref-kallpa-1">1</a>. However, other nations, such as Peru, have taken a stance of staunch opposition, seeking to safeguard their agrobiodiversity and organic gastronomy. A moratorium is currently in effect in Peru (under Law No. 31.111) that legally restricts the entry, cultivation and production of Living Modified Organisms (LMOs) <a class="cite" href="#ref-kallpa-2">2</a>.
 
-In April 2026, Peru approved Ministerial Resolution No. D000068-2026-MINAM-DM. It states that a plant edited with CRISPR to modify or silence one of its own genes, without introducing foreign DNA, is not classified as an LMO. Such plants would be exempt from the moratorium and could potentially be grown commercially.
+Yet, in April 2026, Peru approved Ministerial Resolution No. D000068-2026-MINAM-DM. This resolution states that if a plant has been edited using CRISPR to modify or silence one of its own genes, without the introduction of exogenous DNA, the organism is not classified as an LMO <a class="cite" href="#ref-kallpa-3">3</a> <a class="cite" href="#ref-kallpa-4">4</a>. Consequently, it would be exempt from the moratorium, potentially allowing for its commercial cultivation.
 
 <!-- kallpa:dialogue -->
 
@@ -253,7 +253,7 @@ Despite this significant change, farmers, students and the public reacted with c
 <div class="panel">
 <div class="panel-title"><span>Impact partner</span><span>Kallpa Greenz · Peru</span></div>
 
-Led by Darwin Paul Díaz Cancino, winner of the 10th Start-Up Perú call and gold medalist at the 2021 iGEM Design League. Kallpa Greenz combines sustainability with social commitment through hydroponics, bioclimatic greenhouses and photobioreactors, supporting vulnerable communities.
+Led by Darwin Paul Díaz Cancino, a winner of the tenth Start-Up Perú call for proposals and a gold medalist at the 2021 iGEM Design League (synthetic biology), Kallpa Greenz combines sustainability with social commitment. It promotes sustainable green technologies and responsible food production through hydroponics and automation, with a strong focus on R&D. The team comprises young volunteers and professionals, over 76 young professionals and students led by 8 managers, who implement hydroponic systems, bioclimatic greenhouses and photobioreactors to support vulnerable communities.
 
 <div class="stat-grid">
 <div><strong>76+</strong><span>Young professionals &amp; students</span></div>
@@ -262,7 +262,7 @@ Led by Darwin Paul Díaz Cancino, winner of the 10th Start-Up Perú call and gol
 </div>
 </div>
 
-After several interviews with the project leader, we identified three gaps:
+After several interviews with the project leader, we concluded that:
 
 <div class="card-grid row">
 
@@ -270,7 +270,7 @@ After several interviews with the project leader, we identified three gaps:
 
 #### Knowledge gap
 
-Many farmers in rural areas lack access to the scientific concepts behind the technologies being debated.
+Many farmers in rural areas face a gap regarding scientific concepts and public understanding.
 
 </div>
 
@@ -278,7 +278,7 @@ Many farmers in rural areas lack access to the scientific concepts behind the te
 
 #### Access gap
 
-Reliable scientific information is unequally available, because few educational resources are tailored to rural farming contexts.
+There is unequal access to reliable scientific information due to limited availability of educational resources tailored to their specific contexts.
 
 </div>
 
@@ -286,7 +286,7 @@ Reliable scientific information is unequally available, because few educational 
 
 #### Model gap
 
-There is no sustainable, replicable educational model that can be rolled out to new communities and new generations of mentors.
+We identified the absence of a sustainable, replicable educational model capable of being rolled out to new communities and generations of mentors.
 
 </div>
 
@@ -294,75 +294,9 @@ There is no sustainable, replicable educational model that can be rolled out to 
 
 ### Our educational strategy: a multiplier model
 
-We chose a train-the-trainer, or multiplier, model: KAUST iGEM trains Kallpa's youth volunteers, who then run weekly in-person sessions with rural farmers. Our goal was not to push volunteers toward a particular stance on GMOs, but to give them the knowledge and tools to understand what GMOs are, how they work, how they are used, and how they are regulated. We organized the course into four connected modules.
-
-<div class="callout accent">
-
-<p class="callout-label">Why a tomato?</p>
-
-The farmers we mentor told us they want to plant tomatoes in their own communities. So every session uses the tomato as our running example: what is it, how could it be edited, what are the benefits and risks, and what does Peruvian law say about it.
-
-</div>
+The primary objective was not to instill a specific stance on GMOs in the volunteers, but rather to provide them with the tools and knowledge necessary to understand what GMOs are, how they function, how they are applied, the factors that influence them, and the regulatory frameworks that govern them in Peru. To achieve this, we organized the content into four interconnected learning modules, featuring weekly activities that allowed the volunteers to put what they had learned into practice within their communities.
 
 <!-- kallpa:modules -->
-
-### The Sessions
-
-Each week's session closed with a hands-on activity volunteers could take back to their communities.
-
-<div class="card-grid">
-
-<div>
-
-<span class="chip">Session 1 · From space to the field</span>
-
-#### SHIHAB: in-situ biomanufacturing
-
-Shipping everything from Earth is extremely expensive. The idea: use living organisms as factories right where they are needed, even on a space mission.
-
-<a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-1.pdf" target="_blank" rel="noopener noreferrer">View session 1 slides</a>
-
-</div>
-
-<div>
-
-<span class="chip">Session 2 · Recap</span>
-
-#### Edit the tomato's DNA
-
-A gene is an instruction. Volunteers edited the tomato plant's own genes, with no foreign DNA, to see what changes: drought resistance, a longer shelf life and fruit size.
-
-<a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-2.pdf" target="_blank" rel="noopener noreferrer">View session 2 slides</a>
-
-</div>
-
-<div>
-
-<span class="chip">Session 3 · Benefit or risk</span>
-
-#### The decision scale
-
-"A GM crop produces 30% more yield using the same amount of water." Benefit or risk? Volunteers chose for each statement and saw where their scale tipped. Try it below.
-
-<a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-3.pdf" target="_blank" rel="noopener noreferrer">View session 3 slides</a>
-
-</div>
-
-<div>
-
-<span class="chip">Session 4 · Peruvian agriculture</span>
-
-#### GMOs on our farm
-
-Peru protects its agrobiodiversity with the moratorium under Law No. 31.111. Using Peru's own crops (potato, maize, quinoa and tomato), volunteers checked whether a modified plant is an LMO under the April 2026 rule, the same check as the "Is it an LMO?" activity above.
-
-<a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-4.pdf" target="_blank" rel="noopener noreferrer">View session 4 slides</a>
-
-</div>
-
-</div>
-
-<!-- kallpa:scale -->
 
 ### Evidence of impact
 
@@ -375,7 +309,7 @@ The program evaluation focused not only on determining whether the mentors had g
 <div class="stat-grid">
 <div><strong>8</strong><span>Volunteers surveyed</span></div>
 <div><strong>4</strong><span>Dimensions evaluated</span></div>
-<div class="hi"><strong>8.5/10</strong><span>Overall program rating</span></div>
+<div class="hi"><strong>5 max</strong><span>Scale 0 → 5 per dimension</span></div>
 </div>
 
 <!-- kallpa:science -->
@@ -396,7 +330,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 #### Dimension 03 · Active learning and knowledge transfer
 
-This dimension allowed us to identify which training components needed strengthening. Consequently, we recognized the need to incorporate more oral practice exercises, simulations, and role-playing activities that could be replicated with farmers.
+This dimension allowed us to identify which training components needed strengthening. Consequently, we recognized the need to incorporate more oral practice exercises, simulations, and role-playing activities that could be replicated with farmers. These formats apply to two audiences: students (schools and young people) and farmers (rural communities).
 
 <div class="card-grid row">
 
@@ -429,6 +363,7 @@ This dimension allowed us to identify which training components needed strengthe
 <span class="chip amber">Local examples</span>
 <span class="chip amber">Quechua</span>
 <span class="chip amber">Linguistic variants</span>
+<span class="chip amber">With students</span>
 
 </div>
 
@@ -490,11 +425,11 @@ They also anticipated the questions farmers will ask:
 - "Would it really work for my situation?"
 - "What benefits would it offer me as a farmer?"
 
-Adapting scientific content to the communication context means answering these questions in the farmer's own language and terms.
+Adapting scientific content to the communication context means answering these questions in the farmer's own language and terms. *Sulpayki*, "thank you" in Quechua, to every volunteer who made it possible.
 
 #### Final evaluation
 
-Mentors rated the program 8.5 out of 10 overall. We interpret this as sufficient evidence of participant acceptance and experience. This feedback is the starting point for the next stage of Kallpa Greenz.
+Mentors rated the program 8.5 out of 10 overall, on a scale from 1 to 10. We interpret this as sufficient evidence of participant acceptance and experience. This feedback is the starting point for the next stage of Kallpa Greenz.
 
 ### Our Reach
 
@@ -507,6 +442,8 @@ Mentors rated the program 8.5 out of 10 overall. We interpret this as sufficient
 <span class="chip amber">Central Amazon</span>
 <span class="chip amber">Valle del Nilo community</span>
 <span class="chip amber">Caraz</span>
+
+The Incas kept their records in a *quipu*, cords where every knot is a number. This is ours: each knot is a person or community reached.
 
 From a classroom at KAUST to Peru's chakras: every volunteer trained becomes a bridge, and every farmer who understands becomes someone who decides. *Kallpa*, "strength" in Quechua, is the strength to keep going.
 
@@ -630,8 +567,9 @@ Our education programs support Saudi Arabia's Vision 2030 and National Biotechno
 
 <ol class="ref-list">
 
-<li id="ref-kallpa-1">Ministerio del Ambiente. (2023, December 29). <i>Reglamento de Ley de Moratoria para transgénicos prioriza mecanismos de biotecnología y bioseguridad para proteger nuestras especies nativas</i> [Regulations on the GMO moratorium law prioritize biotechnology and biosafety mechanisms to protect our native species]. <a href="https://www.gob.pe/institucion/minam/noticias/888686-reglamento-de-ley-de-moratoria-para-transgenicos-prioriza-mecanismos-de-biotecnologia-y-bioseguridad-para-proteger-nuestras-especies-nativas" target="_blank" rel="noopener noreferrer">gob.pe</a></li>
-<li id="ref-kallpa-2">Congreso de la República del Perú. (2011). <i>Ley N.º 29811, Ley que establece la moratoria al ingreso y producción de organismos vivos modificados al territorio nacional por un período de 10 años</i> [Law No. 29811, Law establishing a moratorium on the entry and production of genetically modified organisms into the national territory for a period of 10 years]. <a href="https://www.minam.gob.pe/wp-content/uploads/2017/04/Ley-N%C2%B0-29811.pdf" target="_blank" rel="noopener noreferrer">minam.gob.pe</a></li>
-<li id="ref-kallpa-3">Agencia Andina. (2020, October 20). <i>Congreso amplía moratoria al ingreso y producción de transgénicos hasta el 2035</i> [Congress extends the moratorium on the entry and production of genetically modified organisms until 2035]. <a href="https://www.elperuano.com.pe/agencia/noticia-congreso-amplia-moratoria-al-ingreso-y-produccion-transgenicos-hasta-2035-818435.aspx" target="_blank" rel="noopener noreferrer">elperuano.com.pe</a></li>
+<li id="ref-kallpa-1">CropLife International. (2025, May 12). <i>Regulatory modernisation in Latin America: A toolkit for GM crop approvals</i>. <a href="https://croplife.org/latin-america-gm-crop-regulation-modernisation/" target="_blank" rel="noopener noreferrer">croplife.org</a></li>
+<li id="ref-kallpa-2">Ministerio del Ambiente. (2023, December 29). <i>Reglamento de Ley de Moratoria para transgénicos prioriza mecanismos de biotecnología y bioseguridad para proteger nuestras especies nativas</i> [Regulations on the GMO moratorium law prioritize biotechnology and biosafety mechanisms to protect our native species]. <a href="https://www.gob.pe/institucion/minam/noticias/888686-reglamento-de-ley-de-moratoria-para-transgenicos-prioriza-mecanismos-de-biotecnologia-y-bioseguridad-para-proteger-nuestras-especies-nativas" target="_blank" rel="noopener noreferrer">gob.pe</a></li>
+<li id="ref-kallpa-3">Congreso de la República del Perú. (2011). <i>Ley N.º 29811, Ley que establece la moratoria al ingreso y producción de organismos vivos modificados al territorio nacional por un período de 10 años</i> [Law No. 29811, Law establishing a moratorium on the entry and production of genetically modified organisms into the national territory for a period of 10 years]. <a href="https://www.minam.gob.pe/wp-content/uploads/2017/04/Ley-N%C2%B0-29811.pdf" target="_blank" rel="noopener noreferrer">minam.gob.pe</a></li>
+<li id="ref-kallpa-4">Agencia Andina. (2020, October 20). <i>Congreso amplía moratoria al ingreso y producción de transgénicos hasta el 2035</i> [Congress extends the moratorium on the entry and production of genetically modified organisms until 2035]. <a href="https://www.elperuano.com.pe/agencia/noticia-congreso-amplia-moratoria-al-ingreso-y-produccion-transgenicos-hasta-2035-818435.aspx" target="_blank" rel="noopener noreferrer">elperuano.com.pe</a></li>
 
 </ol>
