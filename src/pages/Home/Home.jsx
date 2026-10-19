@@ -404,11 +404,12 @@ function HeroSection() {
     // keeps its top margin while the hero is pinned.
     const drift = Math.max(0, p - HERO_STRIP_P[1]) * 40;
     // Logo -> Arabic wordmark crossfade starts almost as soon as scrolling
-    // begins, stretched over about two-thirds of the pinned hero scene so
-    // there's no dead stretch before the copy fades out.
-    if (latinRef.current) latinRef.current.style.opacity = 1 - between(p, 0.05, 0.55);
+    // begins and is done within the first quarter of the pinned hero scene
+    // (about 0.4 screens of scroll), well before the copy fades out. It was
+    // stretched to p = 0.65 and read as arriving too late.
+    if (latinRef.current) latinRef.current.style.opacity = 1 - between(p, 0.02, 0.2);
     if (arabicRef.current) {
-      const fo = between(p, 0.15, 0.65);
+      const fo = between(p, 0.06, 0.26);
       arabicRef.current.style.opacity = fo;
       arabicRef.current.style.transform = `scale(${lerp(0.82, 1, fo)})`;
     }
