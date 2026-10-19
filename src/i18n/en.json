@@ -237,6 +237,12 @@
       "department": "",
       "tasks": "Tasks description here.",
       "specificTasks": "Specific tasks description here."
+    },
+    "yerlen": {
+      "role": "Volunteer",
+      "department": "",
+      "tasks": "Tasks description here.",
+      "specificTasks": "Specific tasks description here."
     }
   }
 }

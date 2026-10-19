@@ -36,6 +36,7 @@ const mafer     = `${ROSTER_CDN}/mafer.avif`;
 const kiran     = `${ROSTER_CDN}/kiran.avif`;
 const shahada   = `${ROSTER_CDN}/shahada.avif`;
 const noureldin = `${ROSTER_CDN}/noureldin.avif`;
+const yerlen    = `${ROSTER_CDN}/yerlen.avif`;
 const wayne     = `${ROSTER_CDN}/wayne.avif`;
 const fabian    = `${ROSTER_CDN}/fabian.avif`;
 const selena    = `${ROSTER_CDN}/selena.avif`;
@@ -105,6 +106,7 @@ const advisors = [
 const volunteers = [
   { name: "Shahad Al Abdulomhssen", roleKey: "volunteer", memberKey: "shahadAl", photo: shahada, countryCode: "sa" },
   { name: "Noureldin Rihan", roleKey: "volunteer", memberKey: "noureldin", photo: noureldin, countryCode: "eg" },
+  { name: "Yerlen Menglen", roleKey: "volunteer", memberKey: "yerlen", photo: yerlen, countryCode: "kz" },
 ];
 
 // Unfilled slots woven into the PI cluster, decorative room for that group
