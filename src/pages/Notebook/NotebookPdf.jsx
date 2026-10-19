@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import styles from "./Notebook.module.scss";
 
-// The full lab notebook PDF is ~21 MB, over iGEM's per-file upload cap, so
-// it's uploaded as three page-range parts (each a valid PDF on its own,
+// The full lab notebook PDF (131 pages) is over iGEM's per-file upload cap,
+// so it's uploaded as two page-range parts (each a valid PDF on its own,
 // each under 10 MB) and merged back into one document in the browser.
 // static.igem.wiki sends `access-control-allow-origin: *`, which is what
 // lets fetch() read them.
 const BASE = "https://static.igem.wiki/teams/6341/wiki/notebook/notebook";
-const PARTS = [1, 2, 3].map((n) => `${BASE}/lab-notebook-part-0${n}.pdf`);
+const PARTS = [
+  `${BASE}/igem-lab-notebook-part-1-pages-1-71.pdf`,
+  `${BASE}/igem-lab-notebook-part-2-pages-72-131.pdf`,
+];
 
 export default function NotebookPdf() {
   const [state, setState] = useState({ status: "loading", done: 0 });
@@ -71,7 +74,7 @@ export default function NotebookPdf() {
   if (state.status === "error") {
     return (
       <p className={styles.pdfError}>
-        Couldn't load the notebook. It's also available in three parts:{" "}
+        Couldn't load the notebook. It's also available in two parts:{" "}
         {PARTS.map((url, i) => (
           <span key={url}>
             {i > 0 && ", "}
