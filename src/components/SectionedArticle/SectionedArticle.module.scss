@@ -494,6 +494,225 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // A stacked list of episodes (or any numbered, titled items with a byline
+  // and a blurb): a numbered disc, the title, a small-caps amber byline, the
+  // blurb, and a decorative waveform on the right (hidden on narrow screens).
+  // `.episode.tba` is the honest pending state: dashed and dimmed, no
+  // waveform energy. Plain HTML, no blank lines needed:
+  //   <div class="episodes">
+  //   <div class="episode"><span class="episode-num">1</span><div class="episode-body"><b class="episode-title">Title</b><span class="episode-guest">With Name</span><p>Blurb.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i>...</span></div>
+  //   </div>
+  :global(.episodes) {
+    display: grid;
+    gap: 12px;
+    margin-block: 20px;
+  }
+
+  :global(.episode) {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    gap: 6px 18px;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    transition:
+      border-color 0.3s,
+      background 0.3s;
+
+    &:hover {
+      border-color: rgba(177, 109, 255, 0.55);
+      background: rgba(177, 109, 255, 0.07);
+    }
+
+    :global(.episode-num) {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 216, 77, 0.12);
+      border: 1px solid rgba(255, 216, 77, 0.4);
+      color: var(--amber);
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    :global(.episode-body) {
+      min-width: 0;
+    }
+
+    :global(.episode-title) {
+      display: block;
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    :global(.episode-guest) {
+      display: block;
+      margin-top: 3px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    p {
+      margin: 8px 0 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.78);
+      text-align: start;
+      hyphens: none;
+    }
+
+    :global(.episode-wave) {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 36px;
+
+      i {
+        width: 3px;
+        height: 40%;
+        border-radius: 2px;
+        background: var(--primary-300);
+        opacity: 0.55;
+        transition:
+          opacity 0.3s,
+          background 0.3s;
+      }
+
+      i:nth-child(3n + 1) {
+        height: 75%;
+      }
+
+      i:nth-child(4n + 2) {
+        height: 100%;
+      }
+
+      i:nth-child(5n) {
+        height: 55%;
+      }
+    }
+
+    &:hover :global(.episode-wave) i {
+      background: var(--amber);
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 40px minmax(0, 1fr);
+
+      :global(.episode-num) {
+        width: 40px;
+        height: 40px;
+      }
+
+      :global(.episode-wave) {
+        display: none;
+      }
+    }
+  }
+
+  :global(.episode.tba) {
+    border-style: dashed;
+    background: transparent;
+    opacity: 0.7;
+
+    :global(.episode-num) {
+      background: transparent;
+      border-style: dashed;
+    }
+
+    :global(.episode-wave) i {
+      height: 12%;
+      opacity: 0.3;
+    }
+  }
+
+  // A scatter of instant-photo prints: cream mat, slight alternating tilt,
+  // a short handwritten-style label underneath, straightening on hover.
+  // Meant for a handful of event "moments", not for photos that need an
+  // interpretive `.caption` (use `.figure-grid` for those). Photos are
+  // cropped to a fixed size in the browser (source file untouched), each
+  // opens in the Lightbox like any article image, and the last row centers.
+  // Plain HTML, one <figure> per line (`--pol-pos` sets the crop point):
+  //   <div class="polaroids">
+  //   <figure><img src="..." alt="..." loading="lazy" style="--pol-pos: 50% 30%;"><figcaption>Label</figcaption></figure>
+  //   </div>
+  :global(.polaroids) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px 22px;
+    margin-block: 28px;
+    padding: 6px;
+
+    figure {
+      flex: 0 1 205px;
+      margin: 0;
+      padding: 10px 10px 0;
+      background: #f6f2ea;
+      border-radius: 4px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+      transform: rotate(var(--tilt, -2deg));
+      transition: transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1);
+    }
+
+    figure:nth-child(even) {
+      --tilt: 1.8deg;
+    }
+
+    figure:nth-child(3n) {
+      --tilt: -0.8deg;
+    }
+
+    figure:hover {
+      transform: rotate(0) scale(1.06) translateY(-6px);
+      position: relative;
+      z-index: 2;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 230px;
+      margin: 0;
+      object-fit: cover;
+      object-position: var(--pol-pos, center);
+      border-radius: 2px;
+      cursor: zoom-in;
+    }
+
+    figcaption {
+      padding: 9px 4px 11px;
+      text-align: center;
+      font-family: "Aref Ruqaa", Inter, serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #2a2142;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      figure {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      figure {
+        flex-basis: 100%;
+        max-width: 280px;
+      }
+    }
+  }
+
   // Crops a photo to a fixed aspect ratio in the browser (source file untouched):
   //   <div class="crop-frame" style="--crop-ratio: 900 / 675; --crop-pos: 50% 30%;">
   //

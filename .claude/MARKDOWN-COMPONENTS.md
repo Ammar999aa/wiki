@@ -83,6 +83,8 @@ be none — see `.flow` below).
 | Two side-by-side images, or two side-by-side prose+diagram blocks                                              | `.two-col-images` / `.two-col-tracks`                           | Two even columns, stacks on mobile                                        |
 | A run of small images that should sit in one row (composite figure panels)                                     | `.notebook-img-row`                                             | Flex row, no forced full-width wrap                                       |
 | A set of event photos shown together as a gallery                                                              | `.gallery`                                                      | Even grid of 4:3-cropped thumbnails, each opens full-size in the lightbox |
+| A numbered list of titled items, each with a byline and a blurb (podcast episodes)                         | `.episodes` + `.episode`                                        | Stacked rows: number disc, title, amber byline, blurb, decorative waveform |
+| A handful of event "moments" with a short label each, no interpretive caption                              | `.polaroids`                                                    | Cream-matted prints, slight tilt, handwritten-style label, centered rows  |
 | A run of photos that should take one row's height, not a whole grid                                             | `.photo-slider`                                                 | Auto-advancing carousel, centered photo with its neighbours peeking in   |
 | A short ranked/staged list where each item also jumps to its own section                                       | `.ladder` (+ `.ladder-axis`)                                    | Row of clickable cards, graduated height                                  |
 | An event with a headline number worth leading with, linking to its own heading                                 | `.tickets` (+ `.ticket`/`.ticket-main`/`.ticket-stub`)          | Card split into info + a dashed "stub" showing the number                 |
@@ -969,6 +971,37 @@ uncropped image in the lightbox. See the end of `education.md`.
 <div class="gallery">
 <img src="https://static.igem.wiki/..." alt="..." loading="lazy">
 <img src="https://static.igem.wiki/..." alt="..." loading="lazy">
+</div>
+```
+
+**`.episodes`** — a stacked list of numbered, titled items with a byline
+and a blurb (see science-communication.md's podcast season): a number disc,
+the title, a small-caps amber byline, the blurb, and a decorative waveform
+on the right that hides on phones. Add `tba` to an `.episode` for the honest
+pending state (dashed, dimmed, flat waveform). Plain HTML, no blank lines
+needed; the waveform is just a run of empty `<i>` bars and carries no data.
+
+```md
+<div class="episodes">
+<div class="episode"><span class="episode-num">1</span><div class="episode-body"><b class="episode-title">Title</b><span class="episode-guest">With Name</span><p>Blurb.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+<div class="episode tba">…</div>
+</div>
+```
+
+**`.polaroids`** — a scatter of instant-photo prints for a handful of
+event "moments" (see science-communication.md's WALL-E night): cream mat,
+alternating tilt that straightens on hover, a short `Aref Ruqaa` label
+under each, a fixed 230px crop (source file untouched) and a centered last
+row. Each photo opens in the lightbox like any article image. Use it when
+the photos are atmosphere and each needs only a few words; when a photo
+needs a sentence that interprets it, use `.figure-grid` instead, and put one
+`.caption` under the whole set if the group deserves it. `--pol-pos` on an
+`<img>` sets the crop point (default centered).
+
+```md
+<div class="polaroids">
+<figure><img src="https://static.igem.wiki/..." alt="..." loading="lazy"><figcaption>The poster</figcaption></figure>
+<figure><img src="https://static.igem.wiki/..." alt="..." loading="lazy" style="--pol-pos: 50% 30%;"><figcaption>Crew discussion</figcaption></figure>
 </div>
 ```
 

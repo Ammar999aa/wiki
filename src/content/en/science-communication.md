@@ -37,16 +37,7 @@ Films give everyone a shared starting point. By pairing popular science fiction 
 
 #### Summary
 
-<div class="aside-row">
-
-<figure class="img-aside">
-<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-poster.avif" alt="WALL-E movie night poster with event details and sponsors" loading="lazy">
-<figcaption class="caption"><strong>Figure 1.</strong> The event poster, handed out around campus ahead of the screening.</figcaption>
-</figure>
-
 On Thursday, May 7, 2026, we hosted an interactive screening of WALL-E at KAUST's Discovery Cinema for 70 attendees, 50 of whom stayed for the discussion that followed. The film's story of a polluted Earth and a single surviving plant opened a discussion on how synthetic biology could help address global environmental challenges.
-
-</div>
 
 #### Event structure
 
@@ -84,27 +75,39 @@ Mission: grow food in space. How would you farm on a spaceship, with little wate
 
 </div>
 
-<div class="figure-grid" style="--cols: 2; --fig-h: 340px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-crew-discussion.avif" alt="Attendees discussing the film in their crews inside the cinema" loading="lazy"></div><figcaption class="caption"><strong>Figure 2.</strong> Crews discussing the film together inside the cinema.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-kids-sketching.avif" alt="Children sketching their Operation Earth 2.0 designs" loading="lazy" style="object-position: 50% 40%;"></div><figcaption class="caption"><strong>Figure 3.</strong> Sketching Operation Earth 2.0 designs.</figcaption></figure>
+#### Moments from the night
+
+<div class="polaroids">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-poster.avif" alt="WALL-E movie night poster with event details and sponsors" loading="lazy"><figcaption>The poster</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-crew-discussion.avif" alt="Attendees discussing the film in their crews inside the cinema" loading="lazy"><figcaption>Crew discussion</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-kids-sketching.avif" alt="Children sketching their Operation Earth 2.0 designs" loading="lazy" style="--pol-pos: 50% 40%;"><figcaption>Operation Earth 2.0</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-attendees-logbooks.avif" alt="Attendees holding up their discussion logbooks" loading="lazy" style="--pol-pos: 50% 70%;"><figcaption>Our plan for Earth</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-group-photo.avif" alt="Group photo of WALL-E movie night attendees with their designs" loading="lazy"><figcaption>The ones who stayed</figcaption></figure>
+</div>
+
+<div class="caption">
+
+**Figure 1.** Moments from the night: the event poster, crews discussing the film, sketching Operation Earth 2.0 designs, a crew showing its plan to rebuild Earth, and everyone who stayed for the discussion. Tap any photo to enlarge.
+
 </div>
 
 #### Community engagement and sponsorship
 
 To encourage community attendance, we secured sponsorship from Burger King and Baskin Robbins, providing meal vouchers for the first 20 attendees and Baskin Robbins ice cream for the 50 attendees who stayed for the post-film discussion. NTI, BESE and SnapGene were also thanked on the event poster. Together, our sponsors helped bring all 70 guests through the door.
 
-<div class="figure-grid" style="--cols: 2; --fig-h: 340px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-attendees-logbooks.avif" alt="Attendees holding up their discussion logbooks" loading="lazy" style="object-position: 50% 70%;"></div><figcaption class="caption"><strong>Figure 4.</strong> A crew shows its plan to rebuild Earth.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-group-photo.avif" alt="Group photo of WALL-E movie night attendees with their designs" loading="lazy"></div><figcaption class="caption"><strong>Figure 5.</strong> Everyone who stayed for the discussion.</figcaption></figure>
-</div>
-
 <h3 id="hail-mary">Project Hail Mary</h3>
 
 On Sunday, August 30, 2026, we held a screening and open discussion of Project Hail Mary for 35 undergraduate and graduate students, sponsored by the KAUST BioMed division. The film follows a scientist using microbiology to save Earth, which let us move the conversation into space biology and extremophile microbiology, areas close to our own project, SHIHAB. The open discussion took place at 6:00 PM in Conference Room 0215, in the Auditorium Building between Buildings 4 and 5.
 
-<div class="figure-grid" style="--cols: 2; --fig-h: 340px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-team.avif" alt="KAUST iGEM team members in front of the Project Hail Mary event screen" loading="lazy" style="object-position: 50% 65%;"></div><figcaption class="caption"><strong>Figure 6.</strong> Hosts at the Project Hail Mary screening.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-audience.avif" alt="Students gathered in the conference room for the screening" loading="lazy"></div><figcaption class="caption"><strong>Figure 7.</strong> Conference Room 0215, ready for the open discussion.</figcaption></figure>
+<div class="polaroids">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-team.avif" alt="KAUST iGEM team members in front of the Project Hail Mary event screen" loading="lazy" style="--pol-pos: 50% 65%;"><figcaption>Hosts at the screening</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-audience.avif" alt="Students gathered in the conference room for the screening" loading="lazy"><figcaption>Conference Room 0215</figcaption></figure>
+</div>
+
+<div class="caption">
+
+**Figure 2.** Hosts at the Project Hail Mary screening, and Conference Room 0215 ready for the open discussion.
+
 </div>
 
 ## Life in Orbit podcast
@@ -124,6 +127,7 @@ We had episodes in both English and Arabic depending on our guests and provided 
 
 For our first season we had 5 episodes on topics ranging from extremophiles to the life and challenges of a scientist.
 
+<div class="chip-row">
 <span class="chip">Extremophiles</span>
 <span class="chip">Nanobodies</span>
 <span class="chip">Extremozymes</span>
@@ -131,67 +135,26 @@ For our first season we had 5 episodes on topics ranging from extremophiles to t
 <span class="chip">Entrepreneurship</span>
 <span class="chip">Optogenetics</span>
 <span class="chip">Life and challenges of a scientist</span>
-
-<div class="card-grid">
-
-<div>
-
-<span class="chip amber">Episode 1</span>
-
-#### What if the future of agriculture is salty?
-
-With Professor Mark Tester. Innovative crop engineering, tomato grafting and salt-tolerant plants holding the key to food security.
-
 </div>
 
-<div>
-
-<span class="chip amber">Episode 2</span>
-
-#### What if nature is a better chemist than humans?
-
-With Dr. Dominik Renn, a research scientist at the KAUST Catalysis Center. This episode opens discussions about nanobodies, extremozymes and entrepreneurship.
-
-</div>
-
-<div>
-
-<span class="chip amber">Episode 3</span>
-
-#### From scientist to entrepreneur: turning science into impact
-
-With Dr. Sandra Medina. How we can use our skills to research and translate it to biotechnology, and identify gaps that could support making an impact in the community.
-
-</div>
-
-<div>
-
-<span class="chip amber">Episode 4</span>
-
-#### Could microbes be the key to life beyond Earth?
-
-With Professor Alexandre Rosado, who studies extremophiles and how they could give us insights into what life on Mars or in space could look like.
-
-</div>
-
-</div>
-
-<div class="callout warn">
-
-<p class="callout-label">Episode 5</p>
-
-Guest to be announced. Title and details coming soon.
-
+<div class="episodes">
+<div class="episode"><span class="episode-num">1</span><div class="episode-body"><b class="episode-title">What if the future of agriculture is salty?</b><span class="episode-guest">With Professor Mark Tester</span><p>Innovative crop engineering, tomato grafting and salt-tolerant plants holding the key to food security.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+<div class="episode"><span class="episode-num">2</span><div class="episode-body"><b class="episode-title">What if nature is a better chemist than humans?</b><span class="episode-guest">With Dr. Dominik Renn, KAUST Catalysis Center</span><p>Dr. Renn is a research scientist at the KAUST Catalysis Center. This episode opens discussions about nanobodies, extremozymes and entrepreneurship.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+<div class="episode"><span class="episode-num">3</span><div class="episode-body"><b class="episode-title">From scientist to entrepreneur: turning science into impact</b><span class="episode-guest">With Dr. Sandra Medina</span><p>How we can use our skills to research and translate it to biotechnology, and identify gaps that could support making an impact in the community.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+<div class="episode"><span class="episode-num">4</span><div class="episode-body"><b class="episode-title">Could microbes be the key to life beyond Earth?</b><span class="episode-guest">With Professor Alexandre Rosado</span><p>Professor Rosado studies extremophiles and how they could give us insights into what life on Mars or in space could look like.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+<div class="episode tba"><span class="episode-num">5</span><div class="episode-body"><b class="episode-title">Episode 5</b><span class="episode-guest">Guest to be announced</span><p>Title and details coming soon.</p></div><span class="episode-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
 </div>
 
 ### Made for everyone
 
 To keep the episodes accessible to everyone, we uploaded them on our YouTube channel and used simplified, plain language in both Arabic and English. Each episode runs 45 minutes to an hour.
 
+<div class="chip-row">
 <span class="chip">On YouTube</span>
 <span class="chip">Arabic and English</span>
 <span class="chip">Subtitles in different languages</span>
 <span class="chip">45 minutes to an hour each</span>
+</div>
 
 ### Reach
 
@@ -256,7 +219,7 @@ Instagram was our main platform for sharing team updates, educational content, a
 
 <div class="caption">
 
-**Figure 8.** Two thirds of our Instagram views came from people who didn't follow us yet. Over the previous 90 days the account grew by 78.4%, to 364 followers.
+**Figure 3.** Two thirds of our Instagram views came from people who didn't follow us yet. Over the previous 90 days the account grew by 78.4%, to 364 followers.
 
 </div>
 
@@ -416,7 +379,7 @@ We used TikTok to explore a more informal approach to science communication, sha
 
 <div class="caption">
 
-**Figure 9.** Most TikTok viewers found us through recommendations, not by following us: 88% of viewers were new to our account.
+**Figure 4.** Most TikTok viewers found us through recommendations, not by following us: 88% of viewers were new to our account.
 
 </div>
 
@@ -445,7 +408,7 @@ An important finding was that 85.6% of our traffic came from the For You page, m
 
 <div class="caption">
 
-**Figure 10.** Almost four in five TikTok viewers were female.
+**Figure 5.** Almost four in five TikTok viewers were female.
 
 </div>
 
@@ -517,7 +480,7 @@ During the same period, our page received 220 page views from 103 unique visitor
 
 <div class="caption">
 
-**Figure 11.** Education and research make up 30% of our identified visitors, the people closest to our outreach goals.
+**Figure 6.** Education and research make up 30% of our identified visitors, the people closest to our outreach goals.
 
 </div>
 
@@ -539,7 +502,7 @@ During the same period, our page received 220 page views from 103 unique visitor
 
 <div class="caption">
 
-**Figure 12.** Most of our LinkedIn page views (155 of 220) came from mobile.
+**Figure 7.** Most of our LinkedIn page views (155 of 220) came from mobile.
 
 </div>
 
