@@ -65,7 +65,7 @@ We developed SHIHAB to explore a new approach to space healthcare, where astrona
 
 #### Engineering microorganisms for space
 
-Our approach focuses on engineering microbial hosts capable of functioning under space-associated environmental stressors, including ionizing radiation, oxidative stress, and temperature fluctuations. We selected *Bacillus subtilis*, *Saccharomyces cerevisiae*, and *Pichia pastoris* as promising chassis due to their established applications in biotechnology.
+Our approach focuses on engineering microbial hosts capable of functioning under space-associated environmental stressors, including ionizing radiation, oxidative stress, and temperature fluctuations. We selected _Bacillus subtilis_, _Saccharomyces cerevisiae_, and _Pichia pastoris_ as promising chassis due to their established applications in biotechnology.
 
 We also propose preserving the microorganisms in compact formats, such as lyophilized preparations or spores where biologically appropriate, until needed for protein production. Developing these robust and resilient hosts is intended to support biomanufacturing under challenging environmental conditions.
 
@@ -99,7 +99,7 @@ Genetic integration and radiation-testing activities should be distinguished fro
 
 Our engineered microorganisms are intended to function as biological factories capable of producing therapeutic proteins and other valuable biomolecules for space applications. To explore this potential, we developed a library of protein payloads with applications in astronaut health, scientific research, and biotechnology.
 
-Our library includes therapeutic nanobodies such as **anti-PD-L1** and **Nb1_gbHSV**, targeting immune checkpoint pathways and herpes simplex virus, respectively; antifreeze proteins from the Antarctic bacterium *Flavobacterium frigoris* and Arctic yeast *Leucosporidium* sp. AY30, with potential applications in cryopreservation; and fluorescent reporters including **GFP** and **mCherry** to evaluate expression systems.
+Our library includes therapeutic nanobodies such as **anti-PD-L1** and **Nb1_gbHSV**, targeting immune checkpoint pathways and herpes simplex virus, respectively; antifreeze proteins from the Antarctic bacterium _Flavobacterium frigoris_ and Arctic yeast _Leucosporidium_ sp. AY30, with potential applications in cryopreservation; and fluorescent reporters including **GFP** and **mCherry** to evaluate expression systems.
 
 Future work could expand the library to additional therapeutic candidates, including molecules associated with muscle atrophy and bone loss. Selection for the library does not imply that every payload has been experimentally produced or purified.
 
@@ -185,7 +185,7 @@ To address this, we designed a compact, **autonomous biomanufacturing platform**
 
 <div class="callout">
 
-Proposed production workflow. Preservation, integrated automation, and therapeutic readiness require further validation.
+Preservation, integrated automation, and therapeutic readiness require further validation.
 
 </div>
 
