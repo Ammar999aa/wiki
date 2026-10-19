@@ -1,8 +1,18 @@
 .page {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 120px 40px 160px;
+  // Clears the fixed jump-nav rail (Panel — 280px wide, 56px gap; see
+  // SectionedArticle.module.scss's $rail-width/$rail-gap) at its 40px gutter.
+  padding: 120px 40px 160px calc(40px + 280px + 56px);
   color: white;
+}
+
+// <=1024px the rail is a collapsible drawer overlay rather than a column, so
+// the page gets its full width back (minus the drawer's 36px peek strip).
+@media (max-width: 1024px) {
+  .page {
+    padding-inline: 48px 40px;
+  }
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────
@@ -39,6 +49,9 @@
 
 .partSection {
   margin-bottom: 48px;
+  // Keeps a jump-nav scroll from tucking the Part heading under the top of
+  // the viewport.
+  scroll-margin-top: 100px;
 }
 
 .partHeading {
@@ -427,7 +440,7 @@
 
 @media (max-width: 640px) {
   .page {
-    padding: 90px 20px 100px;
+    padding: 90px 20px 100px 48px;
   }
 
   .articlePage {
