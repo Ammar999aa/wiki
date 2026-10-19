@@ -113,3 +113,15 @@ All work is performed in a BSL-1 certified laboratory with personal protective e
 **Figure 5. Our laboratory.**
 
 </div>
+
+## Laboratory safety handbook
+
+To promote safe laboratory practices and responsible handling of genetically modified microorganisms, we developed a Laboratory Safety Handbook.
+
+The handbook was based on KAUST Health, Safety, and Environment (HSE) guidelines and includes general laboratory biosafety practices, personal protective equipment (PPE), emergency procedures, biological and chemical waste management, decontamination methods, and equipment safety. We also incorporated organism-specific biosafety considerations for our three chassis: *Bacillus subtilis*, *Saccharomyces cerevisiae*, and *Pichia pastoris*.
+
+We hope this resource will help future iGEM teams establish safer laboratory workflows.
+
+<iframe class="pdf-viewer" src="https://static.igem.wiki/teams/6341/wiki/content/safety/safety-handbook-kaust-ksa-igem.pdf" title="KAUST-KSA iGEM Laboratory Safety Handbook (PDF)" loading="lazy"></iframe>
+
+<p><a class="person-link-btn" href="https://static.igem.wiki/teams/6341/wiki/content/safety/safety-handbook-kaust-ksa-igem.pdf" target="_blank" rel="noopener noreferrer">Open PDF in a new tab →</a></p>
