@@ -7,20 +7,20 @@
     Description
     Safety
     Contribution
+    Engineering Success
 
 # Wet Lab
 
     Design
     Notebook
+    Parts
     Experiments (Protocols)
     Results
-    Proposed Implementation
+    Measurement
     Proof of Concept
 
-# Engineering
+# Hardware
 
-    Engineering Success
-    Parts
     Hardware
 
 # Dry Lab

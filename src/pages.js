@@ -104,6 +104,14 @@ const Pages = [
       { name: "Protein Library", title: "Protein Library", path: "/protein-library", component: ProteinLibrary },
       { name: "Safety", title: "Safety", path: "/safety", component: Safety },
       { name: "Contribution", title: "Contribution", path: "/contribution", component: Contribution },
+      {
+        name: "Engineering Success",
+        title: "Engineering Success",
+        path: "/engineering-success",
+        component: EngineeringSuccess,
+        description:
+          "SHIHAB engineering cycles: Design–Build–Test–Learn across the bioreactor, purification hardware, wet lab constructs and metabolic models.",
+      },
     ],
   },
   {
@@ -117,6 +125,7 @@ const Pages = [
         description: "SHIHAB wet lab: strain engineering, assays, and protein expression.",
       },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
+      { name: "Parts", title: "Parts", path: "/parts", component: Parts },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
       {
         name: "Results",
@@ -126,30 +135,16 @@ const Pages = [
         description:
           "SHIHAB wet lab results: Dsup integration across three chassis, radiation resistance, and payload protein expression and purification.",
       },
-      { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub },
+      { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
       { name: "Proof of Concept", title: "Proof of Concept", path: "/proof-of-concept", component: Stub },
     ],
   },
   {
-    name: "Engineering",
-    folder: [
-      {
-        name: "Engineering Success",
-        title: "Engineering Success",
-        path: "/engineering-success",
-        component: EngineeringSuccess,
-        description:
-          "SHIHAB engineering cycles: Design–Build–Test–Learn across the bioreactor, purification hardware, wet lab constructs and metabolic models.",
-      },
-      { name: "Parts", title: "Parts", path: "/parts", component: Parts },
-      {
-        name: "Hardware",
-        title: "Hardware",
-        path: "/hardware",
-        component: Hardware,
-        description: "SHIHAB hardware: the bioreactor stand, electronics, and physical build.",
-      },
-    ],
+    name: "Hardware",
+    title: "Hardware",
+    path: "/hardware",
+    component: Hardware,
+    description: "SHIHAB hardware: the bioreactor stand, electronics, and physical build.",
   },
   {
     name: "Dry Lab",
@@ -203,8 +198,10 @@ const Pages = [
   // (shared "coming soon" Stub) so the standard paths still resolve.
   // /software stays in the nav under Dry Lab.
   { name: "Engineering", title: "Engineering", path: "/engineering", component: Stub, hidden: true },
+  // No longer in the nav, but Integrated Human Practices still links here
+  // ("See long-term roadmap"), so the URL has to keep resolving.
+  { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub, hidden: true },
   { name: "Entrepreneurship", title: "Entrepreneurship", path: "/entrepreneurship", component: Stub, hidden: true },
-  { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub, hidden: true },
   { name: "Model", title: "Model", path: "/model", component: Stub, hidden: true },
   { name: "Plant Synthetic Biology", title: "Plant Synthetic Biology", path: "/plant", component: Stub, hidden: true },
   { name: "Safety & Security", title: "Safety & Security", path: "/safety-and-security", component: Stub, hidden: true },

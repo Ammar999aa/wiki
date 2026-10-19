@@ -46,7 +46,7 @@ const MEDALS = [
       {
         title: "Engineering Success",
         text: "Throughout the competition, all aspects of our project have passed through numerous engineering cycle iterations (Design → Build → Test → Learn), which are documented in the Engineering Success page.",
-        links: [{ label: "Engineering Success page", href: "/kaust-ksa/engineering" }],
+        links: [{ label: "Engineering Success page", href: "/kaust-ksa/engineering-success" }],
       },
       {
         title: "Human Practices",
@@ -65,10 +65,11 @@ const MEDALS = [
         title: "Excellence in Synthetic Biology",
         text: "We would like to nominate ourselves for the following Special Awards:",
         groups: [
-          { label: "1 · General Biological Engineering", items: ["New Improved Part OR Measurement"] },
+          { label: "1 · General Biological Engineering", items: ["Measurement"] },
           { label: "2 · Specializations", items: ["Integrated Human Practices", "Hardware"] },
         ],
         links: [
+          { label: "Measurement page", href: "/kaust-ksa/measurement" },
           { label: "Integrated Human Practices page", href: "/kaust-ksa/human-integrated-practices" },
           { label: "Hardware page", href: "/kaust-ksa/hardware" },
         ],
