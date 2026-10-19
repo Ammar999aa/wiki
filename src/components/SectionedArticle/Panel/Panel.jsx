@@ -1,10 +1,15 @@
+import { Fragment } from "react";
 import LiquidGlass from "../../LiquidGlass/LiquidGlass";
 import styles from "../SectionedArticle.module.scss";
 
 // `nums` is optional and index-aligned with `items`: section numbers for a
 // numbered reference-style page, shown as their own mark so the title text
 // itself stays a clean table-of-contents entry.
-export default function Panel({ items, nums, selected, collapsed, onToggle, onSelect, header }) {
+//
+// `links` is optional too, index-aligned with `items`: a list of
+// `{ label, href }` shown as small links under that entry (Judging lists
+// each medal's pages this way).
+export default function Panel({ items, nums, links, selected, collapsed, onToggle, onSelect, header }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
       {/* cornerGlow defaults on and, with no cursor over the panel, falls
@@ -34,14 +39,24 @@ export default function Panel({ items, nums, selected, collapsed, onToggle, onSe
           </button>
           {header && <div className={styles.panelHeader}>{header}</div>}
           {items.map((item, i) => (
-            <h2
-              key={item}
-              className={`${styles.panelItem} ${item === selected ? styles.selected : ""}`}
-              onClick={() => onSelect(i)}
-            >
-              {nums?.[i] && <span className={styles.panelItemNum}>{nums[i]}</span>}
-              {item}
-            </h2>
+            <Fragment key={item}>
+              <h2
+                className={`${styles.panelItem} ${item === selected ? styles.selected : ""}`}
+                onClick={() => onSelect(i)}
+              >
+                {nums?.[i] && <span className={styles.panelItemNum}>{nums[i]}</span>}
+                {item}
+              </h2>
+              {links?.[i]?.length > 0 && (
+                <ul className={styles.panelLinks}>
+                  {links[i].map((l) => (
+                    <li key={l.href + l.label}>
+                      <a href={l.href}>{l.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Fragment>
           ))}
         </div>
       </LiquidGlass>

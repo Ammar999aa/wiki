@@ -14,7 +14,7 @@ import styles from "./SectionedArticle.module.scss";
 // field: a manual number silently goes stale the moment a section is moved
 // or inserted, which is also why the authoring conventions ban writing one
 // into the heading text itself.
-export default function SectionedArticle({ sections, defaultSelected, title, panelHeader, intro, numbered, accentBold }) {
+export default function SectionedArticle({ sections, defaultSelected, title, panelHeader, panelLinks, intro, numbered, accentBold }) {
   const [collapsed, setCollapsed] = useState(true);
   const [selected, setSelected] = useState(defaultSelected || sections[0]?.title);
   // Index-aligned with `sections`; undefined entries render nothing, so an
@@ -185,6 +185,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
         <Panel
             items={sections.map((s) => s.title)}
             nums={nums}
+            links={panelLinks}
             selected={selected}
             collapsed={collapsed}
             onToggle={() => setCollapsed((v) => !v)}
