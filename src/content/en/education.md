@@ -568,6 +568,18 @@ The Tawasol Hackathon, held August 28–30, 2026 and co-organized with NYU Abu D
 
 The hackathon began as the SHIHAB Horizon Hackathon and was renamed Tawasol (تواصل, "connection") when NYU Abu Dhabi iGEM joined as co-organizer. It became the first project of the Tawasol Initiative, our coalition of MENA iGEM teams, described on our <a href="/kaust-ksa/science-communication#tawasol-uniting-mena-igem-teams">Science Communication page</a>.
 
+<div class="photo-frame">
+
+![Tawasol Hackathon](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-nyu.avif)
+
+</div>
+
+<div class="caption">
+
+**Figure 11.** The Tawasol Hackathon, co-organized with NYU Abu Dhabi iGEM.
+
+</div>
+
 ### Structure
 
 The hackathon ran as a virtual pitch sprint followed by a hybrid Grand Finale in the KAUST B20 lobby. Teams chose one of three tracks:
