@@ -26,15 +26,15 @@ const TAWASOL_TIMELINE = [
   { title: "Public Showcase", date: "Planned for October 2026", next: true },
 ];
 
-// Standard MSA terms, matching the Tawasol Summit's own term-standardization
-// exercise (science-communication.md, "Day 2").
+// Arabic terms for the glossary cards, matching the Tawasol Summit's own
+// term-standardization exercise (science-communication.md, "Day 2").
 const ARABIC_TERMS = [
-  { en: "Synthetic biology", ar: "البيولوجيا التركيبية" },
-  { en: "Genetic engineering", ar: "الهندسة الوراثية" },
-  { en: "Gene editing", ar: "تحرير الجينات" },
-  { en: "DNA", ar: "الحمض النووي" },
-  { en: "Plasmid", ar: "بلازميد" },
-  { en: "Gene circuit", ar: "دائرة جينية" },
+  { en: "Synthetic biology", ar: "الأحياء التركيبية" },
+  { en: "Extremophile", ar: "الكائنات المحبة للظروف القاسية" },
+  { en: "Gene circuit", ar: "الدارة الجينية" },
+  { en: "Biodegradable", ar: "قابل للتحلل الحيوي" },
+  { en: "Enzyme", ar: "إنزيم" },
+  { en: "Biosafety", ar: "السلامة الحيوية" },
 ];
 
 // Attaches rich per-section JSX (SectionedArticle/Article.jsx's `content`

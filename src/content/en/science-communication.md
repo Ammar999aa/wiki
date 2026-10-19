@@ -37,58 +37,74 @@ Films give everyone a shared starting point. By pairing popular science fiction 
 
 #### Summary
 
+<div class="aside-row">
+
+<figure class="img-aside">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-poster.avif" alt="WALL-E movie night poster with event details and sponsors" loading="lazy">
+<figcaption class="caption"><strong>Figure 1.</strong> The event poster, handed out around campus ahead of the screening.</figcaption>
+</figure>
+
 On Thursday, May 7, 2026, we hosted an interactive screening of WALL-E at KAUST's Discovery Cinema for 70 attendees, 50 of whom stayed for the discussion that followed. The film's story of a polluted Earth and a single surviving plant opened a discussion on how synthetic biology could help address global environmental challenges.
-
-<div class="photo-frame">
-
-![WALL-E movie night poster with event details and sponsors](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-poster.avif)
-
-</div>
-
-<div class="caption">
-
-**Figure 1.** The event poster, handed out around campus ahead of the screening.
 
 </div>
 
 #### Event structure
 
-- **Mission-based crews:** on arrival, each attendee joined a themed crew, such as Biobuilders, Plant Rescue or Green Galaxy, and took on a science role within it, such as Robot Engineer, Space Pilot or Plant Scientist. This encouraged teamwork and mixed people who didn't know each other.
-- **Synthetic biology discussion:** before the screening, attendees received a logbook with prompts on plant biology, space agriculture and ecological challenges. Afterwards, each crew discussed the film together, and we introduced real synthetic biology research, such as biodegradable plastics, bridging the gap between science fiction and active research.
-- **Operation Earth 2.0:** to close, each crew sketched its own plan to rebuild Earth using synthetic biology, space science and engineering.
+- **Mission-based crews:** on arrival, each attendee joined a themed crew, such as Biobuilders, Plant Rescue or Green Galaxy, and took on a science role within it, such as Robot Engineer, Space Pilot or Plant Scientist. This encouraged teamwork and mixed people who didn't know each other. Prompt: who is on your crew, and what is your role?
+- **Synthetic biology discussion:** before the screening, attendees received a logbook with prompts on plant biology, space agriculture and ecological challenges. Afterwards, each crew discussed the film together, and we introduced real synthetic biology research, such as biodegradable plastics, bridging the gap between science fiction and active research. Prompt: could the real science behind the film already exist?
+- **Operation Earth 2.0:** to close, each crew sketched its own plan to rebuild Earth using synthetic biology, space science and engineering. Prompt: how would your crew rebuild Earth?
 
-<div class="two-col-images">
+Each crew had its own mission and its own question to answer:
 
-![Attendees discussing the film in their crews inside the cinema](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-crew-discussion.avif)
+<div class="card-grid row">
 
-![Children sketching their Operation Earth 2.0 designs](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-kids-sketching.avif)
+<div>
 
-</div>
+#### Biobuilders
 
-<div class="caption">
-
-**Figure 2.** Crews discussing the film, then sketching their own Operation Earth 2.0 designs.
+Mission: engineer a solution. Which microbe would you design to break down Earth's plastic waste, and what would it need to survive?
 
 </div>
 
-![Attendees holding up their discussion logbooks](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-attendees-logbooks.avif)
+<div>
+
+#### Plant Rescue
+
+Mission: save the last plant. A single plant survives on a polluted Earth. How would you help it grow and spread?
+
+</div>
+
+<div>
+
+#### Green Galaxy
+
+Mission: grow food in space. How would you farm on a spaceship, with little water, light or soil?
+
+</div>
+
+</div>
+
+<div class="figure-grid" style="--cols: 2; --fig-h: 340px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-crew-discussion.avif" alt="Attendees discussing the film in their crews inside the cinema" loading="lazy"></div><figcaption class="caption"><strong>Figure 2.</strong> Crews discussing the film together inside the cinema.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-kids-sketching.avif" alt="Children sketching their Operation Earth 2.0 designs" loading="lazy" style="object-position: 50% 40%;"></div><figcaption class="caption"><strong>Figure 3.</strong> Sketching Operation Earth 2.0 designs.</figcaption></figure>
+</div>
 
 #### Community engagement and sponsorship
 
-To encourage community attendance, we secured sponsorship from Burger King and Baskin Robbins, providing meal vouchers for the first 20 attendees and Baskin Robbins ice cream for the 50 attendees who stayed for the post-film discussion.
+To encourage community attendance, we secured sponsorship from Burger King and Baskin Robbins, providing meal vouchers for the first 20 attendees and Baskin Robbins ice cream for the 50 attendees who stayed for the post-film discussion. NTI, BESE and SnapGene were also thanked on the event poster. Together, our sponsors helped bring all 70 guests through the door.
 
-![Group photo of WALL-E movie night attendees with their designs](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-group-photo.avif)
+<div class="figure-grid" style="--cols: 2; --fig-h: 340px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-attendees-logbooks.avif" alt="Attendees holding up their discussion logbooks" loading="lazy" style="object-position: 50% 70%;"></div><figcaption class="caption"><strong>Figure 4.</strong> A crew shows its plan to rebuild Earth.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-wall-e-group-photo.avif" alt="Group photo of WALL-E movie night attendees with their designs" loading="lazy"></div><figcaption class="caption"><strong>Figure 5.</strong> Everyone who stayed for the discussion.</figcaption></figure>
+</div>
 
 <h3 id="hail-mary">Project Hail Mary</h3>
 
-On Sunday, August 30, 2026, we held a screening and open discussion of Project Hail Mary for 35 undergraduate and graduate students, sponsored by the KAUST BioMed division. The film follows a scientist using microbiology to save Earth, which let us move the conversation into space biology and extremophile microbiology, areas close to our own project, SHIHAB.
+On Sunday, August 30, 2026, we held a screening and open discussion of Project Hail Mary for 35 undergraduate and graduate students, sponsored by the KAUST BioMed division. The film follows a scientist using microbiology to save Earth, which let us move the conversation into space biology and extremophile microbiology, areas close to our own project, SHIHAB. The open discussion took place at 6:00 PM in Conference Room 0215, in the Auditorium Building between Buildings 4 and 5.
 
-<div class="two-col-images">
-
-![KAUST iGEM team members in front of the Project Hail Mary event screen](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-team.avif)
-
-![Students gathered in the conference room for the screening](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-audience.avif)
-
+<div class="figure-grid" style="--cols: 2; --fig-h: 340px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-team.avif" alt="KAUST iGEM team members in front of the Project Hail Mary event screen" loading="lazy" style="object-position: 50% 65%;"></div><figcaption class="caption"><strong>Figure 6.</strong> Hosts at the Project Hail Mary screening.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-audience.avif" alt="Students gathered in the conference room for the screening" loading="lazy"></div><figcaption class="caption"><strong>Figure 7.</strong> Conference Room 0215, ready for the open discussion.</figcaption></figure>
 </div>
 
 ## Life in Orbit podcast
@@ -170,7 +186,7 @@ Guest to be announced. Title and details coming soon.
 
 ### Made for everyone
 
-To keep the episodes accessible to everyone, we uploaded them on our <a href="https://www.youtube.com/@igemkaust" target="_blank" rel="noopener noreferrer">YouTube channel</a> and used simplified, plain language in both Arabic and English. Each episode runs 45 minutes to an hour.
+To keep the episodes accessible to everyone, we uploaded them on our YouTube channel and used simplified, plain language in both Arabic and English. Each episode runs 45 minutes to an hour.
 
 <span class="chip">On YouTube</span>
 <span class="chip">Arabic and English</span>
@@ -198,8 +214,6 @@ Life in Orbit will not end with iGEM 2026. We plan to have a second season with 
 <span class="flow-arrow">→</span>
 <span class="flow-node amber">Future KAUST iGEM teams: a lasting platform</span>
 </div>
-
-<a href="https://www.youtube.com/@igemkaust" target="_blank" rel="noopener noreferrer">Watch Life in Orbit on YouTube</a>
 
 ## Social media
 
@@ -242,11 +256,11 @@ Instagram was our main platform for sharing team updates, educational content, a
 
 <div class="caption">
 
-**Figure 3.** Two thirds of our Instagram views came from people who didn't follow us yet. Over the previous 90 days the account grew by 78.4%, to 364 followers.
+**Figure 8.** Two thirds of our Instagram views came from people who didn't follow us yet. Over the previous 90 days the account grew by 78.4%, to 364 followers.
 
 </div>
 
-Our laboratory reels were among our most viewed posts, with our <a href="https://www.instagram.com/reel/DbS-TVutyRQ/" target="_blank" rel="noopener noreferrer">top-performing video</a> reaching approximately 8,200 views. These videos gave audiences a closer look at the day-to-day work behind our project, while our educational posts and event announcements helped introduce new opportunities for learning and collaboration.
+Our laboratory reels were among our most viewed posts, with our top-performing video reaching approximately 8,200 views. These videos gave audiences a closer look at the day-to-day work behind our project, while our educational posts and event announcements helped introduce new opportunities for learning and collaboration.
 
 Our audience was also international, with followers from Saudi Arabia, Peru, the United States, India, and Mexico. This helped us connect our local outreach efforts with a broader scientific community.
 
@@ -361,8 +375,6 @@ Our audience was also international, with followers from Saudi Arabia, Peru, the
 
 </details>
 
-<a href="https://drive.google.com/drive/folders/1SdjamMXG9tsB935PLz5hUISPvQOeVDfK" target="_blank" rel="noopener noreferrer">Social media insights screenshots</a>
-
 ### TikTok
 
 We used TikTok to explore a more informal approach to science communication, sharing short videos that introduced laboratory work and research activities in a format familiar to younger audiences. Our videos received approximately 12,000 post views, with 9,300 unique viewers, including 8,200 new viewers. We also recorded 484 likes, 27 comments, and 104 shares.
@@ -404,13 +416,38 @@ We used TikTok to explore a more informal approach to science communication, sha
 
 <div class="caption">
 
-**Figure 4.** Most TikTok viewers found us through recommendations, not by following us: 88% of viewers were new to our account.
+**Figure 9.** Most TikTok viewers found us through recommendations, not by following us: 88% of viewers were new to our account.
 
 </div>
 
 An important finding was that 85.6% of our traffic came from the For You page, meaning that most of our content was discovered through TikTok's recommendation system rather than through our existing audience. Our viewers were predominantly female (78%), and the platform allowed us to introduce our work to people who may not otherwise encounter synthetic biology content.
 
-<a href="https://drive.google.com/drive/folders/1SdjamMXG9tsB935PLz5hUISPvQOeVDfK" target="_blank" rel="noopener noreferrer">Social media insights screenshots</a>
+<div class="panel">
+<div class="panel-title"><span>Who watched · gender</span><span>TikTok</span></div>
+<div class="dash">
+<div class="dash-card">
+<div class="k">Female</div>
+<div class="v">78<span>%</span></div>
+<div class="dash-bar"><i style="width:78%; background:var(--amber);"></i></div>
+</div>
+<div class="dash-card">
+<div class="k">Male</div>
+<div class="v">21<span>%</span></div>
+<div class="dash-bar"><i style="width:21%;"></i></div>
+</div>
+<div class="dash-card">
+<div class="k">Other</div>
+<div class="v">1<span>%</span></div>
+<div class="dash-bar"><i style="width:1%;"></i></div>
+</div>
+</div>
+</div>
+
+<div class="caption">
+
+**Figure 10.** Almost four in five TikTok viewers were female.
+
+</div>
 
 ### LinkedIn
 
@@ -480,11 +517,31 @@ During the same period, our page received 220 page views from 103 unique visitor
 
 <div class="caption">
 
-**Figure 5.** Education and research make up 30% of our identified visitors, the people closest to our outreach goals. Most visits (155 of 220 page views) came from mobile.
+**Figure 11.** Education and research make up 30% of our identified visitors, the people closest to our outreach goals.
 
 </div>
 
-<a href="https://drive.google.com/drive/folders/1SdjamMXG9tsB935PLz5hUISPvQOeVDfK" target="_blank" rel="noopener noreferrer">Social media insights screenshots</a>
+<div class="panel">
+<div class="panel-title"><span>How they visited · page views</span><span>LinkedIn</span></div>
+<div class="dash">
+<div class="dash-card">
+<div class="k">Mobile</div>
+<div class="v">155<span>views</span></div>
+<div class="dash-bar"><i style="width:70.5%; background:var(--amber);"></i></div>
+</div>
+<div class="dash-card">
+<div class="k">Desktop</div>
+<div class="v">65<span>views</span></div>
+<div class="dash-bar"><i style="width:29.5%;"></i></div>
+</div>
+</div>
+</div>
+
+<div class="caption">
+
+**Figure 12.** Most of our LinkedIn page views (155 of 220) came from mobile.
+
+</div>
 
 ## Tawasol: uniting MENA iGEM teams
 
