@@ -211,7 +211,7 @@ const sections = [
             <code>c</code>, read off the frequency <code>
               p<sub>a,c</sub>
             </code>{" "}
-            of each amino acid <code>a</code> in it, and compute Shannon entropy [<Cref n="17" />]. We call a column conserved when its entropy falls below &tau; = 0.5 bits, and
+            of each amino acid <code>a</code> in it, and compute Shannon entropy [<Cref n="15" />]. We call a column conserved when its entropy falls below &tau; = 0.5 bits, and
             report the family statistic as the fraction of columns that qualify.
           </p>
           <Eq
@@ -284,7 +284,7 @@ const sections = [
               </td>
               <td>OB-fold cold-shock</td>
               <td className={styles.locus}>
-                PDB 1MJC · 2.0 Å [<Cref n="19" />]
+                PDB 1MJC · 2.0 Å [<Cref n="17" />]
               </td>
               <td className={styles.num}>88.6</td>
               <td className={styles.num}>1.13 Å</td>
@@ -298,7 +298,7 @@ const sections = [
               </td>
               <td>RecA/RAD51 ATPase</td>
               <td className={styles.locus}>
-                PDB 1U94 · 1.9 Å [<Cref n="20" />]
+                PDB 1U94 · 1.9 Å [<Cref n="18" />]
               </td>
               <td className={styles.num}>93.7</td>
               <td className={styles.num} style={{ whiteSpace: "nowrap" }}>0.9&ndash;1.5 Å</td>
@@ -310,7 +310,7 @@ const sections = [
               <td className={styles.gene}>OtsB</td>
               <td>HAD-like phosphatase</td>
               <td className={styles.locus}>
-                PDB 6UPC · 2.51 Å [<Cref n="21" />]
+                PDB 6UPC · 2.51 Å [<Cref n="19" />]
               </td>
               <td className={styles.num}>95.4</td>
               <td className={styles.num}>2.70 Å</td>
@@ -351,7 +351,7 @@ const sections = [
         <div className={styles.col}>
           <h3>Testing the weights against measured data</h3>
           <p>
-            We tested the weights, by running the scoring rule over <b>eSOL</b> [<Cref n="31" />], which
+            We tested the weights, by running the scoring rule over <b>eSOL</b> [<Cref n="20" />], which
             reports measured solubility for most of the <i>E.&nbsp;coli</i> proteome. Structure confidence came
             from AlphaFold DB [<Cref n="8" />] rather than our own ESMFold run, which the three benchmarks show
             agree to within 3 pLDDT points. The test covers the four dimensions carrying <b>80% of the
