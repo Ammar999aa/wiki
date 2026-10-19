@@ -25,11 +25,11 @@
 export const CATS = [
   { key: "Cold", name: "Cold Stress", color: "#0C8FBD", n: 8, st: "8 / 8", gtdb: 6,
     fams: "csp, ibpAB", rank: "Robust (P = 0.998)", rc: "good" },
-  { key: "DNA", name: "DNA Repair / UV", color: "#B8791F", n: 21, st: "21 / 21", gtdb: 13,
-    fams: "recA, uvrA/B/C, mutS, phrB", rank: "Robust rank, unusable pick", rc: "warn" },
-  { key: "Anaerobic", name: "Anaerobic Respiration", color: "#D4547E", n: 8, st: "8 / 8", gtdb: 8,
+  { key: "DNA", name: "UV/radiation resistance", color: "#B8791F", n: 21, st: "21 / 21", gtdb: 13,
+    fams: "recA, uvrA/B/C, mutS, phrB", rank: "Robust rank", rc: "warn" },
+  { key: "Anaerobic", name: "Anaerobic Respiration", chip: "Anaerobic", color: "#D4547E", n: 8, st: "8 / 8", gtdb: 8,
     fams: "nitrate red., fumarate red.", rank: "Fragile (P = 0.593)", rc: "warn" },
-  { key: "Desiccation", name: "Desiccation Resistance", color: "#9A58E6", n: 8, st: "8 / 8", gtdb: 6,
+  { key: "Desiccation", name: "Desiccation Resistance", chip: "Desiccation", color: "#9A58E6", n: 8, st: "8 / 8", gtdb: 6,
     fams: "ectoine, trehalose", rank: "Degenerate; no ranking", rc: "critical" },
 ];
 export const CIDX = Object.fromEntries(CATS.map((c, i) => [c.key, i]));
@@ -131,7 +131,7 @@ export const DIMENSIONS = [
 ];
 
 export const SOFTWARE = [
-  { stage: "Annotation", tool: "Bakta", version: "not recorded", desc: "Gene calling and gene-name assignment across all 1,221 assemblies", refs: ["1"] },
+  { stage: "Annotation", tool: "Bakta", version: "not recorded", desc: "Gene calling and gene name assignment across all 1,221 assemblies", refs: ["1"] },
   { stage: "Annotation", tool: "eggNOG-mapper", version: "2.1.12", desc: "Independent orthology assignment, COG/KEGG/EC terms, used to cross-check Bakta", refs: ["2", "3"] },
   { stage: "Redundancy", tool: "CD-HIT", version: "not recorded", desc: "Collapses each gene family to representatives at 90% identity", refs: ["4"] },
   { stage: "Alignment", tool: "MAFFT", version: "v7", desc: "Multiple sequence alignment of the representatives", refs: ["5"] },

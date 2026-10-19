@@ -3,7 +3,13 @@ import { TableWrap, Pill } from "./Ui";
 import { Cref } from "./References";
 import { CATS, DIMENSIONS, SOFTWARE, AUDIT_REGISTER, CHECKLIST, TIER1 } from "../data";
 
-// Table 1 — one row per stress category.
+// Table 1 — one row per stress category the team carried forward (the
+// reference page lists DNA repair and desiccation only; totals match).
+const SHOWN = ["DNA", "Desiccation"];
+const CATEGORY_LABELS = {
+  DNA: { name: "UV/radiation resistance", rank: "Robust rank" },
+};
+
 export function CategoryTable() {
   return (
     <TableWrap>
@@ -18,18 +24,18 @@ export function CategoryTable() {
         </tr>
       </thead>
       <tbody>
-        {CATS.map((c) => (
+        {CATS.filter((c) => SHOWN.includes(c.key)).map((c) => (
           <tr key={c.key}>
             <td style={{ whiteSpace: "nowrap" }}>
               <i className={styles.swatch} style={{ background: c.color }} />
-              {c.name}
+              {CATEGORY_LABELS[c.key]?.name ?? c.name}
             </td>
             <td className={styles.num}>{c.n}</td>
             <td className={styles.num}>{c.st}</td>
             <td className={styles.num}>{c.gtdb}</td>
             <td style={{ fontSize: 12, fontStyle: "italic" }}>{c.fams}</td>
             <td>
-              <Pill tone={c.rc}>{c.rank}</Pill>
+              <Pill tone={c.rc}>{CATEGORY_LABELS[c.key]?.rank ?? c.rank}</Pill>
             </td>
           </tr>
         ))}
@@ -37,10 +43,10 @@ export function CategoryTable() {
       <tfoot>
         <tr>
           <td>Total</td>
-          <td className={styles.num}>45</td>
-          <td className={styles.num}>45 / 45</td>
-          <td className={styles.num}>33</td>
-          <td>12 families</td>
+          <td className={styles.num}>29</td>
+          <td className={styles.num}>29 / 29</td>
+          <td className={styles.num}>19</td>
+          <td>6 families</td>
           <td />
         </tr>
       </tfoot>

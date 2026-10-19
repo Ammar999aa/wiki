@@ -20,6 +20,26 @@
   opacity: 0.72;
 }
 
+// Organism chips above each subsection heading: yeast purple, Bacillus
+// yellow, Synechococcus blue (colours shared with the result scheme).
+.page :global(.chip).chipYeast {
+  color: #d1a8ff;
+  border-color: rgba(177, 109, 255, 0.45);
+  background: rgba(177, 109, 255, 0.1);
+}
+
+.page :global(.chip).chipBacillus {
+  color: #ffd84d;
+  border-color: rgba(255, 216, 77, 0.45);
+  background: rgba(255, 216, 77, 0.1);
+}
+
+.page :global(.chip).chipCyano {
+  color: #7fb5ff;
+  border-color: rgba(127, 181, 255, 0.45);
+  background: rgba(127, 181, 255, 0.1);
+}
+
 // Per-table alignment, set by hand in dry-lab-modeling.md. `align-end`: first
 // column left, every other column (header included) right.
 .page :global(.table-wrap) table:global(.align-end) {

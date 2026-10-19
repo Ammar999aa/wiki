@@ -20,7 +20,19 @@ const titleLabels = {
   "cyanobacteria-synechococcus-elongatus-pcc-7942": ["Cyanobacteria", "Synechococcus elongatus", " PCC\u00A07942"],
 };
 
-const sections = rawSections.map((section) => {
+// Only the organism chips above each subsection heading are tinted:
+// yeast purple, Bacillus yellow, Synechococcus blue.
+const chipClasses = [
+  [/<span class="chip">(<em>S\. cerevisiae<\/em>)<\/span>/g, styles.chipYeast],
+  [/<span class="chip">(<em>B\. subtilis<\/em>)<\/span>/g, styles.chipBacillus],
+  [/<span class="chip">(<em>S\. elongatus<\/em>)<\/span>/g, styles.chipCyano],
+];
+
+const tintChips = (html) =>
+  chipClasses.reduce((out, [re, cls]) => out.replace(re, `<span class="chip ${cls}">$1</span>`), html);
+
+const sections = rawSections.map((raw) => {
+  const section = typeof raw.html === "string" ? { ...raw, html: tintChips(raw.html) } : raw;
   const label = titleLabels[section.id];
   if (!label) return section;
   const [name, organism, strain] = label;
@@ -88,6 +100,7 @@ export default function DryLabModeling() {
             intro={pageIntro}
             sections={sections}
             defaultSelected={sections[0]?.title}
+            numbered
           />
         </div>
         <ChartSlots containerRef={containerRef} charts={CHARTS} />
