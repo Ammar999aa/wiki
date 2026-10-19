@@ -15,9 +15,9 @@ const LINES = [
   ["r", "Gene-edited? But we already have a moratorium on GMOs, right?", null],
   ["m", "Yes, under Law No. 31.111. It legally restricts the entry, cultivation and production of Living Modified Organisms, or LMOs.", "law"],
   ["r", "Brazil and Paraguay grow lots of transgenic crops. Why is Peru so different?", null],
-  ["m", "Peru chose strong opposition, to protect its agrobiodiversity and organic gastronomy.", null],
+  ["m", "Peru chose staunch opposition, to safeguard its agrobiodiversity and organic gastronomy.", null],
   ["r", "That makes sense. So what changed?", null],
-  ["m", "In April 2026, Peru approved Ministerial Resolution No. D000068-2026-MINAM-DM. If a plant is edited with CRISPR to modify or silence one of its own genes, with no foreign DNA added, it is not classified as an LMO.", "crispr"],
+  ["m", "In April 2026, Peru approved Ministerial Resolution No. D000068-2026-MINAM-DM. If a plant is edited with CRISPR to modify or silence one of its own genes, with no exogenous DNA added, it is not classified as an LMO.", "crispr"],
   ["r", "So it would be exempt from the moratorium?", null],
   ["m", "Exactly. It could potentially be grown commercially.", null],
   ["r", "Then let's learn how it works before we decide what to think.", null],
@@ -132,7 +132,7 @@ function CrisprInset() {
         <rect className={styles.editBox} x="48" y="22" width="24" height="36" rx="6" fill="none" stroke="#FFD84D" strokeWidth="3" />
       </svg>
       <span>CRISPR edit of its own gene</span>
-      <small>No foreign DNA</small>
+      <small>No exogenous DNA</small>
     </>
   );
 }

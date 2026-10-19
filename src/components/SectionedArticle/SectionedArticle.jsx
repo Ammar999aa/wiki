@@ -177,21 +177,50 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
     return () => observer.disconnect();
   }, [sections]);
 
+  // Superheadings (see plugins/markdown-sections.js): sections may carry a
+  // `group`. The active group is the one the selected section belongs to, so
+  // it is none (all collapsed) while an ungrouped section (intro, references)
+  // is being read.
+  const activeGroup = sections.find((s) => s.title === selected)?.group;
+
+  // What the panel lists, in page order: every ungrouped section, a row for
+  // each superheading (always shown), and the sections under a superheading
+  // only while that group is the active one. The article itself always shows
+  // everything; only the panel collapses.
+  const entries = [];
+  sections.forEach((s, i) => {
+    if (s.superheading) entries.push({ group: s.group, id: s.superheading.id });
+    if (!s.group || s.group === activeGroup) entries.push({ index: i });
+  });
+
+  const scrollToGroup = (entry) => {
+    const first = sections.findIndex((s) => s.group === entry.group);
+    setSelected(sections[first].title);
+    scrollLockRef.current = sections[first].title;
+    clearTimeout(scrollLockTimeoutRef.current);
+    scrollLockTimeoutRef.current = setTimeout(() => {
+      scrollLockRef.current = null;
+    }, 1000);
+    document.getElementById(entry.id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className={styles.layout}>
         <div className={styles.progressRail} aria-hidden="true">
           <div className={styles.progressRailFill} ref={progressFillRef} />
         </div>
         <Panel
-            items={sections.map((s) => s.title)}
-            labels={sections.map((s) => s.titleContent ?? s.title)}
-            nums={nums}
+            items={entries.map((e) => (e.group ? e.group : sections[e.index].title))}
+            labels={entries.map((e) => (e.group ? e.group : sections[e.index].titleContent ?? sections[e.index].title))}
+            nums={nums && entries.map((e) => (e.group ? undefined : nums[e.index]))}
+            groups={entries.map((e) => !!e.group)}
+            activeGroup={activeGroup}
             links={panelLinks}
             linkTints={panelLinkTints}
             selected={selected}
             collapsed={collapsed}
             onToggle={() => setCollapsed((v) => !v)}
-            onSelect={scrollTo}
+            onSelect={(j) => (entries[j].group ? scrollToGroup(entries[j]) : scrollTo(entries[j].index))}
             header={panelHeader || (title && <div className={styles.panelTitle}>{title}</div>)}
         />
         {/* Wraps Article only, not Panel — the jump-nav panel never shows a

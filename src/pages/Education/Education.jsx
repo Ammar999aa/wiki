@@ -9,7 +9,6 @@ import {
   MultiplierScale,
   ModuleIcon,
   LmoCheck,
-  DecisionScale,
   ScoreTrack,
 } from "./components/Interactive";
 import { Principles, ProgramsGlance } from "./components/Overview";
@@ -31,7 +30,7 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // Kallpa's four course modules, presented as switchable tabs (see
 // components/Interactive.jsx's <Tabs>) instead of four stacked ####
 // subsections. Text is the Kallpa lead's final module write-up
-// (kallpa-mentorship HTML, Oct 2026). One module per week, so the tabs are
+// (kallpa-mentorship-adapted HTML, Oct 2026). One module per week, so the tabs are
 // labelled by week with the module name shown as the panel's heading.
 const KALLPA_MODULES = [
   {
@@ -39,28 +38,32 @@ const KALLPA_MODULES = [
     label: "Week 1",
     icon: <ModuleIcon name="dna" />,
     title: "GMO fundamentals",
-    body: "In the first week, we began with the fundamentals of GMOs, establishing a foundation in molecular biology, genetic modification and conventional breeding. Volunteers learned concepts related to DNA, the central dogma of molecular biology, genes, traits, gene expression and the modification of genetic material. Through examples, exercises and visual aids, we explained how genetic modification can produce specific changes and why different modifications can yield different results. This initial session allowed us to establish a common scientific language and communication channel.",
+    body: "In the first week, we began with the fundamentals of GMOs, establishing a knowledge base in molecular biology, genetic modification, artificial selection, and conventional breeding. The volunteers explored concepts related to DNA, the central dogma of molecular biology, genes, traits, gene expression, and the modification of genetic material, among others. Through exercises and visual aids, such as videos, we used examples to explain how genetic modification can produce specific changes in a DNA sequence, which can, in turn, lead to different outcomes. This session helped establish a common scientific foundation between the mentor and the mentees, ensuring that everyone acquired the necessary knowledge base for the subsequent sessions.",
+    link: { href: "https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-1.pdf", label: "View session 1 slides" },
   },
   {
     key: "m2",
     label: "Week 2",
     icon: <ModuleIcon name="apple" />,
     title: "Biotechnology on the farm",
-    body: "In the second week, we took those scientific fundamentals and applied them to the agricultural and food sectors. We explored various crop modification techniques and the traits that can be altered, such as pest resistance, tolerance to extreme environmental conditions and other characteristics of agricultural interest. To provide context, we focused on a crop of particular importance to local farming communities: the tomato. Volunteers analyzed the microorganisms that cause disease, transmission methods, symptoms, and the reasons why certain diseases are difficult to control. Building on this, we introduced the role of greenhouses, a key tool that Kallpa Greenz constructs in various regions across Peru. This session enabled us to address the question: how can we use biological knowledge to solve a problem faced by a farmer? The volunteers identified the problem, understood its cause, analyzed strategies and evaluated biotechnological solutions.",
+    body: "In the second week, we applied scientific principles to sectors of interest: agriculture and food production. Together, we explored various crop-modification techniques and the traits that can be altered, such as resistance to pests, tolerance to extreme environmental conditions, and other characteristics of agricultural importance. These environmental conditions were selected based on the specific climates of each of the target communities. To provide context, we focused on a crop of particular significance to local farming communities: the tomato. The volunteers studied and analyzed the microorganisms that cause diseases, their transmission mechanisms, and the symptoms of tomato plant diseases. Building on this, we introduced the role of greenhouses, a key tool that Kallpa Greenz constructs across various regions of Peru. This session allowed us to address the question: how can biological knowledge be used to solve a problem faced by a farmer? The volunteers identified several challenges, explored their potential causes, analyzed various strategies, and evaluated possible biotechnological solutions.",
+    link: { href: "https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-2.pdf", label: "View session 2 slides" },
   },
   {
     key: "m3",
     label: "Week 3",
     icon: <ModuleIcon name="rocket" />,
     title: "Emerging technologies",
-    body: "In a subsequent session, the scope was expanded to include emerging technologies and new application contexts. Concepts such as gene editing and CRISPR were introduced. We also explored topics related to controlled-environment agriculture and food production in space. We linked these concepts to space biomanufacturing, examining biological systems and other products essential for space missions.",
+    body: "In the following session, we covered emerging technologies and new contexts for their application. Concepts such as gene editing and CRISPR were introduced. We also explored topics related to agriculture in controlled environments and examined case studies on food production in space.",
+    link: { href: "https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-3.pdf", label: "View session 3 slides" },
   },
   {
     key: "m4",
     label: "Week 4",
     icon: <ModuleIcon name="justice" />,
     title: "Law, voices and ethics",
-    body: "Finally, we examined the various Peruvian laws and organizations involved in decision-making regarding GMOs. We explored different perspectives through role-playing activities representing consumers, farmers, indigenous communities, scientists and other relevant groups. We also addressed farmers' rights, GMO regulation, and ethical and social concerns. Ultimately, we provided the participants with the information and tools needed to evaluate these diverse perspectives and form their own informed opinions.",
+    body: "Finally, we examined various Peruvian laws and the organizations involved in decision-making regarding GMOs. We explored different perspectives through role-playing activities that represented consumers, farmers, indigenous communities, scientists, and other relevant groups. We also addressed farmers' rights, the regulation of genetically modified organisms (GMOs), and various ethical and social concerns. Ultimately, we provided the participants with the information and tools needed to evaluate these diverse perspectives and form their own informed opinions.",
+    link: { href: "https://static.igem.wiki/teams/6341/wiki/content/public-engagement/kallpa-sessions/kallpa-session-4.pdf", label: "View session 4 slides" },
   },
 ];
 
@@ -97,7 +100,6 @@ const KALLPA_BLOCKS = {
       <Tabs items={KALLPA_MODULES} ariaLabel="Course modules" />
     </>
   ),
-  scale: <DecisionScale />,
   science: <ScoreTrack title="Dimension 01 · Scientific understanding" items={KALLPA_SCIENCE_SCORES} />,
   field: <ScoreTrack title="Dimension 02 · Preparation for field communication" items={KALLPA_FIELD_SCORES} />,
   reach: <MultiplierScale />,

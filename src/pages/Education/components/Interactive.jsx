@@ -150,8 +150,9 @@ export function CloneStepper() {
 // Generic tab group shared by any section with several parallel,
 // substantial sub-topics a reader may want to switch between rather than
 // scroll through all of (currently: Kallpa's four course modules). Items:
-// [{ key, label, body, icon?, title? }] — `icon` and `title` render as a
-// header row above the body in the panel (the pill itself stays text-only).
+// [{ key, label, body, icon?, title?, link? }] — `icon` and `title` render as a
+// header row above the body in the panel (the pill itself stays text-only);
+// `link` ({ href, label }) renders an external link under the body.
 export function Tabs({ items, ariaLabel }) {
   const [active, setActive] = useState(items[0]?.key);
   const current = items.find((it) => it.key === active) || items[0];
@@ -185,13 +186,19 @@ export function Tabs({ items, ariaLabel }) {
           </div>
         )}
         <p>{current.body}</p>
+        {current.link && (
+          <p>
+            <a href={current.link.href} target="_blank" rel="noopener noreferrer">
+              {current.link.label}
+            </a>
+          </p>
+        )}
       </AnimatedSwap>
     </div>
   );
 }
 
-// "Is it an LMO?" check for the Kallpa section's Context (also the Session 4
-// challenge): pick how a plant was modified, see how Peru classifies it — the same rule the Context prose
+// "Is it an LMO?" check for the Kallpa section's Context: pick how a plant was modified, see how Peru classifies it — the same rule the Context prose
 // and the Mateo/Rosa dialogue state (Law No. 31.111 vs. the 2026 resolution).
 const LMO_OPTIONS = [
   {
@@ -208,8 +215,6 @@ const LMO_OPTIONS = [
     verdict: "Not classified as an LMO",
     reason: "Its own gene is modified or silenced with no exogenous DNA, so it is exempt under the 2026 resolution.",
   },
-  // Third case from the Kallpa Session 4 challenge ("Is it an LMO under
-  // the new rule?" — a native potato improved by traditional crossing).
   {
     key: "crossing",
     label: "Traditional crossing",
@@ -249,94 +254,6 @@ export function LmoCheck() {
           <p className={styles.lmoHint}>Pick how the plant was modified to see how Peru classifies it.</p>
         )}
       </AnimatedSwap>
-    </div>
-  );
-}
-
-// Kallpa Session 3's "decision scale": the reader sorts each statement
-// about a GM crop into benefit or risk and watches the beam tip. The
-// statements are the session's own discussion prompts, not claims the page
-// makes about any real crop.
-const SCALE_CLAIMS = [
-  "Yields 30% more using the same amount of water.",
-  "It could cross with native varieties in the area.",
-  "It might need fewer pesticides.",
-  "Seeds could have an owner: what about the farmer's own seed?",
-];
-
-const BEAM = 110;
-
-export function DecisionScale() {
-  const [picks, setPicks] = useState({});
-  const benefits = Object.values(picks).filter((v) => v === "benefit").length;
-  const risks = Object.values(picks).filter((v) => v === "risk").length;
-  // Positive tilt drops the right (Risk) pan. The pans hang from the beam
-  // ends but are translated, not rotated, so they stay level.
-  const tilt = Math.max(-14, Math.min(14, (risks - benefits) * 5));
-  const cos = Math.cos((tilt * Math.PI) / 180);
-  const sin = Math.sin((tilt * Math.PI) / 180);
-  const pick = (i, v) => setPicks((p) => ({ ...p, [i]: p[i] === v ? undefined : v }));
-
-  return (
-    <div className={styles.try}>
-      <p className={styles.tryLabel}>Session 3 activity: the decision scale</p>
-      <svg className={styles.scaleSvg} viewBox="0 -8 320 140" aria-hidden="true">
-        <path className={styles.scaleStand} d="M160 30 L144 112 H176 Z" />
-        <line className={styles.scaleStand} x1="124" y1="114" x2="196" y2="114" />
-        <line
-          className={styles.scaleBeam}
-          x1={160 - BEAM}
-          y1="30"
-          x2={160 + BEAM}
-          y2="30"
-          style={{ transform: `rotate(${tilt}deg)` }}
-        />
-        <circle className={styles.scalePivot} cx="160" cy="30" r="4" />
-        {[
-          { side: -1, heavy: benefits > risks },
-          { side: 1, heavy: risks > benefits },
-        ].map(({ side, heavy }) => (
-          <g
-            key={side}
-            className={`${styles.scalePan} ${heavy ? styles.scalePanHeavy : ""}`}
-            style={{ transform: `translate(${160 + side * BEAM * cos}px, ${30 + side * BEAM * sin}px)` }}
-          >
-            <path d="M0 0 L-26 34 M0 0 L26 34" />
-            <path d="M-32 34 H32 Q0 56 -32 34 Z" />
-          </g>
-        ))}
-        <text className={styles.scaleLegend} x={160 - BEAM} y="126">
-          Benefit <tspan>{benefits}</tspan>
-        </text>
-        <text className={styles.scaleLegend} x={160 + BEAM} y="126">
-          Risk <tspan>{risks}</tspan>
-        </text>
-      </svg>
-      <ul className={styles.scaleClaims}>
-        {SCALE_CLAIMS.map((c, i) => (
-          <li key={c}>
-            <span>{c}</span>
-            <span className={styles.scaleButtons} role="group" aria-label="Benefit or risk?">
-              {["benefit", "risk"].map((v) => (
-                <button
-                  key={v}
-                  type="button"
-                  aria-pressed={picks[i] === v}
-                  className={`${styles.voice} ${picks[i] === v ? styles.voiceOn : ""}`}
-                  onClick={() => pick(i, v)}
-                >
-                  {v === "benefit" ? "Benefit" : "Risk"}
-                </button>
-              ))}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <p className={styles.lmoHint} aria-live="polite">
-        {benefits + risks === 0
-          ? "Benefit or risk? Choose for each statement and see where your scale tips."
-          : `Your scale: ${benefits} benefit${benefits === 1 ? "" : "s"}, ${risks} risk${risks === 1 ? "" : "s"}.`}
-      </p>
     </div>
   );
 }

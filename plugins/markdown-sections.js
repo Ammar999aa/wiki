@@ -51,22 +51,52 @@ export default function markdownSections() {
       const lines = raw.split("\n");
       const sections = [];
       let current = null;
+      // Superheadings: a "# Title" line (outside code fences) groups the
+      // "##" sections after it, and any prose between it and the first "##"
+      // becomes the group's intro. A bare "#" line ends the group, so
+      // trailing sections (References) belong to none. Pages that don't use
+      // "# " lines get no `group` fields at all.
+      let group = null;
+      let inFence = false;
 
       for (const line of lines) {
-        if (line.startsWith("## ")) {
+        if (/^(```|~~~)/.test(line)) inFence = !inFence;
+        if (!inFence && (line.startsWith("# ") || line.trim() === "#")) {
           if (current) sections.push(current);
-          current = { title: line.replace("## ", "").trim(), body: "" };
+          current = null;
+          const title = line.slice(1).trim();
+          group = title ? { title, id: slugify(title), body: "", used: false } : null;
+        } else if (!inFence && line.startsWith("## ")) {
+          if (current) sections.push(current);
+          current = { title: line.replace("## ", "").trim(), body: "", group };
         } else if (current) {
           current.body += line + "\n";
+        } else if (group) {
+          group.body += line + "\n";
         }
       }
       if (current) sections.push(current);
 
-      const parsed = sections.map((s) => ({
-        title: s.title,
-        id: slugify(s.title),
-        html: groupFlowSteps(marked(s.body.trim())),
-      }));
+      const parsed = sections.map((s) => {
+        const out = {
+          title: s.title,
+          id: slugify(s.title),
+          html: groupFlowSteps(marked(s.body.trim())),
+        };
+        if (s.group) {
+          out.group = s.group.title;
+          // The first section of a group carries the superheading to render.
+          if (!s.group.used) {
+            s.group.used = true;
+            out.superheading = {
+              title: s.group.title,
+              id: s.group.id,
+              html: groupFlowSteps(marked(s.group.body.trim())),
+            };
+          }
+        }
+        return out;
+      });
 
       return {
         code: `export default ${JSON.stringify(parsed)};`,

@@ -487,8 +487,8 @@ function HeroSection() {
             Biologics on demand, <em>engineered for space.</em>
           </h2>
           <p className={styles.heroLead}>
-            We engineered three different protein production chassis for extraterrestrial biologics in a compact
-            bioreactor.
+            We designed three radiation-resistant microbial chassis, a compact bioreactor and an integrated
+            purification system for extraterrestrial protein production.
           </p>
           {/* One line that rolls between the two readouts every few seconds;
               the third row repeats the first so the roll loops seamlessly. */}
