@@ -6,6 +6,8 @@ import Lightbox from "../Lightbox/Lightbox";
 import PersonModal from "../PersonModal/PersonModal";
 import photoCarousel from "./photoCarousel";
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 // Where a person popup was when one of its links was followed, so Back can
 // bring the reader to the same spot with the popup open again.
 const RETURN_KEY = "person-modal-return";
@@ -184,9 +186,21 @@ export default function ArticleBody({ title, intro, sections, nums, sectionRefs 
       return;
     }
 
-    const popup = e.target.closest(".popup-open")?.closest(".popup-card");
+    // A `.link-card`'s face is a link to another page of this site; its
+    // "Read more" button opens the same popup a `.popup-card` does. Both sit
+    // before the <img> zoom check below, so clicking a card's illustration
+    // follows the link instead of opening the lightbox.
+    const popup = e.target.closest(".popup-open, .link-card-more")?.closest(".popup-card, .link-card");
     if (popup) {
       setPerson(popupFromCard(popup));
+      return;
+    }
+
+    const cardLink = e.target.closest("a.link-card-face");
+    const cardHref = cardLink?.getAttribute("href");
+    if (cardHref?.startsWith(`${BASE}/`) && e.button === 0 && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) {
+      e.preventDefault();
+      navigate(cardHref.slice(BASE.length));
       return;
     }
 

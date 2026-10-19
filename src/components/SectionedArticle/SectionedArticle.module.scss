@@ -2237,6 +2237,153 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     color: rgba(255, 255, 255, 0.45);
   }
 
+  // A card that is a door to another page, for an overview that routes
+  // readers onward (project-description.md's six contributions). Same face
+  // as a `.popup-card` (`.popup-num`, `.popup-face`, `.popup-title`,
+  // `.popup-desc`, `.popup-art`, reused as-is), but the face is an <a>, so
+  // the whole card navigates, and the teaser line at the foot of it is the
+  // destination (`.link-card-go`) rather than a "tap to read more" hint. The
+  // longer text lives behind a small "Read more" button under the face and
+  // opens in the same popup (Article.jsx), keeping the card from holding two
+  // controls inside one link. Keep the <a> on one line and nothing
+  // block-level inside it:
+  //   <div class="link-grid">
+  //
+  //   <div class="link-card">
+  //   <a class="link-card-face" href="/kaust-ksa/design"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">Title</span><span class="popup-desc">One line.</span><span class="link-card-go">Wet lab design →</span></span></a>
+  //   <button type="button" class="link-card-more">Read more +</button>
+  //   <div class="popup-more">
+  //
+  //   Popup markdown...
+  //
+  //   </div>
+  //   </div>
+  //
+  //   </div>
+  //
+  // Cards share a row's width evenly and wrap, so a group of three, two or
+  // one fills its row; a lone card goes wide, with its illustration beside
+  // the text, so a one-card group (a lab with a single contribution) doesn't
+  // read as a card stranded in an empty row.
+  :global(.link-grid) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-block: 16px 24px;
+  }
+
+  :global(.link-card) {
+    flex: 1 1 220px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease;
+
+    &:hover {
+      border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+      background: color-mix(in oklab, var(--primary) 8%, transparent);
+      transform: translateY(-2px);
+    }
+  }
+
+  :global(.link-card-face) {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 22px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-300);
+      outline-offset: -2px;
+    }
+  }
+
+  :global(.link-card-go) {
+    margin-top: auto;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary-300);
+  }
+
+  :global(.link-card-more) {
+    all: unset;
+    box-sizing: border-box;
+    padding: 11px 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition: color 150ms ease;
+
+    &:hover,
+    &:focus-visible {
+      color: white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-300);
+      outline-offset: -2px;
+    }
+  }
+
+  :global(.link-card:only-child) {
+    @media (min-width: 641px) {
+      :global(.link-card-face) {
+        // Beside a .popup-num the illustration normally reaches back over
+        // the number column (see .popup-art above); in the wide layout it
+        // gets its own column, so undo that.
+        :global(.popup-face) {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 220px;
+          grid-template-rows: auto auto 1fr;
+          column-gap: 24px;
+          row-gap: 8px;
+        }
+
+        :global(.popup-title) {
+          grid-column: 1;
+        }
+
+        :global(.popup-desc) {
+          grid-column: 1;
+        }
+
+        :global(.link-card-go) {
+          grid-column: 1;
+          align-self: end;
+        }
+
+        :global(.popup-face) > img:global(.popup-art) {
+          grid-column: 2;
+          grid-row: 1 / -1;
+          width: 100%;
+          max-width: none;
+          margin: 0;
+        }
+      }
+    }
+  }
+
   // One design iteration as a Design → Build → Test → Learn card. Each row
   // is a label pill beside its markdown body; any row can be left out.
   // `.iter.final` is the summary card that closes a list. Raw HTML with
@@ -2564,6 +2711,56 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     padding: 0;
     background: none;
     border: none;
+  }
+
+  // A figure and the paragraph beside it, as two columns instead of a float.
+  // A float lets the text wrap around the figure and then run on underneath
+  // it, so how many lines hang below depends on the column width: a single
+  // stranded line at one width, none at another. Here the text stays in its
+  // own column and never wraps under the figure. Put the `.img-aside`
+  // <figure> first, the paragraph after it, blank line between; it stacks
+  // (figure on top) under 640px, like a bare `.img-aside`.
+  //   <div class="aside-row">
+  //
+  //   <figure class="img-aside">...</figure>
+  //
+  //   A paragraph.
+  //
+  //   </div>
+  :global(.aside-row) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(240px, 34%);
+    column-gap: 28px;
+    align-items: start;
+    margin-block: 4px 16px;
+
+    > :global(.img-aside) {
+      float: none;
+      grid-column: 2;
+      grid-row: 1;
+      width: auto;
+      margin: 4px 0 0;
+    }
+
+    > p {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: minmax(0, 1fr);
+
+      > :global(.img-aside),
+      > p {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      > :global(.img-aside) {
+        margin: 0 0 16px;
+      }
+    }
   }
 
   // A float escaping its section would overlap the next one's heading,

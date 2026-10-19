@@ -1,11 +1,15 @@
 ## Medicine beyond Earth
 
+<div class="aside-row">
+
 <figure class="img-aside">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/astronaut-medkits.webp" alt="Astronaut aboard the International Space Station with medical kits" loading="lazy">
 <figcaption class="caption">ISS medical supplies. Image credit: <a href="https://www.nasa.gov/ochmo/" target="_blank" rel="noopener noreferrer">NASA</a> (public domain)</figcaption>
 </figure>
 
 As humanity prepares for longer and more ambitious space missions, ensuring that astronauts' health and well-being are supported throughout these journeys becomes even more important. Missions such as NASA's Expedition 75 and future lunar exploration initiatives highlight the growing role of astronauts in conducting scientific research beyond Earth <a class="cite" href="#ref-1">1</a>,<a class="cite" href="#ref-2">2</a>. Today, astronauts aboard the International Space Station (ISS) have access to medical supplies containing medications for various anticipated health conditions. These can be replenished through cargo missions, and evacuation to Earth in case of a serious medical emergency remains possible. However, greater distances and longer mission durations will make these support systems difficult to rely on as exploration extends toward the Moon, Mars, and beyond <a class="cite" href="#ref-3">3</a>,<a class="cite" href="#ref-4">4</a>.
+
+</div>
 
 <div class="popup-grid three">
 
@@ -44,16 +48,19 @@ The farther we travel, <span class="hl">the less we can depend entirely on Earth
 
 </div>
 
-## In-situ biomanufacturing
+## Six contributions, one system
 
 We developed SHIHAB to explore a new approach to space healthcare, where astronauts could produce selected biologics on demand rather than relying completely on conventional pharmaceutical supplies. In this regard, we aim to give astronauts greater independence from Earth-based infrastructure during long-duration missions.
 
 **One system, six interconnected research contributions.** Choose a research direction to reveal our approach and the corresponding technical pages.
 
-<div class="popup-grid three">
+### Wet lab
 
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">3 microbial chassis</span><span class="popup-desc"><i>B. subtilis</i>, <i>S. cerevisiae</i>, <i>P. pastoris</i></span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/organisms.avif" alt="Illustration of microorganisms" loading="lazy"><span class="popup-hint">Wet lab · Tap to read more</span></span></button>
+<div class="link-grid">
+
+<div class="link-card">
+<a class="link-card-face" href="/kaust-ksa/design"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">3 microbial chassis</span><span class="popup-desc"><i>B. subtilis</i>, <i>S. cerevisiae</i>, <i>P. pastoris</i></span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/organisms.avif" alt="Illustration of microorganisms" loading="lazy"><span class="link-card-go">Wet lab design →</span></span></a>
+<button type="button" class="link-card-more">Read more +</button>
 <div class="popup-more">
 
 #### Engineering microorganisms for space
@@ -67,8 +74,9 @@ We also propose preserving the microorganisms in compact formats, such as lyophi
 </div>
 </div>
 
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">2</span><span class="popup-face"><span class="popup-title">Radiation resistance</span><span class="popup-desc">Dsup integration · UV and X-ray testing</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/tardigrades.avif" alt="Illustration of a tardigrade" loading="lazy"><span class="popup-hint">Wet lab · Tap to read more</span></span></button>
+<div class="link-card">
+<a class="link-card-face" href="/kaust-ksa/results"><span class="popup-num">2</span><span class="popup-face"><span class="popup-title">Radiation resistance</span><span class="popup-desc">Dsup integration · UV and X-ray testing</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/tardigrades.avif" alt="Illustration of a tardigrade" loading="lazy"><span class="link-card-go">Wet lab results →</span></span></a>
+<button type="button" class="link-card-more">Read more +</button>
 <div class="popup-more">
 
 #### Investigating radiation resistance
@@ -82,29 +90,9 @@ Genetic integration and radiation-testing activities should be distinguished fro
 </div>
 </div>
 
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">3</span><span class="popup-face"><span class="popup-title">19 gene candidates</span><span class="popup-desc">Desert-inspired stress-response gene mining</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/rub-al-khali-sunset-nov-2007.avif" alt="Sand dunes of the Rub' al Khali desert at sunset" loading="lazy"><span class="popup-hint">Dry lab · Tap to read more</span></span></button>
-<div class="popup-more">
-
-#### Mining the desert for stress-response genes
-
-Inspired by the extreme conditions of Saudi Arabia's Rub' al Khali desert, the dry-lab team developed a gene-mining pipeline to identify candidates associated with DNA repair, cold-shock adaptation, and desiccation tolerance.
-
-From computational screening of **1,221 metagenomes**, **19 candidate genes** were selected for further investigation. The data were provided by the Bio-Ontology Research Group (BORG) at KAUST, led by Prof. Robert Hoehndorf. Candidate identification does not establish experimentally validated protection.
-
-<div class="caption">
-
-Photo: <a href="https://commons.wikimedia.org/wiki/File:Rub_al_khali_sunset_Nov_2007.jpg" target="_blank" rel="noopener noreferrer">Javierblas / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>
-
-</div>
-
-<p><a class="person-link-btn" href="/kaust-ksa/software">Explore Software →</a></p>
-
-</div>
-</div>
-
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">4</span><span class="popup-face"><span class="popup-title">Protein payload library</span><span class="popup-desc">Nanobodies · Antifreeze proteins · Reporters</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/proteins.avif" alt="Illustration of protein structures" loading="lazy"><span class="popup-hint">Wet lab · Tap to read more</span></span></button>
+<div class="link-card">
+<a class="link-card-face" href="/kaust-ksa/protein-library"><span class="popup-num">3</span><span class="popup-face"><span class="popup-title">Protein payload library</span><span class="popup-desc">Nanobodies · Antifreeze proteins · Reporters</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/proteins.avif" alt="Illustration of protein structures" loading="lazy"><span class="link-card-go">Explore protein library →</span></span></a>
+<button type="button" class="link-card-more">Read more +</button>
 <div class="popup-more">
 
 #### A library of protein payloads
@@ -120,8 +108,33 @@ Future work could expand the library to additional therapeutic candidates, inclu
 </div>
 </div>
 
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">5</span><span class="popup-face"><span class="popup-title">Growth-condition modeling</span><span class="popup-desc">Carbon and nitrogen sources · Metabolic models · COMSOL</span><span class="popup-hint">Dry lab · Tap to read more</span></span></button>
+</div>
+
+### Dry lab
+
+<div class="link-grid">
+
+<div class="link-card">
+<a class="link-card-face" href="/kaust-ksa/software"><span class="popup-num">4</span><span class="popup-face"><span class="popup-title">19 gene candidates</span><span class="popup-desc">Desert-inspired stress-response gene mining</span><span class="link-card-go">Explore Software →</span></span></a>
+<button type="button" class="link-card-more">Read more +</button>
+<div class="popup-more">
+
+#### Mining the desert for stress-response genes
+
+Inspired by the extreme conditions of Saudi Arabia's Rub' al Khali desert, the dry-lab team developed a gene-mining pipeline to identify candidates associated with DNA repair, cold-shock adaptation, and desiccation tolerance.
+
+From computational screening of **1,221 metagenomes**, **19 candidate genes** were selected for further investigation. The data were provided by the Bio-Ontology Research Group (BORG) at KAUST, led by Prof. Robert Hoehndorf. Candidate identification does not establish experimentally validated protection.
+
+<figure class="person-figure"><img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/rub-al-khali-sunset-nov-2007.avif" alt="Sand dunes of the Rub' al Khali desert at sunset" loading="lazy"><figcaption class="caption">Photo: <a href="https://commons.wikimedia.org/wiki/File:Rub_al_khali_sunset_Nov_2007.jpg" target="_blank" rel="noopener noreferrer">Javierblas / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></figcaption></figure>
+
+<p><a class="person-link-btn" href="/kaust-ksa/software">Explore Software →</a></p>
+
+</div>
+</div>
+
+<div class="link-card">
+<a class="link-card-face" href="/kaust-ksa/modeling"><span class="popup-num">5</span><span class="popup-face"><span class="popup-title">Growth-condition modeling</span><span class="popup-desc">Carbon and nitrogen sources · Metabolic models · COMSOL</span><span class="link-card-go">Explore Modeling →</span></span></a>
+<button type="button" class="link-card-more">Read more +</button>
 <div class="popup-more">
 
 #### Modeling growth and reactor conditions
@@ -135,8 +148,15 @@ Computational fluid-dynamics (CFD) simulations in COMSOL examined mixing, circul
 </div>
 </div>
 
-<div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-num">6</span><span class="popup-face"><span class="popup-title">Portable biomanufacturing</span><span class="popup-desc">Bioreactor · Monitoring · Induction · Purification</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/suitcase.avif" alt="Illustration of a compact biomanufacturing platform in a case" loading="lazy"><span class="popup-hint">Hardware · Tap to read more</span></span></button>
+</div>
+
+### Hardware
+
+<div class="link-grid">
+
+<div class="link-card">
+<a class="link-card-face" href="/kaust-ksa/hardware"><span class="popup-num">6</span><span class="popup-face"><span class="popup-title">Portable biomanufacturing</span><span class="popup-desc">Bioreactor · Monitoring · Induction · Purification</span><img class="popup-art" src="https://static.igem.wiki/teams/6341/wiki/content/project-description/suitcase.avif" alt="Illustration of a compact biomanufacturing platform in a case" loading="lazy"><span class="link-card-go">Explore Hardware →</span></span></a>
+<button type="button" class="link-card-more">Read more +</button>
 <div class="popup-more">
 
 #### From biological production to automation
