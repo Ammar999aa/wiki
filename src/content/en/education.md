@@ -171,7 +171,7 @@ The pre- and post-lecture surveys showed that students learned and understood th
 We hope the Thuwal Science Pioneers Program continues to bridge the gap between KAUST and the Thuwal community. We will proceed with the program as scheduled and support the future KAUST iGEM team in organizing and enhancing it further, so students can discover the many scientific fields that exist.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-kaust-nyuad.avif" alt="KAUST iGEM and NYU Abu Dhabi iGEM members on stage in front of the Tawasol screen"></div><figcaption class="caption"><strong>Figure 7.</strong> Tawasol · KAUST iGEM × NYU Abu Dhabi iGEM.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-nyu.avif" alt="Tawasol Hackathon"></div><figcaption class="caption"><strong>Figure 7.</strong> The Tawasol Hackathon, co-organized with NYU Abu Dhabi iGEM.</figcaption></figure>
 </div>
 
 *Acknowledgments: We thank KAUST Community & Culture, Prof. Sami Alghamdi, and Urban Labs for making this program possible.*
@@ -567,18 +567,6 @@ Once a powerful new biotechnology exists, who decides how it is used safely?
 The Tawasol Hackathon, held August 28–30, 2026 and co-organized with NYU Abu Dhabi iGEM, asked high school (grades 10–12) and undergraduate students a question most students never get to consider. Teams focused on the governance of SHIHAB, our platform for in-situ biomanufacturing of medicines for space missions and remote settings on Earth.
 
 The hackathon began as the SHIHAB Horizon Hackathon and was renamed Tawasol (تواصل, "connection") when NYU Abu Dhabi iGEM joined as co-organizer. It became the first project of the Tawasol Initiative, our coalition of MENA iGEM teams, described on our <a href="/kaust-ksa/science-communication#tawasol-uniting-mena-igem-teams">Science Communication page</a>.
-
-<div class="photo-frame">
-
-![Tawasol Hackathon](https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-nyu.avif)
-
-</div>
-
-<div class="caption">
-
-**Figure 11.** The Tawasol Hackathon, co-organized with NYU Abu Dhabi iGEM.
-
-</div>
 
 ### Structure
 
