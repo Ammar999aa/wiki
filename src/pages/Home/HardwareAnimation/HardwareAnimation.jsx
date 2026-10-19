@@ -60,7 +60,7 @@ function IcoExpand({ on }) {
   );
 }
 
-export default function HardwareAnimation({ className }) {
+export default function HardwareAnimation({ className, title }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const barRef = useRef(null);
@@ -163,6 +163,7 @@ export default function HardwareAnimation({ className }) {
           role="img"
           aria-label="Animated 3D walkthrough of SHIHAB's fluid system: culture flows from the bioreactor through filtration, syringe pumps push four buffers through the chromatography column, and the eluted protein is collected in a vial."
         />
+        {title && <p className={styles.title}>{title}</p>}
         {message && <p className={styles.status}>{message}</p>}
         {ready && cap && (
           <div className={styles.cap} aria-live="polite">

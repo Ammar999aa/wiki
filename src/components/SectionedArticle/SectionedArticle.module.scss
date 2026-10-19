@@ -250,6 +250,36 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     font-weight: 700;
   }
 
+  // Opt-in (SectionedArticle's `accentBold` prop): bold lead-ins inside
+  // body paragraphs ("Why filtration?", "Step 1: ...") in the amber the
+  // Hardware page's export uses, instead of plain white. Captions keep
+  // their own brighter-white lead-in.
+  &.accentBold p strong {
+    color: #ffbf00;
+  }
+
+  &.accentBold :global(.caption) p strong {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  // A display equation (`$$ ... $$` in markdown, rendered by KaTeX) as its
+  // own bordered box, centred, scrolling sideways instead of overflowing
+  // on phones.
+  :global(.katex-display) {
+    margin: 18px 0;
+    padding: 14px 18px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+    background: rgba(177, 109, 255, 0.08);
+    border: 1px solid rgba(177, 109, 255, 0.25);
+    border-radius: var(--radius-sm);
+
+    & > :global(.katex) {
+      font-size: 1.1em;
+    }
+  }
+
   em {
     font-style: italic;
   }
@@ -670,6 +700,17 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     p:last-child {
       margin-bottom: 0;
     }
+
+    // A photo at the top of a card (the three filtration stages on the
+    // Hardware page): same frame in every card, cropped to fit.
+    :global(.stage-img) {
+      display: block;
+      width: 100%;
+      aspect-ratio: 900 / 694;
+      object-fit: cover;
+      border-radius: var(--radius-xs);
+      margin: 0 0 12px;
+    }
   }
 
   // Modifier for a card-grid whose items are a title plus one short line
@@ -971,6 +1012,137 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         align-self: center;
         transform: rotate(90deg);
         padding: 6px 0;
+      }
+    }
+  }
+
+  // The landing page's five-step process strip (Home.module.scss
+  // `.processStrip`), for markdown: two-tone icon, numbered mono label,
+  // one-line description, chevrons between steps. Icons are inline SVG
+  // using `.pi-*` tone classes (SVG fills can't take a var() attribute).
+  //   <ol class="process-strip"><li><svg class="process-ico">…</svg>
+  //   <span class="process-label"><span class="process-num">1</span>Preserve</span>
+  //   <span class="process-desc">…</span></li>…</ol>
+  :global(.process-strip) {
+    --step-gap: clamp(12px, 3vw, 40px);
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--step-gap);
+    margin: 20px 0 8px;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      --ico: 52px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+
+      &::before {
+        content: none;
+      }
+
+      & + li::before {
+        content: "›";
+        position: absolute;
+        left: calc(var(--step-gap) / -2);
+        top: calc(var(--ico) / 2);
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        line-height: 1;
+        color: var(--primary-400);
+      }
+    }
+
+    :global(.process-ico) {
+      width: var(--ico);
+      height: var(--ico);
+      filter: drop-shadow(0 0 14px rgba(177, 109, 255, 0.45));
+    }
+
+    :global(.process-label) {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    :global(.process-num) {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(177, 140, 255, 0.7);
+      font-size: 0.66rem;
+      letter-spacing: 0;
+      color: var(--primary-300);
+    }
+
+    :global(.process-desc) {
+      max-width: 19ch;
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    :global(.pi-light) { fill: var(--primary-200); }
+    :global(.pi-main) { fill: var(--primary); }
+    :global(.pi-amber) { fill: var(--accent); }
+    :global(.pi-blue) { fill: var(--tertiary-400); opacity: 0.95; }
+    :global(.pi-frame) { fill: color-mix(in oklab, var(--primary-700) 70%, transparent); }
+    :global(.pi-line) {
+      fill: none;
+      stroke: var(--primary-200);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    // Five columns don't fit a phone: stack them as icon-left rows.
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 14px;
+
+      > li {
+        --ico: 40px;
+        display: grid;
+        grid-template-columns: var(--ico) 1fr;
+        align-items: center;
+        justify-items: start;
+        text-align: left;
+        column-gap: 14px;
+        row-gap: 2px;
+
+        & + li::before {
+          display: none;
+        }
+      }
+
+      :global(.process-ico) {
+        grid-row: span 2;
+      }
+
+      :global(.process-label) {
+        margin-top: 0;
+        align-self: end;
+      }
+
+      :global(.process-desc) {
+        max-width: none;
+        align-self: start;
       }
     }
   }
@@ -2958,6 +3130,71 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
   &:hover {
     color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// Page links listed under a jump-nav entry (Judging's medals). Each reads as
+// a small pill with a trailing arrow, indented under the entry's accent bar,
+// so they look clickable without competing with the entry itself.
+.panelLinks {
+  list-style: none;
+  margin: 2px 0 12px;
+  padding: 0 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+
+  // --link-tint is an "r, g, b" triple set per group by Panel; the fallback
+  // is the plain white-on-glass look.
+  --link-tint: 255, 255, 255;
+
+  li {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 500;
+    color: rgb(var(--link-tint));
+    text-decoration: none;
+    background: rgba(var(--link-tint), 0.08);
+    border: 1px solid rgba(var(--link-tint), 0.3);
+    border-radius: 999px;
+    transition:
+      color 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease;
+
+    &::after {
+      content: "\2192";
+      flex: none;
+      opacity: 0.55;
+      transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: white;
+      background: rgba(var(--link-tint), 0.22);
+      border-color: rgba(var(--link-tint), 0.7);
+
+      &::after {
+        opacity: 1;
+        transform: translateX(3px);
+      }
+    }
   }
 }
 

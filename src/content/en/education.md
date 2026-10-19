@@ -171,7 +171,7 @@ The pre- and post-lecture surveys showed that students learned and understood th
 We hope the Thuwal Science Pioneers Program continues to bridge the gap between KAUST and the Thuwal community. We will proceed with the program as scheduled and support the future KAUST iGEM team in organizing and enhancing it further, so students can discover the many scientific fields that exist.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-kaust-nyuad.avif" alt="KAUST iGEM and NYU Abu Dhabi iGEM members on stage in front of the Tawasol screen"></div><figcaption class="caption"><strong>Figure 7.</strong> Tawasol · KAUST iGEM × NYU Abu Dhabi iGEM.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-nyu.avif" alt="Tawasol Hackathon"></div><figcaption class="caption"><strong>Figure 7.</strong> The Tawasol Hackathon, co-organized with NYU Abu Dhabi iGEM.</figcaption></figure>
 </div>
 
 *Acknowledgments: We thank KAUST Community & Culture, Prof. Sami Alghamdi, and Urban Labs for making this program possible.*

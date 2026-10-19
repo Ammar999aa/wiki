@@ -129,6 +129,15 @@ const sections = MEDALS.map((medal) => ({
   ),
 }));
 
+// Each medal's pages, repeated under it in the side panel. A link that
+// several criteria share is listed once.
+const panelLinks = MEDALS.map((medal) => {
+  const seen = new Set();
+  return medal.criteria
+    .flatMap((c) => c.links)
+    .filter((l) => !seen.has(l.href) && seen.add(l.href));
+});
+
 // Eyebrow echoes the nav label ("Judging", a top-level nav link).
 const pageIntro = <Masthead eyebrow={["Judging"]} />;
 
@@ -147,7 +156,7 @@ export default function Judging() {
         gradient,
       }}
     >
-      <SectionedArticle title="Judging" intro={pageIntro} sections={sections} defaultSelected={sections[0].title} />
+      <SectionedArticle title="Judging" intro={pageIntro} sections={sections} panelLinks={panelLinks} panelLinkTints={MEDALS.map((m) => m.tint)} defaultSelected={sections[0].title} />
       <a
         href="https://www.nasa.gov/image-detail/amf-iss075e0144232/"
         target="_blank"

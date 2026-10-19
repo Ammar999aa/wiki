@@ -89,7 +89,7 @@ const SectionHtml = memo(function SectionHtml({ html }) {
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 });
 
-export default function ArticleBody({ title, intro, sections, nums, sectionRefs }) {
+export default function ArticleBody({ title, intro, sections, nums, sectionRefs, accentBold }) {
   const [zoomed, setZoomed] = useState(null); // { src, alt } | null
   const [person, setPerson] = useState(null); // personFromCard() + initialScroll | null
   const closePerson = useCallback(() => setPerson(null), []);
@@ -288,7 +288,7 @@ export default function ArticleBody({ title, intro, sections, nums, sectionRefs 
   }, [sections]);
 
   return (
-    <div ref={articleRef} className={styles.article} onClick={onClick}>
+    <div ref={articleRef} className={accentBold ? `${styles.article} ${styles.accentBold}` : styles.article} onClick={onClick}>
       {title && <h1 className={styles.pageTitle}>{title}</h1>}
       {intro && <div className={styles.intro}>{intro}</div>}
       {sections.map((section, i) => (

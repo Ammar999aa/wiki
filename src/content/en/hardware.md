@@ -1,15 +1,8 @@
 ## The need for on-demand medicine in space
 
-As human space exploration advances, longer-duration missions are becoming more commonplace. Astronauts on board require access to therapeutics to manage health conditions that may arise during their long-haul expeditions. However, maintaining an extensive inventory of medicines would substantially increase payload mass and hence mission costs as well <a class="cite" href="#ref-1">1</a>. Thus, the ability to produce therapeutics on-demand during flight offers a more flexible and resource-efficient solution, particularly for long-haul expeditions.
+As longer-duration missions become more commonplace, astronauts need access to therapeutics for health conditions that may arise during flight. Stocking an extensive inventory of medicines would substantially increase payload mass and hence mission costs <a class="cite" href="#ref-1">1</a>, so producing therapeutics on demand is a more flexible and resource-efficient solution.
 
-We recognize that astronauts are not typically trained to handle complex biological protocols and equipment. Hence, with the SHIHAB Bioreactor, we designed a prototype of a biomanufacturing platform consisting of a bioreactor and protein purification system that requires **low power** and is **simple to use**, **compact**, **modular** and **highly automated**. Astronauts would therefore only be required to transport the compact SHIHAB Bioreactor, together with a small inventory of "pills", to begin the production of their medicine of choice aboard their spacecraft.
-
-<div class="figure-grid">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/device-cad-render.avif" alt="CAD render of the assembled prototype: bioreactor and protein purification system housed in a compact case"></div><figcaption class="caption"><strong>Figure 1.</strong> CAD render of the assembled prototype: bioreactor and protein purification system housed in a compact case.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/pill-inventory.avif" alt="Inventory tray of lyophilized pill cultures"></div><figcaption class="caption"><strong>Figure 2. Pills are stored in a compact inventory box.</strong> The box holds lyophilized "pill" cultures for the biomanufacturing platform.</figcaption></figure>
-</div>
-
-This allows for on-demand, small-scale production of pharmaceuticals in space and remote areas without the need for extensive technical support or equipment, improving the accessibility to medicines where they are most needed.
+Since astronauts are not typically trained to handle complex biological protocols, we designed the SHIHAB Bioreactor as a prototype biomanufacturing platform, consisting of a bioreactor and protein purification system, that requires **low power** and is **simple to use**, **compact**, **modular** and **highly automated**. Astronauts would only need to transport the platform and a small inventory of "pills" (lyophilized genetically engineered bacteria) to produce their medicine of choice on demand, aboard their spacecraft or in remote areas, without extensive technical support.
 
 ## Why SHIHAB is built for space
 
@@ -19,7 +12,7 @@ This allows for on-demand, small-scale production of pharmaceuticals in space an
 <button type="button" class="popup-open"><span class="popup-num">1</span><span class="popup-face"><span class="popup-title">Our compact, lightweight and modular design makes for a low-footprint payload</span><svg class="popup-art" viewBox="0 0 220 74" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" aria-hidden="true"><path d="M42 18v-6a3 3 0 0 1 3-3h20a3 3 0 0 1 3 3v6" stroke="#D1A8FF"/><rect x="10" y="18" width="92" height="38" rx="6" stroke="#B16DFF" fill="#B16DFF" fill-opacity="0.16"/><path d="M34 18v38M78 18v38" stroke="#B16DFF"/><path d="M10 37h92" stroke="#B16DFF" stroke-opacity="0.45"/><rect x="51" y="32" width="10" height="9" rx="2" stroke="#FFD84D" fill="#FFD84D" fill-opacity="0.3"/><circle cx="22" cy="28" r="1.6" fill="#FFD84D" stroke="none"/><circle cx="90" cy="28" r="1.6" fill="#FFD84D" stroke="none"/><circle cx="22" cy="46" r="1.6" fill="#FFD84D" stroke="none"/><circle cx="90" cy="46" r="1.6" fill="#FFD84D" stroke="none"/><circle cx="24" cy="60" r="3" stroke="#D1A8FF"/><circle cx="88" cy="60" r="3" stroke="#D1A8FF"/><path d="M10 69h92M10 66v6M102 66v6" stroke="rgba(255,255,255,0.45)"/><rect x="126" y="44" width="26" height="24" rx="3" stroke="#D1A8FF" fill="#D1A8FF" fill-opacity="0.1"/><rect x="156" y="44" width="26" height="24" rx="3" stroke="#D1A8FF" fill="#D1A8FF" fill-opacity="0.1"/><rect x="186" y="44" width="26" height="24" rx="3" stroke="#D1A8FF" fill="#D1A8FF" fill-opacity="0.1"/><circle cx="139" cy="44" r="2.2" stroke="#D1A8FF"/><circle cx="169" cy="44" r="2.2" stroke="#D1A8FF"/><circle cx="199" cy="44" r="2.2" stroke="#D1A8FF"/><rect x="156" y="8" width="26" height="24" rx="3" stroke="#FFD84D" fill="#FFD84D" fill-opacity="0.14"/><path d="M169 34v6m0 0l-3-3.5m3 3.5l3-3.5" stroke="#FFD84D"/></svg><span class="popup-hint">Tap to read more</span></span></button>
 <div class="popup-more">
 
-Measuring only 20 x 24 x 31 cm (LWH) and weighing a mere 2.2 kg, the SHIHAB bioreactor allows for biomanufacturing in space-constrained environments. Together with the equally compact protein purification system, the entire platform can fit in a portable 50 x 35 x 15 cm suitcase (smaller than typical carry-on baggage dimensions for most major airlines). The platform can be assembled in minutes when needed and disassembled just as easily to maximize portability, without compromising space efficiency. <a class="cite" href="#ref-2">2</a>
+Measuring only 20 x 24 x 31 cm (LWH) and weighing a mere 2.2 kg, the SHIHAB bioreactor allows for biomanufacturing in space-constrained environments. Together with the equally compact protein purification system, the entire platform can fit in a portable 58 x 46 x 23 cm suitcase (equivalent to typical carry-on baggage dimensions for most major airlines). The platform can be assembled in minutes when needed and disassembled just as easily to maximize portability, without compromising space efficiency. <a class="cite" href="#ref-2">2</a>
 
 <div class="caption">
 
@@ -34,7 +27,7 @@ Measuring only 20 x 24 x 31 cm (LWH) and weighing a mere 2.2 kg, the SHIHAB bior
 | Footprint (W x D x H) | 20 x 24 x 31 cm | 22 x 40 x 38 cm |
 | Weight | 2.2 kg | 7.5 kg |
 | Power draw | 30 W | 560 W (universal 100–245 V AC) |
-| Complete platform incl. purification | Packs into a 50 x 35 x 15 cm case | Not included – vessel/control unit only |
+| Complete platform incl. purification | Packs into a 58 x 46 x 23 cm case | Not included – vessel/control unit only |
 | Vessel volume | Interchangeable vessels of various geometries | Interchangeable glass vessels, 0.3–7 L |
 | Typical use case | Portable, space- and power-constrained biomanufacturing | Benchtop fermentation in a lab with mains power |
 
@@ -66,7 +59,7 @@ The bioreactor runs on a 30 W power supply, equivalent to the amount of power it
 
 On Mars, gravity is only about 38% of Earth’s (about 0.38 g), so fluid behaves differently than it does in a terrestrial lab. Rather than relying on gravity to move liquid through the system, every fluid path in the SHIHAB Bioreactor runs through closed tubing and pumps, keeping fluid handling consistent regardless of the gravity environment it’s operating in. <a class="cite" href="#ref-4">4</a>
 
-A particular challenge of developing bioreactors suitable for use in microgravity conditions is reduced convection that would otherwise aid in mixing. We performed computational fluid dynamics simulations to evaluate our rotor design under these conditions; the results are reported in [Experimental validation](#experimental-validation). <a class="cite" href="#ref-5">5</a>
+A particular challenge of developing bioreactors suitable for use in microgravity conditions is reduced convection that would otherwise aid in mixing. We performed computational fluid dynamics simulations to evaluate our rotor design under these conditions; the results are reported in [Simulating mixing in microgravity](#simulating-mixing-in-microgravity). <a class="cite" href="#ref-5">5</a>
 
 </div>
 </div>
@@ -150,23 +143,27 @@ Once fermentation is complete, the broth containing the secreted proteins passes
 
 **Why filtration?**
 
-On Earth, the first step of protein purification, separating cells from the culture medium, relies on gravity. This is typically performed either through sedimentation or centrifugation; however, in microgravity, cells do not settle and liquids can behave unpredictably. Centrifuges can generate artificial gravity, but they are heavy, require large amounts of power and involve high-speed moving parts that pose vibration and safety concerns aboard a spacecraft. We therefore chose filtration, which separates components by size rather than density and works independently of gravity. Driven by pressure rather than gravity, a filtration system can be fully enclosed to prevent liquid escaping into the cabin. Our filtration system is lightweight, simple to operate, requires low-power and, once assembled by the user prior to purification, is fully automated. This makes it well suited to SHIHAB's goal of compact, astronaut-friendly biomanufacturing in space.
+In microgravity, cells do not settle and centrifuges are heavy, power-hungry and unsafe. We therefore chose filtration, which separates by size, works independently of gravity, can be fully enclosed, and is lightweight, low-power and fully automated once assembled.
 
-We designed a modular platform that allows the user to choose how many filtration stages are needed for the specific culture. Disposable filter papers of decreasing pore size sit in each module, connected by gaskets to prevent leakage. This multi-stage approach which can be rapidly assembled and disassembled retains simplicity in design while avoiding clogs.
+The user can choose how many filtration stages the culture needs. Disposable filters of decreasing pore size sit in modules joined by leak-proof gaskets, keeping assembly quick and avoiding clogs.
 
-<div class="card-grid">
+<div class="card-grid row">
 
 <div>
 
-#### Stage 1: Coarse filter
+<img class="stage-img" src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filter-stage1-kapton.avif" alt="Kapton polyimide filter disc with a grid of square holes">
 
-Removes large floc chunks so they don't clog the finer filters downstream.
+#### Stage 1: Coarse filter (500 µm pore size)
+
+Removes large floc chunks so they don't clog the finer filters downstream. We created the grid of holes in a Kapton polyimide sheet using a CO<sub>2</sub> laser cutter. We chose Kapton for this stage because it is waterproof, unlike materials such as cellulose, which absorb the filtrate and could reduce our final protein output.
 
 </div>
 
 <div>
 
-#### Stage 2: Medium filter
+<img class="stage-img" src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filter-stage2-paper.avif" alt="A circular filter paper disc">
+
+#### Stage 2: Medium filter (11 µm pore size)
 
 Removes the finer flocs that passed through the first stage.
 
@@ -174,9 +171,11 @@ Removes the finer flocs that passed through the first stage.
 
 <div>
 
-#### Stage 3: Fine filter
+<img class="stage-img" src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filter-stage3-acrodisc.avif" alt="An Acrodisc syringe filter held in a hand">
 
-Removes the smallest remaining particles, leaving a clear broth for chromatography.
+#### Stage 3: Fine filter (0.2 µm pore size)
+
+Removes the smallest remaining particles, leaving a clear broth for chromatography. This stage uses an Acrodisc filter with a nylon membrane.
 
 </div>
 
@@ -198,12 +197,8 @@ Four syringe pumps dispense precise volumes of each buffer: equilibration, wash,
 
 After each buffer runs through, negative pressure at the waste port draws it out of the column, except during elution, when the eluate is routed to a sterile collection vial instead.
 
-<div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/purification-system-diagram.avif" alt="Top-down CAD diagram of the affinity chromatography setup: the filtration unit on the left feeds tubing to the top of a tall column, four syringe pumps in a stack each connect to the column top through their own buffer line, and the column outlet leads to a collection vial at the bottom right"></div>
-
-<div class="caption">
-
-**Figure 4. Four syringe pumps feed the buffers to the column.** Diagram of the affinity chromatography setup: the filtration unit, four syringe pumps with their buffer lines, the column and the collection vial.
-
+<div class="figure-grid single wide">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/affinity-chromatography-diagram.avif" alt="Top-down CAD diagram of the affinity chromatography setup: the filtration unit on the left feeds tubing to the top of a tall column, four syringe pumps in a stack each connect to the column top through their own buffer line, and the column outlet leads to a collection vial at the bottom right"></div><figcaption class="caption"><strong>Figure 4. Four syringe pumps feed the buffers to the column.</strong> Diagram of the affinity chromatography setup: the filtration unit, four syringe pumps with their buffer lines, the column and the collection vial.</figcaption></figure>
 </div>
 
 <div data-slot="model"></div>
@@ -213,6 +208,72 @@ After each buffer runs through, negative pressure at the waste port draws it out
 **Figure 5. The full bioreactor can be explored in 3D.** Interactive CAD model of the SHIHAB bioreactor (about 20 x 24 x 31 cm). Drag to rotate, scroll or pinch to zoom, and on a supported phone view it in AR.
 
 </div>
+
+## Simulating mixing in microgravity
+
+On Earth, gravity does a lot of quiet work for a bioreactor: heavier fluid sinks, lighter fluid and gas bubbles rise, and this natural convection helps mix the culture and carry oxygen through it <a class="cite" href="#ref-5">5</a>. In microgravity that help disappears, so the rotor has to do the mixing on its own. We performed computational fluid dynamics (CFD) simulations in COMSOL Multiphysics <a class="cite" href="#ref-6">6</a> to model the flow in the vessel and followed 100 µm gas bubbles, which represent the oxygen supplied to the culture, under the gravity of Earth (9.81 m/s²), Mars (3.71 m/s²), the Moon (1.62 m/s²) and transit (10<sup>−5</sup> m/s²).
+
+The flow pattern depended strongly on gravity: in transit and on the Moon, circulation stayed confined to one part of the vessel while the rest moved slowly and was mixed far less. Since oxygen reaches the cells only as fast as the culture carries it, **uneven mixing directly limits our yield**, and a rotor that works well on Earth cannot simply be assumed to work in space. We therefore used the simulations to compare three rotor designs before building them. In the animations, colored dots are bubbles that are still moving and grey dots have come to rest.
+
+<div class="figure-grid single wide">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-1.webp" alt="Simulation of bubble fate for the first rotor concept, one large paddle at the bottom of the vessel, at 100 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 6. A single large paddle at the bottom left the upper vessel poorly stirred.</strong> Simulated bubble fate for Prototype 1, one large paddle at the bottom, at 100 rpm.</figcaption></figure>
+</div>
+
+**What we observed.** On Earth and Mars, most bubbles came to rest within the first seconds of simulated time. On the Moon and in transit, the bubbles that stayed in circulation followed a single narrow path up the outer wall, while large parts of the vessel were left empty and slow. With only one paddle, the stirring did not spread through the whole vessel.
+
+<div class="figure-grid single wide">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-2.webp" alt="Simulation of bubble fate for the second rotor concept, three rows of large blades, at 100 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 7. Three rows of large blades split the liquid into separate loops.</strong> Simulated bubble fate for Prototype 2, three rows of large blades, at 100 rpm.</figcaption></figure>
+</div>
+
+**What we observed.** On Mars, the Moon and in transit, the bubbles ended up trapped in separate closed loops, one between each pair of blade rows near the outer wall. They stayed inside their own loop instead of travelling through the vessel, so the three blade rows acted like separate mixing zones rather than one stirred volume, and the top of the vessel stayed mostly empty.
+
+<div class="figure-grid single wide">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-3.webp" alt="Simulation of bubble fate for the third rotor concept, three rows of small tilted blades, at 200 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 8. Small tilted blades drove one continuous circulation loop.</strong> Simulated bubble fate for Prototype 3, three rows of small tilted blades, at 200 rpm.</figcaption></figure>
+</div>
+
+<div class="figure-grid single wide">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-air-fate.webp" alt="Simulation of where the air goes for the third rotor concept at 200 rpm and 6.4 mL/min air supply, in four gravities"></div><figcaption class="caption"><strong>Figure 9. In weaker gravity, bubbles rise more slowly and stay longer in the liquid.</strong> Simulated fate of the air for Prototype 3, three rows of 39° tilted blades, at 200 rpm and an air supply of 6.4 mL/min, with the same stirrer and air supply in four gravities.</figcaption></figure>
+</div>
+
+<div class="figure-grid single wide">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-vortex-depth.webp" alt="Simulation of vortex depth for the third rotor concept from 50 to 400 rpm"></div><figcaption class="caption"><strong>Figure 10. The spinning liquid dips at the shaft, and air is pulled in once the dip reaches the top blades.</strong> Simulated vortex depth for Prototype 3, three rows of 39° tilted blades, from 50 to 400 rpm. If the dip reaches the top blades, air is pulled in (engulfment).</figcaption></figure>
+</div>
+
+**What we observed.** The streamlines now form large loops that span the full height and width of the vessel instead of small isolated cells. On Earth and Mars nearly all bubbles had come to rest by the end of the simulation, many along the wall. On the Moon and in transit some bubbles were still moving along the outer wall, so mixing was much better than in the first two designs but still not fully uniform at low gravity.
+
+**Why we chose Prototype 3.** It was the only design in which the flow formed continuous circulation along the full height of the liquid, rather than a narrow path (Prototype 1) or separate loops at each blade row (Prototype 2). Continuous circulation carries oxygen through the whole culture, and the small tilted blades achieved it in a compact rotor without disturbing the liquid surface the way the large blades did.
+
+### How the simulations shaped the prototype
+
+<div class="card-grid row">
+
+<div>
+
+#### The rotor must do the mixing.
+
+Flow changed strongly with gravity, so we cannot rely on buoyancy-driven convection. SHIHAB uses a motor-driven rotor chosen for low gravity.
+
+</div>
+
+<div>
+
+#### The rotor geometry was chosen from the comparison.
+
+The large paddle left the upper vessel slow, and the large blades split the flow into separate loops. The small tilted blades gave continuous circulation, so they became our final rotor (29 mm, tilted 39°).
+
+</div>
+
+<div>
+
+#### Mixing in reduced gravity stays a design priority.
+
+Even with the final rotor, circulation on the Moon and in transit stayed partly confined at 200 rpm. Uneven mixing limits oxygen supply and yield, so we want to keep tuning speed and geometry.
+
+</div>
+
+</div>
+
+The simulations are a guide, not a replacement for experiments: all of our laboratory tests were run at Earth gravity, and the results above have not yet been checked against a real culture in reduced gravity.
 
 ## Design iterations
 
@@ -231,9 +292,9 @@ To keep the culture mixed without relying on gravity-driven convection, we first
 
 We 3D-printed the attachment and fitted it to a glass rod to hold the magnetic bead measuring 50 mm in length and 8 mm in diameter. The attachment has a small gap to allow for small size adjustments so that the magnet can be attached and detached.
 
-<div class="figure-grid" style="--fig-h: 200px;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/stirrer-attachment.avif" alt="3D-printed attachment for holding the magnetic bead: a horizontal bar with a vertical socket on top and two split clips underneath"></div><figcaption class="caption"><strong>Figure 6. A 3D-printed attachment on a glass rod held the magnetic bead for stirring.</strong></figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/stirrer-attachment-side.avif" alt="Side view of the attachment showing the split ring clip with a small gap"></div><figcaption class="caption"><strong>Figure 7. The attachment has a small gap so the magnet can be attached and detached.</strong> Side view.</figcaption></figure>
+<div class="figure-grid" style="--fig-h: 260px;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/stirrer-attachment.avif" alt="3D-printed attachment for holding the magnetic bead: a horizontal bar with a vertical socket on top and two split clips underneath"></div><figcaption class="caption"><strong>Figure 11. A 3D-printed attachment on a glass rod held the magnetic bead for stirring.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/stirrer-attachment-real.avif" alt="Photo of the 3D-printed attachment connected to a magnetic bead and a glass rod"></div><figcaption class="caption"><strong>Figure 12. The attachment has a small gap so the magnet can be attached and detached.</strong> Photo of the real attachment connected to a magnetic bead and a glass rod.</figcaption></figure>
 </div>
 
 </div></div>
@@ -261,8 +322,8 @@ We returned to our initial idea of a motor-controlled rotor, but built it so tha
 We 3D-printed the motor housing and the coupling attachment. The motor sits with a comfortable fit in the housing, and is further secured with four screws on the sides to prevent the motor from slipping in the housing. Though the motor is already non-contacting with the culture, we also redesigned the housing to cover the motor fully for enhanced protection from the culture.
 
 <div class="figure-grid" style="--fig-h: 200px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-old.avif" alt="Previous motor housing: a transparent printed cylinder with a flange, with the back of the metal motor and its terminals sticking out past the flange"></div><figcaption class="caption"><strong>Figure 8. The first motor housing did not cover the motor fully.</strong> Previous housing.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-new.avif" alt="Redesigned motor housing: a transparent printed cylinder with a flange that fully covers the motor, with the shaft out of the front, screw holes on the side and wires leaving the back"></div><figcaption class="caption"><strong>Figure 9. The redesigned housing covers the motor fully.</strong> This gives the motor enhanced protection from the culture.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-old.avif" alt="Previous motor housing: a transparent printed cylinder with a flange, with the back of the metal motor and its terminals sticking out past the flange"></div><figcaption class="caption"><strong>Figure 13. The first motor housing did not cover the motor fully.</strong> Previous housing.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-new.avif" alt="Redesigned motor housing: a transparent printed cylinder with a flange that fully covers the motor, with the shaft out of the front, screw holes on the side and wires leaving the back"></div><figcaption class="caption"><strong>Figure 14. The redesigned housing covers the motor fully.</strong> This gives the motor enhanced protection from the culture.</figcaption></figure>
 </div>
 
 </div></div>
@@ -295,7 +356,7 @@ We printed three rotor variants that differed in blade angle, blade count and he
 We first conducted a computational fluid dynamics (CFD) simulation on COMSOL Multiphysics <a class="cite" href="#ref-6">6</a> to obtain an initial idea of how the three geometries affect mixing.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/rotor-geometries.avif" alt="Schematic cross-sections of the three rotor geometries in the vessel with their circulation patterns: one large propeller at the bottom with a slow region above, three rows of large flat blades with separate circulation loops, and three rows of small tilted blades (current design, rotor 29 mm diameter, blades tilted 39 degrees) with one large loop along the full height"></div><figcaption class="caption"><strong>Figure 10. Three rotor geometries produced different circulation patterns.</strong> Schematic cross-sections of the three rotor geometries and their circulation patterns.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/rotor-geometries.avif" alt="Schematic cross-sections of the three rotor geometries in the vessel with their circulation patterns: one large propeller at the bottom with a slow region above, three rows of large flat blades with separate circulation loops, and three rows of small tilted blades (current design, rotor 29 mm diameter, blades tilted 39 degrees) with one large loop along the full height"></div><figcaption class="caption"><strong>Figure 15. Three rotor geometries produced different circulation patterns.</strong> Schematic cross-sections of the three rotor geometries and their circulation patterns.</figcaption></figure>
 </div>
 
 </div></div>
@@ -318,7 +379,7 @@ Now that we had settled the mixing, it was time to start integrating the sensors
 We fitted the 100 W heating element around our culture vessel (filled with ~400 mL water) and submerged the waterproof DS18B20 temperature sensor in the water.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/heating-element-100w.avif" alt="Red silicone flexible heating element (labelled 300 mm x 120 mm, 12 V, 100 W) wrapped around the glass culture vessel, with a multi-port cap on top"></div><figcaption class="caption"><strong>Figure 11. The 100 W heating element was too large for the vessel.</strong> The flexible heating element fitted around the culture vessel.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/heating-element-100w.avif" alt="Red silicone flexible heating element (labelled 300 mm x 120 mm, 12 V, 100 W) wrapped around the glass culture vessel, with a multi-port cap on top"></div><figcaption class="caption"><strong>Figure 16. The 100 W heating element was too large for the vessel.</strong> The flexible heating element fitted around the culture vessel.</figcaption></figure>
 </div>
 
 </div></div>
@@ -329,7 +390,7 @@ We tried to heat the water from a starting ambient temperature of ~20 ºC to 34 
 </div></div>
 <div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
 
-It was at this stage that we realized we had chosen a heating element of an unsuitable rating. Since it was rated at 100 W and 12 V, it required a current of ~8.3 A (which is pretty high) for optimal performance. However, this **hugely increased power demand** for our setup, and supplying the heating element with a much lower current of 1.5 A barely caused a temperature change. The heater was also a little too large for our culture vessel, causing air gaps in between the vessel and heater which reduced heating efficiency. We figured out that we would have to obtain a new heating element with lower power specifications, and proceeded to use a smaller 30 W heating element for the next iteration instead.
+It was at this stage that we realized we had chosen a heating element of an unsuitable rating. Since it was rated at 100 W and 12V, it required a current of ~8.3 A (which is pretty high) for optimal performance. However, this **hugely increased power demand** for our setup, and supplying the heating element with a much lower current of 1.5 A barely caused a temperature change. The heater was also a little too large for our culture vessel, causing air gaps in between the vessel and heater which reduced heating efficiency. We figured out that we would have to obtain a new heating element with lower power specifications, and proceeded to use a smaller 30 W heating element for the next iteration instead.
 
 </div></div>
 </div>
@@ -343,10 +404,11 @@ We replaced the single 100 W heating element with two smaller 30 W heating eleme
 </div></div>
 <div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
 
-We attached two 30 W heaters, each measuring 15 x 5 cm (shown in orange in the image), which covered the circumference of the culture vessel.
+We attached two 30 W heaters, each measuring 15 x 5 cm (shown in orange in the image), which covered the circumference of the culture vessel. We also designed holders for the heaters to keep them in place, like a heating jacket.
 
-<div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/heaters-on-vessel.avif" alt="Render of the glass culture vessel with an orange band representing two 30 W heaters wrapped around its circumference"></div><figcaption class="caption"><strong>Figure 12. Two 30 W heaters cover the circumference of the vessel.</strong> The heaters are shown in orange.</figcaption></figure>
+<div class="figure-grid" style="--fig-h: 300px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/heaters-on-vessel.avif" alt="Render of the glass culture vessel with an orange band representing two 30 W heaters wrapped around its circumference"></div><figcaption class="caption"><strong>Figure 17. Two 30 W heaters cover the circumference of the vessel.</strong> The heaters are shown in orange.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/bioreactor-heater-band.avif" alt="Photo of the bioreactor with a heater band wrapped around the glass vessel"></div><figcaption class="caption"><strong>Figure 18. The heater band on the bioreactor vessel.</strong> The bioreactor with the heater wrapped around the glass vessel.</figcaption></figure>
 </div>
 
 </div></div>
@@ -376,10 +438,10 @@ We implemented the PID loop on the Arduino, using the DS18B20 <a class="cite" hr
 </div></div>
 <div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
 
-The PID controller turned out to be overcomplicated for our setup, and delays in the response of the system arose. We then tested the much simpler on/off method, heating water from 18 °C to a setpoint of 36 °C. The water reached the setpoint in about 34 minutes and was then held there, as shown below. The detailed steady-state results are reported under [Experimental validation](#experimental-validation).
+The PID controller turned out to be overcomplicated for our setup, and delays in the response of the system arose. We then tested the much simpler on/off method, heating water from 18 °C to a setpoint of 36 °C. The water reached the setpoint in about 34 minutes and was then held there, as shown below. The detailed steady-state results are reported under <a href="#experimental-validation">Experimental validation</a>.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/temp-regulation-36c.avif" alt="Line chart titled Bioreactor Temperature Profile (36 degrees C setpoint): temperature rises steadily from 18 degrees C to 36 degrees C over about 34 minutes, then holds flat at 36 degrees C for the rest of the 50-minute run"></div><figcaption class="caption"><strong>Figure 13. Simple on/off control held the temperature at the 36 °C setpoint.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/temp-regulation-36c.avif" alt="Line chart titled Bioreactor Temperature Profile (36 degrees C setpoint): temperature rises steadily from 18 degrees C to 36 degrees C over about 34 minutes, then holds flat at 36 degrees C for the rest of the 50-minute run"></div><figcaption class="caption"><strong>Figure 19. Simple on/off control held the temperature at the 36 °C setpoint.</strong></figcaption></figure>
 </div>
 
 </div></div>
@@ -402,18 +464,18 @@ We added a pH sensor and acid and base dispensing, controlled by the Arduino mic
 We integrated a pH sensor (typically used for continuous monitoring of aquarium pH) to the vessel and calibrated its output with the Arduino voltage reading. We also integrated water pumps which were to be used to dispense HCl and NaOH solutions to adjust the pH accordingly.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/prototype-ph-sensor.avif" alt="Bioreactor prototype with the pH sensor installed through the lid of the glass vessel, below a 3D-printed electronics tray held up by four supports"></div><figcaption class="caption"><strong>Figure 14. The pH sensor was integrated into the prototype.</strong> Bioreactor prototype with the pH sensor installed.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/prototype-ph-sensor.avif" alt="Bioreactor prototype with the pH sensor installed through the lid of the glass vessel, below a 3D-printed electronics tray held up by four supports"></div><figcaption class="caption"><strong>Figure 20. The pH sensor was integrated into the prototype.</strong> Bioreactor prototype with the pH sensor installed.</figcaption></figure>
 </div>
 
 </div></div>
 <div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
 
-We only tested the dispensing pumps using water, not acid or base solutions. The goal was to simulate the pH adjustment process and mainly to verify that the concept of acid/base dispensing for pH correction works.
+We tested the pH regulation with actual acid and base solutions, adding acid and base to the culture medium and recording how the pH sensor responded. The results are reported under <a href="#experimental-validation">Experimental validation</a>.
 
 </div></div>
 <div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
 
-Calibrating the sensor output against the Arduino voltage reading allowed the Arduino to read the pH of the culture, and the pump test showed that the pumps can dispense liquid on command from the Arduino. Because we only tested the pumps with water, we have not yet verified that dosing HCl and NaOH brings the pH to its setpoint as intended. The next step is to test the dispensing with acid and base solutions, confirm that the pumps and tubing are compatible with them, and check how quickly and how closely the pH reaches the setpoint.
+Calibrating the sensor output against the Arduino voltage reading allowed the Arduino to read the pH of the culture, and the pumps can dispense liquid on command from the Arduino. The tests with acid and base showed that the sensor follows sudden changes in pH and settles on its new value within about one to two minutes. We also worked out how much acid or base is needed to adjust the pH of a 500 mL culture, as described under <a href="#ph-calc">Calculating acid and base doses</a>.
 
 </div></div>
 </div>
@@ -429,16 +491,16 @@ We chose a glass culture vessel that can be sterilized and made the non-autoclav
 
 We assembled the vessel with the 3D-printed lid consisting of six ports: four inlet ports for the dispensing of culture medium, acid/base for pH regulation, antifoam agent, and a gas inlet to supply oxygen to the broth; and two outlet ports, one for gas release to maintain internal gas pressure at ~1 atm, and another to transfer the final culture to the protein purification system. These ports were connected to sterilizable silicone tubing (ID 2.5 mm) via luer lock connectors.
 
-<div class="figure-grid" style="--cols: 3; --fig-h: 160px; --fig-fit: cover;">
-<figure><div class="photo-frame contain"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/vessel-lid-render.avif" alt="Render of the 3D-printed vessel lid, a disc with six threaded port connectors in the centre, a larger opening and a small opening for sensors, and slots around the edge"></div><figcaption class="caption"><strong>Figure 15. The 3D-printed lid has ports and sensor openings.</strong> The ports are threaded to fit luer lock connectors.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/silicone-tubing.avif" alt="Coil of clear silicone tubing in a plastic box"></div><figcaption class="caption"><strong>Figure 16. Silicone tubing connects the fluid lines.</strong> The tubing has a 2.5 mm inner diameter (ID).</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/luer-lock-connectors.avif" alt="Three clear plastic luer lock connectors with barbed tube ends"></div><figcaption class="caption"><strong>Figure 17. Plastic luer lock connectors join the tubing to the lid ports.</strong></figcaption></figure>
+<div class="figure-grid" style="--cols: 3; --fig-h: 170px; --fig-fit: cover;">
+<figure><div class="photo-frame contain"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/vessel-lid-render.avif" alt="Render of the 3D-printed vessel lid, a disc with six threaded port connectors in the centre, a larger opening and a small opening for sensors, and slots around the edge"></div><figcaption class="caption"><strong>Figure 21. The 3D-printed lid has ports and sensor openings.</strong> The ports are threaded to fit luer lock connectors.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/silicone-tubing.avif" alt="Coil of clear silicone tubing in a plastic box"></div><figcaption class="caption"><strong>Figure 22. Silicone tubing connects the fluid lines.</strong> The tubing has a 2.5 mm inner diameter (ID).</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/luer-lock-connectors.avif" alt="Three clear plastic luer lock connectors with barbed tube ends"></div><figcaption class="caption"><strong>Figure 23. Plastic luer lock connectors join the tubing to the lid ports.</strong></figcaption></figure>
 </div>
 
 </div></div>
 <div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
 
-We first ran the whole setup with water to check the electrical components, then ran the bioreactor with an *E. coli* culture for 10 hours. It regulated temperature reliably and supported growth on its own. We also tested the sterilization procedure by incubating sterile LB in the vessel overnight, and it showed no contamination. The full results are in [Experimental validation](#experimental-validation).
+We first ran the whole setup with water to check the electrical components, then ran the bioreactor with an *E. coli* culture for 10 hours. It regulated temperature reliably and supported growth on its own. We also tested the sterilization procedure by incubating sterile LB in the vessel overnight, and it showed no contamination. The full results are in <a href="#experimental-validation">Experimental validation</a>.
 
 </div></div>
 <div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
@@ -455,7 +517,7 @@ Testing with water first let us find electrical hazards before any culture was i
 We combined the sensors and actuators on an Arduino Mega and added a touchscreen dashboard where the user sets the temperature, pH and motor speed, all in a compact enclosure. We initially planned to use a 16x2 LCD screen for the bioreactor, but realized that handling a larger touchscreen LCD on the dashboard might be more convenient for astronauts. A touchscreen also lets us display more information.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/lcd-welcome-screen.avif" alt="Touchscreen LCD showing the SHIHAB Bioreactor welcome screen with the text Touch screen to start, wired to an Arduino on a breadboard"></div><figcaption class="caption"><strong>Figure 18. A touchscreen runs the dashboard.</strong> The LCD showing the SHIHAB welcome screen.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/lcd-welcome-screen.avif" alt="Touchscreen LCD showing the SHIHAB Bioreactor welcome screen with the text Touch screen to start, wired to an Arduino on a breadboard"></div><figcaption class="caption"><strong>Figure 24. A touchscreen runs the dashboard.</strong> The LCD showing the SHIHAB welcome screen.</figcaption></figure>
 </div>
 
 </div></div>
@@ -464,7 +526,7 @@ We combined the sensors and actuators on an Arduino Mega and added a touchscreen
 We wired and programmed the controller, built the dashboard interface and housed everything in a 3D-printed enclosure consisting of four removable supports and a compartment at the top for the electronics. The electronics compartment also has a removable lid for convenient troubleshooting should it be necessary.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/final-bioreactor.avif" alt="The assembled SHIHAB bioreactor: a 3D-printed base with the touchscreen and power switch, four supports holding the electronics tray at the top, and the glass vessel with the 3D-printed lid, rotor and heaters in the middle"></div><figcaption class="caption"><strong>Figure 19. The final bioreactor brings all components together in one compact unit.</strong> The assembled SHIHAB bioreactor.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/final-bioreactor.avif" alt="The assembled SHIHAB bioreactor: a 3D-printed base with the touchscreen and power switch, four supports holding the electronics tray at the top, and the glass vessel with the 3D-printed lid, rotor and heaters in the middle"></div><figcaption class="caption"><strong>Figure 25. The final bioreactor brings all components together in one compact unit.</strong> The assembled SHIHAB bioreactor.</figcaption></figure>
 </div>
 
 </div></div>
@@ -478,6 +540,81 @@ We ran the full system for 10 hours again, for the final time, to check for any 
 We were lucky to find that it was a simple fix that required separating the circuits of the high-current and low-current components to reduce their interference with each other. We did this for the final iteration of the bioreactor and managed to fix the issue of the LCD screen going blank.
 
 This also showed us that a fault can appear only after several hours of running, so long full-system tests are necessary and short bench tests are not enough. Logging data to a computer in parallel with the display helped us tell a display fault apart from a system fault, and we would keep that logging in future versions.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">10</span>Iteration 10: Square motor housing and slot</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+We redesigned the motor housing so that its top is a square part instead of the original circular part. This square part fits into a matching square slot in the top case of the bioreactor, the compartment that houses all of the electronics. A square part cannot turn inside a square slot, so the housing is held firmly in place and stays stationary even with the momentum of the motor rotating. The slot system is also more user-friendly than the previous version, in which the user had to screw the motor housing onto the bottom part of the electronics casing. We still included screw holes for extra security, should the user want that, or particularly for use in low-gravity settings.
+
+<div class="figure-grid" style="--fig-h: 300px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-square-top.avif" alt="Top view of the redesigned motor housing: a clear printed square plate with a large round central opening, two large holes and two small screw holes"></div><figcaption class="caption"><strong>Figure 26. The new housing has a square top.</strong> Top view of the square part, with its central opening and screw holes.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-square-side.avif" alt="Side view of the redesigned motor housing: a clear printed cylinder with a square flange at the top"></div><figcaption class="caption"><strong>Figure 27. The square part sits on a cylindrical body.</strong> Side view of the housing, with the square flange at the top.</figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We 3D-printed the new housing and the matching square slot in the top case of the electronics compartment. The motor sits inside the cylindrical body of the housing with its shaft coming out of the bottom, and the housing then drops into the slot from above. The square part has screw holes, so that screws and nuts can be added as an optional extra lock.
+
+<div class="figure-grid" style="--fig-h: 300px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-square-motor.avif" alt="The motor inside the printed cylindrical housing with its shaft sticking out of the top, and two black screws with nuts beside it"></div><figcaption class="caption"><strong>Figure 28. The motor sits inside the new housing.</strong> The motor in its housing, with the two screws and nuts used for the optional lock.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/top-case-motor-slot.avif" alt="Inside of the printed electronics compartment with a square slot with a round opening in the centre and four round holes near the corners"></div><figcaption class="caption"><strong>Figure 29. The top case has a matching square slot.</strong> The empty slot in the floor of the electronics compartment.</figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+We seated the motor housing in the slot and ran the motor, checking that the housing stayed stationary as the motor rotated. We also compared installing it with the previous version, in which the housing had to be screwed on, and fitted the optional screws to check that they could be used as an extra lock.
+
+<div class="figure-grid" style="--fig-h: 300px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-in-slot-top.avif" alt="Top view of the electronics compartment with the motor housing seated in the square slot and red and blue motor wires leading away"></div><figcaption class="caption"><strong>Figure 30. The housing sits flush in the slot.</strong> Top view of the motor in its housing in the slot, with the motor wires leaving the compartment.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-in-slot-angle.avif" alt="Angled view of the motor housing seated in the square slot at the bottom of the electronics compartment, with red and blue wires"></div><figcaption class="caption"><strong>Figure 31. Seen from an angle.</strong> The motor in the slot of the top case.</figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+The square slot holds the housing in place without tools, which makes the motor easier to install and replace than when the user had to screw the housing on. The screw holes remain available for users who want extra security, particularly in low-gravity settings.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/motor-housing-in-slot-screws.avif" alt="Close-up top view of the motor housing in the square slot with two black screws in the screw holes"></div><figcaption class="caption"><strong>Figure 32. Screws can still be added for extra security.</strong> Close-up of the housing in the slot with two screws fitted.</figcaption></figure>
+</div>
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">11</span>Iteration 11: Hollow supports for wiring</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+For the last iteration, we made the four vertical supports of the bioreactor hollow. This reduces their weight, and it lets us put all of the wiring through the supports for a neater version of the prototype. With this, the wiring for the sensors and the components on the dashboard can be hidden from sight.
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We 3D-printed the hollow supports and ran the wiring through them, so that the cables go from the components up to the electronics compartment inside the supports instead of hanging outside. One of the printed halves has an opening near its lower end that the wires can pass through.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/hollow-support-halves.avif" alt="Two long clear printed half-pipe support pieces lying side by side, the one on the right with an opening near its lower end"></div><figcaption class="caption"><strong>Figure 33. The supports are hollow.</strong> Two printed support halves; the right one has an opening near the bottom for wires.</figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+We assembled the bioreactor with the wiring routed through the supports and checked that the sensors and the dashboard components still worked and that the wiring was hidden from view.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/hollow-supports-wiring.avif" alt="The assembled bioreactor in the desert: a white square electronics compartment on four clear supports above a glass bottle, with wires leading down one support"></div><figcaption class="caption"><strong>Figure 34. Wiring runs through the supports.</strong> The assembled bioreactor with its hollow supports.</figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+Hollow supports made the prototype lighter and neater, and kept the sensor and dashboard wiring out of sight without needing a separate cover.
 
 </div></div>
 </div>
@@ -502,8 +639,8 @@ The SHIHAB bioreactor combines interchangeable glass vessels, a 3D-printed rotor
 We initially tested filtering a sample mixture of food-grade *Saccharomyces cerevisiae* in distilled water (3.0 g yeast per 100 mL of water) through a fine filter (0.2 µm pore size) to perform an initial assessment of the feasibility of obtaining a clarified culture this way. The PVDF filter was fitted onto a syringe, which was repeatedly filled with the yeast mixture.
 
 <div class="figure-grid" style="--fig-h: 200px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/pvdf-filter.avif" alt="Two syringe filters: one in its blue-topped sterile packaging and one labelled Target2 PVDF 0.2 micrometre"></div><figcaption class="caption"><strong>Figure 20. A PVDF syringe filter was used for the first filtration test.</strong> The filter has a 0.2 µm pore size.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/pvdf-filter-syringe.avif" alt="A graduated syringe with the PVDF 0.2 micrometre filter fitted on its tip"></div><figcaption class="caption"><strong>Figure 21. The filter was fitted onto a syringe that was repeatedly filled with the yeast mixture.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/pvdf-filter.avif" alt="Two syringe filters: one in its blue-topped sterile packaging and one labelled Target2 PVDF 0.2 micrometre"></div><figcaption class="caption"><strong>Figure 35. A PVDF syringe filter was used for the first filtration test.</strong> The filter has a 0.2 µm pore size.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/pvdf-filter-syringe.avif" alt="A graduated syringe with the PVDF 0.2 micrometre filter fitted on its tip"></div><figcaption class="caption"><strong>Figure 36. The filter was fitted onto a syringe that was repeatedly filled with the yeast mixture.</strong></figcaption></figure>
 </div>
 
 </div></div>
@@ -536,7 +673,7 @@ We 3D-printed two modules: an inlet module and an outlet module. The outlet modu
 We passed 300 mL of *S. cerevisiae* culture through the system. The coarse first stage took up most of the cell mass, so the fine filter lasted longer than it did in Iteration 1. However, the space above the coarse filter filled with residue very quickly. Once that cake built up, flow slowed sharply and the first stage clogged. We also saw culture seeping out at the press-fit joints between modules.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filter-residue.avif" alt="Gloved hand holding a 3D-printed module with a filter disc covered in a pale layer of yeast residue"></div><figcaption class="caption"><strong>Figure 22. Yeast residue accumulated on the filter.</strong> Residue left on the filter after passing the culture through.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filter-residue.avif" alt="Gloved hand holding a 3D-printed module with a filter disc covered in a pale layer of yeast residue"></div><figcaption class="caption"><strong>Figure 37. Yeast residue accumulated on the filter.</strong> Residue left on the filter after passing the culture through.</figcaption></figure>
 </div>
 
 </div></div>
@@ -583,7 +720,7 @@ We designed several module variants with different chamber volumes to find the b
 We printed four versions with chamber heights of 5, 10, 15 and 20 mm, keeping all other dimensions constant.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/module-sizes.avif" alt="Four 3D-printed filtration modules of increasing chamber height, shown side by side"></div><figcaption class="caption"><strong>Figure 23. We printed four module versions with chamber heights of 5, 10, 15 and 20 mm.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/module-sizes.avif" alt="Four 3D-printed filtration modules of increasing chamber height, shown side by side"></div><figcaption class="caption"><strong>Figure 38. We printed four module versions with chamber heights of 5, 10, 15 and 20 mm.</strong></figcaption></figure>
 </div>
 
 </div></div>
@@ -630,7 +767,7 @@ We replaced the press-fit connections with screw threads, so the modules twist t
 We added threads (M42x3, class 6g, right-hand) to the ends of each module. Because tolerances matter for 3D-printed threads, we printed several test pairs to tune the clearance before printing full modules.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/threaded-modules.avif" alt="Three 3D-printed filtration modules side by side, two with screw threads on one end"></div><figcaption class="caption"><strong>Figure 24. Threaded connections join the filtration modules.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/threaded-modules.avif" alt="Three 3D-printed filtration modules side by side, two with screw threads on one end"></div><figcaption class="caption"><strong>Figure 39. Threaded connections join the filtration modules.</strong></figcaption></figure>
 </div>
 
 </div></div>
@@ -682,16 +819,16 @@ To make the system adaptable and more user-friendly, we redesigned the middle mo
 We reprinted the middle module to have identical outer and inner threads on both ends so that it could be screwed onto either the inlet/outlet modules, or more of the middle modules.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/stacked-modules.avif" alt="Three filtration modules screwed together into one assembled stack"></div><figcaption class="caption"><strong>Figure 25. Three modules screw together into one stack.</strong> Assembled three-module configuration.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/stacked-modules.avif" alt="Three filtration modules screwed together into one assembled stack"></div><figcaption class="caption"><strong>Figure 40. Three modules screw together into one stack.</strong> Assembled three-module configuration.</figcaption></figure>
 </div>
 
 </div></div>
 <div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
 
-All stacked configurations assembled easily and stayed leak-free. Adding more stages improved clarity of the filtrate, while each stage held its share of the residue without clogging. The image below shows (from left to right) the initial yeast mixture; yeast mixture after two stages of filtration (500 µm & 11 µm pore size); yeast mixture after three stages of filtration (500 µm, 11 µm and 0.2 µm pore size). The filtrate on the right was surprisingly clear, giving us an initial indication that filtration was successful. More quantitative OD measurements would further verify this result.
+All stacked configurations assembled easily and stayed leak-free. Adding more stages improved clarity of the filtrate, while each stage held its share of the residue without clogging. The image below shows (from left to right) the initial yeast mixture; yeast mixture after two stages of filtration (500 µm &amp; 11 µm pore size); yeast mixture after three stages of filtration (500 µm, 11 µm and 0.2 µm pore size). The filtrate on the right was surprisingly clear, giving us an initial indication that filtration was successful. More quantitative OD measurements would further verify this result.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filtrate-comparison.avif" alt="Three centrifuge tubes held in a gloved hand: the left one cloudy with the initial yeast mixture, and the middle and right ones progressively clearer"></div><figcaption class="caption"><strong>Figure 26. More filtration stages gave clearer filtrate.</strong> Left to right: initial yeast mixture, after two stages of filtration, after three stages of filtration.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/filtrate-comparison.avif" alt="Three centrifuge tubes held in a gloved hand: the left one cloudy with the initial yeast mixture, and the middle and right ones progressively clearer"></div><figcaption class="caption"><strong>Figure 41. More filtration stages gave clearer filtrate.</strong> Left to right: initial yeast mixture, after two stages of filtration, after three stages of filtration.</figcaption></figure>
 </div>
 
 </div></div>
@@ -710,32 +847,207 @@ Our final protein purification system is a modular, multi-stage filtration unit.
 
 ### Protein purification system: fluid dispensing
 
-<div class="callout warn">
+<div class="iter-list">
 
-Fluid dispensing iterations to be added
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">1</span>Iteration 1: Selecting the pumping mechanism</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+Our purification system requires precise control over the volume of liquid delivered. During brainstorming, we considered two pumping mechanisms: a peristaltic pump and a syringe pump driven by a stepper motor and lead screw.
+
+<div class="figure-grid" style="--fig-h: 200px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-peristaltic-cad.avif" alt="CAD model of the peristaltic pump option: four reservoir bottles on a frame with four small peristaltic pumps mounted alongside"></div><figcaption class="caption"><strong>Figure 42. The peristaltic pump option used one pump per reservoir.</strong> CAD model of the peristaltic pump design.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-syringe-pump-cad.avif" alt="CAD model of the syringe pump option: four reservoir bottles on a frame with stepper motors and lead screws mounted on wooden side supports"></div><figcaption class="caption"><strong>Figure 43. The syringe pump option moves the plungers with stepper motors and lead screws.</strong> CAD model of the syringe pump design.</figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We modeled both options in CAD, with a peristaltic pump and a syringe pump for each reservoir, so that we could compare their size, complexity and parts.
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+Our evaluation suggested that the peristaltic pump would require substantial tuning and calibration to achieve the desired accuracy and would be more expensive.
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+We therefore selected the syringe pump mechanism because it offered greater flexibility for customization and a more affordable approach to controlling fluid delivery.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">2</span>Iteration 2: Improving motor control</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+We used an Arduino Uno to control the stepper motors, initially connecting each motor to an individual A4988 driver.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-a4988-driver.avif" alt="A4988 stepper motor driver, a small red circuit board with a trimmer potentiometer"></div><figcaption class="caption"><strong>Figure 44. The A4988 driver was the first driver we tried.</strong></figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We replaced the A4988 drivers with TMC2209 drivers. We also incorporated a CNC shield to organize the drivers and wiring into a more compact assembly.
+
+<div class="figure-grid" style="--fig-h: 200px; --fig-fit: cover;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-tmc2209-driver.avif" alt="TMC2209 stepper motor driver, a small purple circuit board next to a blue heat sink"></div><figcaption class="caption"><strong>Figure 45. The TMC2209 driver replaced the A4988.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-cnc-shield.avif" alt="Red CNC shield with a TMC2209 driver and heat sinks installed, surrounded by colored motor wires"></div><figcaption class="caption"><strong>Figure 46. The CNC shield keeps the drivers and wiring compact.</strong></figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+In our setup, the A4988 configuration did not provide the reliability and positioning accuracy we needed. Replacing the A4988 drivers with TMC2209 drivers improved the observed motor performance.
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+The choice of motor driver had a large effect on how reliably and accurately the motors moved, so it is worth testing drivers early. The CNC shield also kept the drivers and wiring organized as the system grew.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">3</span>Iteration 3: Establishing a reference position</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+The motion mechanism is inspired by the linear positioning systems used in 3D printers. Each stepper motor rotates a lead screw, moving the syringe plunger inward or outward depending on the direction of rotation. At startup, the controller needs a known reference position, or home position, from which to track subsequent movement.
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We installed limit switches behind the syringes, slightly beyond their intended operating travel, to establish this reference. During homing, the mechanism moves toward the switch until it is activated, then moves away by a defined offset to align the plunger with the syringe’s 60 mL mark.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-limit-switches.avif" alt="Two limit switches mounted on a perforated metal bracket behind the syringes, next to a lead screw and the 3D-printed plunger holders"></div><figcaption class="caption"><strong>Figure 47. Limit switches behind the syringes set the home position.</strong></figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+We measured and tested this offset to check the alignment of the home position.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-60ml-mark.avif" alt="Close-up of a syringe barrel with the plunger aligned at the 60 mL mark"></div><figcaption class="caption"><strong>Figure 48. At home, the plunger aligns with the syringe’s 60 mL mark.</strong></figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+A fixed home position gives the controller a consistent starting point, so every later movement of the plunger can be tracked from the same reference.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">4</span>Iteration 4: Calibrating the dispensed volume</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+We calibrated the mechanism to determine the motor rotation required to dispense 10 mL of liquid. Using the syringe’s internal diameter, we calculated the plunger travel needed to displace this volume. We then converted that distance into motor rotations using the lead screw’s axial travel per revolution.
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We converted the calculated motor rotations into motor commands on the Arduino and used them to dispense liquid with the syringe pumps.
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+These calculations provided an initial calibration, which we refined through repeated dispensing trials and visual checks of the delivered volume.
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+Calculation alone gave only a starting point, so the calibration had to be confirmed and refined by dispensing real liquid and checking the delivered volume.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">5</span>Iteration 5: Controlling syringe filling and dispensing</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+Because the system uses syringes, each pump must alternate between drawing liquid from a reservoir and dispensing it toward the filter. To direct the flow during both operations, we used a T-connector and two check valves: an inlet valve between the reservoir and the syringe, and an outlet valve between the syringe and the filter.
+
+During dispensing, the plunger moves inward, directing liquid through the outlet valve toward the filter. The inlet valve remains closed to prevent liquid from returning to the reservoir. During filling, the plunger retracts, drawing liquid from the reservoir through the inlet valve. The outlet valve remains closed to prevent liquid from being drawn backward through the filter.
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We connected a T-connector and two check valves to each syringe, with the inlet valve on the reservoir side and the outlet valve on the filter side.
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+We ran the syringe pumps through filling and dispensing cycles to check that liquid moved in the intended direction only: from the reservoir into the syringe, and from the syringe toward the filter.
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+Check valves let each syringe pump alternate between filling and dispensing automatically, without the liquid flowing backward.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">6</span>Iteration 6: Clearing residual liquid with booster pumps</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+After the syringe pumps deliver the required volume, some liquid remains in the interconnected tubing. We incorporated booster pumps to move this residual liquid toward the filter, reducing the amount retained in the tubes.
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+To support this process, we added an air inlet tube fitted with a check valve. The inlet allows air to replace the liquid as it leaves the tubing. Without this air supply, a vacuum could develop and restrict flow, limiting the booster pumps’ ability to clear the remaining liquid.
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+We checked whether the booster pumps, together with the air inlet, moved the remaining liquid out of the tubing and toward the filter.
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+Clearing the tubing depends on air being able to enter as well as on the booster pumps: without an air inlet, a vacuum can limit how much residual liquid is cleared.
+
+</div></div>
+</div>
+
+<div class="iter">
+<h4 class="iter-title"><span class="iter-num">7</span>Iteration 7: Automating fluid routing</h4>
+<div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
+
+The dispensed liquid must be directed either to a collection container or to waste, depending on whether it is needed. We therefore introduced separate flow paths controlled by valves. In the initial design, the Arduino prompted the user to open or close specific valves to select the appropriate path.
+
+</div></div>
+<div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
+
+We then automated valve operation by integrating a servo motor to actuate the valve. The Arduino was programmed to control the servo.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fd-servo-valve.avif" alt="A three-way valve held in a 3D-printed bracket on top of a servo motor, with silicone tubing connected to both ends"></div><figcaption class="caption"><strong>Figure 49. A servo motor turns the valve between the collection and waste paths.</strong></figcaption></figure>
+</div>
+
+</div></div>
+<div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
+
+We tested the switching between the collection and waste paths, first with the user opening and closing the valves when prompted and then with the servo motor doing it automatically.
+
+</div></div>
+<div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
+
+This allows the system to switch between collection and waste paths automatically and reduces the need for manual intervention.
+
+</div></div>
+</div>
 
 </div>
 
 ## Experimental validation
-
-### Computational fluid dynamics simulation
-
-Before building the final rotor, we used computational fluid dynamics (CFD) to ask a question that is hard to test on the ground: how does the culture move when gravity is almost absent? On Earth, gravity does a lot of quiet work for a bioreactor. Heavier fluid sinks, lighter fluid and gas bubbles rise, and this natural convection helps mix the culture and carry oxygen through it <a class="cite" href="#ref-5">5</a>. In microgravity this help disappears, so the rotor has to do the mixing on its own. This is why the rotor configuration matters so much for SHIHAB.
-
-<!-- TODO: the export plays this figure as a video (cfd-bubble-fate-200rpm.mp4).
-     The video isn't uploaded yet; per README.md videos must come from iGEM's
-     video server. Until then the poster frame stands in for it. -->
-<div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-bubble-fate-poster.avif" alt="CFD simulation of bubble fate in the vessel at 200 rpm with 100 micrometre bubbles, compared across Earth, Mars, Moon and transit gravity"></div>
-
-<div class="caption">
-
-**Figure 27. In transit and on the Moon, circulation stayed confined to part of the vessel.** CFD simulation of bubble fate at 200 rpm (100 µm bubbles) for Earth (9.81 m/s²), Mars (3.71 m/s²), the Moon (1.62 m/s²) and transit (10<sup>−5</sup> m/s²). Top row: vertical slice of the vessel with flow streamlines. Bottom row: view from above.
-
-</div>
-
-We simulated the same rotor at 200 rpm under the gravity levels of Earth, Mars, the Moon and transit. The results show that the flow pattern depends strongly on gravity. In transit and on the Moon, we saw regions of the vessel where circulation stayed confined to one part of the vessel instead of spreading through the entire culture. Fluid in the other regions moved much more slowly and was mixed far less.
-
-This matters because oxygen reaches the cells only as fast as the culture carries it. Where circulation is limited, oxygen is distributed unevenly: some cells receive plenty while others are starved, and since oxygen availability affects how much protein the bacteria produce, **uneven mixing directly limits our yield**. The simulation therefore tells us that a rotor that works well on Earth cannot simply be assumed to work in space, and that the rotor design has to be chosen and tested for microgravity conditions so that circulation reaches the whole vessel.
 
 ### Temperature regulation
 
@@ -745,7 +1057,7 @@ We validated the temperature control by heating water from 18 °C to a setpoint 
 
 <div class="caption">
 
-**Figure 28. The temperature reached 36 °C and was then held steady.** Full temperature profile of the water, heated from 18 °C to the setpoint with simple on/off control.
+**Figure 50. The temperature reached 36 °C and was then held steady.** Full temperature profile of the water, heated from 18 °C to the setpoint with simple on/off control.
 
 </div>
 
@@ -773,9 +1085,71 @@ We tested how the pH sensor responds to sudden changes in the pH of the culture 
 
 <div class="caption">
 
-**Figure 29. The pH sensor tracked the changes caused by adding acid and base.** Response of the pH sensor to sudden changes in pH.
+**Figure 51. The pH sensor tracked the changes caused by adding acid and base.** Response of the pH sensor to sudden changes in pH.
 
 </div>
+
+<h3 id="ph-calc">Calculating acid and base doses for a 500 mL culture</h3>
+
+To hold a 500 mL culture at its pH setpoint, the controller needs to know how much acid or base to add. The dose depends on how far the pH is from the setpoint, how strongly the medium resists changes in pH (its buffering), and the concentration of the HCl or NaOH solution being dispensed.
+
+**Step 1: Amount of acid or base needed.** In an unbuffered solution, the amount of strong acid needed to lower the pH from $\mathrm{pH}_{\mathrm{start}}$ to $\mathrm{pH}_{\mathrm{target}}$ is the change in hydrogen ion concentration multiplied by the volume:
+
+$$
+n = V \times \left(10^{-\mathrm{pH}_{\mathrm{target}}} - 10^{-\mathrm{pH}_{\mathrm{start}}}\right)
+$$
+
+A culture medium is buffered, so it takes far more acid or base than this to shift the pH. For the medium we use the buffer capacity $\beta$ (moles of strong acid or base needed to change the pH of one liter by one pH unit), which can be measured by titrating a sample of the medium:
+
+$$
+n = \beta \times V \times |\Delta \mathrm{pH}|, \qquad V = 0.500\ \mathrm{L}
+$$
+
+**Step 2: Volume of solution to dispense.** Dividing by the concentration $C$ of the HCl or NaOH solution gives the volume to add:
+
+$$
+V_{\mathrm{dose}} = \frac{n}{C}
+$$
+
+This volume should be small compared with 500 mL, so that the added liquid does not noticeably dilute the culture.
+
+**Step 3: Pump run time.** With the flow rate $Q$ of the dosing pump from its calibration, the Arduino runs the pump for:
+
+$$
+t = \frac{V_{\mathrm{dose}}}{Q}
+$$
+
+**Step 4: Dose in portions.** In our pH test, the sensor reading settled within about one to two minutes after each change. The controller should therefore add a portion of the calculated dose, wait for the reading to settle, and then recalculate, which avoids overshooting the setpoint.
+
+**Worked example (illustrative values).** To lower the pH of 500 mL from 7.0 to 6.0 with 0.1 M HCl, an unbuffered solution would need:
+
+$$
+n = 0.500\ \mathrm{L} \times \left(10^{-6} - 10^{-7}\right)\ \mathrm{mol\,L^{-1}} = 4.5 \times 10^{-7}\ \mathrm{mol}
+$$
+
+which is only 4.5 µL of acid. If the medium instead had an assumed buffer capacity of $\beta = 0.01\ \mathrm{mol\,L^{-1}\,pH^{-1}}$, the same change would need:
+
+$$
+n = 0.01 \times 0.500 \times 1.0 = 5 \times 10^{-3}\ \mathrm{mol}
+$$
+
+which is 5 mL of 1 M HCl. That is more than 10,000 times more acid, which is why the buffer capacity of the real medium has to be measured and not assumed. The same calculation applies to NaOH when raising the pH.
+
+**Our results.** Titrating a 50 mL sample of the medium with 1 M HCl and 1 M NaOH gave a buffer capacity of about $0.02\ \mathrm{mol\,L^{-1}\,pH^{-1}}$ between pH 6 and pH 7.5. To raise the pH of the 500 mL culture from 6.4 to 7.0:
+
+$$
+n = 0.02 \times 0.500 \times 0.6 = 6 \times 10^{-3}\ \mathrm{mol}
+\qquad\Rightarrow\qquad
+V_{\mathrm{dose}} = \frac{6 \times 10^{-3}\ \mathrm{mol}}{1\ \mathrm{mol\,L^{-1}}} = 6\ \mathrm{mL\ of\ 1\ M\ NaOH}
+$$
+
+At a calibrated pump flow rate of 1.5 mL/s, this is a total run time of:
+
+$$
+t = \frac{6\ \mathrm{mL}}{1.5\ \mathrm{mL\,s^{-1}}} = 4\ \mathrm{s}
+$$
+
+delivered in portions.
 
 ### *E. coli* growth
 
@@ -785,17 +1159,13 @@ The SHIHAB bioreactor has been experimentally validated to sustain robust *E. co
 
 <div class="caption">
 
-**Figure 30. *E. coli* grew in a sigmoidal curve to an OD₆₀₀ of about 0.49 over 10 hours.** Growth curve from the SHIHAB bioreactor, obtained via periodic blank-corrected OD₆₀₀ measurements.
+**Figure 52. *E. coli* grew in a sigmoidal curve to an OD₆₀₀ of about 0.49 over 10 hours.** Growth curve from the SHIHAB bioreactor, obtained via periodic blank-corrected OD₆₀₀ measurements.
 
 </div>
 
-<!-- TODO: Figure 31 (96-well-plate) isn't uploaded yet. Once it's at
-     content/hardware/96-well-plate.avif, drop `single` from the grid below and
-     restore this figure above Figure 32:
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/96-well-plate.avif" alt="96-well microplate used for optical density sampling"></div><figcaption class="caption"><strong>Figure 31. Growth was sampled periodically in a 96-well plate.</strong> The plate was used for OD₆₀₀ sampling during the growth assay.</figcaption></figure>
--->
-<div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/culture-vessel.avif" alt="E. coli culture growing in the SHIHAB bioreactor vessel"></div><figcaption class="caption"><strong>Figure 32. The vessel supported 10 hours of <em>E. coli</em> growth.</strong> Final culture (in enriched LB medium) after 10 h of growth in the SHIHAB bioreactor vessel during a validation run.</figcaption></figure>
+<div class="figure-grid" style="--fig-h: 220px; --fig-fit: contain;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/96-well-plate.avif" alt="96-well microplate used for optical density sampling"></div><figcaption class="caption"><strong>Figure 53. Growth was sampled periodically in a 96-well plate.</strong> The plate was used for OD₆₀₀ sampling during the growth assay.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/culture-vessel.avif" alt="E. coli culture growing in the SHIHAB bioreactor vessel"></div><figcaption class="caption"><strong>Figure 54. The vessel supported 10 hours of <em>E. coli</em> growth.</strong> Final culture (in enriched LB medium) after 10 h of growth in the SHIHAB bioreactor vessel during a validation run.</figcaption></figure>
 </div>
 
 ### Sterility and vessel validation
@@ -805,10 +1175,10 @@ We first tested the whole setup with water to identify any potential hazards wit
 To check that the procedure works, the glass vessel was soaked in bleach for 30 min, emptied, thoroughly washed and rinsed with deionized/distilled water. It was then autoclaved at 121 °C and approximately 15 psi for at least two hours (glassware cycle, following the laboratory autoclave SOP), filled with sterile LB medium and autoclaved again. The LB-filled vessel was then placed in a shaking incubator at 37 °C overnight to test for microbial contamination. Afterwards, the LB showed no visible turbidity and its OD<sub>600</sub> was approximately 0.001, indicating no detectable growth. For comparison, an overnight *E. coli* culture grown under the same conditions reached an OD<sub>600</sub> of ~1.36, which is what we would expect if the vessel had not been sterile.
 
 <div class="figure-grid" style="--fig-h: 220px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-before.avif" alt="Glass culture vessel filled with sterile LB medium and covered with foil, before incubation"></div><figcaption class="caption"><strong>Figure 33. Sterile LB in the glass culture vessel before incubation.</strong></figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-after.avif" alt="Glass culture vessel with LB medium after overnight incubation, with no visible turbidity"></div><figcaption class="caption"><strong>Figure 34. The LB showed no turbidity after overnight incubation.</strong> The LB in the glass culture vessel after overnight incubation.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-lb.avif" alt="Spectrophotometer reading of 0.001 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 35. The incubated LB had an OD<sub>600</sub> of 0.001, so no growth was detectable.</strong></figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-reference.avif" alt="Spectrophotometer reading of 1.356 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 36. An overnight <em>E. coli</em> culture grown under the same conditions reached an OD<sub>600</sub> of about 1.356.</strong> Shown for reference.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-before.avif" alt="Glass culture vessel filled with sterile LB medium and covered with foil, before incubation"></div><figcaption class="caption"><strong>Figure 55. Sterile LB in the glass culture vessel before incubation.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-after.avif" alt="Glass culture vessel with LB medium after overnight incubation, with no visible turbidity"></div><figcaption class="caption"><strong>Figure 56. The LB showed no turbidity after overnight incubation.</strong> The LB in the glass culture vessel after overnight incubation.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-lb.avif" alt="Spectrophotometer reading of 0.001 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 57. The incubated LB had an OD<sub>600</sub> of 0.001, so no growth was detectable.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-reference.avif" alt="Spectrophotometer reading of 1.356 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 58. An overnight <em>E. coli</em> culture grown under the same conditions reached an OD<sub>600</sub> of about 1.356.</strong> Shown for reference.</figcaption></figure>
 </div>
 
 <div class="callout accent">
@@ -892,13 +1262,9 @@ Sensors monitor the culture, an Arduino Mega decides what needs to change, and a
 
 The design documentation for the SHIHAB bioreactor and protein purification system.
 
-<!-- TODO: cad-drawings.pdf, bill-of-materials.pdf and arduino-code.ino aren't
-     uploaded to content/hardware/ yet, and user-manual.pdf /
-     wiring-schematic.pdf are still placeholder documents. -->
-
 **CAD drawings:** The combined CAD drawings of the platform are available as a PDF. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/cad-drawings.pdf" target="_blank" rel="noopener noreferrer">Open the CAD drawings (PDF)</a>.
 
-**Key dimensions:** The bioreactor measures 20 x 24 x 31 cm (LWH) and weighs 2.2 kg. Together with the protein purification system, the entire platform fits in a 50 x 35 x 15 cm case, and the bioreactor runs on a 30 W power supply.
+**Key dimensions:** The bioreactor measures 20 x 24 x 31 cm (LWH) and weighs 2.2 kg. Together with the protein purification system, the entire platform fits in a 58 x 46 x 23 cm case, and the bioreactor runs on a 30 W power supply.
 
 **Main components:** Glass culture vessel; 3D-printed rotor and vessel lid (PLA in the prototype); stirring motor; two flexible heating elements; temperature, pH and turbidity sensors; Arduino Mega controller; touchscreen dashboard; and a protein purification system with a filtration unit and syringe pumps driven by custom linear actuators.
 
@@ -906,7 +1272,7 @@ The design documentation for the SHIHAB bioreactor and protein purification syst
 
 **Wiring / electronics schematic:** The circuit diagram connecting the Arduino Mega, sensors, motor, heaters, pumps and touchscreen. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/wiring-schematic.pdf" target="_blank" rel="noopener noreferrer">Open the wiring schematic (PDF)</a>.
 
-**Arduino code:** The control software that runs the bioreactor. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/arduino-code.ino" target="_blank" rel="noopener noreferrer">Download the Arduino code (.ino)</a>.
+**Arduino code:** The control software that runs the bioreactor. <a href="https://static.igem.wiki/teams/6341/wiki/content/hardware/arduino-code.js" target="_blank" rel="noopener noreferrer">Open the Arduino code (save it as .ino to use it in the Arduino IDE)</a>.
 
 </div>
 </div>
@@ -929,6 +1295,8 @@ The same features that make SHIHAB suited to space (a compact, lightweight and l
 The next iterations of SHIHAB aim to expand the pill library, tighten the hardware footprint further, and push the platform toward flight-ready reliability, so that producing medicine on demand becomes as routine, off-world or off-grid, as taking it.
 
 We also want to test the bioreactor with live cultures in the Planetary Simulation Chamber at KAUST, which was designed to recreate extreme planetary environments.
+
+On the design side, we would like to explore new rotor designs and run more CFD simulations of the mixing, especially at low gravity, where circulation in our simulations was still partly confined.
 
 ## References
 

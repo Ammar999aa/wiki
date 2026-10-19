@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
-import bioreactorUsdz from "../../assets/3d-models/Bioreactor_Assembly_1.usdz?url";
 const bioreactorGlb = "https://static.igem.wiki/teams/6341/wiki/3d-models/bioreactor.glb";
 import styles from "./Hardware.module.scss";
 
@@ -9,8 +8,7 @@ import styles from "./Hardware.module.scss";
 // export as delivered — the team's raw `.usdz` uses USD's reference-arc
 // instancing (each part's geometry is authored once, then placed by a
 // separate Xform with its own transform), which `<model-viewer>` doesn't
-// resolve since it only renders glTF/GLB in its WebGL view, never USDZ
-// (USDZ here is exclusively the ar-src payload for iOS Quick Look below). A
+// resolve since it only renders glTF/GLB in its WebGL view, never USDZ. A
 // converter that doesn't walk USD composition grabs the raw part geometry
 // straight from the library defs and skips the placement transform,
 // rendering every part stacked at local-space origin instead of assembled.
@@ -69,7 +67,6 @@ export default function BioreactorModel() {
                 src={bioreactorGlb}
                 alt="Interactive 3D CAD model of the SHIHAB bioreactor: a glass bottle vessel with rotor, held by four supports under the electronics tray"
                 ar
-                ar-src={bioreactorUsdz}
                 ar-modes="webxr scene-viewer quick-look"
                 camera-controls
                 auto-rotate={!reducedMotion}

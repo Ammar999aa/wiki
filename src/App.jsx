@@ -148,11 +148,10 @@ export default function App() {
         className={styles.content}
         // Stable portal target for content that needs to sit *below* Menu/
         // Footer in stacking order (both z-index 11/12) but above ordinary
-        // page content — see BulbHero.jsx's dim overlay. `.content` itself
-        // establishes its own stacking context (position: relative +
-        // z-index), so anything portaled to document.body instead would be
-        // compared against `.content` as one bundled unit and couldn't sit
-        // "between" its children.
+        // page content. `.content` itself establishes its own stacking
+        // context (position: relative + z-index), so anything portaled to
+        // document.body instead would be compared against `.content` as one
+        // bundled unit and couldn't sit "between" its children.
         id="app-content"
       >
         <div key={displayLocation.pathname} className={supportsViewTransitions ? undefined : styles.routeFade}>
