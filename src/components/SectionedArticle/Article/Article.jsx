@@ -302,6 +302,14 @@ export default function ArticleBody({ title, intro, sections, nums, sectionRefs,
               `numbered` prop): the section number stays out of the title text so
               the jump-nav reads as a plain table of contents, and renders as its
               own mark here. */}
+          {section.superheading && (
+            <div className={styles.superheading}>
+              <h2 id={section.superheading.id} className={styles.superheadingTitle}>
+                {section.superheading.title}
+              </h2>
+              {section.superheading.html && <SectionHtml html={section.superheading.html} />}
+            </div>
+          )}
           <h2>
             {nums?.[i] && <span className={styles.secNum}>{nums[i]}</span>}
             {section.title}

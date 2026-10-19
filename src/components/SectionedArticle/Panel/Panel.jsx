@@ -6,11 +6,15 @@ import styles from "../SectionedArticle.module.scss";
 // numbered reference-style page, shown as their own mark so the title text
 // itself stays a clean table-of-contents entry.
 //
+// `groups` is optional and index-aligned too: true marks a superheading row
+// (always listed; lit while it is `activeGroup`), and the plain items after
+// it are that group's sections, indented under it.
+//
 // `links` is optional too, index-aligned with `items`: a list of
 // `{ label, href }` shown as small links under that entry (Judging lists
 // each medal's pages this way). `linkTints` optionally colors each group:
 // `[r, g, b]` per entry, exposed to the stylesheet as --link-tint.
-export default function Panel({ items, nums, links, linkTints, selected, collapsed, onToggle, onSelect, header }) {
+export default function Panel({ items, nums, groups, activeGroup, links, linkTints, selected, collapsed, onToggle, onSelect, header }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
       {/* cornerGlow defaults on and, with no cursor over the panel, falls
@@ -42,7 +46,12 @@ export default function Panel({ items, nums, links, linkTints, selected, collaps
           {items.map((item, i) => (
             <Fragment key={item}>
               <h2
-                className={`${styles.panelItem} ${item === selected ? styles.selected : ""}`}
+                className={[
+                  styles.panelItem,
+                  groups?.[i] ? styles.panelGroup : "",
+                  groups?.[i] && item === activeGroup ? styles.panelGroupActive : "",
+                  !groups?.[i] && item === selected ? styles.selected : "",
+                ].join(" ")}
                 onClick={() => onSelect(i)}
               >
                 {nums?.[i] && <span className={styles.panelItemNum}>{nums[i]}</span>}
