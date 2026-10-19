@@ -9,7 +9,10 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // "Safety") the reader actually clicked, per .claude/ARTICLE-STANDARDS.md
 // and the UI/UX audit finding on titles not confirming the nav label.
 const pageIntro = (
-  <Masthead eyebrow={["Project", "Safety", "BSL-1"]} />
+  <Masthead
+    eyebrow={["Project", "Safety", "BSL-1"]}
+    deck="Our Safety page outlines the biosafety measures, containment strategies, and risk mitigation practices implemented throughout our iGEM project."
+  />
 );
 
 export default function Safety() {
