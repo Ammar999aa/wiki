@@ -156,7 +156,7 @@ export default function Judging() {
         gradient,
       }}
     >
-      <SectionedArticle title="Judging" intro={pageIntro} sections={sections} panelLinks={panelLinks} defaultSelected={sections[0].title} />
+      <SectionedArticle title="Judging" intro={pageIntro} sections={sections} panelLinks={panelLinks} panelLinkTints={MEDALS.map((m) => m.tint)} defaultSelected={sections[0].title} />
       <a
         href="https://www.nasa.gov/image-detail/amf-iss075e0144232/"
         target="_blank"
