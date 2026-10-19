@@ -1,266 +1,39 @@
-// Experiment switcher (dropdown, top of the article) + subheading list
-// (panel content) — the two bits of UI specific to Notebook's click-to-
-// switch layout. Everything else (panel chrome, article width/typography,
-// including .notebook-img-row) is reused directly from
-// SectionedArticle.module.scss so this page stays visually consistent
-// with Wet Lab/Dry Lab/etc. rather than inventing a second look.
-
-// Sticks to the top of the viewport as the page scrolls, so the switcher
-// stays reachable without scrolling back up. Sized to its content (the
-// dropdown trigger), not a full-width bar — a single compact control
-// doesn't need the breakout treatment a wrapped pill row did.
-.pillsBanner {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    padding-top: 16px;
-    margin-bottom: 24px;
-}
-
-.switcher {
-    position: relative;
-    display: inline-block;
-}
-
-.switcherTrigger {
-    appearance: none;
-    border: none;
-    font: inherit;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: min(560px, 100%);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: white;
-    background: transparent;
-    padding: 14px 24px;
-    cursor: pointer;
-}
-
-.switcherLabel {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.55);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-}
-
-.switcherDivider {
-    width: 1px;
-    align-self: stretch;
-    background: rgba(255, 255, 255, 0.15);
-    flex-shrink: 0;
-}
-
-.switcherValue {
-    flex: 1;
-    text-align: start;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.switcherChevron {
-    color: rgba(255, 255, 255, 0.6);
-    transition: transform 200ms ease;
-    flex-shrink: 0;
-}
-
-.switcherChevronOpen {
-    transform: rotate(180deg);
-}
-
-.switcherMenu {
-    position: absolute;
-    top: calc(100% + 8px);
-    inset-inline-start: 0;
-    width: min(560px, 100%);
-    z-index: 6;
-    // No max-height/overflow here — LiquidGlass (the direct child) is a
-    // rounded squircle that sizes itself to whatever this wraps, and
-    // scroll-clipping it from the outside cut its bottom corners off
-    // square instead of rounded. The scroll boundary lives one level in,
-    // on .timelineList, so LiquidGlass measures (and draws) the already-
-    // bounded box instead of an unclipped one that then gets chopped.
-}
-
-.switcherList {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-
-.switcherItem {
-    appearance: none;
-    border: none;
-    font: inherit;
-    text-align: start;
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.75);
-    background: transparent;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 150ms ease, color 150ms ease;
-
-    &:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: white;
-    }
-}
-
-.switcherItemActive {
-    color: var(--primary);
-}
-
-// Dated timeline (the "Browse experiments" menu content) — a connecting
-// line down the left edge with one dot per entry, git-log style. Built on
-// top of .switcherItem's own click/hover/active behavior; this only adds
-// the line, the dot, and the two-line date/title layout.
-.timelineList {
-    display: flex;
-    flex-direction: column;
-    padding: 14px 16px 14px 40px;
-    position: relative;
-    max-height: min(60vh, 480px);
-    overflow-y: auto;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 26px;
-        bottom: 26px;
-        inset-inline-start: 25px;
-        width: 1px;
-        background: rgba(255, 255, 255, 0.15);
-    }
-}
-
-.timelineItem {
-    // Same interactive base as .switcherItem (appearance/border/font reset,
-    // hover, transition) — extended, not duplicated, since it's still the
-    // same clickable row, just laid out as a timeline entry now.
-    @extend .switcherItem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-    white-space: normal;
-    position: relative;
-
-    // Centered on the 1px line above: line sits 25px in from the panel
-    // edge, the dot is 8px wide, so its own left edge lands at 25 - 4 = 21px
-    // — 19px back from where .timelineList's 40px left padding puts this
-    // item's own box.
-    &::before {
-        content: "";
-        position: absolute;
-        top: 15px;
-        inset-inline-start: -19px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 3px rgba(255, 216, 77, 0.16);
-    }
-
-    &.switcherItemActive::before {
-        background: var(--primary);
-        box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 30%, transparent);
-    }
-}
-
-.timelineDate {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
-}
-
-.timelineTitle {
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.panelEmpty {
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.58);
-    margin-block: 8px;
-}
-
-.subItem {
-    // border-box + a generous max-width keep every wrapped line clear of
-    // the panel's own right edge — the collapsed panel is only translated
-    // off-screen (transform, not clipped), so anything that reaches that
-    // edge in its own layout stays visible as a sliver of poking text
-    // once collapsed. border-box also means level4/level5's extra
-    // indent eats into this same budget instead of pushing the box
-    // further right past it.
+// The Notebook page is just a title and the notebook PDF (NotebookPdf.jsx).
+// The frame matches the shared .pdf-viewer look (SectionedArticle.module.scss)
+// used on the IHP page.
+.page {
     box-sizing: border-box;
-    font-size: 17px;
-    font-weight: 600;
-    margin-block: 0.55em;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: calc(100% - 36px);
-    overflow-wrap: break-word;
-
-    &:hover {
-        color: white;
-    }
-}
-
-.level4 {
-    padding-inline-start: 16px;
-    font-size: 15px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.65);
-}
-
-.level5 {
-    padding-inline-start: 32px;
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-// Full-notebook PDF (NotebookPdf.jsx). The frame matches the shared
-// .pdf-viewer look (SectionedArticle.module.scss) used on the IHP page.
-.pdf {
-    margin: 24px 0 8px;
-}
-
-.pdfButton {
-    appearance: none;
-    font: inherit;
-    font-size: 0.95rem;
-    font-weight: 600;
+    max-width: 1100px;
+    margin-inline: auto;
+    padding: 110px 24px 140px;
     color: white;
-    padding: 12px 22px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
+}
 
-    &:hover:not(:disabled),
-    &:focus-visible {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: var(--primary-300, var(--primary));
-    }
+.title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 32px;
+}
 
-    &:disabled {
-        cursor: progress;
-        opacity: 0.75;
-        font-variant-numeric: tabular-nums;
-    }
+// Same look as the shared Masthead eyebrow (SectionedArticle.module.scss).
+.eyebrow {
+    font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: -16px 0 32px;
+}
+
+.eyebrowDot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
 }
 
 .pdfFrame {
@@ -274,6 +47,13 @@
     @media (max-width: 640px) {
         height: 70vh;
     }
+}
+
+.pdfStatus {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    font-variant-numeric: tabular-nums;
 }
 
 .pdfActions {

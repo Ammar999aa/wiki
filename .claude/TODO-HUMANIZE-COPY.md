@@ -21,7 +21,6 @@ above the `deck={...}` prop:
 - [ ] `src/pages/HumanIntegratedPractices/HumanIntegratedPractices.jsx`
 - [ ] `src/pages/Education/Education.jsx` (`educationIntro`)
 - [ ] `src/pages/ScienceCommunication/ScienceCommunication.jsx`
-- [ ] `src/pages/Notebook/Notebook.jsx`
 
 Two are closer to synthesis than paraphrase and are worth a closer look
 first: Human Integrated Practices' second clause ("how should that shape

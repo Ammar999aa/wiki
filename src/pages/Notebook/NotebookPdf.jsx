@@ -1,53 +1,60 @@
 import { useState, useEffect } from "react";
 import styles from "./Notebook.module.scss";
 
-// The full lab notebook PDF is ~13.6 MB, over iGEM's 3 MB per-file upload
-// cap, so it's uploaded as page-range parts (each a valid PDF on its own)
-// and merged back into one document in the browser. static.igem.wiki sends
-// `access-control-allow-origin: *`, which is what lets fetch() read them.
+// The full lab notebook PDF is ~21 MB, over iGEM's per-file upload cap, so
+// it's uploaded as three page-range parts (each a valid PDF on its own,
+// each under 10 MB) and merged back into one document in the browser.
+// static.igem.wiki sends `access-control-allow-origin: *`, which is what
+// lets fetch() read them.
 const BASE = "https://static.igem.wiki/teams/6341/wiki/notebook/notebook";
-const PARTS = [1, 2, 3, 4, 5].map((n) => `${BASE}/lab-notebook-part-0${n}.pdf`);
+const PARTS = [1, 2, 3].map((n) => `${BASE}/lab-notebook-part-0${n}.pdf`);
 
-// Loaded on click, not on page load: nobody pays the download (or pdf-lib's
-// bundle) unless they actually ask for the PDF.
 export default function NotebookPdf() {
-  const [state, setState] = useState({ status: "idle" });
+  const [state, setState] = useState({ status: "loading", done: 0 });
 
-  useEffect(() => () => state.url && URL.revokeObjectURL(state.url), [state.url]);
+  useEffect(() => {
+    let cancelled = false;
+    let objectUrl;
 
-  async function load() {
-    setState({ status: "loading", done: 0 });
-    try {
-      const { PDFDocument } = await import("pdf-lib");
-      let done = 0;
-      const buffers = await Promise.all(
-        PARTS.map(async (url) => {
-          const res = await fetch(url);
-          if (!res.ok) throw new Error(`${res.status} fetching ${url}`);
-          const buf = await res.arrayBuffer();
-          setState({ status: "loading", done: ++done });
-          return buf;
-        }),
-      );
-      const merged = await PDFDocument.create();
-      // Shown in the browser viewer's toolbar instead of the blob URL's UUID.
-      merged.setTitle("iGEM Lab Notebook", { showInWindowTitleBar: true });
-      for (const buf of buffers) {
-        const part = await PDFDocument.load(buf);
-        const pages = await merged.copyPages(part, part.getPageIndices());
-        pages.forEach((p) => merged.addPage(p));
+    (async () => {
+      try {
+        const { PDFDocument } = await import("pdf-lib");
+        let done = 0;
+        const buffers = await Promise.all(
+          PARTS.map(async (url) => {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`${res.status} fetching ${url}`);
+            const buf = await res.arrayBuffer();
+            if (!cancelled) setState({ status: "loading", done: ++done });
+            return buf;
+          }),
+        );
+        const merged = await PDFDocument.create();
+        // Shown in the browser viewer's toolbar instead of the blob URL's UUID.
+        merged.setTitle("iGEM Lab Notebook", { showInWindowTitleBar: true });
+        for (const buf of buffers) {
+          const part = await PDFDocument.load(buf);
+          const pages = await merged.copyPages(part, part.getPageIndices());
+          pages.forEach((p) => merged.addPage(p));
+        }
+        const blob = new Blob([await merged.save()], { type: "application/pdf" });
+        objectUrl = URL.createObjectURL(blob);
+        if (!cancelled) setState({ status: "ready", url: objectUrl });
+      } catch (err) {
+        console.error(err);
+        if (!cancelled) setState({ status: "error" });
       }
-      const blob = new Blob([await merged.save()], { type: "application/pdf" });
-      setState({ status: "ready", url: URL.createObjectURL(blob) });
-    } catch (err) {
-      console.error(err);
-      setState({ status: "error" });
-    }
-  }
+    })();
+
+    return () => {
+      cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, []);
 
   if (state.status === "ready") {
     return (
-      <div className={styles.pdf}>
+      <div>
         <iframe className={styles.pdfFrame} src={state.url} title="iGEM Lab Notebook (PDF)" />
         <div className={styles.pdfActions}>
           <a href={state.url} target="_blank" rel="noopener noreferrer">
@@ -61,23 +68,26 @@ export default function NotebookPdf() {
     );
   }
 
-  return (
-    <div className={styles.pdf}>
-      <button type="button" className={styles.pdfButton} onClick={load} disabled={state.status === "loading"}>
-        {state.status === "loading"
-          ? `Loading notebook… ${state.done}/${PARTS.length}`
-          : "View the full lab notebook (PDF, 13.6 MB)"}
-      </button>
-      {state.status === "error" && (
-        <p className={styles.pdfError}>
-          Couldn't load the PDF. The parts are also available individually:{" "}
-          {PARTS.map((url, i) => (
-            <a key={url} href={url} target="_blank" rel="noopener noreferrer">
-              {i + 1}
+  if (state.status === "error") {
+    return (
+      <p className={styles.pdfError}>
+        Couldn't load the notebook. It's also available in three parts:{" "}
+        {PARTS.map((url, i) => (
+          <span key={url}>
+            {i > 0 && ", "}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              part {i + 1}
             </a>
-          )).reduce((acc, el) => (acc.length ? [...acc, ", ", el] : [el]), [])}
-        </p>
-      )}
-    </div>
+          </span>
+        ))}
+        .
+      </p>
+    );
+  }
+
+  return (
+    <p className={styles.pdfStatus} role="status">
+      Loading notebook… {state.done}/{PARTS.length}
+    </p>
   );
 }

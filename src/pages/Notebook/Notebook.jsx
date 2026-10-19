@@ -1,41 +1,25 @@
-import NotebookArticle from "./NotebookArticle";
 import NotebookPdf from "./NotebookPdf";
-import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
-import sections from "../../content/en/notebook.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import styles from "./Notebook.module.scss";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// Eyebrow echoes the nav trail ("Wet Lab" dropdown → "Notebook") the
-// reader clicked.
-const pageIntro = (
-  <Masthead
-    eyebrow={["Wet Lab", "Notebook"]}
-    // TODO(humanize): AI-drafted deck sentence, built from this page's own
-    // project-title line and its Experiment #1 (media preparation) entry
-    // rather than copied verbatim — needs a human rewrite before this page
-    // is final. See .claude/TODO-HUMANIZE-COPY.md.
-    deck={
-      <>
-        The dated, chronological lab log behind <b>SHIHAB</b> &mdash; Synthetic Hosts for In&nbsp;situ
-        Healthcare and Autonomous Biomanufacturing &mdash; from the first media prep through every experiment
-        that followed.
-      </>
-    }
-  />
-);
-
-const intro = (
-  <>
-    {pageIntro}
-    <NotebookPdf />
-  </>
-);
-
+// The notebook is the PDF — no article text, masthead or jump-nav panel
+// around it, so this doesn't use SectionedArticle.
 export default function Notebook() {
   return (
     <PageWrapper background={{ color: "#0A0A27", image: bg, size: "1280px 1080px", gradient }}>
-      <NotebookArticle title="Notebook" intro={intro} sections={sections} />
+      <div className={styles.page}>
+        <h1 className={styles.title}>Notebook</h1>
+        {/* Echoes the nav trail ("Wet Lab" dropdown → "Notebook"), like the
+            eyebrow Masthead gives the other pages. */}
+        <p className={styles.eyebrow}>
+          <span>Wet Lab</span>
+          <span className={styles.eyebrowDot} />
+          <span>Notebook</span>
+        </p>
+        <NotebookPdf />
+      </div>
     </PageWrapper>
   );
 }
