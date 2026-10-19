@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Panel from "./Panel/Panel";
 import Article from "./Article/Article";
 import { TooltipProvider } from "../Tooltip/Tooltip";
+import Sponsors from "../Sponsors/Sponsors";
 import styles from "./SectionedArticle.module.scss";
 
 // `numbered`: show a section number ("01", "02", …) beside each heading and
@@ -22,6 +23,8 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
   const nums = numbered ? sections.map((_, i) => String(i + 1).padStart(2, "0")) : undefined;
   const sectionRefs = useRef({});
   const progressFillRef = useRef(null);
+  const panelRef = useRef(null);
+  const siteEndRef = useRef(null);
   // Set while a panel click's smooth scroll is still animating there — the
   // scroll-position observer below would otherwise fire for every section
   // that passes through its band along the way, flickering the panel's
@@ -53,7 +56,24 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
   useEffect(() => {
     let rafId;
     let lastScale = -1;
+    let lastShift = 0;
     const tick = () => {
+      // Scroll the jump-nav panel away with the page once the sponsors
+      // footer reaches it. The panel is position: fixed, so it would
+      // otherwise float over the footer; instead its bottom edge is held
+      // at the footer's top, which carries it up and off screen with the
+      // content. Written as a custom property (read by `translate` in the
+      // stylesheet) so it composes with the mobile drawer's own transform.
+      const panel = panelRef.current;
+      const siteEnd = siteEndRef.current;
+      if (panel && siteEnd) {
+        const naturalBottom = panel.getBoundingClientRect().bottom - lastShift;
+        const shift = Math.min(0, Math.round(siteEnd.getBoundingClientRect().top - naturalBottom));
+        if (shift !== lastShift) {
+          panel.style.setProperty("--footer-shift", `${shift}px`);
+          lastShift = shift;
+        }
+      }
       const el = progressFillRef.current;
       if (el) {
         const h = document.documentElement;
@@ -210,6 +230,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
           <div className={styles.progressRailFill} ref={progressFillRef} />
         </div>
         <Panel
+            containerRef={panelRef}
             items={entries.map((e) => (e.group ? e.group : sections[e.index].title))}
             nums={nums && entries.map((e) => (e.group ? undefined : nums[e.index]))}
             groups={entries.map((e) => !!e.group)}
@@ -226,16 +247,23 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
             tooltip, and this is also what makes useTooltip() available to
             any section's own rich `content` JSX (e.g. Model's charts),
             not just markdown-rendered citation marks. */}
-        <TooltipProvider>
-          <Article
-              title={title}
-              intro={intro}
-              sections={sections}
-              nums={nums}
-              sectionRefs={sectionRefs}
-              accentBold={accentBold}
-          />
-        </TooltipProvider>
+        <div className={styles.articleBand}>
+          <TooltipProvider>
+            <Article
+                title={title}
+                intro={intro}
+                sections={sections}
+                nums={nums}
+                sectionRefs={sectionRefs}
+                accentBold={accentBold}
+            />
+          </TooltipProvider>
+        </div>
+        {/* The landing page's closing sponsors section, so an article ends
+            the same way the site's front page does. */}
+        <div className={styles.siteEnd} ref={siteEndRef}>
+          <Sponsors />
+        </div>
     </div>
   );
 }

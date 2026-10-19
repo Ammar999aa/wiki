@@ -38,12 +38,24 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   // instead of tracking it 1:1.
 }
 
+// The article sits in normal flow (not absolutely positioned) so the
+// sponsors footer below it is pushed to the true end of the page. The band
+// reserves the room beside the fixed rail; the article centers inside it.
+.articleBand {
+  margin-inline-start: $article-left;
+  margin-inline-end: $side-gutter;
+}
+
+// PageWrapper adds --nav-clearance of padding under its content; the
+// sponsors section already reserves that room itself (as on Home), so pull
+// it back over that padding rather than stacking a second blank gap.
+.siteEnd {
+  margin-bottom: calc(-1 * var(--nav-clearance));
+}
+
 .article {
   box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  inset-inline-start: $article-left;
-  inset-inline-end: $side-gutter;
+  position: relative;
   // Caps the reading column on wide desktops instead of letting justified
   // prose stretch edge to edge; auto margins center that capped width
   // within the left/right band above rather than pinning it to one side.
@@ -3297,6 +3309,8 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   inset-inline-start: $side-gutter;
   width: $rail-width;
   z-index: 10;
+  // Set per frame by SectionedArticle.jsx once the footer reaches the panel.
+  translate: 0 var(--footer-shift, 0px);
 }
 
 .panelContents {
@@ -3529,12 +3543,15 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 @media (max-width: 1024px) {
   // Panel becomes a fixed overlay drawer instead of an in-flow rail, so
   // the article no longer reserves space for it or centers against it.
+  .articleBand {
+    margin-inline: 0;
+  }
+
   .article {
     width: calc(100vw - 0.15 * #{$article-inset});
-    inset-inline-start: auto;
-    inset-inline-end: 0;
     max-width: none;
-    margin-inline: 0;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
     padding: 20px;
   }
 
