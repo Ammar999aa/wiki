@@ -102,12 +102,12 @@ const Pages = [
         description: "How SHIHAB engineers medical autonomy for deep-space missions — the full scientific rationale.",
       },
       { name: "Protein Library", title: "Protein Library", path: "/protein-library", component: ProteinLibrary },
-      { name: "Safety", title: "Safety", path: "/safety", component: Safety },
+      { name: "Safety", title: "Safety", path: "/safety-and-security", component: Safety },
       { name: "Contribution", title: "Contribution", path: "/contribution", component: Contribution },
       {
         name: "Engineering Success",
         title: "Engineering Success",
-        path: "/engineering-success",
+        path: "/engineering",
         component: EngineeringSuccess,
         description:
           "SHIHAB engineering cycles: Design–Build–Test–Learn across the bioreactor, purification hardware, wet lab constructs and metabolic models.",
@@ -152,7 +152,7 @@ const Pages = [
       {
         name: "Modeling",
         title: "Modeling",
-        path: "/modeling",
+        path: "/model",
         component: DryLabModeling,
         description: "SHIHAB dry lab modeling: flux balance analysis of three chassis and a cyanobacterial partner.",
       },
@@ -167,7 +167,7 @@ const Pages = [
       {
         name: "Integrated Human Practices",
         title: "Integrated Human Practices",
-        path: "/human-integrated-practices",
+        path: "/human-practices",
         component: HumanIntegratedPractices,
       },
       { name: "Education", title: "Education", path: "/education", component: Education },
@@ -196,22 +196,30 @@ const Pages = [
   { name: "Judging", title: "Judging", path: "/judging", component: Judging },
   // Standard iGEM award URLs, taken out of the nav but kept routable
   // (shared "coming soon" Stub) so the standard paths still resolve.
-  // /software stays in the nav under Dry Lab.
-  { name: "Engineering", title: "Engineering", path: "/engineering", component: Stub, hidden: true },
+  // Pages that already exist live at their required URL in the nav
+  // (/engineering, /human-practices, /model, /safety-and-security,
+  // /software, /contribution, /education, /hardware, /inclusivity,
+  // /measurement).
   // No longer in the nav, but Integrated Human Practices still links here
   // ("See long-term roadmap"), so the URL has to keep resolving.
   { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub, hidden: true },
   { name: "Entrepreneurship", title: "Entrepreneurship", path: "/entrepreneurship", component: Stub, hidden: true },
-  { name: "Model", title: "Model", path: "/model", component: Stub, hidden: true },
   { name: "Plant Synthetic Biology", title: "Plant Synthetic Biology", path: "/plant", component: Stub, hidden: true },
-  { name: "Safety & Security", title: "Safety & Security", path: "/safety-and-security", component: Stub, hidden: true },
   { name: "Sustainable Development", title: "Sustainable Development", path: "/sustainability", component: Stub, hidden: true },
   // Pre-existing sectioned pages, superseded in the nav by the categories
   // above but left routable at their old URLs — see file header comment.
   { name: "Wet Lab (overview)", title: "Wet Lab", path: "/wetlab", component: WetLab, hidden: true },
   { name: "Dry Lab (overview)", title: "Dry Lab", path: "/drylab", component: DryLab, hidden: true },
-  { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices", component: HumanPractices, hidden: true },
+  { name: "Human Practices (overview)", title: "Human Practices", path: "/human-practices-overview", component: HumanPractices, hidden: true },
   { name: "Engagement", title: "Engagement", path: "/engagement", component: Engagement, hidden: true },
+  // Old URLs from before the paths were aligned with iGEM's required award
+  // URLs (/engineering, /human-practices, /model, /safety-and-security).
+  // Kept routable so existing links work; App.jsx's canonical tag points
+  // each at the first path above that renders the same component.
+  { name: "Engineering Success (old URL)", title: "Engineering Success", path: "/engineering-success", component: EngineeringSuccess, hidden: true },
+  { name: "Integrated Human Practices (old URL)", title: "Integrated Human Practices", path: "/human-integrated-practices", component: HumanIntegratedPractices, hidden: true },
+  { name: "Modeling (old URL)", title: "Modeling", path: "/modeling", component: DryLabModeling, hidden: true },
+  { name: "Safety (old URL)", title: "Safety", path: "/safety", component: Safety, hidden: true },
   // Dry Lab Overview's old URL, from before it became the Modeling page.
   { name: "Dry Lab Overview (old URL)", title: "Modeling", path: "/dry-lab-overview", component: DryLabModeling, hidden: true },
   // Authoring reference for the team: a fictional article applying every

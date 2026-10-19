@@ -181,9 +181,9 @@ export const glanceTiles = [
 export const shapedParts = [
   { id: "payload", label: "Payload library", path: "/design" },
   { id: "experiments", label: "Wet-lab experiments", path: "/experiments" },
-  { id: "drylab", label: "Dry Lab & gene mining", path: "/modeling" },
+  { id: "drylab", label: "Dry Lab & gene mining", path: "/model" },
   { id: "roadmap", label: "Long-term roadmap", path: "/proposed-implementation" },
-  { id: "safety", label: "Safety handbook", path: "/safety" },
+  { id: "safety", label: "Safety handbook", path: "/safety-and-security" },
   { id: "hardware", label: "Hardware", path: "/hardware" },
   { id: "modeling", label: "Modeling & dashboard", path: "/hardware" },
 ];

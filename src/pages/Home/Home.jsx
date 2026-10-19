@@ -1635,7 +1635,7 @@ const EXPLORE_CARDS = [
   },
   {
     n: "03", t: "Dry Lab", d: "Modelling, bioinformatics, and circuit design.",
-    to: "/modeling",
+    to: "/model",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/drylab.avif",
   },
   {
@@ -1650,7 +1650,7 @@ const EXPLORE_CARDS = [
   },
   {
     n: "06", t: "Safety", d: "Biosafety and responsible design.",
-    to: "/safety",
+    to: "/safety-and-security",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/safety.avif",
   },
   {
@@ -1660,7 +1660,7 @@ const EXPLORE_CARDS = [
   },
   {
     n: "08", t: "Human Practices", d: "How real-world voices shaped the work.",
-    to: "/human-integrated-practices",
+    to: "/human-practices",
     img: "https://static.igem.wiki/teams/6341/wiki/images/team/integrated-practices.avif", pos: "center 78%",
   },
 ];

@@ -66,7 +66,7 @@ We also provide guidance on preparing buffers for ÄKTA immobilized metal affini
 
 We developed a biosafety handbook for safe handling and genetic engineering of *P. pastoris*, *S. cerevisiae*, and *B. subtilis* in laboratory settings. The handbook contains specific safety considerations, waste management, safe handling, etc. We hope that it will help future iGEM teams implement responsible laboratory practices and integrate biosafety considerations into their lab work.
 
-See how these practices fit into SHIHAB as a whole on our <a href="/kaust-ksa/safety">Safety</a> page.
+See how these practices fit into SHIHAB as a whole on our <a href="/kaust-ksa/safety-and-security">Safety</a> page.
 
 ## Gene mining pipeline
 
@@ -147,7 +147,7 @@ We traced the gap to two oxygen-dependent steps and gave them electron acceptors
 
 </div>
 
-The two reactions and how we found them are described in <a href="/kaust-ksa/modeling#gapfill">the gap-filling section</a> of our Modeling page.
+The two reactions and how we found them are described in <a href="/kaust-ksa/model#gapfill">the gap-filling section</a> of our Modeling page.
 
 ## Replicable mentorship framework
 
@@ -191,4 +191,4 @@ Our analysis also examined existing regulatory gaps and emerging challenges asso
 
 </div>
 
-Read the full analysis on our <a href="/kaust-ksa/human-integrated-practices">Integrated Human Practices</a> page.
+Read the full analysis on our <a href="/kaust-ksa/human-practices">Integrated Human Practices</a> page.

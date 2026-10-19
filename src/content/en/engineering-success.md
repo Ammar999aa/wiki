@@ -1486,7 +1486,7 @@ The Learn stage and the final design for the adenine supplementation cycle have 
 
 ## Metabolic models
 
-Our dry lab ran three cycles against genome-scale metabolic models: one that repaired a published model, one that found a workable operating point for a sucrose-supplying co-culture, and one that failed and told us something useful about the method rather than the biology. The full modeling work, including the constraints shared by every simulation, is on the [Dry Lab Modeling](/kaust-ksa/modeling) page.
+Our dry lab ran three cycles against genome-scale metabolic models: one that repaired a published model, one that found a workable operating point for a sucrose-supplying co-culture, and one that failed and told us something useful about the method rather than the biology. The full modeling work, including the constraints shared by every simulation, is on the [Dry Lab Modeling](/kaust-ksa/model) page.
 
 <div class="iter-list">
 

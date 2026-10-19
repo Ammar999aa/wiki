@@ -391,7 +391,7 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
 <p>The oxidative-stress feedback initially made us question our selection of Dsup. However, when we returned to the literature, we found evidence that Dsup can also protect against oxidative stress: its expression in <em>S. cerevisiae</em> has been shown to reduce oxidative DNA damage and improve survival under chronic oxidative conditions <a class="cite" href="#ref-22">22</a>.</p>
 <p>We also began investigating alternative nutrient sources and media-recycling strategies that could reduce dependence on supplies transported from Earth. This expanded SHIHAB beyond the question of how to make microorganisms resilient toward how they could be sustained during repeated production cycles.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/modeling">Dry Lab overview →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/model">Dry Lab overview →</a></p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
 <p>This conversation pushed us to think about resource independence: Could SHIHAB use resources already available during a mission instead of carrying everything required for biomanufacturing from Earth?</p>
 <p>This opened a new direction for the project focused on alternative carbon and nutrient sources, resource recycling, and eventually closing parts of the biomanufacturing loop.</p>
@@ -500,7 +500,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 <p>A laboratory experiment, a field test, therapeutic production, and an eventual spaceflight experiment would therefore involve different levels of oversight, documentation, and approval.</p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
 <p>We used HSE's recommendations to reorganize our safety strategy around the hierarchy of controls and identify areas that required more detailed documentation. Their feedback directly informed our Safety Handbook, including hazard identification, risk assessment, containment failure, accidental exposure, environmental release, and emergency response. It also shaped our Hardware manual, where we incorporated procedures for safe operation, sterilization, handling, and actions to follow in case of spills or other unexpected events.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/safety">Safety manual →</a> <a class="person-link-btn" href="/kaust-ksa/hardware">Hardware manual →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/safety-and-security">Safety manual →</a> <a class="person-link-btn" href="/kaust-ksa/hardware">Hardware manual →</a></p>
 <p>We also incorporated these requirements into our long-term planning, distinguishing between what would be required for laboratory work, future field testing, and later stages of deployment.</p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
 <p>Moving toward therapeutic production and spaceflight would involve other authorities, standards, and approval processes. This led us to investigate the next part of our roadmap: How does an engineered biological system progress from institutional approval to regulatory clearance and, eventually, authorization for spaceflight?</p>

@@ -46,12 +46,12 @@ const MEDALS = [
       {
         title: "Engineering Success",
         text: "Throughout the competition, all aspects of our project have passed through numerous engineering cycle iterations (Design → Build → Test → Learn), which are documented in the Engineering Success page.",
-        links: [{ label: "Engineering Success page", href: "/kaust-ksa/engineering-success" }],
+        links: [{ label: "Engineering Success page", href: "/kaust-ksa/engineering" }],
       },
       {
         title: "Human Practices",
         text: "We engaged with diverse stakeholders to understand the broader societal implications of our project, incorporating their feedback into our project design and development, as documented on our Human Practices page.",
-        links: [{ label: "Human Practices page", href: "/kaust-ksa/human-integrated-practices" }],
+        links: [{ label: "Human Practices page", href: "/kaust-ksa/human-practices" }],
       },
     ],
   },
@@ -70,7 +70,7 @@ const MEDALS = [
         ],
         links: [
           { label: "Measurement page", href: "/kaust-ksa/measurement" },
-          { label: "Integrated Human Practices page", href: "/kaust-ksa/human-integrated-practices" },
+          { label: "Integrated Human Practices page", href: "/kaust-ksa/human-practices" },
           { label: "Hardware page", href: "/kaust-ksa/hardware" },
         ],
       },

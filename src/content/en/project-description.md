@@ -133,7 +133,7 @@ From computational screening of **1,221 metagenomes**, **19 candidate genes** we
 </div>
 
 <div class="link-card">
-<a class="link-card-face" href="/kaust-ksa/modeling"><span class="popup-num">5</span><span class="popup-face"><span class="popup-title">Growth-condition modeling</span><span class="popup-desc">Carbon and nitrogen sources · Metabolic models · COMSOL</span><span class="link-card-go">Explore Modeling →</span></span></a>
+<a class="link-card-face" href="/kaust-ksa/model"><span class="popup-num">5</span><span class="popup-face"><span class="popup-title">Growth-condition modeling</span><span class="popup-desc">Carbon and nitrogen sources · Metabolic models · COMSOL</span><span class="link-card-go">Explore Modeling →</span></span></a>
 <button type="button" class="link-card-more">Read more +</button>
 <div class="popup-more">
 
@@ -143,7 +143,7 @@ Beyond gene mining, the dry-lab team explored biological production capacity thr
 
 Computational fluid-dynamics (CFD) simulations in COMSOL examined mixing, circulation, gas distribution, and rotor geometries under gravity-related constraints, helping inform bioreactor design decisions. These analyses evaluate modeled capabilities rather than experimentally proving production performance in space.
 
-<p><a class="person-link-btn" href="/kaust-ksa/modeling">Explore Modeling →</a> <a class="person-link-btn" href="/kaust-ksa/hardware">Hardware page →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/model">Explore Modeling →</a> <a class="person-link-btn" href="/kaust-ksa/hardware">Hardware page →</a></p>
 
 </div>
 </div>
@@ -206,13 +206,13 @@ Proposed production workflow. Preservation, integrated automation, and therapeut
 <img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/impact.avif" alt="Integrated Human Practices: anticipating our impact" loading="lazy">
 </div>
 
-Developing SHIHAB required us to look beyond the laboratory and understand the people, environments, and communities our technology could eventually serve. Through our <a href="/kaust-ksa/human-integrated-practices">Integrated Human Practices</a>, we engaged with astronauts, space medicine professionals, scientists, industry representatives, and regulatory experts, whose perspectives helped us reconsider our priorities, identify limitations, and guide decisions throughout the project's development.
+Developing SHIHAB required us to look beyond the laboratory and understand the people, environments, and communities our technology could eventually serve. Through our <a href="/kaust-ksa/human-practices">Integrated Human Practices</a>, we engaged with astronauts, space medicine professionals, scientists, industry representatives, and regulatory experts, whose perspectives helped us reconsider our priorities, identify limitations, and guide decisions throughout the project's development.
 
 But responsible innovation also requires involving society in discussions about emerging biotechnologies. Through the **Tawasol Hackathon**, 186 students explored biosafety, public trust, ethics, and accountability. The **Tawasol Summit** brought together iGEM teams from four countries to discuss regional perceptions of synthetic biology, while our collaboration with **Kallpa Greenz in Peru** explored community concerns surrounding genetic engineering and supported educational initiatives for rural communities. Alongside these initiatives, our **Space Academy and mentorship activities** aimed to make space science and biotechnology more accessible, encouraging the next generation to explore, question, and contribute to scientific innovation.
 
 **Our efforts gave us an important lesson: responsible innovation requires more than technological progress.** It also relies on education, open dialogue, and the active participation of the communities that emerging technologies may one day impact.
 
-<p><a class="person-link-btn" href="/kaust-ksa/human-integrated-practices">Explore Integrated Human Practices →</a> <a class="person-link-btn" href="/kaust-ksa/education">Explore Education →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/human-practices">Explore Integrated Human Practices →</a> <a class="person-link-btn" href="/kaust-ksa/education">Explore Education →</a></p>
 
 ## Biomanufacturing beyond boundaries
 
