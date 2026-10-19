@@ -304,7 +304,7 @@ export default function ArticleBody({ title, intro, sections, nums, sectionRefs 
               own mark here. */}
           <h2>
             {nums?.[i] && <span className={styles.secNum}>{nums[i]}</span>}
-            {section.title}
+            {section.titleContent ?? section.title}
           </h2>
           {section.html && <SectionHtml html={section.html} />}
           {section.content}

@@ -184,6 +184,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
         </div>
         <Panel
             items={sections.map((s) => s.title)}
+            labels={sections.map((s) => s.titleContent ?? s.title)}
             nums={nums}
             selected={selected}
             collapsed={collapsed}

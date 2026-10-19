@@ -15,8 +15,9 @@ const MUTED = "rgba(255,255,255,0.45)";
 
 const INDUCTION_COLORS = [BLUE, GREEN, AMBER, RED, VIOLET];
 
-function fmt(n, d = 2) {
-  return (v) => v.toFixed(d);
+// Number formatter factory: fmt(4) -> v => v.toFixed(4).
+function fmt(digits = 2) {
+  return (v) => v.toFixed(digits);
 }
 
 // ---- Yeast ODE (Model 1 / Model 2) -----------------------------------
@@ -115,8 +116,8 @@ function YeastResourceSimulation() {
         vLines={[{ x: d.tInd, label: "induction", color: MUTED }]}
         xLabel="Time (h)"
         yLabel="Normalized value"
-        xDomain={[0, 72]}
-        xTicks={[0, 12, 24, 36, 48, 60, 72]}
+        xDomain={[0, 50]}
+        xTicks={[0, 10, 20, 30, 40, 50]}
         yDomain={[0, 1.05]}
         formatX={fmt(0)}
         formatY={fmt(1)}
@@ -495,7 +496,8 @@ function CyanoCo2Hco3() {
         points={[{ x: d.marsCO2, y: d.growthAtMars, label: "Mars", color: GREEN }]}
         xLabel="CO2/HCO3 uptake bound (mmol/gDW/h)"
         yLabel="Growth rate (h⁻¹)"
-        formatX={fmt(1)}
+        xTicks={[1, 2, 3, 4, 5, 6, 7]}
+        formatX={fmt(0)}
         formatY={fmt(2)}
       />
       <p className={styles.statLine}>
@@ -594,7 +596,8 @@ function CyanoSucroseVsGrowth() {
         xLabel="Biomass flux (fraction of max achievable growth)"
         yLabel="Max sucrose export flux (mmol/gDW/h)"
         xDomain={[0, 1]}
-        formatX={fmt(1)}
+        xTicks={[0, 0.25, 0.5, 0.75, 1]}
+        formatX={fmt(2)}
         formatY={fmt(2)}
       />
     </ChartPanel>

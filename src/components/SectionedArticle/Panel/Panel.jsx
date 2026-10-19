@@ -4,7 +4,7 @@ import styles from "../SectionedArticle.module.scss";
 // `nums` is optional and index-aligned with `items`: section numbers for a
 // numbered reference-style page, shown as their own mark so the title text
 // itself stays a clean table-of-contents entry.
-export default function Panel({ items, nums, selected, collapsed, onToggle, onSelect, header }) {
+export default function Panel({ items, labels, nums, selected, collapsed, onToggle, onSelect, header }) {
   return (
     <div className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
       {/* cornerGlow defaults on and, with no cursor over the panel, falls
@@ -40,7 +40,7 @@ export default function Panel({ items, nums, selected, collapsed, onToggle, onSe
               onClick={() => onSelect(i)}
             >
               {nums?.[i] && <span className={styles.panelItemNum}>{nums[i]}</span>}
-              {item}
+              {labels?.[i] ?? item}
             </h2>
           ))}
         </div>
