@@ -276,7 +276,7 @@ To better understand these questions, we spoke with professionals whose experien
 <p>Their feedback expanded our definition of validation. SHIHAB would need to demonstrate more than microbial survival. The chassis must remain functional, the production system must operate reliably, and the resulting therapeutic must retain its expected quality and biological function. We also understood that this evidence would need to be built progressively, from ground-based experiments toward microgravity and eventually spaceflight conditions.</p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
 <p>The convergence of their feedback made microgravity a clear component of our validation strategy. Before progressing toward experimental platforms such as parabolic flights, we began investigating how altered gravity could affect our system through COMSOL simulations.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/modeling">Bioreactor modeling →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/hardware">Bioreactor modeling →</a></p>
 <p>Their medical perspectives also influenced the development of our payload library. In particular, the discussion around muscle and bone loss encouraged us to investigate therapeutics related to these challenges and add them to our list of potential payloads for SHIHAB.</p>
 <p><a class="person-link-btn" href="/kaust-ksa/protein-library">Payload library →</a></p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>
@@ -472,7 +472,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 <p>Her comments on microorganisms also supported our previous chassis selection. Our research and earlier expert discussions had already led us toward well-characterized organisms with previous spaceflight studies, and her perspective reinforced the relevance of this choice for future deployment.</p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/iterate.avif" alt="">Iterate</h3>
 <p>Sarah's feedback influenced both our dry-lab and hardware development. To reduce the need for continuous crew supervision, our dry-lab team developed a monitoring dashboard that simulates how astronauts could remotely follow key bioreactor parameters, including temperature, pH, and microbial growth. This would allow users to check the status of a production cycle without remaining physically next to the bioreactor throughout the process.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/modeling">Monitoring dashboard →</a></p>
+<p><a class="person-link-btn" href="/kaust-ksa/hardware">Monitoring dashboard →</a></p>
 <p>Moreover, our hardware team incorporated these considerations into our initial prototype, implementing what was feasible with the resources available during the iGEM season while identifying the improvements needed for future space deployment. This helped define priorities for future iterations, including autonomous operation, real-time monitoring, energy efficiency, environmental control, and compatibility with spacecraft infrastructure.</p>
 <p><a class="person-link-btn" href="/kaust-ksa/hardware">Hardware prototype →</a></p>
 <h3 class="person-step"><img src="https://static.igem.wiki/teams/6341/wiki/images/translate.avif" alt="">Translate</h3>

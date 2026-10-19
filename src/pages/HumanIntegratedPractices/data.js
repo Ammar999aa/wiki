@@ -185,7 +185,7 @@ export const shapedParts = [
   { id: "roadmap", label: "Long-term roadmap", path: "/proposed-implementation" },
   { id: "safety", label: "Safety handbook", path: "/safety" },
   { id: "hardware", label: "Hardware", path: "/hardware" },
-  { id: "modeling", label: "Modeling & dashboard", path: "/modeling" },
+  { id: "modeling", label: "Modeling & dashboard", path: "/hardware" },
 ];
 
 // `tone` matches the ValuesCards tones (see `data-tone` in the stylesheet).
