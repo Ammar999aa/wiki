@@ -1245,6 +1245,25 @@ function VideoPlaceholder({ title, className = "" }) {
   );
 }
 
+// A video.igem.org (PeerTube) embed, 16:9, in the same figure/caption frame as
+// VideoPlaceholder.
+function VideoEmbed({ id, title, className = "" }) {
+  return (
+    <figure className={`${styles.videoSlot} ${className}`}>
+      <div className={styles.videoFrame}>
+        <iframe
+          src={`https://video.igem.org/videos/embed/${id}`}
+          title={title}
+          allow="fullscreen; picture-in-picture"
+          allowFullScreen
+          loading="lazy"
+        />
+      </div>
+      <figcaption className={styles.videoCap}>{title}</figcaption>
+    </figure>
+  );
+}
+
 // ── Our Solution (slides 7–8) ─────────────────────────────────────────────────
 // One pinned slide in two parts. Scrolling slides part 1 out to the left and
 // part 2 in from the right while the "Our Solution" tag stays where it is,
@@ -1561,7 +1580,7 @@ function CapabilitiesSection() {
 
 // ── Outro (slide 9) ────────────────────────────────────────────────────────────
 // The promotion video, in place of the SHIHAB logo that used to close the
-// story (Sept 2026 brief). Placeholder until it's embedded from video.igem.org.
+// story (Sept 2026 brief), embedded from video.igem.org.
 
 function OutroSection() {
   const ref = useRef(null);
@@ -1600,7 +1619,7 @@ function OutroSection() {
           <img src={astronautMmu} alt="" className={styles.astronautImg} />
         </div>
         <div className={styles.outroVideo} ref={videoRef} style={{ opacity: 0 }}>
-          <VideoPlaceholder title="SHIHAB promotion video" />
+          <VideoEmbed id="6401ff7a-dd94-4b0e-8c4c-f694614c1176" title="SHIHAB promotion video" />
         </div>
       </div>
       <div className={styles.slideAttribution}>
