@@ -55,6 +55,7 @@ const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribu
 const Judging = lazyWithPreload(() => import("./pages/Judging/Judging"));
 const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const Results = lazyWithPreload(() => import("./pages/Results/Results"));
+const ProofOfConcept = lazyWithPreload(() => import("./pages/ProofOfConcept/ProofOfConcept"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
 // Optional `description` on a page: the search-result / link-preview
@@ -136,7 +137,14 @@ const Pages = [
           "SHIHAB wet lab results: Dsup integration across three chassis, radiation resistance, and payload protein expression and purification.",
       },
       { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
-      { name: "Proof of Concept", title: "Proof of Concept", path: "/proof-of-concept", component: Stub },
+      {
+        name: "Proof of Concept",
+        title: "Proof of Concept",
+        path: "/proof-of-concept",
+        component: ProofOfConcept,
+        description:
+          "SHIHAB proof of concept: engineered microbial chassis, a compact bioreactor, downstream purification components and a computational screen for stress-resistance proteins.",
+      },
     ],
   },
   {

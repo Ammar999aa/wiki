@@ -72,7 +72,9 @@ export function PhChart() {
   );
 }
 
-export function GrowthChart() {
+// `tableNumber`: the data table's caption number — Hardware's is Table 4;
+// pages that reuse this chart pass their own.
+export function GrowthChart({ tableNumber = 4 }) {
   return (
     <div className="panel">
       <LineChart
@@ -100,7 +102,7 @@ export function GrowthChart() {
         <div className="details-body">
           <div className="caption">
             <strong>
-              Table 4. OD₆₀₀ rose from about 0.01 to about 0.49 over 10 hours
+              Table {tableNumber}. OD₆₀₀ rose from about 0.01 to about 0.49 over 10 hours
             </strong>
           </div>
           <div className="table-wrap">
