@@ -1943,7 +1943,7 @@ In addition, considering that cyanobacteria produce oxygen — 4.23 mmol·gDW⁻
 <h4 class="iter-title"><span class="iter-num">3</span>Cycle 3: A knockout strategy that failed</h4>
 <div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
 
-The alternative to exporting sucrose is to stop the cell from consuming it and let it accumulate for recovery by lysis. We therefore tried knocking out genes that consume sucrose, with the first targets being *glgC* and *invA*, for which the literature reports increases of 15–300% <a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-18">18</a>.
+The alternative to exporting sucrose is to stop the cell from consuming it and let it accumulate for recovery by lysis. We therefore tried knocking out genes that consume sucrose, with the first targets being *glgC* and *invA*, for which the literature reports increases of 15–300% <a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-18">18</a><a class="cite" href="#ref-19">19</a>.
 
 </div></div>
 <div class="iter-row build"><span class="iter-label">Build &amp; test</span><div class="iter-body">
@@ -2087,14 +2087,6 @@ The maximum specific growth rate is taken from the GEM work, while every other v
 
 ## References
 
-<div class="callout warn">
-
-<p class="callout-label">One source we could not resolve</p>
-
-The source document for this page cites a fourth reference, "Xu et al., 2013", for the sucrose increases reported in the knockout literature. We could not match it to a specific paper, so it is not listed below rather than guessed at. The three references we could resolve are cited in its place.
-
-</div>
-
 <ol class="ref-list">
 
 <li id="ref-1">COMSOL AB (2019). <em>COMSOL Multiphysics®</em> v. 5.5, CFD Module. COMSOL AB, Stockholm, Sweden. <a href="https://www.comsol.com" target="_blank" rel="noopener noreferrer">https://www.comsol.com</a></li>
@@ -2115,5 +2107,6 @@ The source document for this page cites a fourth reference, "Xu et al., 2013", f
 <li id="ref-16">Ducat DC, Avelar-Rivas JA, Way JC, Silver PA. Rerouting carbon flux to enhance photosynthetic productivity. <i>Applied and Environmental Microbiology</i>, 78(8):2660–2668, 2012. <a href="https://doi.org/10.1128/AEM.07901-11" target="_blank" rel="noopener noreferrer">doi:10.1128/AEM.07901-11</a></li>
 <li id="ref-17">Santos-Merino M, Yun L, Ducat DC. Cyanobacteria as cell factories for the photosynthetic production of sucrose. <i>Frontiers in Microbiology</i>, 14:1126032, 2023. <a href="https://doi.org/10.3389/fmicb.2023.1126032" target="_blank" rel="noopener noreferrer">doi:10.3389/fmicb.2023.1126032</a></li>
 <li id="ref-18">Kirsch F, Klähn S, Hagemann M. Salt-regulated accumulation of the compatible solutes sucrose and glucosylglycerol in cyanobacteria and its biotechnological potential. <i>Frontiers in Microbiology</i>, 10:2139, 2019. <a href="https://doi.org/10.3389/fmicb.2019.02139" target="_blank" rel="noopener noreferrer">doi:10.3389/fmicb.2019.02139</a></li>
+<li id="ref-19">Xu Y, Guerra LT, Li Z, Ludwig M, Dismukes GC, Bryant DA. Altered carbohydrate metabolism in glycogen synthase mutants of <i>Synechococcus</i> sp. strain PCC 7002: cell factories for soluble sugars. <i>Metabolic Engineering</i>, 16:56–67, 2013. <a href="https://doi.org/10.1016/j.ymben.2012.12.002" target="_blank" rel="noopener noreferrer">doi:10.1016/j.ymben.2012.12.002</a></li>
 
 </ol>
