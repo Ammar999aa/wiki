@@ -3072,8 +3072,35 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   //
   //   </div>
   //   </div>
+  //
+  // The whole block (buttons + active panel) sits in one glass card, styled
+  // to match LiquidGlass (same tint, blur and white edge) but in plain CSS,
+  // since the markdown HTML can't host the React component. No refraction.
+  // Switching is animated by Article.jsx (`switchVectorPanel`): the old
+  // panel fades out, the card's height animates to the new panel's, and the
+  // new panel fades in. `overflow: hidden` is what clips the content while
+  // that height animation runs.
   :global(.vector-tabs) {
     margin-block: 20px;
+    padding: 22px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background-color: rgb(0 0 0 / 0.07);
+    border: 1px solid rgb(255 255 255 / 0.2);
+    box-shadow: inset 0 0 18px rgb(255 255 255 / 0.06);
+    backdrop-filter: brightness(1.1) blur(8px);
+    -webkit-backdrop-filter: brightness(1.1) blur(8px);
+
+    // Same low-performance fallback as LiquidGlass: no backdrop blur.
+    :global(:root[data-perf="low"]) & {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background-color: rgb(16 16 48 / 0.95);
+    }
+
+    @media (max-width: 640px) {
+      padding: 16px;
+    }
   }
 
   :global(.vector-tabs-bar) {
@@ -3121,6 +3148,10 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
     > :first-child {
       margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
     }
   }
 

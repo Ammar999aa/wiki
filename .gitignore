@@ -35,3 +35,6 @@ outputs/page-reports/
 
 # Editable page exports sent to authors (page-export skill)
 outputs/exports/
+
+# Local wet-lab design source export
+/src/assets/Design Wet Lab (2)/

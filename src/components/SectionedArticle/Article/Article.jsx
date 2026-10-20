@@ -80,6 +80,65 @@ function toggleDetails(details, body, anims) {
   };
 }
 
+const TAB_FADE_OUT_MS = 160;
+const TAB_RESIZE_MS = 400;
+const TAB_FADE_IN_MS = 280;
+
+// Show the `.vector-panel` at `index`: the shown panel fades out, the
+// `.vector-tabs` card animates its height to the new panel's, and the new
+// panel fades in. Driven with the Web Animations API (as toggleDetails is)
+// because display:none -> block can't be transitioned in CSS. A click that
+// lands mid-switch retargets from wherever the fade and height currently
+// are, so quick clicks never snap. `runs` holds the latest switch's token
+// and animations per card; a superseded switch stops at its next await.
+async function switchVectorPanel(tabs, panels, index, runs) {
+  const next = panels[index];
+  const current = panels.find((p) => p.classList.contains("is-active"));
+  const prev = runs.get(tabs);
+  if (!next || (current === next && !prev)) return;
+
+  const startHeight = tabs.getBoundingClientRect().height;
+  const startOpacity = current ? parseFloat(getComputedStyle(current).opacity) : 1;
+  prev?.anims.forEach((a) => a.cancel());
+  const run = { anims: [] };
+  runs.set(tabs, run);
+  const play = (el, keyframes, duration, options) => {
+    const anim = el.animate(keyframes, { duration, easing: "ease", ...options });
+    run.anims.push(anim);
+    return anim.finished.catch(() => {}); // cancelled by a newer switch
+  };
+  const superseded = () => runs.get(tabs) !== run;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const swap = () => panels.forEach((p) => p.classList.toggle("is-active", p === next));
+  if (reduced) {
+    swap();
+    runs.delete(tabs);
+    return;
+  }
+
+  if (current && current !== next) {
+    await play(current, [{ opacity: startOpacity }, { opacity: 0 }], TAB_FADE_OUT_MS * startOpacity, {
+      fill: "forwards",
+    });
+    if (superseded()) return;
+    swap();
+    current.getAnimations().forEach((a) => a.cancel()); // drop the fill; it's display:none now
+  }
+
+  // The new panel is in, but the card is still at the old height until we
+  // animate it; measure the height it wants to be at rest.
+  const endHeight = tabs.getBoundingClientRect().height;
+  await Promise.all([
+    play(tabs, [{ height: `${startHeight}px` }, { height: `${endHeight}px` }], TAB_RESIZE_MS),
+    play(next, [{ opacity: current === next ? startOpacity : 0 }, { opacity: 1 }], TAB_FADE_IN_MS, {
+      delay: current === next ? 0 : TAB_RESIZE_MS * 0.15,
+      fill: "backwards",
+    }),
+  ]);
+  if (!superseded()) runs.delete(tabs);
+}
+
 // A section's markdown HTML. Memoized so it only re-renders when the HTML
 // itself changes: React 19 re-applies `innerHTML` whenever this element
 // re-renders with a fresh `dangerouslySetInnerHTML` object, which happened
@@ -94,6 +153,7 @@ export default function ArticleBody({ title, intro, sections, nums, sectionRefs,
   const [person, setPerson] = useState(null); // personFromCard() + initialScroll | null
   const closePerson = useCallback(() => setPerson(null), []);
   const detailsAnims = useRef(new WeakMap());
+  const tabRuns = useRef(new WeakMap());
   const articleRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -216,7 +276,7 @@ export default function ArticleBody({ title, intro, sections, nums, sectionRefs,
       const panels = [...tabs.querySelectorAll(":scope > .vector-panel")];
       const index = buttons.indexOf(tab);
       buttons.forEach((b, i) => b.classList.toggle("is-active", i === index));
-      panels.forEach((p, i) => p.classList.toggle("is-active", i === index));
+      switchVectorPanel(tabs, panels, index, tabRuns.current);
       return;
     }
 

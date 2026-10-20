@@ -2,16 +2,10 @@
 
 In our project, we were working with **three different chassis**: _B. subtilis_, _P. pastoris_, and _S. cerevisiae_. We engineered these organisms using a combination of **genomic recombineering and episomal plasmids**, which allowed us to explore different strategies for stable and inducible heterologous gene expression.
 
-<div class="photo-frame">
-
-![Overview diagram of the three engineered chassis](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/wet-lab-diagrams-1.avif)
-
-</div>
-
 All three chassis were engineered to contain **Dsup** protein stably integrated into their genome for enhanced radiation resistance. Subsequently, the host cells were transformed to express a range of **protein payloads** that can be useful for astronauts during their space missions.
 
 <div class="figure-grid single">
-<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab/wet-lab-diagrams-2-cropped.avif" alt="Protein payload production: a payload gene on a plasmid transformed into a cell carrying genomically integrated Dsup, producing antifreeze proteins, therapeutic nanobodies and fluorescent proteins"></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/project-overview-schematic2.avif" alt="Protein payload production: a payload gene on a plasmid transformed into a cell carrying genomically integrated Dsup, producing antifreeze proteins, therapeutic nanobodies and fluorescent proteins"><figcaption class="caption">Schematic project overview</figcaption></figure>
 </div>
 
 Below, we describe each chassis, the genetic systems used for its engineering, and the proteins selected for recombinant expression.
@@ -65,9 +59,9 @@ Overall, _B. subtilis_ is a versatile bacterial chassis that combines rapid grow
 
 <div class="vector-panel is-active">
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![pBS4S vector map with Dsup insertion](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/pbs4s-map.avif)
+![pBS4S vector map with Dsup insertion](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/pbs4s-vector-map.avif)
 
 </div>
 
@@ -82,6 +76,10 @@ pBS4S vector map with Dsup insertion (via SnapGene)
 - Spectinomycin resistance in _B. subtilis_; ampicillin resistance in _E. coli_ (shuttle vector that can be amplified in _E. coli_)
 - Contains an rfp cassette enabling red/white colony screening in _E. coli_
 
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/genomic-integration-mechanism.avif" alt="Genomic integration: an integration fragment carrying Dsup between homology arms recombines with the target chromosome, replacing the target gene; clone selection yields the integrant"><figcaption class="caption">Mechanism of genomic integration</figcaption></figure>
+</div>
+
 #### PVeg Promoter
 
 In our project, this particular vector was utilized for Dsup integration. Dsup was placed under pVeg, which is a strong, constitutive bacterial promoter that enables continuous gene expression without external induction <a class="cite" href="#ref-1">1</a>. We made this choice to ensure that our organisms are always protected from DNA damage, no matter the growth medium composition.
@@ -90,9 +88,9 @@ In our project, this particular vector was utilized for Dsup integration. Dsup w
 
 <div class="vector-panel">
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![pHT-ads vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/pht-ads-map.avif)
+![pHT-ads vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/pht-ads-vector-map.avif)
 
 </div>
 
@@ -106,6 +104,11 @@ pHT-ads vector map (via SnapGene)
 - Maintained extrachromosomally (episomal plasmid)
 - We utilized this vector for episomal expression of all of our payload proteins in *Bacillus*. This choice was made so that the payload proteins are expressed without permanent integration into the host chromosome, allowing greater flexibility in modifying or replacing expression constructs.
 - Contains a strong IPTG-inducible Pgrac promoter
+
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/pgrac-promoter-mechanism.avif" alt="Pgrac promoter mechanism: with no IPTG, LacI is bound to the operator and RNA polymerase cannot transcribe; with IPTG, LacI is displaced and RNA polymerase transcribes the gene of interest"><figcaption class="caption">Pgrac promoter mechanism of action</figcaption></figure>
+</div>
+
 - LacI-mediated repression, which gets relieved after IPTG induction
 - The payload genes were placed under a Pgrac promoter to enable controlled protein production, allowing cells to first accumulate sufficient biomass before initiating recombinant protein expression. This approach helps minimize the metabolic burden associated with premature protein production and allows us to acquire maximum amounts of the target protein.
 
@@ -138,9 +141,9 @@ Overall, _P. pastoris_ is a highly robust eukaryotic chassis that supports high 
 
 <div class="vector-panel is-active">
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![pPICZ A vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/ppicz-a-map.avif)
+![pPICZ A vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/ppicz-a-vector-map.avif)
 
 </div>
 
@@ -158,9 +161,9 @@ pPICZ A vector map (via SnapGene)
 
 <div class="vector-panel">
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![pPICZα A vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/ppicz-a-a-map.avif)
+![pPICZα A vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/ppicz-alpha-a-vector-map.avif)
 
 </div>
 
@@ -181,6 +184,10 @@ The AOX1 (alcohol oxidase 1) locus is essential for methanol metabolism in _P. p
 The locus is widely utilized for recombinant protein production because AOX1-derived sequences can serve both as regulatory elements for transgene expression and as homology regions for genomic integration.
 
 #### AOX1 Promoter
+
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/paox1-promoter-mechanism.avif" alt="AOX1 promoter mechanism: on glucose or glycerol, Mig1 and Nrg1 repress it and there is no transcription; on methanol, Mrx1, Mit1 and Prm1 are recruited and RNA polymerase II transcribes the gene of interest, giving secreted protein"><figcaption class="caption">AOX1 promoter mechanism of action</figcaption></figure>
+</div>
 
 The AOX1 promoter (pAOX1) is a strong promoter inducible during growth on methanol. The transcription is repressed in the presence of more preferred carbon sources, such as glucose. Under such repressive conditions, basal promoter activity is very low.
 
@@ -214,9 +221,9 @@ In general, _S. cerevisiae_ has a long history of use in food production, biotec
 
 <div class="vector-panel is-active">
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![HO-poly-KanMX4-HO vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/ho-poly-kanmx4-ho-map.avif)
+![HO-poly-KanMX4-HO vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/ho-poly-kanmx4-ho-vector-map.avif)
 
 </div>
 
@@ -254,9 +261,9 @@ As we used HO-poly-KanMX4-HO for Dsup integration, we decided to put GOI under a
 
 <div class="vector-panel">
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![pYES2-HTH vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/pyes2-map.avif)
+![pYES2-HTH vector map](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/pyes2-hth-vector-map.avif)
 
 </div>
 
@@ -277,6 +284,10 @@ pYES2-HTH vector map (via SnapGene)
 
 #### GAL Promoter
 
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/pgal-promoter-mechanism.avif" alt="pGAL mechanism: on glucose, Gal80 masks the Gal4 activation domain and there is no transcription; on galactose, Gal3 sequesters Gal80, freeing the Gal4 activation domain so RNA polymerase II transcribes GAL1"><figcaption class="caption">pGAL mechanism of action</figcaption></figure>
+</div>
+
 Provides inducible expression in response to galactose. This promoter is characterized as a strong, tightly regulated promoter. The system relies on the galactose utilization pathway native to the yeast. The regulation is mediated via Gal4, Gal80, Gal3 regulatory network. In the absence of galactose, the transcriptional activator Gal4 is bound to upstream activating sequences (UAS) within the promoter, but its activation domain is inhibited by Gal80. In the presence of galactose, Gal3 binds galactose and ATP and interacts with Gal80, relieving Gal80-mediated inhibition of Gal4. Active Gal4 subsequently recruits the transcriptional machinery and strongly induces transcription from the promoter.
 
 #### ADH1 Promoter (promoter swap)
@@ -286,7 +297,7 @@ The ADH1 promoter is a strong, constitutive promoter derived from the _S. cerevi
 ## II. Radiation resistance
 
 <figure class="img-aside plain">
-<img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab/tardigrades-1.avif" alt="Tardigrade">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/tardigrade.avif" alt="Tardigrade">
 </figure>
 
 **Damage suppressor (Dsup)** is a chromatin-associated protein natively expressed in the _Ramazzottius varieornatus_ tardigrade. Tardigrades are microscopic invertebrates, which are classified as extremotolerants due to their substincial ability to survive severe environmental stresses, including desiccation and high levels of ionizing radiation. Dsup was discovered during genomic and proteomic characterization of _R. varieornatus_ as an abundant, highly basic nuclear protein capable of associating with DNA. Its identification provided evidence that, in addition to efficient stress-response and repair systems, tardigrades possess proteins capable of directly protecting their genetic material from damage.
@@ -319,7 +330,9 @@ The SV40 NLS is a well-characterized, basic peptide sequence recognized by the e
 
 Through this modification, we aimed to evaluate whether enhanced nuclear localization could increase Dsup association with chromatin and consequently improve its protective activity against radiation-induced DNA damage in _P. pastoris_. In future works, we plan to test similar strategy for the rest of our chassis.
 
-![Chromatin without Dsup, where radiation and oxidative stress cause damaged DNA, beside chromatin with Dsup, where DNA damage is reduced and survival improved](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/dsup-comparison.avif)
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/dsup-mechanism-of-action.avif" alt="Chromatin without Dsup, where radiation and oxidative stress cause damaged DNA, beside chromatin with Dsup, where DNA damage is reduced and survival improved"><figcaption class="caption">Dsup mechanism of action</figcaption></figure>
+</div>
 
 ## III. Payload proteins
 
@@ -335,7 +348,8 @@ Through this modification, we aimed to evaluate whether enhanced nuclear localiz
 <tr><th></th><th scope="col"><i>B. subtilis</i></th><th scope="col"><i>P. pastoris</i></th><th scope="col"><i>S. cerevisiae</i></th></tr>
 </thead>
 <tbody>
-<tr><th scope="row"></th><td colspan="3">Dsup (genomic integration)</td></tr>
+<tr><th scope="row">Dsup</th><td>+ (genomic integration)</td><td>+ (genomic integration)</td><td>+ (genomic integration)</td></tr>
+<tr><th scope="row">Improved NLS Dsup</th><td>-</td><td>+ (genomic integration)</td><td>-</td></tr>
 <tr><th scope="row">Payloads</th><td colspan="3"></td></tr>
 <tr><th scope="row">Nb1_gbHSV</th><td>+</td><td>+</td><td>+</td></tr>
 <tr><th scope="row">Anti-PDL1 Nb</th><td>+</td><td>+</td><td>+</td></tr>
@@ -378,7 +392,7 @@ Through this modification, we aimed to evaluate whether enhanced nuclear localiz
 
 <div class="photo-frame light">
 
-![SignalP prediction for the FfIBP signal peptide](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/ffibp-signalp.avif)
+![SignalP prediction for the FfIBP signal peptide](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/signalp-ffibp-prediction.avif)
 
 </div>
 
@@ -396,6 +410,10 @@ Amino acid sequence:
 
 In each of our constructs, we replaced this secretion signal with secretion signals native to our chassis (*amyQ* for *Bacillus* and the α-factor secretion signal for the two yeasts)
 
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/amyq-secretion-tag-mechanism.avif" alt="AmyQ secretion in Bacillus: synthesis with chaperone, SecA recognition of the signal peptide, then SecYEG translocation, cleavage and folding to give the secreted protein of interest"><figcaption class="caption">AmyQ secretion tag mechanism of action</figcaption></figure>
+</div>
+
 #### LeIBP
 
 <div class="structure-3d" data-structure="leibp-3uyv" data-pdb="3UYV" data-label="LeIBP (Leucosporidium sp. AY30)"></div>
@@ -407,7 +425,7 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 
 <div class="photo-frame light">
 
-![SignalP prediction for the LeIBP signal peptide](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/leibp-signalp.avif)
+![SignalP prediction for the LeIBP signal peptide](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/signalp-leibp-prediction.avif)
 
 </div>
 
@@ -424,6 +442,10 @@ Amino acid sequence:
 <p class="seq-key"><span class="seq-signal">Green</span> — signaling peptide for secretion</p>
 
 In each of our constructs, we replaced this secretion signal with secretion signals native to our chassis (*amyQ* for *Bacillus* and the α-factor secretion signal for the two yeasts)
+
+<div class="figure-grid single wide">
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/alpha-factor-secretion-mechanism.avif" alt="α-factor secretion in yeast: synthesis, ER entry and pre-cleavage, Golgi processing by Kex2 and Ste13/DAP-A, then secretion of the mature protein of interest"><figcaption class="caption">α-factor secretion signal mechanism of action</figcaption></figure>
+</div>
 
 #### mCherry
 
@@ -447,8 +469,8 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 
 #### Polyhistidine Tag
 
-<figure class="img-aside">
-<img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab/nickel-resin.avif" alt="Nickel-agarose resin">
+<figure class="img-aside plain">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/ni-nta-resin-column.avif" alt="Nickel-agarose resin">
 <figcaption class="caption">Image credit: Nickel-agarose resin image by Pdcook, licensed under CC BY-SA 3.0. Source: <a href="https://commons.wikimedia.org/wiki/File:Nickel_resin.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></figcaption>
 </figure>
 
@@ -456,8 +478,8 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 
 #### c-Myc Epitope Tag
 
-<figure class="img-aside">
-<img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab/western-blot.avif" alt="Western blot wet transfer system">
+<figure class="img-aside plain">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/western-blot-transfer-system.avif" alt="Western blot wet transfer system">
 <figcaption class="caption">Image credit: Western blot wet transfer system image by Lilly M, licensed under CC BY-SA 3.0. Source: <a href="https://commons.wikimedia.org/wiki/File:Western_blot_wet_transfer_system_Criterion-02.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></figcaption>
 </figure>
 
@@ -471,7 +493,7 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 
 <div class="photo-frame light">
 
-![HRV 3C protease recognition sequence](https://static.igem.wiki/teams/6341/wiki/content/wet-lab/hrv3c-site.avif)
+![HRV 3C protease recognition sequence](https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/hrv-3c-cleavage-site.avif)
 
 </div>
 

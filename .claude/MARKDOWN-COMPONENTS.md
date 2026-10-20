@@ -72,7 +72,7 @@ be none — see `.flow` below).
 | The one sentence that interprets a figure or table                                                             | `.caption`                                                      | Bold "Figure N." + muted mono text, pulled up close under it              |
 | A row of figures, each with its own caption                                                                    | `.figure-grid`                                                  | Even columns of matted photos with captions, optional equal heights       |
 | Parallel items whose full text is too long to show inline (features, subsystems)                               | `.popup-grid` + `.popup-card`                                   | Clickable tiles; each opens its hidden content in a popup                 |
-| Variants of one thing, each with a long block of content to compare in place (a chassis' expression vectors)  | `.vector-tabs` + `.vector-tab` / `.vector-panel`                | A row of small pill buttons; the matching panel appears below             |
+| Variants of one thing, each with a long block of content to compare in place (a chassis' expression vectors)  | `.vector-tabs` + `.vector-tab` / `.vector-panel`                | A glass card: a row of small pill buttons; the matching panel fades in below, the card resizing smoothly |
 | A small figure that should sit beside its text, not under it                                                  | `.img-aside`                                                    | Matted figure floated to the side, stacking on phones                     |
 | A protein's amino acid sequence, with its signal peptide marked                                               | `.seq` (+ `.seq-signal`, `.seq-key`)                            | Monospace block that breaks anywhere; the signal peptide in green         |
 | A protein structure worth showing as a figure                                                                 | `.structure-3d`                                                 | The real published structure, rotatable, over the page background         |
@@ -767,6 +767,12 @@ Panel markdown...
 </div>
 </div>
 ```
+
+The whole block renders as one liquid-glass card (plain CSS matching
+`LiquidGlass`, no refraction). Switching fades the old panel out, animates
+the card's height to the new panel's, then fades the new one in
+(`switchVectorPanel` in `Article.jsx`); reduced-motion readers get an
+instant swap.
 
 **Don't** use it for content a reader needs to read straight through —
 anything hidden behind a tab is content most readers won't see.
