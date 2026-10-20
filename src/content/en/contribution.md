@@ -1,4 +1,28 @@
-## Radiation resistance tests
+## Parts contribution
+
+<div class="chip-row">
+<span class="chip">Wet Lab · Parts</span>
+<span class="chip amber"><i>B. subtilis</i></span>
+<span class="chip amber"><i>P. pastoris</i></span>
+<span class="chip amber"><i>S. cerevisiae</i></span>
+</div>
+
+We developed a collection of basic and composite parts for the iGEM Registry across three microbial chassis: *Bacillus subtilis*, *Pichia pastoris*, and *Saccharomyces cerevisiae*, including:
+
+<div class="table-wrap">
+<table class="kv-table"><tbody>
+<tr><th scope="row">Cellular protection</th><td>Dsup variants for improving stress tolerance</td></tr>
+<tr><th scope="row">Antifreeze proteins</th><td>FfIBP and LeIBP</td></tr>
+<tr><th scope="row">Therapeutic nanobodies</th><td>Anti-HSV and anti-PD-L1</td></tr>
+<tr><th scope="row">Fluorescent reporters</th><td>GFP and mCherry</td></tr>
+<tr><th scope="row">Regulatory and expression elements</th><td>Promoters, secretion signals, purification tags, and modified plasmid backbones</td></tr>
+<tr><th scope="row">Composite constructs</th><td>Designed for protein expression, secretion, and genomic integration across bacterial and yeast systems</td></tr>
+</tbody></table>
+</div>
+
+For further information, visit our <a href="/kaust-ksa/parts">Parts</a> page.
+
+## Radiation resistance testing
 
 <div class="chip-row">
 <span class="chip">Wet Lab · Protocols</span>
@@ -7,7 +31,7 @@
 <span class="chip amber"><i>P. pastoris</i></span>
 </div>
 
-We optimized experimental workflows for evaluating microbial resistance to UV and X-ray irradiation for the following three organisms: *Bacillus subtilis*, *Saccharomyces cerevisiae*, and *Pichia pastoris*. The protocol collection includes sample preparation, irradiation conditions, subsequent viability assays (resazurin, FUN-1 dye, and colony-forming unit (CFU) assays), and comet assays.
+We optimized experimental workflows for evaluating microbial resistance to UV and X-ray irradiation in *B. subtilis*, *S. cerevisiae*, and *P. pastoris*. Our protocols cover sample preparation, irradiation conditions, viability assays (resazurin, FUN-1 staining, and colony-forming unit assays), and comet assays.
 
 <div class="panel">
 <div class="panel-title"><span>Workflow covered by the protocols</span><span>3 chassis</span></div>
@@ -22,7 +46,14 @@ We optimized experimental workflows for evaluating microbial resistance to UV an
 </div>
 </div>
 
-Throughout this project, we were able to identify and highlight the main aspects and challenges of performing these experiments for the above-mentioned chassis. By sharing our optimized protocols, observations, and recommendations, we hope to provide future iGEM teams with a reproducible framework for evaluating radiation resistance of their genetically engineered/wild-type microorganisms.
+Throughout the project, we identified key challenges and practical considerations when performing radiation resistance experiments across these three chassis. To support future iGEM teams, we developed two complementary resources:
+
+<div class="figure-grid" style="--cols: 2;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/uv-xray-irradiation-guide-cover.avif" alt="Cover of the Guide to UV and X-ray experiments in microbes, with the SHIHAB logo on a dark background with blue and purple light ribbons"></div><figcaption class="caption"><strong>Figure 1. UV and X-ray irradiation guide.</strong> A practical introduction to setting up and conducting irradiation experiments, showing essential considerations and common challenges. Find it on our <a href="/kaust-ksa/measurement">Measurement</a> page.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/radiation-resistance-handbook-cover.avif" alt="Cover of the Radiation resistance testing Handbook, with the SHIHAB logo on a white background with purple waves"></div><figcaption class="caption"><strong>Figure 2. Radiation resistance experimental handbook.</strong> A detailed collection of experimental protocols, optimized procedures, observations, and recommendations for evaluating microbial radiation resistance. Find it on our <a href="/kaust-ksa/results">Results</a> page.</figcaption></figure>
+</div>
+
+We aim to provide future teams with a reproducible framework for investigating radiation resistance in wild-type and genetically engineered microorganisms.
 
 ## Protein expression and ÄKTA purification handbook
 
@@ -32,7 +63,7 @@ Throughout this project, we were able to identify and highlight the main aspects
 <span class="chip amber"><i>B. subtilis</i></span>
 </div>
 
-We developed a practical handbook covering recombinant protein expression, secretion, and purification in *P. pastoris* and *B. subtilis*. Other iGEMers and scientists can use the handbook to facilitate their research related to any kind of protein purification in similar settings.
+We compiled a practical handbook covering recombinant protein expression, secretion, and purification in *P. pastoris* and *B. subtilis*. Other iGEMers and scientists can use the handbook to facilitate their research related to any kind of protein purification in similar settings.
 
 <div class="panel">
 <div class="panel-title"><span>Step-by-step guidance in the handbook</span><span>Expression → purification</span></div>
@@ -52,7 +83,7 @@ We developed a practical handbook covering recombinant protein expression, secre
 We also provide guidance on preparing buffers for ÄKTA immobilized metal affinity chromatography (IMAC) and various other recommendations, such as notes on storing purified proteins.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/handbook.avif" alt="Cover of the Practical Protein Expression and ÄKTA Purification Handbook for P. pastoris and B. subtilis, showing an ÄKTA pure chromatography system"></div><figcaption class="caption"><strong>Figure 1. Cover of our Practical Protein Expression and ÄKTA Purification Handbook for <i>P. pastoris</i> and <i>B. subtilis</i>.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/protein-expression-akta-handbook-cover.avif" alt="Cover of the Protein expression and ÄKTA purification Handbook, with the SHIHAB logo on a white background with purple waves"></div><figcaption class="caption"><strong>Figure 3. Cover of our Protein Expression and ÄKTA Purification Handbook for <i>P. pastoris</i> and <i>B. subtilis</i>.</strong> Find it on our <a href="/kaust-ksa/measurement">Measurement</a> page.</figcaption></figure>
 </div>
 
 ## Safety handbook
@@ -66,7 +97,11 @@ We also provide guidance on preparing buffers for ÄKTA immobilized metal affini
 
 We developed a biosafety handbook for safe handling and genetic engineering of *P. pastoris*, *S. cerevisiae*, and *B. subtilis* in laboratory settings. The handbook contains specific safety considerations, waste management, safe handling, etc. We hope that it will help future iGEM teams implement responsible laboratory practices and integrate biosafety considerations into their lab work.
 
-See how these practices fit into SHIHAB as a whole on our <a href="/kaust-ksa/safety-and-security">Safety</a> page.
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/safety-manual-cover.avif" alt="Cover of the Safety Manual, with the SHIHAB logo on a white background with purple waves"></div><figcaption class="caption"><strong>Figure 4. Cover of our Safety Manual.</strong> A laboratory safety and biological waste management guide for <i>B. subtilis</i>, <i>S. cerevisiae</i>, and <i>P. pastoris</i>.</figcaption></figure>
+</div>
+
+You can find more information, and see how these practices fit into SHIHAB as a whole, on our <a href="/kaust-ksa/safety-and-security">Safety</a> page.
 
 ## Gene mining pipeline
 
@@ -74,49 +109,28 @@ See how these practices fit into SHIHAB as a whole on our <a href="/kaust-ksa/sa
 <span class="chip">Dry Lab · Software</span>
 </div>
 
-Our contribution is the analysis and filtration pipeline from the genome database of the Empty Quarter samples. We worked on the scoring layer and the scripts that audit the output of the filtration step, looking for mistakes. These filtration and auditing layers are packaged as a reusable workflow that other dry lab teams can use.
+We identified 19 candidate genes from Empty Quarter metagenomic samples with potential applications in improving microbial tolerance to environmental stress. These candidates were identified through a computational pipeline involving sequence filtering, functional annotation, and candidate evaluation.
 
 <div class="panel">
 <div class="panel-title"><span>Pipeline</span><span>Reusable workflow</span></div>
 <div class="flow">
-<span class="flow-node">Empty Quarter genome database</span>
+<span class="flow-node">Empty Quarter metagenomic samples</span>
 <span class="flow-arrow">→</span>
-<span class="flow-node">Filtration</span>
+<span class="flow-node">Sequence filtering</span>
 <span class="flow-arrow">→</span>
-<span class="flow-node">Scoring layer</span>
+<span class="flow-node">Functional annotation</span>
 <span class="flow-arrow">→</span>
-<span class="flow-node amber">Audit scripts</span>
+<span class="flow-node amber">Candidate evaluation</span>
 </div>
 </div>
-
-When we ran the audit scripts, 53 candidates became 45:
 
 <div class="stat-grid">
-<div><strong>53</strong><span>Candidates before the audit</span></div>
-<div class="hi"><strong>45</strong><span>Candidates after the audit</span></div>
+<div class="hi"><strong>19</strong><span>Candidate genes</span></div>
 </div>
 
-<div class="card-grid row">
+With this, we aim to provide future iGEM teams with a collection of promising genes to further investigate, characterize, and potentially incorporate into their own projects.
 
-<div>
-
-#### *recA*
-
-The audit caught our own recommended DNA-repair pick: *recA* at composite 0.85 is 49% of full length, and was flagged as a probable pseudogene.
-
-</div>
-
-<div>
-
-#### DUF3494
-
-The audit layer highlighted our most quotable claim, a DUF3494 ice-binding domain, which is really a 1,349 aa surface-adhesion protein with no independent eggNOG support.
-
-</div>
-
-</div>
-
-The full pipeline and its results are on our <a href="/kaust-ksa/software">Software</a> page.
+Explore the pipeline and its results on our <a href="/kaust-ksa/software">Software</a> page.
 
 ## GEM models
 
@@ -125,7 +139,7 @@ The full pipeline and its results are on our <a href="/kaust-ksa/software">Softw
 <span class="chip amber"><i>B. subtilis</i></span>
 </div>
 
-What we can hand to other teams is the repaired *Bacillus* genome-scale metabolic model (GEM).
+We improved the published *Bacillus subtilis* genome-scale metabolic model (iBsu1147) by addressing limitations in its representation of anaerobic metabolism.
 
 <div class="two-col-tracks">
 
@@ -133,19 +147,21 @@ What we can hand to other teams is the repaired *Bacillus* genome-scale metaboli
 
 #### iBsu1147 as published
 
-Produces no biomass at all without oxygen, which is a gap in the model itself, since the organism can survive with anaerobic respiration.
+Two oxygen-dependent reactions prevented the model from predicting anaerobic biomass production.
 
 </div>
 
 <div>
 
-#### Our repair
+#### Our update
 
-We traced the gap to two oxygen-dependent steps and gave them electron acceptors *B. subtilis* uses.
+We modified the two reactions to account for alternative electron acceptors used by *B. subtilis*.
+
+</div>
 
 </div>
 
-</div>
+This updated model provides future teams with a more suitable starting point for investigating microbial metabolism under oxygen-limited conditions.
 
 The two reactions and how we found them are described in <a href="/kaust-ksa/model#gapfill">the gap-filling section</a> of our Modeling page.
 
@@ -155,7 +171,7 @@ The two reactions and how we found them are described in <a href="/kaust-ksa/mod
 <span class="chip">Education · Framework</span>
 </div>
 
-We developed a structured and replicable mentorship program framework to help future iGEM teams establish and manage their own educational programs. To make the program easily adaptable, we compiled a comprehensive set of resources, including:
+We created a structured and replicable mentorship program framework to help future iGEM teams establish and manage their own educational programs. To make the program easily adaptable, we compiled a comprehensive set of resources, including:
 
 <div class="chip-row">
 <span class="chip amber">Mentor guidelines</span>
@@ -164,7 +180,25 @@ We developed a structured and replicable mentorship program framework to help fu
 <span class="chip amber">Entry &amp; exit feedback forms</span>
 </div>
 
-The feedback forms assess participants' learning experiences and progress. All materials are openly available for future teams to access, modify, and implement in their own mentorship programs. With this work, we aim to promote accessibility of synthetic biology education.
+The feedback forms assess participants' learning experiences and progress, and the framework includes more besides. All materials are openly available for future teams to access, modify, and implement in their own mentorship programs. With this work, we aim to promote accessibility of synthetic biology education.
+
+<div class="table-wrap">
+
+| No. | Document | File |
+| --- | -------- | ---- |
+| 00 | Implementation Guide | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/00-implementation-guide.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 01 | Mentor Guidelines | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/01-mentor-guidelines-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 02 | Code of Conduct: Mentors | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/02-code-of-conduct-mentors-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 03 | Code of Conduct: Mentees | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/03-code-of-conduct-mentees-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 04 | Mentee Expectations | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/04-mentee-expectations-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 05 | Weekly Curriculum Framework | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/05-weekly-curriculum-framework-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 06 | Matching Logic and Intake Forms | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/06-matching-logic-and-intake-forms-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 07 | Email Template Pack | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/07-email-template-pack.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 08 | Parental Consent Form | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/08-parental-consent-form-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 09 | Entry and Exit Feedback Templates | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/09-entry-exit-feedback-templates.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| 10 | Certificate of Completion | <a href="https://static.igem.wiki/teams/6341/wiki/content/contribution/mentorship-framework/10-certificate-of-completion-template.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+
+</div>
 
 Read about the programs themselves on our <a href="/kaust-ksa/education">Education</a> page.
 
@@ -174,7 +208,7 @@ Read about the programs themselves on our <a href="/kaust-ksa/education">Educati
 <span class="chip">Human Practices · Analysis</span>
 </div>
 
-We developed a regulatory analysis to help future iGEM teams understand the requirements and challenges involved in translating synthetic biology innovations beyond the laboratory. Using SHIHAB as a case study, we explored:
+We conducted a regulatory analysis to help future iGEM teams understand the requirements and challenges involved in translating synthetic biology innovations beyond the laboratory. Using SHIHAB as a case study, we explored:
 
 <div class="chip-row">
 <span class="chip amber">Biosafety oversight</span>
@@ -191,4 +225,33 @@ Our analysis also examined existing regulatory gaps and emerging challenges asso
 
 </div>
 
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/future-regulatory-developments-cover.avif" alt="Cover of the Future Regulatory Developments document, with the SHIHAB logo on a white background with teal waves"></div><figcaption class="caption"><strong>Figure 5. Cover of our Future Regulatory Developments document.</strong> Space-based biomanufacturing of therapeutic and functional proteins in engineered yeast and bacteria, covering the United States (FDA) and Saudi Arabia (SFDA), including international space-law and biosafety requirements.</figcaption></figure>
+</div>
+
 Read the full analysis on our <a href="/kaust-ksa/human-practices">Integrated Human Practices</a> page.
+
+## Hardware
+
+<div class="chip-row">
+<span class="chip">Engineering · Bioreactor</span>
+</div>
+
+We designed a compact, affordable, and modular bioreactor and shared resources to help future iGEM teams reproduce and adapt our hardware. These include:
+
+<div class="chip-row">
+<span class="chip amber">CAD files</span>
+<span class="chip amber">Bill of materials</span>
+<span class="chip amber">Circuit diagrams</span>
+<span class="chip amber">Arduino code</span>
+<span class="chip amber">COMSOL simulation models</span>
+<span class="chip amber">Temperature and pH control test results</span>
+</div>
+
+Additionally, we prepared a step-by-step bioreactor assembly manual to guide teams through the construction and integration of the different hardware components. Together, these resources provide a practical starting point for future teams, helping reduce development time and costs.
+
+<div class="figure-grid single">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/contribution/hardware-manual-cover.avif" alt="Cover of the Hardware Manual, with the SHIHAB logo and a render of the bioreactor prototype in an open wooden case, on a white background with dark red waves"></div><figcaption class="caption"><strong>Figure 6. Cover of our Hardware Manual.</strong> Step-by-step instructions for assembling SHIHAB's bioreactor prototype.</figcaption></figure>
+</div>
+
+Read more on our <a href="/kaust-ksa/hardware">Hardware</a> page.
