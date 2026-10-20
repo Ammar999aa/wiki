@@ -7,6 +7,7 @@ import BioreactorModel from "./BioreactorModel";
 import BioreactorDashboard from "./components/BioreactorDashboard";
 import WorkflowDiagram from "./components/WorkflowDiagram";
 import { GrowthChart, PhChart, TempChart } from "./components/ValidationCharts";
+import styles from "./Hardware.module.scss";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
@@ -46,7 +47,8 @@ function withSlots(section) {
 
 const sections = rawSections.map(withSlots);
 
-const media = "https://static.igem.wiki/teams/6341/wiki/content/hardware/";
+// Hosted on iGEM Video Universe (video.igem.org), as wiki videos must be.
+const DESERT_VIDEO_ID = "czwcZyskQpAkvMVoSaGwVr";
 
 // Figures 1 and 2 sit between the title and the first section, so they go
 // through the `intro` slot rather than hardware.md,
@@ -68,17 +70,19 @@ function TopFigures() {
       </div>
       <div className="figure-grid single wide">
         <figure>
-          <div className="photo-frame">
-            <img
-              src={`${media}desert-test.webp`}
-              alt="The real SHIHAB set-up on a folding table in the desert: the bioreactor, syringe pumps and tubing, with sand dunes behind"
+          <h3 className={styles.desertTitle}>We took SHIHAB to the desert!</h3>
+          <div className={styles.desertVideo}>
+            <iframe
+              src={`https://video.igem.org/videos/embed/${DESERT_VIDEO_ID}`}
+              title="We took SHIHAB to the desert: the real set-up tested on the dunes"
+              allow="fullscreen; picture-in-picture"
+              allowFullScreen
               loading="lazy"
             />
           </div>
           <figcaption className="caption">
-            <strong>Figure 2. We took SHIHAB to the desert!</strong> The real set-up, with the bioreactor
-            and the syringe pumps, tested out on the dunes, exactly the kind of remote place it is built
-            for.
+            <strong>Figure 2.</strong> The real set-up, with the bioreactor and the syringe pumps, tested
+            out on the dunes, exactly the kind of remote place it is built for.
           </figcaption>
         </figure>
       </div>
