@@ -205,6 +205,8 @@ For our first season we had 5 episodes on topics ranging from extremophiles to t
 
 To keep the episodes accessible to everyone, we uploaded them on our YouTube channel and used simplified, plain language in both Arabic and English. Each episode runs 45 minutes to an hour.
 
+Watch the whole season on our <a href="https://www.youtube.com/playlist?list=PLEIqznf-dLnM" target="_blank" rel="noopener noreferrer">Life in Orbit playlist on YouTube</a>.
+
 <div class="chip-row">
 <span class="chip">On YouTube</span>
 <span class="chip">Arabic and English</span>
@@ -568,7 +570,7 @@ During the same period, our page received 220 page views from 103 unique visitor
 
 Tawasol (تواصل) means "connection." Every year, iGEM teams across the MENA region do valuable outreach, often in Arabic and often for audiences hearing about synthetic biology for the first time, but most of it happens in isolation. Each team builds its own glossary, its own infographics and its own surveys, and much of that work is lost when the season ends.
 
-Tawasol began with the <a href="/kaust-ksa/education#tawasol-hackathon">Tawasol Hackathon</a>, which KAUST iGEM co-organized with NYU Abu Dhabi iGEM in August 2026. Building on that partnership, KAUST iGEM launched the Tawasol Initiative to connect MENA iGEM teams into a regional coalition with four goals:
+Tawasol began with the <a href="/kaust-ksa/human-practices">Tawasol Hackathon</a>, which KAUST iGEM co-organized with NYU Abu Dhabi iGEM in August 2026. Building on that partnership, KAUST iGEM launched the Tawasol Initiative to connect MENA iGEM teams into a regional coalition with four goals:
 
 <ol class="goals">
 

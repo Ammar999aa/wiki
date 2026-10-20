@@ -298,6 +298,22 @@ const PROGRAMS = [
     ),
   },
   {
+    id: "oboor-sister-program",
+    title: "Oboor Sister Program",
+    audience: "Saudi students heading to university",
+    icon: (
+      <>
+        <path className={s.s} d="M8 80h26M86 80h26" opacity=".55" />
+        <path className={cx(s.s, s.blue)} d="M20 80Q60 4 100 80" />
+        <circle className={s.fillPrimary} cx="20" cy="80" r="6" />
+        <circle className={s.fillBlue} cx="100" cy="80" r="6" />
+        <circle className={s.fillAmber} r="5">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M20 80Q60 4 100 80" />
+        </circle>
+      </>
+    ),
+  },
+  {
     id: "school-outreach",
     title: "School Outreach",
     audience: "Middle and high school students",
@@ -310,46 +326,6 @@ const PROGRAMS = [
         <path className={s.s} d="M52 90V72h16v18" />
         <path className={cx(s.s, s.amber)} d="M60 40V16" />
         <path className={cx(s.fillAmber, s.wave)} d="M60 17h16l-5 6 5 6H60z" />
-      </>
-    ),
-  },
-  {
-    id: "summer-mentorship-program",
-    title: "Summer Mentorship",
-    audience: "High school and undergraduates",
-    icon: (
-      <>
-        <g className={s.rays}>
-          <path className={cx(s.s, s.amber)} d="M60 8v10M60 82v10M10 50h10M100 50h10M24 14l7 7M89 79l7 7M96 14l-7 7M31 79l-7 7" />
-        </g>
-        <circle className={s.fillAmber} cx="60" cy="50" r="17" />
-        <g className={s.grow}>
-          <path className={cx(s.s, s.blue)} d="M60 94V74" />
-          <path className={cx(s.s, s.blue)} d="M60 80c-9 0-13-5-13-12 9 0 13 5 13 12z" />
-          <path className={cx(s.s, s.blue)} d="M60 76c0-8 5-12 13-12 0 8-5 12-13 12z" />
-        </g>
-      </>
-    ),
-  },
-  {
-    id: "tawasol-hackathon",
-    title: "Tawasol Hackathon",
-    audience: "Grades 10–12 and undergraduates",
-    icon: (
-      <>
-        <path className={s.s} d="M24 70L60 24l38 46M24 70h74" opacity=".55" />
-        <circle className={cx(s.fillPrimary, s.beat)} cx="60" cy="24" r="9" />
-        <circle className={cx(s.fillBlue, s.beat)} cx="24" cy="70" r="9" style={{ animationDelay: ".5s" }} />
-        <circle className={cx(s.fillAmber, s.beat)} cx="98" cy="70" r="9" style={{ animationDelay: "1s" }} />
-        <circle className={s.fillBlue} r="3.5">
-          <animateMotion dur="2.4s" repeatCount="indefinite" path="M24 70L60 24" />
-        </circle>
-        <circle className={s.fillAmber} r="3.5">
-          <animateMotion dur="2.4s" begin=".8s" repeatCount="indefinite" path="M60 24L98 70" />
-        </circle>
-        <circle className={s.fillPrimary} r="3.5">
-          <animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite" path="M98 70H24" />
-        </circle>
       </>
     ),
   },

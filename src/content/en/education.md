@@ -77,6 +77,61 @@ Our booth ran **Copy Paste Plants**, a hands-on plant cloning activity that intr
 <img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/copy-paste-plant/37037389-3cef-41a3-b3d7-995bc80f3b80.avif" alt="Copy Paste Plants at the Sustainability Family Food Night" loading="lazy">
 </div>
 
+## Oboor Sister Program
+
+### Why we started
+
+Oboor (<span lang="ar" dir="rtl">عبور</span>) means “transition” in Arabic. It is a university adaptation program developed by Renad Almalki, a master’s researcher in counseling psychology at Umm Al-Qura University, as a sister program to the iGEM KAUST Summer Mentorship Program.
+
+The transition from high school to university is a major step, and it brings uncertainty and anxiety. Oboor gives Saudi students enrolled in our Summer Mentorship Program the tools and space to cope with these anxieties and prepare for university life.
+
+<div class="stat-grid">
+<div class="hi"><strong>7</strong><span>Students from the Mentorship Program</span></div>
+<div><strong>4</strong><span>Group sessions</span></div>
+</div>
+
+### Structure
+
+Renad recruited seven students from the Mentorship Program and ran four group sessions, each one a step across the bridge from high school to university.
+
+<div class="flow">
+<span class="flow-node amber">High school</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Stress Resilience</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Strategic Performance</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Cognitive Flexibility</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node">Psychological Toolkits</span>
+<span class="flow-arrow">→</span>
+<span class="flow-node amber">University</span>
+</div>
+
+<ol class="goals">
+
+<li>
+
+**Stress Resilience:** mastering emotional regulation and developing coping mechanisms for stress.
+
+</li>
+<li>
+
+**Strategic Performance:** time management and academic management skills.
+
+</li>
+<li>
+
+**Cognitive Flexibility:** identifying fixed mindsets and reframing them into learning milestones.
+
+</li>
+<li>
+
+**Psychological Toolkits:** equipping students with behavioral and counseling tools.
+
+</li>
+</ol>
+
 ## School outreach
 
 ### Overview
@@ -175,21 +230,6 @@ The lecture and workshop were delivered in simplified, clear Arabic. Engagement 
 <img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a7258.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
 </div>
 
-#### What students took away
-
-The pre- and post-lecture surveys showed that students learned and understood the topic.
-
-<div class="stat-grid">
-<div><strong>80%</strong><span>Didn't know what proteins were, before the lecture</span></div>
-<div class="hi"><strong>90%</strong><span>Understood the function of proteins, after it</span></div>
-</div>
-
-<div class="caption">
-
-**Figure 4.** Middle school students' pre- and post-lecture survey results on proteins.
-
-</div>
-
 <!-- school:astrolabe -->
 
 #### What's next
@@ -225,7 +265,7 @@ As at Thuwal, the session paired the lecture, with its before-and-after assessme
 
 <div class="caption">
 
-**Figure 5.** The Jeddah session moved from the Biomission in Space lecture to decoding a gene together as a class.
+**Figure 4.** The Jeddah session moved from the Biomission in Space lecture to decoding a gene together as a class.
 
 </div>
 
@@ -237,26 +277,44 @@ We are still analyzing the Jeddah pre- and post-lecture surveys. Results will be
 
 </div>
 
-## Summer Mentorship Program
+### Lectures and materials
 
-### Overview
+The slides, activity cards and handouts we used with the Thuwal and Jeddah students are open for anyone running a similar session. Lectures and activity cards come in Arabic and English.
 
-Synthetic biology is still not widely recognized as a career path in Saudi Arabia, and many interested students have no one to ask. From June 21 to August 30, 2026, we ran the KAUST iGEM Summer Mentorship Program for high school and undergraduate students from across the region.
+#### Middle school
 
-### Program structure
+<div class="table-wrap">
 
-Mentees were paired with graduate students, professors, research scientists and industry experts, and chose one of two tracks:
+| Material | Arabic | English |
+| -------- | ------ | ------- |
+| Lecture | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/thuwal-science-pioneer-program-2-compressed.pdf" target="_blank" rel="noopener noreferrer">PDF</a> | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/international-students-middle-school-3-compressed.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| Hands-on activity: Space Microbe cards | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/igem-kaust-space-microbe-activity-cards-arabic.pdf" target="_blank" rel="noopener noreferrer">PDF</a> | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/jeddah-schools/igem-kaust-space-microbe-activity-cards.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
 
-<span class="chip">Applied Projects</span>
-<span class="chip">Learning Journeys</span>
+</div>
 
-Alongside mentoring, we hosted a lecture series introducing students to interdisciplinary STEM fields:
+#### High school
 
-<span class="chip amber">Genomics</span>
-<span class="chip amber">Microbiology</span>
-<span class="chip amber">Marine biology</span>
-<span class="chip amber">Bioinformatics</span>
-<span class="chip amber">Synthetic biology</span>
+<div class="table-wrap">
+
+| Material | Arabic | English |
+| -------- | ------ | ------- |
+| Lecture | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/compressed.pdf" target="_blank" rel="noopener noreferrer">PDF</a> | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/international-students-high-school-2-compressed.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| Debate questions | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/.pdf" target="_blank" rel="noopener noreferrer">PDF</a> | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/cases-for-debates-high-school.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+
+</div>
+
+#### Supplementary material
+
+<div class="table-wrap">
+
+| Material | File |
+| -------- | ---- |
+| iGEM KAUST stickers | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/igem-kaust-stickers-4.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| SHIHAB stickers | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/shihab-stickers.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| Thuwal student name tags | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/thuwal-school-student-name-tags.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+| iGEM KAUST team name tags | <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-sessions/igem-kaust-name-tags.pdf" target="_blank" rel="noopener noreferrer">PDF</a> |
+
+</div>
 
 ## Kallpa Multiplier Mentorship (Peru)
 
@@ -338,7 +396,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 <div class="caption">
 
-**Figure 6.** Concepts such as CRISPR, CRISPRi, RNAi and GMOs were understood. Translating them to rural contexts still needs more preparation and practice.
+**Figure 5.** Concepts such as CRISPR, CRISPRi, RNAi and GMOs were understood. Translating them to rural contexts still needs more preparation and practice.
 
 </div>
 
@@ -346,7 +404,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 <div class="caption">
 
-**Figure 7.** Volunteers felt most prepared to explain GMO benefits and risks in a balanced way, and least prepared to discuss GMO regulation in Peru. Even so, they indicated they felt capable of engaging in conversations that allow farmers to form their own opinions.
+**Figure 6.** Volunteers felt most prepared to explain GMO benefits and risks in a balanced way, and least prepared to discuss GMO regulation in Peru. Even so, they indicated they felt capable of engaging in conversations that allow farmers to form their own opinions.
 
 </div>
 
@@ -512,54 +570,6 @@ Practice with role-playing and simulations, then pass it on to the next mentor.
 </div>
 
 Reuse and adapt it freely, giving credit to the Kallpa Multiplier Mentorship · KAUST iGEM.
-
-## Tawasol Hackathon
-
-### Overview
-
-<blockquote>
-
-Once a powerful new biotechnology exists, who decides how it is used safely?
-
-</blockquote>
-
-The Tawasol Hackathon, held August 28–30, 2026 and co-organized with NYU Abu Dhabi iGEM, asked high school (grades 10–12) and undergraduate students a question most students never get to consider. Teams focused on the governance of SHIHAB, our platform for in-situ biomanufacturing of medicines for space missions and remote settings on Earth.
-
-The hackathon began as the SHIHAB Horizon Hackathon and was renamed Tawasol (تواصل, "connection") when NYU Abu Dhabi iGEM joined as co-organizer. It became the first project of the Tawasol Initiative, our coalition of MENA iGEM teams, described on our <a href="/kaust-ksa/science-communication#tawasol-uniting-mena-igem-teams">Science Communication page</a>.
-
-### Structure
-
-The hackathon ran as a virtual pitch sprint followed by a hybrid Grand Finale in the KAUST B20 lobby. Teams chose one of three tracks:
-
-<div class="card-grid">
-
-<div>
-
-#### Track A — Safety and Containment
-
-How to keep engineered organisms safe in closed or extreme environments.
-
-</div>
-
-<div>
-
-#### Track B — Public Trust and Ethics
-
-How to earn public trust in biomanufactured medicines.
-
-</div>
-
-<div>
-
-#### Track C — Integration and Liability
-
-Who is responsible when things go wrong.
-
-</div>
-
-</div>
-
-Each team produced a formal policy whitepaper, judged by external experts. The Grand Finale featured the deans of KAUST's BESE and BioMed divisions.
 
 ## Alignment with Saudi Vision 2030
 

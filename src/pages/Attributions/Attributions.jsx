@@ -37,6 +37,7 @@ const selena    = `${ROSTER_CDN}/selena.avif`;
 const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
 const alejandra = `${ROSTER_CDN}/alejandra.avif`;
 const jordi     = `${ROSTER_CDN}/jordi.avif`;
+const yerlen    = `${ROSTER_CDN}/yerlen.avif`;
 const kiran     = `${ROSTER_CDN}/kiran.avif`;
 
 // The attribution form marks species names as *italic*; render those spans.
@@ -144,6 +145,7 @@ const students = [
   { key: "shahadAl",      title: "Shahad Al Abdulomhssen",         photo: shahada,   deptKey: "publicEngagement" },
   { key: "mariaFernanda", title: "Maria Fernanda Gutierrez",       photo: mafer,     deptKey: "humanPractices" },
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
+  { key: "yerlen",        title: "Yerlen Menglen",                 photo: yerlen,    deptKey: "wiki" },
 ];
 
 // Same two PIs as on Roster, same photos. Raik hasn't sent one yet.
@@ -160,11 +162,6 @@ const advisors = [
   { key: "muhammadTehseen", title: "Muhammad Tehseen", photo: tehseen },
   { key: "alejandra", title: "Alejandra Rodríguez Llerena", photo: alejandra },
   { key: "jordi", title: "Jordi Pla-Mauri", photo: jordi },
-];
-
-// Same volunteers as on Roster, same order, after Advisors.
-const volunteers = [
-  { key: "yerlen", title: "Yerlen Menglen", photo: null },
 ];
 
 export default function Attributions() {
@@ -199,13 +196,6 @@ export default function Attributions() {
       photo: advisor.photo,
       role: t(`attributions.${advisor.key}.role`),
       content: memberContent(t, advisor.key),
-    })),
-    { heading: t("attributions.headings.volunteers") },
-    ...volunteers.map((volunteer) => ({
-      title: volunteer.title,
-      photo: volunteer.photo,
-      role: t(`attributions.${volunteer.key}.role`),
-      content: memberContent(t, volunteer.key),
     })),
     { heading: "Sponsors, Collaborators & AI" },
     ...orgSections

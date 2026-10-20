@@ -6,7 +6,7 @@
 // (violet --primary, --link blue, --amber), see .claude/DESIGN.md.
 
 $mono: ui-monospace, Menlo, Consolas, monospace;
-$stair-count: 5;
+$stair-count: 4;
 $stair-gap: 10px;
 
 // Shared fills for the SVG illustrations.
@@ -300,7 +300,7 @@ $stair-gap: 10px;
 
 // ============================================================ Programs
 
-// `.ladder`, with a fixed five-column row so the heights read as one
+// `.ladder`, with a fixed four-column row so the heights read as one
 // staircase.
 .stairs {
   display: grid;
