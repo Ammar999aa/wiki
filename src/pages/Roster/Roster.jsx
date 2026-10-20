@@ -58,6 +58,7 @@ const members = [
   { name: "Jeremy Rodrigo Guerrero Alejos", roleKey: "dryLab", memberKey: "jeremy", photo: jeremy, countryCode: "pe" },
   { name: "Taiba Zeya", roleKey: "dryLab", memberKey: "taiba", photo: taiba, countryCode: "in" },
   { name: "Ammar Almarzooq", roleKey: "wiki", memberKey: "ammar", photo: ammar, countryCode: "sa" },
+  { name: "Yerlen Menglen", roleKey: "wiki", memberKey: "yerlen", photo: yerlen, countryCode: "kz" },
   { name: "Ansal' Diassova", roleKey: "wetLab", memberKey: "ansal", photo: ansal, countryCode: "kz", isTeamLead: true },
   { name: "Francesca Rivas Cuestas", roleKey: "wetLab", memberKey: "francesca", photo: francesca, countryCode: "pe", isTeamLead: true },
   { name: "Mariana Villegas", roleKey: "wetLab", memberKey: "mariana", photo: mariana, countryCode: "co" },
@@ -102,13 +103,6 @@ const advisors = [
   { name: "Jordi Pla-Mauri", roleKey: "advisor", memberKey: "jordi", photo: jordi, countryCode: "es" },
 ];
 
-// A third satellite group, below Advisors — same idea again (outside any
-// department, its own line in the honeycomb, its own section on
-// Attributions).
-const volunteers = [
-  { name: "Yerlen Menglen", roleKey: "volunteer", memberKey: "yerlen", photo: yerlen, countryCode: "kz" },
-];
-
 // Unfilled slots woven into the PI cluster, decorative room for that group
 // specifically to grow into — none needed right now since both PI slots
 // above are filled. Purely decorative when nonzero: not clickable, no name
@@ -142,7 +136,7 @@ const departmentGroups = DEPARTMENT_ORDER.map((key) => ({
 }));
 
 // Groups that sit below the whole department block instead of inside it —
-// PI, then Advisors, then Volunteers under that. Each becomes its own line
+// PI, then Advisors under that. Each becomes its own line
 // in the honeycomb (Honeycomb.jsx's `satelliteGroups` prop, stacked in this
 // order) and its own section in the fallback grid below. `group` on each
 // item is what Honeycomb.jsx keys its "not a department member" gold tint
@@ -161,14 +155,9 @@ const satelliteGroups = [
     label: "Advisors",
     items: advisors.map((advisor) => ({ kind: "member", group: "advisor", id: advisor.name, ...advisor })),
   },
-  {
-    key: "volunteers",
-    label: "Volunteers",
-    items: volunteers.map((volunteer) => ({ kind: "member", group: "volunteer", id: volunteer.name, ...volunteer })),
-  },
 ];
 
-const allPeople = [...members, ...principalInvestigators, ...advisors, ...volunteers];
+const allPeople = [...members, ...principalInvestigators, ...advisors];
 
 // The honeycomb's cursor-driven fisheye (Honeycomb.jsx) is a mouse-hover
 // effect with nothing meaningful to do on a touchscreen — `hover: hover`
