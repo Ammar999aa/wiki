@@ -5,19 +5,20 @@
 # Project
 
     Description
+    Protein Library
+    Engineering Success
+    Proof of Concept
     Safety
     Contribution
-    Engineering Success
 
 # Wet Lab
 
     Design
     Notebook
+    Measurement
     Parts
     Experiments (Protocols)
     Results
-    Measurement
-    Proof of Concept
 
 # Hardware
 
@@ -26,7 +27,7 @@
 # Dry Lab
 
     Modeling
-    Software
+    Bioprospecting
 
 # Beyond the Lab
 
@@ -40,4 +41,3 @@
     Attributions
     Sponsors
     Inclusivity
-    Collaborations

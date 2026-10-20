@@ -103,8 +103,6 @@ const Pages = [
         description: "How SHIHAB engineers medical autonomy for deep-space missions — the full scientific rationale.",
       },
       { name: "Protein Library", title: "Protein Library", path: "/protein-library", component: ProteinLibrary },
-      { name: "Safety", title: "Safety", path: "/safety-and-security", component: Safety },
-      { name: "Contribution", title: "Contribution", path: "/contribution", component: Contribution },
       {
         name: "Engineering Success",
         title: "Engineering Success",
@@ -113,6 +111,16 @@ const Pages = [
         description:
           "SHIHAB engineering cycles: Design–Build–Test–Learn across the bioreactor, purification hardware, wet lab constructs and metabolic models.",
       },
+      {
+        name: "Proof of Concept",
+        title: "Proof of Concept",
+        path: "/proof-of-concept",
+        component: ProofOfConcept,
+        description:
+          "SHIHAB proof of concept: engineered microbial chassis, a compact bioreactor, downstream purification components and a computational screen for stress-resistance proteins.",
+      },
+      { name: "Safety", title: "Safety", path: "/safety-and-security", component: Safety },
+      { name: "Contribution", title: "Contribution", path: "/contribution", component: Contribution },
     ],
   },
   {
@@ -126,6 +134,7 @@ const Pages = [
         description: "SHIHAB wet lab: strain engineering, assays, and protein expression.",
       },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
+      { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
       { name: "Parts", title: "Parts", path: "/parts", component: Parts },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
       {
@@ -135,15 +144,6 @@ const Pages = [
         component: Results,
         description:
           "SHIHAB wet lab results: Dsup integration across three chassis, radiation resistance, and payload protein expression and purification.",
-      },
-      { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
-      {
-        name: "Proof of Concept",
-        title: "Proof of Concept",
-        path: "/proof-of-concept",
-        component: ProofOfConcept,
-        description:
-          "SHIHAB proof of concept: engineered microbial chassis, a compact bioreactor, downstream purification components and a computational screen for stress-resistance proteins.",
       },
     ],
   },
@@ -166,7 +166,7 @@ const Pages = [
       },
       // Model's candidate-mining content is a software deliverable, so it
       // lives at iGEM's standard /software URL.
-      { name: "Software", title: "Software", path: "/software", component: Model },
+      { name: "Bioprospecting", title: "Bioprospecting", path: "/software", component: Model },
     ],
   },
   {
@@ -195,7 +195,6 @@ const Pages = [
       { name: "Attributions", title: "Attributions", path: "/attributions", component: Attributions },
       { name: "Sponsors", title: "Sponsors", path: "/sponsors", component: Sponsors },
       { name: "Inclusivity", title: "Inclusivity", path: "/inclusivity", component: Inclusivity },
-      { name: "Collaborations", title: "Collaborations", path: "/collaborations", component: Stub },
     ],
   },
   // Medal criteria checklist for judges (Bronze/Silver/Gold), from the
