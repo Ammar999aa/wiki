@@ -221,8 +221,8 @@
       "specificTasks": "Guidance on the ODE modeling of the different chassis"
     },
     "shahadAl": {
-      "role": "Volunteer",
-      "department": "",
+      "role": "Student",
+      "department": "Public Engagement",
       "tasks": "Public Engagement, Visualization, Writing",
       "specificTasks": "Thuwal students’ visits & Jeddah School visit: organizer; movie and discussion: organizer; Tawasol Hackathon and Mentorship Program co-coordination; Jeddah school outreach visits."
     },
@@ -233,8 +233,8 @@
       "specificTasks": "Assisted in designing and developing the wiki: Integrated Human Practices and Home pages"
     },
     "noureldin": {
-      "role": "Volunteer",
-      "department": "",
+      "role": "Student",
+      "department": "Dry Lab",
       "tasks": "Analysis, Background Research, Software, Visualization, Writing",
       "specificTasks": "GEM FBA modeling: *S. cerevisiae* aerobic/anaerobic growth and oxygen sweep; GFP/anti-GFP and nanobody production; *B. subtilis* anaerobic gap-filling; figures; wiki writing"
     }

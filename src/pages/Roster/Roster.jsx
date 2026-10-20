@@ -72,6 +72,8 @@ const members = [
   { name: "Hassan Abuali", roleKey: "hardware", memberKey: "hassan", photo: hassan, countryCode: "sa" },
   { name: "Génesis Arroyo", roleKey: "publicEngagement", memberKey: "genesis", photo: genesis, countryCode: "pe" },
   { name: "Kiran Ahmad", roleKey: "publicEngagement", memberKey: "kiran", photo: kiran, countryCode: "us" },
+  { name: "Shahad Al Abdulomhssen", roleKey: "publicEngagement", memberKey: "shahadAl", photo: shahada, countryCode: "sa" },
+  { name: "Noureldin Rihan", roleKey: "dryLab", memberKey: "noureldin", photo: noureldin, countryCode: "eg" },
   { name: "Maria Fernanda Gutierrez", roleKey: "humanPractices", memberKey: "mariaFernanda", photo: mafer, countryCode: "pe" },
 ];
 
@@ -104,8 +106,6 @@ const advisors = [
 // department, its own line in the honeycomb, its own section on
 // Attributions).
 const volunteers = [
-  { name: "Shahad Al Abdulomhssen", roleKey: "volunteer", memberKey: "shahadAl", photo: shahada, countryCode: "sa" },
-  { name: "Noureldin Rihan", roleKey: "volunteer", memberKey: "noureldin", photo: noureldin, countryCode: "eg" },
   { name: "Yerlen Menglen", roleKey: "volunteer", memberKey: "yerlen", photo: yerlen, countryCode: "kz" },
 ];
 

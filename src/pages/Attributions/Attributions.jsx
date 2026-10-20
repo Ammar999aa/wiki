@@ -134,12 +134,14 @@ const students = [
   { key: "taiba",         title: "Taiba Zeya",                     photo: taiba,     deptKey: "dryLab" },
   { key: "kexin",         title: "Kexin Niu",                      photo: kexin,     deptKey: "dryLab" },
   { key: "kevser",        title: "Kevser Civek",                    photo: kevser,    deptKey: "dryLab" },
+  { key: "noureldin",     title: "Noureldin Rihan",                photo: noureldin, deptKey: "dryLab" },
   { key: "nadia",         title: "Nadia Houti",                    photo: nadia,     deptKey: "hardware" },
   { key: "hassan",        title: "Hassan Abuali",                  photo: hassan,    deptKey: "hardware" },
   { key: "shahad",        title: "Shahad Hersi",                   photo: shahad,    deptKey: "publicEngagement" },
   { key: "genesis",       title: "Génesis Arroyo",                 photo: genesis,   deptKey: "publicEngagement" },
   { key: "kiran",         title: "Kiran Ahmad",                    photo: kiran,     deptKey: "publicEngagement" },
   { key: "raheema",       title: "Raheema Javid",                  photo: raheema,   deptKey: "publicEngagement" },
+  { key: "shahadAl",      title: "Shahad Al Abdulomhssen",         photo: shahada,   deptKey: "publicEngagement" },
   { key: "mariaFernanda", title: "Maria Fernanda Gutierrez",       photo: mafer,     deptKey: "humanPractices" },
   { key: "ammar",         title: "Ammar Almarzooq",                photo: ammar,     deptKey: "wiki" },
 ];
@@ -160,10 +162,8 @@ const advisors = [
   { key: "jordi", title: "Jordi Pla-Mauri", photo: jordi },
 ];
 
-// Same two volunteers as on Roster, same order, after Advisors.
+// Same volunteers as on Roster, same order, after Advisors.
 const volunteers = [
-  { key: "shahadAl", title: "Shahad Al Abdulomhssen", photo: shahada },
-  { key: "noureldin", title: "Noureldin Rihan", photo: noureldin },
   { key: "yerlen", title: "Yerlen Menglen", photo: null },
 ];
 
