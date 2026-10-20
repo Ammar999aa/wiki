@@ -97,16 +97,72 @@ To encourage community attendance, we secured sponsorship from Burger King and B
 
 <h3 id="hail-mary">Project Hail Mary</h3>
 
-On Sunday, August 30, 2026, we held a screening and open discussion of Project Hail Mary for 35 undergraduate and graduate students, sponsored by the KAUST BioMed division. The film follows a scientist using microbiology to save Earth, which let us move the conversation into space biology and extremophile microbiology, areas close to our own project, SHIHAB. The open discussion took place at 6:00 PM in Conference Room 0215, in the Auditorium Building between Buildings 4 and 5.
+#### Summary
+
+On Sunday, August 30, 2026, we held a screening and open discussion of Project Hail Mary for 35 undergraduate and graduate students, sponsored by the KAUST BioMed division. The film follows a scientist using microbiology to save Earth, which let us move the conversation into space biology and extremophile microbiology, areas close to our own project, SHIHAB. The event began at 6:00 PM in Conference Room 0215, in the Auditorium Building between Buildings 4 and 5.
+
+#### Event structure
+
+- **Ethics discussion:** after the screening, we held an open discussion with the attendees about the film's main themes and the ethical questions that arise from them. Every theme opened with a "would you rather" question, then moved through scenes from the movie, and ended on one big closing question.
+
+<div class="card-grid">
+
+<div>
+
+#### 1. The value of ignorance
+
+Would you rather know the truth about everything, even if it makes you permanently unhappy, or live a happy life built on beliefs you know might be completely false?
+
+</div>
+
+<div>
+
+#### 2. What makes a life meaningful?
+
+Would you rather live an extremely meaningful life that ends at 30, or a completely ordinary life that lasts to 100?
+
+</div>
+
+<div>
+
+#### 3. Human exceptionalism
+
+Would you rather discover that humans are uniquely intelligent in the universe but fundamentally insignificant, or that humans are completely ordinary but deeply important to someone else?
+
+</div>
+
+<div>
+
+#### 4. Moral responsibility
+
+Would you rather be responsible for a terrible outcome because you tried to do the right thing, or responsible for nothing because you chose never to act?
+
+</div>
+
+<div>
+
+#### 5. Individuality vs. collective good
+
+Would you rather live in a society where everyone is free to pursue their own happiness, even if some people are left behind, or one where everyone is guaranteed a good life but nobody may put themselves significantly ahead of everyone else?
+
+</div>
+
+</div>
+
+The full discussion guide, with the follow-up questions tied to scenes from the film, is available as a <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/movie-and-discussion-night/project-hail-mary-movie-discussion.pdf" target="_blank" rel="noopener noreferrer">PDF</a>.
+
+#### Moments from the night
 
 <div class="polaroids">
-<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-team.avif" alt="KAUST iGEM team members in front of the Project Hail Mary event screen" loading="lazy" style="--pol-pos: 50% 65%;"><figcaption>Hosts at the screening</figcaption></figure>
-<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/movie-night-project-hail-mary-audience.avif" alt="Students gathered in the conference room for the screening" loading="lazy"><figcaption>Conference Room 0215</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/movie-and-discussion-night/whatsapp-image-2026-08-29-at-20-38-29.avif" alt="Project Hail Mary event poster: Sunday 30 August, 6:00 PM, Conference Room 0215, followed by an open discussion" loading="lazy"><figcaption>The poster</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/movie-and-discussion-night/whatsapp-image-2026-08-30-at-23-56-22.avif" alt="Four members of the KAUST iGEM team standing in front of the Project Hail Mary event screen" loading="lazy" style="--pol-pos: 50% 65%;"><figcaption>Hosts at the screening</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/movie-and-discussion-night/whatsapp-image-2026-08-30-at-18-55-21.avif" alt="The film playing on the large screen in the conference room while an attendee watches" loading="lazy"><figcaption>Conference Room 0215</figcaption></figure>
+<figure><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/movie-and-discussion-night/whatsapp-image-2026-08-30-at-18-55-21-1.avif" alt="A table of popcorn and snacks set out in the corridor for attendees" loading="lazy" style="--pol-pos: 50% 70%;"><figcaption>Popcorn and snacks</figcaption></figure>
 </div>
 
 <div class="caption">
 
-**Figure 2.** Hosts at the Project Hail Mary screening, and Conference Room 0215 ready for the open discussion.
+**Figure 2.** Moments from the night: the event poster, the hosts in front of the screen, the film playing in Conference Room 0215, and popcorn and snacks set out for attendees. Tap any photo to enlarge.
 
 </div>
 
