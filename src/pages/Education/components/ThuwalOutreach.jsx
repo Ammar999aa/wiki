@@ -191,45 +191,6 @@ export function FourDays() {
   );
 }
 
-// --- Making it happen: photos hanging from a garland -----------------
-
-const GARLAND = [
-  ["thuwal-lab-tour-1.avif", "A lab tour with a KAUST scientist", "Lab tour", "50% 30%"],
-  ["thuwal-lab-tour-2.avif", "Students listening during a lab tour", "Inside the labs", "50% 55%"],
-  ["thuwal-team-volunteers.avif", "The KAUST Campus and Community team with our volunteers", "The team", "50% 50%"],
-];
-
-export function PhotoGarland() {
-  const ref = useRef(null);
-  const seen = useSeen(ref);
-  return (
-    <div ref={ref} className={cx(styles.garland, seen && styles.seen)}>
-      <svg className={styles.rope} viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 6C250 76 750 76 1000 6" stroke="#a78bfa" strokeWidth="2" />
-        <path
-          d="M0 6C250 76 750 76 1000 6"
-          stroke="#FFD84D"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeDasharray="0.1 34"
-          opacity=".8"
-        />
-      </svg>
-      {GARLAND.map(([file, alt, label, pos], i) => (
-        <div key={file} className={styles.drop} style={{ "--i": i }}>
-          <figure className={styles.hang} style={{ "--i": i }}>
-            <i className={styles.pin} aria-hidden="true" />
-            <div className={styles.hangSlot}>
-              <img src={IMG + file} alt={alt} loading="lazy" style={{ objectPosition: pos }} />
-            </div>
-            <figcaption className={styles.monoCap}>{label}</figcaption>
-          </figure>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // --- What we did: the Mars / Earth name tag --------------------------
 
 const PLANETS = {

@@ -67,6 +67,16 @@ Our booth ran **Copy Paste Plants**, a hands-on plant cloning activity that intr
 
 </div>
 
+<span class="chip amber">More from the evening</span>
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/copy-paste-plant/img-3261.avif" alt="Copy Paste Plants at the Sustainability Family Food Night" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/copy-paste-plant/9ce1147d-c61f-491c-8792-c9bbba275c58.avif" alt="Copy Paste Plants at the Sustainability Family Food Night" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/copy-paste-plant/4314a0a6-48e5-4f19-9c73-e64f925e4379.avif" alt="Copy Paste Plants at the Sustainability Family Food Night" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/copy-paste-plant/41aaf174-07d5-4d99-996e-be6d47a0de7e.avif" alt="Copy Paste Plants at the Sustainability Family Food Night" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/copy-paste-plant/37037389-3cef-41a3-b3d7-995bc80f3b80.avif" alt="Copy Paste Plants at the Sustainability Family Food Night" loading="lazy">
+</div>
+
 ## School outreach
 
 ### Overview
@@ -78,10 +88,6 @@ In collaboration with the Jeddah Department of Education, we delivered workshops
 #### Why we started
 
 King Abdullah University of Science and Technology (KAUST) is located in Thuwal, yet much of the local Thuwal community doesn't have access to world-class research facilities and never gets to see the core labs. We wanted to open KAUST's doors to our neighbors. We launched the Thuwal Science Pioneers Program to give Thuwal middle and high school students exposure to science, space and synthetic biology, and to open scientific pathways for them.
-
-<div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/thuwal-students-lab-coats.avif" alt="Thuwal students in lab coats inside a KAUST lab"></div><figcaption class="caption"><strong>Figure 4.</strong> Thuwal students at KAUST, gowned up for the labs.</figcaption></figure>
-</div>
 
 #### Making it happen
 
@@ -96,14 +102,6 @@ Over four days (Monday, October 12; Monday, October 19; Wednesday, October 21; a
 </div>
 
 <!-- school:days -->
-
-<!-- school:garland -->
-
-<div class="caption">
-
-**Figure 5.** Students touring the labs with KAUST scientists, and the C&C team and volunteers who made the visits possible.
-
-</div>
 
 #### What we did
 
@@ -188,7 +186,7 @@ The pre- and post-lecture surveys showed that students learned and understood th
 
 <div class="caption">
 
-**Figure 6.** Middle school students' pre- and post-lecture survey results on proteins.
+**Figure 4.** Middle school students' pre- and post-lecture survey results on proteins.
 
 </div>
 
@@ -197,10 +195,6 @@ The pre- and post-lecture surveys showed that students learned and understood th
 #### What's next
 
 We hope the Thuwal Science Pioneers Program continues to bridge the gap between KAUST and the Thuwal community. We will proceed with the program as scheduled and support the future KAUST iGEM team in organizing and enhancing it further, so students can discover the many scientific fields that exist.
-
-<div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/tawasol-nyu.avif" alt="Tawasol Hackathon"></div><figcaption class="caption"><strong>Figure 7.</strong> The Tawasol Hackathon, co-organized with NYU Abu Dhabi iGEM.</figcaption></figure>
-</div>
 
 *Acknowledgments: We thank KAUST Community & Culture, Prof. Sami Alghamdi, and Urban Labs for making this program possible.*
 
@@ -231,7 +225,7 @@ As at Thuwal, the session paired the lecture, with its before-and-after assessme
 
 <div class="caption">
 
-**Figure 8.** The Jeddah session moved from the Biomission in Space lecture to decoding a gene together as a class.
+**Figure 5.** The Jeddah session moved from the Biomission in Space lecture to decoding a gene together as a class.
 
 </div>
 
@@ -344,7 +338,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 <div class="caption">
 
-**Figure 9.** Concepts such as CRISPR, CRISPRi, RNAi and GMOs were understood. Translating them to rural contexts still needs more preparation and practice.
+**Figure 6.** Concepts such as CRISPR, CRISPRi, RNAi and GMOs were understood. Translating them to rural contexts still needs more preparation and practice.
 
 </div>
 
@@ -352,7 +346,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 <div class="caption">
 
-**Figure 10.** Volunteers felt most prepared to explain GMO benefits and risks in a balanced way, and least prepared to discuss GMO regulation in Peru. Even so, they indicated they felt capable of engaging in conversations that allow farmers to form their own opinions.
+**Figure 7.** Volunteers felt most prepared to explain GMO benefits and risks in a balanced way, and least prepared to discuss GMO regulation in Peru. Even so, they indicated they felt capable of engaging in conversations that allow farmers to form their own opinions.
 
 </div>
 

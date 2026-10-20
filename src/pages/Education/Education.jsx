@@ -16,7 +16,6 @@ import MoratoriumDialogue from "./components/MoratoriumDialogue";
 import ThuwalHero from "./components/ThuwalHero";
 import {
   FourDays,
-  PhotoGarland,
   NameTag,
   Astrolabe,
   JeddahRoute,
@@ -108,7 +107,6 @@ const KALLPA_BLOCKS = {
 const SCHOOL_BLOCKS = {
   "thuwal-hero": <ThuwalHero />,
   days: <FourDays />,
-  garland: <PhotoGarland />,
   nametag: <NameTag />,
   astrolabe: <Astrolabe />,
   route: <JeddahRoute />,
