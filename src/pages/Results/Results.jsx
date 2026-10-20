@@ -5,9 +5,6 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
-// Every stat below is also stated in the body: the three chassis and the
-// four purified payloads come from the Summary section, the nine P. pastoris
-// constructs from Table 1.
 const pageIntro = (
   <Masthead
     eyebrow={["Wet Lab", "Results"]}
@@ -17,11 +14,6 @@ const pageIntro = (
         produced a range of <strong>recombinant proteins useful for space missions</strong>.
       </>
     }
-    stats={[
-      { value: "3", label: "Chassis engineered" },
-      { value: "9", label: "P. pastoris constructs integrated" },
-      { value: "4", label: "Payload proteins purified", hi: true },
-    ]}
   />
 );
 
