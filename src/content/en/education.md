@@ -111,9 +111,9 @@ We scheduled four hours of activities, lectures, workshops and tours for the stu
 
 <!-- school:nametag -->
 
-<div class="card-grid">
+<div class="card-grid photo">
 
-<div>
+<div style="--card-photo: url('https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a7097.avif');">
 
 #### Lecture
 
@@ -121,7 +121,7 @@ An introduction to our university, iGEM team, what synthetic biology is and how 
 
 </div>
 
-<div>
+<div style="--card-photo: url('https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a6806.avif');">
 
 #### Workshop
 
@@ -129,7 +129,7 @@ Middle schoolers demonstrated knowledge by designing their own microbes to help 
 
 </div>
 
-<div>
+<div style="--card-photo: url('https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a7415.avif');">
 
 #### Lab tours
 
@@ -137,7 +137,7 @@ Students were split into two groups to accommodate the lab spaces, and toured th
 
 </div>
 
-<div>
+<div style="--card-photo: url('https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/d43db65f-8bdf-4e00-a78d-d75101c18a1f.avif');">
 
 #### Lunch
 
@@ -148,6 +148,34 @@ Students had lunch at the Campus Diner, giving them time to relax and mingle wit
 </div>
 
 The lecture and workshop were delivered in simplified, clear Arabic. Engagement was highly encouraged, and students felt comfortable asking questions, answering and sharing their thoughts in front of the class.
+
+<span class="chip amber">In the lecture hall</span>
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a7099.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/8edc4f28-6c65-4004-8ed3-bb423fbdec35-5.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/a1a06e8d-7327-4827-bc42-2b0309e04685-6.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6770.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6772.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6793.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a7135.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/27c58938-f9d4-42f6-a12d-546d9f8f5cc6-5.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a6785.avif" alt="Thuwal Science Pioneers: lecture and activity" loading="lazy">
+</div>
+
+<span class="chip amber">In the labs</span>
+
+<div class="gallery">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6851.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6913.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6917.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a7313.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a7444.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/fy2a6839.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a7407.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/img-6433-3.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/thuwal-schools/fy2a7258.avif" alt="Thuwal Science Pioneers: lab tours" loading="lazy">
+</div>
 
 #### What students took away
 

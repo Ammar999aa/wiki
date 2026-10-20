@@ -1081,6 +1081,31 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // Modifier that puts a photo behind each card — for a set of parallel
+  // items that each have a real photo (the four parts of a school visit),
+  // where the text still leads. Each card names its own photo through a
+  // `--card-photo` custom property; a dark wash keeps the text legible and
+  // the card gets room to show some of the picture above it.
+  // `class="card-grid photo"`, with
+  // `<div style="--card-photo: url('https://static.igem.wiki/...');">`.
+  :global(.card-grid.photo) > div {
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(0deg, rgba(10, 10, 39, 0.94) 25%, rgba(10, 10, 39, 0.45) 100%),
+      var(--card-photo);
+    background-size: cover;
+    background-position: center;
+    // Size the layers to the border box and don't tile them: by default
+    // they fill the padding box and repeat, so the 1px border strip at the
+    // bottom showed the lightest top edge of the next gradient tile.
+    background-origin: border-box;
+    background-repeat: no-repeat;
+  }
+
   // Generalizes the Model page's Callout: a claim that needs to stand
   // apart from running prose (a scope statement, a caveat, a retracted
   // point). Default tone is neutral; add a second class for a tinted

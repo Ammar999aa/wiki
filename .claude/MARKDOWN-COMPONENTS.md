@@ -58,7 +58,7 @@ be none — see `.flow` below).
 | I have…                                                                                                        | Reach for                                                       | Looks like                                                                |
 | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | A claim that needs to stand apart from running prose — a caveat, a scope statement, a pending/in-progress note | `.callout`                                                      | Left accent bar + tinted background, optional small-caps label            |
-| A set of parallel, comparable short items (steps, criteria, categories)                                        | `.card-grid` (or `.card-grid.compact` for title + one line)     | Bordered tiles in a row that wrap                                         |
+| A set of parallel, comparable short items (steps, criteria, categories)                                        | `.card-grid` (or `.card-grid.compact` for title + one line, `.card-grid.photo` when each has a photo) | Bordered tiles in a row that wrap                                         |
 | A markdown table that should read as one discrete data object                                                  | `.table-wrap`                                                   | Bordered card around the table                                            |
 | A short pipeline/control-loop sequence ("sensor → control → actuator")                                         | `.flow`                                                         | Labelled nodes joined by arrows                                           |
 | A one- or two-word tag standing in for a subheading                                                            | `.chip`                                                         | Small mono pill                                                           |
@@ -204,6 +204,26 @@ row at equal widths on wide screens and still stacks them on narrow ones.
 project-description.md's Beyond Earth / Back on Earth / Looking ahead.
 Cards stack one per row with a colored left bar, and each `####` heading
 becomes a small-caps label tinted violet → blue → amber in turn.
+
+**Modifier — `.card-grid.photo`**: for parallel items that each have a real
+photo (the four parts of the Thuwal school visit in education.md). The photo
+sits behind the card under a dark wash, with the text at the bottom. Each
+card names its own photo in a `--card-photo` custom property; blank lines
+around the nested markdown as usual:
+
+```md
+<div class="card-grid photo">
+
+<div style="--card-photo: url('https://static.igem.wiki/...');">
+
+#### Lecture
+
+An introduction to our university and to synthetic biology.
+
+</div>
+
+</div>
+```
 
 **Don't** reach for `card-grid` when the items aren't actually parallel —
 three sequential process steps that depend on each other read better as an
