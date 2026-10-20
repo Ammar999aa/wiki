@@ -232,6 +232,7 @@ export default function SectionedArticle({ sections, defaultSelected, title, pan
         <Panel
             containerRef={panelRef}
             items={entries.map((e) => (e.group ? e.group : sections[e.index].title))}
+            labels={entries.map((e) => (e.group ? e.group : sections[e.index].titleContent ?? sections[e.index].title))}
             nums={nums && entries.map((e) => (e.group ? undefined : nums[e.index]))}
             groups={entries.map((e) => !!e.group)}
             activeGroup={activeGroup}

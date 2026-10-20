@@ -1146,6 +1146,32 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin: 0 0 6px !important;
   }
 
+  // Chemical reactions in model-repair methods, with corrected routes in amber.
+  :global(.reaction) {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.86rem;
+    line-height: 1.7;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-inline-start: 3px solid var(--primary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 16px;
+    margin-block: 14px;
+    overflow-x: auto;
+
+    b {
+      color: var(--primary-300);
+    }
+  }
+
+  :global(.reaction.corrected) {
+    border-inline-start-color: var(--accent);
+
+    b {
+      color: var(--accent);
+    }
+  }
+
   // Generalizes the Model page's TableWrap: bounds a markdown table in
   // its own bordered card instead of it sitting bare against the page,
   // so a table reads as one discrete data object. Wrap the table (with

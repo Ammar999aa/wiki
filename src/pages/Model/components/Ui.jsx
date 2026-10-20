@@ -3,6 +3,7 @@
 // block. Kept together in one file since none of these is more than a
 // handful of lines; the bigger, single-purpose pieces (charts, explorer,
 // funnel, references) each get their own file.
+import katex from "katex";
 import styles from "../Model.module.scss";
 
 // In-page cross-reference, e.g. <SecRef n="07">§07</SecRef> → jumps to the
@@ -96,5 +97,17 @@ export function Legend({ items }) {
         </span>
       ))}
     </div>
+  );
+}
+
+// Display equation typeset with KaTeX (its stylesheet is loaded in main.jsx),
+// centred on a sunken panel with an optional one-line legend underneath.
+export function Eq({ tex, note }) {
+  const html = katex.renderToString(tex, { displayMode: true, throwOnError: false });
+  return (
+    <>
+      <div className={styles.eq} dangerouslySetInnerHTML={{ __html: html }} />
+      {note && <p className={styles.eqNote}>{note}</p>}
+    </>
   );
 }

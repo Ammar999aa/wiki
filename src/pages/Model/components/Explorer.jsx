@@ -11,7 +11,7 @@ const COLUMNS = [
   { key: "score", label: "Score" },
 ];
 
-// Table 7 — every surviving candidate, filterable by category and by
+// Table 6 — every surviving candidate, filterable by category and by
 // synthesis-ready/flagged status, sortable on any numeric column.
 export default function Explorer() {
   const [cat, setCat] = useState("all");
@@ -63,7 +63,7 @@ export default function Explorer() {
             onClick={() => setCat(c.key)}
           >
             <i className={styles.swatch} style={{ background: c.color }} />
-            {c.name} · {c.n}
+            {c.chip ?? c.name} · {c.n}
           </button>
         ))}
         <span className={styles.toolsSpacer} />
@@ -166,7 +166,7 @@ export default function Explorer() {
         </table>
       </div>
       <p className={styles.cap}>
-        <b>Table 7.</b> Showing {rows.length} of 45 candidates, sorted by {activeLabel} (
+        <b>Table 6.</b> Showing {rows.length} of 45 candidates, sorted by {activeLabel} (
         {sortDir === "desc" ? "high to low" : "low to high"}). Flags come from the §07 audits: ORF completeness,
         pseudogene calls, source-bin CheckM completeness, and ranking degeneracy. Clean means no audit raised
         anything.

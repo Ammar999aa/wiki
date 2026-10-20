@@ -14,7 +14,7 @@ import styles from "../SectionedArticle.module.scss";
 // `{ label, href }` shown as small links under that entry (Judging lists
 // each medal's pages this way). `linkTints` optionally colors each group:
 // `[r, g, b]` per entry, exposed to the stylesheet as --link-tint.
-export default function Panel({ items, nums, groups, activeGroup, links, linkTints, selected, collapsed, onToggle, onSelect, header, containerRef }) {
+export default function Panel({ items, labels, nums, groups, activeGroup, links, linkTints, selected, collapsed, onToggle, onSelect, header, containerRef }) {
   return (
     <div ref={containerRef} className={`${styles.panelContainer} ${collapsed ? styles.collapsed : ""}`}>
       {/* cornerGlow defaults on and, with no cursor over the panel, falls
@@ -55,7 +55,7 @@ export default function Panel({ items, nums, groups, activeGroup, links, linkTin
                 onClick={() => onSelect(i)}
               >
                 {nums?.[i] && <span className={styles.panelItemNum}>{nums[i]}</span>}
-                {item}
+                {labels?.[i] ?? item}
               </h2>
               {links?.[i]?.length > 0 && (
                 <ul
