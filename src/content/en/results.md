@@ -191,12 +191,6 @@ Electroporation was used to introduce linearized recombinant DNA into _P. pastor
 
 As can be observed above, _P. pastoris_ was successfully transformed, with all of our genes of interest integrated into the AOX locus. The protocol worked for all of our constructs, which allowed us to move forward to the downstream experiments.
 
-<div class="caption">
-
-**Table 1.** _P. pastoris_ plasmid IDs.
-
-</div>
-
 <div class="table-wrap">
 
 | Plasmid ID | Gene of interest (GOI)                                |
@@ -210,6 +204,12 @@ As can be observed above, _P. pastoris_ was successfully transformed, with all o
 | IPAF       | Secreted FfIBP (via α-factor secretion signal)        |
 | IPNO       | Secreted Nb1_gbHSV (via α-factor secretion signal)    |
 | IPNT       | Secreted anti-PDL1 Nb (via α-factor secretion signal) |
+
+</div>
+
+<div class="caption">
+
+**Table 1.** _P. pastoris_ plasmid IDs.
 
 </div>
 
@@ -250,12 +250,6 @@ Lithium acetate (LiAc)-mediated heat-shock transformation was used to introduce 
 
 As can be observed in Figure 4, Dsup-related plasmids were successfully genomically integrated into the safe-harbor region (HO locus). The HO locus encodes the HO endonuclease, which is involved in mating-type switching. However, it is not required for vegetative growth. Hence, integration at this site results in stable maintenance of recombinant genes without the need for continuous selective pressure, while also not leading to disruptions of any essential cellular functions.
 
-<div class="caption">
-
-**Table 2.** _S. cerevisiae_ plasmid IDs.
-
-</div>
-
 <div class="table-wrap">
 
 | Plasmid ID | Gene of interest (GOI) |
@@ -263,6 +257,12 @@ As can be observed in Figure 4, Dsup-related plasmids were successfully genomica
 | ISD1       | WT Dsup                |
 | ISD2       | 2× SV40 NLS Dsup       |
 | ISD3       | Myc-tagged Dsup        |
+
+</div>
+
+<div class="caption">
+
+**Table 2.** _S. cerevisiae_ plasmid IDs.
 
 </div>
 
@@ -275,7 +275,7 @@ As can be observed in Figure 4, Dsup-related plasmids were successfully genomica
 
 <div class="details-body">
 
-Natural competence-mediated transformation was used to introduce recombinant DNA into _B. subtilis_. A simplified protocol utilizing a single SP medium was employed to induce natural competence, eliminating the need for continuous OD600 monitoring and multiple competence-inducing media. Plasmid DNA was added at the beginning of the competence development step to facilitate DNA uptake. After incubation, cells were transferred to LB medium for recovery, allowing sufficient time for the expression of antibiotic resistance markers before plating on selective agar to isolate transformants.
+Natural competence-mediated transformation was used to introduce recombinant DNA into _B. subtilis_. A simplified protocol utilizing a single SP medium was employed to induce natural competence, eliminating the need for continuous OD₆₀₀ monitoring and multiple competence-inducing media. Plasmid DNA was added at the beginning of the competence development step to facilitate DNA uptake. After incubation, cells were transferred to LB medium for recovery, allowing sufficient time for the expression of antibiotic resistance markers before plating on selective agar to isolate transformants.
 
 <div class="figure-grid" style="--cols: 2;">
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-5.avif" alt="Colonies from a successful B. subtilis transformation" loading="lazy"></div></figure>
@@ -298,7 +298,7 @@ Previously, we tested other _B. subtilis_ transformation protocols, including el
 
 </details>
 
-## Damage Suppressor Protein Experiments
+## Damage suppressor protein experiments
 
 ### Western blots
 
@@ -414,16 +414,30 @@ Figure 13 further supports this observation by presenting resazurin-based relati
 
 ### X-ray irradiation of _B. subtilis_
 
-Cultures of wild-type and Dsup-expressing _B. subtilis_ were irradiated with X-rays and followed by OD₆₀₀ for 60 min in wells without resazurin, each series normalized to its own starting value (Figure 14). Unirradiated cultures reached 2.3 times the initial density in the wild type and 2.7 times in Dsup, and at 500 Gy growth was largely arrested in both. Above that dose the wild type ended below where it started, at 0.86, 0.73 and 0.70 of the initial OD at 1000, 1500 and 2000 Gy, whereas Dsup held at or above 1.0 throughout. Since neither strain divides above 500 Gy, Dsup is not keeping cells growing under irradiation but preventing the loss of density that the wild type shows, which points to cell lysis rather than arrested division.
+Cultures of wild-type and Dsup-expressing _B. subtilis_ were irradiated with X-rays, ten-fold serial dilutions spotted after irradiation at 0 (mock), 500, 1000, 1500 and 2000 Gy, one row per dose (Figure 14A). In the mock the first four spots are solid and confluent and the last two have resolved into countable colonies. At 500 Gy each loses roughly one position of confluent growth, leaving three solid spots followed by granular ones, so up to this dose the two are hard to tell apart. From 1000 Gy they come apart. Both are down to a single confluent spot, but the wild-type one is already thinning while the Dsup spot stays solid and dark. At 1500 Gy the wild-type row has no confluent growth left at all, only one granular spot and a few scattered colonies, whereas Dsup still carries a solid first spot and growth in two further positions. At 2000 Gy the wild-type row is empty and Dsup still produces a solid spot followed by a granular one. Dsup therefore tolerates X-rays better than the wild type. The two are equivalent up to 500 Gy, and the gap opens from 1000 Gy and widens with dose, until at 2000 Gy Dsup is still growing and the wild type is not.
 
-<div class="figure-grid" style="--cols: 2;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-a-transparent.avif" alt="Growth of wild-type B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> WT</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-b-transparent.avif" alt="Growth of Dsup-expressing B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> Dsup</figcaption></figure>
+Growth was also followed by OD₆₀₀ for 60 min in wells without resazurin, each series normalized to its own starting value (Figure 14B). Unirradiated cultures reached 2.3 times the initial density in the wild type and 2.7 times in Dsup, and at 500 Gy growth was largely arrested in both. Above that dose the wild type ended below where it started, at 0.86, 0.73 and 0.70 of the initial OD at 1000, 1500 and 2000 Gy, whereas Dsup held at or above 1.0 throughout. Since neither strain divides above 500 Gy, Dsup is not keeping cells growing under irradiation but preventing the loss of density that the wild type shows, which points to cell lysis rather than arrested division.
+
+<div class="photo-frame">
+
+![X-ray dose response of wild-type and Dsup-expressing B. subtilis, ten-fold serial dilutions spotted after irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/wild-type.avif)
+
 </div>
 
 <div class="caption">
 
-**Figure 14.** Growth of _B. subtilis_ over 60 min following X-ray irradiation at 0, 500, 1000, 1500 and 2000 Gy, measured as OD₆₀₀ in wells without resazurin and normalized to the value at t = 0.
+**Figure 14A.** X-ray dose response of wild-type and Dsup-expressing _Bacillus subtilis_. Ten-fold serial dilutions spotted after irradiation at 0 (mock), 500, 1000, 1500 and 2000 Gy, one row per dose.
+
+</div>
+
+<div class="figure-grid" style="--cols: 2;">
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-a-transparent.avif" alt="Growth of wild-type B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>i)</strong> WT</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-b-transparent.avif" alt="Growth of Dsup-expressing B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>ii)</strong> Dsup</figcaption></figure>
+</div>
+
+<div class="caption">
+
+**Figure 14B.** Growth of _B. subtilis_ over 60 min following X-ray irradiation at 0, 500, 1000, 1500 and 2000 Gy, measured as OD₆₀₀ in wells without resazurin and normalized to the value at t = 0.
 
 </div>
 
@@ -475,11 +489,11 @@ _B. subtilis_ therefore tolerates high doses with little change and then fails o
 
 ### Setting the working cell density for the resazurin assay
 
-Before using resazurin to compare irradiated and unirradiated cultures, the assay was set up by testing a range of starting cell densities. _B. subtilis_ was adjusted to OD600 between 0.2 and 1.0 and incubated with the dye. Two controls were included, cells without dye and medium with dye but no cells (Figure 17).
+Before using resazurin to compare irradiated and unirradiated cultures, the assay was set up by testing a range of starting cell densities. _B. subtilis_ was adjusted to OD₆₀₀ between 0.2 and 1.0 and incubated with the dye. Two controls were included, cells without dye and medium with dye but no cells (Figure 17).
 
-At OD600 0.2 the wells are still blue to purple, so only part of the dye has been reduced. From 0.4 the color shifts to pink, and by 0.6 it is already saturated, with no visible difference between 0.6, 0.8 and 1.0 after the same incubation.
+At OD₆₀₀ 0.2 the wells are still blue to purple, so only part of the dye has been reduced. From 0.4 the color shifts to pink, and by 0.6 it is already saturated, with no visible difference between 0.6, 0.8 and 1.0 after the same incubation.
 
-Densities of 0.6 and above reduce all the available dye within the incubation time, which leaves no range to detect differences between conditions. OD600 0.2 leaves part of the dye unreduced, so an increase or a decrease in activity is still visible, and it was used as the working density for the irradiation experiments.
+Densities of 0.6 and above reduce all the available dye within the incubation time, which leaves no range to detect differences between conditions. OD₆₀₀ 0.2 leaves part of the dye unreduced, so an increase or a decrease in activity is still visible, and it was used as the working density for the irradiation experiments.
 
 <div class="photo-frame">
 
@@ -493,7 +507,7 @@ Densities of 0.6 and above reduce all the available dye within the incubation ti
 
 </div>
 
-## Fluorescent Protein Assays
+## Fluorescent protein assays
 
 <div class="callout warn">
 
@@ -507,7 +521,7 @@ The Summary mentions GFP production from spore-derived _B. subtilis_ cultures; t
 
 This experiment was performed to compare GFP expression from two different _B. subtilis_ strains: WT carrying the GFP construct and a modified wild type with Dsup carrying the same GFP construct. Different IPTG concentrations were tested to check the effect of induction on GFP expression and bacterial growth. The experiment was performed in a 96-well plate with three technical replicates for each condition.
 
-Both OD600 and GFP fluorescence were measured using a plate reader every 30 mins. A sample was also collected 2 hrs after induction for fluorescence microscopy to confirm GFP expression in the cells.
+Both OD₆₀₀ and GFP fluorescence were measured using a plate reader every 30 min. A sample was also collected 2 h after induction for fluorescence microscopy to confirm GFP expression in the cells.
 
 <div class="photo-frame">
 
@@ -517,7 +531,7 @@ Both OD600 and GFP fluorescence were measured using a plate reader every 30 mins
 
 <div class="caption">
 
-**Figure 18.** The sample collected 2 hrs post induction showed the presence of cytoplasmic active GFP protein, which was fluorescent in the FITC channel.
+**Figure 18.** The sample collected 2 h post induction showed the presence of cytoplasmic active GFP protein, which was fluorescent in the FITC channel.
 
 </div>
 
@@ -614,7 +628,7 @@ Interestingly, the greatest increase in fluorescence occurred during the first 2
 
 A plate reader was used to obtain RFU values for IPC2 mutants (extracellularly secreted mCherry) after 0.5% methanol induction for 2 days. The results are in Figure 24. This version of the mCherry construct contains the alpha factor secretion signal, meaning that we expect it to be secreted out of the cell. Hence, fluorescence microscopy cannot be effectively used to visualize the signal. As a control we used IPD3 (Dsup plasmid that does not produce fluorescent reporters) cells. Pure BMMY media was used as a blank. There is a 2× difference between the IPD3 and IPC2 samples' RFU values. To obtain better characterization, further experiments will be performed.
 
-## Payloads' Expression and Purification
+## Payloads' expression and purification
 
 We performed recombinant protein expression for several payloads in _P. pastoris_ and _B. subtilis_. Immobilized metal affinity chromatography (IMAC) was performed using an ÄKTA pure chromatography system equipped with a 5 mL HisTrap column to purify recombinant protein payloads produced in both organisms.
 
@@ -861,7 +875,7 @@ Although satisfactory protein yields were obtained from _B. subtilis_, the recov
 
 Similarly to other purification results obtained from _P. pastoris_, we were able to purify substantial amounts of relatively pure product for both the anti-PDL1 nanobody and the anti-HSV glycoprotein B nanobody.
 
-## Antifreeze Protein Assays
+## Antifreeze protein assays
 
 ### Freeze-thaw survival assay using purified FfIBP
 
