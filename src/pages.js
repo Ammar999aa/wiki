@@ -47,6 +47,7 @@ const Hardware = lazyWithPreload(() => import("./pages/Hardware/Hardware"));
 const EngineeringSuccess = lazyWithPreload(() => import("./pages/EngineeringSuccess/EngineeringSuccess"));
 const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
 const Inclusivity = lazyWithPreload(() => import("./pages/Inclusivity/Inclusivity"));
+const Collaborations = lazyWithPreload(() => import("./pages/Collaborations/Collaborations"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
 const DryLabModeling = lazyWithPreload(() => import("./pages/DryLabModeling/DryLabModeling"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
@@ -198,6 +199,14 @@ const Pages = [
       { name: "Attributions", title: "Attributions", path: "/attributions", component: Attributions },
       { name: "Sponsors", title: "Sponsors", path: "/sponsors", component: Sponsors },
       { name: "Inclusivity", title: "Inclusivity", path: "/inclusivity", component: Inclusivity },
+      {
+        name: "Collaborations",
+        title: "Collaborations",
+        path: "/collaborations",
+        component: Collaborations,
+        description:
+          "How KAUST-KSA iGEM 2026 worked with iGEM teams, schools, community partners and institutions, from the Tawasol regional network to Peru and Kazakhstan.",
+      },
     ],
   },
   // Medal criteria checklist for judges (Bronze/Silver/Gold), from the
