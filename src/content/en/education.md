@@ -269,13 +269,37 @@ As at Thuwal, the session paired the lecture, with its before-and-after assessme
 
 </div>
 
-<div class="callout warn">
+#### What students took away
 
-<p class="callout-label">Results pending</p>
+The students who completed the survey (n=58) answered short questions before and after the lecture to measure what they learned. The final question captured the core of synthetic biology: changing DNA changes the proteins, and with them their functions. The higher-level questions also showed a noticeable increase in correct answers after the lecture.
 
-We are still analyzing the Jeddah pre- and post-lecture surveys. Results will be added here once they are ready.
+<div class="callout accent">
+
+<p class="callout-label">Final question · correct answer: false</p>
+
+True or false: "Changing DNA changes the proteins, but their functions stay the same."
 
 </div>
+
+<!-- Shares as reported from the Jeddah pre/post survey (n=58); per-answer counts were not recorded here, so the count column is left empty. -->
+<figure class="bar-chart">
+<figcaption><span class="bar-chart-q">Correct answers on the final question</span><span class="bar-chart-n">58 students</span></figcaption>
+<table role="table">
+<thead><tr role="row"><th role="columnheader" scope="col">When</th><th role="columnheader" scope="col">Responses</th><th role="columnheader" scope="col">Share answering correctly</th></tr></thead>
+<tbody>
+<tr role="row" style="--pct: 28.33"><th role="rowheader" scope="row">Correct before the lecture</th><td role="cell"></td><td role="cell">28.33%</td></tr>
+<tr role="row" style="--pct: 50"><th role="rowheader" scope="row">Correct after the lecture</th><td role="cell"></td><td role="cell">50%</td></tr>
+</tbody>
+</table>
+</figure>
+
+<div class="caption">
+
+**Figure 5.** The share of correct answers on the final question rose from 28.33% before the lecture to 50% after it, the clearest sign that the session landed its central idea. This is one question from a single session, not a controlled comparison.
+
+</div>
+
+The full five-question survey is open for anyone who wants to run the same before-and-after check: <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/space-bioengineers-survey-en.pdf" target="_blank" rel="noopener noreferrer">English</a> · <a href="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/space-bioengineers-survey-ar.pdf" target="_blank" rel="noopener noreferrer">Arabic</a>.
 
 ### Lectures and materials
 
@@ -396,7 +420,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 <div class="caption">
 
-**Figure 5.** Concepts such as CRISPR, CRISPRi, RNAi and GMOs were understood. Translating them to rural contexts still needs more preparation and practice.
+**Figure 6.** Concepts such as CRISPR, CRISPRi, RNAi and GMOs were understood. Translating them to rural contexts still needs more preparation and practice.
 
 </div>
 
@@ -404,7 +428,7 @@ The program evaluation focused not only on determining whether the mentors had g
 
 <div class="caption">
 
-**Figure 6.** Volunteers felt most prepared to explain GMO benefits and risks in a balanced way, and least prepared to discuss GMO regulation in Peru. Even so, they indicated they felt capable of engaging in conversations that allow farmers to form their own opinions.
+**Figure 7.** Volunteers felt most prepared to explain GMO benefits and risks in a balanced way, and least prepared to discuss GMO regulation in Peru. Even so, they indicated they felt capable of engaging in conversations that allow farmers to form their own opinions.
 
 </div>
 
