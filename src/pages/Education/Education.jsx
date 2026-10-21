@@ -164,18 +164,14 @@ function withInteractiveContent(sections) {
 const educationIntro = (
   <Masthead
     eyebrow={["Beyond the Lab", "Education"]}
-    // TODO(humanize): AI-drafted deck sentence. The first clause
-    // paraphrases this page's own opening paragraph; "a primary-school
-    // cloning game" and "a four-module mentorship program for rural
-    // farmers" are AI synthesis pulled from the Copy Paste Plants and
-    // Kallpa Multiplier Mentorship sections further down the page, not a
-    // quote — read this one closely before the page is final. See
-    // .claude/TODO-HUMANIZE-COPY.md.
     deck={
       <>
-        Synthetic biology barely exists in Saudi and wider MENA secondary curricula yet &mdash; our education
-        work closes that gap in <b>Arabic and English</b>, from a primary-school cloning game to a four-module
-        mentorship program for rural farmers.
+        In Saudi Arabia, most students will graduate high school without ever having heard of synthetic biology as
+        a subject. Along with being almost entirely absent from secondary curricula in the Kingdom and the wider
+        MENA region, most SynBio resources exist only in English. Our education programs, designed in Arabic from
+        the start, meet learners where they are: elementary students cloning their first plant, more than 200
+        middle and high schoolers in Thuwal and Jeddah designing microbes for astronauts, Saudi students preparing
+        for the jump to university, and youth volunteers in Peru carrying gene-editing science to 180 rural farmers.
       </>
     }
   />
