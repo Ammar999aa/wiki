@@ -349,7 +349,7 @@ export default function BioreactorDashboard() {
                   className={styles.caution}
                   style={{ visibility: caution ? "visible" : "hidden" }}
                 >
-                  CAUTION: TEMPERATURE OUT OF RANGE
+                  Caution: Temperature &amp; pH out of range
                 </span>
               </div>
               <img
