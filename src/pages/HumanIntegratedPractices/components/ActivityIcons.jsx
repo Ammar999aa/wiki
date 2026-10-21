@@ -1,5 +1,6 @@
 // Line glyphs for the three "Engaging with society" activities, shared by the
-// ShapedByMap avatars and the EngagementTabs cards. 24×24, stroke only, so the
+// ShapedByMap avatars and the EngagementTabs cards, plus `person` for a
+// stakeholder we have no photo of. 24×24, stroke only, so the
 // caller's CSS sets the colour (stroke) like the site's other line icons.
 const ICONS = {
   mentorship: (
@@ -14,6 +15,12 @@ const ICONS = {
       <path d="M3.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5" />
       <circle cx="16.5" cy="9" r="2.4" />
       <path d="M15.5 14.2c2.6-.4 4.6 1.3 5.1 4.3" />
+    </>
+  ),
+  person: (
+    <>
+      <circle cx="12" cy="8.5" r="3.6" />
+      <path d="M4.8 20c.8-4 3.6-6.6 7.2-6.6s6.4 2.6 7.2 6.6" />
     </>
   ),
   academy: (

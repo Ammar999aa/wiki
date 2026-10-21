@@ -163,7 +163,7 @@ export default function Judging() {
         rel="noopener noreferrer"
         className={styles.photoCredit}
       >
-        Star trails above Earth: NASA/Anil Menon
+        Star trails above Earth: NASA/Anil Menon, colour-graded, public domain
       </a>
     </PageWrapper>
   );

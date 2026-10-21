@@ -2272,7 +2272,7 @@
   .xarrow, .glowline { z-index: 1; }
 }
 
-/* NASA image credit, revealed with the photo (desktop hover only) */
+/* NASA image credit for the card photo, always shown (touch screens have no hover) */
 .xcredit {
   position: absolute;
   right: 26px;
@@ -2288,14 +2288,9 @@
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.6s ease, color 0.2s ease;
+  transition: color 0.2s ease;
 
   &:hover { color: rgba(255, 255, 255, 0.85); }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .xcardPhoto:hover .xcredit { opacity: 1; }
 }
 
 /* The Project card is already the visually dominant tile — let its photo

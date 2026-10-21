@@ -34,7 +34,7 @@ export default function HumanPractices() {
         rel="noopener noreferrer"
         className={styles.photoCredit}
       >
-        Milky Way's center: NASA/JPL-Caltech
+        Milky Way's center: NASA/JPL-Caltech, free to use (JPL image policy)
       </a>
     </PageWrapper>
   );

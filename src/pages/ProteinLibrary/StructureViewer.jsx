@@ -32,7 +32,7 @@ export default function StructureViewer({ structure, color }) {
         >
           PDB {structure.pdbId}
         </a>
-        .
+        , CC0.
       </p>
     </div>
   );

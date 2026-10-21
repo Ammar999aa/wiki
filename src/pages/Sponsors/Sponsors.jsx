@@ -83,7 +83,7 @@ export default function Sponsors() {
         rel="noopener noreferrer"
         className={styles.photoCredit}
       >
-        Ed White spacewalk: NASA
+        Ed White spacewalk: NASA, public domain
       </a>
     </PageWrapper>
   );

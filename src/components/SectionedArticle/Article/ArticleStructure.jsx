@@ -39,7 +39,7 @@ export default function ArticleStructure({ structure, pdb, label, color, highlig
         <a href={`https://www.rcsb.org/structure/${pdb}`} target="_blank" rel="noopener noreferrer">
           PDB {pdb}
         </a>
-        .
+        , CC0.
       </figcaption>
     </figure>
   );

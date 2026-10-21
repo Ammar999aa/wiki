@@ -1150,6 +1150,14 @@ function ProblemSection() {
             </a>
           ) : null
         )}
+        <a
+          href="https://www.jpl.nasa.gov/jpl-image-use-policy/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.planetAttributionLink}
+        >
+          free to use (JPL image policy)
+        </a>
       </div>
     </section>
   );
@@ -1160,6 +1168,7 @@ function ProblemSection() {
 function RevealSection() {
   const ref = useRef(null);
   const bgRef = useRef(null);
+  const bgCreditRef = useRef(null);
   const labelRef = useRef(null);
   const logoRef = useRef(null);
   const arRef = useRef(null);
@@ -1180,10 +1189,16 @@ function RevealSection() {
     // it's part of the initial reveal only, not the slide's resting state.
     if (bgRef.current && inView !== undefined) {
       bgRef.current.style.opacity = 0;
+      if (bgCreditRef.current) { bgCreditRef.current.style.opacity = 0; bgCreditRef.current.style.pointerEvents = "none"; }
     } else if (bgRef.current) {
       const envelope = Math.min(smoothstep(between(p, 0, 0.17)), 1 - smoothstep(between(p, 0.78, 1)));
       bgRef.current.style.opacity = envelope * 0.3;
       bgRef.current.style.transform = `translateY(${lerp(16, -16, p)}px)`;
+      // The galaxy photo's credit shows while the photo does.
+      if (bgCreditRef.current) {
+        bgCreditRef.current.style.opacity = envelope;
+        bgCreditRef.current.style.pointerEvents = envelope > 0.05 ? "auto" : "none";
+      }
     }
     if (labelRef.current) labelRef.current.style.opacity = Math.min(between(p, 0.0, 0.09), 1 - between(p, 0.66, 0.78));
     if (logoRef.current) {
@@ -1214,6 +1229,18 @@ function RevealSection() {
         <p className={styles.revealGloss} ref={glossRef} style={{ opacity: 0 }}>
           Arabic for &lsquo;shooting star.&rsquo;
         </p>
+      </div>
+      <div className={styles.slideAttribution}>
+        <a
+          ref={bgCreditRef}
+          href="https://science.nasa.gov/image-detail/ssc2006-02a-0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.slideAttributionLink}
+          style={{ opacity: 0 }}
+        >
+          Milky Way's center: NASA/JPL-Caltech, free to use (JPL image policy)
+        </a>
       </div>
     </section>
   );
@@ -1572,7 +1599,7 @@ function CapabilitiesSection() {
           className={styles.slideAttributionLink}
           style={{ opacity: 0 }}
         >
-          Atlantis, STS-129: NASA/Kenny Allen
+          Atlantis, STS-129: NASA/Kenny Allen, public domain
         </a>
       </div>
     </section>
@@ -1632,7 +1659,7 @@ function OutroSection() {
           className={styles.slideAttributionLink}
           style={{ opacity: 0 }}
         >
-          Bruce McCandless II, STS-41-B: NASA
+          Bruce McCandless II, STS-41-B: NASA, public domain
         </a>
       </div>
     </section>
@@ -1717,7 +1744,7 @@ function ExploreSection() {
                   window.open(c.credit.url, "_blank", "noopener,noreferrer");
                 }}
               >
-                Photo: NASA
+                Photo: NASA, public domain
               </button>
             )}
             <span className={styles.glowline} />

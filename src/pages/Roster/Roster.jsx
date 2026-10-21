@@ -336,7 +336,15 @@ export default function Roster() {
         rel="noopener noreferrer"
         className={styles.photoCredit}
       >
-        Apollo 17 EVA: NASA
+        Apollo 17 EVA: NASA, public domain
+      </a>
+      <a
+        href="https://github.com/lipis/flag-icons"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.photoCredit} ${styles.flagCredit}`}
+      >
+        Flags: flag-icons, MIT License
       </a>
     </PageWrapper>
   );

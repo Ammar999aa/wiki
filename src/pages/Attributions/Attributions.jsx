@@ -231,7 +231,7 @@ export default function Attributions() {
             rel="noopener noreferrer"
             className={styles.photoCredit}
           >
-            City lights of eastern China: NASA/Anil Menon
+            City lights of eastern China: NASA/Anil Menon, colour-graded, public domain
           </a>
         }
       />
