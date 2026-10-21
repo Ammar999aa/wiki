@@ -171,7 +171,7 @@ export default function Judging() {
         rel="noopener noreferrer"
         className={`${styles.photoCredit} ${styles.medalCredit}`}
       >
-        Medal badges: iGEM
+        Medal badges: from the official iGEM website
       </a>
     </PageWrapper>
   );
