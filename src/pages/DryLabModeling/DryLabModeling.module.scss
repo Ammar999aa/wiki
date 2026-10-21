@@ -248,6 +248,22 @@
   padding: 4px 8px 0;
 }
 
+// Opt-in (BarChart's `largeLabels`) for charts whose category labels are long
+// sentences, as in the yeast partner-supply chart.
+.barChartLargeLabels {
+  height: 260px;
+
+  .barLabel {
+    font-size: 13px;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .barValue {
+    font-size: 14px;
+  }
+}
+
 .barCol {
   display: flex;
   flex-direction: column;

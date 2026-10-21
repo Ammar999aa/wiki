@@ -22,7 +22,7 @@ import styles from "./Hardware.module.scss";
 // rationale as StructureViewer's dynamic 3Dmol.js import: it's a large
 // dependency only this one page needs, so it shouldn't cost every other
 // route a bigger shared chunk.
-// Figure 9's caption lives in hardware.md, right after this component's
+// Figure 12's caption lives in hardware.md, right after this component's
 // `data-slot="model"` marker (see Hardware.jsx).
 export default function BioreactorModel() {
   const [status, setStatus] = useState("loading"); // "loading" | "ready" | "error"

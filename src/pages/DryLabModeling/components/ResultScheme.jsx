@@ -221,13 +221,11 @@ export default function ResultScheme() {
   return (
     <div className={styles.scheme}>
       <p className={styles.schemeFigCaption}>
-        <strong>Figure 1. Schematic summarising one question, three models, one recommendation.</strong> Each host
-        model was asked the same questions about oxygen supply, feedstock and production timing, independently of
-        the others. The supplier model produces a sucrose and oxygen flux that is used directly as an uptake bound
-        in the yeast model; the remaining links were either calculated separately or identified. Solid arrow: the
-        supplier's computed fluxes were used directly as uptake bounds in the yeast model. Dashed arrows: related
-        calculations that were run separately or links identified. Every result shown here is developed in the
-        section indicated. Organism illustrations: Generated with GPT-6.
+        <strong>Figure 1. Modeling overview.</strong> Three host models were independently interrogated. The supplier
+        model produces a sucrose and oxygen flux that is used directly as an uptake bound in the yeast model; the
+        remaining links were either calculated separately or identified. Solid arrow: the supplier's computed fluxes
+        were used directly as uptake bounds in the yeast model. Dashed arrows: related calculations that were run
+        separately or links identified. Every result shown here is developed in the section indicated. Organism illustrations: Generated with GPT-6.
       </p>
 
       <p className={styles.schemeHint}>

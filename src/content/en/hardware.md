@@ -83,7 +83,7 @@ SHIHAB revolutionizes protein production by automating the entire workflow from 
 
 <div class="caption">
 
-**Figure 3. Loading the pill is the only manual step.** From a single pill to a purified therapeutic, fermentation, transfer and purification all run automatically.
+**Figure 6. Loading the pill is the only manual step.** From a single pill to a purified therapeutic, fermentation, transfer and purification all run automatically.
 
 </div>
 
@@ -123,7 +123,7 @@ Bioreactor dashboard simulation
 </div>
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/temp-sensor.avif" alt="DS18B20 temperature sensor: a black cable ending in a stainless-steel probe, with bare wires at the other end"></div><figcaption class="caption"><strong>Figure 4. Temperature sensor (DS18B20).</strong> A waterproof stainless-steel probe that reports the culture temperature to the Arduino.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/temp-sensor.avif" alt="DS18B20 temperature sensor: a black cable ending in a stainless-steel probe, with bare wires at the other end"></div><figcaption class="caption"><strong>Figure 7. Temperature sensor (DS18B20).</strong> A waterproof stainless-steel probe that reports the culture temperature to the Arduino.</figcaption></figure>
 </div>
 
 <div class="panel">
@@ -138,7 +138,7 @@ Bioreactor dashboard simulation
 </div>
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/ph-sensor.avif" alt="pH sensor: a black pH probe with a green protective cap above a green signal-conditioning circuit board connected to the probe cable"></div><figcaption class="caption"><strong>Figure 5. pH sensor (DANOPLUS KIB-87).</strong> The pH probe (top) and its signal-conditioning board (bottom), which prepares the probe signal for the Arduino.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/ph-sensor.avif" alt="pH sensor: a black pH probe with a green protective cap above a green signal-conditioning circuit board connected to the probe cable"></div><figcaption class="caption"><strong>Figure 8. pH sensor (DANOPLUS KIB-87).</strong> The pH probe (top) and its signal-conditioning board (bottom), which prepares the probe signal for the Arduino.</figcaption></figure>
 </div>
 
 **Automated induction for hands-free biomanufacturing**
@@ -165,7 +165,7 @@ $$
 where *a* and *b* are calibration coefficients determined by correlating turbidity readings with reference OD₆₀₀ measurements. This approach informed by Fan et al. establishes relationships between optical turbidity measurements and biomass concentration. Continuous OD₆₀₀ estimation enables automatic induction of protein expression once the culture reaches a predefined OD₆₀₀ threshold, reducing manual intervention and supporting autonomous biomanufacturing.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/turbidity-sensor.avif" alt="DFRobot turbidity sensor: a small black circuit board labeled Turbidity sensor V1.0, wired to a translucent optical probe head"></div><figcaption class="caption"><strong>Figure 6. Turbidity sensor (DFRobot SEN0189 Gravity Analog Turbidity Sensor).</strong> The sensor board and the optical probe head that measures how cloudy the culture is.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/turbidity-sensor.avif" alt="DFRobot turbidity sensor: a small black circuit board labeled Turbidity sensor V1.0, wired to a translucent optical probe head"></div><figcaption class="caption"><strong>Figure 9. Turbidity sensor (DFRobot SEN0189 Gravity Analog Turbidity Sensor).</strong> The sensor board and the optical probe head that measures how cloudy the culture is.</figcaption></figure>
 </div>
 
 At the end of the reaction, the culture is transferred by tubes and pumps to the protein purification system to recover the nanobodies.
@@ -233,18 +233,18 @@ Four syringe pumps dispense precise volumes of each buffer: equilibration, wash,
 After each buffer runs through, negative pressure at the waste port draws it out of the column, except during elution, when the eluate is routed to a sterile collection vial instead.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/affinity-chromatography-diagram.avif" alt="Top-down CAD diagram of the affinity chromatography setup: the filtration unit on the left feeds tubing to the top of a tall column, four syringe pumps in a stack each connect to the column top through their own buffer line, and the column outlet leads to a collection vial at the bottom right"></div><figcaption class="caption"><strong>Figure 7. Four syringe pumps feed the buffers to the column.</strong> Diagram of the affinity chromatography setup: the filtration unit, four syringe pumps with their buffer lines, the column and the collection vial.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/affinity-chromatography-diagram.avif" alt="Top-down CAD diagram of the affinity chromatography setup: the filtration unit on the left feeds tubing to the top of a tall column, four syringe pumps in a stack each connect to the column top through their own buffer line, and the column outlet leads to a collection vial at the bottom right"></div><figcaption class="caption"><strong>Figure 10. Four syringe pumps feed the buffers to the column.</strong> Diagram of the affinity chromatography setup: the filtration unit, four syringe pumps with their buffer lines, the column and the collection vial.</figcaption></figure>
 </div>
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fluid-dispensing-demo.avif" alt="The fluid dispensing system on a lab bench: four 60 mL syringes mounted on stepper-motor linear actuators on a perforated base plate, connected by tubing and check valves, with wiring to the controller"></div><figcaption class="caption"><strong>Figure 8. Testing the accuracy of our fluid dispensing system.</strong> We conducted experiments over many iterations to verify that our fluid dispensing system could accurately dispense the correct amount of buffer that we entered into the program. Our motor-controlled syringe was able to draw its full 60 mL capacity of buffer and accurately dispense 45 mL of buffer (entered by user)!</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/fluid-dispensing-demo.avif" alt="The fluid dispensing system on a lab bench: four 60 mL syringes mounted on stepper-motor linear actuators on a perforated base plate, connected by tubing and check valves, with wiring to the controller"></div><figcaption class="caption"><strong>Figure 11. Testing the accuracy of our fluid dispensing system.</strong> We conducted experiments over many iterations to verify that our fluid dispensing system could accurately dispense the correct amount of buffer that we entered into the program. Our motor-controlled syringe was able to draw its full 60 mL capacity of buffer and accurately dispense 45 mL of buffer (entered by user)!</figcaption></figure>
 </div>
 
 <div data-slot="model"></div>
 
 <div class="caption">
 
-**Figure 9. The full bioreactor can be explored in 3D.** Interactive CAD model of the SHIHAB bioreactor (about 20 x 24 x 31 cm). Drag to rotate, scroll or pinch to zoom, and on a supported phone view it in AR.
+**Figure 12. The full bioreactor can be explored in 3D.** Interactive CAD model of the SHIHAB bioreactor (about 20 x 24 x 31 cm). Drag to rotate, scroll or pinch to zoom, and on a supported phone view it in AR.
 
 </div>
 
@@ -255,7 +255,7 @@ After each buffer runs through, negative pressure at the waste port draws it out
 
 <div class="caption">
 
-**Figure 10. The real bioreactor prototype and its dashboard.** Left: photo of the built bioreactor running. Right: the touchscreen showing the temperature and pH setpoints, the current temperature, pH, motor speed (RPM) and OD. The red caution line, “CAUTION: TEMP & pH OUT OF RANGE”, appears when the temperature or pH is further from its setpoint than the allowed tolerance (±0.5 °C and ±0.2 pH); here the readings (17.81 °C and pH 6.77) were still away from the setpoints (37 °C and pH 8.0).
+**Figure 13. The real bioreactor prototype and its dashboard.** Left: photo of the built bioreactor running. Right: the touchscreen showing the temperature and pH setpoints, the current temperature, pH, motor speed (RPM) and OD. The red caution line, “CAUTION: TEMP & pH OUT OF RANGE”, appears when the temperature or pH is further from its setpoint than the allowed tolerance (±0.5 °C and ±0.2 pH); here the readings (17.81 °C and pH 6.77) were still away from the setpoints (37 °C and pH 8.0).
 
 </div>
 
@@ -266,27 +266,27 @@ On Earth, gravity does a lot of quiet work for a bioreactor: heavier fluid sinks
 The flow pattern depended strongly on gravity: in transit and on the Moon, circulation stayed confined to one part of the vessel while the rest moved slowly and was mixed far less. Since oxygen reaches the cells only as fast as the culture carries it, **uneven mixing directly limits our yield**, and a rotor that works well on Earth cannot simply be assumed to work in space. We therefore used the simulations to compare three rotor designs before building them. In the animations, colored dots are bubbles that are still moving and gray dots have come to rest.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-1.webp" alt="Simulation of bubble fate for the first rotor concept, one large paddle at the bottom of the vessel, at 100 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 11. A single large paddle at the bottom left the upper vessel poorly stirred.</strong> Simulated bubble fate for Prototype 1, one large paddle at the bottom, at 100 rpm.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-1.webp" alt="Simulation of bubble fate for the first rotor concept, one large paddle at the bottom of the vessel, at 100 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 14. A single large paddle at the bottom left the upper vessel poorly stirred.</strong> Simulated bubble fate for Prototype 1, one large paddle at the bottom, at 100 rpm.</figcaption></figure>
 </div>
 
 **What we observed.** On Earth and Mars, most bubbles came to rest within the first seconds of simulated time. On the Moon and in transit, the bubbles that stayed in circulation followed a single narrow path up the outer wall, while large parts of the vessel were left empty and slow. With only one paddle, the stirring did not spread through the whole vessel.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-2.webp" alt="Simulation of bubble fate for the second rotor concept, three rows of large blades, at 100 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 12. Three rows of large blades split the liquid into separate loops.</strong> Simulated bubble fate for Prototype 2, three rows of large blades, at 100 rpm.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-2.webp" alt="Simulation of bubble fate for the second rotor concept, three rows of large blades, at 100 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 15. Three rows of large blades split the liquid into separate loops.</strong> Simulated bubble fate for Prototype 2, three rows of large blades, at 100 rpm.</figcaption></figure>
 </div>
 
 **What we observed.** On Mars, the Moon and in transit, the bubbles ended up trapped in separate closed loops, one between each pair of blade rows near the outer wall. They stayed inside their own loop instead of traveling through the vessel, so the three blade rows acted like separate mixing zones rather than one stirred volume, and the top of the vessel stayed mostly empty.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-3.webp" alt="Simulation of bubble fate for the third rotor concept, three rows of small tilted blades, at 200 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 13. Small tilted blades drove one continuous circulation loop.</strong> Simulated bubble fate for Prototype 3, three rows of small tilted blades, at 200 rpm.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-prototype-3.webp" alt="Simulation of bubble fate for the third rotor concept, three rows of small tilted blades, at 200 rpm, compared across Earth, Mars, Moon and transit gravity"></div><figcaption class="caption"><strong>Figure 16. Small tilted blades drove one continuous circulation loop.</strong> Simulated bubble fate for Prototype 3, three rows of small tilted blades, at 200 rpm.</figcaption></figure>
 </div>
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-air-fate.webp" alt="Simulation of where the air goes for the third rotor concept at 200 rpm and 6.4 mL/min air supply, in four gravities"></div><figcaption class="caption"><strong>Figure 14. In weaker gravity, bubbles rise more slowly and stay longer in the liquid.</strong> Simulated fate of the air for Prototype 3, three rows of 39° tilted blades, at 200 rpm and an air supply of 6.4 mL/min, with the same stirrer and air supply in four gravities.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-air-fate.webp" alt="Simulation of where the air goes for the third rotor concept at 200 rpm and 6.4 mL/min air supply, in four gravities"></div><figcaption class="caption"><strong>Figure 17. In weaker gravity, bubbles rise more slowly and stay longer in the liquid.</strong> Simulated fate of the air for Prototype 3, three rows of 39° tilted blades, at 200 rpm and an air supply of 6.4 mL/min, with the same stirrer and air supply in four gravities.</figcaption></figure>
 </div>
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-vortex-depth.webp" alt="Simulation of vortex depth for the third rotor concept from 50 to 400 rpm"></div><figcaption class="caption"><strong>Figure 15. The spinning liquid dips at the shaft, and air is pulled in once the dip reaches the top blades.</strong> Simulated vortex depth for Prototype 3, three rows of 39° tilted blades, from 50 to 400 rpm. If the dip reaches the top blades, air is pulled in (engulfment).</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/cfd-vortex-depth.webp" alt="Simulation of vortex depth for the third rotor concept from 50 to 400 rpm"></div><figcaption class="caption"><strong>Figure 18. The spinning liquid dips at the shaft, and air is pulled in once the dip reaches the top blades.</strong> Simulated vortex depth for Prototype 3, three rows of 39° tilted blades, from 50 to 400 rpm. If the dip reaches the top blades, air is pulled in (engulfment).</figcaption></figure>
 </div>
 
 **What we observed.** The streamlines now form large loops that span the full height and width of the vessel instead of small isolated cells. On Earth and Mars nearly all bubbles had come to rest by the end of the simulation, many along the wall. On the Moon and in transit some bubbles were still moving along the outer wall, so mixing was much better than in the first two designs but still not fully uniform at low gravity.
@@ -379,7 +379,7 @@ We validated the temperature control by heating water from 18 °C to a setpoint 
 
 <div class="caption">
 
-**Figure 16. The temperature reached 36 °C and was then held steady.** Full temperature profile of the water, heated from 18 °C to the setpoint with simple on/off control.
+**Figure 19. The temperature reached 36 °C and was then held steady.** Full temperature profile of the water, heated from 18 °C to the setpoint with simple on/off control.
 
 </div>
 
@@ -407,7 +407,7 @@ We tested how the pH sensor responds to sudden changes in the pH of the culture 
 
 <div class="caption">
 
-**Figure 17. The pH sensor tracked the changes caused by adding acid and base.** Response of the pH sensor to sudden changes in pH.
+**Figure 20. The pH sensor tracked the changes caused by adding acid and base.** Response of the pH sensor to sudden changes in pH.
 
 </div>
 
@@ -481,13 +481,13 @@ The SHIHAB bioreactor has been experimentally validated to sustain robust *E. co
 
 <div class="caption">
 
-**Figure 18. *E. coli* grew in a sigmoidal curve to an OD₆₀₀ of about 0.49 over 10 hours.** Growth curve from the SHIHAB bioreactor, obtained via periodic blank-corrected OD₆₀₀ measurements.
+**Figure 21. *E. coli* grew in a sigmoidal curve to an OD₆₀₀ of about 0.49 over 10 hours.** Growth curve from the SHIHAB bioreactor, obtained via periodic blank-corrected OD₆₀₀ measurements.
 
 </div>
 
 <div class="figure-grid" style="--fig-h: 220px; --fig-fit: contain;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/96-well-plate.avif" alt="96-well microplate used for optical density sampling"></div><figcaption class="caption"><strong>Figure 19. Growth was sampled periodically in a 96-well plate.</strong> The plate was used for OD₆₀₀ sampling during the growth assay.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/culture-vessel.avif" alt="E. coli culture growing in the SHIHAB bioreactor vessel"></div><figcaption class="caption"><strong>Figure 20. The vessel supported 10 hours of <em>E. coli</em> growth.</strong> Final culture (in enriched LB medium) after 10 h of growth in the SHIHAB bioreactor vessel during a validation run.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/96-well-plate.avif" alt="96-well microplate used for optical density sampling"></div><figcaption class="caption"><strong>Figure 22. Growth was sampled periodically in a 96-well plate.</strong> The plate was used for OD₆₀₀ sampling during the growth assay.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/culture-vessel.avif" alt="E. coli culture growing in the SHIHAB bioreactor vessel"></div><figcaption class="caption"><strong>Figure 23. The vessel supported 10 hours of <em>E. coli</em> growth.</strong> Final culture (in enriched LB medium) after 10 h of growth in the SHIHAB bioreactor vessel during a validation run.</figcaption></figure>
 </div>
 
 ### Sterility and vessel validation
@@ -497,10 +497,10 @@ We first tested the whole setup with water to identify any potential hazards wit
 To check that the procedure works, the glass vessel was soaked in bleach for 30 min, emptied, thoroughly washed and rinsed with deionized/distilled water. It was then autoclaved at 121 °C and approximately 15 psi for at least two hours (glassware cycle, following the laboratory autoclave SOP), filled with sterile LB medium and autoclaved again. The LB-filled vessel was then placed in a shaking incubator at 37 °C overnight to test for microbial contamination. Afterwards, the LB showed no visible turbidity and its OD<sub>600</sub> was approximately 0.001, indicating no detectable growth. For comparison, an overnight *E. coli* culture grown under the same conditions reached an OD<sub>600</sub> of ~1.36, which is what we would expect if the vessel had not been sterile.
 
 <div class="figure-grid" style="--fig-h: 220px; --fig-fit: cover;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-before.avif" alt="Glass culture vessel filled with sterile LB medium and covered with foil, before incubation"></div><figcaption class="caption"><strong>Figure 21. Sterile LB in the glass culture vessel before incubation.</strong></figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-after.avif" alt="Glass culture vessel with LB medium after overnight incubation, with no visible turbidity"></div><figcaption class="caption"><strong>Figure 22. The LB showed no turbidity after overnight incubation.</strong> The LB in the glass culture vessel after overnight incubation.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-lb.avif" alt="Spectrophotometer reading of 0.001 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 23. The incubated LB had an OD<sub>600</sub> of 0.001, so no growth was detectable.</strong></figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-reference.avif" alt="Spectrophotometer reading of 1.356 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 24. An overnight <em>E. coli</em> culture grown under the same conditions reached an OD<sub>600</sub> of about 1.356.</strong> Shown for reference.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-before.avif" alt="Glass culture vessel filled with sterile LB medium and covered with foil, before incubation"></div><figcaption class="caption"><strong>Figure 24. Sterile LB in the glass culture vessel before incubation.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-lb-after.avif" alt="Glass culture vessel with LB medium after overnight incubation, with no visible turbidity"></div><figcaption class="caption"><strong>Figure 25. The LB showed no turbidity after overnight incubation.</strong> The LB in the glass culture vessel after overnight incubation.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-lb.avif" alt="Spectrophotometer reading of 0.001 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 26. The incubated LB had an OD<sub>600</sub> of 0.001, so no growth was detectable.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/hardware/sterility-od-reference.avif" alt="Spectrophotometer reading of 1.356 absorbance at 600 nm"></div><figcaption class="caption"><strong>Figure 27. An overnight <em>E. coli</em> culture grown under the same conditions reached an OD<sub>600</sub> of about 1.356.</strong> Shown for reference.</figcaption></figure>
 </div>
 
 <div class="callout accent">

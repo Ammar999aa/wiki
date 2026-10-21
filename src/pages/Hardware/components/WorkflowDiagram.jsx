@@ -1,6 +1,6 @@
 import styles from "../Hardware.module.scss";
 
-// Figure 3 — the automated workflow, ported unchanged from the team's page
+// Figure 6 — the automated workflow, ported unchanged from the team's page
 // export. Its caption lives in hardware.md right after the slot. Colors are
 // literal values because SVG presentation attributes can't read CSS custom
 // properties (they're the --primary/--primary-300/--amber tokens).

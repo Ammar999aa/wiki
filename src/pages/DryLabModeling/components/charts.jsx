@@ -430,6 +430,7 @@ function YeastPartnerSupply() {
         bars={d.conditions.map((c) => ({ label: `${c.label} (sucrose ${c.sucrose})`, value: c.growth, color: VIOLET }))}
         unit=" h⁻¹"
         formatValue={fmt(3)}
+        largeLabels
       />
     </ChartPanel>
   );

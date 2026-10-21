@@ -52,7 +52,10 @@ const DESERT_VIDEO_ID = "czwcZyskQpAkvMVoSaGwVr";
 const userManual =
   "https://static.igem.wiki/teams/6341/wiki/content/hardware/hardware-user-manual.pdf";
 
-// Figures 1 and 2 sit between the title and the first section, so they go
+// Hosted on iGEM's asset server rather than bundled locally.
+const desertMedia = "https://static.igem.wiki/teams/6341/wiki/content/hardware";
+
+// Figures 1 to 5 sit between the title and the first section, so they go
 // through the `intro` slot rather than hardware.md,
 // whose content always starts under a section heading.
 function TopFigures() {
@@ -85,6 +88,54 @@ function TopFigures() {
           <figcaption className="caption">
             <strong>Figure 2.</strong> The real set-up, with the bioreactor and the syringe pumps, tested
             out on the dunes, exactly the kind of remote place it is built for.
+          </figcaption>
+        </figure>
+      </div>
+      <p>
+        To put “anywhere” to the test, we took SHIHAB out of the lab and into the desert. With a folding
+        table, a laptop and a bit of sunset, the team set up the bioreactor and fluid dispensing system
+        on the dunes, far from any bench.
+      </p>
+      <div className="figure-grid" style={{ "--cols": 2, "--fig-h": "320px", "--fig-fit": "cover" }}>
+        <figure>
+          <div className="photo-frame">
+            <img
+              src={`${desertMedia}/desert-pic-1.avif`}
+              alt="Part of the KAUST-KSA team with the SHIHAB bioreactor and fluid dispensing system set up on a folding table in the dunes"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="caption">
+            <strong>Figure 3. Part of the KAUST-KSA team and SHIHAB, a long way from the lab.</strong> The
+            bioreactor and fluid dispensing system are set up on a folding table in the dunes.
+          </figcaption>
+        </figure>
+        <figure>
+          <div className="photo-frame">
+            <img
+              src={`${desertMedia}/desert-pic-2.avif`}
+              alt="Team members and principal investigators in the desert during a break between setting up and tearing down the SHIHAB prototype"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="caption">
+            <strong>Figure 4. A little break between setup and teardown.</strong> Our PIs were just as
+            excited over the prototype working as they were about driving over countless dunes!
+          </figcaption>
+        </figure>
+      </div>
+      <div className="figure-grid single wide">
+        <figure>
+          <div className="photo-frame">
+            <img
+              src={`${desertMedia}/desert-pic-3.avif`}
+              alt="Sunset over the desert set-up as the sun dips behind the hills"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="caption">
+            <strong>Figure 5. Sunset over the setup.</strong> The sun dips behind the hills as the day’s
+            work wraps up. Next stop: Paris!!!
           </figcaption>
         </figure>
       </div>
