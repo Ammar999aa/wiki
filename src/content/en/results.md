@@ -911,7 +911,7 @@ We expressed and purified all payloads (nanobodies, antifreeze proteins, mCherry
 
 #### Production yield
 
-_P. pastoris_ produced the highest concentrations of protein: from only 300–400 mL cultures we purified amounts comparable to those from 800–900 mL _B. subtilis_ production cultures.
+_P. pastoris_ produced the highest concentrations of protein: from only 300–400 mL cultures we purified amounts comparable to those from 800–900 mL _B. subtilis_ production cultures. In direct comparison, _Pichia_ became our favorite protein production host.
 
 </div>
 
