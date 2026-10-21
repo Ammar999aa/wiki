@@ -366,9 +366,6 @@ In parallel, we explored extremotolerant organisms as potential sources of prote
 <h3 class="person-step"><span class="step-icon step-iterate" aria-hidden="true"></span>Iterate</h3>
 <p>Following Dr. Mason's feedback, we moved forward with Dsup as one of the protective genes in our chassis-engineering strategy. We also incorporated the Comet assay into our experimental workflow, following his recommendation, to directly assess DNA damage after stress exposure alongside our growth and survival measurements.</p>
 <p><a class="person-link-btn" href="/kaust-ksa/experiments">Comet assay and experiments →</a></p>
-<p>Dsup also influenced how we thought about finding additional protective genes. If a resistance mechanism from an extremotolerant organism such as a tardigrade could be transferred into a microbial chassis, could other organisms adapted to extreme environments contain useful resistance mechanisms as well? This idea contributed to our dry-lab gene-mining approach, in which we searched for potential stress-resistance genes from extremophiles.</p>
-<p>Saudi Arabia provided an especially relevant environment for this exploration. The Rub' al Khali (Empty Quarter) represents an extreme desert ecosystem where organisms experience conditions such as intense heat, desiccation, and high solar exposure. This motivated us to investigate organisms adapted to local extreme environments as potential sources of genes that could strengthen our engineered chassis.</p>
-<p><a class="person-link-btn" href="/kaust-ksa/software">Gene mining (Dry Lab) →</a></p>
 <h3 class="person-step"><span class="step-icon step-translate" aria-hidden="true"></span>Translate</h3>
 <p>Dsup raised a broader question for us: if useful protective genes can be found in extremotolerant organisms, what other resistance mechanisms could we discover?</p>
 </div>

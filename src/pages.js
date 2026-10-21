@@ -48,7 +48,6 @@ const EngineeringSuccess = lazyWithPreload(() => import("./pages/EngineeringSucc
 const Notebook = lazyWithPreload(() => import("./pages/Notebook/Notebook"));
 const Inclusivity = lazyWithPreload(() => import("./pages/Inclusivity/Inclusivity"));
 const Stub = lazyWithPreload(() => import("./pages/Stub/Stub"));
-const Model = lazyWithPreload(() => import("./pages/Model/Model"));
 const DryLabModeling = lazyWithPreload(() => import("./pages/DryLabModeling/DryLabModeling"));
 const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
 const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribution"));
@@ -171,9 +170,6 @@ const Pages = [
         component: DryLabModeling,
         description: "SHIHAB dry lab modeling: flux balance analysis of three chassis and a cyanobacterial partner.",
       },
-      // Model's candidate-mining content is a software deliverable, so it
-      // lives at iGEM's standard /software URL.
-      { name: "Bioprospecting", title: "Bioprospecting", path: "/software", component: Model },
     ],
   },
   {
@@ -212,7 +208,7 @@ const Pages = [
   // Integrated Human Practices links here ("See long-term roadmap"), so the
   // URL has to keep resolving. Pages that already exist live at their
   // required iGEM URL in the nav (/engineering, /human-practices, /model,
-  // /safety-and-security, /software, /contribution, /education, /hardware,
+  // /safety-and-security, /contribution, /education, /hardware,
   // /inclusivity, /measurement).
   { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub, hidden: true },
   // Pre-existing sectioned pages, superseded in the nav by the categories

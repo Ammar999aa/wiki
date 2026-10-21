@@ -8,7 +8,7 @@ import styles from "./SectionedArticle.module.scss";
 // `numbered`: show a section number ("01", "02", …) beside each heading and
 // jump-nav entry. Worth it only on a page long enough that a reader loses
 // their place, and where other parts of the page refer back to a section by
-// number (see Model/`/software`, whose SecRef marks read "§05"). On a short
+// number (e.g. "§05" cross-references). On a short
 // page the numbers are noise, so this stays opt-in.
 //
 // The numbers come from each section's position, never from a hand-written

@@ -27,7 +27,6 @@
 # Dry Lab
 
     Modeling
-    Bioprospecting
 
 # Beyond the Lab
 

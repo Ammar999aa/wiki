@@ -2208,9 +2208,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin-block: 16px;
     padding: 4px 18px;
 
-    // Same open-state glyph as Model's own .details/.summary
-    // (src/pages/Model/Model.module.scss) — one collapsible-card
-    // affordance, used in two places, should read identically.
+    // Open-state glyph for the collapsible card.
     &[open] :global(.details-summary)::before {
       content: "\2013";
     }
@@ -3710,7 +3708,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   background: color-mix(in oklab, var(--primary) 12%, transparent);
 }
 
-// Section number for a numbered reference-style page (Model/`/software`),
+// Section number for a numbered reference-style page,
 // kept out of the title text so the jump-nav reads as a table of contents.
 // Monospace + tabular-nums so the numbers form a straight column beside
 // titles of different lengths — the same "mono is for metadata" rule the

@@ -180,7 +180,7 @@ export const glanceTiles = [
 export const shapedParts = [
   { id: "payload", label: "Payload library", path: "/design" },
   { id: "experiments", label: "Wet-lab experiments", path: "/experiments" },
-  { id: "drylab", label: "Dry Lab & gene mining", path: "/model" },
+  { id: "drylab", label: "Dry Lab", path: "/model" },
   { id: "roadmap", label: "Long-term roadmap", path: "/proposed-implementation" },
   { id: "safety", label: "Safety handbook", path: "/safety-and-security" },
   { id: "hardware", label: "Hardware", path: "/hardware" },
@@ -251,7 +251,7 @@ export const shapedPeople = [
     card: "Dr. Christopher E. Mason",
     topic: "Dsup & DNA damage",
     photos: [{ file: "mason.avif" }],
-    parts: ["experiments", "drylab"],
+    parts: ["experiments"],
     changed:
       "Following Dr. Mason's feedback, we moved forward with Dsup as one of the protective genes in our chassis-engineering strategy. We also incorporated the Comet assay into our experimental workflow …",
   },

@@ -102,35 +102,6 @@ We developed a biosafety handbook for safe handling and genetic engineering of *
 
 You can find more information, and see how these practices fit into SHIHAB as a whole, on our <a href="/kaust-ksa/safety-and-security">Safety</a> page.
 
-## Gene mining pipeline
-
-<div class="chip-row">
-<span class="chip">Dry Lab · Software</span>
-</div>
-
-We identified 19 candidate genes from Empty Quarter metagenomic samples with potential applications in improving microbial tolerance to environmental stress. These candidates were identified through a computational pipeline involving sequence filtering, functional annotation, and candidate evaluation.
-
-<div class="panel">
-<div class="panel-title"><span>Pipeline</span><span>Reusable workflow</span></div>
-<div class="flow">
-<span class="flow-node">Empty Quarter metagenomic samples</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node">Sequence filtering</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node">Functional annotation</span>
-<span class="flow-arrow">→</span>
-<span class="flow-node amber">Candidate evaluation</span>
-</div>
-</div>
-
-<div class="stat-grid">
-<div class="hi"><strong>19</strong><span>Candidate genes</span></div>
-</div>
-
-With this, we aim to provide future iGEM teams with a collection of promising genes to further investigate, characterize, and potentially incorporate into their own projects.
-
-Explore the pipeline and its results on our <a href="/kaust-ksa/software">Software</a> page.
-
 ## GEM models
 
 <div class="chip-row">
