@@ -2,7 +2,7 @@
 
 In our project, we were working with **three different chassis**: _B. subtilis_, _P. pastoris_, and _S. cerevisiae_. We engineered these organisms using a combination of **genomic recombineering and episomal plasmids**, which allowed us to explore different strategies for stable and inducible heterologous gene expression.
 
-All three chassis were engineered to contain **Dsup** protein stably integrated into their genome for enhanced radiation resistance. Subsequently, the host cells were transformed to express a range of **protein payloads** that can be useful for astronauts during their space missions.
+All three chassis were engineered to contain **Dsup** protein stably integrated into their genome for enhanced radiation resistance. Subsequently, the host cells were transformed to express a range of **protein payloads** that can be useful for astronauts during their space missions. We incorporated secretion tag fusion to the payload proteins to ease downstream purification processes.
 
 <div class="figure-grid single">
 <figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/project-overview-schematic2.avif" alt="Protein payload production: a payload gene on a plasmid transformed into a cell carrying genomically integrated Dsup, producing antifreeze proteins, therapeutic nanobodies and fluorescent proteins"><figcaption class="caption">Schematic project overview</figcaption></figure>
