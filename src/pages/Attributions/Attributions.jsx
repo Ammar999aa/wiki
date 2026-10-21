@@ -38,6 +38,7 @@ const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
 const alejandra = `${ROSTER_CDN}/alejandra.avif`;
 const raik      = `${ROSTER_CDN}/raik.avif`;
 const samah     = `${ROSTER_CDN}/samah.avif`;
+const fabian    = `${ROSTER_CDN}/fabian.avif`;
 const jordi     = `${ROSTER_CDN}/jordi.avif`;
 const yerlen    = `${ROSTER_CDN}/yerlen.avif`;
 const kiran     = `${ROSTER_CDN}/kiran.avif`;
@@ -156,9 +157,10 @@ const principalInvestigators = [
   { key: "wayne", title: "Wayne Yang", photo: wayne },
 ];
 
-// Same six advisors as on Roster, same order, same photos and preferred
+// Same advisors as on Roster, same order, same photos and preferred
 // display names (src/assets/email-responses).
 const advisors = [
+  { key: "fabian", title: "Fabian Schmidt", photo: fabian },
   { key: "samah", title: "Samah Gadhoum", photo: samah },
   { key: "selena", title: "Selena Franchini", photo: selena },
   { key: "muhammadTehseen", title: "Muhammad Tehseen", photo: tehseen },
