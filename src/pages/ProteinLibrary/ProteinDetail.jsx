@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
 import ProteinGlyph from "./ProteinGlyph";
 import StructureViewer from "./StructureViewer";
@@ -7,7 +8,10 @@ import styles from "./ProteinLibrary.module.scss";
 // The floating panel a selected protein opens into — a dimmed backdrop
 // (this component's own root, click-to-close) that covers the whole grid,
 // with the panel itself on top, rather than growing that card's tile in
-// place and pushing its neighbors aside.
+// place and pushing its neighbors aside. Portalled to <body>: rendered inside
+// the page, any transformed/filtered ancestor (Safari is stricter about this)
+// becomes the containing block for `position: fixed`, so the overlay would be
+// centred on the page instead of the viewport.
 export default function ProteinDetail({ protein, onClose }) {
   const closeRef = useRef(null);
   const titleId = `protein-detail-title-${protein.id}`;
@@ -19,7 +23,7 @@ export default function ProteinDetail({ protein, onClose }) {
     closeRef.current?.focus();
   }, []);
 
-  return (
+  return createPortal(
     <div className={styles.backdrop} onClick={onClose}>
       <div
         className={styles.detailPanelWrap}
@@ -77,6 +81,7 @@ export default function ProteinDetail({ protein, onClose }) {
           </div>
         </LiquidGlass>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
