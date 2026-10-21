@@ -73,9 +73,9 @@ function TopFigures() {
           <h3 className={styles.desertTitle}>We took SHIHAB to the desert!</h3>
           <div className={styles.desertVideo}>
             <iframe
-              src={`https://video.igem.org/videos/embed/${DESERT_VIDEO_ID}`}
+              src={`https://video.igem.org/videos/embed/${DESERT_VIDEO_ID}?autoplay=1&loop=1&muted=1`}
               title="We took SHIHAB to the desert: the real set-up tested on the dunes"
-              allow="fullscreen; picture-in-picture"
+              allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
