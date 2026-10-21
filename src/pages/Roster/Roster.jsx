@@ -94,10 +94,10 @@ const principalInvestigators = [
 // Attributions.
 // Names, flags and photos are each person's own choice, from the replies in
 // src/assets/email-responses — Jordi publishes as "Jordi Pla-Mauri", and
-// Muhammad Tehseen asked for the Australian flag. Samah has sent a photo but no flag yet.
+// Muhammad Tehseen asked for the Australian flag.
 const advisors = [
   { name: "Fabian Schmidt", roleKey: "advisor", memberKey: "fabian", photo: fabian, countryCode: "de" },
-  { name: "Samah Gadhoum", roleKey: "advisor", memberKey: "samah", photo: samah, countryCode: null },
+  { name: "Samah Gadhoum", roleKey: "advisor", memberKey: "samah", photo: samah, countryCode: "tn" },
   { name: "Selena Franchini", roleKey: "advisor", memberKey: "selena", photo: selena, countryCode: "it" },
   { name: "Muhammad Tehseen", roleKey: "advisor", memberKey: "muhammadTehseen", photo: tehseen, countryCode: "au" },
   { name: "Alejandra Rodríguez Llerena", roleKey: "advisor", memberKey: "alejandra", photo: alejandra, countryCode: "es" },

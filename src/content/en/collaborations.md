@@ -8,7 +8,7 @@ One of our most important goals was to make synthetic biology more accessible ac
 
 These collaborations became an essential part of our work in education, public engagement, and human practices.
 
-## MENA iGEM Collaborations
+## MENA iGEM collaborations
 
 The Middle East and North Africa (MENA) region is home to a growing community of young scientists and innovators. Yet, opportunities for iGEM teams across the region to connect, share resources, and communicate their research to broader audiences remain limited.
 
@@ -24,7 +24,7 @@ Through our partnerships with NYU Abu Dhabi, Al-Nahrain University, King Fahd Un
 
 #### NYU Abu Dhabi iGEM: The Tawasol Hackathon and Policy Showcase
 
-Our collaboration with the NYU-AD iGEM team centered on co-organizing the Tawasol Hackathon and Policy Showcase, held August 28-30. Together, we developed a multidisciplinary competition featuring challenges inspired by our respective SHIHAB and DUNELOCK projects, encouraging participants to consider scientific innovation alongside policy, ethics, and real-world feasibility.
+Our collaboration with the NYU-AD iGEM team centered on co-organizing the Tawasol Hackathon and Policy Showcase, held August 28–30. Together, we developed a multidisciplinary competition featuring challenges inspired by our respective SHIHAB and DUNELOCK projects, encouraging participants to consider scientific innovation alongside policy, ethics, and real-world feasibility.
 
 NYU-AD also joined the subsequent Tawasol Regional Summit and Public Showcase, helping expand our collaboration into a broader regional network.
 
@@ -68,7 +68,7 @@ We collaborated with NIS-Medeu through their BioAccelerator Program and syntheti
 
 </div>
 
-## Global Educational Collaborations
+## Global educational collaborations
 
 <div class="card-grid stack">
 
@@ -100,7 +100,7 @@ While our mentorship initiative introduced students to scientific research and a
 
 </div>
 
-## Local Community and Institutional Partnerships
+## Local community and institutional partnerships
 
 <details class="details">
 <summary class="details-summary">Jeddah Department of Education</summary>
@@ -118,7 +118,7 @@ The Jeddah Department of Education supported our school outreach efforts by help
 
 <div class="details-body">
 
-Zahrat Al-Sahra International School hosted our Biomission in Space workshop for 58 middle school students aged 12-14. Working with the school, we introduced students to synthetic biology through an interactive activity in which they designed hypothetical microorganisms for space missions, encouraging creativity and scientific problem-solving.
+Zahrat Al-Sahra International School hosted our Biomission in Space workshop for 58 middle school students aged 12–14. Working with the school, we introduced students to synthetic biology through an interactive activity in which they designed hypothetical microorganisms for space missions, encouraging creativity and scientific problem-solving.
 
 </div>
 
@@ -214,7 +214,7 @@ Through the 2026 KAUST Orientation Expo, organized by KAUST Student Life, we con
 
 </details>
 
-## Growing Through Collaboration
+## Growing through collaboration
 
 Our collaborations showed us that scientific impact extends beyond the laboratory. Fellow iGEM teams brought new ideas and expertise, educational partners helped us reach diverse audiences, and institutional collaborators contributed the resources and perspectives needed to turn our initiatives into reality.
 

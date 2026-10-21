@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { speciesTitle } from "../../utils/speciesTitle";
 import styles from "./Protocols.module.scss";
 
 // The full-page reading view a selected protocol swaps into (see
@@ -22,7 +23,7 @@ export default function ProtocolArticle({ protocol, onBack, prev, next, onSelect
       </button>
 
       <article className={styles.article}>
-        <h1 className={styles.articleTitle}>{protocol.title}</h1>
+        <h1 className={styles.articleTitle}>{speciesTitle(protocol.title)}</h1>
         <div className={styles.detailBody} dangerouslySetInnerHTML={{ __html: protocol.html }} />
       </article>
 
@@ -32,7 +33,7 @@ export default function ProtocolArticle({ protocol, onBack, prev, next, onSelect
             <span className={styles.pagerArrow} aria-hidden="true">←</span>
             <span className={styles.pagerText}>
               <span className={styles.pagerLabel}>Previous</span>
-              <span className={styles.pagerTitle}>{prev.title}</span>
+              <span className={styles.pagerTitle}>{speciesTitle(prev.title)}</span>
             </span>
           </button>
         ) : (
@@ -42,7 +43,7 @@ export default function ProtocolArticle({ protocol, onBack, prev, next, onSelect
           <button type="button" className={`${styles.pagerButton} ${styles.pagerNext}`} onClick={() => onSelect(next.title)}>
             <span className={styles.pagerText}>
               <span className={styles.pagerLabel}>Next</span>
-              <span className={styles.pagerTitle}>{next.title}</span>
+              <span className={styles.pagerTitle}>{speciesTitle(next.title)}</span>
             </span>
             <span className={styles.pagerArrow} aria-hidden="true">→</span>
           </button>

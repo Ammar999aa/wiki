@@ -1,7 +1,8 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
-import sections from "../../content/en/parts.md";
+import rawSections from "../../content/en/parts.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import { withSpeciesTitles } from "../../utils/speciesTitle";
 const gradient =
   "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
@@ -12,6 +13,8 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // No deck: the opening paragraphs are regular paragraphs, kept in the
 // intro slot (right under the masthead) because the markdown sections start
 // at the first organism and anything before a "##" heading is not rendered.
+const sections = withSpeciesTitles(rawSections);
+
 const pageIntro = (
   <>
     <Masthead eyebrow={["Wet Lab", "Parts", "Three chassis"]} />
@@ -32,7 +35,7 @@ const pageIntro = (
       hosts.
     </p>
     <p>
-      Below, we have organised our parts for each organism, along with their
+      Below, we have organized our parts for each organism, along with their
       corresponding iGEM Registry IDs. Detailed descriptions and sequence
       information for each part can be found through the linked Registry pages.
     </p>

@@ -14,10 +14,10 @@
 <details class="details" id="models-software-and-the-constraints-shared-by-every-simulation">
 <summary class="details-summary">Details: models, software and the constraints shared by every simulation</summary>
 <div class="details-body">
-<p>All GEM used are published reconstructions: <strong>Yeast9</strong><sup class="cite">[<a href="#ref-1">1</a>]</sup> for <em>S. cerevisiae</em>,
-      <strong>iBsu1147</strong><sup class="cite">[<a href="#ref-2">2</a>]</sup> for <em>B. subtilis</em>, and <strong>iMS837</strong><sup class="cite">[<a href="#ref-3">3</a>]</sup> for
-      <em>S. elongatus</em> PCC 7942. iMS837 was built on iJB792<sup class="cite">[<a href="#ref-4">4</a>]</sup>, one of the earlier <em>S. elongatus</em>
-      reconstructions alongside iJB785<sup class="cite">[<a href="#ref-5">5</a>]</sup>.</p>
+<p>All GEM used are published reconstructions: <strong>Yeast9</strong> <a class="cite" href="#ref-1">1</a> for <em>S. cerevisiae</em>,
+      <strong>iBsu1147</strong> <a class="cite" href="#ref-2">2</a> for <em>B. subtilis</em>, and <strong>iMS837</strong> <a class="cite" href="#ref-3">3</a> for
+      <em>S. elongatus</em> PCC 7942. iMS837 was built on iJB792 <a class="cite" href="#ref-4">4</a>, one of the earlier <em>S. elongatus</em>
+      reconstructions alongside iJB785 <a class="cite" href="#ref-5">5</a>.</p>
 <p>Unless stated otherwise,
       heterotrophic simulations used glucose exchange 5 mmol gDW<sup>−1</sup> h<sup>−1</sup>, glycerol 0 mmol gDW<sup>−1</sup> h<sup>−1</sup>, and oxygen 10 mmol gDW<sup>−1</sup> h<sup>−1</sup>
       (aerobic) or 0 mmol gDW<sup>−1</sup> h<sup>−1</sup> (anaerobic). Anaerobic <em>B. subtilis</em> simulations also cap nitrate uptake at
@@ -37,7 +37,7 @@
 
 <p>We picked <em>S. cerevisiae</em> because it is generally recognized as safe (GRAS), easy to transform, and
   carries the secretory machinery and oxidizing endoplasmic reticulum (ER) that disulfide-bonded
-  antibody fragments usually want<sup class="cite">[<a href="#ref-6">6</a>]</sup>.</p>
+  antibody fragments usually want <a class="cite" href="#ref-6">6</a>.</p>
 
 <section id="sec:yeast_carbon_photosynth">
 <div class="chip-row"><span class="chip"><em>S. cerevisiae</em></span></div>
@@ -200,8 +200,8 @@ $$
       degradation (<i>k<sub>d</sub></i> → 0) the trade-off becomes purely cell density against
       production time.</p>
 <p>The resource-limited version adds a sugar pool, dissolved oxygen and a headspace reservoir,
-      each entering growth and production through multiplicative Monod terms<sup class="cite">[<a href="#ref-7">7</a>]</sup>, with oxygen
-      supplied through a <i>k<sub>L</sub>a</i> term<sup class="cite">[<a href="#ref-8">8</a>]</sup>. Full equations and parameter values
+      each entering growth and production through multiplicative Monod terms <a class="cite" href="#ref-7">7</a>, with oxygen
+      supplied through a <i>k<sub>L</sub>a</i> term <a class="cite" href="#ref-8">8</a>. Full equations and parameter values
       are in the code repository.</p>
 </div>
 </details>
@@ -220,7 +220,7 @@ $$
 <section id="sec:pichia">
 <div class="chip-row"><span class="chip"><em>P. pastoris</em></span></div>
 <h3 id="pastoris"><em>P. pastoris</em> grows fastest aerobically, but tolerates oxygen restriction worst</h3>
-<p><em>P. pastoris</em> is an established recombinant protein host<sup class="cite">[<a href="#ref-9">9</a>]</sup> and the fastest grower of any
+<p><em>P. pastoris</em> is an established recombinant protein host <a class="cite" href="#ref-9">9</a> and the fastest grower of any
   chassis we tested aerobically, doubling about every 1.25 hours. However, under oxygen restriction
   that advantage disappears completely, we found that it grows more slowly than <em>S. cerevisiae</em> and
   makes less than half the combined protein flux.</p>
@@ -259,7 +259,7 @@ $$
 <p><em>B. subtilis</em> secretes protein into the medium, saving purification steps in the
   habitat. More importantly it has real anaerobic capability that yeast lacks: nitrate respiration
   through the <em>narGHJI</em> operon, and mixed acid-butanediol fermentation when no electron
-  acceptor is available<sup class="cite">[<a href="#ref-10">10</a>, <a href="#ref-11">11</a>]</sup>.</p>
+  acceptor is available <a class="cite" href="#ref-10">10</a><a class="cite" href="#ref-11">11</a>.</p>
 
 <section id="sec:gapfill">
 <div class="chip-row"><span class="chip"><em>B. subtilis</em></span></div>
@@ -294,14 +294,14 @@ $$
     and Genomes (KEGG) gives DHORDnad (EC 1.3.1.14), which our model assigns to BSU15530 and
     BSU15540. This is not merely an anaerobic workaround: <em>B. subtilis</em> dihydroorotate dehydrogenase
     is natively a Class 1B enzyme that uses NAD<sup>+</sup> as its physiological electron acceptor
-    regardless of oxygen<sup class="cite">[<a href="#ref-12">12</a>]</sup>.
+    regardless of oxygen <a class="cite" href="#ref-12">12</a>.
     <div class="reaction corrected"><b>DHORDnad</b> : (S)-dihydroorotate + NAD<sup>+</sup> →
       orotate + NADH + H<sup>+</sup></div></li>
 <li><strong>ASPOfum as an alternative to ASPO6:</strong> Upon an initial search on KEGG, the
     obvious candidate was ASPDH, which we used initially. However, upon literature search, we
     realized that the ASPDH enzyme family is specific to archaea and thermophiles, with no evidence
     in <em>B. subtilis</em>. Upon further literature search, we found the fumarate linked mode of NadB
-    (BSU27870), supported by <em>in vitro</em> characterization of the purified protein<sup class="cite">[<a href="#ref-13">13</a>]</sup>.
+    (BSU27870), supported by <em>in vitro</em> characterization of the purified protein <a class="cite" href="#ref-13">13</a>.
     <div class="reaction corrected"><b>ASPOfum</b> : L-aspartate + fumarate → iminoaspartate +
       succinate + H<sup>+</sup></div></li>
 </ul>
@@ -313,7 +313,7 @@ $$
 <table aria-labelledby="model-gapfill-caption" class="matrix-table">
 
 <thead><tr><th></th><th>NAD<sup>+</sup> route</th><th>Pyrimidine route</th></tr></thead>
-<tbody><tr><th scope="row">Enzyme (job)</th><td>NadB, L-aspartate oxidase (starts <em>de novo</em> NAD<sup>+</sup> synthesis)</td><td>PyrD/PyrK, dihydroorotate dehydrogenase (makes orotate for pyrimidines)</td></tr><tr><th scope="row">Published model reaction (O<sub>2</sub> is the electron acceptor)</th><td>ASPO6: L-aspartate + O<sub>2</sub> → iminoaspartate + H<sub>2</sub>O<sub>2</sub> + H<sup>+</sup></td><td>DHORDfum: (S)-dihydroorotate + O<sub>2</sub> → orotate + H<sub>2</sub>O<sub>2</sub></td></tr><tr><th scope="row">Our replacement</th><td>ASPOfum: L-aspartate + fumarate → iminoaspartate + succinate + H<sup>+</sup></td><td>DHORDnad: (S)-dihydroorotate + NAD<sup>+</sup> → orotate + NADH + H<sup>+</sup></td></tr><tr><th scope="row">New electron acceptor</th><td>Fumarate (becomes succinate)</td><td>NAD<sup>+</sup> (becomes NADH)</td></tr><tr><th scope="row">Gene(s) in the model</th><td>BSU27870</td><td>BSU15530 and BSU15540</td></tr><tr><th scope="row">Evidence</th><td><em>In vitro</em>: purified <em>B. subtilis</em> NadB uses fumarate and supports quinolinate formation<sup class="cite">[<a href="#ref-13">13</a>]</sup></td><td>Class 1B enzyme, EC 1.3.1.14, with NAD<sup>+</sup> as physiological acceptor<sup class="cite">[<a href="#ref-12">12</a>]</sup></td></tr></tbody>
+<tbody><tr><th scope="row">Enzyme (job)</th><td>NadB, L-aspartate oxidase (starts <em>de novo</em> NAD<sup>+</sup> synthesis)</td><td>PyrD/PyrK, dihydroorotate dehydrogenase (makes orotate for pyrimidines)</td></tr><tr><th scope="row">Published model reaction (O<sub>2</sub> is the electron acceptor)</th><td>ASPO6: L-aspartate + O<sub>2</sub> → iminoaspartate + H<sub>2</sub>O<sub>2</sub> + H<sup>+</sup></td><td>DHORDfum: (S)-dihydroorotate + O<sub>2</sub> → orotate + H<sub>2</sub>O<sub>2</sub></td></tr><tr><th scope="row">Our replacement</th><td>ASPOfum: L-aspartate + fumarate → iminoaspartate + succinate + H<sup>+</sup></td><td>DHORDnad: (S)-dihydroorotate + NAD<sup>+</sup> → orotate + NADH + H<sup>+</sup></td></tr><tr><th scope="row">New electron acceptor</th><td>Fumarate (becomes succinate)</td><td>NAD<sup>+</sup> (becomes NADH)</td></tr><tr><th scope="row">Gene(s) in the model</th><td>BSU27870</td><td>BSU15530 and BSU15540</td></tr><tr><th scope="row">Evidence</th><td><em>In vitro</em>: purified <em>B. subtilis</em> NadB uses fumarate and supports quinolinate formation <a class="cite" href="#ref-13">13</a></td><td>Class 1B enzyme, EC 1.3.1.14, with NAD<sup>+</sup> as physiological acceptor <a class="cite" href="#ref-12">12</a></td></tr></tbody>
 </table>
 </div><div class="caption" id="model-gapfill-caption"><strong>Table 5. Two reactions make the anaerobic model functional.</strong> The published model recorded only the O<sub>2</sub>-linked mode of each enzyme, so both steps stopped without oxygen. Our replacements give the same enzymes a different electron acceptor and are applied in all conditions.</div>
 <p class="callout"><span class="chip amber">For the Wet Lab</span><br>Grow <em>B. subtilis</em> on nitrate under strict
@@ -359,7 +359,7 @@ $$
 <h3 id="sucrose"><em>Bacillus</em> grows as well with sucrose as with glucose</h3>
 <p>Because sucrose can be supplied by a photosynthesizing cyanobacterial culture, we tested growth on
   sucrose instead of glucose. Carbon flux
-  distribution in <em>B. subtilis</em> is substrate-dependent<sup class="cite">[<a href="#ref-14">14</a>]</sup>; anaerobically, sucrose and glucose
+  distribution in <em>B. subtilis</em> is substrate-dependent <a class="cite" href="#ref-14">14</a>; anaerobically, sucrose and glucose
   are equally efficient per carbon delivered, both around 0.0046 h<sup>−1</sup> mmol C<sup>−1</sup>. Aerobically glucose is
   better, 0.0106 against 0.0075 h<sup>−1</sup> mmol C<sup>−1</sup>. Sucrose, a disaccharide, delivers twice the carbon per
   molecule taken up, so its advantage comes from delivering more carbon atoms per uptake unit
@@ -428,7 +428,7 @@ $$
   <a href="#induction">the one used for yeast</a>, with two additions this host needs. A
   nanobody is a protein, so its synthesis needs nitrogen-containing amino-acid precursors as well as
   carbon and energy: we added an explicit precursor pool. And <em>Bacillus</em> secretes extracellular
-  proteases that degrade heterologous product<sup class="cite">[<a href="#ref-15">15</a>]</sup>, so product loss carries a term proportional
+  proteases that degrade heterologous product <a class="cite" href="#ref-15">15</a>, so product loss carries a term proportional
   to biomass itself. The second term means that whatever makes the product also destroys it.</p>
 
 
@@ -486,7 +486,7 @@ $$
   suggest the photosynthetic cyanobacterial culture model to supply the sucrose flux as an input to
   our chassis.</p>
 <p>Cyanobacteria make sucrose directly from photosynthesis. Other carbohydrates can be made
-  phototrophically<sup class="cite">[<a href="#ref-16">16</a>, <a href="#ref-17">17</a>]</sup>, but sucrose is the highest-yielding one, and
+  phototrophically <a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a>, but sucrose is the highest-yielding one, and
   <a href="#sucrose">the per-carbon analysis</a> shows it works well with our chassis.
   However, although <em>S. elongatus</em> makes sucrose, it does not secrete it. So how would we obtain
   sucrose from cyanobacteria? We propose two routes:</p>
@@ -496,10 +496,10 @@ $$
     of the cyanobacteria (separate cultures).</li>
 </ul>
 <p>Before discussing the modeling methods for either, we explored the constraints of the aerobic
-  PCC 7942 cyanobacteria model, iMS837<sup class="cite">[<a href="#ref-3">3</a>]</sup>.</p>
+  PCC 7942 cyanobacteria model, iMS837 <a class="cite" href="#ref-3">3</a>.</p>
 <p>The default model has a low carbon uptake bound of 2 mmol gDW<sup>−1</sup> h<sup>−1</sup>, which we found to be binding on
   growth. From the literature, we adopt the measured photobioreactor carbon uptake of PCC 7942, 5.1
-  mmol gDW<sup>−1</sup> h<sup>−1</sup><sup class="cite">[<a href="#ref-18">18</a>]</sup>, as an optimistic upper bound on habitat carbon delivery; Mars does not constrain
+  mmol gDW<sup>−1</sup> h<sup>−1</sup> <a class="cite" href="#ref-18">18</a>, as an optimistic upper bound on habitat carbon delivery; Mars does not constrain
   CO<sub>2</sub> supply, but reactor mass transfer does. Assuming a habitat reactor can deliver more
   carbon than the terrestrial measurement, we set 5.1 for each of CO<sub>2</sub> and
   HCO<sub>3</sub><sup>−</sup>, giving a total inorganic carbon uptake of 10.2 mmol gDW<sup>−1</sup> h<sup>−1</sup>, twice the
@@ -508,7 +508,7 @@ $$
   and HCO<sub>3</sub><sup>−</sup>, but on comparison a shared cap and separate bounds gave the
   same growth rate, so the model treats the two carbon sources equivalently.</p>
 <p>Photon uptake was set to 145 mmol photons gDW<sup>−1</sup> h<sup>−1</sup>.
-  Broddrick et al.<sup class="cite">[<a href="#ref-4">4</a>]</sup> measured biomass-specific absorbed quantum flux in <em>S. elongatus</em> PCC
+  Broddrick et al. <a class="cite" href="#ref-4">4</a> measured biomass-specific absorbed quantum flux in <em>S. elongatus</em> PCC
   7942 at 60 and 600 µmol m<sup>−2</sup> s<sup>−1</sup> photons, corresponding to
   roughly 44 and 216 mmol photons gDW<sup>−1</sup> h<sup>−1</sup> respectively. Our
   value lies between these, representing a moderately high-light habitat photobioreactor.</p>
@@ -593,7 +593,7 @@ $$
   or, with the right transporter, exported. We aimed to close the first two routes and open the
   third, so that the model could export sucrose rather than metabolize it. Thus, we added the
   <em>cscB</em> gene, the <em>E. coli</em> sucrose permease whose expression in PCC 7942 has been validated
-  experimentally<sup class="cite">[<a href="#ref-19">19</a>, <a href="#ref-20">20</a>]</sup>. CscB is a proton-sucrose symporter natively, but in cases of high
+  experimentally <a class="cite" href="#ref-19">19</a><a class="cite" href="#ref-20">20</a>. CscB is a proton-sucrose symporter natively, but in cases of high
   intracellular sucrose it can run in reverse, exporting sucrose to the medium.</p>
 <p>But does sucrose export cost growth? Thus, we swept the biomass constraint to map the export–growth
   trade-off to find a reasonable operating point. Biomass and sucrose export
@@ -661,7 +661,7 @@ $$
   recovery by lysis. Thus, we tried to knock out genes that consume sucrose. To our surprise, this
   did not change the sucrose flux in any combination we tried, even under unlimited light and
   carbon. However, the literature reports increases of 15 to 300% for the same
-  knockouts<sup class="cite">[<a href="#ref-20">20</a>, <a href="#ref-19">19</a>, <a href="#ref-21">21</a>, <a href="#ref-22">22</a>]</sup>.</p>
+  knockouts <a class="cite" href="#ref-19">19</a><a class="cite" href="#ref-20">20</a><a class="cite" href="#ref-21">21</a><a class="cite" href="#ref-22">22</a>.</p>
 <p>The obvious targets are <em>glgC</em>, which competes for the hexose phosphates sucrose is made
   from, and <em>invA</em>, which hydrolyses sucrose back to glucose and fructose. We added a sucrose
   sink so FBA could optimize for accumulation, tested further knockouts of competing pathways,
@@ -687,9 +687,9 @@ $$
 <p>Because the two strategies (forcing export, and knocking out the consuming pathways) give the same
   flux, FBA cannot choose between them and the decision falls to downstream processing. Cytosolic
   volume caps how much sucrose can be held, and the cost of harvesting, lysing and processing cells
-  tends to exceed the value of what is inside them<sup class="cite">[<a href="#ref-23">23</a>]</sup>; secretion into the supernatant has
+  tends to exceed the value of what is inside them <a class="cite" href="#ref-23">23</a>; secretion into the supernatant has
   been proposed as the more viable route, and cyanobacteria have been engineered to export lactate
-  and hexoses<sup class="cite">[<a href="#ref-16">16</a>, <a href="#ref-24">24</a>]</sup>. In a habitat, where lysis hardware is mass that has to be launched, a
+  and hexoses <a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-24">24</a>. In a habitat, where lysis hardware is mass that has to be launched, a
   co-culture with sucrose exported by cyanobacteria may be the better choice.</p>
 <p class="callout"><span class="chip amber">For the Wet Lab</span><br>Cyanobacteria in co-culture with
   an exporter gene would supply sucrose and oxygen.</p>

@@ -42,7 +42,7 @@ On Thursday, May 7, 2026, we hosted an interactive screening of WALL-E at KAUST'
 #### Event structure
 
 - **Mission-based crews:** on arrival, each attendee joined a themed crew, such as Biobuilders, Plant Rescue or Green Galaxy, and took on a science role within it, such as Robot Engineer, Space Pilot or Plant Scientist. This encouraged teamwork and mixed people who didn't know each other. Prompt: who is on your crew, and what is your role?
-- **Synthetic biology discussion:** before the screening, attendees received a logbook with prompts on plant biology, space agriculture and ecological challenges. Afterwards, each crew discussed the film together, and we introduced real synthetic biology research, such as biodegradable plastics, bridging the gap between science fiction and active research. Prompt: could the real science behind the film already exist?
+- **Synthetic biology discussion:** before the screening, attendees received a logbook with prompts on plant biology, space agriculture and ecological challenges. Afterward, each crew discussed the film together, and we introduced real synthetic biology research, such as biodegradable plastics, bridging the gap between science fiction and active research. Prompt: could the real science behind the film already exist?
 - **Operation Earth 2.0:** to close, each crew sketched its own plan to rebuild Earth using synthetic biology, space science and engineering. Prompt: how would your crew rebuild Earth?
 
 Each crew had its own mission and its own question to answer:

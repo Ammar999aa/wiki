@@ -72,7 +72,7 @@ Radiation resistance was subsequently tested by exposing engineered and wild-typ
 
 1. The assembled bioreactor incorporated temperature and pH sensors, a motor-driven stirring mechanism, electronic control components, and a touchscreen interface. The final prototype measured approximately 20 × 24 × 31 cm, weighed 2.2 kg, and used a 30 W power supply.
 2. We evaluated the bioreactor's temperature-control performance by heating water from 18 °C to a target of 36 °C. The system reached the setpoint in approximately 34 minutes and maintained a steady-state temperature of 35.97 °C (standard deviation ≈ 0.03 °C), demonstrating stable thermal regulation under tested conditions.
-3. We investigated the system's ability to detect pH changes by introducing acidic and basic solutions. The sensor responded and stabilized within approximately 1-2 minutes. pH monitoring was demonstrated; automated correction to a specified setpoint remains a separate capability requiring further validation.
+3. We investigated the system's ability to detect pH changes by introducing acidic and basic solutions. The sensor responded and stabilized within approximately 1–2 minutes. pH monitoring was demonstrated; automated correction to a specified setpoint remains a separate capability requiring further validation.
 4. We performed a 10-hour experiment using *Escherichia coli*. Growth was monitored by optical density at 600 nm. The culture exhibited a characteristic growth profile and reached an OD600 of approximately 0.49.
 
 <div class="figure-grid single wide">

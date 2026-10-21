@@ -14,7 +14,7 @@ We adapted an X-ray irradiation machine from the Animal Facility for our cell cu
 </figure>
 </div>
 
-## Key Points
+## Key points
 
 Our project demonstrates a comprehensive and reproducible approach to evaluating radiation resistance in genetically engineered microbial chassis, combining multiple complementary measurement techniques, systematic experimental optimization, and quantitative comparisons across different radiation conditions.
 
@@ -66,7 +66,7 @@ Lastly, we aimed to ensure that our measurements would be valuable not only for 
 
 SHIHAB aims to enable on-demand biomanufacturing during future space missions by using engineered microorganisms as biological production hosts. However, the feasibility of this approach depends not only on the microorganisms' ability to produce therapeutic and other functional proteins, but also on their capacity to maintain viability, growth, and metabolic activity under space-related environmental stresses.
 
-Outside Earth’s atmosphere, the space radiation field includes solar energetic particles and galactic cosmic rays, which can induce DNA damage, impair cellular functions, and reduce microbial survival. To investigate the radiation tolerance of our microbial chassis, we conducted controlled irradiation experiments using two different radiation sources: X-rays, which induce ionization and associated cellular damage, and UV-C radiation, which primarily causes photochemical DNA damage. Although these laboratory exposures do not fully reproduce the radiation environment encountered during space missions, they provide a controlled framework for evaluating microbial stress resistance and assessing the potential protective effects of our genetic modifications. <a class="cite" href="#ref-1">1</a><a class="cite" href="#ref-2">2</a>
+Outside Earth’s atmosphere, the space radiation field includes solar energetic particles and galactic cosmic rays, which can induce DNA damage, impair cellular functions, and reduce microbial survival. To investigate the radiation tolerance of our microbial chassis, we conducted controlled irradiation experiments using two different radiation sources: X-rays, which induce ionization and associated cellular damage, and UV-C radiation, which primarily causes photochemical DNA damage. Although these laboratory exposures do not fully reproduce the radiation environment encountered during space missions, they provide a controlled framework for evaluating microbial stress resistance and assessing the potential protective effects of our genetic modifications <a class="cite" href="#ref-1">1</a><a class="cite" href="#ref-2">2</a>.
 
 ## Why Dsup
 
@@ -89,7 +89,7 @@ To evaluate how our microorganisms respond to radiation, we used different assay
 | Readout                   | What it actually measures                                | How we interpret the results                                                                                                                         |
 | ------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Serial-dilution spot assay | Ability to proliferate and produce visible colonies after exposure | Shows how radiation affects cell survival and allows us to compare the relative resistance of different strains.                                    |
-| OD600 time course         | Culture turbidity / net density change during recovery   | Helps us determine whether cultures continue growing, maintain their density, or show a reduction in density after exposure.                         |
+| OD₆₀₀ time course         | Culture turbidity / net density change during recovery   | Helps us determine whether cultures continue growing, maintain their density, or show a reduction in density after exposure.                         |
 | Resazurin reduction       | Intracellular reducing/metabolic activity                | Indicates whether cells remain metabolically active after irradiation, but does not directly measure their ability to reproduce.                     |
 | FUN-1 staining            | Yeast fluorescence and vacuolar/metabolic state          | Provides additional information about yeast cell condition after radiation exposure, although the experimental results are not fully reported.       |
 
@@ -103,9 +103,9 @@ We worked with three microbial chassis: _Bacillus subtilis_, _Pichia pastoris_, 
 
 | Microorganism       | Culture condition                           | Experiment setup                                                                                                                                       |
 | ------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| _B. subtilis_       | LB medium, 37°C, approximately 185-250 rpm  | Wild-type and Dsup-expressing strains; evaluated using UV-C and X-ray irradiation                                                                      |
-| _P. pastoris_       | YPD medium, 30°C, approximately 200 rpm     | WT Dsup, modified Dsup, and control strains; compared using UV-C irradiation.                                                                          |
-| _S. cerevisiae_     | YPD medium, 30°C, approximately 200 rpm     | Dsup constructs generated; X-ray resistance investigated in preliminary experiments, without a conclusive comparison between wild-type and Dsup-expressing strains. |
+| _B. subtilis_       | LB medium, 37 °C, approximately 185–250 rpm  | Wild-type and Dsup-expressing strains; evaluated using UV-C and X-ray irradiation                                                                      |
+| _P. pastoris_       | YPD medium, 30 °C, approximately 200 rpm     | WT Dsup, modified Dsup, and control strains; compared using UV-C irradiation.                                                                          |
+| _S. cerevisiae_     | YPD medium, 30 °C, approximately 200 rpm     | Dsup constructs generated; X-ray resistance investigated in preliminary experiments, without a conclusive comparison between wild-type and Dsup-expressing strains. |
 
 </div>
 
@@ -116,13 +116,7 @@ We worked with three microbial chassis: _Bacillus subtilis_, _Pichia pastoris_, 
 
 <div class="details-body">
 
-Before working with this protocol take into consideration the next depending on the microorganism you are using. Note that the target exponential-phase OD600 changes depending on the microorganism you are growing.
-
-<div class="caption">
-
-**Table 1.** Culture and radiation parameters for each organism. These values define every downstream step; adjust only this table when switching organisms.
-
-</div>
+Before working with this protocol take into consideration the next depending on the microorganism you are using. Note that the target exponential-phase OD₆₀₀ changes depending on the microorganism you are growing.
 
 <div class="table-wrap">
 
@@ -133,16 +127,22 @@ Before working with this protocol take into consideration the next depending on 
 | Incubation temperature                              | 37 °C                   | 30 °C                      | 30 °C                    |
 | Shaking                                             | 250 rpm                 | 200 rpm                    | 200 rpm                  |
 | Solid medium (plating)                              | LB agar                 | YPD agar                   | YPD agar                 |
-| Starter (overnight) time                            | 12-16 h                 | 24-36 h                    | 24-36 h                  |
+| Starter (overnight) time                            | 12–16 h                 | 24–36 h                    | 24–36 h                  |
 | Approx. generation time                             | ~30 min                 | ~90 min                    | ~120 min                 |
-| Target exponential (mid-log) OD₆₀₀                  | **0.4 - 0.6**           | **0.4 - 0.6**              | **0.6 - 1.0**            |
-| Late-log / harvest OD₆₀₀ (dye assays)               | 0.8 - 1.0               | 0.8 - 1.0                  | 0.8 - 1.0                |
+| Target exponential (mid-log) OD₆₀₀                  | **0.4–0.6**           | **0.4–0.6**              | **0.6–1.0**            |
+| Late-log / harvest OD₆₀₀ (dye assays)               | 0.8–1.0               | 0.8–1.0                  | 0.8–1.0                |
 | Working density for resazurin                       | OD₆₀₀ ≈ 0.2             | OD₆₀₀ ≈ 0.2                | OD₆₀₀ ≈ 0.2              |
 | Approx. inoculum per 25 mL (mid-log in ~2.5 h)      | ~50 µL                  | ~250 µL                    | ~400 µL                  |
-| Colony incubation time                              | 24-48 h                 | 24-48 h                    | 48-72 h                  |
-| X-ray LD₅₀ (literature, vegetative)                 | ~200-400 Gy             | ~50-80 Gy                  | ~50-100 Gy (est.)        |
-| Suggested X-ray dose range                          | 0 - 2000 Gy             | 0 - 2000 Gy                | 0 - 2000 Gy              |
+| Colony incubation time                              | 24–48 h                 | 24–48 h                    | 48–72 h                  |
+| X-ray LD₅₀ (literature, vegetative)                 | ~200–400 Gy             | ~50–80 Gy                  | ~50–100 Gy (est.)        |
+| Suggested X-ray dose range                          | 0–2,000 Gy             | 0–2,000 Gy                | 0–2,000 Gy              |
 | Relative UV-C sensitivity                           | Most resistant          | Intermediate               | Least resistant          |
+
+</div>
+
+<div class="caption">
+
+**Table 1.** Culture and radiation parameters for each organism. These values define every downstream step; adjust only this table when switching organisms.
 
 </div>
 
@@ -155,13 +155,13 @@ Before working with this protocol take into consideration the next depending on 
 
 <div class="details-body">
 
-#### Stage 1 - Culture preparation
+#### Stage 1 — Culture preparation
 
 **Starter (overnight) culture**
 
-1. Inoculate a single colony (or a scrape of glycerol stock) into 3-5 mL of the organism’s medium.
+1. Inoculate a single colony (or a scrape of glycerol stock) into 3–5 mL of the organism’s medium.
 2. Cap loosely for gas exchange. For _B. subtilis_, use a flask at least 5× the liquid volume, as it is strictly aerobic and needs vigorous aeration.
-3. Incubate at the organism’s temperature and shaking speed for the starter time in Table 1 (12-16 h for _B. subtilis_; 24-36 h for the yeasts).
+3. Incubate at the organism’s temperature and shaking speed for the starter time in Table 1 (12–16 h for _B. subtilis_; 24–36 h for the yeasts).
 
 **Subculture to exponential (log) phase**
 
@@ -170,8 +170,8 @@ The assay requires actively dividing cells, not a saturated overnight. Dilute th
 - By ratio: a 1:10 dilution (1 mL overnight + 9 mL medium) is a reliable default for the yeasts.
 - By calculated inoculum: to reach mid-log in ~2.5 h in 25 mL, use the inoculum in Table 1 (~50 µL _B. subtilis_, ~250 µL _S. cerevisiae_, ~400 µL _P. pastoris_).
 
-1. Incubate under standard conditions. Measure OD₆₀₀ every 1 h (every 2-3 h from the 6 h mark for slow growers).
-2. Harvest when the OD₆₀₀ enters the organism’s target window (Table 1): 0.4-0.6 for _B. subtilis_ and _S. cerevisiae_; 0.6-1.0 for _P. pastoris_. For dye assays needing late-log cells, continue to OD 0.8-1.0.
+1. Incubate under standard conditions. Measure OD₆₀₀ every 1 h (every 2–3 h from the 6 h mark for slow growers).
+2. Harvest when the OD₆₀₀ enters the organism’s target window (Table 1): 0.4–0.6 for _B. subtilis_ and _S. cerevisiae_; 0.6–1.0 for _P. pastoris_. For dye assays needing late-log cells, continue to OD 0.8–1.0.
 3. If several strains of one organism are compared, wait until all reach the window before harvesting, so every strain is irradiated at an equivalent physiological state.
 
 **Standardizing cell number before treatment**
@@ -181,7 +181,7 @@ The assay requires actively dividing cells, not a saturated overnight. Dilute th
 3. Where a concentrated suspension is needed, harvest by centrifugation (4,000 × g, ~15 min, RT; yeasts tolerate 1,500 × g, 5 min) and resuspend the pellet in a smaller volume of fresh medium.
 4. Confirm the normalized OD₆₀₀ once more before distributing to treatment tubes or plates.
 
-#### Stage 2 - Radiation treatment
+#### Stage 2 — Radiation treatment
 
 Run a graded dose series plus an unirradiated mock control handled identically (same tubes, same time out of the incubator) but not exposed. X-ray and UV-C treatments can run in parallel on the same batch of cells.
 
@@ -194,12 +194,6 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 3. Deliver the dose series, deriving each run time from the current calibration (dose = dose rate × time).
 4. Use the dose series in Table 2. The machine cannot run for more than 70 min continuously; pause for 15 min between runs, so longer doses are split into batches.
 
-<div class="caption">
-
-**Table 2.** _X-ray dose series and the corresponding exposure times, with a batched schedule for doses that exceed the 70-minute limit._
-
-</div>
-
 <div class="table-wrap">
 
 | Dose (Gy) | Time (min) | Batched time (min) |
@@ -209,6 +203,12 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 | 1000      | 71.5       |                    |
 | 1500      | 107.25     | 71.5 + 35.75       |
 | 2000      | 143        | 71.5 + 71.5        |
+
+</div>
+
+<div class="caption">
+
+**Table 2.** _X-ray dose series and the corresponding exposure times, with a batched schedule for doses that exceed the 70-minute limit._
 
 </div>
 
@@ -225,12 +225,6 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 7. Position your sample at the chosen distance from the source, using the machine’s lasers to center the samples.
 8. Set the dose and source-to-surface distance (SSD) using the calibration values in Table 3.
 
-<div class="caption">
-
-**Table 3.** _Dose-rate calibration as a function of source-to-surface distance (SSD) for the Xstrahl irradiator._
-
-</div>
-
 <div class="table-wrap">
 
 | SSD (mm) | Dose rate (Gy/min) |
@@ -241,6 +235,12 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 | 28       | 1.29               |
 | 33       | 0.95               |
 | 38       | 0.71               |
+
+</div>
+
+<div class="caption">
+
+**Table 3.** _Dose-rate calibration as a function of source-to-surface distance (SSD) for the Xstrahl irradiator._
 
 </div>
 
@@ -280,12 +280,6 @@ _(b) Agar spot-plate format - for CFU / spot-dilution readout_
 3. Dry the spots completely, then irradiate each plate at its dose; leave the 0-dose plate under normal light.
 4. Incubate overnight at the organism’s temperature.
 
-<div class="caption">
-
-**Table 4.** _UV-C dose series, given as nominal fluence and its equivalent in J/m²._
-
-</div>
-
 <div class="table-wrap">
 
 | Nominal dose (mJ/cm²) | Equivalent (J/m²) |
@@ -296,6 +290,12 @@ _(b) Agar spot-plate format - for CFU / spot-dilution readout_
 | 18                    | 180               |
 | 24                    | 240               |
 | 30                    | 300               |
+
+</div>
+
+<div class="caption">
+
+**Table 4.** _UV-C dose series, given as nominal fluence and its equivalent in J/m²._
 
 </div>
 
@@ -318,8 +318,8 @@ Ensure you have enough cells for both the viability assays and sample collection
 
 #### Part 1: Cell preparation and treatment
 
-1. Grow bacterial cultures to a similar growth stage and normalize all samples to the same OD600.
-2. Pellet the cells at 6000 rpm for 3 mins.
+1. Grow bacterial cultures to a similar growth stage and normalize all samples to the same OD₆₀₀.
+2. Pellet the cells at 6,000 rpm for 3 min.
 3. Discard the supernatant and resuspend the pellet in 1 ml PBS.
 4. Expose the samples to the required UV-C doses, including an untreated control.
 5. Immediately transfer the cell suspension after irradiation and proceed directly with the comet assay.
@@ -331,17 +331,17 @@ Prepare 0.7% low-melting-point agarose containing:
 - Lysozyme: 0.5 mg/ml
 - RNase A: 5 µg/ml
 
-1. Keep the agarose mixture molten at approximately 37°C.
-2. Mix 10 µl bacterial suspension with 500 µl agarose mixture.
-3. Add 50 µl of the cell-containing agarose onto slides previously coated with 1% agarose.
-4. Place a coverslip over the agarose and solidify at 4°C for 10 mins.
+1. Keep the agarose mixture molten at approximately 37 °C.
+2. Mix 10 µL bacterial suspension with 500 µL agarose mixture.
+3. Add 50 µL of the cell-containing agarose onto slides previously coated with 1% agarose.
+4. Place a coverslip over the agarose and solidify at 4 °C for 10 min.
 
 #### Part 3: Cell wall digestion and top agarose layer
 
-1. Incubate the slides at 37°C for 30 mins with the coverslip in place.
+1. Incubate the slides at 37 °C for 30 min with the coverslip in place.
 2. Carefully remove the coverslip.
-3. Add 150 µl of 0.7% LMP agarose as the top protective layer.
-4. Solidify at 4°C for 10 mins.
+3. Add 150 µL of 0.7% LMP agarose as the top protective layer.
+4. Solidify at 4 °C for 10 min.
 
 #### Part 4: Cell lysis
 
@@ -354,12 +354,12 @@ Use lysis buffer containing:
 - 1% Triton X-100
 
 1. Keep the slides horizontal and fully immersed in cold lysis buffer.
-2. Incubate for 1 hr at 4°C.
+2. Incubate for 1 h at 4 °C.
 
 #### Part 5: Neutralization
 
 1. Wash the slides with 400 mM Tris, pH 7.5.
-2. Perform 3 washes of 5 mins each using fresh buffer.
+2. Perform 3 washes of 5 min each using fresh buffer.
 
 #### Part 6: Electrophoresis
 
@@ -370,21 +370,21 @@ Use electrophoresis buffer containing:
 - pH 9.0
 
 1. Place the slides horizontally in the electrophoresis tank.
-2. Pre-incubate in cold electrophoresis buffer for 20 mins at 4°C.
-3. Run electrophoresis at 12 V for 50 mins at 4°C.
+2. Pre-incubate in cold electrophoresis buffer for 20 min at 4 °C.
+3. Run electrophoresis at 12 V for 50 min at 4 °C.
 
 #### Part 7: Post-electrophoresis wash and dehydration
 
 1. Wash the slides once with 400 mM Tris, pH 7.5.
-2. Dehydrate in 100% ethanol for 30 mins.
-3. Transfer to 70% ethanol for 30 mins.
+2. Dehydrate in 100% ethanol for 30 min.
+3. Transfer to 70% ethanol for 30 min.
 4. Air-dry the slides completely.
 
 #### Part 8: SYBR Green staining and imaging
 
 1. Prepare SYBR Green I at 1:10,000 dilution in TE buffer.
-2. Stain the slides for 20 mins at room temperature in the dark.
-3. Wash twice with ddH₂O for 10 mins each.
+2. Stain the slides for 20 min at room temperature in the dark.
+3. Wash twice with ddH₂O for 10 min each.
 4. Image using a fluorescence microscope with a GFP/FITC-compatible filter.
 5. Keep exposure, gain and magnification constant between samples.
 6. Compare DNA fragmentation using comet/tail length or overall DNA dispersion.
@@ -404,8 +404,8 @@ Metabolically active cells convert diffuse green cytosolic FUN-1 into red-orange
 2. Take 100 µL of irradiated cells per sample; pellet (10,000 × g, 5 min) and discard the supernatant.
 3. Resuspend each pellet in 650 µL of FUN-1 master mix (10 µM FUN-1 in staining buffer). Mix by gentle pipetting - do not vortex. Target ~10⁶-10⁷ cells/mL.
 4. Aliquot 200 µL into three wells per sample in a black, clear-bottom 96-well plate.
-5. Incubate for 30 min at 30 °C in the dark with gentle agitation, inverting the tubes gently every 5-10 min to keep cells in suspension.
-6. Read fluorescence from the bottom, dual-wavelength. Dead (green): excitation 485 nm / emission 530 nm. Live (red): excitation 485 nm / emission 620 nm. Read height 80-85 % of well depth; gain/PMT 60-70 %; ≥10 flashes per well; 30 °C. Read every 10 min for 1 h if kinetic.
+5. Incubate for 30 min at 30 °C in the dark with gentle agitation, inverting the tubes gently every 5–10 min to keep cells in suspension.
+6. Read fluorescence from the bottom, dual-wavelength. Dead (green): excitation 485 nm / emission 530 nm. Live (red): excitation 485 nm / emission 620 nm. Read height 80–85% of well depth; gain/PMT 60–70%; ≥10 flashes per well; 30 °C. Read every 10 min for 1 h if kinetic.
 7. Analysis: subtract the dye-plus-inhibitor control wells; per well, the red/green ratio = Red RFU / Green RFU; % viability = Red / (Red + Green) × 100. Average the triplicates and plot % viability against dose.
 
 </div>
@@ -421,10 +421,10 @@ Viable, metabolically active cells reduce blue resazurin to pink resorufin; the 
 
 1. Dilute the cells to the working density OD₆₀₀ ≈ 0.2. This is chosen so that reduction is slow enough for treated and untreated samples to separate within the read window; higher densities turn pink within seconds and mask the dose effect.
 2. Add 100 µL of each suspension to a 96-well plate in triplicate.
-3. Include controls: a no-cell blank (100 µL medium) and a medium-plus-resazurin blank (100 µL medium + 20 µL working resazurin), in triplicate. The final resazurin concentration is 0.015 % w/v. Pipette gently to avoid bubbles and start the clock (t = 0).
-4. Read kinetically at the organism’s temperature. Fluorescence: excitation 545 nm / emission 590 nm, gain ~65-70 %. Absorbance: 570 nm and 600 nm (dual-wavelength allows the % dye reduction to be computed). Our experiments used absorbance mode in treated, translucent 96-well culture plates.
+3. Include controls: a no-cell blank (100 µL medium) and a medium-plus-resazurin blank (100 µL medium + 20 µL working resazurin), in triplicate. The final resazurin concentration is 0.015% w/v. Pipette gently to avoid bubbles and start the clock (t = 0).
+4. Read kinetically at the organism’s temperature. Fluorescence: excitation 545 nm / emission 590 nm, gain ~65–70%. Absorbance: 570 nm and 600 nm (dual-wavelength allows the % dye reduction to be computed). Our experiments used absorbance mode in treated, translucent 96-well culture plates.
 5. Read every 15 min. A full plateau run takes up to 6 h (24 cycles); for a treated-versus-control comparison, a 1 h window is usually sufficient and more practical.
-6. Analysis: subtract the blank; compute the % reduction from the 570/600 nm absorbances; compare the initial slope (first 15-20 min) rather than the endpoint if any well approaches saturation.
+6. Analysis: subtract the blank; compute the % reduction from the 570/600 nm absorbances; compare the initial slope (first 15–20 min) rather than the endpoint if any well approaches saturation.
 
 </div>
 
@@ -438,9 +438,9 @@ Viable, metabolically active cells reduce blue resazurin to pink resorufin; the 
 This is the reference measure of survival: the ability to divide and form colonies.
 
 1. From each treated sample, prepare a consistent 10-fold dilution series (undiluted, 10⁻¹, 10⁻², 10⁻³, 10⁻⁴) in fresh medium. Apply the same dilutions to every sample and dose, not only the mock.
-2. Either spread 100 µL on agar, or spot small volumes (4-10 µL) of each dilution in a row.
-3. Incubate at the organism’s temperature for its colony time (Table 1): 24-48 h for _B. subtilis_ and _S. cerevisiae_, or 48-72 h for _P. pastoris_.
-4. Analysis: count plates with 30-300 colonies; CFU/mL = colonies × dilution factor ÷ plated volume. Survival fraction = CFU(irradiated) / CFU(mock). For spot assays, score the number of dilutions still showing growth (each spot = one 10-fold step).
+2. Either spread 100 µL on agar, or spot small volumes (4–10 µL) of each dilution in a row.
+3. Incubate at the organism’s temperature for its colony time (Table 1): 24–48 h for _B. subtilis_ and _S. cerevisiae_, or 48–72 h for _P. pastoris_.
+4. Analysis: count plates with 30–300 colonies; CFU/mL = colonies × dilution factor ÷ plated volume. Survival fraction = CFU(irradiated) / CFU(mock). For spot assays, score the number of dilutions still showing growth (each spot = one 10-fold step).
 
 </div>
 
@@ -598,7 +598,7 @@ IPTG induction was followed by sample preparation and ÄKTA HisTrap affinity chr
 
 We determined that introducing radiation-protective machinery into our microbial chassis does not negatively affect its protein production capacity, helping us confirm the compatibility of enhanced radiation resistance with efficient biomanufacturing.
 
-The figures below demonstrate the purification results of antifreeze protein FfIBP from unmodified _B. subtilis_ (Figures 13-14) and _B. subtilis_ engineered to contain Dsup integrated into its chromosome (Figures 15-16).
+The figures below demonstrate the purification results of antifreeze protein FfIBP from unmodified _B. subtilis_ (Figures 13–14) and _B. subtilis_ engineered to contain Dsup integrated into its chromosome (Figures 15–16).
 
 The UV absorbance signal at 280 nm (blue line) can be used to estimate protein concentrations in the eluent, as proteins absorb UV light at this wavelength primarily due to the presence of aromatic amino acids, particularly tryptophan and tyrosine. Therefore, higher absorbance values generally indicate higher protein concentrations, allowing us to monitor protein elution and identify protein-rich fractions during purification.
 
@@ -628,7 +628,7 @@ We compiled a practical handbook covering recombinant protein expression, secret
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/image3.avif" alt="Cover of the Protein expression and ÄKTA purification Handbook, with the SHIHAB logo on a white background with purple waves" loading="lazy"></div><figcaption class="caption"><strong>Figure 18.</strong> <a href="https://static.igem.wiki/teams/6341/wiki/content/measurement/handbooks-for-measurements/practical-protein-expression-and-a-kta-purification-handbookk.pdf" target="_blank" rel="noopener noreferrer">Protein expression and ÄKTA purification Handbook</a> (PDF).</figcaption></figure>
 </div>
 
-## Limitations and Future Improvements
+## Limitations and future improvements
 
 Although our experiments provided promising evidence of enhanced radiation resistance in Dsup-expressing _B. subtilis_ and _P. pastoris_, we recognize several limitations in our current measurement approaches. To further strengthen the reliability, reproducibility, and biological relevance of our findings, we have identified several directions for future improvement.
 

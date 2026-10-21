@@ -125,9 +125,9 @@ Yet radiation protection remains complex. NASA continues to investigate knowledg
 
 Current spaceflight medical systems rely on carefully selected pharmaceutical formularies designed around anticipated medical events, while considering constraints such as storage, mass, volume, expiration dates, and opportunities for resupply <a class="cite" href="#ref-14">14</a>. This approach is feasible in low-Earth orbit, where resupply and emergency return remain possible, but these possibilities become increasingly limited during long-duration exploration missions.
 
-Shelf life emerged as a particularly important challenge. Future exploration missions may last between one and five years, while many medications have expiration periods shorter than the mission itself. In addition, the long-term physical and chemical stability of many pharmaceuticals under the spaceflight environment remains insufficiently characterized. Factors such as radiation, altered atmospheric conditions, temperature and humidity, and prolonged storage could affect pharmaceutical quality. NASA therefore continues to investigate the risk that medications could lose active ingredients or accumulate degradation products during long-duration missions <a class="cite" href="#ref-15">15</a> <a class="cite" href="#ref-17">17</a> <a class="cite" href="#ref-18">18</a>. Distance from Earth introduces an additional constraint: medications that are consumed, expire, or degrade may not be easily replaced.
+Shelf life emerged as a particularly important challenge. Future exploration missions may last between one and five years, while many medications have expiration periods shorter than the mission itself. In addition, the long-term physical and chemical stability of many pharmaceuticals under the spaceflight environment remains insufficiently characterized. Factors such as radiation, altered atmospheric conditions, temperature and humidity, and prolonged storage could affect pharmaceutical quality. NASA therefore continues to investigate the risk that medications could lose active ingredients or accumulate degradation products during long-duration missions <a class="cite" href="#ref-15">15</a> <a class="cite" href="#ref-16">16</a> <a class="cite" href="#ref-17">17</a>. Distance from Earth introduces an additional constraint: medications that are consumed, expire, or degrade may not be easily replaced.
 
-These limitations have motivated research into alternatives to carrying every pharmaceutical from Earth. Among the approaches currently being investigated are improved storage and packaging, drug repurposing, and on-demand pharmaceutical production in space <a class="cite" href="#ref-16">16</a>.
+These limitations have motivated research into alternatives to carrying every pharmaceutical from Earth. Among the approaches currently being investigated are improved storage and packaging, drug repurposing, and on-demand pharmaceutical production in space <a class="cite" href="#ref-18">18</a>.
 
 </div>
 
@@ -232,7 +232,7 @@ How could their perspective influence SHIHAB?
 
 ### What does healthcare really require beyond Earth?
 
-Our initial research identified access to medicines as a potential challenge for long-duration space missions. Limitations in pharmaceutical shelf life, storage, and resupply suggested that producing therapeutics on demand could contribute to greater medical autonomy <a class="cite" href="#ref-17">17</a><a class="cite" href="#ref-18">18</a>. However, literature alone could not tell us what astronauts actually need, how healthcare is currently managed in space, or what would be required to operate a biological production system in this environment.
+Our initial research identified access to medicines as a potential challenge for long-duration space missions. Limitations in pharmaceutical shelf life, storage, and resupply suggested that producing therapeutics on demand could contribute to greater medical autonomy <a class="cite" href="#ref-16">16</a><a class="cite" href="#ref-17">17</a>. However, literature alone could not tell us what astronauts actually need, how healthcare is currently managed in space, or what would be required to operate a biological production system in this environment.
 
 To better understand these questions, we spoke with professionals whose experiences covered different aspects of human health and research in space: astronaut operations, space medicine, astronaut healthcare, and aerospace medicine. Through these conversations, we explored the medical needs of astronauts, the resources currently available to them, the practical limitations of conducting biological experiments in space, and the conditions our microorganisms would eventually need to withstand.
 
@@ -740,7 +740,7 @@ The importance of considering communities with limited exposure to biotechnology
 
 ### Why we organized it
 
-Our regulatory analysis helped us identify the requirements SHIHAB would need to meet before real-world deployment. Yet, we recognized that meeting regulatory requirements would not be enough to ensure its safe and responsible implementation. We also needed to consider public trust, accountability, and how the technology could be integrated into healthcare systems operating in remote environments. For this, we co-organized the Tawasol Hackathon & Policy Showcase with NYU Abu Dhabi iGEM from August 28-30, 2026. The event brought together 186 high school and undergraduate students across 50 teams, challenging them to examine the societal, ethical, and regulatory implications of emerging synthetic biology technologies. We invited them to identify SHIHAB’s weaknesses and propose solutions.
+Our regulatory analysis helped us identify the requirements SHIHAB would need to meet before real-world deployment. Yet, we recognized that meeting regulatory requirements would not be enough to ensure its safe and responsible implementation. We also needed to consider public trust, accountability, and how the technology could be integrated into healthcare systems operating in remote environments. For this, we co-organized the Tawasol Hackathon & Policy Showcase with NYU Abu Dhabi iGEM from August 28–30, 2026. The event brought together 186 high school and undergraduate students across 50 teams, challenging them to examine the societal, ethical, and regulatory implications of emerging synthetic biology technologies. We invited them to identify SHIHAB’s weaknesses and propose solutions.
 
 ### Who should govern SHIHAB?
 
@@ -752,7 +752,7 @@ For SHIHAB, we presented a future deployment scenario in a Zero-Reach environmen
 
 <div>
 
-#### Safety & Biocontainment
+#### Safety & biocontainment
 
 How could the safety and quality of medicines produced on-site be verified when conventional laboratory oversight is unavailable?
 
@@ -760,7 +760,7 @@ How could the safety and quality of medicines produced on-site be verified when 
 
 <div>
 
-#### Public Trust & Health Impact
+#### Public trust & health impact
 
 What would make people trust medicines produced by engineered microorganisms, and how should informed consent be addressed?
 
@@ -768,7 +768,7 @@ What would make people trust medicines produced by engineered microorganisms, an
 
 <div>
 
-#### Integration & Liability
+#### Integration & liability
 
 Who should be responsible for production failures or incorrect doses, and how could SHIHAB integrate with existing healthcare systems?
 
@@ -776,7 +776,7 @@ Who should be responsible for production failures or incorrect doses, and how co
 
 <div>
 
-#### Sustainability & Long-Term Impact
+#### Sustainability & long-term impact
 
 How could SHIHAB contribute to healthcare accessibility in isolated communities, and what limitations might affect its long-term implementation?
 
@@ -1036,9 +1036,9 @@ Our Human Practices journey helped us recognize the boundaries of our current wo
 <li id="ref-13"><a href="https://humanresearchroadmap.nasa.gov/Risks/risk.aspx?i=96" target="_blank" rel="noopener noreferrer">NASA Human Research Roadmap — Risk of Radiation Carcinogenesis</a></li>
 <li id="ref-14"><a href="https://www.nasa.gov/wp-content/uploads/2026/01/ochmo-mtb-012-pharmaceutical-care.pdf" target="_blank" rel="noopener noreferrer">NASA OCHMO — Pharmaceutical Care</a></li>
 <li id="ref-15"><a href="https://ntrs.nasa.gov/api/citations/20240001489/downloads/ExMC%20Strat%20for%20Drug%20Stability%20-%20May%202024%20final%201.pdf" target="_blank" rel="noopener noreferrer">NASA — ExMC Strategy for Drug Stability</a></li>
-<li id="ref-16"><a href="https://www.nasa.gov/general/an-astropharmacy/" target="_blank" rel="noopener noreferrer">NASA — An Astropharmacy</a></li>
-<li id="ref-17"><a href="https://www.nasa.gov/ames/space-biosciences/laboratory-of-countermeasures-development/" target="_blank" rel="noopener noreferrer">NASA Ames — Laboratory of Countermeasures Development</a></li>
-<li id="ref-18"><a href="https://pubmed.ncbi.nlm.nih.gov/21479701/" target="_blank" rel="noopener noreferrer">PubMed — 21479701</a></li>
+<li id="ref-16"><a href="https://www.nasa.gov/ames/space-biosciences/laboratory-of-countermeasures-development/" target="_blank" rel="noopener noreferrer">NASA Ames — Laboratory of Countermeasures Development</a></li>
+<li id="ref-17"><a href="https://pubmed.ncbi.nlm.nih.gov/21479701/" target="_blank" rel="noopener noreferrer">PubMed — 21479701</a></li>
+<li id="ref-18"><a href="https://www.nasa.gov/general/an-astropharmacy/" target="_blank" rel="noopener noreferrer">NASA — An Astropharmacy</a></li>
 <li id="ref-19"><a href="https://www.nasa.gov/ames/space-biosciences/bioengineering-branch/bionutrients/" target="_blank" rel="noopener noreferrer">NASA — Bionutrients</a></li>
 <li id="ref-20"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6501615/" target="_blank" rel="noopener noreferrer">Frontiers in Microbiology — Proteomic and Metabolomic Profiling of *Deinococcus radiodurans* Recovering After Exposure to Simulated Low Earth Orbit Vacuum Conditions</a></li>
 <li id="ref-21"><a href="https://link.springer.com/article/10.1007/s10750-005-1409-5" target="_blank" rel="noopener noreferrer">Hydrobiologia — The ‘Hyena Female’ of Tardigrades and Descriptions of Two New Species of Megastygarctides from Saudi Arabia</a></li>

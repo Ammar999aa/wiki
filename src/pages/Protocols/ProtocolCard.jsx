@@ -1,4 +1,5 @@
 import LiquidGlass from "../../components/LiquidGlass/LiquidGlass";
+import { speciesTitle } from "../../utils/speciesTitle";
 import styles from "./Protocols.module.scss";
 
 // One uniform grid tile — always the same size. Clicking swaps the page
@@ -10,7 +11,7 @@ export default function ProtocolCard({ protocol, excerpt, onSelect }) {
     <article className={styles.card}>
       <LiquidGlass radius={28} color={[0, 0, 0]} opacity={0.07}>
         <button type="button" className={styles.cardButton} onClick={onSelect}>
-          <h3 className={styles.cardName}>{protocol.title}</h3>
+          <h3 className={styles.cardName}>{speciesTitle(protocol.title)}</h3>
           <p className={styles.cardExcerpt}>{excerpt}</p>
         </button>
       </LiquidGlass>

@@ -252,7 +252,7 @@ export default function ResultScheme() {
         className={styles.schemePanel}
         role="region"
         aria-live="polite"
-        aria-label="Selected modelling result"
+        aria-label="Selected modeling result"
         hidden={!panel}
       >
         {panel && (

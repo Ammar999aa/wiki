@@ -10,13 +10,7 @@ All three chassis were engineered to contain **Dsup** protein stably integrated 
 
 Below, we describe each chassis, the genetic systems used for its engineering, and the proteins selected for recombinant expression.
 
-## I. Chassis, vectors, and regulatory parts
-
-<div class="caption">
-
-**Table 1.** Overview of chassis and vectors
-
-</div>
+## Chassis, vectors, and regulatory parts
 
 <div class="table-wrap">
 <table class="matrix-table">
@@ -31,6 +25,12 @@ Below, we describe each chassis, the genetic systems used for its engineering, a
 <tr><th scope="row">Selection markers</th><td>Spectinomycin, Chloramphenicol</td><td>Zeocin</td><td>G418, URA3</td></tr>
 </tbody>
 </table>
+</div>
+
+<div class="caption">
+
+**Table 1.** Overview of chassis and vectors
+
 </div>
 
 ## Bacillus subtilis
@@ -80,7 +80,7 @@ pBS4S vector map with Dsup insertion (via SnapGene)
 <figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/genomic-integration-mechanism.avif" alt="Genomic integration: an integration fragment carrying Dsup between homology arms recombines with the target chromosome, replacing the target gene; clone selection yields the integrant"><figcaption class="caption">Mechanism of genomic integration</figcaption></figure>
 </div>
 
-#### PVeg Promoter
+#### PVeg promoter
 
 In our project, this particular vector was utilized for Dsup integration. Dsup was placed under pVeg, which is a strong, constitutive bacterial promoter that enables continuous gene expression without external induction <a class="cite" href="#ref-1">1</a>. We made this choice to ensure that our organisms are always protected from DNA damage, no matter the growth medium composition.
 
@@ -177,13 +177,13 @@ pPICZα A vector map (via SnapGene)
 </div>
 </div>
 
-#### AOX1 Locus
+#### AOX1 locus
 
 The AOX1 (alcohol oxidase 1) locus is essential for methanol metabolism in _P. pastoris_. Aox1 is a peroxisomal enzyme that catalyzes the first step of methanol utilization by oxidizing methanol to formaldehyde while generating hydrogen peroxide.
 
 The locus is widely utilized for recombinant protein production because AOX1-derived sequences can serve both as regulatory elements for transgene expression and as homology regions for genomic integration.
 
-#### AOX1 Promoter
+#### AOX1 promoter
 
 <div class="figure-grid single wide">
 <figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/paox1-promoter-mechanism.avif" alt="AOX1 promoter mechanism: on glucose or glycerol, Mig1 and Nrg1 repress it and there is no transcription; on methanol, Mrx1, Mit1 and Prm1 are recruited and RNA polymerase II transcribes the gene of interest, giving secreted protein"><figcaption class="caption">AOX1 promoter mechanism of action</figcaption></figure>
@@ -253,7 +253,7 @@ HO-poly-KanMX4-HO vector map (via SnapGene)
 <span class="flow-node">pUC ori</span>
 </div>
 
-#### TEF1 Promoter
+#### TEF1 promoter
 
 As we used HO-poly-KanMX4-HO for Dsup integration, we decided to put GOI under a constitutively active promoter, pTEF1. It is a strong, constitutive promoter that was derived from the TEF1 gene, encoding translation elongation factor 1-alpha (eEF1A) <a class="cite" href="#ref-2">2</a>. It was important to add Dsup under the constitutive promoter to ensure that our organisms are always protected from radiation, without a need for a special inducer.
 
@@ -282,7 +282,7 @@ pYES2-HTH vector map (via SnapGene)
 </div>
 </div>
 
-#### GAL Promoter
+#### GAL promoter
 
 <div class="figure-grid single wide">
 <figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/pgal-promoter-mechanism.avif" alt="pGAL mechanism: on glucose, Gal80 masks the Gal4 activation domain and there is no transcription; on galactose, Gal3 sequesters Gal80, freeing the Gal4 activation domain so RNA polymerase II transcribes GAL1"><figcaption class="caption">pGAL mechanism of action</figcaption></figure>
@@ -290,11 +290,11 @@ pYES2-HTH vector map (via SnapGene)
 
 Provides inducible expression in response to galactose. This promoter is characterized as a strong, tightly regulated promoter. The system relies on the galactose utilization pathway native to the yeast. The regulation is mediated via Gal4, Gal80, Gal3 regulatory network. In the absence of galactose, the transcriptional activator Gal4 is bound to upstream activating sequences (UAS) within the promoter, but its activation domain is inhibited by Gal80. In the presence of galactose, Gal3 binds galactose and ATP and interacts with Gal80, relieving Gal80-mediated inhibition of Gal4. Active Gal4 subsequently recruits the transcriptional machinery and strongly induces transcription from the promoter.
 
-#### ADH1 Promoter (promoter swap)
+#### ADH1 promoter (promoter swap)
 
 The ADH1 promoter is a strong, constitutive promoter derived from the _S. cerevisiae_ The promoter exhibits the highest activity during fermentative growth on glucose, which is due to the physiological demand for alcohol dehydrogenase in ethanol production.
 
-## II. Radiation resistance
+## Radiation resistance
 
 <figure class="img-aside plain">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/tardigrade.avif" alt="Tardigrade">
@@ -305,7 +305,7 @@ The ADH1 promoter is a strong, constitutive promoter derived from the _S. cerevi
 
 <div class="structure-3d" data-structure="dsup-nucleosome-9d3k" data-pdb="9D3K" data-label="Two Dsup molecules in complex with the nucleosome open from both sides" data-color="#8aa0d0" data-highlight="K,L"></div>
 
-#### Molecular Mechanism of DNA Protection
+#### Molecular mechanism of DNA protection
 
 Dsup is a highly charged and largely intrinsically disordered protein that localizes to chromatin <a class="cite" href="#ref-3">3</a>. Previous research has demonstrated that it contains a positively charged C-terminal region. This domain is required for DNA association and for protection against radiation-induced DNA damage. More in-depth biochemical studies showed that Dsup preferentially associates with nucleosomes rather than free DNA, indicating that its physiological target is chromatin.
 
@@ -313,7 +313,7 @@ A conserved region within the C-terminal portion of Dsup resembles the nucleosom
 
 Following association with nucleosomes, the disordered regions of Dsup are proposed to form a protective environment around chromosomal DNA. This physical shielding reduces the accessibility of DNA to highly reactive species, particularly hydroxyl radicals. In vitro experiments have demonstrated that Dsup-bound chromatin is substantially more resistant to hydroxyl-radical-mediated DNA cleavage than unprotected chromatin.
 
-#### Protection Against Ionizing Radiation and Oxidative Stress
+#### Protection against ionizing radiation and oxidative stress
 
 Ionizing radiation damages cellular DNA through both direct and indirect mechanisms. Radiation can directly deposit energy into DNA, but a substantial fraction of biological damage arises indirectly through the radiolysis of intracellular water, which generates reactive oxygen species, including highly reactive hydroxyl radicals. These radicals can attack DNA bases and the deoxyribose backbone, producing base modifications and single- and double-strand breaks.
 
@@ -335,13 +335,7 @@ Through this modification, we aimed to evaluate whether enhanced nuclear localiz
 <figure><img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/dsup-mechanism-of-action.avif" alt="Chromatin without Dsup, where radiation and oxidative stress cause damaged DNA, beside chromatin with Dsup, where DNA damage is reduced and survival improved"><figcaption class="caption">Dsup mechanism of action</figcaption></figure>
 </div>
 
-## III. Payload proteins
-
-<div class="caption">
-
-**Table 2.** Overview of payloads
-
-</div>
+## Payload proteins
 
 <div class="table-wrap">
 <table class="matrix-table marks">
@@ -362,6 +356,12 @@ Through this modification, we aimed to evaluate whether enhanced nuclear localiz
 </table>
 </div>
 
+<div class="caption">
+
+**Table 2.** Overview of payloads
+
+</div>
+
 #### Nb1_gbHSV
 
 <div class="structure-3d" data-structure="hsv-nanobody-9q9n" data-pdb="9Q9N" data-label="HSV-1 gB : Nb1_gbHSV complex"></div>
@@ -372,7 +372,7 @@ Through this modification, we aimed to evaluate whether enhanced nuclear localiz
 - Hence, Nb1_gbHSV could potentially be administered as an antiviral therapeutic to neutralize HSV-1 and HSV-2 by binding to viral glycoprotein B (gB), preventing membrane fusion and viral entry into host cells, thereby limiting the spread of infection
 - We specifically chose to express nanobodies instead of antibodies. Unlike conventional antibodies, nanobodies consist of a single antigen-binding domain (VHH), making them easier and more cost-effective to produce in microbial expression systems. This and their potential for high-affinity to a specific antigen makes them particularly attractive for therapeutic applications and on-demand biomanufacturing during space missions
 
-#### Anti-PDL1 Nanobody
+#### Anti-PDL1 nanobody
 
 <div class="structure-3d" data-structure="pdl1-nanobody-5dxw" data-pdb="5DXW" data-label="PD-L1 Nanobody (mouse PD-L1 reference structure)"></div>
 
@@ -468,7 +468,7 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 - Essentially, GFP absorbs blue light and emits green fluorescence through an autocatalytically formed chromophore
 - We selected GFPmut2 as a model fluorescent payload to evaluate recombinant protein expression and demonstrate the production of functional proteins in _B. subtilis_
 
-#### Polyhistidine Tag
+#### Polyhistidine tag
 
 <figure class="img-aside plain">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/ni-nta-resin-column.avif" alt="Nickel-agarose resin">
@@ -477,7 +477,7 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 
 - All our payload constructs contain a polyhistidine (8xHis tag) to ease protein purification through Immobilized Metal Affinity Chromatography (IMAC). In particular, Ni-NTA (nickel-nitrilotriacetic acid) resin was used for affinity purification and also for Western Blots (protein immunoblot).
 
-#### c-Myc Epitope Tag
+#### c-Myc epitope tag
 
 <figure class="img-aside plain">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/western-blot-transfer-system.avif" alt="Western blot wet transfer system">
@@ -486,7 +486,7 @@ In each of our constructs, we replaced this secretion signal with secretion sign
 
 - Dsup constructs in all three of our chassis contained a c-myc tag, which is a short peptide epitope tag widely utilized for immunodetection and characterization of recombinant proteins. In particular, we used it for Western Blots
 
-#### 3C Protease Cleavage Site — Site-Specific Removal of Fusion Tags
+#### 3C protease cleavage site — site-specific removal of fusion tags
 
 - Whenever His tag was present in our constructs, it was separated from the protein coding sequence by 3C protease cleavage site. Essentially, this is a short protease recognition sequence incorporated into recombinant fusion proteins
 - It was originally derived from the recognition sequence of human rhinovirus 3C (HRV 3C) protease, a viral cysteine protease involved in processing viral polyproteins <a class="cite" href="#ref-19">19</a>. HRV 3C protease recognizes the specific amino acid residue sequence illustrated below <a class="cite" href="#ref-20">20</a> and hydrolyzes the peptide bond between glutamine (Q) and glycine (G). As a result, affinity tags, fusion proteins, and other fused peptides can get removed from the rest of the protein

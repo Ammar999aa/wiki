@@ -2,7 +2,7 @@
 
 All protein-coding sequences (CDSs) used in our constructs were codon-optimized for expression in <i>Bacillus subtilis</i> to support efficient recombinant protein production.
 
-### Regulatory Elements, Plasmid Backbone and Tags
+### Regulatory elements, plasmid backbone and tags
 
 <div class="table-wrap">
 
@@ -37,7 +37,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-### Fusion Proteins
+### Fusion proteins
 
 <div class="table-wrap">
 
@@ -55,7 +55,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-### Final Plasmids
+### Final plasmids
 
 <div class="table-wrap">
 
@@ -77,7 +77,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 All protein-coding sequences (CDSs) used in our constructs were codon-optimized for expression in <i>Saccharomyces cerevisiae</i> to support efficient recombinant protein production.
 
-### Regulatory Elements, Plasmid Backbone and Tags
+### Regulatory elements, plasmid backbone and tags
 
 <div class="table-wrap">
 
@@ -92,7 +92,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-### Fusion Proteins
+### Fusion proteins
 
 <div class="table-wrap">
 
@@ -109,7 +109,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-### Final Plasmids
+### Final plasmids
 
 <div class="table-wrap">
 
@@ -136,7 +136,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 All protein-coding sequences (CDSs) used in our constructs were codon-optimized for expression in <i>Pichia pastoris</i> to support efficient recombinant protein production.
 
-### Regulatory Elements, Plasmid Backbone and Tags
+### Regulatory elements, plasmid backbone and tags
 
 <div class="table-wrap">
 
@@ -164,7 +164,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-### Fusion Proteins
+### Fusion proteins
 
 <div class="table-wrap">
 
@@ -185,7 +185,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-### Final Plasmids
+### Final plasmids
 
 <div class="table-wrap">
 
@@ -201,7 +201,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimized 
 
 </div>
 
-## Parts Collections
+## Parts collections
 
 <div class="table-wrap">
 

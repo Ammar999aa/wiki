@@ -1,7 +1,8 @@
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
 import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
-import sections from "../../content/en/wetlab-design.md";
+import rawSections from "../../content/en/wetlab-design.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import { withSpeciesTitles } from "../../utils/speciesTitle";
 const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
@@ -12,6 +13,8 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 // "Design Overview" section) already read as the lede, and a deck here
 // would either duplicate one of those sentences verbatim or invent a
 // sentence the team never wrote.
+const sections = withSpeciesTitles(rawSections);
+
 const pageIntro = <Masthead eyebrow={["Wet Lab", "Design", "Three chassis"]} />;
 
 export default function WetLabDesign() {

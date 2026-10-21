@@ -31,7 +31,7 @@
 **Part 4: Sporulation**
 
 1. Centrifuge 10 mL of the cells at 13,000 × g for 1 minute.
-2. Wash the pellet with 1x PBS.
+2. Wash the pellet with 1× PBS.
 3. Resuspend the pellet in 5 mL DSM nutrient medium at 37 °C, 200 rpm for 48–72 hours to achieve >95% sporulation.
 
    **Note:** Alternatively, add 25 mL of overnight bacterial culture into a 2 L flask containing 250 mL of DSM and incubate at 37 °C, 200 rpm for 48–72 hours to achieve >95% sporulation.
@@ -50,7 +50,7 @@
 **Preparing the gel:**
 
 1. Weigh 0.8–1 g of agarose in a microwaveable beaker.
-2. Add 100 mL of 1x TAE (Tris-acetate-EDTA buffer) to the agarose powder and mix.
+2. Add 100 mL of 1× TAE (Tris-acetate-EDTA buffer) to the agarose powder and mix.
 3. Heat the mixture in the microwave until the powder is completely dissolved. Avoid overheating.
 4. Cool the agarose mixture for 5 min until it reaches 50 °C.
 5. Add 2 µL of red safe per 20 mL of agarose solution, then pour the solution into the gel tray and place the well comb.
@@ -59,7 +59,7 @@
 **Running the gel:**
 
 1. Once solidified, put the agarose gel in the gel chamber.
-2. Fill the gel chamber with 1x TAE. Make sure the gel wells are covered.
+2. Fill the gel chamber with 1× TAE. Make sure the gel wells are covered.
 3. Slowly load 5 µL of the molecular weight ladder into the first lane of the gel.
 4. Carefully add 12 µL of your samples and controls into the wells of the gel.
 5. Run the gel at 100–120 V.
@@ -70,11 +70,11 @@
 
 **Preparing the gel (5 gels):**
 
-1. For the resolving buffer, mix 3x gel buffer, 30% acrylamide (29.65 mL), 10% APS (300 µL), and TEMED (30 µL) — total volume 30 mL.
+1. For the resolving buffer, mix 3× gel buffer, 30% acrylamide (29.65 mL), 10% APS (300 µL), and TEMED (30 µL) — total volume 30 mL.
 2. Set the gel cassette vertically on a rack, then add the resolving buffer up to the 3rd horizontal line. Tap the cassette against the bench to remove air bubbles.
 3. Carefully add isopropanol or 70% ethanol on top and let it polymerize for 45 min – 1 h.
 4. Once the resolving gel has polymerized, carefully discard the isopropanol/ethanol layer.
-5. For the stacking buffer, mix 3x gel buffer, 30% acrylamide (7.9 mL), 10% APS (80 µL), and TEMED (16 µL) — total volume 8 mL.
+5. For the stacking buffer, mix 3× gel buffer, 30% acrylamide (7.9 mL), 10% APS (80 µL), and TEMED (16 µL) — total volume 8 mL.
 6. Add 1.5 mL of the stacking buffer on top of the resolving buffer.
 7. Insert the comb into the gel cassette and let the gel polymerize for 30 min – 1 h.
 8. Once polymerized, put the gel in a plastic bag surrounded by a wet paper towel and store at 4 °C.
@@ -103,7 +103,7 @@
 
 1. Prepare a lysis buffer: 1% Triton-X, 1 M sodium fluoride, 100 mM sodium orthovanadate, 200 mM sodium pyrophosphate, 1X protease inhibitor, 150 mM NaCl, and 50 mM Tris pH 8.0, all diluted in water. (Make a large batch and freeze in –20 °C aliquots.)
 2. Spin down the suspension cell culture and discard the supernatant.
-3. Estimate the pellet volume and add ice-cold lysis buffer equal to 10x the pellet volume, for both bacterial and yeast cultures (e.g. ~10 µL pellet → 100 µL buffer).
+3. Estimate the pellet volume and add ice-cold lysis buffer equal to 10× the pellet volume, for both bacterial and yeast cultures (e.g. ~10 µL pellet → 100 µL buffer).
 4. Vortex for 10 sec and incubate on ice for 15 min.
 5. Sonication may be necessary to completely lyse yeast cultures.
 6. For sonication: 35% amplitude, 5 sec pulse on / 10 sec pulse off, for 1–3 min, keeping the sample on ice throughout.
@@ -159,7 +159,7 @@
 ### Cell lysis
 
 1. Spin down suspension cell culture and discard the supernatant.
-2. Add 1 mL of Trizol reagent per 5-10 x10⁶ of cells of animal or yeast culture or 1x10⁷ of cells of bacterial culture.
+2. Add 1 mL of Trizol reagent per 5–10 × 10⁶ of cells of animal or yeast culture or 1 × 10⁷ of cells of bacterial culture.
 3. pipet up and down to homogenize, then incubate for 5 min at room temperature.
 
 ### RNA precipitation
@@ -174,20 +174,20 @@
 ### Wash
 
 1. Resuspend the pellet in 1 mL of 75% of Ethanol per 1 mL of Trizol.
-2. Wash the sample by flipping the tube up and down then spin down @ 7500 × g at 4 °C for 5 min. (At this step, prepare an ice bucket)
+2. Wash the sample by flipping the tube up and down then spin down @ 7,500 × g at 4 °C for 5 min. (At this step, prepare an ice bucket)
 3. Discard the ethanol and let the pellet dry for 5–10 min.
 
 ### Solubilize RNA
 
-1. Resuspend in 20-50 µl of RNase-free water or 0.1 mM EDTA. Mix by pipetting up and down.
+1. Resuspend in 20–50 µL of RNase-free water or 0.1 mM EDTA. Mix by pipetting up and down.
 
-(Alternatively, to avoid potential RNA degradation during drying, after discarding the ethanol, you could spin the sample again @ 7500 × g at 4 °C for 5 min and discard it. Then, resuspend in 20-50 µl of RNase-free water or 0.1 mM EDTA.
+(Alternatively, to avoid potential RNA degradation during drying, after discarding the ethanol, you could spin the sample again @ 7,500 × g at 4 °C for 5 min and discard it. Then, resuspend in 20–50 µL of RNase-free water or 0.1 mM EDTA.
 
-2. incubate at 55–60 °C for 10–15 minutes, then place the tube on ice for downstream application or store at -80 °C.
+2. incubate at 55–60 °C for 10–15 minutes, then place the tube on ice for downstream application or store at –80 °C.
 3. Determine the RNA concentration using an OD machine at absorbance 260 nm. (a ratio of A260/A280 > 1.8 is considered pure).
 4. You could run your RNA sample on an agarose gel to check if the RNA sample is degraded.
 
-### RNA Agarose gel run
+### RNA agarose gel run
 
 1. Mix equal amounts of your RNA sample and RNA gel loading buffer.
 2. Heat the sample at 70 °C for 10 min, then chill immediately on ice.
@@ -197,23 +197,23 @@
 
 1. Thaw your RNA samples on ice, then add your sample and oligo-dt primer to a PCR tube according to the following table:
 
-| Component | Per 1x Rx (µl) |
+| Component | Per 1× Rx (µL) |
 |---|---|
 | Oligo-dt Primer ( 1–5 µM) | variable |
 | 1 ng to 5 µg total RNA | variable |
-| Sterile, distilled water to 12 µl | Up to total Vol |
+| Sterile, distilled water to 12 µL | Up to total Vol |
 | Total Vol | 13 |
 
 2. Add the PCR tubes to the thermocycler and set a program to heat your sample to 65 °C for 3 min, then let it cool to 4 °C for 10 min.
 3. While the sample cools down, prepare the rest of your RT-PCR buffer according to the following table.
 
-| Component | Per 1x Rx (µl) |
+| Component | Per 1× Rx (µL) |
 |---|---|
 | 10X MLV Buffer | 2.1 |
 | ribonuclease inhibitor 20u (optional) | 0.5 |
 | MLV RT | 0.6 |
 | 0.1 M DTT | 2 |
-| 1 µl dNTP Mix (10 mM each) 1 | 1 |
+| 1 µL dNTP Mix (10 mM each) 1 | 1 |
 | NW | 2.1 |
 | Total RT-PCR buffer | 8 |
 | Total Rx | 21 |
@@ -232,7 +232,7 @@
 | Forward primer (50 to 300 nM) | variable |
 | Reverse primer (50 to 300 nM) | variable |
 | Nuclease-free water | variable |
-| Total | (10 µl) |
+| Total | (10 µL) |
 
 3. Set up the qPCR program based on the master mix manufacturer's instructions.
 
@@ -284,7 +284,7 @@
 
 3. Add ~360 µL of transformation mix, consisting of:
    - 240 µL PEG 3350 [50% (w/v)]
-   - 36 µL LiAc (1.0 M, 10x stock)
+   - 36 µL LiAc (1.0 M, 10× stock)
    - 50 µL salmon sperm single-stranded DNA (10.0 mg/mL), boiled for 10 min at 95 °C
    - 46.6 µL plasmid DNA
 
@@ -332,7 +332,7 @@
 ### Part 5: Competent cell preparation
 
 1. Inoculate 1 mL of starter culture into a 1 L flask with 100 mL YPD media. Grow for 1–2 days.
-2. The next day, transfer the cells into two 50 mL sterile centrifuge tubes. Centrifuge at 4 °C, 1500 g, for 5 minutes. Resuspend each pellet with ice-cold water (fill the tube and mix gently to wash the pellet), then centrifuge and remove the water — wash a second time the same way.
+2. The next day, transfer the cells into two 50 mL sterile centrifuge tubes. Centrifuge at 4 °C, 1,500 g, for 5 minutes. Resuspend each pellet with ice-cold water (fill the tube and mix gently to wash the pellet), then centrifuge and remove the water — wash a second time the same way.
 3. Resuspend the pellets in 10 mL of sterile ice-cold sorbitol (1 M). Centrifuge and remove the supernatant.
 4. Resuspend the pellets in 300 µL of sorbitol for a final volume of 500 µL.
 5. Keep the cells on ice and use them the same day for the transformation.
@@ -414,8 +414,6 @@ Prepare SP medium using the following components for 10 mL:
 
 Before working with the radiation protocols below, take into consideration the following, depending on the microorganism you are using. Note that the target exponential-phase OD₆₀₀ changes depending on the microorganism you are growing.
 
-**Table 1.** Culture and radiation parameters for each organism. These values define every downstream step; adjust only this table when switching organisms.
-
 | Parameter | *Bacillus subtilis* | *Saccharomyces cerevisiae* | *Pichia pastoris* |
 |---|---|---|---|
 | Type | Gram-positive bacterium | Budding yeast | Methylotrophic yeast |
@@ -433,6 +431,8 @@ Before working with the radiation protocols below, take into consideration the f
 | X-ray LD₅₀ (literature, vegetative) | ~200–400 Gy | ~50–80 Gy | ~50–100 Gy (est.) |
 | Suggested X-ray dose range | 0–2000 Gy | 0–2000 Gy | 0–2000 Gy |
 | Relative UV-C sensitivity | Most resistant | Intermediate | Least resistant |
+
+**Table 1.** Culture and radiation parameters for each organism. These values define every downstream step; adjust only this table when switching organisms.
 
 ## X-ray and UV irradiation tests
 
@@ -475,8 +475,6 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 3. Deliver the dose series, deriving each run time from the current calibration (dose = dose rate × time).
 4. Use the dose series in Table 2. The machine cannot run for more than 70 min continuously; pause for 15 min between runs, so longer doses are split into batches.
 
-**Table 2.** X-ray dose series and the corresponding exposure times, with a batched schedule for doses that exceed the 70-minute limit.
-
 | Dose (Gy) | Time (min) | Batched time (min) |
 |---|---|---|
 | 0 | 0 | |
@@ -484,6 +482,8 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 | 1000 | 71.5 | |
 | 1500 | 107.25 | 71.5 + 35.75 |
 | 2000 | 143 | 71.5 + 71.5 |
+
+**Table 2.** X-ray dose series and the corresponding exposure times, with a batched schedule for doses that exceed the 70-minute limit.
 
 5. Proceed to the viability assays (Part 5).
 
@@ -498,8 +498,6 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 7. Position your sample at the chosen distance from the source, using the machine's lasers to center the samples.
 8. Set the dose and source-to-surface distance (SSD) using the calibration values in Table 3.
 
-**Table 3.** Dose-rate calibration as a function of source-to-surface distance (SSD) for the Xstrahl irradiator.
-
 | SSD (mm) | Dose rate (Gy/min) |
 |---|---|
 | 13 | 5.59 |
@@ -508,6 +506,8 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 | 28 | 1.29 |
 | 33 | 0.95 |
 | 38 | 0.71 |
+
+**Table 3.** Dose-rate calibration as a function of source-to-surface distance (SSD) for the Xstrahl irradiator.
 
 9. Turn the key to the ray icon and press the green button.
 
@@ -545,8 +545,6 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 3. Dry the spots completely, then irradiate each plate at its dose; leave the 0-dose plate under normal light.
 4. Incubate overnight at the organism's temperature.
 
-**Table 4.** UV-C dose series, given as nominal fluence and its equivalent in J/m².
-
 | Nominal dose (mJ/cm²) | Equivalent (J/m²) |
 |---|---|
 | 0 (mock) | 0 |
@@ -555,6 +553,8 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 | 18 | 180 |
 | 24 | 240 |
 | 30 | 300 |
+
+**Table 4.** UV-C dose series, given as nominal fluence and its equivalent in J/m².
 
 **Note:** Ensure you have enough cells for both the viability assays and sample collection. A convenient per-tube allocation (1.2 mL at OD ≈ 0.8): 20 µL for plating, 100 µL (×3 wells) for FUN-1 or resazurin, and optionally 500 µL each frozen at –80 °C for RNA and protein.
 
@@ -850,7 +850,7 @@ For 1 L YPD:
 3. 20 g Bacteriological agar (for plates)
 4. Add 960 mL of deionized water, autoclave for 15 minutes, and add 40 mL of a 50% sterile (0.2 µm filtered) solution of glucose.
 
-### 10X Lithium Acetate (LiAc)
+### 10× lithium acetate (LiAc)
 
 **Application:** *S. cerevisiae* transformation.
 
@@ -859,7 +859,7 @@ For 1 L YPD:
 2. Adjust pH to 7.5 with dilute HCl and bring the volume up to 100 mL.
 3. Filter-sterilize and store at room temperature.
 
-### 10X Tris-HCl/EDTA (TE) Buffer
+### 10× Tris-HCl/EDTA (TE) buffer
 
 **Application:** *S. cerevisiae* transformation.
 
@@ -876,16 +876,16 @@ For 1 L YPD:
 2. Adjust volume to 100 mL.
 3. Filter-sterilize and store at room temperature.
 
-### Single-Stranded Carrier DNA (2.0 mg/mL)
+### Single-stranded carrier DNA (2.0 mg/mL)
 
 **Application:** *S. cerevisiae* transformation.
 
-1. Dissolve 200 mg of salmon sperm DNA in 100 mL of TE buffer (10 mM Tris-HCl, 1 mM Na₂EDTA, pH 8.0) by stirring at 4 °C for 1–2 hr.
+1. Dissolve 200 mg of salmon sperm DNA in 100 mL of TE buffer (10 mM Tris-HCl, 1 mM Na₂EDTA, pH 8.0) by stirring at 4 °C for 1–2 h.
 2. Store 1.0 mL samples at –20 °C.
 3. Denature the carrier DNA in a boiling water bath for 10 min and chill in ice/water before use.
 4. Boiled samples, stored at –20 °C, can be reused or reboiled three times without loss of activity.
 
-### Sc–Ura Selective Agar
+### Sc–Ura selective agar
 
 **Application:** Select yeast strains originally auxotrophic for uracil after transformation with a URA3-containing plasmid.
 
@@ -897,7 +897,7 @@ For 1 L media:
 5. Once the mixture cools down, add 2% (w/v) D-glucose from a filter-sterilized solution (e.g. if the stock is 20%, add 100 mL).
 6. Pour the plates.
 
-### Sorbitol Solution (1 M)
+### Sorbitol solution (1 M)
 
 **Application:** *P. pastoris* electroporation.
 
@@ -905,11 +905,11 @@ For 1 L media:
 2. Add 100 mL of MilliQ H₂O.
 3. Autoclave-sterilize and store at room temperature. Stock solutions are stable for up to 6 months at 20 °C.
 
-### 0.8% Agarose Gel
+### 0.8% agarose gel
 
 **Application:** Visualization of DNA.
 
-1. In 50 mL of 1x TBE, dissolve 0.4 g of agarose.
+1. In 50 mL of 1× TBE, dissolve 0.4 g of agarose.
 2. Boil in a microwave to dissolve the agarose fully.
 3. Once the solution cools down, add 2.5 µL of 10 mg/mL EtBr.
 4. Pour into the mold and add the comb.

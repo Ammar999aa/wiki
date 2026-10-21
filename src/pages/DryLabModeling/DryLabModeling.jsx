@@ -58,7 +58,7 @@ const sections = rawSections.map((raw) => {
 const pageIntro = (
   <>
     <Masthead
-      eyebrow={["Dry Lab", "Model", "Flux balance analysis", "Dynamic modelling"]}
+      eyebrow={["Dry Lab", "Model", "Flux balance analysis", "Dynamic modeling"]}
       // Introduction from DRAFT_WIKI_OCTOBER-1.pdf.
       deck={
         <>

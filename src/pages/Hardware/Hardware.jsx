@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import SectionedArticle from "../../components/SectionedArticle/SectionedArticle";
+import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import rawSections from "../../content/en/hardware.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import HardwareAnimation from "../Home/HardwareAnimation/HardwareAnimation";
@@ -162,7 +163,13 @@ export default function Hardware() {
     >
       <SectionedArticle
         title="Hardware"
-        intro={<TopFigures />}
+        intro={
+          <>
+            {/* Hardware is a flat nav entry, so its nav trail is the one item. */}
+            <Masthead eyebrow={["Hardware"]} />
+            <TopFigures />
+          </>
+        }
         sections={sections}
         defaultSelected={sections[0]?.title}
         numbered

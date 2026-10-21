@@ -535,7 +535,7 @@ Adapting scientific content to the communication context means answering these q
 
 Mentors rated the program 8.5 out of 10 overall, on a scale from 1 to 10. We interpret this as sufficient evidence of participant acceptance and experience. This feedback is the starting point for the next stage of Kallpa Greenz.
 
-### Our Reach
+### Our reach
 
 <div class="stat-grid">
 <div><strong>8</strong><span>Volunteers trained</span></div>
@@ -553,7 +553,7 @@ From a classroom at KAUST to Peru's chakras: every volunteer trained becomes a b
 
 <!-- kallpa:reach -->
 
-### Reusable Resources
+### Reusable resources
 
 Everything in this mentorship was designed to travel. Take it, make it yours, and pass it on.
 

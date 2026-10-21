@@ -239,7 +239,7 @@ export default function Protocols() {
       />
       <div className={styles.page}>
         <header className={styles.hero}>
-          <p className={styles.eyebrow}>Wet Lab</p>
+          <p className={styles.eyebrow}>Wet Lab · Experiments (Protocols)</p>
           <h1 className={styles.title}>Experiments &amp; Protocols</h1>
           <p className={styles.tagline}>Every protocol we run, organized the way we actually use it at the bench.</p>
         </header>
