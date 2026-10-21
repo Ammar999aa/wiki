@@ -57,7 +57,6 @@ const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
 const Measurement = lazyWithPreload(() => import("./pages/Measurement/Measurement"));
 const Results = lazyWithPreload(() => import("./pages/Results/Results"));
 const ProofOfConcept = lazyWithPreload(() => import("./pages/ProofOfConcept/ProofOfConcept"));
-const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
 
 // Optional `description` on a page: the search-result / link-preview
 // snippet App.jsx sets for that route (falls back to index.html's site-wide
@@ -209,18 +208,13 @@ const Pages = [
   // team's judging page draft — src/pages/Judging/Judging.jsx. Formerly the
   // "Awards" dropdown; Judging was its only remaining entry.
   { name: "Judging", title: "Judging", path: "/judging", component: Judging },
-  // Standard iGEM award URLs, taken out of the nav but kept routable
-  // (shared "coming soon" Stub) so the standard paths still resolve.
-  // Pages that already exist live at their required URL in the nav
-  // (/engineering, /human-practices, /model, /safety-and-security,
-  // /software, /contribution, /education, /hardware, /inclusivity,
-  // /measurement).
-  // No longer in the nav, but Integrated Human Practices still links here
-  // ("See long-term roadmap"), so the URL has to keep resolving.
+  // Not written yet (shared "coming soon" Stub) and not in the nav, but
+  // Integrated Human Practices links here ("See long-term roadmap"), so the
+  // URL has to keep resolving. Pages that already exist live at their
+  // required iGEM URL in the nav (/engineering, /human-practices, /model,
+  // /safety-and-security, /software, /contribution, /education, /hardware,
+  // /inclusivity, /measurement).
   { name: "Proposed Implementation", title: "Proposed Implementation", path: "/proposed-implementation", component: Stub, hidden: true },
-  { name: "Entrepreneurship", title: "Entrepreneurship", path: "/entrepreneurship", component: Stub, hidden: true },
-  { name: "Plant Synthetic Biology", title: "Plant Synthetic Biology", path: "/plant", component: Stub, hidden: true },
-  { name: "Sustainable Development", title: "Sustainable Development", path: "/sustainability", component: Stub, hidden: true },
   // Pre-existing sectioned pages, superseded in the nav by the categories
   // above but left routable at their old URLs — see file header comment.
   { name: "Wet Lab (overview)", title: "Wet Lab", path: "/wetlab", component: WetLab, hidden: true },
@@ -237,10 +231,6 @@ const Pages = [
   { name: "Safety (old URL)", title: "Safety", path: "/safety", component: Safety, hidden: true },
   // Dry Lab Overview's old URL, from before it became the Modeling page.
   { name: "Dry Lab Overview (old URL)", title: "Modeling", path: "/dry-lab-overview", component: DryLabModeling, hidden: true },
-  // Authoring reference for the team: a fictional article applying every
-  // wiki authoring convention, annotated. Not wiki content — remove
-  // before the wiki freeze.
-  { name: "Example Article", title: "Example Article", path: "/example-article", component: ExampleArticle, hidden: true },
 ];
 
 export default Pages;

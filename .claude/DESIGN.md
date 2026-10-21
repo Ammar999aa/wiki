@@ -219,11 +219,6 @@ complexity unless the page actually needs it. For a long, quantitative
 article that outgrows markdown, follow ARTICLE-STANDARDS.md and feed custom
 sections into `SectionedArticle` via `content`.
 
-`ExampleArticle` (hidden route `/example-article`) is a worked, annotated
-sample applying every authoring convention once — a useful reference, and
-scheduled for removal before the wiki freeze, so don't link to it from
-anywhere.
-
 ## Routing & navigation — `src/pages.js` is the single source of truth
 
 Add a page by editing **only** `src/pages.js`; both routing (`App.jsx`) and
