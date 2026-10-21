@@ -166,7 +166,6 @@ export const glanceTiles = [
   {
     title: "Closing the ORBIT",
     target: "Closing the ORBIT",
-    photo: "closing",
     body: "We learned that responsible design requires balancing autonomy, adaptability, responsibility, and accessibility, and that these priorities must continue to be revisited as new evidence and perspectives emerge.",
   },
 ];
@@ -295,7 +294,8 @@ export const shapedPeople = [
     lines: ["Sarah Al Harbi"],
     card: "Sarah Al Harbi",
     topic: "Mission integration",
-    photos: [{ file: "incognito.svg" }],
+    // No photo of Sarah, so the map shows a person outline in its place.
+    icon: "person",
     parts: ["modeling", "hardware"],
     changed:
       "Sarah's feedback influenced both our dry-lab and hardware development. To reduce the need for continuous crew supervision, our dry-lab team developed a monitoring dashboard …",

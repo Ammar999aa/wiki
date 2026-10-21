@@ -998,7 +998,7 @@ We therefore selected the syringe pump mechanism because it offered greater flex
 We used an Arduino Uno to control the stepper motors, initially connecting each motor to an individual A4988 driver.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image47.avif" alt="An A4988 stepper motor driver board"></div><figcaption class="caption"><strong>Figure 44. The A4988 driver was the first driver we tried.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image47-new.avif" alt="An A4988 stepper motor driver board"></div><figcaption class="caption"><strong>Figure 44. The A4988 driver was the first driver we tried.</strong></figcaption></figure>
 </div>
 
 </div></div>
@@ -1007,7 +1007,7 @@ We used an Arduino Uno to control the stepper motors, initially connecting each 
 We replaced the A4988 drivers with TMC2209 drivers. We also incorporated a CNC shield to organize the drivers and wiring into a more compact assembly.
 
 <div class="figure-grid" style="--fig-h: 230px;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image58.avif" alt="A TMC2209 stepper motor driver board"></div><figcaption class="caption"><strong>Figure 45. The TMC2209 driver replaced the A4988.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image58-new.avif" alt="A TMC2209 stepper motor driver board"></div><figcaption class="caption"><strong>Figure 45. The TMC2209 driver replaced the A4988.</strong></figcaption></figure>
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image55.avif" alt="A CNC shield with the stepper drivers plugged into it, keeping the wiring compact"></div><figcaption class="caption"><strong>Figure 46. The CNC shield keeps the drivers and wiring compact.</strong></figcaption></figure>
 </div>
 

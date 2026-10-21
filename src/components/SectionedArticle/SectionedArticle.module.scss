@@ -2324,6 +2324,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     margin-block: 16px;
 
     > :global(.person-photo),
+    > :global(.person-avatar),
     > :global(.person-photos) {
       grid-row: 1 / span 3;
     }
@@ -2347,6 +2348,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
       align-items: center;
 
       > :global(.person-photo),
+      > :global(.person-avatar),
       > :global(.person-photos) {
         grid-row: auto;
       }
@@ -2433,6 +2435,29 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
         calc(var(--photo-x, 50%) + (50% - var(--photo-x, 50%)) / var(--photo-zoom, 1))
         calc(var(--photo-zoom-y, 50%) + (50% - var(--photo-zoom-y, 50%)) / var(--photo-zoom, 1))
     );
+  }
+
+  // Stand-in for someone we have no photo of: a person outline in a circle
+  // the size of .person-photo. Not an <img>, so the lightbox and the popup's
+  // photo strip leave it out.
+  :global(.person-avatar) {
+    display: grid;
+    place-items: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: rgba(177, 109, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(209, 168, 255, 0.35);
+
+    svg {
+      width: 56%;
+      height: 56%;
+      fill: none;
+      stroke: var(--primary-300);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   }
 
   :global(.person-name) {

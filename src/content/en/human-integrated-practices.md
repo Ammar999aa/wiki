@@ -455,7 +455,7 @@ Although we could not complete every step ourselves, documenting this pathway al
 </div>
 
 <div class="person-card">
-<img class="person-photo" src="https://static.igem.wiki/teams/6341/wiki/content/human-integrated-practices/incognito.svg" alt="Sarah Al Harbi">
+<span class="person-avatar" role="img" aria-label="No photo of Sarah Al Harbi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.8-4 3.6-6.6 7.2-6.6s6.4 2.6 7.2 6.6"/></svg></span>
 <h4 class="person-name">Sarah Al Harbi</h4>
 <p>We met with Sarah Al Harbi, whose experience managing projects at the Saudi Space Agency gave us a mission-level perspective on SHIHAB. While our work had focused primarily on biological performance and validation, Sarah introduced another layer of requirements: integration into an actual space mission.</p>
 <p>She highlighted that preparing an experiment for space involves more than demonstrating that the system works. Power availability, spacecraft compatibility, astronaut time, launch conditions, material restrictions, regulatory approvals, and the scientific justification for conducting the experiment in space can all influence whether and how a system can be deployed.</p>
