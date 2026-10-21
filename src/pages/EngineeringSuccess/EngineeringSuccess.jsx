@@ -11,7 +11,7 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 const pageIntro = (
   <>
   <Masthead
-    eyebrow={["Engineering", "Engineering Success", "Design–Build–Test–Learn", "Hardware, wet lab, dry lab"]}
+    eyebrow={["Project", "Engineering Success", "Hardware, wet lab, dry lab"]}
     deck={
       <>
         The engineering cycles are the central practice of iGEM and synthetic biology in general. They

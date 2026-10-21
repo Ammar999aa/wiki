@@ -40,7 +40,7 @@ const sections = rawSections.map(withSlots);
 const pageIntro = (
   <>
     <Masthead
-      eyebrow={["Wet Lab", "Proof of Concept"]}
+      eyebrow={["Project", "Proof of Concept"]}
     />
     <p>
       Space environments present challenges that terrestrial organisms are not naturally adapted to withstand,
