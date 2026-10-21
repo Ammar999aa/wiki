@@ -1,6 +1,6 @@
 ## Bacillus subtilis
 
-All protein-coding sequences (CDSs) used in our constructs were codon-optimised for expression in <i>Bacillus subtilis</i> to support efficient recombinant protein production.
+All protein-coding sequences (CDSs) used in our constructs were codon-optimized for expression in <i>Bacillus subtilis</i> to support efficient recombinant protein production.
 
 ### Regulatory Elements, Plasmid Backbone and Tags
 
@@ -75,7 +75,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimised 
 
 ## Saccharomyces cerevisiae
 
-All protein-coding sequences (CDSs) used in our constructs were codon-optimised for expression in <i>Saccharomyces cerevisiae</i> to support efficient recombinant protein production.
+All protein-coding sequences (CDSs) used in our constructs were codon-optimized for expression in <i>Saccharomyces cerevisiae</i> to support efficient recombinant protein production.
 
 ### Regulatory Elements, Plasmid Backbone and Tags
 
@@ -85,7 +85,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimised 
 | --- | --- | --- |
 | α-factor secretion signal (α-factor SP) | <a href="https://registry.igem.org/parts/bba-266mcglr" target="_blank" rel="noopener noreferrer">BBa_266MCGLR</a> | <span class="chip">New</span> |
 | ADH1p with Kozak sequence | <a href="https://registry.igem.org/parts/bba-26dx5y5n" target="_blank" rel="noopener noreferrer">BBa_26DX5Y5N</a> | <span class="chip">New</span> |
-| Double SV40 nuclear localisation signal | <a href="https://registry.igem.org/parts/bba-26xabh9v" target="_blank" rel="noopener noreferrer">BBa_26XABH9V</a> | <span class="chip">New</span> |
+| Double SV40 nuclear localization signal | <a href="https://registry.igem.org/parts/bba-26xabh9v" target="_blank" rel="noopener noreferrer">BBa_26XABH9V</a> | <span class="chip">New</span> |
 | HO-poly-KanMX4-HO_backbone (modified) | <a href="https://registry.igem.org/parts/bba-26yetivr" target="_blank" rel="noopener noreferrer">BBa_26YETIVR</a> | <span class="chip">New</span> |
 | pYES2-without promoter_backbone (modified) | <a href="https://registry.igem.org/parts/bba-26gl83tj" target="_blank" rel="noopener noreferrer">BBa_26GL83TJ</a> | <span class="chip">New</span> |
 | pYES2-with GALp_backbone | <a href="https://registry.igem.org/parts/bba-26pufe68" target="_blank" rel="noopener noreferrer">BBa_26PUFE68</a> | <span class="chip">New</span> |
@@ -134,7 +134,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimised 
 
 ## Pichia pastoris
 
-All protein-coding sequences (CDSs) used in our constructs were codon-optimised for expression in <i>Pichia pastoris</i> to support efficient recombinant protein production.
+All protein-coding sequences (CDSs) used in our constructs were codon-optimized for expression in <i>Pichia pastoris</i> to support efficient recombinant protein production.
 
 ### Regulatory Elements, Plasmid Backbone and Tags
 
@@ -145,7 +145,7 @@ All protein-coding sequences (CDSs) used in our constructs were codon-optimised 
 | α-factor secretion signal (α-factor SP) | <a href="https://registry.igem.org/parts/bba-266mcglr" target="_blank" rel="noopener noreferrer">BBa_266MCGLR</a> | <span class="chip">New</span> |
 | 3C | <a href="https://registry.igem.org/parts/bba-26ybu9ku" target="_blank" rel="noopener noreferrer">BBa_26YBU9KU</a> | <span class="chip">New</span> |
 | pPICZ A_backbone | <a href="https://registry.igem.org/parts/bba-26yc28hy" target="_blank" rel="noopener noreferrer">BBa_26YC28HY</a> | <span class="chip">New</span> |
-| pPICZ A_backbone (linearised) | <a href="https://registry.igem.org/parts/bba-261no7ye" target="_blank" rel="noopener noreferrer">BBa_261NO7YE</a> | <span class="chip">New</span> |
+| pPICZ A_backbone (linearized) | <a href="https://registry.igem.org/parts/bba-261no7ye" target="_blank" rel="noopener noreferrer">BBa_261NO7YE</a> | <span class="chip">New</span> |
 
 </div>
 

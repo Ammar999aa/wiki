@@ -174,12 +174,12 @@ The assay requires actively dividing cells, not a saturated overnight. Dilute th
 2. Harvest when the OD₆₀₀ enters the organism’s target window (Table 1): 0.4-0.6 for _B. subtilis_ and _S. cerevisiae_; 0.6-1.0 for _P. pastoris_. For dye assays needing late-log cells, continue to OD 0.8-1.0.
 3. If several strains of one organism are compared, wait until all reach the window before harvesting, so every strain is irradiated at an equivalent physiological state.
 
-**Standardising cell number before treatment**
+**Standardizing cell number before treatment**
 
 1. Record the final OD₆₀₀ of each culture in the tube immediately before use.
-2. Normalise all strains to the same OD₆₀₀ by diluting the denser ones with fresh medium (use the lowest common OD as the reference).
+2. Normalize all strains to the same OD₆₀₀ by diluting the denser ones with fresh medium (use the lowest common OD as the reference).
 3. Where a concentrated suspension is needed, harvest by centrifugation (4,000 × g, ~15 min, RT; yeasts tolerate 1,500 × g, 5 min) and resuspend the pellet in a smaller volume of fresh medium.
-4. Confirm the normalised OD₆₀₀ once more before distributing to treatment tubes or plates.
+4. Confirm the normalized OD₆₀₀ once more before distributing to treatment tubes or plates.
 
 #### Stage 2 - Radiation treatment
 
@@ -189,7 +189,7 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 
 **Instrument:** Xstrahl RS320 (or an equivalent cabinet irradiator). Fix the rack geometry and sample position for every run, and verify the delivered dose with a dosimeter at the sample position before quoting absolute doses.
 
-1. Distribute the normalised exponential-phase suspension into 2 mL screw-cap tubes, 1.2 mL per tube, leaving ~0.8 mL of headspace for gas exchange during long exposures. Use one tube per dose per strain, plus the mock.
+1. Distribute the normalized exponential-phase suspension into 2 mL screw-cap tubes, 1.2 mL per tube, leaving ~0.8 mL of headspace for gas exchange during long exposures. Use one tube per dose per strain, plus the mock.
 2. Load the tubes into the support rack at the calibrated position.
 3. Deliver the dose series, deriving each run time from the current calibration (dose = dose rate × time).
 4. Use the dose series in Table 2. The machine cannot run for more than 70 min continuously; pause for 15 min between runs, so longer doses are split into batches.
@@ -222,7 +222,7 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 4. Turn the key to the ray icon.
 5. Switch on the X-ray by pressing the green "X-ray On" button.
 6. When warm-up finishes, turn the key off.
-7. Position your sample at the chosen distance from the source, using the machine’s lasers to centre the samples.
+7. Position your sample at the chosen distance from the source, using the machine’s lasers to center the samples.
 8. Set the dose and source-to-surface distance (SSD) using the calibration values in Table 3.
 
 <div class="caption">
@@ -268,7 +268,7 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 
 _(a) Liquid-suspension format - for resazurin / FUN-1 readouts_
 
-1. Normalise the cultures to equal density and pellet (6,000 rpm, 3 min); resuspend each in 2 mL of PBS (or keep in medium).
+1. Normalize the cultures to equal density and pellet (6,000 rpm, 3 min); resuspend each in 2 mL of PBS (or keep in medium).
 2. Transfer the full 2 mL suspension to a sterile Petri dish (same dish type and volume for every sample, to keep the path length constant).
 3. Expose to the target UV-C dose with the lid off.
 4. Immediately recover the suspension into a sterile tube. For DNA-damage endpoints, proceed with no recovery; for viability, allow the defined recovery/read window.
@@ -417,7 +417,7 @@ Metabolically active cells convert diffuse green cytosolic FUN-1 into red-orange
 
 <div class="details-body">
 
-Viable, metabolically active cells reduce blue resazurin to pink resorufin; the rate and extent track viability. Over-reduction continues to a colourless product, so very dense or active cultures saturate quickly - keep the density low enough to resolve the kinetics.
+Viable, metabolically active cells reduce blue resazurin to pink resorufin; the rate and extent track viability. Over-reduction continues to a colorless product, so very dense or active cultures saturate quickly - keep the density low enough to resolve the kinetics.
 
 1. Dilute the cells to the working density OD₆₀₀ ≈ 0.2. This is chosen so that reduction is slow enough for treated and untreated samples to separate within the read window; higher densities turn pink within seconds and mask the dose effect.
 2. Add 100 µL of each suspension to a 96-well plate in triplicate.
@@ -462,7 +462,7 @@ Overall, we initially focused on optimizing X-ray and UV irradiation protocols f
 Dose-dependent inhibition was observed in all three organisms, and this series defined the UV-C working range used in the subsequent comparisons between wild-type and Dsup-expressing strains.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-2.avif" alt="Two Petri dishes of Saccharomyces cerevisiae spotted on YPD agar, the first labelled Mock, 200 Gy and 400 Gy and the second 1000 Gy, 800 Gy and 600 Gy" loading="lazy"></div><figcaption class="caption"><strong>Figure 4.</strong> X-ray dose series in unmodified <i>S. cerevisiae</i>. Serial dilutions were spotted onto YPD agar after irradiation at 0 (mock), 200, 400, 600, 800 and 1000 Gy and incubated until colonies were visible.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-2.avif" alt="Two Petri dishes of Saccharomyces cerevisiae spotted on YPD agar, the first labeled Mock, 200 Gy and 400 Gy and the second 1000 Gy, 800 Gy and 600 Gy" loading="lazy"></div><figcaption class="caption"><strong>Figure 4.</strong> X-ray dose series in unmodified <i>S. cerevisiae</i>. Serial dilutions were spotted onto YPD agar after irradiation at 0 (mock), 200, 400, 600, 800 and 1000 Gy and incubated until colonies were visible.</figcaption></figure>
 </div>
 
 Growth remained essentially unchanged up to 400 Gy. From 600 Gy the concentrated spots begin to lose definition, and at 1000 Gy they resolve into discrete colonies rather than confluent growth, the first clear indication of reduced survival.
@@ -471,7 +471,7 @@ Growth remained essentially unchanged up to 400 Gy. From 600 Gy the concentrated
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-3.avif" alt="Two columns of spot dilution strips of Pichia pastoris, one strip per X-ray dose; the left column covers Mock to 800 Gy and 1600 to 2000 Gy, the right column covers Mock to 2000 Gy in 200 Gy steps" loading="lazy"></div><figcaption class="caption"><strong>Figure 5.</strong> X-ray dose series in unmodified <i>P. pastoris</i>. (A) Initial run (left), which did not include 1000 to 1400 Gy. (B) Repetition covering the complete dose range (right), performed to define the transition. Serial dilutions were spotted onto YPD agar after irradiation from 0 (mock) to 2000 Gy and incubated until colonies were visible.</figcaption></figure>
 </div>
 
-Both runs show the same behaviour: confluent growth at mock and 200 Gy, a progressive shift from confluent to granular and then to discrete colonies between 400 and 800 Gy, and the sharpest change around 1200 Gy. From 1400 Gy the decline continues, and by 1800 to 2000 Gy only sparse growth remains at the lowest dilution, although survivors are still detectable at the highest dose.
+Both runs show the same behavior: confluent growth at mock and 200 Gy, a progressive shift from confluent to granular and then to discrete colonies between 400 and 800 Gy, and the sharpest change around 1200 Gy. From 1400 Gy the decline continues, and by 1800 to 2000 Gy only sparse growth remains at the lowest dilution, although survivors are still detectable at the highest dose.
 
 <div class="figure-grid single wide">
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-4.avif" alt="Spot dilution strips of Bacillus subtilis, one strip per X-ray dose from Mock to 2000 Gy in 200 Gy steps" loading="lazy"></div><figcaption class="caption"><strong>Figure 6.</strong> X-ray dose series in unmodified <i>B. subtilis</i>. Serial dilutions were spotted onto agar after irradiation from 0 (mock) to 2000 Gy in 200 Gy steps and incubated until colonies were visible.</figcaption></figure>
@@ -480,10 +480,10 @@ Both runs show the same behaviour: confluent growth at mock and 200 Gy, a progre
 Growth is retained across the full dilution series up to 600 Gy. Between 800 and 1200 Gy the spots progressively break up and the more dilute ones drop out, marking a steady dose-dependent loss of viability. Beyond that the decline is sharp: three spots remain at 1400 and 1600 Gy, a single spot at 1800 Gy, and no growth at any dilution at 2000 Gy. Each spot corresponds to a ten-fold dilution, so the loss of one spot is approximately a one log reduction in viable cells. Complete inactivation at 2000 Gy made _B. subtilis_ the most sensitive of the three chassis under these conditions.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-5.avif" alt="Photograph of a 96-well plate with resazurin added to Bacillus subtilis cultures in columns 1 to 3, cells without dye in columns 4 to 6, and a no-cell blank in row B; the wells shift from blue-purple at OD600 0.2 to pink at higher densities" loading="lazy"></div><figcaption class="caption"><strong>Figure 7.</strong> Optimisation of the working cell density for the resazurin assay in <i>B. subtilis</i>. Cultures were adjusted to OD₆₀₀ of 0.2, 0.4, 0.6, 0.8 and 1.0 and incubated with resazurin (columns 1 to 3), alongside cells without dye (columns 4 to 6) and a no-cell blank of medium plus resazurin (row B). Photograph taken by the team.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-5.avif" alt="Photograph of a 96-well plate with resazurin added to Bacillus subtilis cultures in columns 1 to 3, cells without dye in columns 4 to 6, and a no-cell blank in row B; the wells shift from blue-purple at OD600 0.2 to pink at higher densities" loading="lazy"></div><figcaption class="caption"><strong>Figure 7.</strong> Optimization of the working cell density for the resazurin assay in <i>B. subtilis</i>. Cultures were adjusted to OD₆₀₀ of 0.2, 0.4, 0.6, 0.8 and 1.0 and incubated with resazurin (columns 1 to 3), alongside cells without dye (columns 4 to 6) and a no-cell blank of medium plus resazurin (row B). Photograph taken by the team.</figcaption></figure>
 </div>
 
-At OD₆₀₀ 0.2 only part of the dye is reduced and the wells remain blue to purple. From 0.4 the colour shifts to pink and is already saturated at 0.6, with no visible difference between 0.6, 0.8 and 1.0 after the same incubation. Densities of 0.6 and above reduce all the available dye within the incubation window, leaving no range in which treated and untreated samples can separate. OD₆₀₀ 0.2 was therefore selected as the working density for the irradiation experiments.
+At OD₆₀₀ 0.2 only part of the dye is reduced and the wells remain blue to purple. From 0.4 the color shifts to pink and is already saturated at 0.6, with no visible difference between 0.6, 0.8 and 1.0 after the same incubation. Densities of 0.6 and above reduce all the available dye within the incubation window, leaving no range in which treated and untreated samples can separate. OD₆₀₀ 0.2 was therefore selected as the working density for the irradiation experiments.
 
 </div>
 
@@ -523,9 +523,9 @@ After obtaining the engineered strains, using the framework we developed with un
 
 <div class="figure-grid single wide">
 <figure>
-<div class="photo-frame" style="margin-bottom: 12px;"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-6-1.avif" alt="Two line charts of OD600 normalised to T=0 over 60 minutes after X-ray doses of 0, 500, 1000, 1500 and 2000 Gy: panel A wild type, panel B Dsup" loading="lazy"></div>
+<div class="photo-frame" style="margin-bottom: 12px;"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-6-1.avif" alt="Two line charts of OD600 normalized to T=0 over 60 minutes after X-ray doses of 0, 500, 1000, 1500 and 2000 Gy: panel A wild type, panel B Dsup" loading="lazy"></div>
 <div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-6.avif" alt="Two line charts against X-ray dose in Gy comparing wild type and Dsup: panel C percentage dye reduction, panel D percentage cell viability, both one hour after adding dye" loading="lazy"></div>
-<figcaption class="caption"><strong>Figure 8.</strong> Metabolic activity and growth of wild-type and Dsup-expressing <i>B. subtilis</i> after X-ray irradiation. (A, B) OD₆₀₀ over the hour after irradiation, normalised to the first reading, for wild type (A) and Dsup (B). (C) Percentage of resazurin reduced one hour after adding the dye, at 0, 500, 1000, 1500 and 2000 Gy. (D) The same data as viability relative to the unirradiated control of each strain.</figcaption>
+<figcaption class="caption"><strong>Figure 8.</strong> Metabolic activity and growth of wild-type and Dsup-expressing <i>B. subtilis</i> after X-ray irradiation. (A, B) OD₆₀₀ over the hour after irradiation, normalized to the first reading, for wild type (A) and Dsup (B). (C) Percentage of resazurin reduced one hour after adding the dye, at 0, 500, 1000, 1500 and 2000 Gy. (D) The same data as viability relative to the unirradiated control of each strain.</figcaption>
 </figure>
 </div>
 
@@ -533,16 +533,16 @@ Both readouts point the same way. Dye reduction drops with dose in both strains,
 
 <div class="figure-grid single wide">
 <figure>
-<div class="photo-frame" style="margin-bottom: 12px;"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-7-1.avif" alt="Two line charts of OD600 normalised to T=0 over 60 minutes after UV-C doses of 0, 60, 120, 180, 240 and 300 J/m²: panel A wild type, panel B Dsup" loading="lazy"></div>
+<div class="photo-frame" style="margin-bottom: 12px;"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-7-1.avif" alt="Two line charts of OD600 normalized to T=0 over 60 minutes after UV-C doses of 0, 60, 120, 180, 240 and 300 J/m²: panel A wild type, panel B Dsup" loading="lazy"></div>
 <div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-7.avif" alt="Two line charts against UV radiation dose comparing wild type and Dsup: panel C percentage dye reduction, panel D percentage cell viability, both one hour after adding dye" loading="lazy"></div>
-<figcaption class="caption"><strong>Figure 9.</strong> Response of wild-type and Dsup-expressing <i>B. subtilis</i> to UV-C at 0 to 300 J/m². (A, B) OD₆₀₀ over the hour after irradiation, normalised to the first reading, for wild type (A) and Dsup (B). (C) Resazurin reduction and (D) viability relative to each strain’s unirradiated control, one hour after adding the dye.</figcaption>
+<figcaption class="caption"><strong>Figure 9.</strong> Response of wild-type and Dsup-expressing <i>B. subtilis</i> to UV-C at 0 to 300 J/m². (A, B) OD₆₀₀ over the hour after irradiation, normalized to the first reading, for wild type (A) and Dsup (B). (C) Resazurin reduction and (D) viability relative to each strain’s unirradiated control, one hour after adding the dye.</figcaption>
 </figure>
 </div>
 
 Dsup stays above wild type at every dose, and the growth curves separate most clearly at 60 J/m², where Dsup reaches 2.02 times its starting density against 1.55 for wild type. Reduction above 100% in the two lowest wild-type doses and across the whole Dsup series shows that the dye had passed the linear range of the assay before the one hour read. We can therefore rank the strains at each dose but not quantify the difference between them. The Dsup curve in particular sits against the ceiling of the assay and no longer responds to dose. We corrected this in the following replicate by adjusting the number of cells added to each well, which slowed the reaction enough for it to stay within the linear range across the reading window.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-8.avif" alt="Line chart of percentage viability against time in seconds for wild-type S. cerevisiae and the ISD1, ISD2 and ISD3 Dsup strains, each with FUN-1 staining" loading="lazy"></div><figcaption class="caption"><strong>Figure 10.</strong> FUN-1 staining of wild-type <i>S. cerevisiae</i> and three Dsup constructs: ISD1 (Dsup), ISD2 (Dsup carrying a tandem SV40 nuclear localisation signal) and ISD3 (Myc-tagged Dsup). Viability is the red to total fluorescence ratio, followed over 80 minutes.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-8.avif" alt="Line chart of percentage viability against time in seconds for wild-type S. cerevisiae and the ISD1, ISD2 and ISD3 Dsup strains, each with FUN-1 staining" loading="lazy"></div><figcaption class="caption"><strong>Figure 10.</strong> FUN-1 staining of wild-type <i>S. cerevisiae</i> and three Dsup constructs: ISD1 (Dsup), ISD2 (Dsup carrying a tandem SV40 nuclear localization signal) and ISD3 (Myc-tagged Dsup). Viability is the red to total fluorescence ratio, followed over 80 minutes.</figcaption></figure>
 </div>
 
 The ratio sits between 27 and 41% for every strain. All four fall over the first 20 to 30 minutes and then flatten or drift back up, and they separate into two groups, with ISD2 and ISD3 between 33 and 41% and wild type and ISD1 between 27 and 31%. None of this can be interpreted, because FUN-1 reports metabolically active cells as red intravacuolar structures and the ratio should therefore rise as the staining develops rather than fall, and a culture in exponential growth should not read as roughly 70% dead. Part of the problem was the plate: the first run was done in a clear plate, which is not suitable for fluorescence. We repeated it in a black plate with a translucent bottom and the curves did not improve, which points instead to the reader settings, most likely the excitation and emission pairs the assay needs, 485/530 nm for the green signal from dead cells and 485/620 nm for the red from live ones. FUN-1 is a good readout for yeasts and we think the reader settings are solvable with a bit more time at the instrument. However, for this project the resazurin assay was already giving us a clean dose response, so we decided using that one.
@@ -550,11 +550,11 @@ The ratio sits between 27 and 41% for every strain. All four fall over the first
 <div class="figure-grid single wide">
 <figure>
 <div class="figure-grid" style="--cols: 2;">
-<div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-9-a.avif" alt="Line chart of OD600 normalised to T=0 over 60 minutes for wild-type B. subtilis at UV-C doses of 0 to 300 J/m², second replicate; the curves swing widely" loading="lazy"></div>
-<div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-9-b.avif" alt="Line chart of OD600 normalised to T=0 over 60 minutes for Dsup B. subtilis at UV-C doses of 0 to 300 J/m², second replicate; the curves are ordered by dose" loading="lazy"></div>
+<div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-9-a.avif" alt="Line chart of OD600 normalized to T=0 over 60 minutes for wild-type B. subtilis at UV-C doses of 0 to 300 J/m², second replicate; the curves swing widely" loading="lazy"></div>
+<div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-9-b.avif" alt="Line chart of OD600 normalized to T=0 over 60 minutes for Dsup B. subtilis at UV-C doses of 0 to 300 J/m², second replicate; the curves are ordered by dose" loading="lazy"></div>
 </div>
 <div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-9-c.avif" alt="Spot dilution plates of B. subtilis wild type (top) and Dsup (bottom), three technical replicates each, at 0, 60, 120, 180, 240 and 300 J/m², with the fraction of dilutions showing growth marked beside every row" loading="lazy"></div>
-<figcaption class="caption"><strong>Figure 11.</strong> Second biological replicate of the UV-C comparison between wild-type and Dsup-expressing <i>B. subtilis</i>. (A, B) OD₆₀₀ over the hour after irradiation, normalised to the first reading, for wild type (A) and Dsup (B) at 0 to 300 J/m². (C) Spot dilution assay for both strains, three technical replicates each, with the fraction of dilutions showing growth marked on every row.</figcaption>
+<figcaption class="caption"><strong>Figure 11.</strong> Second biological replicate of the UV-C comparison between wild-type and Dsup-expressing <i>B. subtilis</i>. (A, B) OD₆₀₀ over the hour after irradiation, normalized to the first reading, for wild type (A) and Dsup (B) at 0 to 300 J/m². (C) Spot dilution assay for both strains, three technical replicates each, with the fraction of dilutions showing growth marked on every row.</figcaption>
 </figure>
 </div>
 
@@ -579,7 +579,7 @@ In addition, for _P. pastoris_, we were able to perform these measurements for t
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-10.avif" alt="Spot dilution plates of P. pastoris Dsup, the nanobody control strain and IPD2, three technical replicates each, at 0, 60, 120, 180, 240 and 300 J/m², with the fraction of dilutions showing growth marked beside every row" loading="lazy"></div><figcaption class="caption"><strong>Figure 12.</strong> UV-C dose response of <i>P. pastoris</i> expressing Dsup, the improved variant IPD2, and the nanobody-producing control strain. Spot dilution assay, three technical replicates per strain, with the fraction of dilutions showing growth marked on every row.</figcaption></figure>
 </div>
 
-The fractions separate the control from the two Dsup strains. In two of the three control replicates the strain reaches five or six dilutions without irradiation and declines steadily to three or four by 240 J/m², a loss of two to three orders of magnitude, while both Dsup strains hold all six dilutions over the same range. What the fractions do not separate is Dsup from IPD2, which sit at six out of six through almost the entire series, and there the informative difference is how well the colonies grow within each row. At the lowest doses the first four or five spots of every row are confluent, and that boundary moves towards the concentrated end as the dose rises. It moves fastest in the control, whose spots break into separate colonies by the third or fourth position from 120 J/m². Dsup holds its confluent region further along, and IPD2 further still: at 240 and 300 J/m² the IPD2 rows keep around three large confluent spots while Dsup is down to one or two and the control to one. Judged by how much growth survives rather than by how many dilutions give any growth at all, IPD2 performs best, Dsup second and the control last, and the two Dsup constructs only separate at the top of the range.
+The fractions separate the control from the two Dsup strains. In two of the three control replicates the strain reaches five or six dilutions without irradiation and declines steadily to three or four by 240 J/m², a loss of two to three orders of magnitude, while both Dsup strains hold all six dilutions over the same range. What the fractions do not separate is Dsup from IPD2, which sit at six out of six through almost the entire series, and there the informative difference is how well the colonies grow within each row. At the lowest doses the first four or five spots of every row are confluent, and that boundary moves toward the concentrated end as the dose rises. It moves fastest in the control, whose spots break into separate colonies by the third or fourth position from 120 J/m². Dsup holds its confluent region further along, and IPD2 further still: at 240 and 300 J/m² the IPD2 rows keep around three large confluent spots while Dsup is down to one or two and the control to one. Judged by how much growth survives rather than by how many dilutions give any growth at all, IPD2 performs best, Dsup second and the control last, and the two Dsup constructs only separate at the top of the range.
 
 </div>
 
@@ -604,9 +604,9 @@ The UV absorbance signal at 280 nm (blue line) can be used to estimate protein c
 
 <div class="figure-grid" style="--cols: 1;">
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-11.avif" alt="HisTrap chromatogram of secreted FfIBP from wild-type B. subtilis over the full run, showing UV 280, conductivity and concentration B traces against volume in ml" loading="lazy"></div><figcaption class="caption"><strong>Figure 13.</strong> HisTrap Chromatography of secreted FfIBP from <i>B. subtilis</i> (full)</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-12.avif" alt="HisTrap chromatogram of secreted FfIBP from wild-type B. subtilis zoomed in on the elution, with peaks labelled 721.70 and 745.40" loading="lazy"></div><figcaption class="caption"><strong>Figure 14.</strong> HisTrap Chromatography of secreted FfIBP from <i>B. subtilis</i> (zoomed in)</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-12.avif" alt="HisTrap chromatogram of secreted FfIBP from wild-type B. subtilis zoomed in on the elution, with peaks labeled 721.70 and 745.40" loading="lazy"></div><figcaption class="caption"><strong>Figure 14.</strong> HisTrap Chromatography of secreted FfIBP from <i>B. subtilis</i> (zoomed in)</figcaption></figure>
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-13.avif" alt="HisTrap chromatogram of secreted FfIBP from B. subtilis recombineered with Dsup over the full run, showing UV 280, conductivity and concentration B traces against volume in ml" loading="lazy"></div><figcaption class="caption"><strong>Figure 15.</strong> HisTrap Chromatography of secreted FfIBP from <i>B. subtilis</i> recombineered with Dsup (full)</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-14.avif" alt="HisTrap chromatogram of secreted FfIBP from B. subtilis recombineered with Dsup zoomed in on the elution, with peaks labelled 786.99 and 811.78" loading="lazy"></div><figcaption class="caption"><strong>Figure 16.</strong> HisTrap Chromatography of secreted FfIBP from <i>B. subtilis</i> recombineered with Dsup (zoomed in)</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/measurement/figure-14.avif" alt="HisTrap chromatogram of secreted FfIBP from B. subtilis recombineered with Dsup zoomed in on the elution, with peaks labeled 786.99 and 811.78" loading="lazy"></div><figcaption class="caption"><strong>Figure 16.</strong> HisTrap Chromatography of secreted FfIBP from <i>B. subtilis</i> recombineered with Dsup (zoomed in)</figcaption></figure>
 </div>
 
 </div>
@@ -656,7 +656,7 @@ Although our irradiation experiments were performed repeatedly, further independ
 
 #### 3. Further Optimization and Standardization of Existing Measurement Protocols
 
-While we successfully established working protocols for UV and X-ray irradiation experiments, several methodological improvements could further increase measurement precision and reproducibility. For example, we aim to standardise how cultures are adjusted to the working cell density, so that the resazurin absorbance measurements retain the range needed to distinguish irradiated from unirradiated cultures in every strain.
+While we successfully established working protocols for UV and X-ray irradiation experiments, several methodological improvements could further increase measurement precision and reproducibility. For example, we aim to standardize how cultures are adjusted to the working cell density, so that the resazurin absorbance measurements retain the range needed to distinguish irradiated from unirradiated cultures in every strain.
 
 </div>
 

@@ -485,7 +485,7 @@ Now that we had settled the mixing, it was time to start integrating the sensors
 We fitted the 100 W heating element around our culture vessel (filled with ~400 mL water) and submerged the waterproof DS18B20 temperature sensor in the water.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image6.avif" alt="Red silicone flexible heating element labelled 300 mm by 120 mm, 12 V, 100 W, wrapped around the glass culture vessel with a multi-port cap on top"></div><figcaption class="caption"><strong>Figure 16. The 100 W heating element was too large for the vessel.</strong> The flexible heating element fitted around the culture vessel.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image6.avif" alt="Red silicone flexible heating element labeled 300 mm by 120 mm, 12 V, 100 W, wrapped around the glass culture vessel with a multi-port cap on top"></div><figcaption class="caption"><strong>Figure 16. The 100 W heating element was too large for the vessel.</strong> The flexible heating element fitted around the culture vessel.</figcaption></figure>
 </div>
 
 </div></div>
@@ -598,7 +598,7 @@ We chose a glass culture vessel that can be sterilized and made the non-autoclav
 We assembled the vessel with the 3D-printed lid consisting of six ports: four inlet ports for the dispensing of culture medium, acid/base for pH regulation, antifoam agent, and a gas inlet to supply oxygen to the broth; and two outlet ports, one for gas release to maintain internal gas pressure at ~1 atm, and another to transfer the final culture to the protein purification system. These ports were connected to sterilizable silicone tubing (inner diameter 2.5 mm) via luer lock connectors.
 
 <div class="figure-grid" style="--cols: 3; --fig-h: 170px;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image52.avif" alt="Render of the 3D-printed vessel lid, a disc with six threaded port connectors in the centre, a larger opening and a small opening for sensors, and slots around the edge"></div><figcaption class="caption"><strong>Figure 21. The 3D-printed lid has ports and sensor openings.</strong> The ports are threaded to fit luer lock connectors.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image52.avif" alt="Render of the 3D-printed vessel lid, a disc with six threaded port connectors in the center, a larger opening and a small opening for sensors, and slots around the edge"></div><figcaption class="caption"><strong>Figure 21. The 3D-printed lid has ports and sensor openings.</strong> The ports are threaded to fit luer lock connectors.</figcaption></figure>
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image32.avif" alt="Coil of clear silicone tubing in a plastic box"></div><figcaption class="caption"><strong>Figure 22. Silicone tubing connects the fluid lines.</strong> The tubing has a 2.5 mm inner diameter.</figcaption></figure>
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image66.avif" alt="Three clear plastic luer lock connectors with barbed tube ends"></div><figcaption class="caption"><strong>Figure 23. Plastic luer lock connectors join the tubing to the lid ports.</strong></figcaption></figure>
 </div>
@@ -747,8 +747,8 @@ Seven iterations turned a single clogging syringe filter into a modular, leak-fr
 We initially tested filtering a sample mixture of food-grade *Saccharomyces cerevisiae* in distilled water (3.0 g yeast per 100 mL of water) through a fine filter (0.2 µm pore size) to perform an initial assessment of the feasibility of obtaining a clarified culture this way. The PVDF filter was fitted onto a syringe, which was repeatedly filled with the yeast mixture.
 
 <div class="figure-grid" style="--fig-h: 200px;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image14.avif" alt="Two syringe filters: one in its blue-topped sterile packaging and one labelled Target2 PVDF 0.2 micrometre"></div><figcaption class="caption"><strong>Figure 35. A PVDF syringe filter was used for the first filtration test.</strong> The filter has a 0.2 µm pore size.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image44.avif" alt="A graduated syringe with the PVDF 0.2 micrometre filter fitted on its tip"></div><figcaption class="caption"><strong>Figure 36. The filter was fitted onto a syringe that was repeatedly filled with the yeast mixture.</strong></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image14.avif" alt="Two syringe filters: one in its blue-topped sterile packaging and one labeled Target2 PVDF 0.2 micrometer"></div><figcaption class="caption"><strong>Figure 35. A PVDF syringe filter was used for the first filtration test.</strong> The filter has a 0.2 µm pore size.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image44.avif" alt="A graduated syringe with the PVDF 0.2 micrometer filter fitted on its tip"></div><figcaption class="caption"><strong>Figure 36. The filter was fitted onto a syringe that was repeatedly filled with the yeast mixture.</strong></figcaption></figure>
 </div>
 
 </div></div>
@@ -849,7 +849,7 @@ We ran the same volume of culture through each variant and recorded the volume f
 
 <div class="caption">
 
-**Table 7. Taller chambers hold more residue, but every millimetre of chamber height also costs module height and dead volume.** The 15 mm variant held enough residue to filter ~570 mL without clogging while staying ~25% smaller in chamber volume than the Iteration 3 design.
+**Table 7. Taller chambers hold more residue, but every millimeter of chamber height also costs module height and dead volume.** The 15 mm variant held enough residue to filter ~570 mL without clogging while staying ~25% smaller in chamber volume than the Iteration 3 design.
 
 </div>
 
@@ -1317,7 +1317,7 @@ We successfully obtained a growth curve and identified the T0 point for our labo
 
 <div class="figure-grid" style="--fig-h: 240px;">
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image37.avif" alt="Line chart of optical density against time in hours, rising from 0.05 at 0 h to about 0.92 at 4.5 h, with the steepest rise between 2.5 and 4 h"></div><figcaption class="caption"><strong>Figure 51a. The growth curve gave us a clear T0, so the competence protocol was being followed at the right growth stage.</strong> OD<sub>600</sub> of <i>B. subtilis</i> in SPI medium, sampled every 30 minutes.</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image2.avif" alt="Selective agar plate labelled pBS1C with spectinomycin, carrying fewer than ten scattered colonies of varying size"></div><figcaption class="caption"><strong>Figure 51b. Correct timing did not translate into transformants: only a handful of colonies appeared with the integrative plasmid.</strong> Selective plate from the pBS1C transformation.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image2.avif" alt="Selective agar plate labeled pBS1C with spectinomycin, carrying fewer than ten scattered colonies of varying size"></div><figcaption class="caption"><strong>Figure 51b. Correct timing did not translate into transformants: only a handful of colonies appeared with the integrative plasmid.</strong> Selective plate from the pBS1C transformation.</figcaption></figure>
 </div>
 
 </div></div>
@@ -1397,7 +1397,7 @@ We prepared SP medium containing the nutrients and salts required for competence
 For the first time, we successfully obtained transformants using natural competence. Colonies appeared on the selective plates, unlike our previous attempts using the SPI/SPII method and electroporation. We then performed additional screening of colonies obtained with the pBS1C plasmid. Since pBS1C targets the *amyE* locus, which is involved in starch hydrolysis, we used starch-containing agar plates followed by iodine staining to assess integration. The pHT-ads control showed a clear halo around the colonies, consistent with starch hydrolysis by cells with an intact *amyE* locus.
 
 <div class="figure-grid" style="--fig-h: 250px;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image63.avif" alt="Three selective agar plates labelled linear pBS1C, pBS1C and pHT-ads; the two pBS1C plates carry hundreds of colonies and the pHT-ads plate carries about a dozen"></div><figcaption class="caption"><strong>Figure 53a. Switching to SP medium turned a handful of colonies into hundreds.</strong> Selective plates from the SP-medium transformation, with pBS1C in linear and circular form and the episomal pHT-ads plasmid.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image63.avif" alt="Three selective agar plates labeled linear pBS1C, pBS1C and pHT-ads; the two pBS1C plates carry hundreds of colonies and the pHT-ads plate carries about a dozen"></div><figcaption class="caption"><strong>Figure 53a. Switching to SP medium turned a handful of colonies into hundreds.</strong> Selective plates from the SP-medium transformation, with pBS1C in linear and circular form and the episomal pHT-ads plasmid.</figcaption></figure>
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image59.avif" alt="Starch agar plate after iodine staining, viewed on a light box, with a stained orange-brown region around the streaked growth"></div><figcaption class="caption"><strong>Figure 53b. Iodine staining of starch plates is what let us read integration at <i>amyE</i> off a plate rather than by sequencing.</strong> Starch agar plate after iodine staining.</figcaption></figure>
 </div>
 
@@ -1629,7 +1629,7 @@ We irradiated the plate at eight different doses: 0, 6, 12, 18, 24, 30, 90 and 1
 The hood irradiation effectively prevented cell growth; however, we ran into two problems. The number of colonies was too high, making it difficult to confirm how many cells died at the low doses, and the middle doses had some plate contamination. This was most likely because the hood was not entirely clean. Despite these setbacks, we compared the results from our good plates to what is known in the literature for *Bacillus* UV radiation resistance, and our results agreed with the literature.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image10.avif" alt="Composite figure headed UV-C energy used 0.1 mW per square centimetre, showing plates at 0, 6, 30, 90 and 180 mJ per square centimetre with growth decreasing across the series, plus an inset plate for the 12 to 24 mJ per square centimetre range"></div><figcaption class="caption"><strong>Figure 59. Growth drops away across the dose series, but the plates carry too many colonies to count survivors at the low doses — which is what sent us to a spot assay.</strong> Plates irradiated in the hood at 0.1 mW/cm², labelled by delivered dose; the inset covers the 12–24 mJ/cm² range.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image10.avif" alt="Composite figure headed UV-C energy used 0.1 mW per square centimeter, showing plates at 0, 6, 30, 90 and 180 mJ per square centimeter with growth decreasing across the series, plus an inset plate for the 12 to 24 mJ per square centimeter range"></div><figcaption class="caption"><strong>Figure 59. Growth drops away across the dose series, but the plates carry too many colonies to count survivors at the low doses — which is what sent us to a spot assay.</strong> Plates irradiated in the hood at 0.1 mW/cm², labeled by delivered dose; the inset covers the 12–24 mJ/cm² range.</figcaption></figure>
 </div>
 
 </div></div>
@@ -1673,11 +1673,11 @@ We ensured the plate was completely dry before aliquoting 4 µL of each dilution
 We let the plate dry again after adding our dilution, then we irradiated the plate at six different doses: 0, 6, 12, 18, 24 and 30 mJ/cm².
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image38.avif" alt="Six Bacillus subtilis spot assay plates labelled 0, 6, 12, 18, 24 and 30 mJ per square centimetre; the number and size of spots falls across the series until almost none remain at 30"></div><figcaption class="caption"><strong>Figure 60. The spot assay resolves the dose at which <i>B. subtilis</i> starts to die, which neither earlier plating method could.</strong> Six 5-fold dilutions spotted per plate, one plate per dose, at 0 to 30 mJ/cm².</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image38.avif" alt="Six Bacillus subtilis spot assay plates labeled 0, 6, 12, 18, 24 and 30 mJ per square centimeter; the number and size of spots falls across the series until almost none remain at 30"></div><figcaption class="caption"><strong>Figure 60. The spot assay resolves the dose at which <i>B. subtilis</i> starts to die, which neither earlier plating method could.</strong> Six 5-fold dilutions spotted per plate, one plate per dose, at 0 to 30 mJ/cm².</figcaption></figure>
 </div>
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image53.avif" alt="Six Saccharomyces cerevisiae spot assay plates labelled 0, 6, 12, 18, 24 and 30 mJ per square centimetre, with spots fading across the series"></div><figcaption class="caption"><strong>Figure 61. The same assay reads out on <i>S. cerevisiae</i>, so one protocol covers both chassis.</strong> Spot assay for <i>S. cerevisiae</i> over the same 0 to 30 mJ/cm² dose series.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image53.avif" alt="Six Saccharomyces cerevisiae spot assay plates labeled 0, 6, 12, 18, 24 and 30 mJ per square centimeter, with spots fading across the series"></div><figcaption class="caption"><strong>Figure 61. The same assay reads out on <i>S. cerevisiae</i>, so one protocol covers both chassis.</strong> Spot assay for <i>S. cerevisiae</i> over the same 0 to 30 mJ/cm² dose series.</figcaption></figure>
 </div>
 
 </div></div>
@@ -1777,10 +1777,10 @@ To preserve this auxotrophic phenotype, we selected the pPICZ A expression vecto
 
 To acquire our payload protein production, we initially induced our cells with methanol for a few consecutive days. During this stage, we observed mild pink pigmentation, which was expected. The pigmentation did not interfere with routine cultivation or recombinant protein production. It was also present in colonies after they were grown on YPD agar for more than two days.
 
-As we moved forward towards large-scale protein expression, we increased our culture volumes to approximately 250 mL to 1 L and extended methanol induction to approximately four days.
+As we moved forward toward large-scale protein expression, we increased our culture volumes to approximately 250 mL to 1 L and extended methanol induction to approximately four days.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image68.avif" alt="Four microcentrifuge tubes of PichiaPink cell pellets labelled Uninduced, D1, D2 and D3: the pellet is pale yellow when uninduced and at day 1, brown at day 2 and dark brown at day 3"></div><figcaption class="caption"><strong>Figure 63. The cell pellet darkens with each day of methanol induction.</strong> PichiaPink transformed with IPD1 and induced with 0.5% methanol, uninduced and days 1 to 3.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image68.avif" alt="Four microcentrifuge tubes of PichiaPink cell pellets labeled Uninduced, D1, D2 and D3: the pellet is pale yellow when uninduced and at day 1, brown at day 2 and dark brown at day 3"></div><figcaption class="caption"><strong>Figure 63. The cell pellet darkens with each day of methanol induction.</strong> PichiaPink transformed with IPD1 and induced with 0.5% methanol, uninduced and days 1 to 3.</figcaption></figure>
 </div>
 
 </div></div>
@@ -1831,7 +1831,7 @@ When we increased the supplementation to 40 mg/L, the cultures became considerab
 Most importantly, cell viability and downstream recombinant protein purification remained satisfactory even for very dark samples, indicating that the pigmentation did not prevent successful protein production in our system.
 
 <div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image16.avif" alt="Five microcentrifuge tubes of PichiaPink pPINK_BSA cell pellets labelled Uninduced and D1 to D4, all pale cream"></div><figcaption class="caption"><strong>Figure 64. The control that complements ADE2 stays pale throughout induction.</strong> PichiaPink transformed with pPINK_BSA and induced with 0.5% methanol, uninduced and days 1 to 4.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image16.avif" alt="Five microcentrifuge tubes of PichiaPink pPINK_BSA cell pellets labeled Uninduced and D1 to D4, all pale cream"></div><figcaption class="caption"><strong>Figure 64. The control that complements ADE2 stays pale throughout induction.</strong> PichiaPink transformed with pPINK_BSA and induced with 0.5% methanol, uninduced and days 1 to 4.</figcaption></figure>
 </div>
 
 </div></div>
@@ -1992,7 +1992,7 @@ We understood through the GEMs what we need to build and where to build it, but 
 </div></div>
 <div class="iter-row build"><span class="iter-label">Build</span><div class="iter-body">
 
-We built the simplest model that still contains the trade-off. Biomass grows exponentially at a rate that switches at the induction time t<sub>i</sub>, from μ to βμ, where β is the burden parameter (β = 0.50). Product accumulates in proportion to the active biomass and is lost first-order at a rate k<sub>d</sub>. Since nothing is limiting in this model version, it solves in closed form for the production-phase duration τ = T − t<sub>i</sub> that maximizes harvest titre:
+We built the simplest model that still contains the trade-off. Biomass grows exponentially at a rate that switches at the induction time t<sub>i</sub>, from μ to βμ, where β is the burden parameter (β = 0.50). Product accumulates in proportion to the active biomass and is lost first-order at a rate k<sub>d</sub>. Since nothing is limiting in this model version, it solves in closed form for the production-phase duration τ = T − t<sub>i</sub> that maximizes harvest titer:
 
 <div class="figure-grid single wide">
 <figure>
@@ -2018,7 +2018,7 @@ That answer rests entirely on the assumption that the culture never runs out of 
 </div>
 
 <div class="iter">
-<h4 class="iter-title"><span class="iter-num">5</span>Cycle 5: Peak titre and harvest titre are not the same</h4>
+<h4 class="iter-title"><span class="iter-num">5</span>Cycle 5: Peak titer and harvest titer are not the same</h4>
 <div class="iter-row design"><span class="iter-label">Design</span><div class="iter-body">
 
 We asked the same question after adding the resources that a real batch runs out of.
@@ -2031,10 +2031,10 @@ A five-state ODE model of *S. cerevisiae*: biomass, product, sugar, dissolved ox
 </div></div>
 <div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
 
-We swept the induction time across the batch and recorded the resulting titre. Peak nanobody falls monotonically from 0.238 mg L⁻¹ at t<sub>i</sub> = 0; there is no interior optimum at all. Sugar and dissolved oxygen are driven towards exhaustion in the second half of the batch, and both biomass and product stall.
+We swept the induction time across the batch and recorded the resulting titer. Peak nanobody falls monotonically from 0.238 mg L⁻¹ at t<sub>i</sub> = 0; there is no interior optimum at all. Sugar and dissolved oxygen are driven toward exhaustion in the second half of the batch, and both biomass and product stall.
 
 <div class="figure-grid single wide">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image29.avif" alt="Line chart of maximum nanobody against induction time from 0 to 48 hours: the curve starts at about 0.24 and falls steadily, steepest between 24 and 32 hours, to almost zero by 48 hours"></div><figcaption class="caption"><strong>Figure 67. In the resource-limited yeast model, later induction only lowers the titre.</strong> Peak nanobody titre against induction time, falling monotonically from t<sub>i</sub> = 0.</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image29.avif" alt="Line chart of maximum nanobody against induction time from 0 to 48 hours: the curve starts at about 0.24 and falls steadily, steepest between 24 and 32 hours, to almost zero by 48 hours"></div><figcaption class="caption"><strong>Figure 67. In the resource-limited yeast model, later induction only lowers the titer.</strong> Peak nanobody titer against induction time, falling monotonically from t<sub>i</sub> = 0.</figcaption></figure>
 </div>
 
 </div></div>
@@ -2059,7 +2059,7 @@ A six-state model over a 72 h batch with β<sub>B</sub> = 0.10, with the inducti
 </div></div>
 <div class="iter-row test"><span class="iter-label">Test</span><div class="iter-body">
 
-The yield curve is a sharp peak at 6.5 h: missing it by a few hours costs most of the product. The protease term also separates two quantities that are the same in the yeast model: the t<sub>i</sub> = 12 h run peaks near 140 mg L⁻¹ around 28 h and then declines, so peak titre and harvest titre are different numbers.
+The yield curve is a sharp peak at 6.5 h: missing it by a few hours costs most of the product. The protease term also separates two quantities that are the same in the yeast model: the t<sub>i</sub> = 12 h run peaks near 140 mg L⁻¹ around 28 h and then declines, so peak titer and harvest titer are different numbers.
 
 <div class="figure-grid single wide">
 <figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image69.avif" alt="Line chart of final nanobody at harvest against induction time, with a sharp peak at 6.5 hours and a steep fall within a few hours on either side"></div><figcaption class="caption"><strong>Figure 68. Final nanobody at harvest peaks sharply at 6.5 h and collapses within a few hours either side.</strong> Final nanobody at harvest against induction time in the <i>B. subtilis</i> model.</figcaption></figure>
@@ -2068,7 +2068,7 @@ The yield curve is a sharp peak at 6.5 h: missing it by a few hours costs most o
 </div></div>
 <div class="iter-row learn"><span class="iter-label">Learn</span><div class="iter-body">
 
-We sized the nitrogen pool generously (5.0 g L⁻¹) and it never became binding: sugar is exhausted by about 40 h while the nitrogen pool is only partly consumed. Under this parameter set, carbon limits this batch and not nitrogen, so the feature we added for realism changed nothing. Peak and harvest titre are different quantities, so the culture should be harvested at the product peak rather than at a fixed end time.
+We sized the nitrogen pool generously (5.0 g L⁻¹) and it never became binding: sugar is exhausted by about 40 h while the nitrogen pool is only partly consumed. Under this parameter set, carbon limits this batch and not nitrogen, so the feature we added for realism changed nothing. Peak and harvest titer are different quantities, so the culture should be harvested at the product peak rather than at a fixed end time.
 
 </div></div>
 <div class="iter-row learn"><span class="iter-label">Iterated design</span><div class="iter-body">

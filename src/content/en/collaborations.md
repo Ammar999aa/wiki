@@ -16,7 +16,7 @@ We saw an opportunity to change that.
 
 What began as individual collaborations with other iGEM teams gradually developed into Tawasol (تواصل), a regional initiative designed to bring teams together around science communication, education, and public engagement. The name _Tawasol_ means connection or communication in Arabic. It reflects our belief that scientific collaboration should extend beyond exchanging technical information. It should also create relationships, build shared resources, and make scientific knowledge accessible to the communities we serve.
 
-Through our partnerships with NYU Abu Dhabi, Al-Nahrain University, King Fahd University of Petroleum and Minerals (KFUPM), and Armed Forces College of Medicine (AFCM) Egypt, we worked towards a more connected regional iGEM community.
+Through our partnerships with NYU Abu Dhabi, Al-Nahrain University, King Fahd University of Petroleum and Minerals (KFUPM), and Armed Forces College of Medicine (AFCM) Egypt, we worked toward a more connected regional iGEM community.
 
 <div class="card-grid stack">
 

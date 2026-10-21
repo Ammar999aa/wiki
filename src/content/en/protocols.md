@@ -455,12 +455,12 @@ The assay requires actively dividing cells, not a saturated overnight. Dilute th
 2. Harvest when the OD₆₀₀ enters the organism's target window (Table 1): 0.4–0.6 for *B. subtilis* and *S. cerevisiae*; 0.6–1.0 for *P. pastoris*. For dye assays needing late-log cells, continue to OD 0.8–1.0.
 3. If several strains of one organism are compared, wait until all reach the window before harvesting, so every strain is irradiated at an equivalent physiological state.
 
-#### Standardising cell number before treatment
+#### Standardizing cell number before treatment
 
 1. Record the final OD₆₀₀ of each culture in the tube immediately before use.
-2. Normalise all strains to the same OD₆₀₀ by diluting the denser ones with fresh medium (use the lowest common OD as the reference).
+2. Normalize all strains to the same OD₆₀₀ by diluting the denser ones with fresh medium (use the lowest common OD as the reference).
 3. Where a concentrated suspension is needed, harvest by centrifugation (4,000 × g, ~15 min, RT; yeasts tolerate 1,500 × g, 5 min) and resuspend the pellet in a smaller volume of fresh medium.
-4. Confirm the normalised OD₆₀₀ once more before distributing to treatment tubes or plates.
+4. Confirm the normalized OD₆₀₀ once more before distributing to treatment tubes or plates.
 
 ### Stage 2 — Radiation treatment
 
@@ -470,7 +470,7 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 
 **Instrument:** Xstrahl RS320 (or an equivalent cabinet irradiator). Fix the rack geometry and sample position for every run, and verify the delivered dose with a dosimeter at the sample position before quoting absolute doses.
 
-1. Distribute the normalised exponential-phase suspension into 2 mL screw-cap tubes, 1.2 mL per tube, leaving ~0.8 mL of headspace for gas exchange during long exposures. Use one tube per dose per strain, plus the mock.
+1. Distribute the normalized exponential-phase suspension into 2 mL screw-cap tubes, 1.2 mL per tube, leaving ~0.8 mL of headspace for gas exchange during long exposures. Use one tube per dose per strain, plus the mock.
 2. Load the tubes into the support rack at the calibrated position.
 3. Deliver the dose series, deriving each run time from the current calibration (dose = dose rate × time).
 4. Use the dose series in Table 2. The machine cannot run for more than 70 min continuously; pause for 15 min between runs, so longer doses are split into batches.
@@ -495,7 +495,7 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 4. Turn the key to the ray icon.
 5. Switch on the X-ray by pressing the green "X-ray On" button.
 6. When warm-up finishes, turn the key off.
-7. Position your sample at the chosen distance from the source, using the machine's lasers to centre the samples.
+7. Position your sample at the chosen distance from the source, using the machine's lasers to center the samples.
 8. Set the dose and source-to-surface distance (SSD) using the calibration values in Table 3.
 
 **Table 3.** Dose-rate calibration as a function of source-to-surface distance (SSD) for the Xstrahl irradiator.
@@ -533,7 +533,7 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 
 **(a) Liquid-suspension format — for resazurin / FUN-1 readouts**
 
-1. Normalise the cultures to equal density and pellet (6,000 rpm, 3 min); resuspend each in 2 mL of PBS (or keep in medium).
+1. Normalize the cultures to equal density and pellet (6,000 rpm, 3 min); resuspend each in 2 mL of PBS (or keep in medium).
 2. Transfer the full 2 mL suspension to a sterile Petri dish (same dish type and volume for every sample, to keep the path length constant).
 3. Expose to the target UV-C dose with the lid off.
 4. Immediately recover the suspension into a sterile tube. For DNA-damage endpoints, proceed with no recovery; for viability, allow the defined recovery/read window.
@@ -705,7 +705,7 @@ Metabolically active cells convert diffuse green cytosolic FUN-1 into red-orange
 
 ## Resazurin metabolic-reduction assay (kinetic)
 
-Viable, metabolically active cells reduce blue resazurin to pink resorufin; the rate and extent track viability. Over-reduction continues to a colourless product, so very dense or active cultures saturate quickly — keep the density low enough to resolve the kinetics.
+Viable, metabolically active cells reduce blue resazurin to pink resorufin; the rate and extent track viability. Over-reduction continues to a colorless product, so very dense or active cultures saturate quickly — keep the density low enough to resolve the kinetics.
 
 1. Dilute the cells to the working density OD₆₀₀ ≈ 0.2. This is chosen so that reduction is slow enough for treated and untreated samples to separate within the read window; higher densities turn pink within seconds and mask the dose effect.
 2. Add 100 µL of each suspension to a 96-well plate in triplicate.
