@@ -7,13 +7,9 @@
    a fade+rise on the incoming page so navigation isn't a hard cut. Same
    duration/motion as index.scss's ::view-transition-new(root) — kept in
    sync so the two paths feel like one transition, not two different ones
-   depending on the browser.
-   `backwards`, not `both`: a fill that keeps `transform: translateY(0)` on
-   this wrapper after the fade makes it the containing block for every
-   position: fixed child, so the jump-nav rail (SectionedArticle's
-   .panelContainer) would scroll away with the page instead of staying put. */
+   depending on the browser. */
 .routeFade {
-  animation: routeFadeIn 360ms cubic-bezier(0, 0, 0.2, 1) backwards;
+  animation: routeFadeIn 360ms cubic-bezier(0, 0, 0.2, 1) both;
 }
 
 @keyframes routeFadeIn {
