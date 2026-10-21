@@ -43,6 +43,8 @@ const selena    = `${ROSTER_CDN}/selena.avif`;
 const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
 const alejandra = `${ROSTER_CDN}/alejandra.avif`;
 const jordi     = `${ROSTER_CDN}/jordi.avif`;
+const raik      = `${ROSTER_CDN}/raik.avif`;
+const samah     = `${ROSTER_CDN}/samah.avif`;
 
 // Order within each department controls display order in both the
 // honeycomb and the fallback grid (departmentGroups below filters this
@@ -79,10 +81,9 @@ const members = [
 ];
 
 // The two PIs also listed on Attributions (src/pages/Attributions/Attributions.jsx)
-// — same names/role. Raik has sent neither a photo nor a flag yet, so his
-// entry stays photo-less (the bubble falls back to initials).
+// — same names/role. Raik chose the German flag.
 const principalInvestigators = [
-  { name: "Raik Grünberg", roleKey: "pi", memberKey: "raik", photo: null, countryCode: null },
+  { name: "Raik Grünberg", roleKey: "pi", memberKey: "raik", photo: raik, countryCode: "de" },
   { name: "Wayne Yang", roleKey: "pi", memberKey: "wayne", photo: wayne, countryCode: "sg" },
 ];
 
@@ -93,10 +94,10 @@ const principalInvestigators = [
 // Attributions.
 // Names, flags and photos are each person's own choice, from the replies in
 // src/assets/email-responses — Jordi publishes as "Jordi Pla-Mauri", and
-// Muhammad Tehseen asked for the Australian flag. Samah hasn't replied yet.
+// Muhammad Tehseen asked for the Australian flag. Samah has sent a photo but no flag yet.
 const advisors = [
   { name: "Fabian Schmidt", roleKey: "advisor", memberKey: "fabian", photo: fabian, countryCode: "de" },
-  { name: "Samah Gadhoum", roleKey: "advisor", memberKey: "samah", photo: null, countryCode: null },
+  { name: "Samah Gadhoum", roleKey: "advisor", memberKey: "samah", photo: samah, countryCode: null },
   { name: "Selena Franchini", roleKey: "advisor", memberKey: "selena", photo: selena, countryCode: "it" },
   { name: "Muhammad Tehseen", roleKey: "advisor", memberKey: "muhammadTehseen", photo: tehseen, countryCode: "au" },
   { name: "Alejandra Rodríguez Llerena", roleKey: "advisor", memberKey: "alejandra", photo: alejandra, countryCode: "es" },

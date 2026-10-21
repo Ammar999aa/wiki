@@ -36,6 +36,8 @@ const wayne     = `${ROSTER_CDN}/wayne.avif`;
 const selena    = `${ROSTER_CDN}/selena.avif`;
 const tehseen   = `${ROSTER_CDN}/tehseen.avif`;
 const alejandra = `${ROSTER_CDN}/alejandra.avif`;
+const raik      = `${ROSTER_CDN}/raik.avif`;
+const samah     = `${ROSTER_CDN}/samah.avif`;
 const jordi     = `${ROSTER_CDN}/jordi.avif`;
 const yerlen    = `${ROSTER_CDN}/yerlen.avif`;
 const kiran     = `${ROSTER_CDN}/kiran.avif`;
@@ -148,16 +150,16 @@ const students = [
   { key: "yerlen",        title: "Yerlen Menglen",                 photo: yerlen,    deptKey: "wiki" },
 ];
 
-// Same two PIs as on Roster, same photos. Raik hasn't sent one yet.
+// Same two PIs as on Roster, same photos.
 const principalInvestigators = [
-  { key: "raik", title: "Raik Grünberg", photo: null },
+  { key: "raik", title: "Raik Grünberg", photo: raik },
   { key: "wayne", title: "Wayne Yang", photo: wayne },
 ];
 
 // Same six advisors as on Roster, same order, same photos and preferred
-// display names (src/assets/email-responses). Samah hasn't sent one yet.
+// display names (src/assets/email-responses).
 const advisors = [
-  { key: "samah", title: "Samah Gadhoum", photo: null },
+  { key: "samah", title: "Samah Gadhoum", photo: samah },
   { key: "selena", title: "Selena Franchini", photo: selena },
   { key: "muhammadTehseen", title: "Muhammad Tehseen", photo: tehseen },
   { key: "alejandra", title: "Alejandra Rodríguez Llerena", photo: alejandra },
