@@ -161,7 +161,7 @@ Electroporation was used to introduce linearized recombinant DNA into _P. pastor
 
 <div class="photo-frame">
 
-![Agarose gel of the IPD1 plasmid cut with SacI beside an uncut control](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-1.avif)
+![Agarose gel of the IPD1 plasmid cut with SacI beside an uncut control](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-1-transparent.avif)
 
 </div>
 
@@ -226,7 +226,7 @@ Lithium acetate (LiAc)-mediated heat-shock transformation was used to introduce 
 
 <div class="photo-frame">
 
-![Agarose gel of ISD1 and ISD2 cut with NdeI beside uncut controls](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-3.avif)
+![Agarose gel of ISD1 and ISD2 cut with NdeI beside uncut controls](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-3-transparent.avif)
 
 </div>
 
@@ -314,9 +314,9 @@ Previously, we tested other _B. subtilis_ transformation protocols, including el
 
 </div>
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![Western blot detecting myc-tagged Dsup in wild type and mutant B. subtilis](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-7.avif)
+![Western blot detecting myc-tagged Dsup in wild type and mutant B. subtilis](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-7-transparent.avif)
 
 </div>
 
@@ -328,7 +328,7 @@ Previously, we tested other _B. subtilis_ transformation protocols, including el
 
 <div class="photo-frame">
 
-![Western blot detecting myc-tagged Dsup in mutant and negative control P. pastoris](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-8.avif)
+![Western blot detecting myc-tagged Dsup in mutant and negative control P. pastoris](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-8-transparent.avif)
 
 </div>
 
@@ -344,7 +344,7 @@ Western blotting was initially performed to validate expression of Dsup in three
 
 <div class="photo-frame">
 
-![Spot dilution assay of B. subtilis WT and Dsup after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-9.avif)
+![Spot dilution assay of B. subtilis WT and Dsup after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-9-transparent.avif)
 
 </div>
 
@@ -358,25 +358,25 @@ Ten-fold serial dilutions of wild-type and Dsup-expressing _B. subtilis_ were sp
 
 <div class="photo-frame">
 
-![OD600 of B. subtilis WT and Dsup over 60 minutes after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-10.avif)
+![OD600 of B. subtilis WT and Dsup over 60 minutes after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-10-transparent.avif)
 
 </div>
 
 <div class="caption">
 
-**Figure 10.** OD₆₀₀ of _B. subtilis_ over 60 min following UV irradiation at 0, 60, 120, 180, 240 and 300, measured in wells without resazurin and normalised to the value at t = 0. (A) WT. (B) DSUP.
+**Figure 10.** OD₆₀₀ of _B. subtilis_ over 60 min following UV irradiation at 0, 60, 120, 180, 240 and 300, measured in wells without resazurin and normalized to the value at t = 0. (A) WT. (B) DSUP.
 
 </div>
 
 <div class="photo-frame">
 
-![OD600 of B. subtilis WT over 60 minutes after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-11.avif)
+![OD600 of B. subtilis WT over 60 minutes after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-11-transparent.avif)
 
 </div>
 
 <div class="caption">
 
-**Figure 11.** OD₆₀₀ of _B. subtilis_ WT over 60 min following UV irradiation at 0, 60, 120, 180, 240 and 300, measured in wells without resazurin and normalised to the value at t = 0.
+**Figure 11.** OD₆₀₀ of _B. subtilis_ WT over 60 min following UV irradiation at 0, 60, 120, 180, 240 and 300, measured in wells without resazurin and normalized to the value at t = 0.
 
 </div>
 
@@ -384,7 +384,7 @@ Figures 10 and 11 illustrate the growth dynamics of Dsup-expressing and wild-typ
 
 <div class="photo-frame">
 
-![Percentage resazurin reduction versus UV dose for B. subtilis WT and Dsup](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-12.avif)
+![Percentage resazurin reduction versus UV dose for B. subtilis WT and Dsup](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-12-transparent.avif)
 
 </div>
 
@@ -396,7 +396,7 @@ Figures 10 and 11 illustrate the growth dynamics of Dsup-expressing and wild-typ
 
 <div class="photo-frame">
 
-![Percentage viability versus UV dose for B. subtilis WT and Dsup](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-13.avif)
+![Percentage viability versus UV dose for B. subtilis WT and Dsup](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-13-transparent.avif)
 
 </div>
 
@@ -414,16 +414,16 @@ Figure 13 further supports this observation by presenting resazurin-based relati
 
 ### X-ray irradiation of _B. subtilis_
 
-Cultures of wild-type and Dsup-expressing _B. subtilis_ were irradiated with X-rays and followed by OD₆₀₀ for 60 min in wells without resazurin, each series normalised to its own starting value (Figure 14). Unirradiated cultures reached 2.3 times the initial density in the wild type and 2.7 times in Dsup, and at 500 Gy growth was largely arrested in both. Above that dose the wild type ended below where it started, at 0.86, 0.73 and 0.70 of the initial OD at 1000, 1500 and 2000 Gy, whereas Dsup held at or above 1.0 throughout. Since neither strain divides above 500 Gy, Dsup is not keeping cells growing under irradiation but preventing the loss of density that the wild type shows, which points to cell lysis rather than arrested division.
+Cultures of wild-type and Dsup-expressing _B. subtilis_ were irradiated with X-rays and followed by OD₆₀₀ for 60 min in wells without resazurin, each series normalized to its own starting value (Figure 14). Unirradiated cultures reached 2.3 times the initial density in the wild type and 2.7 times in Dsup, and at 500 Gy growth was largely arrested in both. Above that dose the wild type ended below where it started, at 0.86, 0.73 and 0.70 of the initial OD at 1000, 1500 and 2000 Gy, whereas Dsup held at or above 1.0 throughout. Since neither strain divides above 500 Gy, Dsup is not keeping cells growing under irradiation but preventing the loss of density that the wild type shows, which points to cell lysis rather than arrested division.
 
 <div class="figure-grid" style="--cols: 2;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-a.avif" alt="Growth of wild-type B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> WT</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-b.avif" alt="Growth of Dsup-expressing B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> Dsup</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-a-transparent.avif" alt="Growth of wild-type B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> WT</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-14-b-transparent.avif" alt="Growth of Dsup-expressing B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> Dsup</figcaption></figure>
 </div>
 
 <div class="caption">
 
-**Figure 14.** Growth of _B. subtilis_ over 60 min following X-ray irradiation at 0, 500, 1000, 1500 and 2000 Gy, measured as OD₆₀₀ in wells without resazurin and normalised to the value at t = 0.
+**Figure 14.** Growth of _B. subtilis_ over 60 min following X-ray irradiation at 0, 500, 1000, 1500 and 2000 Gy, measured as OD₆₀₀ in wells without resazurin and normalized to the value at t = 0.
 
 </div>
 
@@ -431,7 +431,7 @@ Cultures of wild-type and Dsup-expressing _B. subtilis_ were irradiated with X-r
 
 <div class="photo-frame">
 
-![Spot dilution assay of P. pastoris Dsup, IPD2 and nanobody control after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-15.avif)
+![Spot dilution assay of P. pastoris Dsup, IPD2 and nanobody control after UV irradiation](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-15-transparent.avif)
 
 </div>
 
@@ -441,7 +441,7 @@ Cultures of wild-type and Dsup-expressing _B. subtilis_ were irradiated with X-r
 
 </div>
 
-Dsup, the improved Dsup version (labelled IPD2) and the nanobody control strain of _P. pastoris_ were exposed to UV-C and plated as ten-fold serial dilutions (Figure 15). Both Dsup-expressing strains grew through all six dilutions at every dose up to 240 J/m² in all three replicates, matching their unirradiated controls. The control strain grew to five or six dilutions without irradiation and to six at 60 J/m², then declined steadily to three or four dilutions by 240 J/m², a loss of two to three orders of magnitude.
+Dsup, the improved Dsup version (labeled IPD2) and the nanobody control strain of _P. pastoris_ were exposed to UV-C and plated as ten-fold serial dilutions (Figure 15). Both Dsup-expressing strains grew through all six dilutions at every dose up to 240 J/m² in all three replicates, matching their unirradiated controls. The control strain grew to five or six dilutions without irradiation and to six at 60 J/m², then declined steadily to three or four dilutions by 240 J/m², a loss of two to three orders of magnitude.
 
 Beyond the number of dilutions, the spots themselves carry information about growth density. At low doses the first four to five spots of each row are confluent, and the series only breaks into countable colonies at the dilute end. That boundary moves in as the dose rises, and by 300 J/m² IPD2 still holds around three confluent spots per row while Dsup is down to one or two and the control to one.
 
@@ -463,8 +463,8 @@ _P. pastoris_ loses dilutions from the lowest doses tested, dropping from five a
 _B. subtilis_ therefore tolerates high doses with little change and then fails over a narrow window, while _P. pastoris_ is affected earlier but retains viable cells throughout the range. Neither organism shows appreciable killing below a few hundred Gy, and the subsequent comparisons between wild type and Dsup strains were run at doses well below this range.
 
 <div class="figure-grid" style="--cols: 2;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-16-a.avif" alt="Spot dilution assay of P. pastoris after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> <i>P. pastoris</i></figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-16-b.avif" alt="Spot dilution assay of B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> <i>B. subtilis</i></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-16-a-transparent.avif" alt="Spot dilution assay of P. pastoris after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> <i>P. pastoris</i></figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-16-b-transparent.avif" alt="Spot dilution assay of B. subtilis after X-ray irradiation" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> <i>B. subtilis</i></figcaption></figure>
 </div>
 
 <div class="caption">
@@ -477,7 +477,7 @@ _B. subtilis_ therefore tolerates high doses with little change and then fails o
 
 Before using resazurin to compare irradiated and unirradiated cultures, the assay was set up by testing a range of starting cell densities. _B. subtilis_ was adjusted to OD600 between 0.2 and 1.0 and incubated with the dye. Two controls were included, cells without dye and medium with dye but no cells (Figure 17).
 
-At OD600 0.2 the wells are still blue to purple, so only part of the dye has been reduced. From 0.4 the colour shifts to pink, and by 0.6 it is already saturated, with no visible difference between 0.6, 0.8 and 1.0 after the same incubation.
+At OD600 0.2 the wells are still blue to purple, so only part of the dye has been reduced. From 0.4 the color shifts to pink, and by 0.6 it is already saturated, with no visible difference between 0.6, 0.8 and 1.0 after the same incubation.
 
 Densities of 0.6 and above reduce all the available dye within the incubation time, which leaves no range to detect differences between conditions. OD600 0.2 leaves part of the dye unreduced, so an increase or a decrease in activity is still visible, and it was used as the working density for the irradiation experiments.
 
@@ -523,7 +523,7 @@ Both OD600 and GFP fluorescence were measured using a plate reader every 30 mins
 
 <div class="photo-frame">
 
-![Growth of WT and Dsup B. subtilis strains by OD600 under different IPTG concentrations](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-19.avif)
+![Growth of WT and Dsup B. subtilis strains by OD600 under different IPTG concentrations](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-19-transparent.avif)
 
 </div>
 
@@ -535,7 +535,7 @@ Both OD600 and GFP fluorescence were measured using a plate reader every 30 mins
 
 <div class="photo-frame">
 
-![GFP fluorescence over time for WT and Dsup B. subtilis under different IPTG concentrations](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-20.avif)
+![GFP fluorescence over time for WT and Dsup B. subtilis under different IPTG concentrations](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-20-transparent.avif)
 
 </div>
 
@@ -547,7 +547,7 @@ Both OD600 and GFP fluorescence were measured using a plate reader every 30 mins
 
 <div class="photo-frame">
 
-![Maximum GFP fluorescence and maximum rate of fluorescence increase versus IPTG concentration](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-21.avif)
+![Maximum GFP fluorescence and maximum rate of fluorescence increase versus IPTG concentration](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-21-transparent.avif)
 
 </div>
 
@@ -570,8 +570,8 @@ Overall, these results demonstrate that Dsup expression is compatible with IPTG-
 ### mCherry assays in _P. pastoris_
 
 <div class="figure-grid" style="--cols: 2;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-22-a.avif" alt="Fluorescent imaging of IPC1 mutants after 0.5% methanol induction" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> 0.5% methanol</figcaption></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-22-b.avif" alt="Fluorescent imaging of IPC1 mutants after 1% methanol induction" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> 1% methanol</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-22-a-transparent.avif" alt="Fluorescent imaging of IPC1 mutants after 0.5% methanol induction" loading="lazy"></div><figcaption class="caption"><strong>A)</strong> 0.5% methanol</figcaption></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-22-b-transparent.avif" alt="Fluorescent imaging of IPC1 mutants after 1% methanol induction" loading="lazy"></div><figcaption class="caption"><strong>B)</strong> 1% methanol</figcaption></figure>
 </div>
 
 <div class="caption">
@@ -582,9 +582,9 @@ Overall, these results demonstrate that Dsup expression is compatible with IPTG-
 
 Fluorescence microscopy (Figure 22) confirmed that induction with 0.5% (v/v) methanol yielded noticeably higher fluorescence intensity in the transformed mutants compared to induction with 1.0% (v/v) methanol. Hence, for the further experiments, 0.5% concentration was used for induction of other constructs.
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![Time-course of mCherry fluorescence in P. pastoris IPC1 during methanol induction](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-23.avif)
+![Time-course of mCherry fluorescence in P. pastoris IPC1 during methanol induction](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-23-transparent.avif)
 
 </div>
 
@@ -602,7 +602,7 @@ Interestingly, the greatest increase in fluorescence occurred during the first 2
 
 <div class="photo-frame">
 
-![Relative fluorescence units of IPC2 mutants after methanol induction](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-24.avif)
+![Relative fluorescence units of IPC2 mutants after methanol induction](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-24-transparent.avif)
 
 </div>
 
@@ -645,8 +645,8 @@ We performed recombinant protein expression for several payloads in _P. pastoris
 </div>
 
 <div class="figure-grid" style="--cols: 2;">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-27-a.avif" alt="SDS-PAGE gel of secreted FfIBP purification fractions" loading="lazy"></div></figure>
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-27-b.avif" alt="Second SDS-PAGE gel of secreted FfIBP purification fractions" loading="lazy"></div></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-27-a-transparent.avif" alt="SDS-PAGE gel of secreted FfIBP purification fractions" loading="lazy"></div></figure>
+<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-27-b-transparent.avif" alt="Second SDS-PAGE gel of secreted FfIBP purification fractions" loading="lazy"></div></figure>
 </div>
 
 <div class="caption">
@@ -681,7 +681,7 @@ We performed recombinant protein expression for several payloads in _P. pastoris
 
 <div class="photo-frame">
 
-![SDS-PAGE gel of intracellular FfIBP purification fractions](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-30.avif)
+![SDS-PAGE gel of intracellular FfIBP purification fractions](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-30-transparent.avif)
 
 </div>
 
@@ -723,7 +723,7 @@ Based on these observations, we selected extracellular protein secretion as our 
 
 <div class="photo-frame">
 
-![SDS-PAGE gel of secreted LeIBP purification fractions](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-33.avif)
+![SDS-PAGE gel of secreted LeIBP purification fractions](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-33-transparent.avif)
 
 </div>
 
@@ -819,7 +819,7 @@ Although satisfactory protein yields were obtained from _B. subtilis_, the recov
 
 <div class="photo-frame">
 
-![SDS-PAGE gel of secreted anti-PDL1 nanobody](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-40.avif)
+![SDS-PAGE gel of secreted anti-PDL1 nanobody](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-40-transparent.avif)
 
 </div>
 
@@ -847,9 +847,9 @@ Although satisfactory protein yields were obtained from _B. subtilis_, the recov
 
 </div>
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![Coomassie-stained gel of HisTrap-purified Nb1_gbHSV](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-42.avif)
+![Coomassie-stained gel of HisTrap-purified Nb1_gbHSV](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-42-transparent.avif)
 
 </div>
 
@@ -869,9 +869,9 @@ This study evaluated the ice-binding functionality and cryoprotective potential 
 
 Harvested bacterial pellets were resuspended in Tris-NaCl buffer and supplemented with varying doses of purified FfIBP payload. After freeze-thaw challenge at −80 °C and room-temperature thaw, post-thaw viability was quantified using a spot-dilution assay alongside glycerol-supplemented positive controls and mock buffer controls.
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![Freeze-thaw survival spot dilution assay for E. coli with purified FfIBP](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-43.avif)
+![Freeze-thaw survival spot dilution assay for E. coli with purified FfIBP](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-43-transparent.avif)
 
 </div>
 
