@@ -54,6 +54,7 @@ const Safety = lazyWithPreload(() => import("./pages/Safety/Safety"));
 const Contribution = lazyWithPreload(() => import("./pages/Contribution/Contribution"));
 const Judging = lazyWithPreload(() => import("./pages/Judging/Judging"));
 const Parts = lazyWithPreload(() => import("./pages/Parts/Parts"));
+const Measurement = lazyWithPreload(() => import("./pages/Measurement/Measurement"));
 const Results = lazyWithPreload(() => import("./pages/Results/Results"));
 const ProofOfConcept = lazyWithPreload(() => import("./pages/ProofOfConcept/ProofOfConcept"));
 const ExampleArticle = lazyWithPreload(() => import("./pages/ExampleArticle/ExampleArticle"));
@@ -134,7 +135,14 @@ const Pages = [
         description: "SHIHAB wet lab: strain engineering, assays, and protein expression.",
       },
       { name: "Notebook", title: "Notebook", path: "/notebook", component: Notebook },
-      { name: "Measurement", title: "Measurement", path: "/measurement", component: Stub },
+      {
+        name: "Measurement",
+        title: "Measurement",
+        path: "/measurement",
+        component: Measurement,
+        description:
+          "SHIHAB measurement framework: UV-C and X-ray radiation resistance assays, genomically integrated Dsup, and protein production in engineered B. subtilis and P. pastoris.",
+      },
       { name: "Parts", title: "Parts", path: "/parts", component: Parts },
       { name: "Experiments (Protocols)", title: "Experiments (Protocols)", path: "/experiments", component: Protocols },
       {
