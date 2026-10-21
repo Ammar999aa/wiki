@@ -15,7 +15,6 @@ We developed a collection of basic and composite parts for the iGEM Registry acr
 <tr><th scope="row">Antifreeze proteins</th><td>FfIBP and LeIBP</td></tr>
 <tr><th scope="row">Therapeutic nanobodies</th><td>Anti-HSV and anti-PD-L1</td></tr>
 <tr><th scope="row">Fluorescent reporters</th><td>GFP and mCherry</td></tr>
-<tr><th scope="row">Regulatory and expression elements</th><td>Promoters, secretion signals, purification tags, and modified plasmid backbones</td></tr>
 <tr><th scope="row">Composite constructs</th><td>Designed for protein expression, secretion, and genomic integration across bacterial and yeast systems</td></tr>
 </tbody></table>
 </div>
