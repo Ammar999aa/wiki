@@ -302,15 +302,15 @@ Previously, we tested other _B. subtilis_ transformation protocols, including el
 
 ### Western blots
 
-<div class="photo-frame light">
+<div class="photo-frame">
 
-![Western blot detecting myc-tagged Dsup in wild type and mutant B. subtilis and S. cerevisiae](https://static.igem.wiki/teams/6341/wiki/content/results-2/fig-6.avif)
+![Western blot detecting myc-tagged Dsup in wild type and mutant B. subtilis and S. cerevisiae](https://static.igem.wiki/teams/6341/wiki/content/results-2/transparent-western-blot-figure.avif)
 
 </div>
 
 <div class="caption">
 
-**Figure 6.** Antibody detection of Myc-tagged Dsup in wild-type and mutant _B. subtilis_ and _S. cerevisiae_.
+**Figure 6.** Antibody detection of Myc-tagged Dsup in wild-type and mutant _B. subtilis_ (Bs) and _S. cerevisiae_ (Sc).
 
 </div>
 
