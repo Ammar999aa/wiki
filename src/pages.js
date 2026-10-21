@@ -117,7 +117,7 @@ const Pages = [
         path: "/proof-of-concept",
         component: ProofOfConcept,
         description:
-          "SHIHAB proof of concept: engineered microbial chassis, a compact bioreactor, downstream purification components and a computational screen for stress-resistance proteins.",
+          "SHIHAB proof of concept: engineered microbial chassis, a compact bioreactor and downstream purification components.",
       },
       { name: "Safety", title: "Safety", path: "/safety-and-security", component: Safety },
       { name: "Contribution", title: "Contribution", path: "/contribution", component: Contribution },

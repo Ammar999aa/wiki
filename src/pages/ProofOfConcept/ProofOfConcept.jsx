@@ -103,9 +103,7 @@ const pageIntro = (
       under these demanding conditions. To address this challenge, we engineered microbial chassis with stress-resistance
       genes and established a genomic integration workflow across three microbial hosts. In parallel, we developed a
       compact bioreactor prototype designed to regulate culture conditions, alongside a downstream purification system
-      for recovering protein payloads. We also established a computational gene-mining pipeline that identified 19
-      candidate stress-resistance proteins from the Rub’ al Khali (Empty Quarter), one of the world's most extreme desert
-      environments.
+      for recovering protein payloads.
     </p>
     <p>
       We established a foundation for developing more resilient and autonomous microbial biomanufacturing systems. Our

@@ -211,20 +211,6 @@ We modeled a possible partnership with *Synechococcus elongatus* PCC 7942. This 
 
 </div>
 
-### Discovering new stress-resistance candidates
-
-#### Objective
-
-To develop a computational screening pipeline to investigate stress-associated proteins from harsh environments on Earth.
-
-<div class="callout warn">
-
-<p class="callout-label">Achievement in progress</p>
-
-Using 1,221 metagenomic datasets, the pipeline identified 20,962 initial stress-associated gene calls from Rub’ al Khali desert. We combined functional annotation, physicochemical characterization, conservation analysis, structural prediction, and source quality assessment to prioritize candidates. After screening and auditing, 45 candidates remained, of which 19 met our final sequence-level criteria for synthesis prioritization. These candidates have not yet been experimentally expressed or validated; their selection represents computational prioritization, not proof of biological function.
-
-</div>
-
 ## Next steps
 
 Our proof of concept demonstrates the functionality of SHIHAB's individual components. We investigated microbial genetic engineering and recombinant protein production, built and tested a controlled cultivation platform, developed downstream-processing components, and used computational tools to guide future improvements.
@@ -236,6 +222,6 @@ Further work will focus on:
 - Evaluating long-term bioreactor operation and control-system reliability.
 - Validating the biological performance of engineered SHIHAB chassis under relevant environmental stresses.
 - Assessing the quality and functionality of the recovered protein payloads while implementing appropriate biosafety measures.
-- Experimentally testing computational predictions related to oxygen limitation, co-culture resource supply, and desert-derived stress-protection proteins.
+- Experimentally testing computational predictions related to oxygen limitation, and co-culture resource supply.
 
 SHIHAB represents a step toward adaptable biomanufacturing for environments where conventional production and supply systems may be difficult to sustain.
