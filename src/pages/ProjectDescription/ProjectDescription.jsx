@@ -30,7 +30,7 @@ const intro = (
     }
     stats={[
       { value: "3", label: "Microbial chassis" },
-      { value: "19", label: "Stress-response gene candidates" },
+      { value: "32", label: "Expression constructs" },
       { value: "8", label: "Protein payloads in the proposed library" },
       { value: "1", label: "Bioreactor prototype" },
       { value: "30+", label: "IHP & public engagement activities" },
