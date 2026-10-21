@@ -202,7 +202,9 @@
   }
 }
 
-// The medal badges' credit, one line above the photo credit.
+// The medal badges' credit, in the bottom-left corner (the right one is
+// shared with the photo credit and sits under the menu on narrow screens).
 .medalCredit {
-  bottom: 34px;
+  left: 18px;
+  right: auto;
 }

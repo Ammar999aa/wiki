@@ -1257,32 +1257,16 @@ const HARDWARE_PHOTOS = [
   { src: `${homeImg}hardware-desert-team.avif`, alt: "A group standing behind the SHIHAB prototype in the desert" },
 ];
 
-// Stands in for a video that isn't on iGEM's video server yet. Swap it for
-// the video.igem.org embed once it is (wiki videos must come from there).
-function VideoPlaceholder({ title, className = "" }) {
-  return (
-    <figure className={`${styles.videoSlot} ${className}`}>
-      <div className={styles.videoBox}>
-        <span className={styles.videoPlay} aria-hidden="true">
-          <svg viewBox="0 0 20 20"><path d="M7 5l8 5-8 5z" fill="currentColor" /></svg>
-        </span>
-        <span className={styles.videoSoon}>Video coming soon</span>
-      </div>
-      <figcaption className={styles.videoCap}>{title}</figcaption>
-    </figure>
-  );
-}
-
-// A video.igem.org (PeerTube) embed, 16:9, in the same figure/caption frame as
-// VideoPlaceholder.
-function VideoEmbed({ id, title, className = "" }) {
+// A video.igem.org (PeerTube) embed, 16:9, in a figure with a caption.
+// `autoplay` starts it muted and looping (browsers only allow muted autoplay).
+function VideoEmbed({ id, title, className = "", autoplay = false }) {
   return (
     <figure className={`${styles.videoSlot} ${className}`}>
       <div className={styles.videoFrame}>
         <iframe
-          src={`https://video.igem.org/videos/embed/${id}`}
+          src={`https://video.igem.org/videos/embed/${id}${autoplay ? "?autoplay=1&loop=1&muted=1" : ""}`}
           title={title}
-          allow="fullscreen; picture-in-picture"
+          allow={`fullscreen; picture-in-picture${autoplay ? "; autoplay" : ""}`}
           allowFullScreen
           loading="lazy"
         />
@@ -1457,7 +1441,7 @@ function SolutionSection() {
 
               <div className={styles.sysMedia}>
                 <div className={`${styles.sysVideo} ${styles.solReveal}`} ref={p2(1)} style={hidden}>
-                  <VideoPlaceholder title="Hardware demo" />
+                  <VideoEmbed id="czwcZyskQpAkvMVoSaGwVr" title="Hardware demo" autoplay />
                 </div>
                 <div className={`${styles.sysPhotos} ${styles.solReveal}`} ref={p2(2)} style={hidden}>
                   <PhotoDeck photos={HARDWARE_PHOTOS} className={styles.sysDeck} compact />
