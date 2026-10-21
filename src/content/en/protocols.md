@@ -45,8 +45,6 @@
 
 1. Determine the sporulation rate (percentage of spores among total cells) by phase-contrast microscopy (100×, oil immersion).
 
-![B. subtilis sporulation cycle: vegetative cycle → germination, and the forward path Initiation → Septation → Engulfment → Cortex & Coat → Maturation & Release](https://static.igem.wiki/teams/6341/wiki/content/protocols/bsubtilis-sporulation-cycle.avif)
-
 ## Agarose gel electrophoresis
 
 **Preparing the gel:**
@@ -562,8 +560,6 @@ Run a graded dose series plus an unirradiated mock control handled identically (
 
 ## Neutral bacterial comet assay
 
-![Comet assay workflow: exposure of cells to DNA-damaging agents → embedding of cells into agarose → cell lysis → electrophoresis → DNA staining and visualization](https://static.igem.wiki/teams/6341/wiki/content/protocols/comet-assay-workflow.avif)
-
 ### Part 1: Cell preparation and treatment
 
 1. Grow bacterial cultures to a similar growth stage and normalize all samples to the same OD₆₀₀.
@@ -707,11 +703,6 @@ Metabolically active cells convert diffuse green cytosolic FUN-1 into red-orange
 6. Read fluorescence from the bottom, dual-wavelength. Dead (green): excitation 485 nm / emission 530 nm. Live (red): excitation 485 nm / emission 620 nm. Read height 80–85% of well depth; gain/PMT 60–70%; ≥10 flashes per well; 30 °C. Read every 10 min for 1 h if kinetic.
 7. Analysis: subtract the dye-plus-inhibitor control wells; per well, the red/green ratio = Red RFU / Green RFU; % viability = Red / (Red + Green) × 100. Average the triplicates and plot % viability against dose.
 
-![FUN-1 fluorescence emission spectra at Ex = 480 nm over a 5–30 min staining time course](https://static.igem.wiki/teams/6341/wiki/content/protocols/fun1-emission-spectra-a.avif)
-![FUN-1 fluorescence emission spectra at Ex = 450 nm over a 1–60 min staining time course](https://static.igem.wiki/teams/6341/wiki/content/protocols/fun1-emission-spectra-c.avif)
-
-*(Reproduced from the [Thermo Fisher FUN-1 product manual](https://www.thermofisher.com/order/catalog/product/F7030).)*
-
 ## Resazurin metabolic-reduction assay (kinetic)
 
 Viable, metabolically active cells reduce blue resazurin to pink resorufin; the rate and extent track viability. Over-reduction continues to a colourless product, so very dense or active cultures saturate quickly — keep the density low enough to resolve the kinetics.
@@ -722,8 +713,6 @@ Viable, metabolically active cells reduce blue resazurin to pink resorufin; the 
 4. Read kinetically at the organism's temperature. Fluorescence: excitation 545 nm / emission 590 nm, gain ~65–70%. Absorbance: 570 nm and 600 nm (dual-wavelength allows the % dye reduction to be computed). Our experiments used absorbance mode in treated, translucent 96-well culture plates.
 5. Read every 15 min. A full plateau run takes up to 6 h (24 cycles); for a treated-versus-control comparison, a 1 h window is usually sufficient and more practical.
 6. Analysis: subtract the blank; compute the % reduction from the 570/600 nm absorbances; compare the initial slope (first 15–20 min) rather than the endpoint if any well approaches saturation.
-
-![Resazurin (blue, low fluorescence) reduced by a viable cell's NADH/H⁺ metabolism to resorufin (pink, high fluorescence)](https://static.igem.wiki/teams/6341/wiki/content/protocols/resazurin-resorufin-mechanism.avif)
 
 ## CFU / spot-dilution plating (clonogenic)
 

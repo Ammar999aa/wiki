@@ -115,21 +115,7 @@ Future work could expand the library to additional therapeutic candidates, inclu
 <div class="link-grid">
 
 <div class="link-card">
-<a class="link-card-face" href="/kaust-ksa/software"><span class="popup-num">4</span><span class="popup-face"><span class="popup-title">19 gene candidates</span><span class="popup-desc">Desert-inspired stress-response gene mining</span><span class="link-card-go">Explore Software →</span></span></a>
-<button type="button" class="link-card-more">Read more +</button>
-<div class="popup-more">
-
-#### Mining the desert for stress-response genes
-
-Inspired by the extreme conditions of Saudi Arabia's Rub' al Khali desert, the dry-lab team developed a gene-mining pipeline to identify candidates associated with DNA repair, cold-shock adaptation, and desiccation tolerance.
-
-From computational screening of **1,221 metagenomes**, **19 candidate genes** were selected for further investigation. The data were provided by the Bio-Ontology Research Group (BORG) at KAUST, led by Prof. Robert Hoehndorf. Candidate identification does not establish experimentally validated protection.
-
-<figure class="person-figure"><img src="https://static.igem.wiki/teams/6341/wiki/content/project-description/rub-al-khali-sunset-nov-2007.avif" alt="Sand dunes of the Rub' al Khali desert at sunset" loading="lazy"><figcaption class="caption">Photo: <a href="https://commons.wikimedia.org/wiki/File:Rub_al_khali_sunset_Nov_2007.jpg" target="_blank" rel="noopener noreferrer">Javierblas / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></figcaption></figure>
-
-<p><a class="person-link-btn" href="/kaust-ksa/software">Explore Software →</a></p>
-
-</div>
+<a class="link-card-face" href="/kaust-ksa/hardware"><span class="popup-num">4</span><span class="popup-face"><span class="popup-title">COMSOL bioreactor model</span><span class="popup-desc">We developed a COMSOL Multiphysics model to simulate and optimize the operating conditions of our bioreactor, supporting the design of an efficient and reliable space biomanufacturing platform.</span><span class="link-card-go">Explore Hardware →</span></span></a>
 </div>
 
 <div class="link-card">
@@ -139,7 +125,7 @@ From computational screening of **1,221 metagenomes**, **19 candidate genes** we
 
 #### Modeling growth and reactor conditions
 
-Beyond gene mining, the dry-lab team explored biological production capacity through constraint-based metabolic modeling, including the effects of nutrient availability and different carbon and nitrogen sources. Investigations included glucose and sucrose conditions.
+The dry-lab team explored biological production capacity through constraint-based metabolic modeling, including the effects of nutrient availability and different carbon and nitrogen sources. Investigations included glucose and sucrose conditions.
 
 Computational fluid-dynamics (CFD) simulations in COMSOL examined mixing, circulation, gas distribution, and rotor geometries under gravity-related constraints, helping inform bioreactor design decisions. These analyses evaluate modeled capabilities rather than experimentally proving production performance in space.
 

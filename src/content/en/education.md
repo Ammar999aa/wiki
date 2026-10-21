@@ -602,7 +602,6 @@ Our education programs support Saudi Arabia's Vision 2030 and National Biotechno
 ## Gallery
 
 <div class="gallery">
-<img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-08-23-195644.avif" alt="Education program photo" loading="lazy">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-08-23-200137.avif" alt="Education program photo" loading="lazy">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-09-06-193727.avif" alt="Education program photo" loading="lazy">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/public-engagement/gallery/screenshot-2026-09-06-193934.avif" alt="Education program photo" loading="lazy">
