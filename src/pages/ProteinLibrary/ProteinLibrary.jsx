@@ -13,9 +13,9 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 const milkyWay = "https://static.igem.wiki/teams/6341/wiki/images/milky-way-center.webp";
 
 const INFO_BAR = [
-  { title: "Produced in engineered microbes", detail: "S. cerevisiae, P. pastoris, B. subtilis" },
-  { title: "Designed for modularity & safety", detail: "Kill switches, Auxotrophy" },
-  { title: "Applications in health, space & beyond", detail: null },
+  { title: "Three different expression hosts", detail: "S. cerevisiae, P. pastoris, B. subtilis" },
+  { title: "Protein secretion", detail: "Test rapid purification from all three hosts" },
+  { title: "Applications in health, space & beyond", detail: "Therapy, diagnostics, food stability" },
 ];
 
 const WORKFLOW_STEPS = ["Design", "Clone", "Express", "Purify", "Deliver", "Make an Impact"];
