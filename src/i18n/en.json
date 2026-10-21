@@ -32,6 +32,7 @@
       "jeremy": { "bio": "Background in bioengineering with main focus on bioinformatics, analysis of transcriptomics and proteomics data. Skills include Python, Nextflow, and R. Participated and won previously the iGEM Design League." },
       "taiba": { "bio": "Background in mathematics and data science with experience in data analysis and ML, specializing in bioinformatics." },
       "ammar": { "bio": "Background in computer science with software engineering experience, specializing in frontend web development and user experience design." },
+      "yerlen": { "bio": "Computer science student at Nazarbayev University, with some software engineering experience and a focus on web development, especially backend." },
       "mariaCamila": { "bio": "A chemist from Cali, Colombia, currently doing my Master's in Bioengineering at KAUST. My background is mainly experimental, in enzyme engineering and biocatalysis, though I've also done some work with computational tools like machine learning and molecular modeling. Right now I'm working on my thesis at the StruBE Lab, on the analytical chemistry side of a violacein biosynthesis project. Outside the lab, you'll usually find me with a cup of coffee or dancing whenever I get the chance." },
       "mariana": { "bio": "MSc in Bioscience. Experience in molecular biology, RNA biology, and mammalian cell culture techniques. Currently pursuing a PhD focused on posttranscriptional regulation and RNA-binding proteins in the context of cell differentiation." },
       "kexin": { "bio": "Background in bioengineering with experience in data analysis and ML, molecular biology techniques." },
@@ -236,7 +237,7 @@
       "role": "Volunteer",
       "department": "Wiki",
       "tasks": "Wiki Coding, Visualization",
-      "specificTasks": "Assisted in designing and developing the wiki: Integrated Human Practices and Home pages"
+      "specificTasks": "Assisted in designing and developing the wiki: Integrated Human Practices, Home and Dry Lab pages"
     },
     "noureldin": {
       "role": "Student",
