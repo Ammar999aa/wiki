@@ -4,7 +4,9 @@ import Masthead from "../../components/SectionedArticle/Masthead/Masthead";
 import rawSections from "../../content/en/proof-of-concept.md";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import { GrowthChart, PhChart, TempChart } from "../Hardware/components/ValidationCharts";
-const gradient = "https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
+import { STAGES, STAGE_ICONS } from "./stageIcons";
+import styles from "./ProofOfConcept.module.scss";
+const gradient ="https://static.igem.wiki/teams/6341/wiki/svg-assets/gradient.svg";
 const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 
 // The three bioreactor validation charts are the Hardware page's own
@@ -32,10 +34,62 @@ function withSlots(section) {
   return { ...section, html: null, content: <Fragment>{content}</Fragment> };
 }
 
-const sections = rawSections.map(withSlots);
+function StageIcon({ stage, className }) {
+  const icon = STAGE_ICONS[stage];
+  if (!icon) return null;
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      {icon}
+    </svg>
+  );
+}
+
+// Each section heading opens with its stage's icon from the strip above, so
+// a reader scrolling into "Produce" sees the same mark they met in the
+// workflow. `titleContent` is Article.jsx's rich-title slot — it renders in
+// the heading and in the jump-nav entry, while `title` stays plain text for
+// the section id, the deep link and the scroll-sync (see stageIcons.jsx for
+// the two sections that aren't stages).
+function withIcon(section) {
+  return {
+    ...section,
+    titleContent: (
+      <>
+        <StageIcon stage={section.id} className={styles.titleIco} />
+        {section.title}
+      </>
+    ),
+  };
+}
+
+const sections = rawSections.map(withSlots).map(withIcon);
+
+// The five-stage production workflow from the Project Description, repeated
+// here as the page's opening map: the five stages are this page's first five
+// sections, in order.
+const workflowStrip = (
+  <div className="panel">
+    <div className="panel-title">
+      <span>Production workflow · five stages</span>
+      <span>Sections below</span>
+    </div>
+    <ol className="process-strip">
+      {STAGES.map((stage, i) => (
+        <li key={stage.id}>
+          <StageIcon stage={stage.id} className="process-ico" />
+          <span className="process-label">
+            <span className="process-num">{i + 1}</span>
+            {stage.name}
+          </span>
+          <span className="process-desc">{stage.desc}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+);
 
 // The opening paragraphs sit in the intro slot, right under the masthead:
-// the markdown sections start at "Select" and anything before a "##"
+// the markdown sections start at "Preserve" and anything before a "##"
 // heading is not rendered.
 const pageIntro = (
   <>
@@ -58,6 +112,7 @@ const pageIntro = (
       workflows, computational tools, and hardware designs provide starting points for future iGEM teams exploring
       related projects.
     </p>
+    {workflowStrip}
   </>
 );
 

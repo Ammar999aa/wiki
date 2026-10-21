@@ -1,0 +1,31 @@
+// The stage icon that opens each section heading (stageIcons.jsx). The same
+// `titleContent` renders in the article's `h2` and in the jump-nav panel
+// entry, so the icon is sized in `em` — one rule covers the big heading and
+// the panel's 15px row — and `inline-block` keeps it inside the heading's own
+// text flow, since SectionedArticle renders that `h2` without a class to
+// hang a flex layout on.
+.titleIco {
+  width: 1.2em;
+  height: 1.2em;
+  margin-inline-end: 0.4em;
+  vertical-align: -0.26em;
+  filter: drop-shadow(0 0 10px rgba(177, 109, 255, 0.4));
+
+  // Same two-tone fills as `.process-strip`'s icons in
+  // SectionedArticle.module.scss, repeated here rather than lifted out of
+  // that block because the panel entry renders outside `.article` and so
+  // never matches the rules scoped to it. An SVG `fill` is a presentation
+  // attribute and can't take a `var()`, hence a class per tone.
+  :global(.pi-light) { fill: var(--primary-200); }
+  :global(.pi-main) { fill: var(--primary); }
+  :global(.pi-amber) { fill: var(--accent); }
+  :global(.pi-blue) { fill: var(--tertiary-400); opacity: 0.95; }
+  :global(.pi-frame) { fill: color-mix(in oklab, var(--primary-700) 70%, transparent); }
+  :global(.pi-line) {
+    fill: none;
+    stroke: var(--primary-200);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
