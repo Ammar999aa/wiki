@@ -82,15 +82,13 @@ function withInteractiveContent(baseSections) {
 const pageIntro = (
   <Masthead
     eyebrow={["Beyond the Lab", "Science Communication"]}
-    // TODO(humanize): AI-drafted deck sentence, a close paraphrase of
-    // this page's own opening paragraph rather than copied verbatim —
-    // needs a human rewrite before this page is final. See
-    // .claude/TODO-HUMANIZE-COPY.md.
     deck={
       <>
-        Synthetic biology mostly stays inside labs and journals, in English &mdash; our science communication
-        work brings it into everyday conversation in <b>Arabic and English</b>, through film, podcasts and
-        social media, and unites MENA iGEM teams through the Tawasol Initiative.
+        Today, synthetic biology is still largely confined to labs and journals, only accessible to English language
+        speakers &mdash; our science communication work challenges this status quo. By bringing SynBio into everyday
+        conversation in both <b>Arabic and English</b>, through film, podcasts and social media, we work to unite MENA
+        iGEM teams under the Tawasol Initiative with the sole goal of reaching a population that has been historically
+        underserved in science and higher education, Arabic speakers.
       </>
     }
   />

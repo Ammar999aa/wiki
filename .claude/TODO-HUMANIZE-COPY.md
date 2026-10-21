@@ -16,11 +16,11 @@ needed, and remove this note once done. Each spot is marked in-code with a
 `// TODO(humanize):` comment (a JS comment, not rendered to the page) right
 above the `deck={...}` prop:
 
-- [ ] `src/pages/Safety/Safety.jsx`
+- [x] `src/pages/Safety/Safety.jsx` (replaced with the team's own deck)
 - [x] `src/pages/DryLabModeling/DryLabModeling.jsx` (replaced with the team's own deck from the Dry Lab write-up)
 - [ ] `src/pages/HumanIntegratedPractices/HumanIntegratedPractices.jsx`
 - [ ] `src/pages/Education/Education.jsx` (`educationIntro`)
-- [ ] `src/pages/ScienceCommunication/ScienceCommunication.jsx`
+- [x] `src/pages/ScienceCommunication/ScienceCommunication.jsx` (replaced with the team's own deck)
 
 Two are closer to synthesis than paraphrase and are worth a closer look
 first: Human Integrated Practices' second clause ("how should that shape

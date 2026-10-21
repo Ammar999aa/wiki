@@ -11,7 +11,7 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 const pageIntro = (
   <Masthead
     eyebrow={["Project", "Safety", "BSL-1"]}
-    deck="Our Safety page outlines the biosafety measures, containment strategies, and risk mitigation practices implemented throughout our iGEM project."
+    deck="Our safety page summarizes different biosafety measures, risk mitigation practices, and containment strategies employed by our team throughout our iGEM project."
   />
 );
 
