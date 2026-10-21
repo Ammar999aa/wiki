@@ -2499,9 +2499,12 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   //   <div class="figure-grid" style="--cols: 3; --fig-h: 160px;">
   //   <figure><div class="photo-frame"><img src="..." alt="..."></div><figcaption class="caption"><strong>Figure 1. Lead.</strong> Body.</figcaption></figure>
   //   </div>
+  // `--fig-cols` replaces the even columns with an explicit track list,
+  // e.g. `minmax(0, 3fr) minmax(0, 5fr)` so a portrait and a landscape
+  // photo come out the same height (hardware.md's Figure 10).
   :global(.figure-grid) {
     display: grid;
-    grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
+    grid-template-columns: var(--fig-cols, repeat(var(--cols, 2), minmax(0, 1fr)));
     gap: 18px;
     align-items: start;
     margin-block: 20px;
@@ -2963,8 +2966,8 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
   // Condensed design iterations: a `.details.it-group` per subsystem (the
   // shared collapsible card — the list sits in its `.details-body` so it
   // animates like any other), holding an `ol.it-list` of one-row `li.it`
-  // cards (number, title, "Changed"/"Learned" lines, optional thumbnail)
-  // and a closing `.iter.final`. See hardware.md's Design iterations.
+  // cards (number, title, "Changed"/"Learned" lines, optional photo below
+  // the text) and a closing `.iter.final`. See hardware.md's Design iterations.
   :global(.it-group) {
     :global(.details-summary) {
       font-size: 1.2rem;
@@ -2995,7 +2998,7 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
 
   :global(.it) {
     display: grid;
-    grid-template-columns: 34px minmax(0, 1fr) auto;
+    grid-template-columns: 34px minmax(0, 1fr);
     gap: 14px;
     align-items: center;
     padding: 14px 16px;
@@ -3036,18 +3039,18 @@ $article-left: calc(#{$side-gutter} + #{$rail-width} + #{$rail-gap});
     }
   }
 
+  // The photo sits under the text, in the text's column, at its own aspect
+  // ratio (no crop) and capped in height so portrait shots stay in scale.
   :global(.it-thumb) {
-    width: 132px;
-    height: 92px;
-    object-fit: cover;
+    grid-column: 2;
+    justify-self: start;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 320px;
+    margin: 0;
     border-radius: 10px;
     background: #eceeee;
-
-    @media (max-width: 600px) {
-      grid-column: 2;
-      width: 100%;
-      height: 150px;
-    }
   }
 
   :global(.iter-title) {

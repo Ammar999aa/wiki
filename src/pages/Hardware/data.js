@@ -1,4 +1,4 @@
-// Data behind the Hardware page's three validation charts (Figures 28–30),
+// Data behind the Hardware page's three validation charts (Figures 16–18),
 // copied unchanged from the team's page export (src/assets/hardware-page-export.html).
 // Edit the numbers here; the charts and the growth data table read from this file.
 

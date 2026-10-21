@@ -49,6 +49,8 @@ const sections = rawSections.map(withSlots);
 
 // Hosted on iGEM Video Universe (video.igem.org), as wiki videos must be.
 const DESERT_VIDEO_ID = "czwcZyskQpAkvMVoSaGwVr";
+const userManual =
+  "https://static.igem.wiki/teams/6341/wiki/content/hardware/hardware-user-manual.pdf";
 
 // Figures 1 and 2 sit between the title and the first section, so they go
 // through the `intro` slot rather than hardware.md,
@@ -86,6 +88,13 @@ function TopFigures() {
           </figcaption>
         </figure>
       </div>
+      <p>
+        The SHIHAB platform can be easily set up and operated anywhere by referring to our{" "}
+        <a href={userManual} target="_blank" rel="noopener noreferrer">
+          Hardware User Manual
+        </a>
+        .
+      </p>
     </>
   );
 }

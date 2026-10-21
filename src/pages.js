@@ -163,15 +163,10 @@ const Pages = [
   },
   {
     name: "Dry Lab",
-    folder: [
-      {
-        name: "Modeling",
-        title: "Modeling",
-        path: "/model",
-        component: DryLabModeling,
-        description: "SHIHAB dry lab modeling: flux balance analysis of three chassis and a cyanobacterial partner.",
-      },
-    ],
+    title: "Dry Lab",
+    path: "/model",
+    component: DryLabModeling,
+    description: "SHIHAB dry lab modeling: flux balance analysis of three chassis and a cyanobacterial partner.",
   },
   {
     name: "Beyond the Lab",

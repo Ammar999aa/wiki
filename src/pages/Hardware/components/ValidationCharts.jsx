@@ -8,7 +8,7 @@ import {
 } from "../data";
 
 // The three "Experimental validation" figures. Their captions (Figures
-// 28–30) live in hardware.md right after each chart's slot, like every
+// 16–18) live in hardware.md right after each chart's slot, like every
 // other figure caption on the page.
 
 const range = (from, to, step) => {

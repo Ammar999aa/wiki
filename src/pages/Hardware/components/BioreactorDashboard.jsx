@@ -7,7 +7,7 @@ const igemLogo =
 
 // Interactive simulation of the bioreactor's touchscreen dashboard, ported
 // from the team's page export (vanilla JS there, React state here). The LCD
-// itself keeps the real screen's look (Figure 18); the controls around it use
+// itself keeps the real screen's look (Figure 10); the controls around it use
 // the site's own glass/violet/amber language instead of the export's beige
 // mounting plate. Its "Try me" hint and caption live in hardware.md.
 const RPM_MAX = 2000;
@@ -338,6 +338,10 @@ export default function BioreactorDashboard() {
                 <div className={styles.screenRow}>
                   <span>Motor RPM:</span>
                   <span>{rpm}</span>
+                </div>
+                <div className={styles.screenRow}>
+                  <span>Current OD:</span>
+                  <span>0.42</span>
                 </div>
               </div>
               <div className={styles.cautionWrap}>

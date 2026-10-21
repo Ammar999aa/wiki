@@ -52,7 +52,7 @@
   height: auto;
 }
 
-/* ─── LineChart.jsx (Figures 28–30) ──────────────────────────────────────
+/* ─── LineChart.jsx (Figures 16–18) ──────────────────────────────────────
    Mono for axis text, per the metadata-is-monospace convention
    (.claude/ARTICLE-STANDARDS.md §5); line/dot colors are the brand violet. */
 .chart {
@@ -123,7 +123,7 @@
 /* ─── BioreactorDashboard.jsx ────────────────────────────────────────────
    The LCD (.bezel/.screen) keeps the real touchscreen's look — Silkscreen
    pixel font, cyan-on-blue, scanlines — since it depicts that device
-   (Figure 18). The controls around it follow the site: mono small-caps
+   (Figure 10). The controls around it follow the site: mono small-caps
    labels, glass surface, violet focus/arc, amber primary action. */
 $lcd: #7fe3f4;
 $lcd-font: "Silkscreen", ui-monospace, Menlo, Consolas, monospace;

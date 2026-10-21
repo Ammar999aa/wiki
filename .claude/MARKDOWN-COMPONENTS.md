@@ -580,6 +580,9 @@ plain HTML, one `<figure>` per line (no blank lines needed):
 ```
 
 - `--cols` sets the column count (default 2; one column on phones).
+  `--fig-cols` replaces it with explicit tracks (`minmax(0, 3fr)
+  minmax(0, 5fr)`) when a portrait and a landscape photo should end up the
+  same height; one caption for the pair goes in a `.caption` below the grid.
 - `--fig-h` gives every image the same height so captions line up;
   `--fig-fit: cover` crops to fill it (default `contain` letterboxes).
   `.photo-frame.contain` keeps one image uncropped in a `cover` grid.
