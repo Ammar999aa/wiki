@@ -11,7 +11,7 @@ const bg = "https://static.igem.wiki/teams/6341/wiki/svg-assets/bg.svg";
 //
 // No deck: the opening paragraphs are regular paragraphs, kept in the
 // intro slot (right under the masthead) because the markdown sections start
-// at "Basic Parts" and anything before a "##" heading is not rendered.
+// at the first organism and anything before a "##" heading is not rendered.
 const pageIntro = (
   <>
     <Masthead eyebrow={["Wet Lab", "Parts", "Three chassis"]} />
@@ -25,22 +25,16 @@ const pageIntro = (
     </p>
     <p>
       Our basic parts include the damage suppressor protein (Dsup), ice-binding
-      proteins (FfIBP and LeIBP), (nb14 and nb PDL1) nanobodies, and fluorescent
-      reporter proteins such as GFP and mCherry. We also designed and included
-      several regulatory elements, secretion signals, epitope tags, and plasmid
-      backbones to support protein expression in the different hosts.
+      proteins (FfIBP and LeIBP), (Nb1_gbHSV and nb PDL1) nanobodies, and
+      fluorescent reporter proteins such as GFP and mCherry. We also designed
+      and included several regulatory elements, secretion signals, epitope tags,
+      and plasmid backbones to support protein expression in the different
+      hosts.
     </p>
     <p>
-      Using these basic parts, we developed composite constructs incorporating
-      different promoters, secretion signals, and expression vectors. These
-      constructs were designed to explore protein expression, secretion, and
-      cellular protection across bacterial and yeast systems.
-    </p>
-    <p>
-      Below, we have organised our parts into basic and composite parts for each
-      organism, along with their corresponding iGEM Registry IDs. Detailed
-      descriptions and sequence information for each part can be found through
-      the linked Registry pages.
+      Below, we have organised our parts for each organism, along with their
+      corresponding iGEM Registry IDs. Detailed descriptions and sequence
+      information for each part can be found through the linked Registry pages.
     </p>
   </>
 );
