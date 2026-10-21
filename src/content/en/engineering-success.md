@@ -1994,8 +1994,14 @@ We understood through the GEMs what we need to build and where to build it, but 
 
 We built the simplest model that still contains the trade-off. Biomass grows exponentially at a rate that switches at the induction time t<sub>i</sub>, from μ to βμ, where β is the burden parameter (β = 0.50). Product accumulates in proportion to the active biomass and is lost first-order at a rate k<sub>d</sub>. Since nothing is limiting in this model version, it solves in closed form for the production-phase duration τ = T − t<sub>i</sub> that maximizes harvest titre:
 
-<div class="figure-grid single">
-<figure><div class="photo-frame"><img src="https://static.igem.wiki/teams/6341/wiki/content/engineering/image13.avif" alt="The optimal production duration τ* equals one over (βμ plus k_d) times the natural log of (μ plus k_d) over ((1 minus β) times μ), and the optimal induction time t_i* equals T minus τ*"></div><figcaption class="caption"><strong>Figure 66. The optimum has a closed form in the growth rate, the burden and the degradation rate.</strong> Optimal production-phase duration τ* and induction time t<sub>i</sub>* for a batch of length T.</figcaption></figure>
+<div class="figure-grid single wide">
+<figure>
+
+$$
+\begin{gathered}\tau^{*} = \frac{1}{\beta\mu + k_d}\ln\frac{\mu + k_d}{(1-\beta)\mu},\\ t_{\mathrm{i}}^{*}=T-\tau^{*}\end{gathered}
+$$
+
+<figcaption class="caption"><strong>Figure 66. The optimum has a closed form in the growth rate, the burden and the degradation rate.</strong> Optimal production-phase duration τ* and induction time t<sub>i</sub>* for a batch of length T.</figcaption></figure>
 </div>
 
 </div></div>

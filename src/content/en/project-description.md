@@ -110,6 +110,8 @@ Future work could expand the library to additional therapeutic candidates, inclu
 
 </div>
 
+<p class="caption">Card illustrations: Generated with GPT-6.</p>
+
 ### Dry lab
 
 <div class="link-grid">
@@ -157,6 +159,8 @@ To address this, we designed a compact, **autonomous biomanufacturing platform**
 </div>
 
 </div>
+
+<p class="caption">Card illustration: Generated with GPT-6.</p>
 
 <div class="panel">
 <div class="panel-title"><span>Production workflow · five stages</span><span>Proposed</span></div>

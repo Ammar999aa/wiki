@@ -298,6 +298,7 @@ The ADH1 promoter is a strong, constitutive promoter derived from the _S. cerevi
 
 <figure class="img-aside plain">
 <img src="https://static.igem.wiki/teams/6341/wiki/content/wet-lab-design/tardigrade.avif" alt="Tardigrade">
+<figcaption class="caption">Illustration: Generated with GPT-6.</figcaption>
 </figure>
 
 **Damage suppressor (Dsup)** is a chromatin-associated protein natively expressed in the _Ramazzottius varieornatus_ tardigrade. Tardigrades are microscopic invertebrates, which are classified as extremotolerants due to their substincial ability to survive severe environmental stresses, including desiccation and high levels of ionizing radiation. Dsup was discovered during genomic and proteomic characterization of _R. varieornatus_ as an abundant, highly basic nuclear protein capable of associating with DNA. Its identification provided evidence that, in addition to efficient stress-response and repair systems, tardigrades possess proteins capable of directly protecting their genetic material from damage.

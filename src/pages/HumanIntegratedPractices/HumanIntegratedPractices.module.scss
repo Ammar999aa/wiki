@@ -30,8 +30,7 @@
 }
 
 // The round step icon sits on the dashed spine, same as on the person cards.
-// Doubled selector: the article-wide `img { margin: 12px }` rule would
-// otherwise win and push the icon 12px right of the spine.
+// Its glyph and circle come from the global .step-icon (styles/index.scss).
 .orbitTimeline .orbitIcon {
     margin: 0;
     cursor: default;
@@ -43,10 +42,6 @@
     width: 40px;
     height: 40px;
     aspect-ratio: 1;
-    object-fit: cover;
-    // clip-path, not border-radius: the source art isn't a perfect circle.
-    clip-path: circle(50%);
-    background: var(--bg, #0a0a27);
 }
 
 .orbitBody {

@@ -1008,6 +1008,16 @@
   color: rgba(255, 255, 255, 0.66);
 }
 
+// AI-image credit under the three solution illustrations (iGEM requires the
+// model to be named next to AI-generated images).
+.solCredit {
+  margin: 14px 0 0;
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
 .solSteps {
   display: flex;
   align-items: stretch;

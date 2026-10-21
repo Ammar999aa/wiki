@@ -1441,6 +1441,7 @@ function SolutionSection() {
                   <p>Enables production of high-value proteins for space applications.</p>
                 </div>
               </div>
+              <p className={styles.solCredit}>Illustrations: Generated with GPT-6.</p>
             </div>
 
             <div className={styles.solPart}>

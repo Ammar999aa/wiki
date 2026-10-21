@@ -192,3 +192,31 @@ h4 {
     animation: none;
   }
 }
+/* ORBIT step icons (Observe, Reach, Build, Iterate, Translate): a line glyph
+   in a violet circle. Global because the same markup appears in two places:
+   the ORBIT timeline (OrbitTimeline.jsx) and the stakeholder popups, whose
+   HTML is copied out of the markdown into PersonModal. Drawn here rather
+   than uploaded, so there is no image file to host or credit. */
+.step-icon {
+  display: inline-block;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-700);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 22%;
+    background: #fff;
+    mask: var(--step-glyph) center / contain no-repeat;
+    -webkit-mask: var(--step-glyph) center / contain no-repeat;
+  }
+}
+.step-observe { --step-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z'/%3E%3Ccircle cx='12' cy='12' r='2.8'/%3E%3C/svg%3E"); }
+.step-reach { --step-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='3'/%3E%3Cpath d='M3.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5'/%3E%3Ccircle cx='16.5' cy='9' r='2.4'/%3E%3Cpath d='M15.5 14.2c2.6-.4 4.6 1.3 5.1 4.3'/%3E%3C/svg%3E"); }
+.step-build { --step-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 4.2a4.3 4.3 0 0 0-4.8 5.9l-6 6a1.9 1.9 0 0 0 2.7 2.7l6-6a4.3 4.3 0 0 0 5.9-4.8l-2.7 2.7-2.4-.5-.5-2.4 2.7-2.7Z'/%3E%3C/svg%3E"); }
+.step-iterate { --step-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19.5 12a7.5 7.5 0 0 1-12.8 5.3'/%3E%3Cpath d='M4.5 12a7.5 7.5 0 0 1 12.8-5.3'/%3E%3Cpath d='M17.6 3.2v3.6H14'/%3E%3Cpath d='M6.4 20.8v-3.6H10'/%3E%3C/svg%3E"); }
+.step-translate { --step-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M3.5 12h17'/%3E%3Cpath d='M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5S9.6 5.9 12 3.5Z'/%3E%3C/svg%3E"); }

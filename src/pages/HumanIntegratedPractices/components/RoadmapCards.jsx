@@ -81,6 +81,7 @@ export default function RoadmapCards() {
           );
         })}
       </ol>
+      <p className="caption">Illustrations: Generated with GPT-6.</p>
     </div>
   );
 }

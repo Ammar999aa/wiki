@@ -1,6 +1,6 @@
 // Copy for the page's custom components (QuestionMap, OrbitTimeline, JigsawTable, ValuesCards, GlanceGrid).
 
-// `icon` is the same round step icon the stakeholder cards use (static.igem.wiki/.../images/<icon>.avif).
+// `icon` is the same round step icon the stakeholder cards use (the global .step-icon in styles/index.scss).
 export const orbitSteps = [
   {
     letter: "O",

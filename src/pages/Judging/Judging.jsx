@@ -165,6 +165,14 @@ export default function Judging() {
       >
         Star trails above Earth: NASA/Anil Menon, colour-graded, public domain
       </a>
+      <a
+        href="https://competition.igem.org/judging/medals"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.photoCredit} ${styles.medalCredit}`}
+      >
+        Medal badges: iGEM
+      </a>
     </PageWrapper>
   );
 }

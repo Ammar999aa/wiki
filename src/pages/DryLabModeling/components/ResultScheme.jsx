@@ -227,7 +227,7 @@ export default function ResultScheme() {
         in the yeast model; the remaining links were either calculated separately or identified. Solid arrow: the
         supplier's computed fluxes were used directly as uptake bounds in the yeast model. Dashed arrows: related
         calculations that were run separately or links identified. Every result shown here is developed in the
-        section indicated.
+        section indicated. Organism illustrations: Generated with GPT-6.
       </p>
 
       <p className={styles.schemeHint}>
