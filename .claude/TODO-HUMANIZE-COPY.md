@@ -18,7 +18,7 @@ above the `deck={...}` prop:
 
 - [x] `src/pages/Safety/Safety.jsx` (replaced with the team's own deck)
 - [x] `src/pages/DryLabModeling/DryLabModeling.jsx` (replaced with the team's own deck from the Dry Lab write-up)
-- [ ] `src/pages/HumanIntegratedPractices/HumanIntegratedPractices.jsx`
+- [x] `src/pages/HumanIntegratedPractices/HumanIntegratedPractices.jsx`
 - [ ] `src/pages/Education/Education.jsx` (`educationIntro`)
 - [x] `src/pages/ScienceCommunication/ScienceCommunication.jsx` (replaced with the team's own deck)
 
