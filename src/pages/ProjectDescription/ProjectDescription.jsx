@@ -24,7 +24,7 @@ const intro = (
       <>
         <strong>SHIHAB</strong> (Synthetic Hosts for In-situ Healthcare and Autonomous Biomanufacturing) explores a new
         approach to space healthcare by combining resilient microbial hosts with a compact, autonomous platform for
-        biological production and purification. Our goal is to enable the on-demand production of selected biologics
+        recombinant protein production and purification. Our goal is to enable the on-demand production of selected biologics
         during long-duration space missions, supporting greater medical autonomy beyond Earth.
       </>
     }

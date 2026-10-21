@@ -7,7 +7,7 @@
 <figcaption class="caption">ISS medical supplies. Image credit: <a href="https://www.nasa.gov/ochmo/" target="_blank" rel="noopener noreferrer">NASA</a> (public domain)</figcaption>
 </figure>
 
-As humanity prepares for longer and more ambitious space missions, ensuring that astronauts' health and well-being are supported throughout these journeys becomes even more important. Missions such as NASA's Expedition 75 and future lunar exploration initiatives highlight the growing role of astronauts in conducting scientific research beyond Earth <a class="cite" href="#ref-1">1</a>,<a class="cite" href="#ref-2">2</a>. Today, astronauts aboard the International Space Station (ISS) have access to medical supplies containing medications for various anticipated health conditions. These can be replenished through cargo missions, and evacuation to Earth in case of a serious medical emergency remains possible. However, greater distances and longer mission durations will make these support systems difficult to rely on as exploration extends toward the Moon, Mars, and beyond <a class="cite" href="#ref-3">3</a>,<a class="cite" href="#ref-4">4</a>.
+Missions such as NASA's Expedition 75 and future lunar exploration initiatives highlight the growing role of astronauts in conducting scientific research beyond Earth <a class="cite" href="#ref-1">1</a>,<a class="cite" href="#ref-2">2</a>. Today, astronauts aboard the International Space Station (ISS) have access to medical supplies containing medications for various anticipated health conditions. These can be replenished through cargo missions, and evacuation to Earth in case of a serious medical emergency remains possible. However, greater distances and longer mission durations will make these support systems difficult to rely on as exploration extends toward the Moon, Mars, and beyond <a class="cite" href="#ref-3">3</a>,<a class="cite" href="#ref-4">4</a>.
 
 </div>
 
@@ -23,7 +23,7 @@ On the ISS, medical supplies can be replaced through resupply missions. For expl
 </div>
 
 <div class="popup-card">
-<button type="button" class="popup-open"><span class="popup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22"/><path d="M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg></span><span class="popup-face"><span class="popup-title">Medicine stability</span><span class="popup-desc">Long storage periods and spaceflight conditions present pharmaceutical quality challenges.</span><span class="popup-hint">Tap to read more</span></span></button>
+<button type="button" class="popup-open"><span class="popup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22"/><path d="M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg></span><span class="popup-face"><span class="popup-title">Protein stability</span><span class="popup-desc">Long storage periods and spaceflight conditions present pharmaceutical quality challenges.</span><span class="popup-hint">Tap to read more</span></span></button>
 <div class="popup-more">
 
 Although medications stored aboard the ISS have generally remained usable, some studies have identified stability concerns for particular pharmaceuticals. As missions extend over several years, prolonged storage combined with spaceflight-specific environmental conditions (ionizing radiation, altered gravity, and temperature fluctuations) may increase the difficulty of ensuring consistent pharmaceutical quality and effectiveness <a class="cite" href="#ref-4">4</a>,<a class="cite" href="#ref-5">5</a>.
@@ -181,12 +181,6 @@ To address this, we designed a compact, **autonomous biomanufacturing platform**
 <li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><circle cx="16" cy="18" r="7" class="pi-blue"/><circle cx="29" cy="16" r="6.5" class="pi-main"/><circle cx="35" cy="28" r="6.5" class="pi-main"/><circle cx="14" cy="31" r="6" class="pi-blue"/><circle cx="24.5" cy="28" r="7.5" class="pi-light"/></svg><span class="process-label"><span class="process-num">4</span>Produce</span><span class="process-desc">Secrete therapeutic proteins</span></li>
 <li><svg viewBox="0 0 48 48" class="process-ico" aria-hidden="true"><rect x="18.5" y="4" width="11" height="5.5" rx="1.8" class="pi-light"/><path d="M18 9.5h12v4.5l3.5 4.5V38a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4V18.5l3.5-4.5z" class="pi-line"/><path d="M17.5 24h13v13.5a2.5 2.5 0 0 1-2.5 2.5h-8a2.5 2.5 0 0 1-2.5-2.5z" class="pi-main"/><path d="M24 27.5c2 2.6 3 4.2 3 5.4a3 3 0 0 1-6 0c0-1.2 1-2.8 3-5.4z" class="pi-light"/></svg><span class="process-label"><span class="process-num">5</span>Purify</span><span class="process-desc">Recover and purify the product</span></li>
 </ol>
-</div>
-
-<div class="callout">
-
-Preservation, integrated automation, and therapeutic readiness require further validation.
-
 </div>
 
 ## Shaping SHIHAB together
