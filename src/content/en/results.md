@@ -884,3 +884,35 @@ Harvested bacterial pellets were resuspended in Tris-NaCl buffer and supplemente
 Figure 43 demonstrates freeze-thaw survival assay results for _E. coli_. The assay showed that purified FfIBP improved the survival of _E. coli_ cells following exposure to −80 °C. Both the no-freeze control and the positive control (15% glycerol) exhibited strong bacterial growth across the dilution series, whereas the negative control (0 mg/mL FfIBP) showed substantially reduced growth, indicating freezing-induced loss of viability.
 
 FfIBP treatment improved bacterial survival, with 0.1 and 0.25 mg/mL showing promising protective effects. However, the response was not strictly concentration-dependent, as increasing the concentration to 0.5 mg/mL did not further improve survival. The 0.1 mg/mL concentration was selected as the preferred working concentration, as it provided visible protection while requiring a smaller volume of protein.
+
+## Conclusion
+
+We genomically integrated Dsup into all three of our chassis: _S. cerevisiae_, _P. pastoris_, and _B. subtilis_.
+
+<div class="card-grid stack">
+
+<div>
+
+#### Radiation resistance
+
+In _P. pastoris_ and _B. subtilis_, Dsup improved radiation resistance under UV and X-ray irradiation compared to the unmodified control. For _P. pastoris_, changing the nuclear localization signal of Dsup to one compatible with the chassis (SV40 NLS) enhanced the resistance further.
+
+</div>
+
+<div>
+
+#### Payload expression and purification
+
+We expressed and purified all payloads (nanobodies, antifreeze proteins, mCherry) from _P. pastoris_. From _B. subtilis_, GFP and the antifreeze protein FfIBP were expressed and purified. Dsup genomic integration did not reduce the ability of _B. subtilis_ to produce payload proteins.
+
+</div>
+
+<div>
+
+#### Production yield
+
+_P. pastoris_ produced the highest concentrations of protein: from only 300–400 mL cultures we purified amounts comparable to those from 800–900 mL _B. subtilis_ production cultures.
+
+</div>
+
+</div>
